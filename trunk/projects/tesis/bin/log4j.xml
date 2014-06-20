@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="false">
+	<!-- DEBUG < INFO < WARN < ERROR < FATAL. -->
+	<appender name="info-out" class="org.apache.log4j.FileAppender">
+		<param name="File" value="fl_info.log" />
+		<param name="Append" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="info" />
+			<param name="LevelMin" value="info" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+
+	</appender>
+
+	<appender name="todo_debug" class="org.apache.log4j.FileAppender">
+		<param name="Append" value="false" />
+		<param name="File" value="fl.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="fatal" />
+			<param name="LevelMin" value="debug" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+
+	</appender>
+
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="fatal" />
+			<param name="LevelMin" value="debug" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+
+	<root>
+		<!--level value="debug"/ -->
+		<appender-ref ref="info-out" />
+		<appender-ref ref="todo_debug" />
+		<appender-ref ref="console" />
+	</root>
+</log4j:configuration>
