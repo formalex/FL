@@ -1,0 +1,1860 @@
+ /**
+ * JavaCC template file created by SF JavaCC plugin 1.5.17+ wizard for JavaCC 1.5.0+
+ */
+options
+{
+  JDK_VERSION = "1.7";
+
+  static = true;
+  Ignore_Case = true;
+
+  LOOKAHEAD= 3;
+}
+
+PARSER_BEGIN(FLParser)
+package ar.uba.dc.formalex.parser;
+
+import java.util.*;
+import ar.uba.dc.formalex.fl.FLInput;
+import ar.uba.dc.formalex.fl.bgtheory.*;
+import ar.uba.dc.formalex.fl.bgtheory.Timer; //necesario para desambiguar
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.*;
+import ar.uba.dc.formalex.fl.regulation.permission.Permission;
+import ar.uba.dc.formalex.fl.regulation.rules.*;
+import ar.uba.dc.formalex.fl.regulation.formula.connectors.*;
+import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+
+public class FLParser{
+
+    private static Map<String, Action> actions = new HashMap <String, Action> ();
+    private static Map<String, Interval> intervals = new HashMap<String, Interval> ();
+    private static Map<String, Counter> counters = new HashMap<String, Counter> ();
+    private static Map<String, Role> rolesMap = new HashMap<String, Role> ();
+    private static FLInput flInput = new FLInput();
+    private static String originalFormula; //usado para logueo
+
+    public static FLInput getFLInput(){
+        return flInput;
+    }
+
+
+    private static Interval getInterval(String name){
+        Interval res = intervals.get(name);
+        if (res ==  null){
+            StringBuilder sb = new StringBuilder();
+            sb.append("Se está haciendo referencia a un intervalo no definido ('" + name + "'). Revisar datos del archivo de entrada");
+            throw new RuntimeException(sb.toString());
+        }
+        return res;
+    }
+
+    public static Action getAction(String name){
+        Action res = actions.get(name);
+        if (res ==  null){
+            StringBuilder sb = new StringBuilder();
+            sb.append("Se está haciendo referencia a una acción no definida ('" + name + "'). Revisar datos del archivo de entrada");
+            throw new RuntimeException(sb.toString());
+        }
+        return res;
+    }
+
+    public static Role getRole(String name){
+        //parche x rol dummy
+        if (name.equals("no_assigned_role")){
+            return new Role("no_assigned_role");
+        }
+
+        Role res = rolesMap.get(name);
+        if (res ==  null){
+            StringBuilder sb = new StringBuilder();
+            sb.append("Se está haciendo referencia a un rol no definido ('" + name + "'). Revisar datos del archivo de entrada");
+            throw new RuntimeException(sb.toString());
+        }
+        return res;
+    }
+
+}
+
+PARSER_END(FLParser)
+
+// *********************** //
+// Default SKIP CHARACTERS //
+// *********************** //
+// Characters we don't care about when parsing
+SKIP :
+{
+  " "
+| "\r"
+| "\t"
+| "\n"
+| < "//" (~[ "\n", "\r" ])* > /* java-style comments to FL grammar */
+}
+
+// ************************** //
+// Default TOKENs definitions //
+// ************************** //
+// Sections delimiters
+TOKEN :
+{
+  < SECTION_BG_THEORY : "#Background" >
+| < SECTION_CLAUSES : "#Clauses" >
+}
+
+// ACTION & INTERVAL & ROLE reserved words
+TOKEN :
+{
+  < ACTION : "action" >
+| < ACTIONS : "actions" >
+| < IMPERSONAL_ACTION : "impersonal action" >
+| < TIMER : "timer" >
+| < LOCAL_INTERVAL : "local interval" >
+| < GLOBAL_INTERVAL : "global interval" >
+| < INFINITE : "infinite" >
+| < DEFINED_BY : "defined by actions" >
+| < ONLY_OCCURS_IN : "only occurs in scope" >
+| < OCCURRENCES : "occurrences" >
+| < OUTPUT_VALUES : "output values" >
+| < PERFORMABLE : "only performable by" >
+| < ROLES : "roles" >
+| < ROLES_DISJOINT : "disjoint" >
+| < ROLES_COVER : "cover" >
+| < SYNC : "synchronizes with" >
+| < ALLOW_AUTOSYNC : "allow autosync" >
+| < DISALLOW_AUTOSYNC: "disallow autosync" >
+}
+
+// COUNTERs reserved words
+TOKEN :
+{
+  < LOCAL_COUNTER : "local counter" >
+| < GLOBAL_COUNTER : "global counter" >
+| < COUNTER_INCREASES : "increases with action" >
+| < COUNTER_DECREASES : "decreases with action" >
+| < COUNTER_BY : "by" >
+| < COUNTER_PROVIDED : "provided that" >
+| < COUNTER_RESET : "resets with action" >
+| < COUNTER_SETS_WITH : "sets with action" >
+| < COUNTER_TO_VALUE : "to value" >
+| < COUNTER_INIT_VALUE : "init value" >
+}
+
+// PUNCTUATION reserved words
+TOKEN :
+{
+  < PAR_LEFT : "(" >
+| < PAR_RIGHT : ")" >
+| < BRA_LEFT : "{" >
+| < BRA_RIGHT : "}" >
+| < BKT_LEFT : "[" >
+| < BKT_RIGHT : "]" >
+| < DOT : "." >
+| < DOUBLE_DOT : ":" >
+}
+
+// MODAL LOGIC and OBLIGATIONS tokens
+// These are used when coding terms of the document
+//< IN_TERMS_MODE >
+TOKEN :
+{
+  < ML_DIAMOND : "<>" >
+| < ML_BOX : "[]" >
+| < ML_AND : "&" >
+| < ML_OR : "|" >
+| < ML_THEN : "->" >
+| < ML_NOT : "!" >
+| < OBLIGATION : "O(" >
+| < FORBIDDEN : "F(" >
+| < PERMISSION : "P(" >
+| < OCCURRED : "occurred" >
+| < RESULTS_IN : "results in" >
+| < REPAIRED_BY : "repaired by" >
+| < INSIDE : "inside" >
+| < EXISTS : "EXISTS(" >
+| < FORALL : "FORALL(" >
+}
+
+// COMPARATORS
+TOKEN :
+{
+  < EQUAL : "=" >
+| < LESS : "<" >
+| < GREATER : ">" >
+| < LEQ : "<=" >
+| < GEQ : ">=" >
+}
+
+// RAW text tokens and modes
+TOKEN :
+{
+  < START_RAW_TEXT : "%" > : IN_RAW_TEXT_MODE
+}
+
+< IN_RAW_TEXT_MODE >
+TOKEN :
+{
+  < END_RAW_TEXT : "%" > : DEFAULT
+}
+
+< IN_RAW_TEXT_MODE >
+TOKEN :
+{
+  < RAW_TEXT : (~[ "%" ])* >
+}
+
+// User IDENTIFIERS for Actions, Interval, Roles, Outputs, etc.
+TOKEN :
+{
+  < IDENTIFIER :
+    < LETTER >
+    (
+      < LETTER >
+    | < UNDERSCORE >
+    | < DIGIT >
+    )* >
+| < NUMBER : (< DIGIT >)+ >
+| < MINUS : ("-") >
+| < UNDERSCORE : ("_") >
+| < #LETTER : ([ "a"-"z", "A"-"Z" ]) >
+| < #DIGIT : ([ "0"-"9" ]) >
+}
+
+// *********************** //
+// PRODUCTIONs definitions //
+// *********************** //
+// MAIN production (S)
+void start() :
+{}
+{
+  < SECTION_BG_THEORY >
+  (
+    roles()
+  )*
+  (
+    bg_theory()
+  )*
+  < SECTION_CLAUSES >
+  (
+    clause()
+  )*
+  < EOF >
+  {}
+}
+
+
+///////////////////////
+// ROLES productions //
+///////////////////////
+void roles() :
+{
+  Roles roles = new Roles();
+  flInput.add(roles);
+}
+{
+  < ROLES > < IDENTIFIER >
+  {
+    Role aRole = new Role(token.image);
+    roles.addRole(aRole);
+    rolesMap.put(aRole.getName(), aRole);
+  }
+  (
+    "," < IDENTIFIER >
+    {
+      Role anotherRole = new Role(token.image);
+      roles.addRole(anotherRole);
+      rolesMap.put(anotherRole.getName(), anotherRole);
+    }
+  )*
+  (
+    < ROLES_DISJOINT >
+    {
+      roles.setDisjoint(true);
+    }
+  )?
+  (
+    < ROLES_COVER >
+    {
+      roles.setCover(true);
+    }
+  )?
+}
+
+//////////////////////////
+// STATEMENT production //
+//////////////////////////
+void bg_theory() :
+{}
+{
+  action()
+| actions()
+| interval()
+| counter()
+| timer()
+}
+
+
+void action() :
+{
+    Action anAction = new Action();
+    flInput.add(anAction);
+    boolean isImpersonal;
+    Set <String> actionOutputs = new HashSet <String> ();
+
+    //variables para validar sintaxis correcta
+    boolean hasOutput = false;
+    boolean hasOnlyOccurs = false;
+    boolean hasOccurrences = false;
+    boolean hasSync = false;
+    boolean hasPerformable = false;
+}
+{
+    (< ACTION >             { isImpersonal = false;  }
+    | <IMPERSONAL_ACTION>   { isImpersonal = true; })
+
+    < IDENTIFIER >
+    {
+        anAction.setName(token.image);
+        anAction.setImpersonal(isImpersonal);
+        Action tmp = actions.put(anAction.getName(), anAction);
+        if (tmp != null){
+            StringBuilder sb = new StringBuilder();
+            sb.append("Nombre de acción repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+            throw new RuntimeException(sb.toString());
+        }
+    }
+    (
+        (
+            < OUTPUT_VALUES > < BRA_LEFT > actionOutputs = set() < BRA_RIGHT >
+            {
+              if (hasOutput)
+                throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un output value");
+              hasOutput = true;
+              anAction.setOutputValues(actionOutputs);
+            }
+        )
+        |
+        (
+            < ONLY_OCCURS_IN > < IDENTIFIER >
+            {
+                if (hasOnlyOccurs)
+                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'only occurs in'");
+                hasOnlyOccurs = true;
+                Interval tempInterval = getInterval(token.image);
+                anAction.setOccursIn(tempInterval);
+            }
+        )
+        |
+        (
+            < OCCURRENCES > < NUMBER >
+            {
+                if (hasOccurrences)
+                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'occurrences'");
+                hasOccurrences = true;
+                anAction.setOccurrences(new Integer(token.image));
+            }
+        )
+        |
+        (
+            < SYNC > < IDENTIFIER >
+            {
+                if (hasSync)
+                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'sync'");
+                hasSync = true;
+                Action syncAction = getAction(token.image);
+                anAction.setSync(syncAction, true);
+                syncAction.setSync(anAction, false);
+            }
+            (
+                <ALLOW_AUTOSYNC>
+                {
+                    anAction.setAllowAutoSync(true);
+                }
+            |
+                <DISALLOW_AUTOSYNC>
+                {
+                    anAction.setAllowAutoSync(false);
+                }
+            )
+        )
+        |
+        (
+            < PERFORMABLE > < IDENTIFIER >
+            {
+                if (hasPerformable)
+                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'performable by'");
+                hasPerformable = true;
+
+                if (isImpersonal){
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("Las acciones impersonales no pueden ser 'only performable by' : ('" +
+                        anAction.getName() + "'). Revisar datos del archivo de entrada");
+                    throw new RuntimeException(sb.toString());
+                }
+                Role perfBy = getRole(token.image);
+                anAction.addPerformableBy(perfBy);
+            }
+            (
+                "," < IDENTIFIER >
+                {
+                    Role anotherRole = new Role(token.image);
+                    anAction.addPerformableBy(anotherRole);
+                }
+            )*
+        )
+    )*
+}
+
+////////////////////////
+// ACTIONS production //
+////////////////////////
+void actions() :
+{
+    List<Action> listAction = new ArrayList<Action>();
+}
+{
+    < ACTIONS > < IDENTIFIER >
+    {
+        Action anAction = new Action();
+        anAction.setName(token.image);
+        listAction.add(anAction);
+        flInput.add(anAction);
+        Action tmp = actions.put(anAction.getName(), anAction);
+        if (tmp != null){
+            StringBuilder sb = new StringBuilder();
+            sb.append("Nombre de acción repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+            throw new RuntimeException(sb.toString());
+        }
+    }
+    (
+        "," < IDENTIFIER >
+        {
+          Action anotherAction = new Action();
+          anotherAction.setName(token.image);
+          listAction.add(anotherAction);
+          flInput.add(anotherAction);
+          tmp = actions.put(anotherAction.getName(), anotherAction);
+          if (tmp != null){
+              StringBuilder sb = new StringBuilder();
+              sb.append("Nombre de acción repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+              throw new RuntimeException(sb.toString());
+          }
+        }
+    )*
+    (
+        < ONLY_OCCURS_IN > < IDENTIFIER >
+        {
+            Interval tempInterval = getInterval(token.image);
+            for (Action action : listAction)
+                action.setOccursIn(tempInterval);
+        }
+    )?
+    (
+        < OCCURRENCES > < NUMBER >
+        {
+          Integer occu = new Integer(token.image);
+          for (Action action : listAction)
+            action.setOccurrences(occu);
+        }
+    )?
+    (
+        < PERFORMABLE > < IDENTIFIER >
+        {
+            Role perfBy = getRole(token.image);
+            for (Action action : listAction)
+                action.addPerformableBy(perfBy);
+        }
+        (
+            "," < IDENTIFIER >
+            {
+                Role anotherRole = new Role(token.image);
+                for (Action action : listAction)
+                    action.addPerformableBy(anotherRole);
+            }
+        )*
+    )?
+}
+
+
+/////////////////////////
+// INTERVAL production //
+/////////////////////////
+void interval() :
+{
+    Interval anInterval = new Interval();
+}
+{
+  (< LOCAL_INTERVAL >{
+    anInterval.setLocal(true);
+   }
+   | <GLOBAL_INTERVAL>{
+      anInterval.setLocal(false);
+   })
+
+  < IDENTIFIER >
+  {
+
+    anInterval.setName(token.image);
+    Interval tmp = intervals.put(anInterval.getName(), anInterval);
+    if (tmp != null){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nombre de intervalo repetido: ('" + tmp.getName() + "'). Revisar datos del archivo de entrada");
+        throw new RuntimeException(sb.toString());
+    }
+    flInput.add(anInterval);
+  }
+  < DEFINED_BY >
+  (< INFINITE >
+    {
+        anInterval.setStartActive(true);
+    }
+    |
+   < IDENTIFIER >
+    {
+        Action startAction = getAction(token.image);
+        anInterval.addStartTrigger(startAction);
+    }
+    (
+        "," < IDENTIFIER >
+        {
+            startAction = getAction(token.image);
+            anInterval.addStartTrigger(startAction);
+        }
+    )*
+  )
+  "-"
+  (< INFINITE >
+    {
+        anInterval.setEndActive(true);
+    }
+  |
+    < IDENTIFIER >
+    {
+        Action endAction = getAction(token.image);
+        anInterval.addEndTrigger(endAction);
+    }
+    (
+        "," < IDENTIFIER >
+        {
+            endAction = getAction(token.image);
+            anInterval.addEndTrigger(endAction);
+        }
+    )*
+  )
+  (
+    < ONLY_OCCURS_IN > < IDENTIFIER >
+    {
+        Interval parentInterval = getInterval(token.image);
+        anInterval.setOccursIn(parentInterval);
+    }
+   )?
+  (
+    < OCCURRENCES > < NUMBER >
+    {
+        anInterval.setOccurrences(new Integer(token.image));
+    }
+   )?
+
+}
+
+////////////////////////
+// COUNTER production //
+////////////////////////
+void counter() :
+{
+    Counter counter = new Counter();
+    flInput.add(counter);
+}
+{
+    (< LOCAL_COUNTER >
+        {
+            counter.setLocal(true);
+        }
+    | <GLOBAL_COUNTER>
+        {
+            counter.setLocal(false);
+        }
+    )
+    < IDENTIFIER >
+    {
+        counter.setName(token.image);
+        Counter tmp = counters.put(counter.getName(), counter);
+        if (tmp != null){
+            StringBuilder sb = new StringBuilder();
+            sb.append("Nombre de contador repetido: ('" + tmp.getName() + "'). Revisar datos del archivo de entrada");
+            throw new RuntimeException(sb.toString());
+        }
+    }
+    (< COUNTER_INIT_VALUE >  < NUMBER >
+        {
+            counter.setInitValue(Integer.parseInt(token.image));
+        }
+    )?
+    (
+        < COUNTER_INCREASES > < IDENTIFIER >
+        {
+            Action action = getAction(token.image);
+            String providedThat = null;
+            int value = 1;
+        }
+        (<COUNTER_BY> < NUMBER >
+           {
+               value = Integer.parseInt(token.image);
+           }
+        )?
+        (<COUNTER_PROVIDED>
+           {
+               providedThat = raw_text();
+           }
+        )?
+        {
+            counter.addIncreaseAction(action, value, providedThat);
+        }
+    )?
+    (
+        (",") < COUNTER_INCREASES > < IDENTIFIER >
+        {
+            Action action = getAction(token.image);
+            String providedThat = null;
+            int value = 1;
+        }
+        (<COUNTER_BY> < NUMBER >
+           {
+               value = Integer.parseInt(token.image);
+           }
+        )?
+        (<COUNTER_PROVIDED>
+           {
+               providedThat = raw_text();
+           }
+        )?
+        {
+            counter.addIncreaseAction(action, value, providedThat);
+        }
+    )*
+
+    (
+        < COUNTER_DECREASES > < IDENTIFIER >
+            {
+                Action action = getAction(token.image);
+                String providedThat = null;
+                int value = 1;
+            }
+            (<COUNTER_BY> < NUMBER >
+               {
+                   value = Integer.parseInt(token.image);
+               }
+            )?
+            (<COUNTER_PROVIDED>
+               {
+                   providedThat = raw_text();
+               }
+            )?
+            {
+                counter.addDecreaseAction(action, value, providedThat);
+            }
+    )?
+    (
+        (",") < COUNTER_DECREASES > < IDENTIFIER >
+            {
+                Action action = getAction(token.image);
+                String providedThat = null;
+                int value = 1;
+            }
+            (<COUNTER_BY> < NUMBER >
+               {
+                   value = Integer.parseInt(token.image);
+               }
+            )?
+            (<COUNTER_PROVIDED>
+               {
+                   providedThat = raw_text();
+               }
+            )?
+            {
+                counter.addDecreaseAction(action, value, providedThat);
+            }
+    )*
+    (
+        < COUNTER_RESET > < IDENTIFIER >
+            {
+                Action action = getAction(token.image);
+                String providedThat = null;
+            }
+            (<COUNTER_PROVIDED>
+               {
+                   providedThat = raw_text();
+               }
+            )?
+            {
+                counter.addResetAction(action, providedThat);
+            }
+    )?
+    (
+        (",") < COUNTER_RESET > < IDENTIFIER >
+            {
+                Action action = getAction(token.image);
+                String providedThat = null;
+            }
+            (<COUNTER_PROVIDED>
+               {
+                   providedThat = raw_text();
+               }
+            )?
+            {
+                counter.addResetAction(action, providedThat);
+            }
+    )*
+    (
+        < COUNTER_SETS_WITH > < IDENTIFIER >
+            {
+                Action action = getAction(token.image);
+                String providedThat = null;
+                int value;
+            }
+            (<COUNTER_TO_VALUE> < NUMBER >
+               {
+                   value = Integer.parseInt(token.image);
+               }
+            )
+            (<COUNTER_PROVIDED>
+               {
+                   providedThat = raw_text();
+               }
+            )?
+            {
+                counter.addSetValueAction(action, value, providedThat);
+            }
+    )?
+    (
+        (",") < COUNTER_SETS_WITH > < IDENTIFIER >
+            {
+                Action action = getAction(token.image);
+                String providedThat = null;
+                int value;
+            }
+            (<COUNTER_TO_VALUE> < NUMBER >
+               {
+                   value = Integer.parseInt(token.image);
+               }
+            )
+            (<COUNTER_PROVIDED>
+               {
+                   providedThat = raw_text();
+               }
+            )?
+            {
+                counter.addSetValueAction(action, value, providedThat);
+            }
+    )*
+}
+
+/////////////////////////////////
+// Timer (ex TEMPORAL ACTIONS) //
+/////////////////////////////////
+void timer() :
+{}
+{
+  < TIMER > < IDENTIFIER >
+  {
+    Timer timer = new Timer();
+    timer.addEvento(token.image);
+    flInput.add(timer);
+  }
+  (
+    "," < IDENTIFIER >
+    {
+        timer.addEvento(token.image);
+    }
+  )*
+}
+
+
+///////////////////////
+// EXTRA productions //
+///////////////////////
+List <String> list() :
+{
+  List <String> aList = new ArrayList <String> ();
+}
+{
+  < IDENTIFIER >
+  {
+    aList.add(token.image);
+  }
+  (
+    "," < IDENTIFIER >
+    {
+      aList.add(token.image);
+    }
+  )*
+  {
+    return aList;
+  }
+}
+
+Set <String> set() :
+{
+  Set <String> aList = new HashSet <String> ();
+}
+{
+  < IDENTIFIER >
+  {
+    aList.add(token.image);
+  }
+  (
+    "," < IDENTIFIER >
+    {
+      aList.add(token.image);
+    }
+  )*
+  {
+    return aList;
+  }
+}
+
+/////////////////////////
+// RAW TEXT production //
+/////////////////////////
+String raw_text() :
+{
+  String aString;
+}
+{
+  < START_RAW_TEXT > < RAW_TEXT >
+  {
+    aString = token.image;
+  }
+  < END_RAW_TEXT >
+  {
+    return aString;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// CLAUSES-MODE productions //
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void clause() :
+{
+    FLFormula p;
+    String x = null;
+    originalFormula = "";
+}
+{
+  (
+   (
+      //P-cláusula-disyuntiva       |   P-cláusula-conjuntiva |
+      //P(...) | P(...) | P(...)    o   P(...) & P(...) & P(...)
+      p = p_clauses()
+      {
+        flInput.addPermission(p);
+        flInput.addFLPermission(originalFormula);
+      }
+   )
+   |
+   (
+      //O-cláusula-conjuntiva       |   O-cláusula-disyuntiva
+      //O(...) & O(...) & O(...)    o   O(...) | O(...) | O(...)
+      p = o_clauses()
+      {
+        flInput.addRule(p);
+        flInput.addFLRule(originalFormula);
+      }
+   )
+   |
+   (
+      //F-cláusula-conjuntiva       |   F-cláusula-disyuntiva
+      //F(...) & F(...) & F(...)    o   F(...) | F(...) | F(...)
+      p = f_clauses()
+      {
+        flInput.addRule(p);
+        flInput.addFLRule(originalFormula);
+      }
+   )
+   |
+   (
+      //EXISTS (var (: rol)? ; (O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva) ) |
+      //FORALL (var (: rol)? ; (O-cláusula-conjuntiva | F-clásula-conjuntiva | P-cláusula-conjuntiva) )
+      p = quantifierWithDeontic()
+      {
+        if (Util.hasPermission(p)){
+            flInput.addPermission(p);
+            flInput.addFLPermission(originalFormula);
+        }
+        else{
+            flInput.addRule(p);
+            flInput.addFLRule(originalFormula);
+        }
+      }
+   )
+  )
+}
+
+//F-cláusula-disyuntiva :=     F-cláusula (or F-cláusula)*
+//F-cláusula-conjuntiva :=     F-cláusula (and F-cláusula)*
+//1 o más F-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
+FLFormula f_clauses() :
+{
+    FLFormula p;
+    FLFormula p2;
+}
+{
+  (
+    p = f_clause()      //F(...)
+  )
+  (
+    (
+      {
+          originalFormula += " & ";
+      }
+      < ML_AND > p2 = f_clause()
+        {
+            p = new FLAnd(p, p2);         //F(...) &  F(...)
+        }
+        (
+            {
+                originalFormula += " & ";
+            }
+            < ML_AND > p2 = f_clause()
+            {
+                p = new FLAnd(p, p2);       //F(...) &  F(...) &  F(...) ...
+            }
+        )*
+     |
+      < ML_OR > p2 = f_clause()           //F(...) |  F(...)
+        {
+            originalFormula += " | ";
+            p = new FLOr(p, p2);
+        }
+        (   < ML_OR > p2 = f_clause()       //F(...) |  F(...) |  F(...)
+            {
+                originalFormula += " | ";
+                p = new FLOr(p, p2);
+            }
+        )*
+    )?
+  )
+  {
+    return p;
+  }
+}
+
+
+//O-cláusula-disyuntiva :=     O-cláusula (or O-cláusula)*
+//O-cláusula-conjuntiva :=     O-cláusula (and O-cláusula)*
+//1 o más O-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
+FLFormula o_clauses() :
+{
+    FLFormula p;
+    FLFormula p2;
+}
+{
+  (
+    p = o_clause()
+  )
+  (
+    (
+      {
+        originalFormula += " & ";
+      }
+      < ML_AND > p2 = o_clause()
+        {
+            p = new FLAnd(p, p2);
+        }
+        (
+            {
+                originalFormula += " & ";
+            }
+            < ML_AND > p2 = o_clause()
+            {
+                p = new FLAnd(p, p2);
+            }
+        )*
+     |
+      {
+        originalFormula += " | ";
+      }
+      < ML_OR > p2 = o_clause()
+        {
+            p = new FLOr(p, p2);
+        }
+        (
+            {
+                originalFormula += " | ";
+            }
+            < ML_OR > p2 = o_clause()
+            {
+                originalFormula += " | ";
+                p = new FLOr(p, p2);
+            }
+        )*
+    )?
+  )
+  {
+    return p;
+  }
+}
+
+/*
+//P-cláusula-disyuntiva :=     P-cláusula (or P-cláusula)*
+//p_clause_conjunctive :=     P-cláusula (and P-cláusula)*
+//1 o más P-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
+FLFormula p_clauses666() :
+{
+    FLFormula p;
+    FLFormula p2;
+}
+{
+  (
+    p = p_clause()
+  )
+  (
+    (
+      < ML_AND >
+        {
+            originalFormula += " & ";
+        }
+        p2 = p_clause()
+        {
+            p = new FLAnd(p, p2);
+        }
+        (   < ML_AND > p2 = p_clause()
+            {
+                originalFormula += " & ";
+                p = new FLAnd(p, p2);
+            }
+        )*
+     |
+      < ML_OR >
+        {
+            originalFormula += " | ";
+        }
+        p2 = p_clause()
+        {
+            p = new FLOr(p, p2);
+        }
+        (   < ML_OR > p2 = p_clause()
+            {
+                originalFormula += " | ";
+                p = new FLOr(p, p2);
+            }
+        )*
+    )?
+  )
+  {
+    return p;
+  }
+}
+*/
+
+//P-cláusula-disyuntiva :=     P-cláusula (or P-cláusula)*
+//p_clause_conjunctive :=     P-cláusula (and P-cláusula)*
+//1 o más P-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
+FLFormula p_clauses() :
+{
+    FLFormula p = null;
+    FLFormula p2 = null;
+}
+{
+    p = p_clause()
+    (
+        (   < ML_OR >
+            {
+                originalFormula += " | ";
+            }
+            p2 = p_clause_disjunctive()
+            {
+                if (p2 != null)
+                    p = new FLOr(p, p2);
+            }
+        )
+        |
+        (
+            < ML_AND >
+            {
+                originalFormula += " & ";
+            }
+            p2 = p_clause_conjunctive()
+            {
+                if (p2 != null)
+                    p = new FLAnd(p, p2);
+            }
+        )
+    )?
+    {
+        return p;
+    }
+}
+
+//P-cláusula (OR P-cláusula)*
+FLFormula p_clause_disjunctive() :
+{
+    FLFormula p = null;;
+    FLFormula p2;
+}
+{
+    (
+        p = p_clause()
+        (   < ML_OR > p2 = p_clause()
+            {
+                originalFormula += " | ";
+                p = new FLOr(p, p2);
+            }
+        )*
+    )
+    {
+        return p;
+    }
+}
+
+//O-cláusula (OR O-cláusula)*
+FLFormula o_clause_disjunctive() :
+{
+    FLFormula p = null;;
+    FLFormula p2;
+}
+{
+    (
+        p = o_clause()
+        (   < ML_OR > p2 = o_clause()
+            {
+                originalFormula += " | ";
+                p = new FLOr(p, p2);
+            }
+        )*
+    )
+    {
+        return p;
+    }
+}
+
+//F-cláusula (OR F-cláusula)*
+FLFormula f_clause_disjunctive() :
+{
+    FLFormula p = null;;
+    FLFormula p2;
+}
+{
+    (
+        p = f_clause()
+        (   < ML_OR > p2 = f_clause()
+            {
+                originalFormula += " | ";
+                p = new FLOr(p, p2);
+            }
+        )*
+    )
+    {
+        return p;
+    }
+}
+
+//P-cláusula (AND P-cláusula)*
+FLFormula p_clause_conjunctive() :
+{
+    FLFormula p = null;
+    FLFormula p2;
+}
+{
+    (
+        p = p_clause()
+        (   < ML_AND > p2 = p_clause()
+            {
+                originalFormula += " & ";
+                p = new FLAnd(p, p2);
+            }
+        )*
+    )
+  {
+    return p;
+  }
+}
+
+//O-cláusula (AND O-cláusula)*
+FLFormula o_clause_conjunctive() :
+{
+    FLFormula p = null;
+    FLFormula p2;
+}
+{
+    (
+        p = o_clause()
+        (   < ML_AND > p2 = o_clause()
+            {
+                originalFormula += " & ";
+                p = new FLAnd(p, p2);
+            }
+        )*
+    )
+  {
+    return p;
+  }
+}
+
+//F-cláusula (AND F-cláusula)*
+FLFormula f_clause_conjunctive() :
+{
+    FLFormula p = null;
+    FLFormula p2;
+}
+{
+    (
+        p = f_clause()
+        (   < ML_AND > p2 = f_clause()
+            {
+                originalFormula += " & ";
+                p = new FLAnd(p, p2);
+            }
+        )*
+    )
+  {
+    return p;
+  }
+}
+
+Permission p_clause() :
+{
+  FLFormula mainFormula;
+  originalFormula += "P(";
+}
+{
+
+  < PERMISSION > mainFormula = sentence() < PAR_RIGHT >    //P(...)
+  {
+    Permission res = new Permission(mainFormula);
+    originalFormula += ")";
+    return res;
+  }
+}
+
+
+Obligation o_clause() :
+{
+  FLFormula repairFormula = null;
+  FLFormula mainFormula;
+  Boolean hasRepair = false;
+  originalFormula += "O(";
+}
+{
+  < OBLIGATION > mainFormula = sentence() < PAR_RIGHT >    //O(...)
+  {
+    originalFormula += ")";
+  }
+  (
+    {
+        originalFormula += " repaired by ";
+    }
+    < REPAIRED_BY > < PAR_LEFT > repairFormula = sentence() < PAR_RIGHT > //O(...) repaired by ...
+    {
+        originalFormula += ")";
+        hasRepair = true;
+    }
+  )?
+  {
+    if (hasRepair)
+    {
+      return new Obligation(mainFormula, repairFormula);
+    }
+    else
+    {
+      return new Obligation(mainFormula);
+    }
+  }
+}
+
+Forbidden f_clause() :
+{
+  FLFormula repairFormula = null;
+  FLFormula mainFormula;
+  Boolean hasRepair = false;
+  originalFormula += "F(";
+}
+{
+  < FORBIDDEN > mainFormula = sentence() < PAR_RIGHT >             //F(...)
+  {
+    originalFormula += ")";
+  }
+  (
+    {
+        originalFormula += " repaired by (";
+    }
+    < REPAIRED_BY > < PAR_LEFT > repairFormula = sentence() < PAR_RIGHT >  //F(...) repaired by ...
+    {
+        originalFormula += ") ";
+        hasRepair = true;
+    }
+  )?
+  {
+    if (hasRepair)
+    {
+      return new Forbidden(mainFormula, repairFormula);
+    }
+    else
+    {
+      return new Forbidden(mainFormula);
+    }
+  }
+}
+
+FLFormula quantifierWithDeontic() :
+{
+  FLFormula f ;
+}
+{
+  (
+    f = existsWithDeontic()
+    |
+    f = forallWithDeontic()
+  )
+  {
+      return f;
+  }
+}
+
+FLFormula forallWithDeontic() :
+{
+  FLFormula tempFormula ;
+  String variable;
+  String role = null;
+}
+{
+    < FORALL >                                 //FORALL(i:rol1; O (...))
+    < IDENTIFIER >                          //i en FORALL(i:rol1; O (...))
+    {
+        variable = token.image;
+        originalFormula += "FORALL(" + variable;
+    }
+    (
+        ":" < IDENTIFIER >                      //:rol1 en FORALL(i:rol1; O (...))
+        {
+          role = token.image;
+          originalFormula += ":" + role;
+        }
+    )?
+    ";"
+    {
+        originalFormula += "; ";
+    }
+    //FORALL (var (: rol)? ; O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva )
+    (
+        tempFormula = p_clause_conjunctive()
+        |
+        tempFormula = o_clause_conjunctive()
+        |
+        tempFormula = f_clause_conjunctive()
+    )
+    < PAR_RIGHT >
+
+    {
+        originalFormula += ")";
+        return new FLForall(variable, role, tempFormula );
+    }
+}
+
+FLFormula existsWithDeontic() :
+{
+  FLFormula tempFormula ;
+  String variableName;
+  String role = null;
+}
+{
+    < EXISTS >                                 //EXISTS(i:rol1; O (...))
+    < IDENTIFIER >                          //i en EXISTS(i:rol1; O (...))
+    {
+        variableName = token.image;
+        originalFormula += "EXISTS(" + variableName;
+    }
+    (
+        ":" < IDENTIFIER >                      //:rol1 en EXISTS(i:rol1; O (...))
+        {
+          role = token.image;
+          originalFormula += ":" + role;
+        }
+    )?
+    ";"
+    {
+        originalFormula += "; ";
+    }
+    //EXISTS (var (: rol)? ; O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva )
+    (
+        tempFormula = p_clause_disjunctive()
+        |
+        tempFormula = o_clause_disjunctive()
+        |
+        tempFormula = f_clause_disjunctive()
+    )
+    < PAR_RIGHT >
+
+    {
+        originalFormula += ")";
+        return new FLExist(variableName, role, tempFormula );
+    }
+}
+
+
+FLFormula sentence() :
+{
+  FLFormula tempFormula;
+  FLFormula finalFormula;
+  Boolean isDiamond;
+  Boolean isExist;
+  String intervalName;
+  String variable;
+  String role = null;
+  FLInterval interval = null;
+}
+{
+ (
+  (
+    finalFormula = terminal()
+  | < PAR_LEFT >
+        {
+            originalFormula += "(";
+        }
+        finalFormula = sentence()
+    < PAR_RIGHT >
+    {
+        originalFormula += ") ";
+    }
+  )
+  (
+    < ML_AND >
+    {
+        originalFormula += " & ";
+    }
+        tempFormula = sentence()
+    {
+      finalFormula = new FLAnd(finalFormula, tempFormula);
+    }
+  | < ML_OR >
+    {
+        originalFormula += " | ";
+    }
+        tempFormula = sentence()
+    {
+      finalFormula = new FLOr(finalFormula, tempFormula);
+    }
+  |
+    {
+        originalFormula += " -> ";
+    }
+        < ML_THEN > tempFormula = sentence()
+    {
+      finalFormula = new FLThen(finalFormula, tempFormula);
+    }
+  )*
+  {
+    return finalFormula;
+  }
+ )
+|
+ ( < ML_NOT >
+    {
+        originalFormula += "!(";
+    }
+    tempFormula = sentence()
+  {
+    FLFormula res = new FLNeg(tempFormula);
+    originalFormula += ")";
+    return res;
+  }
+ )
+|
+ (
+  (
+    < EXISTS >                                 //EXISTS(i:rol1; i.act1)
+    {
+      isExist = true;
+      originalFormula += "EXISTS(";
+    }
+  | < FORALL >
+    {
+      originalFormula += "FORALL(";
+      isExist = false;
+    }
+  )
+  (
+    (
+        < IDENTIFIER >                          //i en EXISTS(i:rol1; i.act1)
+        {
+          variable = token.image;
+          originalFormula += variable;
+        }
+    )
+    (
+        ":" < IDENTIFIER >                      //:rol1 en EXISTS(i:rol1; i.act1)
+        {
+          role = token.image;
+          originalFormula += ":" + role;
+        }
+    )?
+    {
+        originalFormula += "; ";
+    }
+    ";"
+     tempFormula = sentence() < PAR_RIGHT >    //i.act1 en EXISTS(i:rol1; i.act1)
+     {
+        originalFormula += ")";
+     }
+  )
+  {
+    if (isExist)
+    {
+      return new FLExist(variable, role, tempFormula );
+    }
+    else
+    {
+      return new FLForall(variable, role, tempFormula);
+    }
+  }
+ )
+|
+  (
+    < ML_DIAMOND >
+    {
+      isDiamond = true;
+      originalFormula += "<>";
+    }
+  | < ML_BOX > //[]_{j.inter} j.act1 )
+    {
+      isDiamond = false;
+      originalFormula += "[]";
+    }
+  )
+  (
+        < UNDERSCORE > < BRA_LEFT > < IDENTIFIER >        //{j.inter} o {inter}
+        {
+            String varOIntervalo = token.image;
+            intervalName = null;
+            originalFormula += "_{" + varOIntervalo;
+        }
+        (
+            < DOT > < IDENTIFIER >                      //.inter en {j.inter}
+            {
+                intervalName = token.image;
+                originalFormula += "." + intervalName;
+            }
+        )?
+
+        < BRA_RIGHT >
+        {
+            originalFormula += "} ";
+            if (intervalName != null)
+                interval = new FLInterval(varOIntervalo, intervalName);
+            else
+                interval = new FLInterval(varOIntervalo);
+        }
+    )?
+  tempFormula = sentence()
+  {
+    if (isDiamond)
+        return new FLDiamond(interval, tempFormula);
+    else
+        return new FLBox(interval, tempFormula);
+  }
+
+| < PAR_LEFT >
+    {
+        originalFormula += "(";
+    }
+    tempFormula = sentence() < PAR_RIGHT >
+  {
+    originalFormula += ")";
+    return tempFormula;
+  }
+}
+
+FLFormula quantifier() :
+{
+  FLFormula tempFormula ;
+  Boolean isExist;
+  String variableName;
+  String role = null;
+}
+{
+  (
+    < EXISTS >                                 //EXISTS(i:rol1; i.act1)
+    {
+      isExist = true;
+      originalFormula += "EXISTS(";
+    }
+  | < FORALL >
+    {
+      originalFormula += "FORALL(";
+      isExist = false;
+    }
+  )
+  (
+    (
+        < IDENTIFIER >                          //i en EXISTS(i:rol1; i.act1)
+        {
+          variableName = token.image;
+          originalFormula += variableName;
+        }
+    )
+    (
+        ":" < IDENTIFIER >                      //:rol1 en EXISTS(i:rol1; i.act1)
+        {
+          role = token.image;
+          originalFormula += ":" + role;
+        }
+    )?
+    ";"
+    {
+        originalFormula += "; ";
+    }
+     tempFormula = sentence() < PAR_RIGHT >    //i.act1 en EXISTS(i:rol1; i.act1)
+     {
+        originalFormula += ")";
+     }
+  )
+  {
+    if (isExist)
+    {
+      return new FLExist(variableName, role, tempFormula );
+    }
+    else
+    {
+      return new FLForall(variableName, role, tempFormula);
+    }
+  }
+}
+
+FLFormula terminal() :
+{
+    FLFormula aFormula;
+    String name;
+    String variable = null;
+    FLCounter counter = null;
+    int beginLine = token.next.beginLine;
+    int beginColumn = token.next.beginColumn;
+}
+{
+    //Puede ser una accion, un counter o un intervalo
+    (
+        < IDENTIFIER >           //ej i.Enroll en P(EXISTS(i : john ; i.Enroll))
+        {
+            name = token.image;
+            originalFormula += name;
+        }
+        (
+          < DOT > < IDENTIFIER > //esto pasa si usa variable
+          {
+            variable = name;
+            name = token.image;
+            originalFormula += "." + name;
+          }
+        )?
+        (//results in xxx
+            < RESULTS_IN > < IDENTIFIER >
+            {
+                originalFormula += " results in " + token.image;
+                Action tmp = actions.get(name);
+                if (tmp == null){
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de la línea: " + beginLine + ", columna: " + beginColumn);
+                    throw new RuntimeException(sb.toString());
+                }
+                return new FLActionOutput(variable, name, token.image);
+            }
+        )?
+
+        (  //si entra es un contador
+            < EQUAL > < NUMBER>
+            {
+                originalFormula += " = " + token.image;
+                counter = new FLCounter(variable, name, FLCounterRelation.EQUAL, new Integer(token.image));
+            }
+        )?
+
+        (  //si entra es un contador
+            < LESS > < NUMBER>
+            {
+                originalFormula += " < " + token.image;
+                counter = new FLCounter(variable, name, FLCounterRelation.LESS, new Integer(token.image));
+            }
+        )?
+
+        (  //si entra es un contador
+            < GREATER > < NUMBER>
+            {
+                originalFormula += " > " + token.image;
+                counter = new FLCounter(variable, name, FLCounterRelation.GREATER, new Integer(token.image));
+            }
+        )?
+        (  //si entra es un contador
+            < LEQ > < NUMBER>
+            {
+                originalFormula += " <= " + token.image;
+                counter = new FLCounter(variable, name, FLCounterRelation.LESS_OR_EQUAL, new Integer(token.image));
+            }
+        )?
+
+        (  //si entra es un contador
+            < GEQ > < NUMBER>
+            {
+                originalFormula += " >= " + token.image;
+                counter = new FLCounter(variable, name, FLCounterRelation.GREATER_OR_EQUAL, new Integer(token.image));
+            }
+        )?
+        {
+            if (counter != null){
+                Counter tmp = counters.get(counter.getName());
+                if (tmp == null){
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("En una fórmula se hace referencia a un contador no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                    throw new RuntimeException(sb.toString());
+                }
+
+                if (tmp.isLocal() & counter.getVariable() == null){
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("En una fórmula se hace referencia a un contador local sin usar agente: ('" + name + "'). " +
+                        "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                    throw new RuntimeException(sb.toString());
+                }
+
+                if (!tmp.isLocal() & counter.getVariable() != null){
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("En una fórmula se hace referencia a un contador global usando agente: ('" + name + "').  " +
+                        "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                    throw new RuntimeException(sb.toString());
+                }
+                return counter;
+            }
+        }
+        {
+            Action tmp = actions.get(name);
+            if (tmp == null){
+                StringBuilder sb = new StringBuilder();
+                sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +
+                "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                throw new RuntimeException(sb.toString());
+            }
+
+            if ( !tmp.isImpersonal() & variable == null){
+                StringBuilder sb = new StringBuilder();
+                sb.append("En una fórmula se hace referencia a una acción sin usar agente: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                throw new RuntimeException(sb.toString());
+            }
+            if ( tmp.isImpersonal() & variable != null){
+                StringBuilder sb = new StringBuilder();
+                sb.append("En una fórmula se hace referencia a una acción impersonal usando agente: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                throw new RuntimeException(sb.toString());
+            }
+            aFormula = new FLAction(variable, name);
+            return aFormula;
+        }
+    )
+    |
+    (
+        < INSIDE > < PAR_LEFT > < IDENTIFIER >  //inside (j.interL) o inside (interG)
+        {
+            String variableONombre = token.image;
+            name = null;
+            originalFormula += "inside (" + variableONombre;
+        }
+        (
+          < DOT > < IDENTIFIER >                      //.inter en {j.inter}
+          {
+              name = token.image;
+              originalFormula += "." + token.image;
+          }
+        )?
+        < PAR_RIGHT >
+        {
+            originalFormula += ")";
+            FLInterval interval;
+            if (name != null)
+                interval = new FLInterval(variableONombre, name);
+            else
+                interval = new FLInterval(variableONombre);
+
+            name = interval.getName();
+            Interval tmp = intervals.get(name);
+            if (tmp == null){
+                StringBuilder sb = new StringBuilder();
+                sb.append("En una fórmula se hace referencia a un intervalo no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                throw new RuntimeException(sb.toString());
+            }
+            if (tmp.isLocal() & interval.getVariable() == null){
+                StringBuilder sb = new StringBuilder();
+                sb.append("En una fórmula se hace referencia a un intervalo local sin usar variable: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                throw new RuntimeException(sb.toString());
+            }
+            if (!tmp.isLocal() & interval.getVariable() != null){
+                StringBuilder sb = new StringBuilder();
+                sb.append("En una fórmula se hace referencia a un intervalo global usando agente: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                throw new RuntimeException(sb.toString());
+            }
+            return new FLInside(interval);
+        }
+    )
+}
+
+
+void ejemplos() :
+{
+    String x;
+}
+{
+ /* FUNCIONA: distingue a.b de a..b
+< IDENTIFIER >
+  {
+    x = token.image;
+  }
+  < DOT > < DOT >< IDENTIFIER >
+  {
+    System.out.println("ID..ID: " + x + ".." + token.image);
+  }
+
+|
+
+< IDENTIFIER >
+  {
+    String r = new String(token.image);
+  }
+  < DOT > < IDENTIFIER >
+  {
+    x = new String(token.image);
+  }
+  {
+    System.out.println("ID.ID: " + r + "." +  x);
+  }
+  }
+*/
+
+//NO FUNCIONA: no distinge id.id.id de id.id
+< IDENTIFIER >
+  {
+    x = token.image;
+  }
+  < DOT > < IDENTIFIER >
+  {
+    System.out.println("ID.ID: " + x + ".." + token.image);
+  }
+  < DOT > < IDENTIFIER >
+  {
+    System.out.println("   +: " +  token.image);
+  }
+|
+
+< IDENTIFIER >
+  {
+    String r = new String(token.image);
+  }
+  < DOT > < IDENTIFIER >
+  {
+    x = new String(token.image);
+  }
+  {
+    System.out.println("ID.ID: " + r + "." +  x);
+  }
+
+
+}
