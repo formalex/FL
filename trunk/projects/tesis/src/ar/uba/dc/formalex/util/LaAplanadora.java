@@ -282,6 +282,8 @@ public class LaAplanadora {
     private Counter crearContadorLocal(Counter counterOriginal, Agente agente) {
         Counter res = new Counter(agente.getName() + SEPARADOR_AGENTE_CONTADOR + counterOriginal.getName());
         res.setInitValue(counterOriginal.getInitValue());
+        res.setMinValue(counterOriginal.getMinValue());
+        res.setMaxValue(counterOriginal.getMaxValue());
 
         //reemplazo c/u de las acciones x las nuevas con agentes
         Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
@@ -371,6 +373,8 @@ public class LaAplanadora {
     private Counter crearContadorGlobal(Counter counterOriginal) {
         Counter res = new Counter(counterOriginal.getName());
         res.setInitValue(counterOriginal.getInitValue());
+        res.setMinValue(counterOriginal.getMinValue());
+        res.setMaxValue(counterOriginal.getMaxValue());
 
         //reemplazo c/u de las acciones x las nuevas con agentes
         Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
