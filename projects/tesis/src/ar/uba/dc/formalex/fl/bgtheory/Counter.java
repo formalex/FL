@@ -13,6 +13,8 @@ public class Counter {
     private String name;
     private  boolean local;
     private int initValue = 0;
+    private int minValue;
+    private int maxValue;
     private Map<Action, Integer> increaseActions = new HashMap<Action, Integer>();
     private Map<Action, Integer> setValueActions = new HashMap<Action, Integer>();
 
@@ -116,9 +118,25 @@ public class Counter {
 
     public String getCondition(Action action){
         return conditions.get(action);
-    }
+    }    
 
-    //usado para logueo y debug
+    public int getMinValue() {
+		return minValue;
+	}
+
+	public void setMinValue(int minValue) {
+		this.minValue = minValue;
+	}
+
+	public int getMaxValue() {
+		return maxValue;
+	}
+
+	public void setMaxValue(int maxValue) {
+		this.maxValue = maxValue;
+	}
+
+	//usado para logueo y debug
     public void logFL(){
         StringBuilder sb = new StringBuilder("counter ");
         sb.append(getName());
