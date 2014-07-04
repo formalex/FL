@@ -213,6 +213,7 @@ TOKEN :
 | < NUMBER : (< DIGIT >)+ >
 | < MINUS : ("-") >
 | < UNDERSCORE : ("_") >
+| < INT_NUMBER : ("-"|"")(< DIGIT >)+ >
 | < #LETTER : ([ "a"-"z", "A"-"Z" ]) >
 | < #DIGIT : ([ "0"-"9" ]) >
 }
@@ -587,12 +588,12 @@ void counter() :
             counter.setInitValue(Integer.parseInt(token.image));
         }
     )?
-    (< COUNTER_MIN_VALUE >  < NUMBER >
+    (< COUNTER_MIN_VALUE > < INT_NUMBER >
         {
             counter.setMinValue(Integer.parseInt(token.image));
         }
     )?
-    (< COUNTER_MAX_VALUE >  < NUMBER >
+    (< COUNTER_MAX_VALUE >  < INT_NUMBER >
         {
             counter.setMaxValue(Integer.parseInt(token.image));
         }
