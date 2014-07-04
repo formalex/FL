@@ -5,8 +5,8 @@
 #set( $sufijoTimer = "_FINALIZED")
 #set( $sufijoOccurrence = "_OCCURRENCE")
 #set( $NULL = "NULL_NO_DEFINIDO_")
-#set( $COUNTER_MAX = "20")
-#set( $COUNTER_MIN = "0")
+##set( $COUNTER_MAX = "20")
+##set( $COUNTER_MIN = "0")
 #set( $hayOutputValue = false)
 #set( $INTERVAL_WITH_STARTING_ENDING = false)
 ########################################################
@@ -55,7 +55,7 @@ VAR
 #####Contadores#####
 ##Por cada contador defino una variable.
 #foreach ($contador in $contadores )
-	$contador: ${COUNTER_MIN} .. ${COUNTER_MAX};
+	$contador: $contador.getMinValue() .. $contador.getMaxValue();
 #end 
 ##
 #####Timers#####
@@ -378,7 +378,7 @@ TRANS
 #foreach ($contador in $contadores )
 ##si ocurre alguna de las acciones que incrementan/decrementan al contador => se modifica al contador
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
-	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct) & ($contador.getMaxValue() >= $contador + $contador.getIncreaseActions().get($incAct) ))#end
+	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end & ($contador.getMaxValue() >= $contador + $contador.getIncreaseActions().get($incAct) )
 	-> next($contador) = $contador + $contador.getIncreaseActions().get($incAct)) &		
  #end 
 #end 
