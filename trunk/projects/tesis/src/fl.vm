@@ -378,7 +378,8 @@ TRANS
 #foreach ($contador in $contadores )
 ##si ocurre alguna de las acciones que incrementan/decrementan al contador => se modifica al contador
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
-	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end & ($contador.getMaxValue() >= $contador + $contador.getIncreaseActions().get($incAct) )
+	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end & ($contador + $contador.getIncreaseActions().get($incAct) <= $contador.getMaxValue())
+	& ($contador + $contador.getIncreaseActions().get($incAct) >= $contador.getMinValue())
 	-> next($contador) = $contador + $contador.getIncreaseActions().get($incAct)) &		
  #end 
 #end 
