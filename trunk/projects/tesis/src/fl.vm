@@ -432,11 +432,11 @@ TRANS
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
 	($incAct = NOT_HAPPENING & (
 	##Si es una acción que decrementa, el contador controla tope mínimo y se excede el mismo 
-	($contador.getSetValueActions().get($incAct) < 0 & $contador.isMinImpeedActions() & 
-	$contador + $contador.getSetValueActions().get($incAct) < $contador.getMinValue())
+	($contador.getIncreaseActions().get($incAct) < 0 & $contador.isMinImpeedActions() & 
+	$contador + $contador.getIncreaseActions().get($incAct) < $contador.getMinValue())
 	| ##Si es una acción que incrementa, el contador controla tope máximo y se excede el mismo
-	($contador.getSetValueActions().get($incAct) > 0 & $contador.isMaxImpeedActions() & 
-	$contador + $contador.getSetValueActions().get($incAct) > $contador.getMaxValue()))
+	($contador.getIncreaseActions().get($incAct) > 0 & $contador.isMaxImpeedActions() & 
+	$contador + $contador.getIncreaseActions().get($incAct) > $contador.getMaxValue()))
 	## Entonces no se permite que se ejecute dicha acción.
 	 -> next($incAct) = NOT_HAPPENING ) &		
  #end 
