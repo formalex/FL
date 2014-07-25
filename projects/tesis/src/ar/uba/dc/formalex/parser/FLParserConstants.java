@@ -75,79 +75,85 @@ public interface FLParserConstants {
   /** RegularExpression Id. */
   int COUNTER_MAX_VALUE = 37;
   /** RegularExpression Id. */
-  int PAR_LEFT = 38;
+  int COUNTER_MIN_IMPEED_ACTIONS = 38;
   /** RegularExpression Id. */
-  int PAR_RIGHT = 39;
+  int COUNTER_MAX_IMPEED_ACTIONS = 39;
   /** RegularExpression Id. */
-  int BRA_LEFT = 40;
+  int PAR_LEFT = 40;
   /** RegularExpression Id. */
-  int BRA_RIGHT = 41;
+  int PAR_RIGHT = 41;
   /** RegularExpression Id. */
-  int BKT_LEFT = 42;
+  int BRA_LEFT = 42;
   /** RegularExpression Id. */
-  int BKT_RIGHT = 43;
+  int BRA_RIGHT = 43;
   /** RegularExpression Id. */
-  int DOT = 44;
+  int BKT_LEFT = 44;
   /** RegularExpression Id. */
-  int DOUBLE_DOT = 45;
+  int BKT_RIGHT = 45;
   /** RegularExpression Id. */
-  int ML_DIAMOND = 46;
+  int DOT = 46;
   /** RegularExpression Id. */
-  int ML_BOX = 47;
+  int DOUBLE_DOT = 47;
   /** RegularExpression Id. */
-  int ML_AND = 48;
+  int ML_DIAMOND = 48;
   /** RegularExpression Id. */
-  int ML_OR = 49;
+  int ML_BOX = 49;
   /** RegularExpression Id. */
-  int ML_THEN = 50;
+  int ML_AND = 50;
   /** RegularExpression Id. */
-  int ML_NOT = 51;
+  int ML_OR = 51;
   /** RegularExpression Id. */
-  int OBLIGATION = 52;
+  int ML_THEN = 52;
   /** RegularExpression Id. */
-  int FORBIDDEN = 53;
+  int ML_NOT = 53;
   /** RegularExpression Id. */
-  int PERMISSION = 54;
+  int OBLIGATION = 54;
   /** RegularExpression Id. */
-  int OCCURRED = 55;
+  int FORBIDDEN = 55;
   /** RegularExpression Id. */
-  int RESULTS_IN = 56;
+  int PERMISSION = 56;
   /** RegularExpression Id. */
-  int REPAIRED_BY = 57;
+  int OCCURRED = 57;
   /** RegularExpression Id. */
-  int INSIDE = 58;
+  int RESULTS_IN = 58;
   /** RegularExpression Id. */
-  int EXISTS = 59;
+  int REPAIRED_BY = 59;
   /** RegularExpression Id. */
-  int FORALL = 60;
+  int INSIDE = 60;
   /** RegularExpression Id. */
-  int EQUAL = 61;
+  int EXISTS = 61;
   /** RegularExpression Id. */
-  int LESS = 62;
+  int FORALL = 62;
   /** RegularExpression Id. */
-  int GREATER = 63;
+  int EQUAL = 63;
   /** RegularExpression Id. */
-  int LEQ = 64;
+  int LESS = 64;
   /** RegularExpression Id. */
-  int GEQ = 65;
+  int GREATER = 65;
   /** RegularExpression Id. */
-  int START_RAW_TEXT = 66;
+  int LEQ = 66;
   /** RegularExpression Id. */
-  int END_RAW_TEXT = 67;
+  int GEQ = 67;
   /** RegularExpression Id. */
-  int RAW_TEXT = 68;
+  int START_RAW_TEXT = 68;
   /** RegularExpression Id. */
-  int IDENTIFIER = 69;
+  int END_RAW_TEXT = 69;
   /** RegularExpression Id. */
-  int NUMBER = 70;
+  int RAW_TEXT = 70;
   /** RegularExpression Id. */
-  int MINUS = 71;
+  int IDENTIFIER = 71;
   /** RegularExpression Id. */
-  int UNDERSCORE = 72;
+  int NUMBER = 72;
   /** RegularExpression Id. */
-  int LETTER = 73;
+  int MINUS = 73;
   /** RegularExpression Id. */
-  int DIGIT = 74;
+  int UNDERSCORE = 74;
+  /** RegularExpression Id. */
+  int INT_NUMBER = 75;
+  /** RegularExpression Id. */
+  int LETTER = 76;
+  /** RegularExpression Id. */
+  int DIGIT = 77;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -194,6 +200,8 @@ public interface FLParserConstants {
     "\"init value\"",
     "\"min value\"",
     "\"max value\"",
+    "\"reach min impeed actions\"",
+    "\"reach max impeed actions\"",
     "\"(\"",
     "\")\"",
     "\"{\"",
@@ -229,6 +237,7 @@ public interface FLParserConstants {
     "<NUMBER>",
     "\"-\"",
     "\"_\"",
+    "<INT_NUMBER>",
     "<LETTER>",
     "<DIGIT>",
     "\",\"",
