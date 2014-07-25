@@ -13,8 +13,10 @@ public class Counter {
     private String name;
     private  boolean local;
     private int initValue = 0;
-    private int minValue;
-    private int maxValue;
+    private int minValue;// = Integer.MIN_VALUE;
+    private int maxValue;// = Integer.MAX_VALUE;
+    private boolean minImpeedActions;
+    private boolean maxImpeedActions;
     private Map<Action, Integer> increaseActions = new HashMap<Action, Integer>();
     private Map<Action, Integer> setValueActions = new HashMap<Action, Integer>();
 
@@ -136,17 +138,43 @@ public class Counter {
 		this.maxValue = maxValue;
 	}
 
+	public boolean isMinImpeedActions() {
+		return minImpeedActions;
+	}
+
+	public void setMinImpeedActions(boolean minImpeedActions) {
+		this.minImpeedActions = minImpeedActions;
+	}
+
+	public boolean isMaxImpeedActions() {
+		return maxImpeedActions;
+	}
+
+	public void setMaxImpeedActions(boolean maxImpeedActions) {
+		this.maxImpeedActions = maxImpeedActions;
+	}
+
 	//usado para logueo y debug
     public void logFL(){
         StringBuilder sb = new StringBuilder("counter ");
         sb.append(getName());
         sb.append(" init value ");
-        sb.append(getInitValue()).append(", ");
+        sb.append(getInitValue()).append(" ");
+        sb.append(" min value ");
+      	sb.append(getMinValue()).append(" ");
+        sb.append(" max value ");
+        sb.append(getMaxValue()).append(", ");
 
         for (Action a : getIncreaseActions().keySet()) {
             sb.append(" increases with action " + a.getName() + " by "  +
                     getIncreaseActions().get(a).toString() + ", ");
         }
+
+        if(isMinImpeedActions())
+        	sb.append(" reach min impeed actions ");
+
+        if(isMaxImpeedActions())
+        	sb.append(" reach max impeed actions ");
 
         for (Action a : getSetValueActions().keySet()) {  //sets with action SET_NEG_3 to value -3
             sb.append(" sets with action " + a.getName() + " to value "  +

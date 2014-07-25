@@ -388,8 +388,10 @@ TRANS
 #foreach ($contador in $contadores )
 ##si ocurre alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo => este no se modifica
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
-	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end & (($contador + $contador.getIncreaseActions().get($incAct) > $contador.getMaxValue()) 
-	| ($contador + $contador.getIncreaseActions().get($incAct) < $contador.getMinValue())) -> next($contador) = $contador ) &		
+	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end & 
+	 ((!$contador.isMaxImpeedActions() & $contador + $contador.getIncreaseActions().get($incAct) > $contador.getMaxValue()) 
+	| (!$contador.isMinImpeedActions() & $contador + $contador.getIncreaseActions().get($incAct) < $contador.getMinValue())) 
+	-> next($contador) = $contador ) &		
  #end 
 #end 
 ##
@@ -420,6 +422,23 @@ TRANS
    #if (!$actJH.equals($actNotJH)) & next($actNotJH) !=  JUST_HAPPENED #end 
   #end 
      ) &
+ #end 
+#end 
+##
+
+#foreach ($contador in $contadores )
+## si está por ocurrir alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo y 
+## el contador controla alguno de estos límites => no se permite la ejecución de la acción. 
+ #foreach ($incAct in $contador.getIncreaseActions().keySet() )
+	($incAct = NOT_HAPPENING & (
+	##Si es una acción que decrementa, el contador controla tope mínimo y se excede el mismo 
+	($contador.getSetValueActions().get($incAct) < 0 & $contador.isMinImpeedActions() & 
+	$contador + $contador.getSetValueActions().get($incAct) < $contador.getMinValue())
+	| ##Si es una acción que incrementa, el contador controla tope máximo y se excede el mismo
+	($contador.getSetValueActions().get($incAct) > 0 & $contador.isMaxImpeedActions() & 
+	$contador + $contador.getSetValueActions().get($incAct) > $contador.getMaxValue()))
+	## Entonces no se permite que se ejecute dicha acción.
+	 -> next($incAct) = NOT_HAPPENING ) &		
  #end 
 #end 
 ##

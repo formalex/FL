@@ -135,6 +135,8 @@ TOKEN :
 | < COUNTER_INIT_VALUE : "init value" >
 | < COUNTER_MIN_VALUE : "min value" >
 | < COUNTER_MAX_VALUE : "max value" >
+| < COUNTER_MIN_IMPEED_ACTIONS : "reach min impeed actions" >
+| < COUNTER_MAX_IMPEED_ACTIONS : "reach max impeed actions" >
 }
 
 // PUNCTUATION reserved words
@@ -213,7 +215,7 @@ TOKEN :
 | < NUMBER : (< DIGIT >)+ >
 | < MINUS : ("-") >
 | < UNDERSCORE : ("_") >
-| < INT_NUMBER : ("-"|"")(< DIGIT >)+ >
+| < INT_NUMBER : (< MINUS >)? < NUMBER > >
 | < #LETTER : ([ "a"-"z", "A"-"Z" ]) >
 | < #DIGIT : ([ "0"-"9" ]) >
 }
@@ -588,12 +590,12 @@ void counter() :
             counter.setInitValue(Integer.parseInt(token.image));
         }
     )?
-    (< COUNTER_MIN_VALUE > < INT_NUMBER >
+    (< COUNTER_MIN_VALUE > < NUMBER >
         {
             counter.setMinValue(Integer.parseInt(token.image));
         }
     )?
-    (< COUNTER_MAX_VALUE >  < INT_NUMBER >
+    (< COUNTER_MAX_VALUE > < NUMBER >
         {
             counter.setMaxValue(Integer.parseInt(token.image));
         }
@@ -683,6 +685,17 @@ void counter() :
                 counter.addDecreaseAction(action, value, providedThat);
             }
     )*
+    (
+      	(",") < COUNTER_MIN_IMPEED_ACTIONS >        {
+            counter.setMinImpeedActions(true);
+        }
+    )?
+    (
+      	(",") < COUNTER_MAX_IMPEED_ACTIONS >
+        {
+            counter.setMaxImpeedActions(true);
+        }
+    )?
     (
         < COUNTER_RESET > < IDENTIFIER >
             {
