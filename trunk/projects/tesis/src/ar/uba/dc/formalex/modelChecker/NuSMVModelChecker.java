@@ -115,8 +115,8 @@ public class NuSMVModelChecker {
             //todo: ver bien qué hace -df
             String command = nusmvExecutable +" -df -source " + nusmvCommands.getAbsolutePath() +
                     " " + nusmvInput.getAbsolutePath();
-            logger.debug("Comienza nusmv. Comando a ejecutar:  " + command);
-            logger.debug("Corriendo...");
+            logger.info("Comienza nusmv. Comando a ejecutar:  " + command);
+            logger.info("Corriendo...");
             long ini = System.currentTimeMillis();
             Process child = Runtime.getRuntime().exec(command);
 
