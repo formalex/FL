@@ -388,10 +388,16 @@ TRANS
 #foreach ($contador in $contadores )
 ##si ocurre alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo => este no se modifica
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
-	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end & 
-	 ((!$contador.isMaxImpeedActions() & $contador + $contador.getIncreaseActions().get($incAct) > $contador.getMaxValue()) 
-	| (!$contador.isMinImpeedActions() & $contador + $contador.getIncreaseActions().get($incAct) < $contador.getMinValue())) 
-	-> next($contador) = $contador ) &		
+ 	#if(!$contador.isMaxImpeedActions()) 
+	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end  
+	& ($contador + $contador.getIncreaseActions().get($incAct) > $contador.getMaxValue())
+	-> next($contador) = $contador ) &	
+	#end	
+ 	#if(!$contador.isMinImpeedActions()) 
+	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end 
+	& ($contador + $contador.getIncreaseActions().get($incAct) < $contador.getMinValue()) 
+	-> next($contador) = $contador ) &	
+	#end	
  #end 
 #end 
 ##
@@ -432,10 +438,10 @@ TRANS
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
 	($incAct = NOT_HAPPENING & (
 	##Si es una acción que decrementa, el contador controla tope mínimo y se excede el mismo 
-	($contador.getIncreaseActions().get($incAct) < 0 & $contador.isMinImpeedActions() & 
+	($contador.getIncreaseActions().get($incAct) < 0 #if(!$contador.isMinImpeedActions()) & FALSE #end  & 
 	$contador + $contador.getIncreaseActions().get($incAct) < $contador.getMinValue())
 	| ##Si es una acción que incrementa, el contador controla tope máximo y se excede el mismo
-	($contador.getIncreaseActions().get($incAct) > 0 & $contador.isMaxImpeedActions() & 
+	($contador.getIncreaseActions().get($incAct) > 0 #if(!$contador.isMaxImpeedActions() ) & FALSE #end & 
 	$contador + $contador.getIncreaseActions().get($incAct) > $contador.getMaxValue()))
 	## Entonces no se permite que se ejecute dicha acción.
 	 -> next($incAct) = NOT_HAPPENING ) &		
