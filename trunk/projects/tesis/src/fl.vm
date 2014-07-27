@@ -371,10 +371,11 @@ TRANS
 #if ($contadores.size() > 0)
 	--Contadores:
 	--Si ocurre alguna de las acciones que incrementan/decrementan al contador y esto no provoca que se excedan los limites del mismo => se modifica al contador
-	--Si ocurre alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo => este no se modifica
+	--Si ocurre alguna de las acciones que incrementan/decrementan al contador pero se excede algún limite del mismo => se le asigna el valor del límite alcanzado
 	--Si no ocurre ninguna de las acciones que modifican al contador => este no se modifica.
 	--Si ocurre alguna de las acciones que asignan valor al contador ('resets with action' o 'sets with action')=> se modifica al contador.
 	--Si ocurre alguna de las acciones que modifican al contador => no puede ocurrir ninguna otra.
+	--Si está por ocurrir alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo y el contador controla alguno de estos límites => no se permite la ejecución de la acción.
 #end
 #foreach ($contador in $contadores )
 ##si ocurre alguna de las acciones que incrementan/decrementan al contador y esto no provoca que se excedan los limites del mismo => se modifica al contador
@@ -386,17 +387,18 @@ TRANS
 ##
 
 #foreach ($contador in $contadores )
-##si ocurre alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo => este no se modifica
+##si ocurre alguna de las acciones que incrementan/decrementan al contador pero se excede algún limite del mismo y no se impide la ejecución de la accion
+## => se le asigna el valor del límite alcanzado
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
  	#if(!$contador.isMaxImpeedActions()) 
 	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end  
 	& ($contador + $contador.getIncreaseActions().get($incAct) > $contador.getMaxValue())
-	-> next($contador) = $contador ) &	
+	-> next($contador) = $contador.getMaxValue() ) &	
 	#end	
  	#if(!$contador.isMinImpeedActions()) 
 	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end 
 	& ($contador + $contador.getIncreaseActions().get($incAct) < $contador.getMinValue()) 
-	-> next($contador) = $contador ) &	
+	-> next($contador) = $contador.getMinValue() ) &	
 	#end	
  #end 
 #end 
