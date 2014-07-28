@@ -284,8 +284,8 @@ public class LaAplanadora {
         res.setInitValue(counterOriginal.getInitValue());
         res.setMinValue(counterOriginal.getMinValue());
         res.setMaxValue(counterOriginal.getMaxValue());                
-        res.setMinImpeedActions((Boolean)counterOriginal.isMinImpeedActions());
-        res.setMaxImpeedActions((Boolean)counterOriginal.isMaxImpeedActions());
+        res.setMinImpedesActions((Boolean)counterOriginal.isMinImpedesActions());
+        res.setMaxImpedesActions((Boolean)counterOriginal.isMaxImpedesActions());
 
         //reemplazo c/u de las acciones x las nuevas con agentes
         Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
@@ -377,8 +377,8 @@ public class LaAplanadora {
         res.setInitValue(counterOriginal.getInitValue());
         res.setMinValue(counterOriginal.getMinValue());
         res.setMaxValue(counterOriginal.getMaxValue());                        
-        res.setMinImpeedActions((Boolean)counterOriginal.isMinImpeedActions());
-        res.setMaxImpeedActions((Boolean)counterOriginal.isMaxImpeedActions());
+        res.setMinImpedesActions((Boolean)counterOriginal.isMinImpedesActions());
+        res.setMaxImpedesActions((Boolean)counterOriginal.isMaxImpedesActions());
 
         //reemplazo c/u de las acciones x las nuevas con agentes
         Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
