@@ -606,15 +606,15 @@ public class FLParser implements FLParserConstants {
     }
     if (jj_2_55(3)) {
       jj_consume_token(78);
-      jj_consume_token(COUNTER_MIN_IMPEED_ACTIONS);
-            counter.setMinImpeedActions(true);
+      jj_consume_token(COUNTER_MIN_IMPEDES_ACTIONS);
+            counter.setMinImpedesActions(true);
     } else {
       ;
     }
     if (jj_2_56(3)) {
       jj_consume_token(78);
-      jj_consume_token(COUNTER_MAX_IMPEED_ACTIONS);
-            counter.setMaxImpeedActions(true);
+      jj_consume_token(COUNTER_MAX_IMPEDES_ACTIONS);
+            counter.setMaxImpedesActions(true);
     } else {
       ;
     }
@@ -2761,7 +2761,7 @@ FLFormula p_clauses666() :
 
   static private boolean jj_3_56() {
     if (jj_scan_token(78)) return true;
-    if (jj_scan_token(COUNTER_MAX_IMPEED_ACTIONS)) return true;
+    if (jj_scan_token(COUNTER_MAX_IMPEDES_ACTIONS)) return true;
     return false;
   }
 
@@ -2799,7 +2799,7 @@ FLFormula p_clauses666() :
 
   static private boolean jj_3_55() {
     if (jj_scan_token(78)) return true;
-    if (jj_scan_token(COUNTER_MIN_IMPEED_ACTIONS)) return true;
+    if (jj_scan_token(COUNTER_MIN_IMPEDES_ACTIONS)) return true;
     return false;
   }
 
