@@ -135,8 +135,8 @@ TOKEN :
 | < COUNTER_INIT_VALUE : "init value" >
 | < COUNTER_MIN_VALUE : "min value" >
 | < COUNTER_MAX_VALUE : "max value" >
-| < COUNTER_MIN_IMPEED_ACTIONS : "reach min impeed actions" >
-| < COUNTER_MAX_IMPEED_ACTIONS : "reach max impeed actions" >
+| < COUNTER_MIN_IMPEDES_ACTIONS : "reaching min impedes actions" >
+| < COUNTER_MAX_IMPEDES_ACTIONS : "reaching max impedes actions" >
 }
 
 // PUNCTUATION reserved words
@@ -702,14 +702,14 @@ void counter() :
             }
     )*
     (
-      	(",") < COUNTER_MIN_IMPEED_ACTIONS >        {
-            counter.setMinImpeedActions(true);
+      	(",") < COUNTER_MIN_IMPEDES_ACTIONS >        {
+            counter.setMinImpedesActions(true);
         }
     )?
     (
-      	(",") < COUNTER_MAX_IMPEED_ACTIONS >
+      	(",") < COUNTER_MAX_IMPEDES_ACTIONS >
         {
-            counter.setMaxImpeedActions(true);
+            counter.setMaxImpedesActions(true);
         }
     )?
     (
