@@ -13,10 +13,10 @@ public class Counter {
     private String name;
     private  boolean local;
     private int initValue = 0;
-    private int minValue;// = Integer.MIN_VALUE;
-    private int maxValue;// = Integer.MAX_VALUE;
-    private boolean minImpeedActions;
-    private boolean maxImpeedActions;
+    private int minValue = 0;
+    private int maxValue = 20;
+    private boolean minImpedesActions = false;
+    private boolean maxImpedesActions = false;
     private Map<Action, Integer> increaseActions = new HashMap<Action, Integer>();
     private Map<Action, Integer> setValueActions = new HashMap<Action, Integer>();
 
@@ -136,22 +136,22 @@ public class Counter {
 
 	public void setMaxValue(int maxValue) {
 		this.maxValue = maxValue;
+	}	
+
+	public boolean isMinImpedesActions() {
+		return minImpedesActions;
 	}
 
-	public boolean isMinImpeedActions() {
-		return minImpeedActions;
+	public void setMinImpedesActions(boolean minImpedesActions) {
+		this.minImpedesActions = minImpedesActions;
 	}
 
-	public void setMinImpeedActions(boolean minImpeedActions) {
-		this.minImpeedActions = minImpeedActions;
+	public boolean isMaxImpedesActions() {
+		return maxImpedesActions;
 	}
 
-	public boolean isMaxImpeedActions() {
-		return maxImpeedActions;
-	}
-
-	public void setMaxImpeedActions(boolean maxImpeedActions) {
-		this.maxImpeedActions = maxImpeedActions;
+	public void setMaxImpedesActions(boolean maxImpedesActions) {
+		this.maxImpedesActions = maxImpedesActions;
 	}
 
 	//usado para logueo y debug
@@ -170,11 +170,11 @@ public class Counter {
                     getIncreaseActions().get(a).toString() + ", ");
         }
 
-        if(isMinImpeedActions())
-        	sb.append(" reach min impeed actions ");
+        if(isMinImpedesActions())
+        	sb.append(" reaching min impedes actions ");
 
-        if(isMaxImpeedActions())
-        	sb.append(" reach max impeed actions ");
+        if(isMaxImpedesActions())
+        	sb.append(" reaching max impedes actions ");
 
         for (Action a : getSetValueActions().keySet()) {  //sets with action SET_NEG_3 to value -3
             sb.append(" sets with action " + a.getName() + " to value "  +
