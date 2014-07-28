@@ -75,9 +75,9 @@ public interface FLParserConstants {
   /** RegularExpression Id. */
   int COUNTER_MAX_VALUE = 37;
   /** RegularExpression Id. */
-  int COUNTER_MIN_IMPEED_ACTIONS = 38;
+  int COUNTER_MIN_IMPEDES_ACTIONS = 38;
   /** RegularExpression Id. */
-  int COUNTER_MAX_IMPEED_ACTIONS = 39;
+  int COUNTER_MAX_IMPEDES_ACTIONS = 39;
   /** RegularExpression Id. */
   int PAR_LEFT = 40;
   /** RegularExpression Id. */
@@ -200,8 +200,8 @@ public interface FLParserConstants {
     "\"init value\"",
     "\"min value\"",
     "\"max value\"",
-    "\"reach min impeed actions\"",
-    "\"reach max impeed actions\"",
+    "\"reaching min impedes actions\"",
+    "\"reaching max impedes actions\"",
     "\"(\"",
     "\")\"",
     "\"{\"",
