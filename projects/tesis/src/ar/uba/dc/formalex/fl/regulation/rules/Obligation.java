@@ -1,5 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.rules;
 
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 
@@ -7,6 +9,7 @@ import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 public class Obligation extends FLFormula{
     private FLFormula formula;
     private FLFormula repair;
+    private Set<FLFormula> exceptions;
 
     public Obligation(FLFormula formula) {
         this(formula, null);
@@ -16,7 +19,6 @@ public class Obligation extends FLFormula{
         this.formula = formula;
         this.repair = repair;
     }
-
 
     public Boolean hasRepair(){
         return repair != null;

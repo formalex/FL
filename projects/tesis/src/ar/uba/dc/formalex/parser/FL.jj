@@ -39,7 +39,7 @@ public class FLParser{
         Interval res = intervals.get(name);
         if (res ==  null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Se está haciendo referencia a un intervalo no definido ('" + name + "'). Revisar datos del archivo de entrada");
+            sb.append("Se estï¿½ haciendo referencia a un intervalo no definido ('" + name + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
         return res;
@@ -49,7 +49,7 @@ public class FLParser{
         Action res = actions.get(name);
         if (res ==  null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Se está haciendo referencia a una acción no definida ('" + name + "'). Revisar datos del archivo de entrada");
+            sb.append("Se estï¿½ haciendo referencia a una acciï¿½n no definida ('" + name + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
         return res;
@@ -64,7 +64,7 @@ public class FLParser{
         Role res = rolesMap.get(name);
         if (res ==  null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Se está haciendo referencia a un rol no definido ('" + name + "'). Revisar datos del archivo de entrada");
+            sb.append("Se estï¿½ haciendo referencia a un rol no definido ('" + name + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
         return res;
@@ -118,6 +118,7 @@ TOKEN :
 | < SYNC : "synchronizes with" >
 | < ALLOW_AUTOSYNC : "allow autosync" >
 | < DISALLOW_AUTOSYNC: "disallow autosync" >
+| < TAG: "tag:" >
 }
 
 // COUNTERs reserved words
@@ -169,6 +170,7 @@ TOKEN :
 | < OCCURRED : "occurred" >
 | < RESULTS_IN : "results in" >
 | < REPAIRED_BY : "repaired by" >
+| < EXCEPTION_OF : "is exception of" >
 | < INSIDE : "inside" >
 | < EXISTS : "EXISTS(" >
 | < FORALL : "FORALL(" >
@@ -319,7 +321,7 @@ void action() :
         Action tmp = actions.put(anAction.getName(), anAction);
         if (tmp != null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Nombre de acción repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+            sb.append("Nombre de acciï¿½n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
     }
@@ -328,7 +330,7 @@ void action() :
             < OUTPUT_VALUES > < BRA_LEFT > actionOutputs = set() < BRA_RIGHT >
             {
               if (hasOutput)
-                throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un output value");
+                throw new RuntimeException("La acciï¿½n "+ anAction.getName() + " tiene definido mï¿½s de un output value");
               hasOutput = true;
               anAction.setOutputValues(actionOutputs);
             }
@@ -338,7 +340,7 @@ void action() :
             < ONLY_OCCURS_IN > < IDENTIFIER >
             {
                 if (hasOnlyOccurs)
-                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'only occurs in'");
+                    throw new RuntimeException("La acciï¿½n "+ anAction.getName() + " tiene definido mï¿½s de un 'only occurs in'");
                 hasOnlyOccurs = true;
                 Interval tempInterval = getInterval(token.image);
                 anAction.setOccursIn(tempInterval);
@@ -349,7 +351,7 @@ void action() :
             < OCCURRENCES > < NUMBER >
             {
                 if (hasOccurrences)
-                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'occurrences'");
+                    throw new RuntimeException("La acciï¿½n "+ anAction.getName() + " tiene definido mï¿½s de un 'occurrences'");
                 hasOccurrences = true;
                 anAction.setOccurrences(new Integer(token.image));
             }
@@ -359,7 +361,7 @@ void action() :
             < SYNC > < IDENTIFIER >
             {
                 if (hasSync)
-                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'sync'");
+                    throw new RuntimeException("La acciï¿½n "+ anAction.getName() + " tiene definido mï¿½s de un 'sync'");
                 hasSync = true;
                 Action syncAction = getAction(token.image);
                 anAction.setSync(syncAction, true);
@@ -382,7 +384,7 @@ void action() :
             < PERFORMABLE > < IDENTIFIER >
             {
                 if (hasPerformable)
-                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'performable by'");
+                    throw new RuntimeException("La acciï¿½n "+ anAction.getName() + " tiene definido mï¿½s de un 'performable by'");
                 hasPerformable = true;
 
                 if (isImpersonal){
@@ -422,7 +424,7 @@ void actions() :
         Action tmp = actions.put(anAction.getName(), anAction);
         if (tmp != null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Nombre de acción repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+            sb.append("Nombre de acciï¿½n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
     }
@@ -436,7 +438,7 @@ void actions() :
           tmp = actions.put(anotherAction.getName(), anotherAction);
           if (tmp != null){
               StringBuilder sb = new StringBuilder();
-              sb.append("Nombre de acción repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+              sb.append("Nombre de acciï¿½n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
               throw new RuntimeException(sb.toString());
           }
         }
@@ -595,7 +597,7 @@ void counter() :
           	int auxMin = Integer.parseInt(token.image);
 			if (auxMin > counter.getInitValue()){
             	StringBuilder sb = new StringBuilder();
-            	sb.append("El valor mínimo del contador '" + counter.getName() + "' no puede ser mayor a su valor inicial. Revisar datos del archivo de entrada");
+            	sb.append("El valor mï¿½nimo del contador '" + counter.getName() + "' no puede ser mayor a su valor inicial. Revisar datos del archivo de entrada");
            		throw new RuntimeException(sb.toString());
         	}
         	else        	{        		counter.setMinValue(auxMin);
@@ -607,7 +609,7 @@ void counter() :
           	int auxMax = Integer.parseInt(token.image);
 			if (auxMax < counter.getInitValue()){
             	StringBuilder sb = new StringBuilder();
-            	sb.append("El valor máximo del contador '" + counter.getName() + "' no puede ser menor a su valor inicial. Revisar datos del archivo de entrada");
+            	sb.append("El valor mï¿½ximo del contador '" + counter.getName() + "' no puede ser menor a su valor inicial. Revisar datos del archivo de entrada");
            		throw new RuntimeException(sb.toString());
         	}
         	else
@@ -875,13 +877,20 @@ String raw_text() :
 void clause() :
 {
     FLFormula p;
+    String tag = null;
     String x = null;
     originalFormula = "";
 }
 {
-  (
+   (     < TAG > <BKT_LEFT> < IDENTIFIER > 
+     {
+       tag = token.image;
+       originalFormula += "tag:[" + tag + "]";     }
+     <BKT_RIGHT>
+   )?
    (
-      //P-cláusula-disyuntiva       |   P-cláusula-conjuntiva |
+   	(
+      //P-clÃ¡usula-disyuntiva       |   P-clÃ¡usula-conjuntiva |
       //P(...) | P(...) | P(...)    o   P(...) & P(...) & P(...)
       p = p_clauses()
       {
@@ -891,7 +900,7 @@ void clause() :
    )
    |
    (
-      //O-cláusula-conjuntiva       |   O-cláusula-disyuntiva
+      //O-clï¿½usula-conjuntiva       |   O-clï¿½usula-disyuntiva
       //O(...) & O(...) & O(...)    o   O(...) | O(...) | O(...)
       p = o_clauses()
       {
@@ -901,7 +910,7 @@ void clause() :
    )
    |
    (
-      //F-cláusula-conjuntiva       |   F-cláusula-disyuntiva
+      //F-clï¿½usula-conjuntiva       |   F-clï¿½usula-disyuntiva
       //F(...) & F(...) & F(...)    o   F(...) | F(...) | F(...)
       p = f_clauses()
       {
@@ -911,8 +920,8 @@ void clause() :
    )
    |
    (
-      //EXISTS (var (: rol)? ; (O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva) ) |
-      //FORALL (var (: rol)? ; (O-cláusula-conjuntiva | F-clásula-conjuntiva | P-cláusula-conjuntiva) )
+      //EXISTS (var (: rol)? ; (O-clï¿½usula-disyuntiva | F-clï¿½usula-disyuntiva | P-clï¿½usula-disyuntiva) ) |
+      //FORALL (var (: rol)? ; (O-clï¿½usula-conjuntiva | F-clï¿½sula-conjuntiva | P-clï¿½usula-conjuntiva) )
       p = quantifierWithDeontic()
       {
         if (Util.hasPermission(p)){
@@ -926,11 +935,14 @@ void clause() :
       }
    )
   )
+  {
+     if (tag != null)
+      	flInput.addTaggedFormula(tag,p);  }
 }
 
-//F-cláusula-disyuntiva :=     F-cláusula (or F-cláusula)*
-//F-cláusula-conjuntiva :=     F-cláusula (and F-cláusula)*
-//1 o más F-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
+//F-clï¿½usula-disyuntiva :=     F-clï¿½usula (or F-clï¿½usula)*
+//F-clï¿½usula-conjuntiva :=     F-clï¿½usula (and F-clï¿½usula)*
+//1 o mï¿½s F-clï¿½usulas con OR o  1 o mï¿½s con AND, pero no combinando OR y AND
 FLFormula f_clauses() :
 {
     FLFormula p;
@@ -978,9 +990,9 @@ FLFormula f_clauses() :
 }
 
 
-//O-cláusula-disyuntiva :=     O-cláusula (or O-cláusula)*
-//O-cláusula-conjuntiva :=     O-cláusula (and O-cláusula)*
-//1 o más O-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
+//O-clï¿½usula-disyuntiva :=     O-clï¿½usula (or O-clï¿½usula)*
+//O-clï¿½usula-conjuntiva :=     O-clï¿½usula (and O-clï¿½usula)*
+//1 o mï¿½s O-clï¿½usulas con OR o  1 o mï¿½s con AND, pero no combinando OR y AND
 FLFormula o_clauses() :
 {
     FLFormula p;
@@ -1034,9 +1046,9 @@ FLFormula o_clauses() :
 }
 
 /*
-//P-cláusula-disyuntiva :=     P-cláusula (or P-cláusula)*
-//p_clause_conjunctive :=     P-cláusula (and P-cláusula)*
-//1 o más P-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
+//P-clï¿½usula-disyuntiva :=     P-clï¿½usula (or P-clï¿½usula)*
+//p_clause_conjunctive :=     P-clï¿½usula (and P-clï¿½usula)*
+//1 o mï¿½s P-clï¿½usulas con OR o  1 o mï¿½s con AND, pero no combinando OR y AND
 FLFormula p_clauses666() :
 {
     FLFormula p;
@@ -1085,9 +1097,9 @@ FLFormula p_clauses666() :
 }
 */
 
-//P-cláusula-disyuntiva :=     P-cláusula (or P-cláusula)*
-//p_clause_conjunctive :=     P-cláusula (and P-cláusula)*
-//1 o más P-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
+//P-clï¿½usula-disyuntiva :=     P-clï¿½usula (or P-clï¿½usula)*
+//p_clause_conjunctive :=     P-clï¿½usula (and P-clï¿½usula)*
+//1 o mï¿½s P-clï¿½usulas con OR o  1 o mï¿½s con AND, pero no combinando OR y AND
 FLFormula p_clauses() :
 {
     FLFormula p = null;
@@ -1124,7 +1136,7 @@ FLFormula p_clauses() :
     }
 }
 
-//P-cláusula (OR P-cláusula)*
+//P-clï¿½usula (OR P-clï¿½usula)*
 FLFormula p_clause_disjunctive() :
 {
     FLFormula p = null;;
@@ -1145,7 +1157,7 @@ FLFormula p_clause_disjunctive() :
     }
 }
 
-//O-cláusula (OR O-cláusula)*
+//O-clï¿½usula (OR O-clï¿½usula)*
 FLFormula o_clause_disjunctive() :
 {
     FLFormula p = null;;
@@ -1166,7 +1178,7 @@ FLFormula o_clause_disjunctive() :
     }
 }
 
-//F-cláusula (OR F-cláusula)*
+//F-clï¿½usula (OR F-clï¿½usula)*
 FLFormula f_clause_disjunctive() :
 {
     FLFormula p = null;;
@@ -1187,7 +1199,7 @@ FLFormula f_clause_disjunctive() :
     }
 }
 
-//P-cláusula (AND P-cláusula)*
+//P-clï¿½usula (AND P-clï¿½usula)*
 FLFormula p_clause_conjunctive() :
 {
     FLFormula p = null;
@@ -1208,7 +1220,7 @@ FLFormula p_clause_conjunctive() :
   }
 }
 
-//O-cláusula (AND O-cláusula)*
+//O-clï¿½usula (AND O-clï¿½usula)*
 FLFormula o_clause_conjunctive() :
 {
     FLFormula p = null;
@@ -1229,7 +1241,7 @@ FLFormula o_clause_conjunctive() :
   }
 }
 
-//F-cláusula (AND F-cláusula)*
+//F-clï¿½usula (AND F-clï¿½usula)*
 FLFormula f_clause_conjunctive() :
 {
     FLFormula p = null;
@@ -1258,9 +1270,14 @@ Permission p_clause() :
 {
 
   < PERMISSION > mainFormula = sentence() < PAR_RIGHT >    //P(...)
+  //(<EXCEPTION_OF> <IDENTIFIER>)?	
   {
     Permission res = new Permission(mainFormula);
+    String exception = token.image;
     originalFormula += ")";
+    /*if (exception != null)    {
+        FlInput.		originalFormula += exeption;
+    } */
     return res;
   }
 }
@@ -1373,7 +1390,7 @@ FLFormula forallWithDeontic() :
     {
         originalFormula += "; ";
     }
-    //FORALL (var (: rol)? ; O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva )
+    //FORALL (var (: rol)? ; O-clï¿½usula-disyuntiva | F-clï¿½usula-disyuntiva | P-clï¿½usula-disyuntiva )
     (
         tempFormula = p_clause_conjunctive()
         |
@@ -1413,7 +1430,7 @@ FLFormula existsWithDeontic() :
     {
         originalFormula += "; ";
     }
-    //EXISTS (var (: rol)? ; O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva )
+    //EXISTS (var (: rol)? ; O-clï¿½usula-disyuntiva | F-clï¿½usula-disyuntiva | P-clï¿½usula-disyuntiva )
     (
         tempFormula = p_clause_disjunctive()
         |
@@ -1690,8 +1707,8 @@ FLFormula terminal() :
                 Action tmp = actions.get(name);
                 if (tmp == null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de la línea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una fï¿½rmula se hace referencia a una acciï¿½n no definida: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de la lï¿½nea: " + beginLine + ", columna: " + beginColumn);
                     throw new RuntimeException(sb.toString());
                 }
                 return new FLActionOutput(variable, name, token.image);
@@ -1741,22 +1758,22 @@ FLFormula terminal() :
                 Counter tmp = counters.get(counter.getName());
                 if (tmp == null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una fórmula se hace referencia a un contador no definido: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una fï¿½rmula se hace referencia a un contador no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de lï¿½nea: " + beginLine + ", columna: " + beginColumn);
                     throw new RuntimeException(sb.toString());
                 }
 
                 if (tmp.isLocal() & counter.getVariable() == null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una fórmula se hace referencia a un contador local sin usar agente: ('" + name + "'). " +
-                        "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una fï¿½rmula se hace referencia a un contador local sin usar agente: ('" + name + "'). " +
+                        "Revisar datos del archivo de entrada, cerca de lï¿½nea: " + beginLine + ", columna: " + beginColumn);
                     throw new RuntimeException(sb.toString());
                 }
 
                 if (!tmp.isLocal() & counter.getVariable() != null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una fórmula se hace referencia a un contador global usando agente: ('" + name + "').  " +
-                        "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una fï¿½rmula se hace referencia a un contador global usando agente: ('" + name + "').  " +
+                        "Revisar datos del archivo de entrada, cerca de lï¿½nea: " + beginLine + ", columna: " + beginColumn);
                     throw new RuntimeException(sb.toString());
                 }
                 return counter;
@@ -1766,21 +1783,21 @@ FLFormula terminal() :
             Action tmp = actions.get(name);
             if (tmp == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +
-                "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fï¿½rmula se hace referencia a una acciï¿½n no definida: ('" + name + "'). " +
+                "Revisar datos del archivo de entrada, cerca de lï¿½nea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
 
             if ( !tmp.isImpersonal() & variable == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a una acción sin usar agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fï¿½rmula se hace referencia a una acciï¿½n sin usar agente: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de lï¿½nea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
             if ( tmp.isImpersonal() & variable != null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a una acción impersonal usando agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fï¿½rmula se hace referencia a una acciï¿½n impersonal usando agente: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de lï¿½nea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
             aFormula = new FLAction(variable, name);
@@ -1815,20 +1832,20 @@ FLFormula terminal() :
             Interval tmp = intervals.get(name);
             if (tmp == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a un intervalo no definido: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fï¿½rmula se hace referencia a un intervalo no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de lï¿½nea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
             if (tmp.isLocal() & interval.getVariable() == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a un intervalo local sin usar variable: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fï¿½rmula se hace referencia a un intervalo local sin usar variable: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de lï¿½nea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
             if (!tmp.isLocal() & interval.getVariable() != null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a un intervalo global usando agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fï¿½rmula se hace referencia a un intervalo global usando agente: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de lï¿½nea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
             return new FLInside(interval);
