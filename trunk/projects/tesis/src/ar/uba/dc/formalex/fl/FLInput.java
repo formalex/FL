@@ -141,7 +141,7 @@ public class FLInput {
 
     public Set<String> getNamesWithAgent() {
 
-        //todo: ver qué pasa con impersonal_actions e intervalos y contadores globales
+        //todo: ver quï¿½ pasa con impersonal_actions e intervalos y contadores globales
         Set<String> namesWithAgent = new HashSet<String>();
         for(Action action : getActions()) {
             boolean sinRepetir = namesWithAgent.add(action.getName());
@@ -181,4 +181,8 @@ public class FLInput {
     public void setRules(List<FLFormula> rules) {
         regulation.setRules(rules);
     }
+    
+	public void addTaggedFormula(String tag, FLFormula formula) throws RuntimeException {
+		regulation.addTaggedFormula(tag, formula);
+	}
 }
