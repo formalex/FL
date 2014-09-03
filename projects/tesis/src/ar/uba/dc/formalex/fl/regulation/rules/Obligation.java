@@ -45,4 +45,26 @@ public class Obligation extends FLFormula{
             rep = repair.instanciar(variable, agente, bgUtil);
         return new Obligation(f, rep);
     }
+
+	public FLFormula getFormula() {
+		return formula;
+	}
+
+	public void setFormula(FLFormula formula) {
+		this.formula = formula;
+	}
+
+	public Set<FLFormula> getExceptions() {
+		return exceptions;
+	}
+
+	public void setExceptions(Set<FLFormula> exceptions) {
+		this.exceptions = exceptions;
+	}
+	
+	public void addException(FLFormula formula){
+		this.exceptions.add(formula);
+	}
+    
+    
 }
