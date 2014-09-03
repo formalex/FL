@@ -1277,10 +1277,10 @@ Permission p_clause() :
     originalFormula += ")";
 
     if (exception != null)    {
-        FLFormula rule = FlInput.getFLFormulaFromTag(exception);
-        rule.addException(exception);
-        FlInput.addRule(rule);
-        originalFormula += "is Exception of " + rule.toString();        		
+        FLFormula rule = flInput.getFLFormulaFromTag(exception);
+        rule.addException(res);
+        flInput.addRule(rule);
+        originalFormula += " is exception of " + rule.toString();        		
     }
     
     return res;
