@@ -185,4 +185,12 @@ public class FLInput {
 	public void addTaggedFormula(String tag, FLFormula formula) throws RuntimeException {
 		regulation.addTaggedFormula(tag, formula);
 	}
+	
+	public FLFormula getFLFormulaFromTag(String tag){
+		FLFormula formula = regulation.getFLFormulaFromTag(tag);
+		if (formula == null){
+			throw new RuntimeException("La fórmula a la que hace referencia no existe. Revisar");
+		}
+		return formula;
+	}
 }
