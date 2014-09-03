@@ -8,8 +8,7 @@ import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 
 public class Obligation extends FLFormula{
     private FLFormula formula;
-    private FLFormula repair;
-    private Set<FLFormula> exceptions;
+    private FLFormula repair;    
 
     public Obligation(FLFormula formula) {
         this(formula, null);
@@ -52,19 +51,5 @@ public class Obligation extends FLFormula{
 
 	public void setFormula(FLFormula formula) {
 		this.formula = formula;
-	}
-
-	public Set<FLFormula> getExceptions() {
-		return exceptions;
-	}
-
-	public void setExceptions(Set<FLFormula> exceptions) {
-		this.exceptions = exceptions;
-	}
-	
-	public void addException(FLFormula formula){
-		this.exceptions.add(formula);
-	}
-    
-    
+	}	       
 }
