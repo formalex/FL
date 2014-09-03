@@ -1270,20 +1270,23 @@ Permission p_clause() :
 {
 
   < PERMISSION > mainFormula = sentence() < PAR_RIGHT >    //P(...)
-  (<EXCEPTION_OF> <IDENTIFIER>)?	
   {
     Permission res = new Permission(mainFormula);
-    String exception = token.image;
     originalFormula += ")";
-
-    if (exception != null)    {
+  }
+  (
+    <EXCEPTION_OF> <IDENTIFIER>	
+    {
+      String exception = token.image;
+      if (exception != null)      {
         FLFormula rule = flInput.getFLFormulaFromTag(exception);
         rule.addException(res);
         flInput.addRule(rule);
         originalFormula += " is exception of " + rule.toString();        		
+      }
     }
-    
-    return res;
+  )?
+  {      return res;
   }
 }
 
