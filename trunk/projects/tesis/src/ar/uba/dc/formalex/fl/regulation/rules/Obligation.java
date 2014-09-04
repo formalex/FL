@@ -1,5 +1,6 @@
 package ar.uba.dc.formalex.fl.regulation.rules;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
@@ -17,6 +18,7 @@ public class Obligation extends FLFormula{
     public Obligation(FLFormula formula, FLFormula repair) {
         this.formula = formula;
         this.repair = repair;
+        this.exceptions = new HashSet<FLFormula>();
     }
 
     public Boolean hasRepair(){
