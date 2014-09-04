@@ -884,8 +884,7 @@ void clause() :
 {
    (     < TAG > <BKT_LEFT> < IDENTIFIER > 
      {
-       tag = token.image;
-       originalFormula += "tag:[" + tag + "]";     }
+       tag = token.image;            }
      <BKT_RIGHT>
    )?
    (
