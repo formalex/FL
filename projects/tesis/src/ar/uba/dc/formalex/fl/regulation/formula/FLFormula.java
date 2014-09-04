@@ -7,7 +7,7 @@ import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 
 public abstract class FLFormula {
 	
-	private Set<FLFormula> exceptions;
+	protected Set<FLFormula> exceptions;
 	
     /**
      * devuelve el string que representa a esta fórmula con el formato del model checker
