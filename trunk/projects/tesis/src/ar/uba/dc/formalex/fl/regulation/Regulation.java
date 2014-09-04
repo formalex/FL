@@ -22,7 +22,11 @@ public class Regulation {
     }
 
     public void addRule(FLFormula p){
-        rules.add(p);
+    	boolean contain = rules.contains(p);
+    	if(contain){
+    		int index = rules.indexOf(p);
+    		rules.add(index, p);
+    	}
     }
 
     public void setRules(List<FLFormula> rules) {
