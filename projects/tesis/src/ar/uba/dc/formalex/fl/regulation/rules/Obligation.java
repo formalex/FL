@@ -1,10 +1,15 @@
 package ar.uba.dc.formalex.fl.regulation.rules;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
+import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
+import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLOr;
+import ar.uba.dc.formalex.fl.regulation.permission.Permission;
 
 
 public class Obligation extends FLFormula{
@@ -44,7 +49,22 @@ public class Obligation extends FLFormula{
             return null;
         if (repair != null)
             rep = repair.instanciar(variable, agente, bgUtil);
-        return new Obligation(f, rep);
+        if (exceptions != null && !exceptions.isEmpty()){ // se realiza la conjunción de todos los Permisos que son excepciones a la regla
+        	Iterator<FLFormula> exceptionsFormulas = exceptions.iterator();
+        	FLFormula exceptionFormAnd = exceptionsFormulas.next();
+        	FLFormula exceptionFormOr = exceptionsFormulas.next(); 
+        	while (exceptionsFormulas.hasNext()){
+        		FLFormula next = exceptionsFormulas.next();
+        		exceptionFormAnd = new FLAnd(exceptionFormAnd, next);
+        		exceptionFormOr = new FLOr(exceptionFormOr, next);
+        	}
+        	//instancio con los agentes la conjunción de los Permisos que representan la excepción.
+        	FLFormula exceptionFormInst = exceptionFormOr.instanciar(variable, agente, bgUtil);
+        	//return new Forbidden(new FLAnd(new FLNeg(f), new FLNeg(exceptionFormInst)), rep);        	
+        	return new Obligation(new FLOr(f, exceptionFormInst), rep);
+        }else{
+        	return new Obligation(f, rep);
+        }        	        
     }
 
 	public FLFormula getFormula() {
