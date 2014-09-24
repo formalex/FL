@@ -597,7 +597,7 @@ void counter() :
           	int auxMin = Integer.parseInt(token.image);
 			if (auxMin > counter.getInitValue()){
             	StringBuilder sb = new StringBuilder();
-            	sb.append("El valor mínimo del contador '" + counter.getName() + "' no puede ser mayor a su valor inicial. Revisar datos del archivo de entrada");
+            	sb.append("El valor mï¿½nimo del contador '" + counter.getName() + "' no puede ser mayor a su valor inicial. Revisar datos del archivo de entrada");
            		throw new RuntimeException(sb.toString());
         	}
         	else        	{        		counter.setMinValue(auxMin);
@@ -609,7 +609,7 @@ void counter() :
           	int auxMax = Integer.parseInt(token.image);
 			if (auxMax < counter.getInitValue()){
             	StringBuilder sb = new StringBuilder();
-            	sb.append("El valor máximo del contador '" + counter.getName() + "' no puede ser menor a su valor inicial. Revisar datos del archivo de entrada");
+            	sb.append("El valor mï¿½ximo del contador '" + counter.getName() + "' no puede ser menor a su valor inicial. Revisar datos del archivo de entrada");
            		throw new RuntimeException(sb.toString());
         	}
         	else
@@ -1278,7 +1278,7 @@ Permission p_clause() :
       String exception = token.image;
       if (exception != null)      {
         FLFormula rule = flInput.getFLFormulaFromTag(exception);
-        rule.addException(res);
+        rule.addException(mainFormula);
         flInput.addRule(rule);
         originalFormula += " is exception of " + rule.toString();        		
       }
