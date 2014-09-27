@@ -25,7 +25,11 @@ public class Regulation {
     	boolean contain = rules.contains(p);
     	if(contain){
     		int index = rules.indexOf(p);
-    		rules.add(index, p);
+    		//Se reemplaza en la misma posición por la nueva fórmula.
+    		rules.remove(index);
+    		rules.add(index, p);    		
+    	}else{
+    		rules.add(p);
     	}
     }
 
