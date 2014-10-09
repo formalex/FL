@@ -1287,11 +1287,17 @@ Permission p_clause() :
     {
       String exception = token.image;
       if (exception != null)      {
-        FLFormula rule = flInput.getFLFormulaFromTag(exception);
-        rule.addException(mainFormula);
-        flInput.addRule(rule);
-        originalFormula += " is exception of " + rule.toString();
-        flInput.addFLRule(originalFormula);        		
+        if (conditionFormula == null)        {			//ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
+			StringBuilder sb = new StringBuilder();
+            sb.append("Hay una fórmula que es escepción de una regla pero no posee condición: ('" +mainFormula  + "'). ");
+            throw new RuntimeException(sb.toString());
+        }  else {          
+		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
+		        rule.addException(mainFormula);
+		        flInput.addRule(rule);
+		        originalFormula += " is exception of " + rule.toString();
+		        flInput.addFLRule(originalFormula);
+      	}      		
       }
     }
   )?
