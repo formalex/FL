@@ -1264,20 +1264,22 @@ FLFormula f_clause_conjunctive() :
 Permission p_clause() :
 {
   FLFormula mainFormula;
-  FLFormula conditionFormula;
+  FLFormula conditionFormula = null;
   Permission res;
   originalFormula += "P(";
 }
 {
 
-  < PERMISSION > mainFormula = sentence() < PAR_RIGHT >    //P(...)
+  < PERMISSION > mainFormula = sentence()     //P(...)
   (    
-      < COMMA > conditionFormula = sentence()    
-      res = new Permission(mainFormula, conditionFormula);    
-  )?
+      ", " conditionFormula = sentence()
+      {
+        originalFormula += ", ";      }    
+  )? < PAR_RIGHT >
   {
     if (conditionFormula == null)    {
-      res = new Permission(mainFormula);   }     
+      res = new Permission(mainFormula);    } else {
+      res = new Permission(mainFormula, conditionFormula);    }     
     originalFormula += ")";
   }
   (
