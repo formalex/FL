@@ -3,6 +3,7 @@ package ar.uba.dc.formalex.fl.regulation.permission;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
+import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLThen;
 import ar.uba.dc.formalex.fl.regulation.rules.Forbidden;
 
 
@@ -12,6 +13,13 @@ public class Permission extends FLFormula {
     public Permission(FLFormula formula) {
         //P( fórmula ) =  !  F( fórmula )
         Forbidden prohibition = new Forbidden(formula);
+        this.formula =  new FLNeg(prohibition);
+    }
+    
+    public Permission(FLFormula formula, FLFormula condition) {
+        //P( formula, condition ) =  !  F( condition -> formula)
+    	FLThen implies = new FLThen(condition, formula);
+        Forbidden prohibition = new Forbidden(implies);
         this.formula =  new FLNeg(prohibition);
     }
 
