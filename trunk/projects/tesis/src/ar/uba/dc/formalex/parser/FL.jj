@@ -167,6 +167,7 @@ TOKEN :
 | < OBLIGATION : "O(" >
 | < FORBIDDEN : "F(" >
 | < PERMISSION : "P(" >
+| < COMMA : "," >
 | < OCCURRED : "occurred" >
 | < RESULTS_IN : "results in" >
 | < REPAIRED_BY : "repaired by" >
@@ -935,7 +936,7 @@ void clause() :
   )
   {
      if (tag != null)
-      	flInput.addTaggedFormula(tag,p);  }
+      	flInput.addTaggedFormula(tag,p);        }
 }
 
 //F-cl�usula-disyuntiva :=     F-cl�usula (or F-cl�usula)*
@@ -1263,13 +1264,20 @@ FLFormula f_clause_conjunctive() :
 Permission p_clause() :
 {
   FLFormula mainFormula;
+  FLFormula conditionFormula;
+  Permission res;
   originalFormula += "P(";
 }
 {
 
   < PERMISSION > mainFormula = sentence() < PAR_RIGHT >    //P(...)
+  (    
+      < COMMA > conditionFormula = sentence()    
+      res = new Permission(mainFormula, conditionFormula);    
+  )?
   {
-    Permission res = new Permission(mainFormula);
+    if (conditionFormula == null)    {
+      res = new Permission(mainFormula);   }     
     originalFormula += ")";
   }
   (
@@ -1280,7 +1288,8 @@ Permission p_clause() :
         FLFormula rule = flInput.getFLFormulaFromTag(exception);
         rule.addException(mainFormula);
         flInput.addRule(rule);
-        originalFormula += " is exception of " + rule.toString();        		
+        originalFormula += " is exception of " + rule.toString();
+        flInput.addFLRule(originalFormula);        		
       }
     }
   )?
