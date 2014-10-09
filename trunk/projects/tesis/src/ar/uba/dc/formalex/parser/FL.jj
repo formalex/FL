@@ -1289,7 +1289,7 @@ Permission p_clause() :
       if (exception != null)      {
         if (conditionFormula == null)        {			//ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
 			StringBuilder sb = new StringBuilder();
-            sb.append("Hay una fórmula que es escepción de una regla pero no posee condición: ('" +mainFormula  + "'). ");
+            sb.append("Hay una fórmula que es excepción de una regla pero no posee condición: ('" +mainFormula  + "'). ");
             throw new RuntimeException(sb.toString());
         }  else {          
 		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
