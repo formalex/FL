@@ -1293,7 +1293,8 @@ Permission p_clause() :
             throw new RuntimeException(sb.toString());
         }  else {          
 		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
-		        rule.addException(res);
+		        BGUtil bgUtil = new BGUtil(flInput.getAgentesPorRol(), flInput.getNamesWithAgent());
+		        rule.addException(res.instanciar(null, null, bgUtil));
 		        flInput.addRule(rule);
 		        originalFormula += " is exception of " + rule.toString();
 		        flInput.addFLRule(originalFormula);
@@ -1455,13 +1456,39 @@ FLFormula existsWithDeontic() :
     }
     //EXISTS (var (: rol)? ; O-cl�usula-disyuntiva | F-cl�usula-disyuntiva | P-cl�usula-disyuntiva )
     (
-        tempFormula = p_clause_disjunctive()
+      {        
+      	boolean isPermission = false;
+        tempFormula = p_clause_disjunctive();        if(tempFormula != null)        	isPermission = true;
+       }          	   
         |
         tempFormula = o_clause_disjunctive()
         |
         tempFormula = f_clause_disjunctive()
-    )
+    )    
     < PAR_RIGHT >
+	(
+    <EXCEPTION_OF> <IDENTIFIER>	
+    {
+      String exception = token.image;
+      if (exception != null)
+      {
+        if (!isPermission)
+        {
+			//ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
+			StringBuilder sb = new StringBuilder();
+            sb.append("Hay una fórmula que es excepción de una regla pero no es un permiso: ('" + originalFormula + "'). ");
+            throw new RuntimeException(sb.toString());
+        }  else {          
+		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
+		        BGUtil bgUtil = new BGUtil(flInput.getAgentesPorRol(), flInput.getNamesWithAgent());		        
+		        rule.addException(tempFormula.instanciar(null,null,bgUtil));
+		        flInput.addRule(rule);
+		        originalFormula += " is exception of " + rule.toString();
+		        flInput.addFLRule(originalFormula);
+      	}      		
+      }
+    }
+  	)?    
 
     {
         originalFormula += ")";
