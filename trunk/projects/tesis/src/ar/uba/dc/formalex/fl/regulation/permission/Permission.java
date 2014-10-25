@@ -17,10 +17,10 @@ public class Permission extends FLFormula {
     }
     
     public Permission(FLFormula formula, FLFormula condition) {
-        //P( formula, condition ) =  !  F( condition -> formula)
-    	FLThen implies = new FLThen(condition, formula);
-        Forbidden prohibition = new Forbidden(implies);
-        this.formula =  new FLNeg(prohibition);
+        //P( formula, condition ) = condition -> ! F(formula)
+    	Forbidden prohibition = new Forbidden(formula);
+        FLNeg prohibitionNeg =  new FLNeg(prohibition);
+        this.formula = new FLThen(condition, prohibitionNeg);
     }
 
     @Override
