@@ -1434,16 +1434,21 @@ FLFormula forallWithDeontic() :
       {
         if (!(tempFormula.getClass().equals(Permission.class)))
         {
-			//ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
+			//ERROR! las únicas formulas válidas como excepciones son los permisos con condiciones
 			StringBuilder sb = new StringBuilder();
             sb.append("Hay una fórmula que es excepción de una regla pero no es un permiso: ('" + originalFormula + "'). ");
             throw new RuntimeException(sb.toString());
         }  else {          
 		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
-		        rule.addException(forallFormula);
-		        flInput.addRule(rule);
-		        originalFormula += " is exception of " + rule.toString();
-		        flInput.addFLRule(originalFormula);
+		        if (!(rule.getClass().equals(Obligation.class) | (rule.getClass().equals(FLForall.class) & !((FLForall)rule).getFormula().equals(Obligation.class))))		        {
+		          //ERROR! las únicas formulas que pueden tener excepciones son las reglas
+					StringBuilder sb = new StringBuilder();
+            		sb.append("Hay una fórmula que tiene una excepción pero no es una regla: ('" + rule.toString() + "'). ");
+            		throw new RuntimeException(sb.toString());		        } else {		        	rule.addException(forallFormula);
+		        	flInput.addRule(rule);
+		        	originalFormula += " is exception of " + rule.toString();
+		        	flInput.addFLRule(originalFormula);
+		        }
       	}      		
       }
     }
