@@ -5,6 +5,7 @@ import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLFalse;
 
+import java.util.Iterator;
 import java.util.Set;
 
 public class FLExist extends FLQuantifier {
@@ -47,14 +48,23 @@ public class FLExist extends FLQuantifier {
             agentes = bgUtil.getAgentes(getRole());
 
         FLFormula orFormula = null;
-        for(Agente agenteE : agentes) {
-            FLFormula orDer = newFormula.instanciar(getVariable(), agenteE.getName(), bgUtil);
-            if (orDer != null){
-                if (orFormula != null)
-                    orFormula = new FLOr(orFormula, orDer);
-                else
-                    orFormula = new FLOr(new FLFalse(), orDer);
-            }
+        for (Iterator iterator = agentes.iterator(); iterator.hasNext();) {
+			Agente agenteE = (Agente) iterator.next();
+    		FLFormula orDer = newFormula.instanciar(getVariable(), agenteE.getName(), bgUtil);
+        	if (agente != null){
+        		if(agente.equals(agenteE.getName()))
+        			return orDer;
+        		else if(!iterator.hasNext()) 
+        			return new FLFalse();
+        	} else {
+        		if (orDer != null){
+                	orDer = exceptionsInstantiator(orDer, agenteE, bgUtil);
+        			if (orFormula != null)
+        				orFormula = new FLOr(orFormula, orDer);
+        			else
+        				orFormula = new FLOr(new FLFalse(), orDer);
+        		}
+        	}
         }
         yaInstanciada = true;
 

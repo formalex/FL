@@ -1293,8 +1293,8 @@ Permission p_clause() :
             throw new RuntimeException(sb.toString());
         }  else {          
 		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
-		        BGUtil bgUtil = new BGUtil(flInput.getAgentesPorRol(), flInput.getNamesWithAgent());
-		        rule.addException(res.instanciar(null, null, bgUtil));
+		        //BGUtil bgUtil = new BGUtil(flInput.getAgentesPorRol(), flInput.getNamesWithAgent());
+		        rule.addException(res);
 		        flInput.addRule(rule);
 		        originalFormula += " is exception of " + rule.toString();
 		        flInput.addFLRule(originalFormula);
@@ -1393,15 +1393,15 @@ FLFormula quantifierWithDeontic() :
 FLFormula forallWithDeontic() :
 {
   FLFormula tempFormula ;
-  String variable;
+  String variableName;
   String role = null;
 }
 {
     < FORALL >                                 //FORALL(i:rol1; O (...))
     < IDENTIFIER >                          //i en FORALL(i:rol1; O (...))
     {
-        variable = token.image;
-        originalFormula += "FORALL(" + variable;
+        variableName = token.image;
+        originalFormula += "FORALL(" + variableName;
     }
     (
         ":" < IDENTIFIER >                      //:rol1 en FORALL(i:rol1; O (...))
@@ -1423,10 +1423,35 @@ FLFormula forallWithDeontic() :
         tempFormula = f_clause_conjunctive()
     )
     < PAR_RIGHT >
+    {
+      FLFormula forallFormula = new FLForall(variableName, role, tempFormula );
+  	}  
+	(
+    <EXCEPTION_OF> <IDENTIFIER>	
+    {
+      String exception = token.image;
+      if (exception != null)
+      {
+        if (!(tempFormula.getClass().equals(Permission.class)))
+        {
+			//ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
+			StringBuilder sb = new StringBuilder();
+            sb.append("Hay una fórmula que es excepción de una regla pero no es un permiso: ('" + originalFormula + "'). ");
+            throw new RuntimeException(sb.toString());
+        }  else {          
+		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
+		        rule.addException(forallFormula);
+		        flInput.addRule(rule);
+		        originalFormula += " is exception of " + rule.toString();
+		        flInput.addFLRule(originalFormula);
+      	}      		
+      }
+    }
+  	)?    
 
     {
         originalFormula += ")";
-        return new FLForall(variable, role, tempFormula );
+        return forallFormula;
     }
 }
 
@@ -1435,7 +1460,7 @@ FLFormula existsWithDeontic() :
   FLFormula tempFormula ;
   String variableName;
   String role = null;
-}
+ }
 {
     < EXISTS >                                 //EXISTS(i:rol1; O (...))
     < IDENTIFIER >                          //i en EXISTS(i:rol1; O (...))
@@ -1456,23 +1481,21 @@ FLFormula existsWithDeontic() :
     }
     //EXISTS (var (: rol)? ; O-cl�usula-disyuntiva | F-cl�usula-disyuntiva | P-cl�usula-disyuntiva )
     (
-      {        
-      	boolean isPermission = false;
-        tempFormula = p_clause_disjunctive();        if(tempFormula != null)        	isPermission = true;
-       }          	   
-        |
+        tempFormula = p_clause_disjunctive()        |
         tempFormula = o_clause_disjunctive()
         |
         tempFormula = f_clause_disjunctive()
     )    
     < PAR_RIGHT >
+    {      FLFormula existsFormula = new FLExist(variableName, role, tempFormula );
+  	}  
 	(
     <EXCEPTION_OF> <IDENTIFIER>	
     {
       String exception = token.image;
       if (exception != null)
       {
-        if (!isPermission)
+        if (!(tempFormula.getClass().equals(Permission.class)))
         {
 			//ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
 			StringBuilder sb = new StringBuilder();
@@ -1480,8 +1503,7 @@ FLFormula existsWithDeontic() :
             throw new RuntimeException(sb.toString());
         }  else {          
 		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
-		        BGUtil bgUtil = new BGUtil(flInput.getAgentesPorRol(), flInput.getNamesWithAgent());		        
-		        rule.addException(tempFormula.instanciar(null,null,bgUtil));
+		        rule.addException(existsFormula);
 		        flInput.addRule(rule);
 		        originalFormula += " is exception of " + rule.toString();
 		        flInput.addFLRule(originalFormula);
@@ -1492,7 +1514,7 @@ FLFormula existsWithDeontic() :
 
     {
         originalFormula += ")";
-        return new FLExist(variableName, role, tempFormula );
+        return existsFormula;
     }
 }
 
