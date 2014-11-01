@@ -1,14 +1,13 @@
 package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLFalse;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
-import ar.uba.dc.formalex.fl.regulation.rules.Obligation;
-
-import java.util.Iterator;
-import java.util.Set;
 
 public class FLForall extends FLQuantifier {
 	private boolean yaInstanciada = false; //usada para loguear y debug
@@ -46,7 +45,7 @@ public class FLForall extends FLQuantifier {
 		if (getRole() == null)//si no se indica el rol se usan todos => se usan todos los agentes que pueden realizar la acción
 			agentes = bgUtil.getAgentes();
 		else
-			agentes = bgUtil.getAgentes(getRole());
+			agentes = bgUtil.getAgentes(getRole(), newFormula.getAditionalRole());
 
 		FLFormula andFormula = null;
 		for (Iterator iterator = agentes.iterator(); iterator.hasNext();) {
