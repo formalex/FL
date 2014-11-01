@@ -1,13 +1,14 @@
-
 package ar.uba.dc.formalex.fl.regulation.formula;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 
 public abstract class FLFormula {
 	
-	protected Set<FLFormula> exceptions;
+	protected Set<FLFormula> exceptions = new HashSet<FLFormula>();
+	protected String aditionalRole;
 	
     /**
      * devuelve el string que representa a esta fórmula con el formato del model checker
@@ -34,9 +35,15 @@ public abstract class FLFormula {
 	}
 	
 	public void addException(FLFormula formula){
-		this.exceptions.add(formula);
+		this.exceptions.add(formula);	
 	}
-    
-    
+
+	public String getAditionalRole() {
+		return aditionalRole;
+	}
+
+	public void setAditionalRole(String aditionalRole) {
+		this.aditionalRole = aditionalRole;
+	}	       
 
 }
