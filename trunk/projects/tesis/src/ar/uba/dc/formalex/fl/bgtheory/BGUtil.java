@@ -1,6 +1,7 @@
 package ar.uba.dc.formalex.fl.bgtheory;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,8 +19,24 @@ public class BGUtil {
         this.instanciasValidas = instanciasValidas;
     }
 
-    public Set<Agente> getAgentes(String role) {
-        return agentesPorRol.get(role);
+    /**
+     * Obtiene los agentes que cumplen con role. Adicionalmente, si la fórmula contiene un rol extra,
+     * retorna los agentes que cumplan con ambos roles.
+     * @param role
+     * @param belongsRole
+     * @return
+     */
+    public Set<Agente> getAgentes(String role, String aditionalRole) {
+    	Set<Agente> agents = agentesPorRol.get(role);
+    	if(aditionalRole != null && !aditionalRole.equals("")){
+    		for (Iterator<Agente> iterator = agents.iterator(); iterator.hasNext();) {
+				Agente agente = (Agente) iterator.next();
+				if(!agente.getRoles().contains(aditionalRole)){
+					agents.remove(agente);
+				}
+			}
+    	}
+        return agents;
     }
 
     public Set<Agente> getAgentes() {
@@ -33,5 +50,9 @@ public class BGUtil {
     public boolean isValid(String nameWithAgent){
         return instanciasValidas.contains(nameWithAgent);
     }
-
+    
+  //Dado un agente y un rol, verifica si el agente tiene dicho rol.
+  	public boolean belongsToRole(String agent, String role){		
+  		return this.agentesPorRol.get(role).contains(agent);		
+  	}
 }
