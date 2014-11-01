@@ -115,49 +115,51 @@ public interface FLParserConstants {
   /** RegularExpression Id. */
   int PERMISSION = 57;
   /** RegularExpression Id. */
-  int OCCURRED = 58;
+  int COMMA = 58;
   /** RegularExpression Id. */
-  int RESULTS_IN = 59;
+  int OCCURRED = 59;
   /** RegularExpression Id. */
-  int REPAIRED_BY = 60;
+  int RESULTS_IN = 60;
   /** RegularExpression Id. */
-  int EXCEPTION_OF = 61;
+  int REPAIRED_BY = 61;
   /** RegularExpression Id. */
-  int INSIDE = 62;
+  int EXCEPTION_OF = 62;
   /** RegularExpression Id. */
-  int EXISTS = 63;
+  int INSIDE = 63;
   /** RegularExpression Id. */
-  int FORALL = 64;
+  int EXISTS = 64;
   /** RegularExpression Id. */
-  int EQUAL = 65;
+  int FORALL = 65;
   /** RegularExpression Id. */
-  int LESS = 66;
+  int EQUAL = 66;
   /** RegularExpression Id. */
-  int GREATER = 67;
+  int LESS = 67;
   /** RegularExpression Id. */
-  int LEQ = 68;
+  int GREATER = 68;
   /** RegularExpression Id. */
-  int GEQ = 69;
+  int LEQ = 69;
   /** RegularExpression Id. */
-  int START_RAW_TEXT = 70;
+  int GEQ = 70;
   /** RegularExpression Id. */
-  int END_RAW_TEXT = 71;
+  int START_RAW_TEXT = 71;
   /** RegularExpression Id. */
-  int RAW_TEXT = 72;
+  int END_RAW_TEXT = 72;
   /** RegularExpression Id. */
-  int IDENTIFIER = 73;
+  int RAW_TEXT = 73;
   /** RegularExpression Id. */
-  int NUMBER = 74;
+  int IDENTIFIER = 74;
   /** RegularExpression Id. */
-  int MINUS = 75;
+  int NUMBER = 75;
   /** RegularExpression Id. */
-  int UNDERSCORE = 76;
+  int MINUS = 76;
   /** RegularExpression Id. */
-  int INT_NUMBER = 77;
+  int UNDERSCORE = 77;
   /** RegularExpression Id. */
-  int LETTER = 78;
+  int INT_NUMBER = 78;
   /** RegularExpression Id. */
-  int DIGIT = 79;
+  int LETTER = 79;
+  /** RegularExpression Id. */
+  int DIGIT = 80;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -224,6 +226,7 @@ public interface FLParserConstants {
     "\"O(\"",
     "\"F(\"",
     "\"P(\"",
+    "\",\"",
     "\"occurred\"",
     "\"results in\"",
     "\"repaired by\"",
@@ -246,7 +249,7 @@ public interface FLParserConstants {
     "<INT_NUMBER>",
     "<LETTER>",
     "<DIGIT>",
-    "\",\"",
+    "\", \"",
     "\";\"",
   };
 
