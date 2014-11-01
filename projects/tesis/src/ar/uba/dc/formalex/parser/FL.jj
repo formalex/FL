@@ -1440,14 +1440,17 @@ FLFormula forallWithDeontic() :
             throw new RuntimeException(sb.toString());
         }  else {          
 		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
-		        if (!(rule.getClass().equals(Obligation.class) | (rule.getClass().equals(FLForall.class) & !((FLForall)rule).getFormula().equals(Obligation.class))))		        {
-		          //ERROR! las únicas formulas que pueden tener excepciones son las reglas
-					StringBuilder sb = new StringBuilder();
-            		sb.append("Hay una fórmula que tiene una excepción pero no es una regla: ('" + rule.toString() + "'). ");
-            		throw new RuntimeException(sb.toString());		        } else {		        	rule.addException(forallFormula);
+		        if (rule.getClass().equals(Obligation.class) | rule.getClass().equals(Forbidden.class) |
+		        ( (rule.getClass().equals(FLForall.class) | rule.getClass().equals(FLExist.class))
+		        	& ( ((FLQuantifier)rule).getFormula().getClass().equals(Obligation.class) | ((FLQuantifier)rule).getFormula().getClass().equals(Forbidden.class))))		        {
+		        	rule.addException(forallFormula);
 		        	flInput.addRule(rule);
 		        	originalFormula += " is exception of " + rule.toString();
 		        	flInput.addFLRule(originalFormula);
+		        } else {		          //ERROR! las únicas formulas que pueden tener excepciones son las reglas
+					StringBuilder sb = new StringBuilder();
+            		sb.append("Hay una fórmula que tiene una excepción pero no es una regla: ('" + rule.toString() + "'). ");
+            		throw new RuntimeException(sb.toString());
 		        }
       	}      		
       }
@@ -1507,16 +1510,25 @@ FLFormula existsWithDeontic() :
             sb.append("Hay una fórmula que es excepción de una regla pero no es un permiso: ('" + originalFormula + "'). ");
             throw new RuntimeException(sb.toString());
         }  else {          
-		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
-		        rule.addException(existsFormula);
-		        flInput.addRule(rule);
-		        originalFormula += " is exception of " + rule.toString();
-		        flInput.addFLRule(originalFormula);
-      	}      		
-      }
+		    FLFormula rule = flInput.getFLFormulaFromTag(exception);
+				
+	        if (rule.getClass().equals(Obligation.class) | rule.getClass().equals(Forbidden.class) |
+	        ( (rule.getClass().equals(FLForall.class) | rule.getClass().equals(FLExist.class))
+	        	& ( ((FLQuantifier)rule).getFormula().getClass().equals(Obligation.class) | ((FLQuantifier)rule).getFormula().getClass().equals(Forbidden.class))))
+		    {          
+				rule.addException(existsFormula);
+			    flInput.addRule(rule);
+			    originalFormula += " is exception of " + rule.toString();
+		    	flInput.addFLRule(originalFormula);
+      		} else {				//ERROR! las únicas formulas que pueden tener excepciones son las reglas
+				StringBuilder sb = new StringBuilder();
+            	sb.append("Hay una fórmula que tiene una excepción pero no es una regla: ('" + rule.toString() + "'). ");
+            	throw new RuntimeException(sb.toString());
+		    }      	        		
+       }
+     }
     }
   	)?    
-
     {
         originalFormula += ")";
         return existsFormula;
