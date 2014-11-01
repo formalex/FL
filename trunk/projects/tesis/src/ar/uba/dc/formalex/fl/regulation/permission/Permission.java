@@ -14,6 +14,7 @@ public class Permission extends FLFormula {
         //P( fórmula ) =  !  F( fórmula )
         Forbidden prohibition = new Forbidden(formula);
         this.formula =  new FLNeg(prohibition);
+        this.aditionalRole = formula.getAditionalRole();
     }
     
     public Permission(FLFormula formula, FLFormula condition) {
@@ -21,6 +22,7 @@ public class Permission extends FLFormula {
     	Forbidden prohibition = new Forbidden(formula);
         FLNeg prohibitionNeg =  new FLNeg(prohibition);
         this.formula = new FLThen(condition, prohibitionNeg);
+        this.aditionalRole = formula.getAditionalRole();
     }
 
     @Override

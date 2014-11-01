@@ -119,6 +119,7 @@ TOKEN :
 | < ALLOW_AUTOSYNC : "allow autosync" >
 | < DISALLOW_AUTOSYNC: "disallow autosync" >
 | < TAG: "tag:" >
+| < BELONGS_TO: "belongsTo:" >
 }
 
 // COUNTERs reserved words
@@ -1787,6 +1788,15 @@ FLFormula terminal() :
             variable = name;
             name = token.image;
             originalFormula += "." + name;
+          }
+        )?
+        (
+          < DOT > < BELONGS_TO > < IDENTIFIER > //esto pasa si usa belongs
+          {
+            variable = name;
+            name = token.image;
+            originalFormula += ".belongsTo:" + name;
+            return new FLTerminal();
           }
         )?
         (//results in xxx
