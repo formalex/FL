@@ -1796,7 +1796,7 @@ FLFormula terminal() :
             variable = name;
             name = token.image;
             originalFormula += ".belongsTo:" + name;
-            return new FLTerminal();
+            return new FLBelongs(variable, name);
           }
         )?
         (//results in xxx
