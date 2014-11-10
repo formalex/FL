@@ -2,14 +2,10 @@ package ar.uba.dc.formalex.fl.regulation.rules;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
-import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
-import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLOr;
-import ar.uba.dc.formalex.fl.regulation.permission.Permission;
 
 
 public class Obligation extends FLFormula{
@@ -23,8 +19,7 @@ public class Obligation extends FLFormula{
     public Obligation(FLFormula formula, FLFormula repair) {
         this.formula = formula;
         this.repair = repair;
-        this.exceptions = new HashSet<FLFormula>();
-        this.aditionalRole = formula.getAditionalRole();
+        this.exceptions = new HashSet<FLFormula>();        
     }
 
     public Boolean hasRepair(){

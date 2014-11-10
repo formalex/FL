@@ -14,8 +14,7 @@ public class Forbidden extends FLFormula {
         //F( fórmula ) = O( !fórmula )
         //F( fórmula ) repaired by reparación = O( !fórmula ) repaired by  reparación
         this.formula = new Obligation(new FLNeg(formula), repair);
-        this.exceptions = new HashSet<FLFormula>();
-        this.aditionalRole = formula.getAditionalRole();
+        this.exceptions = new HashSet<FLFormula>();       
     }
 
 	public Forbidden(FLFormula formula) {
