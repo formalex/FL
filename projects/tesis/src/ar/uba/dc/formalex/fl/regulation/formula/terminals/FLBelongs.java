@@ -6,13 +6,11 @@ import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 public class FLBelongs extends FLTerminal {
 
     public FLBelongs(String variable, String roleName) {
-    	super(variable, roleName);
-    	setAditionalRole(roleName);
+    	super(variable, roleName);    	
     }
 
     public FLBelongs(String variable, String agent, String roleName) {
-    	super(variable, agent, roleName);
-    	setAditionalRole(roleName);
+    	super(variable, agent, roleName);    	
     }
 
     @Override
@@ -22,14 +20,10 @@ public class FLBelongs extends FLTerminal {
 
 	@Override
 	public FLFormula instanciar(String variable, String agente, BGUtil bgUtil) {
-		FLBelongs res = new FLBelongs(getVariable(), getAgent(), getName());
-        if (res.setVariable(variable, agente)){
-            //Si no la puede instanciar, no pasa nada y queda con el valor en null, pero si la
-            // instancia hay que validar que sea válida (o sea, que exista la combinación
-            // agente.name), si no lo es devuelve null.
-            if (!bgUtil.isValid(res.getNameWithAgent()))
-                return null;
-        }
+		FLFormula res = new FLFalse();
+		if(bgUtil.belongsToRole(agente, this.getName())){
+			res = new FLTrue();
+		}		
 		return res;
 	}
 
