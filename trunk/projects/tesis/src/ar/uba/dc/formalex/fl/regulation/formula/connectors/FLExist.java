@@ -45,7 +45,7 @@ public class FLExist extends FLQuantifier {
         if (getRole() == null)//si no se indica el rol se usan todos => se usan todos los agentes que pueden realizar la acción
             agentes = bgUtil.getAgentes();
         else
-            agentes = bgUtil.getAgentes(getRole(), newFormula.getAditionalRole());
+            agentes = bgUtil.getAgentes(getRole());
 
         FLFormula orFormula = null;
         for (Iterator iterator = agentes.iterator(); iterator.hasNext();) {
