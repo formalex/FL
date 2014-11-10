@@ -26,16 +26,8 @@ public class BGUtil {
      * @param belongsRole
      * @return
      */
-    public Set<Agente> getAgentes(String role, String aditionalRole) {
-    	Set<Agente> agents = agentesPorRol.get(role);
-    	if(aditionalRole != null && !aditionalRole.equals("")){
-    		for (Iterator<Agente> iterator = agents.iterator(); iterator.hasNext();) {
-				Agente agente = (Agente) iterator.next();
-				if(!agente.getRoles().contains(aditionalRole)){
-					agents.remove(agente);
-				}
-			}
-    	}
+    public Set<Agente> getAgentes(String role) {
+    	Set<Agente> agents = agentesPorRol.get(role);    	
         return agents;
     }
 
@@ -52,7 +44,14 @@ public class BGUtil {
     }
     
   //Dado un agente y un rol, verifica si el agente tiene dicho rol.
-  	public boolean belongsToRole(String agent, String role){		
-  		return this.agentesPorRol.get(role).contains(agent);		
+  	public boolean belongsToRole(String agent, String role){
+  		Iterator<Agente> agentes = this.agentesPorRol.get(role).iterator();
+  		while(agentes.hasNext()){
+  			Agente currentAgente = agentes.next();
+  			if(currentAgente.getName().equals(agent)){
+  				return true;
+  			}
+  		}
+  		return false;		
   	}
 }
