@@ -7,8 +7,7 @@ import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 
 public abstract class FLFormula {
 	
-	protected Set<FLFormula> exceptions = new HashSet<FLFormula>();
-	protected String aditionalRole;
+	protected Set<FLFormula> exceptions = new HashSet<FLFormula>();	
 	
     /**
      * devuelve el string que representa a esta fórmula con el formato del model checker
@@ -36,14 +35,6 @@ public abstract class FLFormula {
 	
 	public void addException(FLFormula formula){
 		this.exceptions.add(formula);	
-	}
-
-	public String getAditionalRole() {
-		return aditionalRole;
-	}
-
-	public void setAditionalRole(String aditionalRole) {
-		this.aditionalRole = aditionalRole;
-	}	       
+	}	     
 
 }
