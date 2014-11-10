@@ -53,113 +53,115 @@ public interface FLParserConstants {
   /** RegularExpression Id. */
   int TAG = 26;
   /** RegularExpression Id. */
-  int LOCAL_COUNTER = 27;
+  int BELONGS_TO = 27;
   /** RegularExpression Id. */
-  int GLOBAL_COUNTER = 28;
+  int LOCAL_COUNTER = 28;
   /** RegularExpression Id. */
-  int COUNTER_INCREASES = 29;
+  int GLOBAL_COUNTER = 29;
   /** RegularExpression Id. */
-  int COUNTER_DECREASES = 30;
+  int COUNTER_INCREASES = 30;
   /** RegularExpression Id. */
-  int COUNTER_BY = 31;
+  int COUNTER_DECREASES = 31;
   /** RegularExpression Id. */
-  int COUNTER_PROVIDED = 32;
+  int COUNTER_BY = 32;
   /** RegularExpression Id. */
-  int COUNTER_RESET = 33;
+  int COUNTER_PROVIDED = 33;
   /** RegularExpression Id. */
-  int COUNTER_SETS_WITH = 34;
+  int COUNTER_RESET = 34;
   /** RegularExpression Id. */
-  int COUNTER_TO_VALUE = 35;
+  int COUNTER_SETS_WITH = 35;
   /** RegularExpression Id. */
-  int COUNTER_INIT_VALUE = 36;
+  int COUNTER_TO_VALUE = 36;
   /** RegularExpression Id. */
-  int COUNTER_MIN_VALUE = 37;
+  int COUNTER_INIT_VALUE = 37;
   /** RegularExpression Id. */
-  int COUNTER_MAX_VALUE = 38;
+  int COUNTER_MIN_VALUE = 38;
   /** RegularExpression Id. */
-  int COUNTER_MIN_IMPEDES_ACTIONS = 39;
+  int COUNTER_MAX_VALUE = 39;
   /** RegularExpression Id. */
-  int COUNTER_MAX_IMPEDES_ACTIONS = 40;
+  int COUNTER_MIN_IMPEDES_ACTIONS = 40;
   /** RegularExpression Id. */
-  int PAR_LEFT = 41;
+  int COUNTER_MAX_IMPEDES_ACTIONS = 41;
   /** RegularExpression Id. */
-  int PAR_RIGHT = 42;
+  int PAR_LEFT = 42;
   /** RegularExpression Id. */
-  int BRA_LEFT = 43;
+  int PAR_RIGHT = 43;
   /** RegularExpression Id. */
-  int BRA_RIGHT = 44;
+  int BRA_LEFT = 44;
   /** RegularExpression Id. */
-  int BKT_LEFT = 45;
+  int BRA_RIGHT = 45;
   /** RegularExpression Id. */
-  int BKT_RIGHT = 46;
+  int BKT_LEFT = 46;
   /** RegularExpression Id. */
-  int DOT = 47;
+  int BKT_RIGHT = 47;
   /** RegularExpression Id. */
-  int DOUBLE_DOT = 48;
+  int DOT = 48;
   /** RegularExpression Id. */
-  int ML_DIAMOND = 49;
+  int DOUBLE_DOT = 49;
   /** RegularExpression Id. */
-  int ML_BOX = 50;
+  int ML_DIAMOND = 50;
   /** RegularExpression Id. */
-  int ML_AND = 51;
+  int ML_BOX = 51;
   /** RegularExpression Id. */
-  int ML_OR = 52;
+  int ML_AND = 52;
   /** RegularExpression Id. */
-  int ML_THEN = 53;
+  int ML_OR = 53;
   /** RegularExpression Id. */
-  int ML_NOT = 54;
+  int ML_THEN = 54;
   /** RegularExpression Id. */
-  int OBLIGATION = 55;
+  int ML_NOT = 55;
   /** RegularExpression Id. */
-  int FORBIDDEN = 56;
+  int OBLIGATION = 56;
   /** RegularExpression Id. */
-  int PERMISSION = 57;
+  int FORBIDDEN = 57;
   /** RegularExpression Id. */
-  int COMMA = 58;
+  int PERMISSION = 58;
   /** RegularExpression Id. */
-  int OCCURRED = 59;
+  int COMMA = 59;
   /** RegularExpression Id. */
-  int RESULTS_IN = 60;
+  int OCCURRED = 60;
   /** RegularExpression Id. */
-  int REPAIRED_BY = 61;
+  int RESULTS_IN = 61;
   /** RegularExpression Id. */
-  int EXCEPTION_OF = 62;
+  int REPAIRED_BY = 62;
   /** RegularExpression Id. */
-  int INSIDE = 63;
+  int EXCEPTION_OF = 63;
   /** RegularExpression Id. */
-  int EXISTS = 64;
+  int INSIDE = 64;
   /** RegularExpression Id. */
-  int FORALL = 65;
+  int EXISTS = 65;
   /** RegularExpression Id. */
-  int EQUAL = 66;
+  int FORALL = 66;
   /** RegularExpression Id. */
-  int LESS = 67;
+  int EQUAL = 67;
   /** RegularExpression Id. */
-  int GREATER = 68;
+  int LESS = 68;
   /** RegularExpression Id. */
-  int LEQ = 69;
+  int GREATER = 69;
   /** RegularExpression Id. */
-  int GEQ = 70;
+  int LEQ = 70;
   /** RegularExpression Id. */
-  int START_RAW_TEXT = 71;
+  int GEQ = 71;
   /** RegularExpression Id. */
-  int END_RAW_TEXT = 72;
+  int START_RAW_TEXT = 72;
   /** RegularExpression Id. */
-  int RAW_TEXT = 73;
+  int END_RAW_TEXT = 73;
   /** RegularExpression Id. */
-  int IDENTIFIER = 74;
+  int RAW_TEXT = 74;
   /** RegularExpression Id. */
-  int NUMBER = 75;
+  int IDENTIFIER = 75;
   /** RegularExpression Id. */
-  int MINUS = 76;
+  int NUMBER = 76;
   /** RegularExpression Id. */
-  int UNDERSCORE = 77;
+  int MINUS = 77;
   /** RegularExpression Id. */
-  int INT_NUMBER = 78;
+  int UNDERSCORE = 78;
   /** RegularExpression Id. */
-  int LETTER = 79;
+  int INT_NUMBER = 79;
   /** RegularExpression Id. */
-  int DIGIT = 80;
+  int LETTER = 80;
+  /** RegularExpression Id. */
+  int DIGIT = 81;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -195,6 +197,7 @@ public interface FLParserConstants {
     "\"allow autosync\"",
     "\"disallow autosync\"",
     "\"tag:\"",
+    "\"belongsTo:\"",
     "\"local counter\"",
     "\"global counter\"",
     "\"increases with action\"",
