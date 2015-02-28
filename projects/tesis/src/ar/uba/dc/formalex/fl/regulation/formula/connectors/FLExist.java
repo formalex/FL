@@ -29,11 +29,11 @@ public class FLExist extends FLQuantifier {
     }
 
     @Override
-    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil) {
+    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
         FLFormula newFormula;
         if (variable != null)
             //Primero instancio la fórmula interna con la variable externa
-            newFormula = getFormula().instanciar(variable, agente, bgUtil);
+            newFormula = getFormula().instanciar(variable, agente, bgUtil, forceAgent);
         else
             newFormula = getFormula();
 
@@ -50,7 +50,7 @@ public class FLExist extends FLQuantifier {
         FLFormula orFormula = null;
         for (Iterator iterator = agentes.iterator(); iterator.hasNext();) {
 			Agente agenteE = (Agente) iterator.next();
-    		FLFormula orDer = newFormula.instanciar(getVariable(), agenteE.getName(), bgUtil);
+    		FLFormula orDer = newFormula.instanciar(getVariable(), agenteE.getName(), bgUtil, forceAgent);
         	if (agente != null){
         		if(agente.equals(agenteE.getName()))
         			return orDer;

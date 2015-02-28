@@ -21,8 +21,8 @@ public class FLNeg extends FLFormula {
     }
 
     @Override
-    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil) {
-        FLFormula newFormula = formula.instanciar(variable, agente, bgUtil);
+    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
+        FLFormula newFormula = formula.instanciar(variable, agente, bgUtil, forceAgent);
         if (newFormula == null )
             return null;
 

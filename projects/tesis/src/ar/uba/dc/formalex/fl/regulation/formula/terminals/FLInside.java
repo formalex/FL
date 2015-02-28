@@ -10,8 +10,8 @@ public class FLInside extends FLTerminal {
     }
 
     @Override
-    public FLInside instanciar(String variable, String agente, BGUtil bgUtil) {
-        FLInterval intervaloInstanciado = interval.instanciar(variable, agente, bgUtil);
+    public FLInside instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
+        FLInterval intervaloInstanciado = interval.instanciar(variable, agente, bgUtil, forceAgent);
         if (intervaloInstanciado == null)
             return null;
         return new FLInside(intervaloInstanciado);

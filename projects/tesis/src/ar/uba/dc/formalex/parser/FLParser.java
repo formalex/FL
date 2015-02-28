@@ -1154,8 +1154,8 @@ FLFormula p_clauses666() :
     mainFormula = sentence();
     if (jj_2_92(3)) {
       jj_consume_token(GIVEN_THAT);
+        originalFormula += " given that ";
       conditionFormula = sentence();
-        originalFormula += ", ";
     } else {
       ;
     }
@@ -2928,6 +2928,12 @@ FLFormula p_clauses666() :
     return false;
   }
 
+  static private boolean jj_3_135() {
+    if (jj_scan_token(LEQ)) return true;
+    if (jj_scan_token(NUMBER)) return true;
+    return false;
+  }
+
   static private boolean jj_3_14() {
     Token xsp;
     xsp = jj_scanpos;
@@ -2951,12 +2957,6 @@ FLFormula p_clauses666() :
     if (jj_scan_token(OUTPUT_VALUES)) return true;
     if (jj_scan_token(BRA_LEFT)) return true;
     if (jj_3R_37()) return true;
-    return false;
-  }
-
-  static private boolean jj_3_135() {
-    if (jj_scan_token(LEQ)) return true;
-    if (jj_scan_token(NUMBER)) return true;
     return false;
   }
 
@@ -3044,14 +3044,14 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_11() {
-    if (jj_3R_36()) return true;
-    return false;
-  }
-
   static private boolean jj_3_102() {
     if (jj_scan_token(EXCEPTION_OF)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_11() {
+    if (jj_3R_36()) return true;
     return false;
   }
 
@@ -3065,13 +3065,13 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_8() {
-    if (jj_3R_33()) return true;
+  static private boolean jj_3_101() {
+    if (jj_3R_51()) return true;
     return false;
   }
 
-  static private boolean jj_3_101() {
-    if (jj_3R_51()) return true;
+  static private boolean jj_3_8() {
+    if (jj_3R_33()) return true;
     return false;
   }
 
@@ -3099,6 +3099,11 @@ FLFormula p_clauses666() :
     return false;
   }
 
+  static private boolean jj_3_100() {
+    if (jj_3R_50()) return true;
+    return false;
+  }
+
   static private boolean jj_3_51() {
     if (jj_scan_token(COUNTER_DECREASES)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
@@ -3107,11 +3112,6 @@ FLFormula p_clauses666() :
     if (jj_3_49()) jj_scanpos = xsp;
     xsp = jj_scanpos;
     if (jj_3_50()) jj_scanpos = xsp;
-    return false;
-  }
-
-  static private boolean jj_3_100() {
-    if (jj_3R_50()) return true;
     return false;
   }
 
@@ -3173,18 +3173,6 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_4() {
-    if (jj_scan_token(COMMA)) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
-    return false;
-  }
-
-  static private boolean jj_3_81() {
-    if (jj_scan_token(ML_OR)) return true;
-    if (jj_3R_43()) return true;
-    return false;
-  }
-
   static private boolean jj_3R_54() {
     Token xsp;
     xsp = jj_scanpos;
@@ -3202,6 +3190,18 @@ FLFormula p_clauses666() :
     xsp = jj_scanpos;
     if (jj_3_98()) jj_scanpos = xsp;
     if (jj_scan_token(83)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_4() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_81() {
+    if (jj_scan_token(ML_OR)) return true;
+    if (jj_3R_43()) return true;
     return false;
   }
 
@@ -3264,6 +3264,11 @@ FLFormula p_clauses666() :
     return false;
   }
 
+  static private boolean jj_3_96() {
+    if (jj_3R_48()) return true;
+    return false;
+  }
+
   static private boolean jj_3_80() {
     if (jj_scan_token(ML_AND)) return true;
     if (jj_3R_43()) return true;
@@ -3280,8 +3285,13 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_96() {
-    if (jj_3R_48()) return true;
+  static private boolean jj_3R_41() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_96()) {
+    jj_scanpos = xsp;
+    if (jj_3_97()) return true;
+    }
     return false;
   }
 
@@ -3293,16 +3303,6 @@ FLFormula p_clauses666() :
     if (jj_3_43()) jj_scanpos = xsp;
     xsp = jj_scanpos;
     if (jj_3_44()) jj_scanpos = xsp;
-    return false;
-  }
-
-  static private boolean jj_3R_41() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3_96()) {
-    jj_scanpos = xsp;
-    if (jj_3_97()) return true;
-    }
     return false;
   }
 
@@ -3351,16 +3351,16 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_76() {
-    if (jj_scan_token(ML_OR)) return true;
-    if (jj_3R_42()) return true;
-    return false;
-  }
-
   static private boolean jj_3R_42() {
     if (jj_scan_token(FORBIDDEN)) return true;
     if (jj_3R_47()) return true;
     if (jj_scan_token(PAR_RIGHT)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_76() {
+    if (jj_scan_token(ML_OR)) return true;
+    if (jj_3R_42()) return true;
     return false;
   }
 
@@ -3513,15 +3513,15 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_72() {
-    if (jj_3R_41()) return true;
-    return false;
-  }
-
   static private boolean jj_3_120() {
     if (jj_scan_token(UNDERSCORE)) return true;
     if (jj_scan_token(BRA_LEFT)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_72() {
+    if (jj_3R_41()) return true;
     return false;
   }
 
@@ -3727,15 +3727,15 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3R_50() {
-    if (jj_3R_43()) return true;
-    return false;
-  }
-
   static private boolean jj_3_140() {
     if (jj_scan_token(IDENTIFIER)) return true;
     if (jj_scan_token(DOT)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_50() {
+    if (jj_3R_43()) return true;
     return false;
   }
 
@@ -3940,14 +3940,14 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3R_52() {
-    if (jj_3R_43()) return true;
-    return false;
-  }
-
   static private boolean jj_3_137() {
     if (jj_scan_token(DOT)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_52() {
+    if (jj_3R_43()) return true;
     return false;
   }
 

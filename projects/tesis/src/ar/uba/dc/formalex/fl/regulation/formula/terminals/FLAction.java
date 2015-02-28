@@ -13,9 +13,9 @@ public class FLAction extends FLTerminal {
 	}
 
     @Override
-    public FLTerminal instanciar(String variable, String agente, BGUtil bgUtil) {
+    public FLTerminal instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
         FLAction res = new FLAction(getVariable(), getAgent(), getName());
-        if (res.setVariable(variable, agente)){
+        if (res.setVariable(variable, agente, forceAgent)){
             //Si no la puede instanciar, no pasa nada y queda con el valor en null, pero si la
             // instancia hay que validar que sea válida (o sea, que exista la combinación
             // agente.name), si no lo es devuelve null.

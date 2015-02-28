@@ -1274,9 +1274,10 @@ Permission p_clause() :
 //FIXME! Arreglar el log si se puede ya que sentence ya emite log!
   < PERMISSION > mainFormula = sentence()     //P(...)
   (    
-      < GIVEN_THAT > conditionFormula = sentence()
+      < GIVEN_THAT > 
       {
-        originalFormula += ", ";      }    
+        originalFormula += " given that ";      }
+      conditionFormula = sentence()
   )? < PAR_RIGHT >
   {
     if (conditionFormula == null)    {

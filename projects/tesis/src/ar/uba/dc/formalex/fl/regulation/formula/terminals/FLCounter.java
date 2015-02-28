@@ -20,11 +20,11 @@ public class FLCounter extends FLTerminal {
     }
 
     @Override
-    public FLTerminal instanciar(String variableName, String agente, BGUtil bgUtil) {
+    public FLTerminal instanciar(String variableName, String agente, BGUtil bgUtil, Boolean forceAgent) {
         FLCounter res = new FLCounter(getVariable(), getName(), comparator, valueToCompare);
-        if (res.setVariable(variableName, agente)){
+        if (res.setVariable(variableName, agente, forceAgent)){
             //Si no la puede instanciar, no pasa nada y queda con el valor en null, pero si la
-            // instancia hay que validar que sea válida (o sea, que exista la combinación
+            // instancia hay que validar que sea vï¿½lida (o sea, que exista la combinaciï¿½n
             // agente.name), si no lo es devuelve null.
             if (!bgUtil.isValid(res.getNameWithAgent()))
                 return null;

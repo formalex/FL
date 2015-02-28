@@ -27,7 +27,7 @@ public class Forbidden extends FLFormula {
     }
 
     @Override
-    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil) {
-        return formula.instanciar(variable, agente, bgUtil);
+    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
+        return formula.instanciar(variable, agente, bgUtil, forceAgent);
     }
 }

@@ -46,9 +46,9 @@ public class FLAnd extends FormulaConnectorBinary {
     }
 
     @Override
-    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil) {
-        FLFormula newLeftFormula = getLeftFormula().instanciar(variable, agente, bgUtil);
-        FLFormula newRightFormula = getRightFormula().instanciar(variable, agente, bgUtil);
+    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
+        FLFormula newLeftFormula = getLeftFormula().instanciar(variable, agente, bgUtil, forceAgent);
+        FLFormula newRightFormula = getRightFormula().instanciar(variable, agente, bgUtil, forceAgent);
         if (newLeftFormula == null || newRightFormula == null)
             return null;
 

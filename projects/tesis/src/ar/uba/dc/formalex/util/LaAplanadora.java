@@ -21,14 +21,14 @@ public class LaAplanadora {
     private static final String SEPARADOR_AGENTE_INTERVALO = ".";
     private static final String SEPARADOR_AGENTE_CONTADOR = ".";
 
-    //un map con k = acción original, v = set de acciones nuevas
+    //un map con k = acciï¿½n original, v = set de acciones nuevas
     private Map<Action, Set<Action>> accionesSyncActivo = new HashMap<Action, Set<Action>>();
     private Map<Action, Set<Action>> accionesSyncPasivo = new HashMap<Action, Set<Action>>();
     private Map<Action, Agente> accionesYAgentes = new HashMap<Action, Agente>();
     private Map<Interval, Agente> intervalosYAgentes = new HashMap<Interval, Agente>();
     private Map<Counter, Agente> contadoresYAgentes = new HashMap<Counter, Agente>();
 
-    //por cada acción nueva (agente-acción), acá se guarda su relación con la original
+    //por cada acciï¿½n nueva (agente-acciï¿½n), acï¿½ se guarda su relaciï¿½n con la original
     private Map<Action, Set<Action>> accionesOriginales = new HashMap<Action, Set<Action>>();
     private Map<Interval, Set<Interval>> intervalosOriginales = new HashMap<Interval, Set<Interval>>();
     private Map<Counter, Set<Counter>> contadoresOriginales = new HashMap<Counter, Set<Counter>>();
@@ -58,7 +58,7 @@ public class LaAplanadora {
         loguear(input);
     }
 
-    //expande e instancia las cláulas
+    //expande e instancia las clï¿½ulas
     private void expandirClausulas(FLInput input) {
         List<FLFormula> newRules = new ArrayList<FLFormula>();
         List<FLFormula> newPerms = new ArrayList<FLFormula>();
@@ -66,12 +66,12 @@ public class LaAplanadora {
         BGUtil bgUtil = new BGUtil(input.getAgentesPorRol(), input.getNamesWithAgent());
 
         for(FLFormula formula : input.getRules()) {
-            newRules.add(formula.instanciar(null, null, bgUtil));
+            newRules.add(formula.instanciar(null, null, bgUtil, false));
         }
         input.setRules(newRules);
 
         for(FLFormula formula : input.getRegulation().getPermissions()) {
-            newPerms.add(formula.instanciar(null, null, bgUtil));
+            newPerms.add(formula.instanciar(null, null, bgUtil, false));
         }
         input.setPermissions(newPerms);
     }
@@ -92,7 +92,7 @@ public class LaAplanadora {
         logger.info("# acciones impersonales: " + impersonalAction.size());
         logger.info("# contadores: " + contCounters);
         logger.info("# intervalos: " + contInterv);
-        logger.info("# fórmulas: " + input.getRules().size());
+        logger.info("# fï¿½rmulas: " + input.getRules().size());
         logger.info("# permisos: " + input.getPermissions().size());
         logger.info("");
 
@@ -137,8 +137,8 @@ public class LaAplanadora {
         logger.info("");
         logger.info("");
 
-        //Fórmulas
-        logger.info("Fórmulas expandidas:");
+        //Fï¿½rmulas
+        logger.info("Fï¿½rmulas expandidas:");
 
         for(FLFormula f : input.getRules()) {
             logger.info(f.toString());
@@ -193,7 +193,7 @@ public class LaAplanadora {
     private void borrarIntervalo(Interval interval) {
         intervalosYAgentes.remove(interval);
         for (Set<Interval> set : intervalosOriginales.values()) {
-            set.remove(interval);//debería estar en un solo set
+            set.remove(interval);//deberï¿½a estar en un solo set
         }
     }
 
@@ -210,7 +210,7 @@ public class LaAplanadora {
                 Interval newInt;
                 if(!occursIn.isLocal()){
                     if (intervals.size() != 1){
-                        //no debería pasar
+                        //no deberï¿½a pasar
                         throw new RuntimeException("puede fallar. revisar");
                     }
                     newInt = intervals.iterator().next();
@@ -256,7 +256,7 @@ public class LaAplanadora {
                         }
                     }
                 }
-                else{//es global-> al hacer la explotación-aplanamiento queda un solo intervalo con varias acciones iniciales y finales
+                else{//es global-> al hacer la explotaciï¿½n-aplanamiento queda un solo intervalo con varias acciones iniciales y finales
                     Interval intG = crearIntervaloGlobal(interval);
 
                     res.add(intG);
@@ -284,8 +284,8 @@ public class LaAplanadora {
                         }
                     }
                 }
-                else{//es global-> al hacer la explotación-aplanamiento queda un solo contador donde las acciones que
-                //lo modifican se amplían con las nuevas acciones con agentes
+                else{//es global-> al hacer la explotaciï¿½n-aplanamiento queda un solo contador donde las acciones que
+                //lo modifican se amplï¿½an con las nuevas acciones con agentes
                     Counter contG = crearContadorGlobal(contOriginal);
 
                     res.add(contG);
@@ -315,7 +315,7 @@ public class LaAplanadora {
             }
             else {
                 Action accionConAgente = getAccionConAgente(accOriginal, agente);
-                if (accionConAgente != null){ //es null si el agente no realiza la acción.
+                if (accionConAgente != null){ //es null si el agente no realiza la acciï¿½n.
 
                     if (!accOriginal.hasActiveSync() && !accOriginal.hasPasiveSync())
                         res.addIncreaseAction(accionConAgente, value, pt);
@@ -338,7 +338,7 @@ public class LaAplanadora {
             }
             else {
                 Action accionConAgente = getAccionConAgente(accOriginal, agente);
-                if (accionConAgente != null){ //es null si el agente no realiza la acción.
+                if (accionConAgente != null){ //es null si el agente no realiza la acciï¿½n.
                     if (!accOriginal.hasActiveSync() && !accOriginal.hasPasiveSync())
                         res.addSetValueAction(accionConAgente, value, pt);
                     else {
@@ -375,7 +375,7 @@ public class LaAplanadora {
             }
             else{
                 Action accionConAgente = getAccionConAgente(action, agente);
-                if (accionConAgente != null){  //es null si el agente no realiza la acción.
+                if (accionConAgente != null){  //es null si el agente no realiza la acciï¿½n.
                     if (!action.hasActiveSync() && !action.hasPasiveSync())
                         newSet.add(accionConAgente);
                     else {
@@ -392,7 +392,7 @@ public class LaAplanadora {
     // arranca activo -por isStartActive- o hay 'impersonal action') y por lo menos una de las finales (o el intervalo
     // es isEndActive o hay 'impersonal action')
     private static boolean realizaAcciones(Agente ag, Interval interval) {
-        //parche por el agente sin rol (que no recuerdo para qué se usa y tal vez se podría bolar)
+        //parche por el agente sin rol (que no recuerdo para quï¿½ se usa y tal vez se podrï¿½a bolar)
         if (ag.getName().equals("agent_without_role"))
             return false;
 
@@ -495,7 +495,7 @@ public class LaAplanadora {
         return newSet;
     }
 
-    //Devuelve las acciones con Sync Activo que aún no fueron aplanadas. Las acciones devueltas incluyen los agentes
+    //Devuelve las acciones con Sync Activo que aï¿½n no fueron aplanadas. Las acciones devueltas incluyen los agentes
     private Set<Action> crearAgentesYAplanarAcciones(FLInput datosAutomata, Set<Action> accionesConAgentes) {
         Set<Action> res = new HashSet<Action>();
 
@@ -503,7 +503,7 @@ public class LaAplanadora {
         agentes = crearAgentes(datosAutomata.getRoles());
         datosAutomata.setAgentes(agentes);
 
-        //Por cada acción y por cada agente que pueda realizar la acción, creo una nueva acción con el nombre aplanado
+        //Por cada acciï¿½n y por cada agente que pueda realizar la acciï¿½n, creo una nueva acciï¿½n con el nombre aplanado
         for (Action action : datosAutomata.getActions()) {
 
             if (action.isImpersonal()){
@@ -519,7 +519,7 @@ public class LaAplanadora {
             }
             else{
                 for (Agente agente : agentes) {
-                    //Si no se pone el keyword 'only performable by' en una acción entonces la puede ejecutar cualquier agente.
+                    //Si no se pone el keyword 'only performable by' en una acciï¿½n entonces la puede ejecutar cualquier agente.
                     if (action.getPerformableBy().size() == 0 || agente.realizaAccion(action)){
                         Action aplanada = action.clonar(agente.getName() + SEPARADOR_AGENTE_ACCION + action.getName());
                         if (action.hasActiveSync())
@@ -572,12 +572,12 @@ public class LaAplanadora {
         return nameA.equals(nameB);
     }
 
-    //Devuelve una lista con las acciones con agentes que correspondan al parámetro
+    //Devuelve una lista con las acciones con agentes que correspondan al parï¿½metro
     private Set<Action> getAccionesConAgente(Action accion) {
         return accionesOriginales.get(accion);
     }
 
-    //Devuelve la acción que corresponda al agente
+    //Devuelve la acciï¿½n que corresponda al agente
     private Action getAccionConAgente(Action accion, Agente agente) {
         Set<Action> actions = accionesOriginales.get(accion);
         for (Action a : actions) {
@@ -587,7 +587,7 @@ public class LaAplanadora {
         return null;
     }
 
-    //Devuelve un set de acciones que tengan a las accionesConAgentes como acciones pasivas y/o activasa según parámetros
+    //Devuelve un set de acciones que tengan a las accionesConAgentes como acciones pasivas y/o activasa segï¿½n parï¿½metros
     private Set<Action> getAccionesSync(Set<Action> accionesConAgentes, boolean incluirActivas, boolean incluirPasivas) {
         Set<Action> res = new HashSet<Action>();
 
@@ -615,7 +615,7 @@ public class LaAplanadora {
 
 
     /**
-     * Crea y devuelta una lista de agentes. Cada agente cumple algunos roles. Se crearán tantos agentes como
+     * Crea y devuelta una lista de agentes. Cada agente cumple algunos roles. Se crearï¿½n tantos agentes como
      * combinaciones de roles haya (salvo disjoint)
      * @param listaRoles
      * @return
@@ -645,7 +645,7 @@ public class LaAplanadora {
         for (Roles roles : listaRoles) {
             //agrego solo los que no son disjoint
             if (roles.isDisjoint()){
-                //En el powerset debería quedar el conjunto original + cada elemento del conjunto original con cada uno
+                //En el powerset deberï¿½a quedar el conjunto original + cada elemento del conjunto original con cada uno
                 //de los roles disjoint
                 Set<Set<Role>> subpowerSet = new HashSet<Set<Role>>();
                 for (Role rol : roles.getRoles()) {
@@ -669,7 +669,7 @@ public class LaAplanadora {
             }
         }
 
-       //Por cada conjunto del powerSet (salvo el conjunto vacío), se forma un Agente que va a tener los roles del conjunto.
+       //Por cada conjunto del powerSet (salvo el conjunto vacï¿½o), se forma un Agente que va a tener los roles del conjunto.
         int cont = 1;
         for (Set<Role> roles : powerSet) {
             if (roles.size() > 0){
@@ -694,7 +694,7 @@ public class LaAplanadora {
         }
     }
 
-    //Devuelve true si el conjunto tiene por lo menos algún rol de la lista
+    //Devuelve true si el conjunto tiene por lo menos algï¿½n rol de la lista
     private boolean tieneAlgunRol(Set<Role> roles, Set<Role> rolesCover) {
         for (Role rolCover : rolesCover) {
             if(roles.contains(rolCover))
