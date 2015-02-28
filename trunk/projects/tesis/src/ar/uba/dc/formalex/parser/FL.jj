@@ -173,6 +173,7 @@ TOKEN :
 | < RESULTS_IN : "results in" >
 | < REPAIRED_BY : "repaired by" >
 | < EXCEPTION_OF : "is exception of" >
+| < GIVEN_THAT : "given that" >
 | < INSIDE : "inside" >
 | < EXISTS : "EXISTS(" >
 | < FORALL : "FORALL(" >
@@ -1273,7 +1274,7 @@ Permission p_clause() :
 //FIXME! Arreglar el log si se puede ya que sentence ya emite log!
   < PERMISSION > mainFormula = sentence()     //P(...)
   (    
-      ", " conditionFormula = sentence()
+      < GIVEN_THAT > conditionFormula = sentence()
       {
         originalFormula += ", ";      }    
   )? < PAR_RIGHT >
@@ -1293,8 +1294,7 @@ Permission p_clause() :
             sb.append("Hay una fórmula que es excepción de una regla pero no posee condición: ('" + originalFormula + "'). ");
             throw new RuntimeException(sb.toString());
         }  else {          
-		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
-		        //BGUtil bgUtil = new BGUtil(flInput.getAgentesPorRol(), flInput.getNamesWithAgent());
+		        FLFormula rule = flInput.getFLFormulaFromTag(exception);		       
 		        rule.addException(res);
 		        flInput.addRule(rule);
 		        originalFormula += " is exception of " + rule.toString();
