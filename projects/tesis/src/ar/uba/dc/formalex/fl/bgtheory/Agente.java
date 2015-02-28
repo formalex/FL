@@ -46,9 +46,11 @@ public class Agente {
 
 
     public boolean realizaAccion(ar.uba.dc.formalex.fl.bgtheory.Action action) {
+        if (action.isImpersonal())
+            return false;
         Set<Role> performableBy = action.getPerformableBy();
-        //Si no se pone el keyword 'only performable by' (performableBy.size() = 0) en una acción
-        //entonces la puede ejecutar cualquier agente.
+        //Si no es una 'impersonal action' y  no se pone el keyword 'only performable by'
+        //(performableBy.size() = 0) en una acciï¿½n entonces la puede ejecutar cualquier agente.
         if( roles != null && performableBy != null){
             if (performableBy.size() == 0)
                 return true;

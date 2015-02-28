@@ -2,7 +2,6 @@ package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
-import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLFalse;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
 import ar.uba.dc.formalex.fl.regulation.permission.Permission;
@@ -23,7 +22,6 @@ public class FLAnd extends FormulaConnectorBinary {
         String izq = lf.toString();
         FLFormula rf = getRightFormula();
         String der = rf.toString();
-
         //Si la parte izq no es terminal ni FLAnd -> pongo esa parte entre paréntesis.
         //Lo mismo con la parte derecha
         if (ponerParentesis(lf))
@@ -34,9 +32,9 @@ public class FLAnd extends FormulaConnectorBinary {
 
 
         //si es ( TRUE & form ) devuelve form
-        if (lf.toString().equals(FLTrue.SIMBOLO))
+        if (izq.trim().equals(FLTrue.SIMBOLO.trim()))
             return der;
-        else if (rf.toString().equals(FLTrue.SIMBOLO))
+        else if (der.trim().equals(FLTrue.SIMBOLO.trim()))
             return izq;
 
         return izq + CONNECTOR + der;

@@ -3,6 +3,8 @@ package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
@@ -11,6 +13,7 @@ import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
 
 public class FLForall extends FLQuantifier {
 	private boolean yaInstanciada = false; //usada para loguear y debug
+    private static final Logger logger = Logger.getLogger(FLForall.class);
 
 	public FLForall(String variable, String role, FLFormula formula) {
 		super(variable, role, formula);
@@ -48,24 +51,28 @@ public class FLForall extends FLQuantifier {
 			agentes = bgUtil.getAgentes(getRole());
 
 		FLFormula andFormula = null;
+		int cont = 0;
 		for (Iterator iterator = agentes.iterator(); iterator.hasNext();) {
 			Agente agenteE = (Agente) iterator.next();
-			FLFormula andDer = newFormula.instanciar(getVariable(), agenteE.getName(), bgUtil);
+			FLFormula izq = newFormula.instanciar(getVariable(), agenteE.getName(), bgUtil);
 			if (agente != null){
 				if(agente.equals(agenteE.getName()))
-					return andDer;
+					return izq;
 				else if(!iterator.hasNext()) 
 					return new FLFalse();
 			} else {            
-				if (andDer != null){
-					andDer = exceptionsInstantiator(andDer, agenteE, bgUtil);
+				if (izq != null){
+					cont++;
+					izq = exceptionsInstantiator(izq, agenteE, bgUtil);
 					if (andFormula != null) 
-						andFormula = new FLAnd(andFormula, andDer);
+						andFormula = new FLAnd(izq, andFormula);
 					else
-						andFormula = new FLAnd(new FLTrue(), andDer);
+						andFormula = new FLAnd(izq, new FLTrue());
 				}
 			}
 		}
+		logger.info("Al expandir el FLForall quedó una fórmula con '" + cont + "' AND");
+        
 		yaInstanciada = true;
 		return andFormula;
 	}
