@@ -63,7 +63,8 @@ public abstract class FLTerminal extends FLFormula{
     }
 
     /*
-   Si puede setear la variable devuelve true, si no, false
+    * Si puede setear la variable devuelve true, si no, false
+    * Si está indicado el forzado de agentes ignora la variable.
     */
     public boolean setVariable (String variable, String agent, Boolean forceAgent){
         if (this.variable == null) //es null si es impersonal action, contador o intervalo global
