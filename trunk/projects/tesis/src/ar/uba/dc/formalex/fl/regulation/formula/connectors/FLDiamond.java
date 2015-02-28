@@ -18,15 +18,15 @@ public class FLDiamond extends FLFormula {
     }
 
     @Override
-    public FLDiamond instanciar(String variable, String agente, BGUtil bgUtil) {
+    public FLDiamond instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
         FLInterval newInterval = null;
         FLFormula newFormula;
         if (interval != null){
-            newInterval = interval.instanciar(variable, agente, bgUtil);
+            newInterval = interval.instanciar(variable, agente, bgUtil, forceAgent);
             if (newInterval == null)
                 return null;
         }
-        newFormula = formula.instanciar(variable, agente,  bgUtil);
+        newFormula = formula.instanciar(variable, agente,  bgUtil, forceAgent);
         if (newFormula == null)
             return null;
 

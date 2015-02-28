@@ -17,7 +17,7 @@ public class FLFalse extends FLTerminal {
     }
 
     @Override
-    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil) {
+    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
         return this;
     }
 }

@@ -22,8 +22,11 @@ public abstract class FLFormula {
      * en la nueva fórmula la variable por el agente recibido. Luego, valida que la combinación de
      * agente.accion (intervalo o contador) sea válida (o sea, que ese agente puede realizar la
      * acción o tenga asociado el intervalo o contador). Si no es válida, devuelve null
+     * Si se indica que se debe forzar el agente, se reemplaza en la nueva fórmula la variable 
+     * por el agente recibido.
+     * @param forceAgent TODO
      */
-    public abstract FLFormula instanciar(String variable, String agente, BGUtil bgUtil);
+    public abstract FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent);
     
     public Set<FLFormula> getExceptions() {
 		return exceptions;

@@ -37,13 +37,13 @@ public class Obligation extends FLFormula{
     }
 
     @Override
-    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil) {
+    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
         FLFormula rep = null;
-        FLFormula f = formula.instanciar(variable, agente, bgUtil);
+        FLFormula f = formula.instanciar(variable, agente, bgUtil, forceAgent);
         if (f == null)
             return null;
         if (repair != null)
-            rep = repair.instanciar(variable, agente, bgUtil);
+            rep = repair.instanciar(variable, agente, bgUtil, forceAgent);
         if (exceptions != null && !exceptions.isEmpty()){ // se realiza la disyunción de todos los Permisos que son excepciones a la regla
         	Iterator<FLFormula> exceptionsFormulas = exceptions.iterator();
         	FLFormula exceptionFormOr = exceptionsFormulas.next(); 
@@ -51,8 +51,9 @@ public class Obligation extends FLFormula{
         		FLFormula next = exceptionsFormulas.next();
         		exceptionFormOr = new FLOr(exceptionFormOr, next);
         	}
-        	//instancio con los agentes la conjunción de los Permisos que representan la excepción.
-        	FLFormula exceptionFormInst = exceptionFormOr.instanciar(variable, agente, bgUtil);        	        	
+        	/* Se instancia con los agentes la conjunción de los Permisos que representan la excepción. Los
+        	 * agentes son forzados para evitar errores de instanciacion.*/
+        	FLFormula exceptionFormInst = exceptionFormOr.instanciar(variable, agente, bgUtil, true);        	        	
         	return new Obligation(new FLOr(f, exceptionFormInst), rep);
         }else{
         	return new Obligation(f, rep);

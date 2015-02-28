@@ -35,7 +35,7 @@ public abstract class FLTerminal extends FLFormula{
         String prefijo;
         if (variable == null)      //si es impersonal o local
             prefijo = "";
-        else if (agent == null)    //si todavía no fue instanciado
+        else if (agent == null)    //si todavï¿½a no fue instanciado
             prefijo = getVariable() + ".";
         else
             prefijo = agent  + ".";
@@ -48,7 +48,7 @@ public abstract class FLTerminal extends FLFormula{
 
     //Usado para facilitar el toString
     protected String getAPerformer(){
-        if (agent == null) //esto debería pasar con las impersonal action y con los intervalos y contadores locales
+        if (agent == null) //esto deberï¿½a pasar con las impersonal action y con los intervalos y contadores locales
             return "";
         else
             return agent + ".";
@@ -65,10 +65,10 @@ public abstract class FLTerminal extends FLFormula{
     /*
    Si puede setear la variable devuelve true, si no, false
     */
-    public boolean setVariable (String variable, String agent){
+    public boolean setVariable (String variable, String agent, Boolean forceAgent){
         if (this.variable == null) //es null si es impersonal action, contador o intervalo global
             return true;
-        if (this.variable.equals(variable)){
+        if (forceAgent || this.variable.equals(variable)){
             this.agent = agent;
             return true;
         }

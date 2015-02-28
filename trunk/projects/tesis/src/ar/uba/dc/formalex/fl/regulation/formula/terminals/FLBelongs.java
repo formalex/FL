@@ -19,7 +19,7 @@ public class FLBelongs extends FLTerminal {
 	}
 
 	@Override
-	public FLFormula instanciar(String variable, String agente, BGUtil bgUtil) {
+	public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
 		FLFormula res = new FLFalse();
 		if(bgUtil.belongsToRole(agente, this.getName())){
 			res = new FLTrue();

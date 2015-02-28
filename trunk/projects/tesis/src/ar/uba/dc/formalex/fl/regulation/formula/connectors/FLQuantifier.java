@@ -41,7 +41,7 @@ public abstract class FLQuantifier extends FLFormula{
         		exceptionFormOr = new FLOr(exceptionFormOr, next);
         	}
         	//instancio con los agentes la conjunción de los Permisos que representan la excepción.
-        	FLFormula exceptionFormInst = exceptionFormOr.instanciar(variable, agent.getName(), bgUtil);     	        	
+        	FLFormula exceptionFormInst = exceptionFormOr.instanciar(variable, agent.getName(), bgUtil, true);     	        	
         	rule = new FLOr(rule, exceptionFormInst);
         }
     	return rule;
