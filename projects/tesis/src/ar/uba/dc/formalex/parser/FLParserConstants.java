@@ -127,41 +127,43 @@ public interface FLParserConstants {
   /** RegularExpression Id. */
   int EXCEPTION_OF = 63;
   /** RegularExpression Id. */
-  int INSIDE = 64;
+  int GIVEN_THAT = 64;
   /** RegularExpression Id. */
-  int EXISTS = 65;
+  int INSIDE = 65;
   /** RegularExpression Id. */
-  int FORALL = 66;
+  int EXISTS = 66;
   /** RegularExpression Id. */
-  int EQUAL = 67;
+  int FORALL = 67;
   /** RegularExpression Id. */
-  int LESS = 68;
+  int EQUAL = 68;
   /** RegularExpression Id. */
-  int GREATER = 69;
+  int LESS = 69;
   /** RegularExpression Id. */
-  int LEQ = 70;
+  int GREATER = 70;
   /** RegularExpression Id. */
-  int GEQ = 71;
+  int LEQ = 71;
   /** RegularExpression Id. */
-  int START_RAW_TEXT = 72;
+  int GEQ = 72;
   /** RegularExpression Id. */
-  int END_RAW_TEXT = 73;
+  int START_RAW_TEXT = 73;
   /** RegularExpression Id. */
-  int RAW_TEXT = 74;
+  int END_RAW_TEXT = 74;
   /** RegularExpression Id. */
-  int IDENTIFIER = 75;
+  int RAW_TEXT = 75;
   /** RegularExpression Id. */
-  int NUMBER = 76;
+  int IDENTIFIER = 76;
   /** RegularExpression Id. */
-  int MINUS = 77;
+  int NUMBER = 77;
   /** RegularExpression Id. */
-  int UNDERSCORE = 78;
+  int MINUS = 78;
   /** RegularExpression Id. */
-  int INT_NUMBER = 79;
+  int UNDERSCORE = 79;
   /** RegularExpression Id. */
-  int LETTER = 80;
+  int INT_NUMBER = 80;
   /** RegularExpression Id. */
-  int DIGIT = 81;
+  int LETTER = 81;
+  /** RegularExpression Id. */
+  int DIGIT = 82;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -234,6 +236,7 @@ public interface FLParserConstants {
     "\"results in\"",
     "\"repaired by\"",
     "\"is exception of\"",
+    "\"given that\"",
     "\"inside\"",
     "\"EXISTS(\"",
     "\"FORALL(\"",
@@ -252,7 +255,6 @@ public interface FLParserConstants {
     "<INT_NUMBER>",
     "<LETTER>",
     "<DIGIT>",
-    "\", \"",
     "\";\"",
   };
 
