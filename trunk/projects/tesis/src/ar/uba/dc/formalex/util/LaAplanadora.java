@@ -3,6 +3,7 @@ package ar.uba.dc.formalex.util;
 import ar.uba.dc.formalex.fl.FLInput;
 import ar.uba.dc.formalex.fl.bgtheory.*;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+
 import org.apache.log4j.Logger;
 
 import java.util.*;
@@ -631,8 +632,57 @@ public class LaAplanadora {
         Role role = new Role("no_assigned_role");
         rolesTmp.add(role);
         agenteSinRol.setRoles(rolesTmp);
+        
+        //Roles y Subroles    
+        Set<Set<Role>> rolesParaAgentes = new HashSet<Set<Role>>();//Resultado final de todas las combinaciones        
+        Set<Role> rolesNoDisjuntos = new HashSet<Role>();
+        Set<Set<Role>> rolesYSubrolesNoDisjuntos = new HashSet<Set<Role>>();        
+        Set<Set<Role>> rolesYSubrolesNoDisjuntosPartes = new HashSet<Set<Role>>();
+        
+        //Se arma una lista de los roles que no son disjuntos para poder combinarlos
+        for (Roles roles : listaRoles) {
+        	if(!roles.isDisjoint()){
+        		rolesNoDisjuntos.addAll(roles.getRoles());
+        	}        	
+        }
+        
+        
+        //Se iteran las listas de roles no disjuntos y se pide la expansión a subroles de cada uno de ellos
+        for(Role rol : rolesNoDisjuntos){
+        	Set<Set<Role>> subroles = expandirPorSubroles(rol);
+        	rolesYSubrolesNoDisjuntos.addAll(subroles);        	
+        }
+        
+        //Una vez que se tienen todos los roles no disjuntos expandidos a subroles, se hace partes para combinar los subroles/roles
+        rolesYSubrolesNoDisjuntosPartes = Util.powerSetSet(new HashSet<Set<Role>>(rolesYSubrolesNoDisjuntos));
+        
+        //Por cada rol disjunto, se pide la expansión a subroles y se combinan con los roles no disjuntos, pero no se combinan entre ellos
+        for (Roles roles : listaRoles) {
+        	if (roles.isDisjoint()){        		
+        		for (Role rol : roles.getRoles()) {
+        			Set<Set<Role>> subroles = expandirPorSubroles(rol);
+        			for(Set<Role> subrol : subroles){
+        				for(Set<Role> subrolNoDisjunto : rolesYSubrolesNoDisjuntosPartes){
+        					if(!subrolNoDisjunto.isEmpty()){
+        						Set<Role> newSet = new HashSet<Role>();
+        						newSet.addAll(subrol);
+        						newSet.addAll(subrolNoDisjunto);
+        						rolesParaAgentes.add(newSet);
+        						rolesParaAgentes.add(subrolNoDisjunto);
+        					}	
+        					rolesParaAgentes.add(subrol);        					
+        				}
+        			}
+        		}
+        	}
+        }
+                		
+                	        	        	        
+               
+       //Fin Roles y Subroles
+        
 
-        Set<Role> lista = new HashSet<Role>();
+        /*Set<Role> lista = new HashSet<Role>();
         for (Roles roles : listaRoles) {
             //agrego solo los que no son disjoint.
             if (!roles.isDisjoint())
@@ -668,10 +718,18 @@ public class LaAplanadora {
                 eliminarPorCover(powerSet, roles);
             }
         }
-
-       //Por cada conjunto del powerSet (salvo el conjunto vac�o), se forma un Agente que va a tener los roles del conjunto.
+*/
+      //Si entre los roles recibidos hay conjunto de roles cover => elimino todos los conjuntos de roles generados que
+        //no tengan alguno de los roles cover.
+        for (Roles roles : listaRoles) {
+            if (roles.isCover()){
+                eliminarPorCover(rolesParaAgentes, roles);
+            }
+        }        
+        
+        //Por cada conjunto del powerSet (salvo el conjunto vacío), se forma un Agente que va a tener los roles del conjunto.
         int cont = 1;
-        for (Set<Role> roles : powerSet) {
+        for (Set<Role> roles : rolesParaAgentes) {
             if (roles.size() > 0){
                 Agente agente = new Agente(PREFIJO_AGENTE + cont++);
                 agente.setRoles(roles);
@@ -702,5 +760,49 @@ public class LaAplanadora {
         }
         return false;
     }
+    
+    private Set<Set<Role>> expandirPorSubroles(Role rol){
+
+    	Set<Set<Role>> subpowerSet = new HashSet<Set<Role>>();
+
+    	//EL rol no tiene subroles asociados por lo tanto se retorna un conjunto de conjuntos con el rol original como único elemento
+    	if(rol.getSubroles() == null || rol.getSubroles().getRoles().isEmpty()){
+    		Set<Role> newSet = new HashSet<Role>();
+    		newSet.add(rol);
+    		subpowerSet.add(newSet);
+    	}else{
+
+    		Set<Role> listaSubroles = rol.getSubroles().getRoles();      	    	    	    	
+
+    		if (!rol.getSubroles().isDisjoint()){    		
+    			Set<Set<Role>> powerSet = Util.powerSet(new HashSet<Role>(listaSubroles));
+
+    			for (Set<Role> roleSet : powerSet) {
+    				if(!(roleSet.size() == 0 && rol.getSubroles().isCover())){//Si es el conjunto vacío y es cover no debo agregar el conjunto que sólo tiene el rol
+    					Set<Role> newSet = new HashSet<Role>();    				    				
+    					newSet.add(rol); 
+    					newSet.addAll(roleSet);
+    					subpowerSet.add(newSet);
+    				}    			
+    			}    		    	
+    		}else{    		
+    			for (Role subrol : listaSubroles) {
+    				Set<Role> newSet = new HashSet<Role>();    			
+    				newSet.add(subrol);
+    				newSet.add(rol);
+    				subpowerSet.add(newSet);
+    			}
+    			if(!rol.getSubroles().isCover()){//Agrego el rol solo
+    				Set<Role> newSet = new HashSet<Role>();
+    				newSet.add(rol);
+    				subpowerSet.add(newSet);
+    			}
+    		}
+    	}
+    	return subpowerSet;
+
+    }
+
+
 
 }
