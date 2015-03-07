@@ -260,13 +260,78 @@ void roles() :
   < ROLES > < IDENTIFIER >
   {
     Role aRole = new Role(token.image);
-    roles.addRole(aRole);
-    rolesMap.put(aRole.getName(), aRole);
+    Roles subroles = new Roles();
   }
+  (
+    < BRA_LEFT > < IDENTIFIER >
+    {
+      Role aSubRole = new Role(token.image);
+      subroles.addRole(aSubRole);
+      rolesMap.put(aSubRole.getName(), aSubRole);
+    }
+    (
+      "," < IDENTIFIER >
+      {
+        Role anotherSubRole = new Role(token.image);
+        subroles.addRole(anotherSubRole);
+        rolesMap.put(anotherSubRole.getName(), anotherSubRole);
+      }
+    )*
+    (
+     < ROLES_DISJOINT >
+     {
+       subroles.setDisjoint(true);
+     }
+    )?
+    (
+     < ROLES_COVER >
+     {
+       subroles.setCover(true);
+     }
+    )?
+      < BRA_RIGHT >
+      {
+        aRole.setSubroles(subroles);      }
+  )?
+  {
+    roles.addRole(aRole);
+    rolesMap.put(aRole.getName(), aRole);  }
   (
     "," < IDENTIFIER >
     {
       Role anotherRole = new Role(token.image);
+      subroles = new Roles();
+      roles.addRole(anotherRole);
+      rolesMap.put(anotherRole.getName(), anotherRole);
+    }
+    (
+      < BRA_LEFT > < IDENTIFIER >
+      {
+        Role aSubRole = new Role(token.image);
+        subroles.addRole(aSubRole);
+        rolesMap.put(aSubRole.getName(), aSubRole);      }
+      (
+        "," < IDENTIFIER >
+        {	      Role anotherSubRole = new Role(token.image);
+    	  subroles.addRole(anotherSubRole);
+          rolesMap.put(anotherSubRole.getName(), anotherSubRole);
+        }      )*
+	  (
+        < ROLES_DISJOINT >
+        {
+          subroles.setDisjoint(true);
+        }
+      )?
+      (
+       < ROLES_COVER >
+       {
+         subroles.setCover(true);
+       }
+      )?
+        < BRA_RIGHT >
+        {
+          anotherRole.setSubroles(subroles);        }    )?
+    {
       roles.addRole(anotherRole);
       rolesMap.put(anotherRole.getName(), anotherRole);
     }
