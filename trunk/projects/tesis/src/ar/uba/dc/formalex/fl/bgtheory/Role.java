@@ -1,7 +1,11 @@
 package ar.uba.dc.formalex.fl.bgtheory;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Role {
 	private String name;
+	private Set<Roles> subroles = new HashSet<Roles>();
 
     public Role(String name) {
         this.name = name;
@@ -20,8 +24,19 @@ public class Role {
     public void setName(String name) {
         this.name = name;
     }
+        
 
-    @Override
+    public Set<Roles> getSubroles() {
+		return subroles;
+	}
+
+
+	public void setSubroles(Set<Roles> subroles) {
+		this.subroles = subroles;
+	}
+
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
