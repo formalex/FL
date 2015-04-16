@@ -260,7 +260,8 @@ void roles() :
   < ROLES > < IDENTIFIER >
   {
     Role aRole = new Role(token.image);
-    Roles subroles = new Roles();
+    RolesSpecification rolesSpec = new RolesSpecification();
+    
   }
   (
     < BRA_LEFT > < IDENTIFIER >
