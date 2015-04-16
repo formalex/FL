@@ -4,17 +4,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class Roles {
+public class RoleSpecification {
 	private Set<Role> roles = new HashSet<Role>();
 	private Boolean disjoint = false;
 	private Boolean cover = false;
+	private RolesCombination rolesCombination;
 	
-	
-	public Roles(Set<Role> roles) {
+	public RoleSpecification(Set<Role> roles) {
 		this.roles = roles;
 	}
 
-    public Roles() {
+    public RoleSpecification() {
     }
 
 
@@ -53,5 +53,17 @@ public class Roles {
         }
 
 		return null;
+	}
+
+	public RolesCombination getRolesCombination() {
+		return rolesCombination;
+	}
+
+	public void setRolesCombination(RolesCombination rolesCombination) {
+		this.rolesCombination = rolesCombination;
+	}
+	
+	public Boolean isCombined(){
+		return this.rolesCombination != null && !this.rolesCombination.isEmpty();
 	}
 }

@@ -102,7 +102,7 @@ public class FLParser implements FLParserConstants {
 // ROLES productions //
 ///////////////////////
   static final public void roles() throws ParseException {
-  Roles roles = new Roles();
+  RoleSpecification roles = new RoleSpecification();
   flInput.add(roles);
     jj_consume_token(ROLES);
     jj_consume_token(IDENTIFIER);

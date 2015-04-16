@@ -13,7 +13,7 @@ public class BackgroundTheory {
     private Set<Action> actions = new HashSet<Action>();
     private Set<Timer> timers = new HashSet<Timer>();
     private Set<Interval> intervals = new HashSet<Interval>();
-    private Set<Roles> roles = new HashSet<Roles>();
+    private Set<RoleSpecification> roles = new HashSet<RoleSpecification>();
     private Set<Counter> counters = new HashSet<Counter>();
 
     private Set<Agente> agentes;
@@ -55,11 +55,11 @@ public class BackgroundTheory {
         this.intervals = intervals;
     }
 
-    public void add(Roles rol) {
+    public void add(RoleSpecification rol) {
         roles.add(rol);
     }
 
-    public Set<Roles>  getRoles() {
+    public Set<RoleSpecification>  getRoles() {
         return roles;
     }
 

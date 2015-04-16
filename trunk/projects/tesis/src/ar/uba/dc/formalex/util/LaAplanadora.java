@@ -621,7 +621,7 @@ public class LaAplanadora {
 	 * @param listaRoles
 	 * @return
 	 */
-	private Set<Agente> crearAgentes(Set<Roles> listaRoles) {
+	private Set<Agente> crearAgentes(Set<RoleSpecification> listaRoles) {
 		Set<Agente> res = new HashSet<Agente>();
 
 		//Creo un agente sin roles
@@ -638,7 +638,7 @@ public class LaAplanadora {
 		Set<Role> rolesNoDisjuntos = new HashSet<Role>();		
 
 		//Se arma una lista de los roles que no son disjuntos para poder combinarlos
-		for (Roles roles : listaRoles) {
+		for (RoleSpecification roles : listaRoles) {
 			if(!roles.isDisjoint()){
 				rolesNoDisjuntos.addAll(roles.getRoles());
 			}        	
@@ -646,7 +646,7 @@ public class LaAplanadora {
 
 
 		Set<Role> lista = new HashSet<Role>();
-		for (Roles roles : listaRoles) {
+		for (RoleSpecification roles : listaRoles) {
 			//agrego solo los que no son disjoint.
 			if (!roles.isDisjoint())
 				lista.addAll(roles.getRoles());
@@ -655,7 +655,7 @@ public class LaAplanadora {
 		Set<Set<Role>> powerSet = Util.powerSet(new HashSet<Role>(lista));
 
 		//agrego los disjoint
-		for (Roles roles : listaRoles) {
+		for (RoleSpecification roles : listaRoles) {
 			//agrego solo los que no son disjoint
 			if (roles.isDisjoint()){
 				//En el powerset debería quedar el conjunto original + cada elemento del conjunto original con cada uno
@@ -676,7 +676,7 @@ public class LaAplanadora {
 
 		//Si entre los roles recibidos hay conjunto de roles cover => elimino todos los conjuntos de roles generados que
 		//no tengan alguno de los roles cover.
-		for (Roles roles : listaRoles) {
+		for (RoleSpecification roles : listaRoles) {
 			if (roles.isCover()){
 				eliminarPorCover(powerSet, roles);
 			}
@@ -713,7 +713,7 @@ public class LaAplanadora {
 	}
 
 	//Elimina del powerset todos los conjuntos que no tengan por lo menos uno de los roles cover
-	private void eliminarPorCover(Set<Set<Role>> powerSet, Roles rolesCover) {
+	private void eliminarPorCover(Set<Set<Role>> powerSet, RoleSpecification rolesCover) {
 		Set<Set<Role>> aEliminar = new HashSet<Set<Role>>();
 		for (Set<Role> roles : powerSet) {
 			if (!tieneAlgunRol(roles, rolesCover.getRoles()))

@@ -48,7 +48,7 @@ public class FLInput {
         flRule.add(f);
     }
 
-    public void add(Roles roles) {
+    public void add(RoleSpecification roles) {
         backgroundTheory.add(roles);
     }
 
@@ -121,7 +121,7 @@ public class FLInput {
         }
     }
 
-    public Set<Roles> getRoles() {
+    public Set<RoleSpecification> getRoles() {
         return backgroundTheory.getRoles();
     }
 

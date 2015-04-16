@@ -55,7 +55,7 @@ public class ParserAMano {
 
 
     /**
-     * En caso de que la acción esté sincronizada con otra, acá se modifican ambas para relacionarlas.
+     * En caso de que la acciï¿½n estï¿½ sincronizada con otra, acï¿½ se modifican ambas para relacionarlas.
      *
      * s puede ser de la forma:
      * action Enroll output values {jeOut1,jeOut2} performable by john
@@ -86,7 +86,7 @@ public class ParserAMano {
             acciones.put(res.getName(), res);
             return res;
         } catch (RuntimeException e) {
-            System.out.println("Error al parsear la línea: " + s);
+            System.out.println("Error al parsear la lï¿½nea: " + s);
             throw e;
         }
     }
@@ -130,9 +130,9 @@ public class ParserAMano {
 
         Action action = acciones.get(actName);
         if (action ==  null){
-            System.out.println("Error en la línea: ");
+            System.out.println("Error en la lï¿½nea: ");
             System.out.println(s);
-            System.out.println("Se quiere sincronizar con una acción no definida");
+            System.out.println("Se quiere sincronizar con una acciï¿½n no definida");
         }
 
         return action;
@@ -238,7 +238,7 @@ public class ParserAMano {
 
             return res;
         } catch (RuntimeException e) {
-            System.out.println("Error al parsear la línea: " + s);
+            System.out.println("Error al parsear la lï¿½nea: " + s);
             throw e;
         }
     }
@@ -249,9 +249,9 @@ public class ParserAMano {
      * roles john, paul
      * roles john, paul disjoint, cover todo: no implementado
      */
-    public static Roles parsearRoles(String s) {
+    public static RoleSpecification parsearRoles(String s) {
         try {
-            Roles res = new Roles();
+            RoleSpecification res = new RoleSpecification();
             res.setDisjoint (s.contains("disjoint"));
             res.setCover (s.contains("cover"));
             s = s.replaceFirst("disjoint", "");
@@ -264,7 +264,7 @@ public class ParserAMano {
 
             return res;
         } catch (RuntimeException e) {
-            System.out.println("Error al parsear la línea: " + s);
+            System.out.println("Error al parsear la lï¿½nea: " + s);
             throw e;
         }
     }
@@ -477,7 +477,7 @@ public class ParserAMano {
 
             return res;
         } catch (RuntimeException e) {
-            System.out.println("Error al parsear la línea: " + s);
+            System.out.println("Error al parsear la lï¿½nea: " + s);
             throw e;
         }
     }
@@ -485,7 +485,7 @@ public class ParserAMano {
     private static Action getAction(String accion) {
         Action action = acciones.get(accion);
         if (action == null)
-            throw new RuntimeException("Se está haciendo referencia a una acción que no existe: " + accion);
+            throw new RuntimeException("Se estï¿½ haciendo referencia a una acciï¿½n que no existe: " + accion);
         return action;
     }
 }
