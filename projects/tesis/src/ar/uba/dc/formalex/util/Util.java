@@ -3,6 +3,7 @@ package ar.uba.dc.formalex.util;
 import org.apache.log4j.Logger;
 
 import ar.uba.dc.formalex.fl.bgtheory.Role;
+import ar.uba.dc.formalex.fl.bgtheory.RoleSpecification;
 import ar.uba.dc.formalex.fl.bgtheory.RolesCombination;
 
 import java.io.File;
@@ -66,6 +67,29 @@ public class Util {
             sets.add(set);            
         }
         return sets;
+    }
+    
+    public static RolesCombination combineBetweenRoles(RoleSpecification spec) {
+    	RolesCombination sets = new RolesCombination();
+    	if (spec.getRoles().isEmpty()) {
+    		sets.add(new HashSet<Role>());
+    		return sets;
+    	}
+    	for(Role role: spec.getRoles()){
+    		for(HashSet<Role> combination: role.getSubroles().getRolesCombination()){
+    			for(Role roleToCombine: spec.getRoles()){
+    				if(!role.equals(roleToCombine)){    					   
+    					for(HashSet<Role> otherCombination: roleToCombine.getSubroles().getRolesCombination()){
+    						HashSet<Role> newCombination = new HashSet<Role>();
+    						newCombination.addAll(combination); 
+    						newCombination.addAll(otherCombination);
+    						sets.add(newCombination);
+    					}    	    			 
+    				}
+    			}
+    		}
+    	}
+    	return sets;
     }
 
         
