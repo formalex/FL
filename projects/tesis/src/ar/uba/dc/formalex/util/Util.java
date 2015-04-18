@@ -2,6 +2,9 @@ package ar.uba.dc.formalex.util;
 
 import org.apache.log4j.Logger;
 
+import ar.uba.dc.formalex.fl.bgtheory.Role;
+import ar.uba.dc.formalex.fl.bgtheory.RolesCombination;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -44,19 +47,19 @@ public class Util {
             sets.add(set);
         }
         return sets;
-    }
+    }        
     
-    public static <T> Set<Set<T>> powerSetSet(Set<Set<T>> originalSet) {
-        Set<Set<T>> sets = new HashSet<Set<T>>();
+    public static RolesCombination powerSetSet(RolesCombination originalSet) {
+    	RolesCombination sets = new RolesCombination();
         if (originalSet.isEmpty()) {
-            sets.add(new HashSet<T>());
+            sets.add(new HashSet<Role>());
             return sets;
         }
-        List<Set<T>> list = new ArrayList<Set<T>>(originalSet);
-        Set<T> head = list.get(0);
-        Set<Set<T>> rest = new HashSet<Set<T>>(list.subList(1, list.size()));
-        for (Set<T> set : powerSetSet(rest)) {
-            Set<T> newSet = new HashSet<T>();            
+        List<HashSet<Role>> list = new ArrayList<HashSet<Role>>(originalSet);
+        HashSet<Role> head = list.get(0);
+        HashSet<HashSet<Role>> rest = new HashSet<HashSet<Role>>(list.subList(1, list.size()));
+        for (HashSet<Role> set : powerSetSet((RolesCombination)rest)) {
+        	HashSet<Role> newSet = new HashSet<Role>();            
             newSet.addAll(head);
             newSet.addAll(set);
             sets.add(newSet);
@@ -65,6 +68,7 @@ public class Util {
         return sets;
     }
 
+        
     /**
      * Lee las propiedades del archivo y las asigna a System.properties
      */
