@@ -8,7 +8,7 @@ import java.util.HashSet;
  *
  */
 
-public class RolesCombination extends HashSet<String>  {
+public class RolesCombination extends HashSet<HashSet<Role>>  {
 	
 	
 
