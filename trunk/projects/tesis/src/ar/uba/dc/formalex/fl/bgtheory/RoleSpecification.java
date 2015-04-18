@@ -9,6 +9,7 @@ public class RoleSpecification {
 	private Boolean disjoint = false;
 	private Boolean cover = false;
 	private RolesCombination rolesCombination;
+	private Boolean isCombined = false;
 	
 	public RoleSpecification(Set<Role> roles) {
 		this.roles = roles;
@@ -62,8 +63,12 @@ public class RoleSpecification {
 	public void setRolesCombination(RolesCombination rolesCombination) {
 		this.rolesCombination = rolesCombination;
 	}
-	
-	public Boolean isCombined(){
-		return this.rolesCombination != null && !this.rolesCombination.isEmpty();
+
+	public Boolean isCombined() {
+		return isCombined;
 	}
+
+	public void setCombined(Boolean isCombined) {
+		this.isCombined = isCombined;
+	}		
 }
