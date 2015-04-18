@@ -632,79 +632,12 @@ public class LaAplanadora {
 		Role role = new Role("no_assigned_role");
 		rolesTmp.add(role);
 		agenteSinRol.setRoles(rolesTmp);
-		
+
+		RolesCombination rolesParaAgentes = new RolesCombination();
 		for(RoleSpecification spec : listaRoles){
 			ppal(spec);
+			rolesParaAgentes.addAll(spec.getRolesCombination());
 		}
-		
-		RolesCombination rolesParaAgentes = new RolesCombination();//Resultado final de todas las combinaciones TODO! poner el que corresponde
-		
-
-//		//Roles y Subroles    
-//		Set<Set<Role>> rolesParaAgentes = new HashSet<Set<Role>>();//Resultado final de todas las combinaciones        
-//		Set<Role> rolesNoDisjuntos = new HashSet<Role>();		
-//
-//		//Se arma una lista de los roles que no son disjuntos para poder combinarlos
-//		for (RoleSpecification roles : listaRoles) {
-//			if(!roles.isDisjoint()){
-//				rolesNoDisjuntos.addAll(roles.getRoles());
-//			}        	
-//		}
-//
-//
-//		Set<Role> lista = new HashSet<Role>();
-//		for (RoleSpecification roles : listaRoles) {
-//			//agrego solo los que no son disjoint.
-//			if (!roles.isDisjoint())
-//				lista.addAll(roles.getRoles());
-//		}
-//
-//		Set<Set<Role>> powerSet = Util.powerSet(new HashSet<Role>(lista));
-//
-//		//agrego los disjoint
-//		for (RoleSpecification roles : listaRoles) {
-//			//agrego solo los que no son disjoint
-//			if (roles.isDisjoint()){
-//				//En el powerset debería quedar el conjunto original + cada elemento del conjunto original con cada uno
-//				//de los roles disjoint
-//				Set<Set<Role>> subpowerSet = new HashSet<Set<Role>>();
-//				for (Role rol : roles.getRoles()) {
-//
-//					for (Set<Role> roleSet : powerSet) {
-//						Set<Role> newSet = new HashSet<Role>();
-//						subpowerSet.add(newSet);
-//						newSet.add(rol);
-//						newSet.addAll(roleSet);
-//					}
-//				}
-//				powerSet.addAll(subpowerSet);
-//			}
-//		}
-//
-//		//Si entre los roles recibidos hay conjunto de roles cover => elimino todos los conjuntos de roles generados que
-//		//no tengan alguno de los roles cover.
-//		for (RoleSpecification roles : listaRoles) {
-//			if (roles.isCover()){
-//				eliminarPorCover(powerSet, roles);
-//			}
-//		} 
-//
-//		//Inicio tratamiento de Subroles
-////		Set<Set<Role>> rolesParaAgentesIntermedios = new HashSet<Set<Role>>();
-////		rolesParaAgentesIntermedios = expandirPorSubroles(powerSet);
-////		
-////		while(!rolesParaAgentesIntermedios.equals(rolesParaAgentes)){
-////			rolesParaAgentes = rolesParaAgentesIntermedios;
-////			rolesParaAgentesIntermedios = expandirPorSubroles(rolesParaAgentes);						
-////		}
-////		
-////		rolesParaAgentes = rolesParaAgentesIntermedios;
-//		
-//		rolesParaAgentes = expandirPorSubroles(powerSet);
-//						
-//		//Fin tratamiento de Subroles
-
-
 
 		//Por cada conjunto del powerSet (salvo el conjunto vacío), se forma un Agente que va a tener los roles del conjunto.		
 		int cont = 1;
@@ -719,18 +652,6 @@ public class LaAplanadora {
 		return res;
 	}
 
-	//Elimina del powerset todos los conjuntos que no tengan por lo menos uno de los roles cover
-	private void eliminarPorCover(Set<Set<Role>> powerSet, RoleSpecification rolesCover) {
-		Set<Set<Role>> aEliminar = new HashSet<Set<Role>>();
-		for (Set<Role> roles : powerSet) {
-			if (!tieneAlgunRol(roles, rolesCover.getRoles()))
-				aEliminar.add(roles);
-		}
-		for (Set<Role> roles : aEliminar) {
-			powerSet.remove(roles);
-		}
-	}
-
 	//Devuelve true si el conjunto tiene por lo menos alg�n rol de la lista
 	private boolean tieneAlgunRol(Set<Role> roles, Set<Role> rolesCover) {
 		for (Role rolCover : rolesCover) {
@@ -739,60 +660,60 @@ public class LaAplanadora {
 		}
 		return false;
 	}
-	
-	private void ppal(RoleSpecification spec){		 					
-			if(spec != null && spec.getRoles() != null && !spec.getRoles().isEmpty()){
-				Iterator<Role> roleIterator = spec.getRoles().iterator();
-				while(roleIterator.hasNext()){
-					newFunction(roleIterator.next());
-					if(!roleIterator.hasNext()){
-						combineSpec(spec);
-					}
-				}
-			}
+
+	private void ppal(RoleSpecification spec){		
+		if(!spec.getRoles().isEmpty()){
+			Iterator<Role> roleIterator = spec.getRoles().iterator();
+			while(roleIterator.hasNext()){
+				Role nextRole = roleIterator.next();
+				addRoleToChildrens(nextRole);					
+			}			
 		}
-	
-	
-	private void combineSpec(RoleSpecification roleSpecification){
+		combineSpec(spec);
+		spec.setCombined(true);
+	}
+
+
+	private void combineSpec(RoleSpecification roleSpecification){		
 		if(!roleSpecification.isDisjoint()){
-			RolesCombination powerSet = Util.powerSetSet(roleSpecification.getRolesCombination());
-			roleSpecification.setRolesCombination(powerSet);
-		}				
+			//Combino los diferentes rolesCombination de los roles evaluados sin volver a combinar los de un mismo rol.
+			roleSpecification.setRolesCombination(Util.combineBetweenRoles(roleSpecification));
+		}else{			
+			//Agrego todos los rolesCombination de cada uno de los roles evaluados en la spec correspondiente
+			for(Role role: roleSpecification.getRoles()){
+				roleSpecification.getRolesCombination().addAll(role.getSubroles().getRolesCombination());
+			}	    		
+		}
 		if(roleSpecification.isCover()){
-			controlCover(roleSpecification.getRolesCombination(), roleSpecification);
-			//Esta spec ya está combinada, ver si conviene marcarla de alguna forma o no es necesario TODO
+			controlCover(roleSpecification.getRolesCombination(), roleSpecification);			
+		}else{
+			roleSpecification.getRolesCombination().add(new HashSet<Role>());
 		}
 	}
-	
-	private void newFunction(Role role){
-		if(role.getSubroles() != null){		
-			HashSet<Role> combination = new HashSet<Role>();
-			combination.add(role);
-			role.getSubroles().getRolesCombination().add(combination);
-		}else{				
+
+	/**
+	 * Agrega a cada uno de los conjuntos combinados el rol padre
+	 * @param role
+	 */
+	private void addRoleToChildrens(Role role){	
+		if(!role.getSubroles().isCombined()){
 			ppal(role.getSubroles());
 		}
+		for(HashSet<Role> aCombination: role.getSubroles().getRolesCombination()){
+			aCombination.add(role);
+		}								
 	}
-	
-	//Elimina del powerset todos los conjuntos que no tengan por lo menos uno de los roles cover
-		private void controlCover(RolesCombination powerSet, RoleSpecification rolesCover) {
-			HashSet<HashSet<Role>> aEliminar = new HashSet<HashSet<Role>>();
-			for (HashSet<Role> roles : powerSet) {
-				if (!tieneAlgunRol(roles, rolesCover.getRoles()))
-					aEliminar.add(roles);
-			}
-			for (HashSet<Role> roles : aEliminar) {
-				powerSet.remove(roles);
-			}
-		}
 
-		//Devuelve true si el conjunto tiene por lo menos alg�n rol de la lista
-		private boolean tieneAlgunRol(HashSet<String> roles, Set<Role> rolesCover) {
-			for (Role rolCover : rolesCover) {
-				if(roles.contains(rolCover.getName()))
-					return true;
-			}
-			return false;
+	//Elimina del powerset todos los conjuntos que no tengan por lo menos uno de los roles cover
+	private void controlCover(RolesCombination powerSet, RoleSpecification rolesCover) {
+		HashSet<HashSet<Role>> aEliminar = new HashSet<HashSet<Role>>();
+		for (HashSet<Role> roles : powerSet) {
+			if (!tieneAlgunRol(roles, rolesCover.getRoles()))
+				aEliminar.add(roles);
 		}
-	
-	}
+		for (HashSet<Role> roles : aEliminar) {
+			powerSet.remove(roles);
+		}
+	}		
+
+}
