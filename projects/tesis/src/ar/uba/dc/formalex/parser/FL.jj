@@ -253,102 +253,65 @@ void start() :
 ///////////////////////
 void roles() :
 {
-  Roles roles = new Roles();
-  flInput.add(roles);
+	boolean isSpecForRole = false;
 }
 {
-  < ROLES > < IDENTIFIER >
+  < ROLES > 
+  rolesSpecification()
+}
+
+void role() :
+{
+< IDENTIFIER >
   {
     Role aRole = new Role(token.image);
-    RolesSpecification rolesSpec = new RolesSpecification();
-    
   }
   (
-    < BRA_LEFT > < IDENTIFIER >
-    {
-      Role aSubRole = new Role(token.image);
-      subroles.addRole(aSubRole);
-      rolesMap.put(aSubRole.getName(), aSubRole);
-    }
-    (
-      "," < IDENTIFIER >
-      {
-        Role anotherSubRole = new Role(token.image);
-        subroles.addRole(anotherSubRole);
-        rolesMap.put(anotherSubRole.getName(), anotherSubRole);
-      }
-    )*
-    (
-     < ROLES_DISJOINT >
-     {
-       subroles.setDisjoint(true);
-     }
-    )?
-    (
-     < ROLES_COVER >
-     {
-       subroles.setCover(true);
-     }
-    )?
-      < BRA_RIGHT >
-      {
-        aRole.setSubroles(subroles);      }
+  	rolesSpecification()
   )?
   {
-    roles.addRole(aRole);
-    rolesMap.put(aRole.getName(), aRole);  }
+    rolesSpec.addRole(aRole);
+    rolesMap.put(aRole.getName(), aRole);
+  }
   (
-    "," < IDENTIFIER >
-    {
-      Role anotherRole = new Role(token.image);
-      subroles = new Roles();
-      roles.addRole(anotherRole);
-      rolesMap.put(anotherRole.getName(), anotherRole);
-    }
-    (
-      < BRA_LEFT > < IDENTIFIER >
-      {
-        Role aSubRole = new Role(token.image);
-        subroles.addRole(aSubRole);
-        rolesMap.put(aSubRole.getName(), aSubRole);      }
-      (
-        "," < IDENTIFIER >
-        {	      Role anotherSubRole = new Role(token.image);
-    	  subroles.addRole(anotherSubRole);
-          rolesMap.put(anotherSubRole.getName(), anotherSubRole);
-        }      )*
-	  (
-        < ROLES_DISJOINT >
-        {
-          subroles.setDisjoint(true);
-        }
-      )?
-      (
-       < ROLES_COVER >
-       {
-         subroles.setCover(true);
-       }
-      )?
-        < BRA_RIGHT >
-        {
-          anotherRole.setSubroles(subroles);        }    )?
-    {
-      roles.addRole(anotherRole);
-      rolesMap.put(anotherRole.getName(), anotherRole);
-    }
-  )*
+    "," role()
+  )?
+}
+
+
+void rolesSpecification() :
+{
+  RolesSpecification rolesSpec = new RolesSpecification();
+}
+{
   (
-    < ROLES_DISJOINT >
-    {
-      roles.setDisjoint(true);
-    }
+   < BRA_LEFT >
+   {
+   	isSpecForRole = true;
+   } 
+  )?
+  role()
+  (
+   < ROLES_DISJOINT >
+   {
+     rolesSpec.setDisjoint(true);
+   }
   )?
   (
-    < ROLES_COVER >
-    {
-      roles.setCover(true);
-    }
+   < ROLES_COVER >
+   {
+     rolesSpec.setCover(true);
+   }
   )?
+  (
+   < BRA_RIGHT >
+  )?
+  {
+	if (isSpecForRole)
+	  aRole.setSubroles(rolesSpec);
+	else
+  	  flInput.add(rolesSpec);
+  }    
 }
 
 //////////////////////////
