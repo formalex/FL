@@ -252,36 +252,36 @@ void start() :
 // ROLES productions //
 ///////////////////////
 void roles() :
-{
-	boolean isSpecForRole = false;
-}
+{}
 {
   < ROLES > 
-  rolesSpecification()
+  roleSpecification(null)
 }
 
-void role() :
+void role(RoleSpecification roleSpec) :
+{}
 {
 < IDENTIFIER >
   {
     Role aRole = new Role(token.image);
   }
   (
-  	rolesSpecification()
+  	roleSpecification(aRole)
   )?
   {
-    rolesSpec.addRole(aRole);
+    roleSpec.addRole(aRole);
     rolesMap.put(aRole.getName(), aRole);
   }
   (
-    "," role()
+    "," role(roleSpec)
   )?
 }
 
 
-void rolesSpecification() :
+void roleSpecification(Role aRole) :
 {
-  RolesSpecification rolesSpec = new RolesSpecification();
+  RoleSpecification roleSpec = new RoleSpecification();
+  boolean isSpecForRole = false;
 }
 {
   (
@@ -290,17 +290,17 @@ void rolesSpecification() :
    	isSpecForRole = true;
    } 
   )?
-  role()
+  role(roleSpec)
   (
    < ROLES_DISJOINT >
    {
-     rolesSpec.setDisjoint(true);
+     roleSpec.setDisjoint(true);
    }
   )?
   (
    < ROLES_COVER >
    {
-     rolesSpec.setCover(true);
+     roleSpec.setCover(true);
    }
   )?
   (
@@ -308,9 +308,9 @@ void rolesSpecification() :
   )?
   {
 	if (isSpecForRole)
-	  aRole.setSubroles(rolesSpec);
+	  aRole.setSubroles(roleSpec);
 	else
-  	  flInput.add(rolesSpec);
+  	  flInput.add(roleSpec);
   }    
 }
 
