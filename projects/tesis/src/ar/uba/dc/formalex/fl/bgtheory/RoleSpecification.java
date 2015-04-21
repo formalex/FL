@@ -8,7 +8,7 @@ public class RoleSpecification {
 	private Set<Role> roles = new HashSet<Role>();
 	private Boolean disjoint = false;
 	private Boolean cover = false;
-	private RolesCombination rolesCombination;
+	private RolesCombination rolesCombination = new RolesCombination();
 	private Boolean isCombined = false;
 	
 	public RoleSpecification(Set<Role> roles) {
