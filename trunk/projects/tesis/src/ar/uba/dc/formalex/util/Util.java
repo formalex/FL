@@ -86,6 +86,7 @@ public class Util {
     						sets.add(newCombination);
     					}    	    			 
     				}
+    				sets.add(combination);
     			}
     		}
     	}
