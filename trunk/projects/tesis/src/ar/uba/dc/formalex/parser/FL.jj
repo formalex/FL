@@ -1826,6 +1826,13 @@ FLFormula terminal() :
             variable = name;
             name = token.image;
             originalFormula += ".belongsTo:" + name;
+            Role tmp = rolesMap.get(name);
+            if (tmp == null){
+            	StringBuilder sb = new StringBuilder();
+                sb.append("En una fórmula se hace referencia a un rol no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de la línea: " + beginLine + ", columna: " + beginColumn);
+                throw new RuntimeException(sb.toString());
+            }
             return new FLBelongs(variable, name);
           }
         )?

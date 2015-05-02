@@ -1649,6 +1649,13 @@ FLFormula p_clauses666() :
             variable = name;
             name = token.image;
             originalFormula += ".belongsTo:" + name;
+            Role tmp = rolesMap.get(name);
+            if (tmp == null){
+                StringBuilder sb = new StringBuilder();
+                sb.append("En una f\u00f3rmula se hace referencia a un rol no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de la l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+                {if (true) throw new RuntimeException(sb.toString());}
+            }
             {if (true) return new FLBelongs(variable, name);}
       } else {
         ;
@@ -2843,18 +2850,18 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_139() {
-    if (jj_scan_token(GEQ)) return true;
-    if (jj_scan_token(NUMBER)) return true;
-    return false;
-  }
-
   static private boolean jj_3_61() {
     if (jj_scan_token(COUNTER_RESET)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
     Token xsp;
     xsp = jj_scanpos;
     if (jj_3_60()) jj_scanpos = xsp;
+    return false;
+  }
+
+  static private boolean jj_3_138() {
+    if (jj_scan_token(LEQ)) return true;
+    if (jj_scan_token(NUMBER)) return true;
     return false;
   }
 
@@ -2874,8 +2881,8 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_138() {
-    if (jj_scan_token(LEQ)) return true;
+  static private boolean jj_3_137() {
+    if (jj_scan_token(GREATER)) return true;
     if (jj_scan_token(NUMBER)) return true;
     return false;
   }
@@ -2912,8 +2919,8 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_137() {
-    if (jj_scan_token(GREATER)) return true;
+  static private boolean jj_3_136() {
+    if (jj_scan_token(LESS)) return true;
     if (jj_scan_token(NUMBER)) return true;
     return false;
   }
@@ -2929,8 +2936,8 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_136() {
-    if (jj_scan_token(LESS)) return true;
+  static private boolean jj_3_135() {
+    if (jj_scan_token(EQUAL)) return true;
     if (jj_scan_token(NUMBER)) return true;
     return false;
   }
@@ -2960,12 +2967,6 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_135() {
-    if (jj_scan_token(EQUAL)) return true;
-    if (jj_scan_token(NUMBER)) return true;
-    return false;
-  }
-
   static private boolean jj_3_55() {
     if (jj_scan_token(COMMA)) return true;
     if (jj_scan_token(COUNTER_DECREASES)) return true;
@@ -2978,15 +2979,15 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_52() {
-    if (jj_scan_token(COUNTER_BY)) return true;
-    if (jj_scan_token(NUMBER)) return true;
-    return false;
-  }
-
   static private boolean jj_3_134() {
     if (jj_scan_token(RESULTS_IN)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_52() {
+    if (jj_scan_token(COUNTER_BY)) return true;
+    if (jj_scan_token(NUMBER)) return true;
     return false;
   }
 
@@ -3638,6 +3639,13 @@ FLFormula p_clauses666() :
     return false;
   }
 
+  static private boolean jj_3_144() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(DOT)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
   static private boolean jj_3R_52() {
     if (jj_3R_43()) return true;
     return false;
@@ -3657,13 +3665,6 @@ FLFormula p_clauses666() :
     }
     if (jj_scan_token(IDENTIFIER)) return true;
     if (jj_scan_token(DEFINED_BY)) return true;
-    return false;
-  }
-
-  static private boolean jj_3_144() {
-    if (jj_scan_token(IDENTIFIER)) return true;
-    if (jj_scan_token(DOT)) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
@@ -3689,6 +3690,13 @@ FLFormula p_clauses666() :
     return false;
   }
 
+  static private boolean jj_3_143() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(DOT)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
   static private boolean jj_3_126() {
     Token xsp;
     xsp = jj_scanpos;
@@ -3700,13 +3708,6 @@ FLFormula p_clauses666() :
     xsp = jj_scanpos;
     if (jj_3_119()) jj_scanpos = xsp;
     if (jj_scan_token(83)) return true;
-    return false;
-  }
-
-  static private boolean jj_3_143() {
-    if (jj_scan_token(IDENTIFIER)) return true;
-    if (jj_scan_token(DOT)) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
@@ -3905,6 +3906,12 @@ FLFormula p_clauses666() :
     return false;
   }
 
+  static private boolean jj_3_140() {
+    if (jj_scan_token(DOT)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
   static private boolean jj_3_20() {
     if (jj_scan_token(COMMA)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
@@ -3916,14 +3923,15 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_140() {
-    if (jj_scan_token(DOT)) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
+  static private boolean jj_3R_53() {
+    if (jj_3R_44()) return true;
     return false;
   }
 
-  static private boolean jj_3R_53() {
-    if (jj_3R_44()) return true;
+  static private boolean jj_3_142() {
+    if (jj_scan_token(INSIDE)) return true;
+    if (jj_scan_token(PAR_LEFT)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
@@ -3936,13 +3944,6 @@ FLFormula p_clauses666() :
   static private boolean jj_3_66() {
     if (jj_scan_token(COMMA)) return true;
     if (jj_scan_token(COUNTER_SETS_WITH)) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
-    return false;
-  }
-
-  static private boolean jj_3_142() {
-    if (jj_scan_token(INSIDE)) return true;
-    if (jj_scan_token(PAR_LEFT)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
@@ -4066,6 +4067,12 @@ FLFormula p_clauses666() :
   static private boolean jj_3_106() {
     if (jj_scan_token(DOUBLE_DOT)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_139() {
+    if (jj_scan_token(GEQ)) return true;
+    if (jj_scan_token(NUMBER)) return true;
     return false;
   }
 
