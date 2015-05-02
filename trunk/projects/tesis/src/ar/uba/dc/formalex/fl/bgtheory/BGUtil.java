@@ -44,14 +44,16 @@ public class BGUtil {
     }
     
   //Dado un agente y un rol, verifica si el agente tiene dicho rol.
-  	public boolean belongsToRole(String agent, String role){
-  		Iterator<Agente> agentes = this.agentesPorRol.get(role).iterator();
-  		while(agentes.hasNext()){
-  			Agente currentAgente = agentes.next();
-  			if(currentAgente.getName().equals(agent)){
-  				return true;
-  			}
-  		}
-  		return false;		
-  	}
+    public boolean belongsToRole(String agent, String role){
+    	if(role != null && this.agentesPorRol.get(role) != null){
+    		Iterator<Agente> agentes = this.agentesPorRol.get(role).iterator();
+    		while(agentes.hasNext()){
+    			Agente currentAgente = agentes.next();
+    			if(currentAgente.getName().equals(agent)){
+    				return true;
+    			}
+    		}
+    	}
+    	return false;		
+    }
 }
