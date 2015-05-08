@@ -616,7 +616,7 @@ public class LaAplanadora {
 
 
 	/**
-	 * Crea y devuelta una lista de agentes. Cada agente cumple algunos roles. Se crear�n tantos agentes como
+	 * Crea y devuelve una lista de agentes. Cada agente cumple algunos roles. Se crear�n tantos agentes como
 	 * combinaciones de roles haya (salvo disjoint)
 	 * @param listaRoles
 	 * @return
@@ -635,7 +635,7 @@ public class LaAplanadora {
 
 		RolesCombination rolesParaAgentes = new RolesCombination();
 		for(RoleSpecification spec : listaRoles){
-			ppal(spec);
+			combineMainRoleSpec(spec);
 			rolesParaAgentes.addAll(spec.getRolesCombination());
 		}
 
@@ -661,27 +661,33 @@ public class LaAplanadora {
 		return false;
 	}
 
-	private void ppal(RoleSpecification spec){		
+	/**
+	 * @param spec
+	 */
+	private void combineMainRoleSpec(RoleSpecification spec){		
 		if(!spec.getRoles().isEmpty()){
 			Iterator<Role> roleIterator = spec.getRoles().iterator();
 			while(roleIterator.hasNext()){
 				Role nextRole = roleIterator.next();
-				addRoleToChildrens(nextRole);					
+				addRoleToSpecCombination(nextRole);					
 			}			
 		}
-		combineSpec(spec);
+		combineSecondaryRoleSpec(spec);
 		spec.setCombined(true);
 	}
 
-
-	private void combineSpec(RoleSpecification roleSpecification){		
+	/** 
+	 * 
+	 * @param roleSpecification
+	 */
+	private void combineSecondaryRoleSpec(RoleSpecification roleSpecification){		
 		if(!roleSpecification.isDisjoint()){
 			//Combino los diferentes rolesCombination de los roles evaluados sin volver a combinar los de un mismo rol.
 			roleSpecification.setRolesCombination(Util.combineBetweenRoles(roleSpecification));
 		}else{			
 			//Agrego todos los rolesCombination de cada uno de los roles evaluados en la spec correspondiente
 			for(Role role: roleSpecification.getRoles()){
-				roleSpecification.getRolesCombination().addAll(role.getSubroles().getRolesCombination());
+				roleSpecification.getRolesCombination().addAll(role.getRoleSpecification().getRolesCombination());
 			}	    		
 		}
 		if(roleSpecification.isCover()){
@@ -691,15 +697,17 @@ public class LaAplanadora {
 		}
 	}
 
-	/**
-	 * Agrega a cada uno de los conjuntos combinados el rol padre
+	/** 
+	 *   Si no fue realizada la combinación de los subroles, se hace la llamada 
+	 *  al metodo que la genera
+	 *   Luego, se agrega el rol superior a cada una de las combinaciones de su RoleSpecification.
 	 * @param role
 	 */
-	private void addRoleToChildrens(Role role){	
-		if(!role.getSubroles().isCombined()){
-			ppal(role.getSubroles());
+	private void addRoleToSpecCombination(Role role){	
+		if(!role.getRoleSpecification().isCombined()){
+			combineMainRoleSpec(role.getRoleSpecification());
 		}
-		for(HashSet<Role> aCombination: role.getSubroles().getRolesCombination()){
+		for(HashSet<Role> aCombination: role.getRoleSpecification().getRolesCombination()){
 			aCombination.add(role);
 		}								
 	}

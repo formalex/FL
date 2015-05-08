@@ -76,10 +76,10 @@ public class Util {
     		return sets;
     	}
     	for(Role role: spec.getRoles()){
-    		for(HashSet<Role> combination: role.getSubroles().getRolesCombination()){
+    		for(HashSet<Role> combination: role.getRoleSpecification().getRolesCombination()){
     			for(Role roleToCombine: spec.getRoles()){
     				if(!role.equals(roleToCombine)){    					   
-    					for(HashSet<Role> otherCombination: roleToCombine.getSubroles().getRolesCombination()){
+    					for(HashSet<Role> otherCombination: roleToCombine.getRoleSpecification().getRolesCombination()){
     						HashSet<Role> newCombination = new HashSet<Role>();
     						newCombination.addAll(combination); 
     						newCombination.addAll(otherCombination);

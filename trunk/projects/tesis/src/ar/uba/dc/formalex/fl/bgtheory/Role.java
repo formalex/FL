@@ -2,7 +2,7 @@ package ar.uba.dc.formalex.fl.bgtheory;
 
 public class Role {
 	private String name;
-	private RoleSpecification subroles = new RoleSpecification();
+	private RoleSpecification roleSpec = new RoleSpecification();
 
     public Role(String name) {
         this.name = name;
@@ -23,13 +23,13 @@ public class Role {
     }           
 
 
-	public RoleSpecification getSubroles() {
-		return subroles;
+	public RoleSpecification getRoleSpecification() {
+		return roleSpec;
 	}
 
 
-	public void setSubroles(RoleSpecification subroles) {
-		this.subroles = subroles;
+	public void setRoleSpecification(RoleSpecification roleSpec) {
+		this.roleSpec = roleSpec;
 	}
 
 
