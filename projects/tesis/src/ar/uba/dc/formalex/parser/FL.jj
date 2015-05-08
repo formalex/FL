@@ -308,7 +308,7 @@ void roleSpecification(Role aRole) :
   )?
   {
 	if (isSpecForRole)
-	  aRole.setSubroles(roleSpec);
+	  aRole.setRoleSpecification(roleSpec);
 	else
   	  flInput.add(roleSpec);
   }    
