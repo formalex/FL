@@ -152,7 +152,7 @@ public class FLParser implements FLParserConstants {
       ;
     }
         if (isSpecForRole)
-          aRole.setSubroles(roleSpec);
+          aRole.setRoleSpecification(roleSpec);
         else
           flInput.add(roleSpec);
   }
