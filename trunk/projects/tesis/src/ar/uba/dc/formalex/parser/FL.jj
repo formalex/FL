@@ -16,7 +16,7 @@ import ar.uba.dc.formalex.fl.FLInput;
 import ar.uba.dc.formalex.fl.bgtheory.*;
 import ar.uba.dc.formalex.fl.bgtheory.Timer; //necesario para desambiguar
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.*;
-import ar.uba.dc.formalex.fl.regulation.permission.Permission;
+import ar.uba.dc.formalex.fl.regulation.permission.*;
 import ar.uba.dc.formalex.fl.regulation.rules.*;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.*;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
@@ -168,6 +168,7 @@ TOKEN :
 | < OBLIGATION : "O(" >
 | < FORBIDDEN : "F(" >
 | < PERMISSION : "P(" >
+| < PERM_PERMISSION : "PP(" >
 | < COMMA : "," >
 | < OCCURRED : "occurred" >
 | < RESULTS_IN : "results in" >
@@ -927,31 +928,41 @@ void clause() :
         flInput.addPermission(p);
         flInput.addFLPermission(originalFormula);
       }
-   )
-   |
-   (
-      //O-cl�usula-conjuntiva       |   O-cl�usula-disyuntiva
+    )
+    |
+   	(
+      //PP-cláusula-disyuntiva       |   PP-cláusula-conjuntiva |
+      //PP(...) | PP(...) | PP(...)    o   PP(...) & PP(...) & PP(...)
+      p = pp_clauses()
+      {
+        flInput.addPermission(p);
+        flInput.addFLPermission(originalFormula);
+      }
+    )
+    |
+    (
+      //O-cláusula-conjuntiva       |   O-cláusula-disyuntiva
       //O(...) & O(...) & O(...)    o   O(...) | O(...) | O(...)
       p = o_clauses()
       {
         flInput.addRule(p);
         flInput.addFLRule(originalFormula);
       }
-   )
-   |
-   (
-      //F-cl�usula-conjuntiva       |   F-cl�usula-disyuntiva
+    )
+    |
+    (
+      //F-cláusula-conjuntiva       |   F-cláusula-disyuntiva
       //F(...) & F(...) & F(...)    o   F(...) | F(...) | F(...)
       p = f_clauses()
       {
         flInput.addRule(p);
         flInput.addFLRule(originalFormula);
       }
-   )
-   |
-   (
-      //EXISTS (var (: rol)? ; (O-cl�usula-disyuntiva | F-cl�usula-disyuntiva | P-cl�usula-disyuntiva) ) |
-      //FORALL (var (: rol)? ; (O-cl�usula-conjuntiva | F-cl�sula-conjuntiva | P-cl�usula-conjuntiva) )
+    )
+    |
+    (
+      //EXISTS (var (: rol)? ; (O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva) ) |
+      //FORALL (var (: rol)? ; (O-cláusula-conjuntiva | F-cl�sula-conjuntiva | P-cláusula-conjuntiva) )
       p = quantifierWithDeontic()
       {
         if (Util.hasPermission(p)){
@@ -963,16 +974,16 @@ void clause() :
             flInput.addFLRule(originalFormula);
         }
       }
-   )
+    )
   )
   {
      if (tag != null)
       	flInput.addTaggedFormula(tag,p);        }
 }
 
-//F-cl�usula-disyuntiva :=     F-cl�usula (or F-cl�usula)*
-//F-cl�usula-conjuntiva :=     F-cl�usula (and F-cl�usula)*
-//1 o m�s F-cl�usulas con OR o  1 o m�s con AND, pero no combinando OR y AND
+//F-cláusula-disyuntiva :=     F-cláusula (or F-cláusula)*
+//F-cláusula-conjuntiva :=     F-cláusula (and F-cláusula)*
+//1 o m�s F-cláusulas con OR o  1 o m�s con AND, pero no combinando OR y AND
 FLFormula f_clauses() :
 {
     FLFormula p;
@@ -1020,9 +1031,9 @@ FLFormula f_clauses() :
 }
 
 
-//O-cl�usula-disyuntiva :=     O-cl�usula (or O-cl�usula)*
-//O-cl�usula-conjuntiva :=     O-cl�usula (and O-cl�usula)*
-//1 o m�s O-cl�usulas con OR o  1 o m�s con AND, pero no combinando OR y AND
+//O-cláusula-disyuntiva :=     O-cláusula (or O-cláusula)*
+//O-cláusula-conjuntiva :=     O-cláusula (and O-cláusula)*
+//1 o m�s O-cláusulas con OR o  1 o m�s con AND, pero no combinando OR y AND
 FLFormula o_clauses() :
 {
     FLFormula p;
@@ -1076,9 +1087,9 @@ FLFormula o_clauses() :
 }
 
 /*
-//P-cl�usula-disyuntiva :=     P-cl�usula (or P-cl�usula)*
-//p_clause_conjunctive :=     P-cl�usula (and P-cl�usula)*
-//1 o m�s P-cl�usulas con OR o  1 o m�s con AND, pero no combinando OR y AND
+//P-cláusula-disyuntiva :=     P-cláusula (or P-cláusula)*
+//p_clause_conjunctive :=     P-cláusula (and P-cláusula)*
+//1 o m�s P-cláusulas con OR o  1 o m�s con AND, pero no combinando OR y AND
 FLFormula p_clauses666() :
 {
     FLFormula p;
@@ -1127,9 +1138,9 @@ FLFormula p_clauses666() :
 }
 */
 
-//P-cl�usula-disyuntiva :=     P-cl�usula (or P-cl�usula)*
-//p_clause_conjunctive :=     P-cl�usula (and P-cl�usula)*
-//1 o m�s P-cl�usulas con OR o  1 o m�s con AND, pero no combinando OR y AND
+//P-cláusula-disyuntiva :=     P-cláusula (or P-cláusula)*
+//p_clause_conjunctive :=     P-cláusula (and P-cláusula)*
+//1 o m�s P-cláusulas con OR o  1 o m�s con AND, pero no combinando OR y AND
 FLFormula p_clauses() :
 {
     FLFormula p = null;
@@ -1166,7 +1177,47 @@ FLFormula p_clauses() :
     }
 }
 
-//P-cl�usula (OR P-cl�usula)*
+//PP-cláusula-disyuntiva :=     PP-cláusula (or P-cláusula)*
+//pp_clause_conjunctive :=     PP-cláusula (and P-cláusula)*
+//1 o más PP-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
+FLFormula pp_clauses() :
+{
+    FLFormula p = null;
+    FLFormula p2 = null;
+}
+{
+    p = pp_clause()
+    (
+        (   < ML_OR >
+            {
+                originalFormula += " | ";
+            }
+            p2 = pp_clause_disjunctive()
+            {
+                if (p2 != null)
+                    p = new FLOr(p, p2);
+            }
+        )
+        |
+        (
+            < ML_AND >
+            {
+                originalFormula += " & ";
+            }
+            p2 = pp_clause_conjunctive()
+            {
+                if (p2 != null)
+                    p = new FLAnd(p, p2);
+            }
+        )
+    )?
+    {
+        return p;
+    }
+}
+
+
+//P-cláusula (OR P-cláusula)*
 FLFormula p_clause_disjunctive() :
 {
     FLFormula p = null;;
@@ -1187,7 +1238,28 @@ FLFormula p_clause_disjunctive() :
     }
 }
 
-//O-cl�usula (OR O-cl�usula)*
+//PP-cláusula (OR PP-cláusula)*
+FLFormula pp_clause_disjunctive() :
+{
+    FLFormula p = null;;
+    FLFormula p2;
+}
+{
+    (
+        p = pp_clause()
+        (   < ML_OR > p2 = pp_clause()
+            {
+                originalFormula += " | ";
+                p = new FLOr(p, p2);
+            }
+        )*
+    )
+    {
+        return p;
+    }
+}
+
+//O-cláusula (OR O-cláusula)*
 FLFormula o_clause_disjunctive() :
 {
     FLFormula p = null;;
@@ -1208,7 +1280,7 @@ FLFormula o_clause_disjunctive() :
     }
 }
 
-//F-cl�usula (OR F-cl�usula)*
+//F-cláusula (OR F-cláusula)*
 FLFormula f_clause_disjunctive() :
 {
     FLFormula p = null;;
@@ -1229,7 +1301,7 @@ FLFormula f_clause_disjunctive() :
     }
 }
 
-//P-cl�usula (AND P-cl�usula)*
+//P-cláusula (AND P-cláusula)*
 FLFormula p_clause_conjunctive() :
 {
     FLFormula p = null;
@@ -1250,7 +1322,28 @@ FLFormula p_clause_conjunctive() :
   }
 }
 
-//O-cl�usula (AND O-cl�usula)*
+//PP-cláusula (AND PP-cláusula)*
+FLFormula pp_clause_conjunctive() :
+{
+    FLFormula p = null;
+    FLFormula p2;
+}
+{
+    (
+        p = pp_clause()
+        (   < ML_AND > p2 = pp_clause()
+            {
+                originalFormula += " & ";
+                p = new FLAnd(p, p2);
+            }
+        )*
+    )
+  {
+    return p;
+  }
+}
+
+//O-cláusula (AND O-cláusula)*
 FLFormula o_clause_conjunctive() :
 {
     FLFormula p = null;
@@ -1271,7 +1364,7 @@ FLFormula o_clause_conjunctive() :
   }
 }
 
-//F-cl�usula (AND F-cl�usula)*
+//F-cláusula (AND F-cláusula)*
 FLFormula f_clause_conjunctive() :
 {
     FLFormula p = null;
@@ -1337,6 +1430,22 @@ Permission p_clause() :
   }
 }
 
+PermanentPermission pp_clause() :
+{
+  FLFormula mainFormula;
+  PermanentPermission res;
+  originalFormula += "PP(";
+}
+{
+  < PERM_PERMISSION > mainFormula = sentence()     //PP(...)
+  {
+    res = new PermanentPermission(mainFormula);
+    originalFormula += ")";
+  } < PAR_RIGHT >
+  {
+      return res;
+  }
+}
 
 Obligation o_clause() :
 {
@@ -1445,9 +1554,11 @@ FLFormula forallWithDeontic() :
     {
         originalFormula += "; ";
     }
-    //FORALL (var (: rol)? ; O-cl�usula-disyuntiva | F-cl�usula-disyuntiva | P-cl�usula-disyuntiva )
+    //FORALL (var (: rol)? ; O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva | PP-cláusula-disyuntiva )
     (
         tempFormula = p_clause_conjunctive()
+        |
+        tempFormula = pp_clause_conjunctive()
         |
         tempFormula = o_clause_conjunctive()
         |
@@ -1518,9 +1629,11 @@ FLFormula existsWithDeontic() :
     {
         originalFormula += "; ";
     }
-    //EXISTS (var (: rol)? ; O-cl�usula-disyuntiva | F-cl�usula-disyuntiva | P-cl�usula-disyuntiva )
+    //EXISTS (var (: rol)? ; O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva | PP-cláusula-disyuntiva )
     (
         tempFormula = p_clause_disjunctive()        |
+        tempFormula = pp_clause_disjunctive()
+        |
         tempFormula = o_clause_disjunctive()
         |
         tempFormula = f_clause_disjunctive()
