@@ -117,53 +117,55 @@ public interface FLParserConstants {
   /** RegularExpression Id. */
   int PERMISSION = 58;
   /** RegularExpression Id. */
-  int COMMA = 59;
+  int PERM_PERMISSION = 59;
   /** RegularExpression Id. */
-  int OCCURRED = 60;
+  int COMMA = 60;
   /** RegularExpression Id. */
-  int RESULTS_IN = 61;
+  int OCCURRED = 61;
   /** RegularExpression Id. */
-  int REPAIRED_BY = 62;
+  int RESULTS_IN = 62;
   /** RegularExpression Id. */
-  int EXCEPTION_OF = 63;
+  int REPAIRED_BY = 63;
   /** RegularExpression Id. */
-  int GIVEN_THAT = 64;
+  int EXCEPTION_OF = 64;
   /** RegularExpression Id. */
-  int INSIDE = 65;
+  int GIVEN_THAT = 65;
   /** RegularExpression Id. */
-  int EXISTS = 66;
+  int INSIDE = 66;
   /** RegularExpression Id. */
-  int FORALL = 67;
+  int EXISTS = 67;
   /** RegularExpression Id. */
-  int EQUAL = 68;
+  int FORALL = 68;
   /** RegularExpression Id. */
-  int LESS = 69;
+  int EQUAL = 69;
   /** RegularExpression Id. */
-  int GREATER = 70;
+  int LESS = 70;
   /** RegularExpression Id. */
-  int LEQ = 71;
+  int GREATER = 71;
   /** RegularExpression Id. */
-  int GEQ = 72;
+  int LEQ = 72;
   /** RegularExpression Id. */
-  int START_RAW_TEXT = 73;
+  int GEQ = 73;
   /** RegularExpression Id. */
-  int END_RAW_TEXT = 74;
+  int START_RAW_TEXT = 74;
   /** RegularExpression Id. */
-  int RAW_TEXT = 75;
+  int END_RAW_TEXT = 75;
   /** RegularExpression Id. */
-  int IDENTIFIER = 76;
+  int RAW_TEXT = 76;
   /** RegularExpression Id. */
-  int NUMBER = 77;
+  int IDENTIFIER = 77;
   /** RegularExpression Id. */
-  int MINUS = 78;
+  int NUMBER = 78;
   /** RegularExpression Id. */
-  int UNDERSCORE = 79;
+  int MINUS = 79;
   /** RegularExpression Id. */
-  int INT_NUMBER = 80;
+  int UNDERSCORE = 80;
   /** RegularExpression Id. */
-  int LETTER = 81;
+  int INT_NUMBER = 81;
   /** RegularExpression Id. */
-  int DIGIT = 82;
+  int LETTER = 82;
+  /** RegularExpression Id. */
+  int DIGIT = 83;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -231,6 +233,7 @@ public interface FLParserConstants {
     "\"O(\"",
     "\"F(\"",
     "\"P(\"",
+    "\"PP(\"",
     "\",\"",
     "\"occurred\"",
     "\"results in\"",
