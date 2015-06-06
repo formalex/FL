@@ -1438,10 +1438,22 @@ PermanentPermission pp_clause() :
 }
 {
   < PERM_PERMISSION > mainFormula = sentence()     //PP(...)
+  (    
+      < GIVEN_THAT > 
+      {
+        originalFormula += " given that ";
+      }
+      conditionFormula = sentence()
+  )? < PAR_RIGHT >
   {
-    res = new PermanentPermission(mainFormula);
+    if (conditionFormula == null)
+    {
+      res = new PermanentPermission(mainFormula);
+    } else {
+      res = new PermanentPermission(mainFormula, conditionFormula);
+    }     
     originalFormula += ")";
-  } < PAR_RIGHT >
+  }
   {
       return res;
   }
