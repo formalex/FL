@@ -13,6 +13,12 @@ public class PermanentPermission extends FLFormula {
         this.formula =  new Obligation(permission);        
     }
 
+	public PermanentPermission(FLFormula formula, FLFormula condition) {
+        //O(P( fórmula ))
+        Permission permission = new Permission(formula, condition);
+        this.formula =  new Obligation(permission);        
+    }
+
 	@Override
 	public String toString() {
 		return formula.toString();
