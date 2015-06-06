@@ -1433,6 +1433,7 @@ Permission p_clause() :
 PermanentPermission pp_clause() :
 {
   FLFormula mainFormula;
+  FLFormula conditionFormula = null;
   PermanentPermission res;
   originalFormula += "PP(";
 }
