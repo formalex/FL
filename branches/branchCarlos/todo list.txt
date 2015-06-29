@@ -1,0 +1,10 @@
+1) Algún modificador para indicar que dos acciones no puedan suceder en simultáneo
+2) Relacionado con el punto anterior, revisar el comportamiento de las acciones que modifican a un contador para que quede consistente.
+3) "álgebra de roles", que a uno le permita decir que cosas como que un rol tiene subroles, pero también que el rol S1 está compuesto por los roles A y B, el rol S2 por los roles C, D, y S1 y S2 pueden ser disjoint o cover entre sí, independientemente de los modificadores que tengan adentro. Por ejemplo, A y B podrían ser cover entre ellos.
+4) Permitir que los contadores se comparen con otros contadores (ahora solo se pueden comparar con un número)
+5) Permitir definir en los contadores sus  MIN_VALUE y MAX_VALUE, y qué hacer si se intenta pasar de rango
+6) Hoy un intervalo comienza y termina si ocurren determinadas acciones. Habría que permitir que lo limiten acciones con un determinado resultado.
+7) Que las fórmulas con ?result in? permitan más de un resultado posible.
+8) Un modificador para los intervalos que indique que se repite periódicamente (ej: termina una semana y lo siguiente que sucede es que empieza otra, sin que sucedan eventos que no estén encuadrados en una semana. Tal vez es mejor manejarlos como eventos temporales de alguna forma.)
+9) agregar validación pendiente de las reglas (creo que es una sola) del paper de flacos (cap. 7.3 Analyzing) Coherence
+10) Al validar las normas, encontrar contraejemplos no triviales para el comportamiento legal.

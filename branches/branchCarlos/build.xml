@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="tesis" default="compilar" basedir=".">
+
+	<property environment="env"/>           
+	
+    <property name="DIR_ROOT"  value="C:\Users\ety\Documents\UBA\TESIS\workspace\tesis"/>
+
+    <property name="src" location="${DIR_ROOT}\src"/>
+    <property name="build" location="${DIR_ROOT}\clases"/>
+    <property name="jars"  location="${DIR_ROOT}\jar"/>
+ 
+    	
+    <property name="jars"  value="
+        ${jar}\velocity-1.7-dep.jar;
+        "/>
+
+
+    <target name="compilar" depends="init"  >
+        <echo message="javaHome = ${env.JAVA_HOME}"/>
+        
+        <javac  srcdir="${src}" 
+                destdir="${build}"
+                classpath="${jar}"/>                         
+		
+		<!-- copio resources -->
+		<copy todir="${build}">
+			<fileset dir="${src}"
+				includes="**/*.xml,**/*.properties,**/*.txt,**/*.ico, **/*.JPG" />
+		</copy>
+
+    </target>
+
+    <target name="init">
+        <mkdir dir="${build}"/>
+    </target>
+
+    <target name="correrJavaCC" >
+        <javacc
+                target="${src}/ar/uba/dc/formalex/parser/FL.jj"
+                outputdirectory="${src}/ar/uba/dc/formalex/parser"
+                javacchome="C:\Users\ety\Documents\UBA\TESIS\workspace\tesis\jar"
+        />
+        <antcall target="compilar" />
+    </target>
+
+    <target name="copiarVelocity" >
+        <copy todir="${DIR_ROOT}\clases\templates">
+            <fileset dir="C:\Users\ety\Documents\UBA\TESIS\apuntesTesis"
+                     includes="*.vm" />
+        </copy>
+    </target>
+</project>
