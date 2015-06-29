@@ -14,7 +14,9 @@ import java.util.*;
  * Time: 23:29
  */
 public class FLInput {
-    private BackgroundTheory backgroundTheory = new BackgroundTheory();
+    private static final String MSJ_ERROR_NOMBRE_CON_AGENTE_REPETIDO_REVISAR = "Nombre con agente repetido. Revisar";
+    
+	private BackgroundTheory backgroundTheory = new BackgroundTheory();
     private Regulation regulation = new Regulation();
     private List<String> flPermission = new ArrayList<String>();
     private List<String> flRule = new ArrayList<String>();
@@ -141,26 +143,26 @@ public class FLInput {
 
     public Set<String> getNamesWithAgent() {
 
-        //todo: ver qu� pasa con impersonal_actions e intervalos y contadores globales
+        //todo: ver qué pasa con impersonal_actions e intervalos y contadores globales
         Set<String> namesWithAgent = new HashSet<String>();
         for(Action action : getActions()) {
             boolean sinRepetir = namesWithAgent.add(action.getName());
             if (!sinRepetir){
-                throw new RuntimeException("Nombre con agente repetido. Revisar");
+                throw new RuntimeException(MSJ_ERROR_NOMBRE_CON_AGENTE_REPETIDO_REVISAR);
             }
         }
 
         for(Interval interval: getIntervals()) {
             boolean sinRepetir = namesWithAgent.add(interval.getName());
             if (!sinRepetir){
-                throw new RuntimeException("Nombre con agente repetido. Revisar");
+                throw new RuntimeException(MSJ_ERROR_NOMBRE_CON_AGENTE_REPETIDO_REVISAR);
             }
         }
 
         for(Counter counter: getCounters()) {
             boolean sinRepetir = namesWithAgent.add(counter.getName());
             if (!sinRepetir){
-                throw new RuntimeException("Nombre con agente repetido. Revisar");
+                throw new RuntimeException(MSJ_ERROR_NOMBRE_CON_AGENTE_REPETIDO_REVISAR);
             }
         }
         return namesWithAgent;
