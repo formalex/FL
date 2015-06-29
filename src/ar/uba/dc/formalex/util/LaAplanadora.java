@@ -22,7 +22,7 @@ public class LaAplanadora {
 	private static final String SEPARADOR_AGENTE_INTERVALO = ".";
 	private static final String SEPARADOR_AGENTE_CONTADOR = ".";
 
-	//un map con k = acci�n original, v = set de acciones nuevas
+	//un map con k = acción original, v = set de acciones nuevas
 	private Map<Action, Set<Action>> accionesSyncActivo = new HashMap<Action, Set<Action>>();
 	private Map<Action, Set<Action>> accionesSyncPasivo = new HashMap<Action, Set<Action>>();
 	private Map<Action, Agente> accionesYAgentes = new HashMap<Action, Agente>();
