@@ -1,0 +1,13 @@
+#Background
+
+roles ciudadano
+actions inicio_condena, fin_condena
+action circular_libremente
+
+local interval preso defined by actions inicio_condena - fin_condena
+
+#Clauses
+FORALL(i:ciudadano; PP(i.circular_libremente))
+FORALL(h:ciudadano; F(INSIDE(h.preso) & h.circular_libremente))
+
+
