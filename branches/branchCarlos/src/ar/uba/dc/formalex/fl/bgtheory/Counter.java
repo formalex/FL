@@ -64,7 +64,7 @@ public class Counter {
         if (providedThat != null){
             String oldValue = conditions.put(action, providedThat);
             if (oldValue != null){
-                throw new RuntimeException("La misma acción no se puede usar con dos provided distintos. Action = " + action.getName());
+                throw new RuntimeException("La misma acciÃ³n no se puede usar con dos provided distintos. Action = " + action.getName());
             }
         }
     }
