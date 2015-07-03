@@ -1,0 +1,10 @@
+#Background
+
+roles comprador,vendedor disjoint cover
+action comprar
+action vender synchronizes with comprar disallow autosync
+only performable by vendedor
+
+#Clauses
+
+P( FORALL(i:comprador; i.comprar))

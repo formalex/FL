@@ -1,0 +1,12 @@
+#Background
+
+roles ciudadano{civil{hombre,mujer disjoint cover},militar disjoint cover},menor{nene,nena disjoint cover}
+actions votar,estarEnfermo, iniciar_viaje, finalizar_viaje
+
+local interval en_viaje defined by actions iniciar_viaje - finalizar_viaje
+
+#Clauses
+tag: votoOblig FORALL(i:ciudadano; O(i.votar))
+FORALL(h:ciudadano; P(!(h.votar) given that INSIDE(h.en_viaje)) is exception of votoOblig)
+FORALL(j:ciudadano; P(!(j.votar) given that j.belongsTo:menor) is exception of votoOblig)
+
