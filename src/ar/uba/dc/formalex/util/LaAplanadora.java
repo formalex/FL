@@ -318,7 +318,7 @@ public class LaAplanadora {
 				Action accionConAgente = getAccionConAgente(accOriginal, agente);
 				if (accionConAgente != null){ //es null si el agente no realiza la acción.
 
-					if (!accOriginal.hasActiveSync() && !accOriginal.hasPasiveSync())
+					if (!accOriginal.isSync())
 						res.addIncreaseAction(accionConAgente, value, pt);
 					else {
 						Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
@@ -340,7 +340,7 @@ public class LaAplanadora {
 			else {
 				Action accionConAgente = getAccionConAgente(accOriginal, agente);
 				if (accionConAgente != null){ //es null si el agente no realiza la acción.
-					if (!accOriginal.hasActiveSync() && !accOriginal.hasPasiveSync())
+					if (!accOriginal.isSync())
 						res.addSetValueAction(accionConAgente, value, pt);
 					else {
 						Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
@@ -377,7 +377,7 @@ public class LaAplanadora {
 			else{
 				Action accionConAgente = getAccionConAgente(action, agente);
 				if (accionConAgente != null){  //es null si el agente no realiza la acción.
-					if (!action.hasActiveSync() && !action.hasPasiveSync())
+					if (!action.isSync())
 						newSet.add(accionConAgente);
 					else {
 						Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
@@ -480,7 +480,7 @@ public class LaAplanadora {
 			else{
 				Set<Action> accionesConAgentes = getAccionesConAgente(ai);
 				if (accionesConAgentes != null && accionesConAgentes.size() > 0){
-					if (!ai.hasActiveSync() && !ai.hasPasiveSync())
+					if (!ai.isSync())
 						newSet.addAll(accionesConAgentes);
 					else {
 						Set<Action> accionesSync = getAccionesSync(accionesConAgentes, true, true);
