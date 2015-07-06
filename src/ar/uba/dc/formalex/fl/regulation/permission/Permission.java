@@ -33,4 +33,8 @@ public class Permission extends FLFormula {
         return formula.instanciar(variable, agente, bgUtil, forceAgent);
     }
 
+	public FLFormula getFormula() {
+		return formula;
+	}
+
 }

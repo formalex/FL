@@ -30,4 +30,8 @@ public class Forbidden extends FLFormula {
     public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
         return formula.instanciar(variable, agente, bgUtil, forceAgent);
     }
+
+	public FLFormula getFormula() {
+		return formula;
+	}
 }
