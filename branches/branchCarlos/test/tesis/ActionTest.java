@@ -5,13 +5,58 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import ar.uba.dc.formalex.fl.bgtheory.Action;
+import ar.uba.dc.formalex.fl.bgtheory.Role;
 
 public class ActionTest {
+
+	private Action actionPasiva;
+	private Action actionActiva;
 
 	@Test
 	public void testAccionesSincronizadas() {
 
-		Action actionPasiva = new Action();
+		crearAccionesActivayPasiva();
+			
+		validaQueEsSincronizada(actionActiva, true);
+		validaQueEsSincronizada(actionPasiva, false);
+	}
+	
+	@Test
+	public void siUnaAccionEsActivaOrPasivaEntoncesEsSincronizada() {
+
+		crearAccionesActivayPasiva();
+			
+		assertTrue(actionActiva.isSync());
+		assertTrue(actionPasiva.isSync());
+	}
+	
+	@Test
+	public void testAccionSinRolDefinido() {
+		
+		//Creo una accion sin roles
+		Action acccionSinRolDefinido = getAccionSinRolDefinido();
+		
+		assertTrue(acccionSinRolDefinido.isSinRolDefinido());
+		
+	}
+
+	
+	@Test
+	public void siLeAgregoAlMenosUnRolNoEsUnaAccionSinRolDefinido() {
+		
+		//Creo una accion sin roles
+		Action acccionConRol = getAccionSinRolDefinido();
+		
+		/*Le agrego un rol a la acción */
+		Role aRole = new Role("role1");
+		acccionConRol.addPerformableBy(aRole );
+		
+		assertFalse(acccionConRol.isSinRolDefinido());
+		
+	}
+
+	private void crearAccionesActivayPasiva() {
+		actionPasiva = new Action();
 		actionPasiva.setName("pasiva");
 		actionPasiva.setImpersonal(false);
 		actionPasiva.setOccurrences(0);
@@ -19,7 +64,7 @@ public class ActionTest {
 		
 		actionPasiva.setAllowAutoSync(false);
 		
-		Action actionActiva = new Action();
+		actionActiva = new Action();
 		actionActiva.setName("activa");
 		actionActiva.setImpersonal(false);
 		actionActiva.setOccurrences(0);
@@ -29,12 +74,14 @@ public class ActionTest {
 		actionActiva.setAllowAutoSync(false);
 		
 		actionPasiva.setSync(actionActiva, !actionActiva.hasActiveSync());
-		
-		
-		validaQueEsSincronizada(actionActiva, true);
-		validaQueEsSincronizada(actionPasiva, false);
 	}
-
+	private Action getAccionSinRolDefinido() {
+		Action acccionSinRolDefinido = new Action();
+		acccionSinRolDefinido.setName("Accion sin rol definido");
+		acccionSinRolDefinido.setImpersonal(false);
+		return acccionSinRolDefinido;
+	}
+	
 	private void validaQueEsSincronizada(Action unaAction, boolean esActiva) {
 		assertNotNull(unaAction.getSync());
 		assertNotNull(unaAction.isAllowAutoSync());

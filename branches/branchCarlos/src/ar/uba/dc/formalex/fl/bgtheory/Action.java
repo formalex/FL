@@ -5,6 +5,10 @@ import org.apache.log4j.Logger;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author cfaciano
+ *
+ */
 @SuppressWarnings({"RedundantIfStatement", "NonFinalFieldReferencedInHashCode"})
 public class Action {
     private static final Logger logger = Logger.getLogger(Action.class);
@@ -139,6 +143,17 @@ public class Action {
 	public void addPerformableBy(Role aRole) {
         performableBy.add(aRole);
 	}
+    /**
+     * Una accion sin rol definido es una accion que NO es impersonal
+     * y no tiene roles asociados, eso quiere decir que la puede ejecutar
+     * cualquier agente
+     * @return
+     */
+    public boolean isSinRolDefinido(){
+    	
+    	Set<Role> rolesDeLaAccion = this.getPerformableBy();
+		return !this.isImpersonal() && rolesDeLaAccion.isEmpty();
+    }
 
 	/**
 	 * @return the occursIn
@@ -166,6 +181,7 @@ public class Action {
 
         return true;
     }
+    
 
     @Override
     public int hashCode() {
@@ -188,6 +204,14 @@ public class Action {
 		return sync != null && !(isActive);
 	}
 
+	
+	/**Devuelve true si es una accion sincronizada, sin importar
+	 * si es Activa o Pasiva
+	 * @return
+	 */
+	public Boolean isSync(){
+		return sync != null;
+	}
 
     public Action getSync() {
         return sync;
