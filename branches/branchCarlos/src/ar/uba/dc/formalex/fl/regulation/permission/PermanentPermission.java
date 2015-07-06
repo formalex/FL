@@ -30,4 +30,8 @@ public class PermanentPermission extends FLFormula {
 		return formula.instanciar(variable, agente, bgUtil, forceAgent);
 	}
 
+	public FLFormula getFormula() {
+		return formula;
+	}
+
 }
