@@ -31,7 +31,7 @@ public class NuSMVModelChecker {
         UtilFile.guardar(commandFile, x, false);
     }
 
-    private static void crearAutomata(BackgroundTheory backgroundTheory, FLFormula formula, File fileOut){
+    private static void crearAutomata(BackgroundTheory backgroundTheory, File fileOut){
         PrintWriter writer = null;
 
         try{
@@ -101,7 +101,7 @@ public class NuSMVModelChecker {
             nusmvOutput = new File(temp_dir, nusvmOutputFileName );
         }
         try {
-            crearAutomata(backgroundTheory, formulaToTest, nusmvInput);
+            crearAutomata(backgroundTheory, nusmvInput);
 //            String ltlExpr = formulaToTest.toString() + " & !X X X X X TRUE";
             String ltlExpr = formulaToTest.toString();
             crearComandos(nusmvCommands, nusmvOutput.getAbsolutePath(), ltlExpr);

@@ -27,7 +27,7 @@ public class LaAplanadora {
 	private Map<Action, Set<Action>> accionesSyncPasivo = new HashMap<Action, Set<Action>>();
 	private Map<Action, Agente> accionesYAgentes = new HashMap<Action, Agente>();
 	private Map<Interval, Agente> intervalosYAgentes = new HashMap<Interval, Agente>();
-	private Map<Counter, Agente> contadoresYAgentes = new HashMap<Counter, Agente>();
+	//private Map<Counter, Agente> contadoresYAgentes = new HashMap<Counter, Agente>();
 
 	//por cada acción nueva (agente-acción), acá se guarda su relación con la original
 	private Map<Action, Set<Action>> accionesOriginales = new HashMap<Action, Set<Action>>();
@@ -281,7 +281,7 @@ public class LaAplanadora {
 							Counter contL = crearContadorLocal(contOriginal, ag);
 							res.add(contL);
 							agregar(contadoresOriginales, contOriginal,  contL);
-							contadoresYAgentes.put(contL,  ag);
+							//contadoresYAgentes.put(contL,  ag);
 						}
 					}
 				}
