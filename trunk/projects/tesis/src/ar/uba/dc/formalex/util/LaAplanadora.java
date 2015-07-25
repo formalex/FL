@@ -93,7 +93,7 @@ public class LaAplanadora {
 		logger.info("# acciones impersonales: " + impersonalAction.size());
 		logger.info("# contadores: " + contCounters);
 		logger.info("# intervalos: " + contInterv);
-		logger.info("# f�rmulas: " + input.getRules().size());
+		logger.info("# fórmulas: " + input.getRules().size());
 		logger.info("# permisos: " + input.getPermissions().size());
 		logger.info("");
 
@@ -306,51 +306,51 @@ public class LaAplanadora {
 		res.setMinImpedesActions((Boolean)counterOriginal.isMinImpedesActions());
 		res.setMaxImpedesActions((Boolean)counterOriginal.isMaxImpedesActions());
 
-		//reemplazo c/u de las acciones x las nuevas con agentes
-		Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
-		for (Action accOriginal : incrActions.keySet()) {
-			String pt = counterOriginal.getCondition(accOriginal);
-			Integer value = incrActions.get(accOriginal);
-			if (accOriginal.isImpersonal()){
-				res.addIncreaseAction(accOriginal, value, pt);
-			}
-			else {
-				Action accionConAgente = getAccionConAgente(accOriginal, agente);
-				if (accionConAgente != null){ //es null si el agente no realiza la acci�n.
+        //reemplazo c/u de las acciones x las nuevas con agentes
+        Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
+        for (Action accOriginal : incrActions.keySet()) {
+            String pt = counterOriginal.getCondition(accOriginal);
+            Integer value = incrActions.get(accOriginal);
+            if (accOriginal.isImpersonal()){
+                res.addIncreaseAction(accOriginal, value, pt);
+            }
+            else {
+                Action accionConAgente = getAccionConAgente(accOriginal, agente);
+                if (accionConAgente != null){
 
-					if (!accOriginal.hasActiveSync() && !accOriginal.hasPasiveSync())
-						res.addIncreaseAction(accionConAgente, value, pt);
-					else {
-						Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
-						for (Action actionSync : accionesSync) {
-							res.addIncreaseAction(actionSync, value, pt);
-						}
-					}
-				}
-			}
+                    if (!accOriginal.hasActiveSync() && !accOriginal.hasPasiveSync())
+                        res.addIncreaseAction(accionConAgente, value, pt);
+                    else {
+                        Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
+                        for (Action actionSync : accionesSync) {
+                            res.addIncreaseAction(actionSync, value, pt);
+                        }
+                    }
+                }
+            }
 		}
 
-		Map<Action, Integer> setValueActions = counterOriginal.getSetValueActions();
-		for (Action accOriginal : setValueActions.keySet()) {
-			String pt = counterOriginal.getCondition(accOriginal);
-			Integer value = setValueActions.get(accOriginal);
-			if (accOriginal.isImpersonal()){
-				res.addSetValueAction(accOriginal, value, pt);
-			}
-			else {
-				Action accionConAgente = getAccionConAgente(accOriginal, agente);
-				if (accionConAgente != null){ //es null si el agente no realiza la acci�n.
-					if (!accOriginal.hasActiveSync() && !accOriginal.hasPasiveSync())
-						res.addSetValueAction(accionConAgente, value, pt);
-					else {
-						Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
-						for (Action actionSync : accionesSync) {
-							res.addSetValueAction(actionSync, value, pt);
-						}
-					}
-				}
-			}
-		}
+        Map<Action, Integer> setValueActions = counterOriginal.getSetValueActions();
+        for (Action accOriginal : setValueActions.keySet()) {
+            String pt = counterOriginal.getCondition(accOriginal);
+            Integer value = setValueActions.get(accOriginal);
+            if (accOriginal.isImpersonal()){
+                res.addSetValueAction(accOriginal, value, pt);
+            }
+            else {
+                Action accionConAgente = getAccionConAgente(accOriginal, agente);
+                if (accionConAgente != null){
+                    if (!accOriginal.hasActiveSync() && !accOriginal.hasPasiveSync())
+                        res.addSetValueAction(accionConAgente, value, pt);
+                    else {
+                        Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
+                        for (Action actionSync : accionesSync) {
+                            res.addSetValueAction(actionSync, value, pt);
+                        }
+                    }
+                }
+            }
+        }
 		return res;
 	}
 
@@ -375,42 +375,43 @@ public class LaAplanadora {
 				newSet.add(action);
 			}
 			else{
-				Action accionConAgente = getAccionConAgente(action, agente);
-				if (accionConAgente != null){  //es null si el agente no realiza la acci�n.
-					if (!action.hasActiveSync() && !action.hasPasiveSync())
-						newSet.add(accionConAgente);
-					else {
-						Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
-						newSet.addAll(accionesSync);
-					}
-				}
+                Action accionConAgente = getAccionConAgente(action, agente);
+                if (accionConAgente != null){  //es null si el agente no realiza la acción.
+                    if (!action.hasActiveSync() && !action.hasPasiveSync())
+                        newSet.add(accionConAgente);
+                    else {
+                        Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
+                        newSet.addAll(accionesSync);
+                    }
+                }
 			}
 		}
 		return newSet;
 	}
 
-	//devuelve true si el agente realiza por lo menos una de las acciones iniciales (o el intervalo
-	// arranca activo -por isStartActive- o hay 'impersonal action') y por lo menos una de las finales (o el intervalo
-	// es isEndActive o hay 'impersonal action')
-	private static boolean realizaAcciones(Agente ag, Interval interval) {
-		//parche por el agente sin rol (que no recuerdo para qu� se usa y tal vez se podr�a bolar)
-		if (ag.getName().equals("agent_without_role"))
-			return false;
 
-		Set<Action> accionesS = interval.getStartTriggers();
-		Set<Action> accionesE = interval.getEndTriggers();
-		return (ag.realizaAlgunaAccion(accionesS) || interval.isStartActive() || hayImpersonalAction(accionesS) )&&
-				(ag.realizaAlgunaAccion(accionesE) || interval.isEndActive() || hayImpersonalAction(accionesE) );
-	}
+    //devuelve true si el agente realiza por lo menos una de las acciones iniciales (o el intervalo
+    // arranca activo -por isStartActive- o hay 'impersonal action') y por lo menos una de las finales (o el intervalo
+    // es isEndActive o hay 'impersonal action')
+    private static boolean realizaAcciones(Agente ag, Interval interval) {
+        //parche por el agente sin rol (que no recuerdo para qué se usa y tal vez se podría bolar)
+        if (ag.getName().equals("agent_without_role"))
+            return false;
 
-	//devuelve true si entre las acciones recibidas hay por lo menos una impersonal action
-	private static boolean hayImpersonalAction(Set<Action> actions) {
-		for(Action action : actions) {
-			if (action.isImpersonal())
-				return true;
-		}
-		return false;
-	}
+        Set<Action> accionesS = interval.getStartTriggers();
+        Set<Action> accionesE = interval.getEndTriggers();
+        return (ag.realizaAlgunaAccion(accionesS) || interval.isStartActive() || hayImpersonalAction(accionesS) )&&
+                (ag.realizaAlgunaAccion(accionesE) || interval.isEndActive() || hayImpersonalAction(accionesE) );
+    }
+
+    //devuelve true si entre las acciones recibidas hay por lo menos una impersonal action
+    private static boolean hayImpersonalAction(Set<Action> actions) {
+        for(Action action : actions) {
+            if (action.isImpersonal())
+                return true;
+        }
+        return false;
+    }
 
 	//devuelve true si el agente realiza por lo menos una de las acciones que modifican al contador
 	private static boolean realizaAcciones(Agente ag, Counter counter) {
@@ -418,43 +419,39 @@ public class LaAplanadora {
 		return ag.realizaAlgunaAccion(acciones);
 	}
 
-	private Counter crearContadorGlobal(Counter counterOriginal) {
-		Counter res = new Counter(counterOriginal.getName());
-		res.setInitValue(counterOriginal.getInitValue());
-		res.setMinValue(counterOriginal.getMinValue());
-		res.setMaxValue(counterOriginal.getMaxValue());                        
-		res.setMinImpedesActions((Boolean)counterOriginal.isMinImpedesActions());
-		res.setMaxImpedesActions((Boolean)counterOriginal.isMaxImpedesActions());
+    private Counter crearContadorGlobal(Counter counterOriginal) {
+        Counter res = new Counter(counterOriginal.getName());
+        res.setInitValue(counterOriginal.getInitValue());
 
-		//reemplazo c/u de las acciones x las nuevas con agentes
-		Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
-		for (Action accOriginal : incrActions.keySet()) {
-			String pt = counterOriginal.getCondition(accOriginal);
-			if (accOriginal.isImpersonal()){
-				res.addIncreaseAction(accOriginal, incrActions.get(accOriginal), pt);
-			}
-			else {
-				Set<Action> accionesConAgentes = getAccionesConAgente(accOriginal);
-				for (Action accionConAgente : accionesConAgentes) {
-					res.addIncreaseAction(accionConAgente, incrActions.get(accOriginal), pt);
-				}
-			}
-		}
+        //reemplazo c/u de las acciones x las nuevas con agentes
+        Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
+        for (Action accOriginal : incrActions.keySet()) {
+            String pt = counterOriginal.getCondition(accOriginal);
+            if (accOriginal.isImpersonal()){
+                res.addIncreaseAction(accOriginal, incrActions.get(accOriginal), pt);
+            }
+            else {
+                Set<Action> accionesConAgentes = getAccionesConAgente(accOriginal);
+                for (Action accionConAgente : accionesConAgentes) {
+                    res.addIncreaseAction(accionConAgente, incrActions.get(accOriginal), pt);
+                }
+            }
+        }
 
-		Map<Action, Integer> setValueActions = counterOriginal.getSetValueActions();
-		for (Action accOriginal : setValueActions.keySet()) {
-			String pt = counterOriginal.getCondition(accOriginal);
-			if (accOriginal.isImpersonal()){
-				res.addSetValueAction(accOriginal, setValueActions.get(accOriginal), pt);
-			}
-			else {
-				Set<Action> accionesConAgentes = getAccionesConAgente(accOriginal);
-				for (Action accionConAgente : accionesConAgentes) {
-					res.addSetValueAction(accionConAgente, setValueActions.get(accOriginal), pt);
-				}
-			}
-		}
-
+        Map<Action, Integer> setValueActions = counterOriginal.getSetValueActions();
+        for (Action accOriginal : setValueActions.keySet()) {
+            String pt = counterOriginal.getCondition(accOriginal);
+            if (accOriginal.isImpersonal()){
+                res.addSetValueAction(accOriginal, setValueActions.get(accOriginal), pt);
+            }
+            else {
+                Set<Action> accionesConAgentes = getAccionesConAgente(accOriginal);
+                for (Action accionConAgente : accionesConAgentes) {
+                    res.addSetValueAction(accionConAgente, setValueActions.get(accOriginal), pt);
+                }
+            }
+        }
+        
 		return res;
 	}
 
