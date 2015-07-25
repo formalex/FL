@@ -17,96 +17,102 @@ import java.util.*;
  * Time: 15:56
  */
 public class Util {
-    private static final Logger logger = Logger.getLogger(Util.class);
+	private static final Logger logger = Logger.getLogger(Util.class);
 
 
-    public static  <T> List<T> ordenar(Set<T> set){
-        Object[] a = set.toArray();
-        Arrays.sort(a, new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                return o1.toString().compareTo(o2.toString());
-            }
-        });
-        return new ArrayList(Arrays.asList(a));
-    }
+	public static  <T> List<T> ordenar(Set<T> set){
+		Object[] a = set.toArray();
+		Arrays.sort(a, new Comparator<Object>() {
+			@Override
+			public int compare(Object o1, Object o2) {
+				return o1.toString().compareTo(o2.toString());
+			}
+		});
+		return new ArrayList(Arrays.asList(a));
+	}
 
-    public static <T> Set<Set<T>> powerSet(Set<T> originalSet) {
-        Set<Set<T>> sets = new HashSet<Set<T>>();
-        if (originalSet.isEmpty()) {
-            sets.add(new HashSet<T>());
-            return sets;
-        }
-        List<T> list = new ArrayList<T>(originalSet);
-        T head = list.get(0);
-        Set<T> rest = new HashSet<T>(list.subList(1, list.size()));
-        for (Set<T> set : powerSet(rest)) {
-            Set<T> newSet = new HashSet<T>();
-            newSet.add(head);
-            newSet.addAll(set);
-            sets.add(newSet);
-            sets.add(set);
-        }
-        return sets;
-    }        
-    
-    public static RolesCombination powerSetSet(RolesCombination originalSet) {
-    	RolesCombination sets = new RolesCombination();
-        if (originalSet.isEmpty()) {
-            sets.add(new HashSet<Role>());
-            return sets;
-        }
-        List<HashSet<Role>> list = new ArrayList<HashSet<Role>>(originalSet);
-        HashSet<Role> head = list.get(0);
-        HashSet<HashSet<Role>> rest = new HashSet<HashSet<Role>>(list.subList(1, list.size()));
-        for (HashSet<Role> set : powerSetSet((RolesCombination)rest)) {
-        	HashSet<Role> newSet = new HashSet<Role>();            
-            newSet.addAll(head);
-            newSet.addAll(set);
-            sets.add(newSet);
-            sets.add(set);            
-        }
-        return sets;
-    }
-    
-    public static RolesCombination combineBetweenRoles(RoleSpecification spec) {
-    	RolesCombination sets = new RolesCombination();
-    	if (spec.getRoles().isEmpty()) {
-    		sets.add(new HashSet<Role>());
-    		return sets;
-    	}
-    	for(Role role: spec.getRoles()){
-    		for(HashSet<Role> combination: role.getRoleSpecification().getRolesCombination()){
-    			for(Role roleToCombine: spec.getRoles()){
-    				if(!role.equals(roleToCombine)){    					   
-    					for(HashSet<Role> otherCombination: roleToCombine.getRoleSpecification().getRolesCombination()){
-    						HashSet<Role> newCombination = new HashSet<Role>();
-    						newCombination.addAll(combination); 
-    						newCombination.addAll(otherCombination);
-    						sets.add(newCombination);
-    					}    	    			 
-    				}
-    				sets.add(combination);
-    			}
-    		}
-    	}
-    	return sets;
-    }
+	public static <T> Set<Set<T>> powerSet(Set<T> originalSet) {
+		Set<Set<T>> sets = new HashSet<Set<T>>();
+		if (originalSet.isEmpty()) {
+			sets.add(new HashSet<T>());
+			return sets;
+		}
+		List<T> list = new ArrayList<T>(originalSet);
+		T head = list.get(0);
+		Set<T> rest = new HashSet<T>(list.subList(1, list.size()));
+		for (Set<T> set : powerSet(rest)) {
+			Set<T> newSet = new HashSet<T>();
+			newSet.add(head);
+			newSet.addAll(set);
+			sets.add(newSet);
+			sets.add(set);
+		}
+		return sets;
+	}        
 
-        
-    /**
-     * Lee las propiedades del archivo y las asigna a System.properties
-     */
-    public static void loadProperties(String pFilename){
-        try
-        {
-            Properties system = System.getProperties();
-            File f = new File(pFilename);
-            FileInputStream fi = new FileInputStream(f);
-            system.load(fi);
-            fi.close();
-        }catch(IOException e){
-            logger.error(e.getMessage(), e);
-        }
-    }
+	public static RolesCombination powerSetSet(RolesCombination originalSet) {
+		RolesCombination sets = new RolesCombination();
+		if (originalSet.isEmpty()) {
+			sets.add(new HashSet<Role>());
+			return sets;
+		}
+		List<HashSet<Role>> list = new ArrayList<HashSet<Role>>(originalSet);
+		HashSet<Role> head = list.get(0);
+		HashSet<HashSet<Role>> rest = new HashSet<HashSet<Role>>(list.subList(1, list.size()));
+		for (HashSet<Role> set : powerSetSet((RolesCombination)rest)) {
+			HashSet<Role> newSet = new HashSet<Role>();            
+			newSet.addAll(head);
+			newSet.addAll(set);
+			sets.add(newSet);
+			sets.add(set);            
+		}
+		return sets;
+	}
+
+	public static RolesCombination combineBetweenRoles(RoleSpecification spec) {
+		RolesCombination sets = new RolesCombination();
+		if (spec.getRoles().isEmpty()) {
+			sets.add(new HashSet<Role>());
+			return sets;
+		}
+		//Se agregan las combinaciones de cada rol principal.
+		for(Role role: spec.getRoles()){
+			for(HashSet<Role> combination: role.getRoleSpecification().getRolesCombination()){
+				sets.add(combination);
+			}
+		}
+		//Se combinan entre las combinaciones agregadas, sin volver a combinar para un mismo rol.
+		for(Role role: spec.getRoles()){
+			for(HashSet<Role> combinationRole: role.getRoleSpecification().getRolesCombination()){
+				RolesCombination auxCombination2 = new RolesCombination();
+				auxCombination2.addAll(sets);
+				for(HashSet<Role> combination: auxCombination2){
+					if(!combination.contains(role)){
+						HashSet<Role> newCombination = new HashSet<Role>();
+						newCombination.addAll(combination); 
+						newCombination.addAll(combinationRole);
+						sets.add(newCombination);
+					}
+				}
+			}
+		}
+		return sets;
+	}
+
+
+	/**
+	 * Lee las propiedades del archivo y las asigna a System.properties
+	 */
+	 public static void loadProperties(String pFilename){
+		try
+		{
+			Properties system = System.getProperties();
+			File f = new File(pFilename);
+			FileInputStream fi = new FileInputStream(f);
+			system.load(fi);
+			fi.close();
+		}catch(IOException e){
+			logger.error(e.getMessage(), e);
+		}
+	}
 }
