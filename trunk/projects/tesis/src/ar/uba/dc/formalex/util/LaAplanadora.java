@@ -633,7 +633,9 @@ public class LaAplanadora {
 		RolesCombination rolesParaAgentes = new RolesCombination();
 		for(RoleSpecification spec : listaRoles){
 			combineMainRoleSpec(spec);
-			rolesParaAgentes.addAll(spec.getRolesCombination());
+			//Se combina cada linea de role con las que ya se combinaron antes
+			RolesCombination partialResult = combineWithPreviousResults(spec.getRolesCombination(), rolesParaAgentes);
+			rolesParaAgentes = partialResult;			
 		}
 
 		//Por cada conjunto del powerSet (salvo el conjunto vacío), se forma un Agente que va a tener los roles del conjunto.		
@@ -647,6 +649,23 @@ public class LaAplanadora {
 		}
 
 		return res;
+	}
+	
+	private RolesCombination combineWithPreviousResults(RolesCombination combination, RolesCombination partialResult){
+		RolesCombination result = new RolesCombination();
+		for(HashSet<Role> currenSet: combination){
+			if(currenSet.size() > 0){							
+				result.add(currenSet);
+				for(HashSet<Role> currentPartialResult: partialResult){
+					HashSet<Role> newCombination = new HashSet<Role>();
+					newCombination.addAll(currenSet);
+					newCombination.addAll(currentPartialResult);
+					result.add(newCombination);
+				}
+			}
+		}
+		result.addAll(partialResult);
+		return result;
 	}
 
 	//Devuelve true si el conjunto tiene por lo menos alg�n rol de la lista
