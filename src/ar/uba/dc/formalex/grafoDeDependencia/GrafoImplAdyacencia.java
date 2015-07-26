@@ -2,36 +2,40 @@ package ar.uba.dc.formalex.grafoDeDependencia;
 
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 
 public class GrafoImplAdyacencia<E> implements Grafo<E> {
 
     private Hashtable<String, Nodo<E>> nodos;
 
-    @Override
-	public String toString() {
-    	if(nodos!=null){
-    		StringBuilder sb= new StringBuilder();
-    		sb.append("Aristas= {\n");
-    		for (Nodo<E> unNodo : this.nodos.values()) {
-				if(!unNodo.getVecinos().isEmpty())
-					for (Nodo<E> unVecino : unNodo.getVecinos()) {
-						sb.append(String.format("(%s -> %s)\n", unNodo.getId(), unVecino.getId()));
-					}				
-			}
-
-    		sb.append("}");
-    		
-    		//TODO ver si los nodos se pueden imprimir mejor
-    		return "GrafoImplAdyacencia [nodos=" + nodos + "] " + sb.toString();
-    	}
-		return "GrafoImplAdyacencia [nodos=" + nodos + "]";
-	}
-
 	public GrafoImplAdyacencia() {
         nodos = new Hashtable<String, Nodo<E>>();
     }
     
+	@Override
+	public String toString() {
+		if (nodos != null) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("Aristas= {\n");
+			for (Nodo<E> unNodo : this.nodos.values()) {
+				if (!unNodo.getVecinos().isEmpty())
+					for (Nodo<E> unVecino : unNodo.getVecinos()) {
+						sb.append(String.format("(%s -> %s)\n",
+								unNodo.getValor(), unVecino.getValor()));
+					}
+			}
+
+			sb.append("}");
+
+			// TODO ver si los nodos se pueden imprimir mejor
+			return "GrafoImplAdyacencia [nodos=" + nodos.values() + "] "
+					+ sb.toString();
+		}
+		return "GrafoImplAdyacencia [nodos=" + nodos.values() + "] ";
+	}
+	  
     /**
      * Agrega un nuevo nodo en el grafo.
      * @param v
@@ -61,7 +65,7 @@ public class GrafoImplAdyacencia<E> implements Grafo<E> {
      * @param id Identificador del nodo
      * @param v El objeto que va dentro del nodo
      */
-    private void agregarNodo(String id, E v) {
+    public void agregarNodo(String id, E v) {
         Nodo<E> objNodo = new Nodo<E>(id, v);
         
         //Para evitar pisadas accidentales
@@ -82,67 +86,37 @@ public class GrafoImplAdyacencia<E> implements Grafo<E> {
     }
 
 
-    /**
-     * Este metodo es el mas importante en el algoritmo de BFS. SE coloca todos
-     * los nodos a visitar en la cola para tal efecto y se van cambiando los 
-     * valores del visitado de acuerdo como corresponda
-     * @param objVisitado El nodo a visitar.
-     * @param tocaVisitar La cola donde se colocaran los vecinos no visitados
-     * @param objDestino El nodo que se testea para saber cuando parar.
-     * @return Verdadreo o falso para saber si lo encuentra.
+    /** Marca recursivamente los nodos alcanzables desde nodoOrigen
+     * recorriendo en orden BFS
+     * @param el id del nodoOrigen
      */
-    private boolean visitarNodo(Nodo<E> objVisitado, Queue<Nodo<E>> tocaVisitar, 
-                                Nodo<E> objDestino) {
-             
-        for (Nodo<E> vecino : objVisitado.getVecinos()) {
-        	// Si es el que estamos buscando devuelve true y le coloca el numero
-            // de visitado que corresponda.
-            if (vecino == objDestino) {
-                vecino.marcar();
-                return true;
-            }
-
-            // Solamente lo coloca si no esta en la cola (si no ha sido visitado)
-            if (vecino.isMarcado() == false)
-                tocaVisitar.add(vecino);
-
-            // Coloca el visitado de acuerdo a lo que corresponde
-            vecino.marcar();
-		}
-        // Si no lo encuentra entre los vecinos de este nodo
-        return false;
+    public void marcarNodosEnBfs(String idNodoOrigen){
+    	Nodo<E> nodoOrigen = this.getNodoById(idNodoOrigen);
+    	
+    	Queue<Nodo<E>> paraMarcar = new LinkedList<Nodo<E>>();
+		paraMarcar.add(nodoOrigen);
+    	nodoOrigen.marcar();
+    	
+    	while(!paraMarcar.isEmpty()){
+    		Nodo<E> v = paraMarcar.poll();
+    		Set<Nodo<E>> vecinosDeV = v.getVecinos();
+    		for (Nodo<E> unVecino : vecinosDeV) {
+				if(!unVecino.isMarcado()){
+					unVecino.marcar();
+					paraMarcar.add(unVecino);
+				}
+			}
+    	}
     }
-    
-//    public void bfs(Node root)
-//    {
-//        //Since queue is a interface
-//        Queue<Node> queue = new LinkedList<Node>();
-//
-//        if(root == null) return;
-//
-//        root.state = State.Visited;
-//         //Adds to end of queue
-//        queue.add(root);
-//
-//        while(!queue.isEmpty())
-//        {
-//            //removes from front of queue
-//            Node r = queue.remove(); 
-//            System.out.print(r.getVertex() + "\t");
-//
-//            //Visit child first before grandchild
-//            for(Node n: r.getChild())
-//            {
-//                if(n.state == State.Unvisited)
-//                {
-//                    queue.add(n);
-//                    n.state = State.Visited;
-//                }
-//            }
-//        }
-//
-//
-//    }
+
+	public void resetMarcas() {
+
+		for (Nodo<E> unNodo : this.nodos.values()) {
+			unNodo.desmarcar();
+		}
+		
+	}
+
 }
 
 

@@ -1,4 +1,4 @@
-package tesis;
+package ar.uba.dc.formalex.fl.bgtheory;
 
 import static org.junit.Assert.*;
 

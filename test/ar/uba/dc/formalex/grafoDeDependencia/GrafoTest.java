@@ -1,4 +1,4 @@
-package tesis;
+package ar.uba.dc.formalex.grafoDeDependencia;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,8 +10,6 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import ar.uba.dc.formalex.util.GrafoAdyacencia;
-import ar.uba.dc.formalex.util.Nodo;
 
 public class GrafoTest {
 
@@ -26,7 +24,7 @@ public class GrafoTest {
 	@Test
 	public void cuandoSeCreaUnGrafoNoTieneNodos() {
 		
-		GrafoAdyacencia<String> unGrafo = new GrafoAdyacencia<String>();
+		Grafo<String> unGrafo = new GrafoImplAdyacencia<String>();
 		
 		assertFalse(unGrafo.getNodos().hasNext());
 	}
@@ -34,7 +32,7 @@ public class GrafoTest {
 	@Test
 	public void cuandoSeAgregaUnNodoAlGrafoElGrafoResultanteTieneUnNodo() {
 		
-		GrafoAdyacencia<String> unGrafo = new GrafoAdyacencia<String>();
+		Grafo<String> unGrafo = new GrafoImplAdyacencia<String>();
 		String v = "nodo1";
 		
 		//2
@@ -51,7 +49,7 @@ public class GrafoTest {
 	@Test
 	public void testAgregarArista() {
 		
-		GrafoAdyacencia<String> unGrafo = new GrafoAdyacencia<String>();
+		Grafo<String> unGrafo = new GrafoImplAdyacencia<String>();
 		String v1 = "nodo1";
 		String v2 = "nodo2";		
 		unGrafo.agregarNodo(v1);
@@ -71,6 +69,98 @@ public class GrafoTest {
 		assertEquals(1, vecinosUno.size());
 		assertTrue(vecinosUno.contains(nodoEsperadoDos));
 
+	}
+	
+	@Test
+	public void testMarcarBfsEnGrafoAciclico() {
+		
+		Grafo<String> unGrafo = new GrafoImplAdyacencia<String>();
+		String v1 = "nodo1";
+		String v2 = "nodo2";
+		String v3 = "nodo3";
+		unGrafo.agregarNodo(v1);
+		unGrafo.agregarNodo(v2);
+		unGrafo.agregarNodo(v3);
+		
+		unGrafo.agregarArista(v1, v2);
+		unGrafo.agregarArista(v2, v3);
+		
+		//2
+		unGrafo.marcarNodosEnBfs(v2);
+		
+		//3
+		assertTrue(unGrafo.getNodoById(v2).isMarcado());
+		assertFalse(unGrafo.getNodoById(v1).isMarcado());
+		assertTrue(unGrafo.getNodoById(v3).isMarcado());
+		
+		unGrafo.resetMarcas();
+		
+		//2
+		unGrafo.marcarNodosEnBfs(v1);
+		assertTrue(unGrafo.getNodoById(v2).isMarcado());
+		assertTrue(unGrafo.getNodoById(v1).isMarcado());
+		assertTrue(unGrafo.getNodoById(v3).isMarcado());
+		
+	}
+	
+	@Test
+	public void testMarcarBfsEnGrafoConCiclos() {
+		
+		Grafo<String> unGrafo = new GrafoImplAdyacencia<String>();
+		String v1 = "nodo1";
+		String v2 = "nodo2";
+		String v3 = "nodo3";
+		String v4 = "nodo4";
+		unGrafo.agregarNodo(v1);
+		unGrafo.agregarNodo(v2);
+		unGrafo.agregarNodo(v3);
+		unGrafo.agregarNodo(v4);
+		
+		//Construyo un ciclo entre 2, 3 y 4
+		unGrafo.agregarArista(v1, v2);
+		unGrafo.agregarArista(v2, v3);
+		unGrafo.agregarArista(v3, v4);
+		unGrafo.agregarArista(v4, v2);
+		
+		//2
+		unGrafo.marcarNodosEnBfs(v1);
+		assertTrue(unGrafo.getNodoById(v2).isMarcado());
+		assertTrue(unGrafo.getNodoById(v1).isMarcado());
+		assertTrue(unGrafo.getNodoById(v3).isMarcado());
+		assertTrue(unGrafo.getNodoById(v4).isMarcado());
+		
+		unGrafo.resetMarcas();
+		
+		/* Empezando de 2, 3 o 4 marco los mismos nodos! los que estan en el ciclo! */
+		
+		//2
+		unGrafo.marcarNodosEnBfs(v2);
+		
+		//3
+		assertTrue(unGrafo.getNodoById(v2).isMarcado());
+		assertFalse(unGrafo.getNodoById(v1).isMarcado());
+		assertTrue(unGrafo.getNodoById(v3).isMarcado());
+		assertTrue(unGrafo.getNodoById(v4).isMarcado());
+		
+		unGrafo.resetMarcas();
+		
+	
+		//2
+		unGrafo.marcarNodosEnBfs(v3);
+		assertTrue(unGrafo.getNodoById(v2).isMarcado());
+		assertFalse(unGrafo.getNodoById(v1).isMarcado());
+		assertTrue(unGrafo.getNodoById(v3).isMarcado());
+		assertTrue(unGrafo.getNodoById(v4).isMarcado());
+		
+		
+		unGrafo.resetMarcas();
+		
+		//2
+		unGrafo.marcarNodosEnBfs(v4);
+		assertTrue(unGrafo.getNodoById(v2).isMarcado());
+		assertFalse(unGrafo.getNodoById(v1).isMarcado());
+		assertTrue(unGrafo.getNodoById(v3).isMarcado());
+		assertTrue(unGrafo.getNodoById(v4).isMarcado());
 	}
 
 	private Nodo<String> crearNodo(String v1) {
