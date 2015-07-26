@@ -1,17 +1,34 @@
-package ar.uba.dc.formalex.util;
+package ar.uba.dc.formalex.grafoDeDependencia;
 
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.Observable;
 import java.util.Queue;
 
-//TODO ver si vale la pena lo de Observable, sino volarlo
-//Y hacerlo que dependa de grafo
-public class GrafoAdyacencia<E> extends Observable {
+public class GrafoImplAdyacencia<E> implements Grafo<E> {
 
     private Hashtable<String, Nodo<E>> nodos;
 
-    public GrafoAdyacencia() {
+    @Override
+	public String toString() {
+    	if(nodos!=null){
+    		StringBuilder sb= new StringBuilder();
+    		sb.append("Aristas= {\n");
+    		for (Nodo<E> unNodo : this.nodos.values()) {
+				if(!unNodo.getVecinos().isEmpty())
+					for (Nodo<E> unVecino : unNodo.getVecinos()) {
+						sb.append(String.format("(%s -> %s)\n", unNodo.getId(), unVecino.getId()));
+					}				
+			}
+
+    		sb.append("}");
+    		
+    		//TODO ver si los nodos se pueden imprimir mejor
+    		return "GrafoImplAdyacencia [nodos=" + nodos + "] " + sb.toString();
+    	}
+		return "GrafoImplAdyacencia [nodos=" + nodos + "]";
+	}
+
+	public GrafoImplAdyacencia() {
         nodos = new Hashtable<String, Nodo<E>>();
     }
     
@@ -21,8 +38,6 @@ public class GrafoAdyacencia<E> extends Observable {
      */
     public void agregarNodo(E v) {
         agregarNodo(v.toString(), v);
-        this.setChanged();
-        this.notifyObservers();
     }
     
     /**
@@ -39,8 +54,6 @@ public class GrafoAdyacencia<E> extends Observable {
         	
         objNodoOrigen.insertarVecino(objNodoDestino);
 
-        this.setChanged();
-        this.notifyObservers();
     }
 
     /**
@@ -56,8 +69,6 @@ public class GrafoAdyacencia<E> extends Observable {
         	return;
         
         nodos.put(id, objNodo);
-        this.setChanged();
-        this.notifyObservers();
     }
 
     public Iterator<Nodo<E>> getNodos() {

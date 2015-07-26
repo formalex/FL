@@ -3,6 +3,8 @@ package ar.uba.dc.formalex.util;
 import ar.uba.dc.formalex.fl.FLInput;
 import ar.uba.dc.formalex.fl.bgtheory.*;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafo;
+import ar.uba.dc.formalex.grafoDeDependencia.Grafo;
 
 import org.apache.log4j.Logger;
 
@@ -38,7 +40,7 @@ public class LaAplanadora {
 	private Set<Agente> agentes = null;
 
 
-	public void explotarYAplanar(FLInput input) {
+	public Grafo<String> explotarYAplanar(FLInput input, ConstructorDeGrafo unConstructorDeGrafo) {
 		Set<Action> accionesConAgentes = new HashSet<Action>();
 		Set<Action> accionesAplanadasConSyncActivo = crearAgentesYAplanarAcciones(input, accionesConAgentes);
 
@@ -57,7 +59,12 @@ public class LaAplanadora {
 
 		expandirClausulas(input);
 		loguear(input);
+		
+		//Se arma y se devuelve el grafo de dependencias
+		return unConstructorDeGrafo.ejecutar(input.getBackgroundTheory(), this.accionesYAgentes);
+		
 	}
+
 
 	//expande e instancia las clausulas
 	private void expandirClausulas(FLInput input) {
@@ -208,6 +215,9 @@ public class LaAplanadora {
 			if (accion.hasOccursIn()){
 				Interval occursIn = accion.getOccursIn();
 				Set<Interval> intervals = intervalosOriginales.get(occursIn);
+//				if(intervals==null){
+//				throw new RuntimeException("Fallo en interval" + occursIn.getName());
+//			}
 				Interval newInt;
 				if(!occursIn.isLocal()){
 					if (intervals.size() != 1){

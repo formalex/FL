@@ -1,9 +1,11 @@
 package ar.uba.dc.formalex.ui;
 
 import ar.uba.dc.formalex.fl.FLInput;
+import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoFake;
 import ar.uba.dc.formalex.parser.ParserAMano;
 import ar.uba.dc.formalex.util.Fechas;
 import ar.uba.dc.formalex.util.LaAplanadora;
+
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -34,7 +36,7 @@ public class MainConParserAMano {
         }
         FLInput datosAutomata = ParserAMano.getFLInput(fileData);
         LaAplanadora divididos = new LaAplanadora();
-        divididos.explotarYAplanar(datosAutomata);
+        divididos.explotarYAplanar(datosAutomata, new ConstructorDeGrafoFake());
 
         File out = new File(dataFileName+ "_" + Fechas.getAAAAMMDD_HHMMSS()+ ".txt");
         hacerAutomata(datosAutomata, out)  ;
