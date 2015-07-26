@@ -4,11 +4,14 @@ import ar.uba.dc.formalex.fl.FLInput;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
+import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoImpl;
+import ar.uba.dc.formalex.grafoDeDependencia.Grafo;
 import ar.uba.dc.formalex.modelChecker.NuSMVModelChecker;
 import ar.uba.dc.formalex.parser.FLParser;
 import ar.uba.dc.formalex.parser.TokenMgrError;
 import ar.uba.dc.formalex.util.LaAplanadora;
 import ar.uba.dc.formalex.util.Util;
+
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -63,7 +66,7 @@ public class Main {
 
       	FLInput flInput = FLParser.getFLInput();
         LaAplanadora divididos = new LaAplanadora();
-        divididos.explotarYAplanar(flInput);
+        Grafo<String> elgrafoDeDependenciasBgt = divididos.explotarYAplanar(flInput, new ConstructorDeGrafoImpl());
 //        loguearEntSal(flInput);
         validar(flInput);
 

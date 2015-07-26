@@ -2,10 +2,12 @@ package ar.uba.dc.formalex.ui;
 
 import ar.uba.dc.formalex.fl.FLInput;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoFake;
 import ar.uba.dc.formalex.parser.FLParser;
 import ar.uba.dc.formalex.parser.TokenMgrError;
 import ar.uba.dc.formalex.util.LaAplanadora;
 import ar.uba.dc.formalex.util.UtilFile;
+
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -54,7 +56,7 @@ public class Test {
     	FLInput flInput = FLParser.getFLInput();
 
         LaAplanadora divididos = new LaAplanadora();
-        divididos.explotarYAplanar(flInput);
+        divididos.explotarYAplanar(flInput, new ConstructorDeGrafoFake());
 
 
 
