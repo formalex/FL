@@ -13,7 +13,7 @@ public class ConstructorDeGrafoImpl implements ConstructorDeGrafo {
 	private Grafo<InfoComponenteBgt> grafoDeDependencias;
 
 	@Override
-	public Grafo ejecutar(BackgroundTheory bgt,
+	public Grafo<InfoComponenteBgt> ejecutar(BackgroundTheory bgt,
 			Map<Action, Agente> accionesYAgentes) {
 		if (accionesYAgentes == null)
 			throw new RuntimeException(
@@ -120,19 +120,19 @@ public class ConstructorDeGrafoImpl implements ConstructorDeGrafo {
 
 	private void agregarNodos(BackgroundTheory bgt) {
 		for (Action unaAccion : bgt.getActions()) {
-			grafoDeDependencias.agregarNodo(crearNodoAction(unaAccion));
+			grafoDeDependencias.agregarNodo(generarIdNodoAction(unaAccion), crearNodoAction(unaAccion));
 		}
 
 		for (Agente unAgente : bgt.getAgentes()) {
-			grafoDeDependencias.agregarNodo(crearNodoAgente(unAgente));
+			grafoDeDependencias.agregarNodo(generarIdNodoAgente(unAgente), crearNodoAgente(unAgente));
 		}
 
 		for (Interval unIntervalo : bgt.getIntervals()) {
-			grafoDeDependencias.agregarNodo(crearNodoInterval(unIntervalo));
+			grafoDeDependencias.agregarNodo(generarIdNodoInterval(unIntervalo), crearNodoInterval(unIntervalo));
 		}
 
 		for (Counter unContador : bgt.getCounters()) {
-			grafoDeDependencias.agregarNodo(crearNodoCounter(unContador));
+			grafoDeDependencias.agregarNodo(generarIdNodoCounter(unContador), crearNodoCounter(unContador));
 		}
 	}
 
@@ -157,19 +157,19 @@ public class ConstructorDeGrafoImpl implements ConstructorDeGrafo {
 	}
 
 	private String generarIdNodoCounter(Counter unContador) {
-		return crearNodoCounter(unContador).toString();
+		return unContador.getName();
 	}
 
-	private String generarIdNodoAgente(Agente agenteQueEjecutaLaAccion) {
-		return crearNodoAgente(agenteQueEjecutaLaAccion).toString();
+	private String generarIdNodoAgente(Agente unAgente) {
+		return unAgente.getName();
 	}
 
 	private String generarIdNodoInterval(Interval interval) {
-		return crearNodoInterval(interval).toString();
+		return interval.getName();
 	}
 
 	private String generarIdNodoAction(Action unaAccion) {
-		return crearNodoAction(unaAccion).toString();
+		return unaAccion.getName();
 	}
 
 }

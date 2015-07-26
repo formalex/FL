@@ -1,4 +1,4 @@
-package tesis;
+package ar.uba.dc.formalex.fl.regulation.formula;
 
 import static org.junit.Assert.*;
 

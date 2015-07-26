@@ -80,9 +80,12 @@ public class Nodo<E> {
 		return true;
 	}
 
-    @Override
+   
+
+	@Override
 	public String toString() {
-		return "Nodo [valor=" + valor + ", marcado=" + marcado + "]";
+		return "Nodo <id=" + id + ", valor=" + valor + ", marcado=" + marcado
+				+ ">";
 	}
 
 	public String getId() {
