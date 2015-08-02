@@ -10,11 +10,13 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import ar.uba.dc.formalex.fl.FLInput;
 import ar.uba.dc.formalex.fl.bgtheory.Action;
 import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
+import ar.uba.dc.formalex.fl.bgtheory.Interval;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
@@ -42,12 +44,14 @@ public class TestMain {
 	}
 	
 	@Test
+	@Ignore("Hasta meter el parche de las chicas")
 	public void testAcldc() {
 		
 		corridaDeFormaLex(ROOT_RESOURCES + "ACLDC.txt");
 	}
 	
 	@Test
+	@Ignore("Hasta tener el txt final bien armado")
 	public void testAcldcFull() {
 		
 		corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFull.txt");
@@ -63,6 +67,12 @@ public class TestMain {
 	public void testEjemploSynchronize() {
 		
 		corridaDeFormaLex(ROOT_RESOURCES + "ejSynchronize.txt");
+	}
+	
+	@Test
+	public void testEjemploFiltroConIntervalOnlyOccursInScope() {
+		
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConIntervalosConOnlyOccursInScopeQueSeUsan.txt");
 	}
 	
 	@Test
@@ -253,6 +263,11 @@ public class TestMain {
 		logger.info("Acciones");
 		for (Action a : unaBgtFiltrada.getActions()) {
 			a.logFL();
+		}
+		logger.info("");
+		logger.info("Intervalos");
+		for (Interval i : unaBgtFiltrada.getIntervals()) {
+			i.logFL();
 		}
 	}
 
