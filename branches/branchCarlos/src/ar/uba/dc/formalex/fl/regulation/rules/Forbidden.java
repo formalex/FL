@@ -1,6 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.rules;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
@@ -33,5 +34,11 @@ public class Forbidden extends FLFormula {
 
 	public FLFormula getFormula() {
 		return formula;
+	}
+
+	@Override
+	public Set<String> getNombresDeComponentes() {
+		
+		return this.formula.getNombresDeComponentes();
 	}
 }

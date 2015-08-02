@@ -45,4 +45,12 @@ public class InfoComponenteBgt {
 		return true;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public TipoDeComponenteBgt getTipoDeComponente() {
+		return tipoDeComponente;
+	}
+
 }

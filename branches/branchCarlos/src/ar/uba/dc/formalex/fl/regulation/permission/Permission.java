@@ -1,5 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.permission;
 
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
@@ -35,6 +37,12 @@ public class Permission extends FLFormula {
 
 	public FLFormula getFormula() {
 		return formula;
+	}
+	
+	@Override
+	public Set<String> getNombresDeComponentes() {
+		
+		return this.formula.getNombresDeComponentes();
 	}
 
 }

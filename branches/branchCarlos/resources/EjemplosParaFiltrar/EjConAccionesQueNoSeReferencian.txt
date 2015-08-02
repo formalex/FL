@@ -1,0 +1,10 @@
+#Background
+
+roles comprador,vendedor cover
+action comprar
+actions vender, cobrar, facturar only performable by vendedor
+
+#Clauses
+
+P( FORALL(i:comprador; i.comprar))
+P( FORALL(i:vendedor; i.vender))

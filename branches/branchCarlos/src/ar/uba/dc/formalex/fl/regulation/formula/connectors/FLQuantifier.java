@@ -2,6 +2,7 @@ package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
@@ -12,6 +13,11 @@ public abstract class FLQuantifier extends FLFormula{
 	private String role;
 	private String variable;
 	private FLFormula formula;
+	
+	public Set<String> getNombresDeComponentes(){
+		
+		throw new RuntimeException("Los nombres de las componentes se los pedimos a formulas instanciadas"); 
+	}
 
     public String getRole() {
 		return role;

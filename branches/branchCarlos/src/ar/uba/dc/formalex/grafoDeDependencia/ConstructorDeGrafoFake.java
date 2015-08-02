@@ -9,7 +9,7 @@ import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
 public class ConstructorDeGrafoFake implements ConstructorDeGrafo {
 
 	@Override
-	public Grafo ejecutar(BackgroundTheory bgt,
+	public Grafo iniciar(BackgroundTheory bgt,
 			Map<Action, Agente> accionesYAgentes) {
 		return null;
 	}

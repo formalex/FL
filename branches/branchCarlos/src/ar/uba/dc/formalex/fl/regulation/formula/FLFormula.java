@@ -9,6 +9,13 @@ public abstract class FLFormula {
 	
 	protected Set<FLFormula> exceptions = new HashSet<FLFormula>();	
 	
+	/**
+	 * @return Devuelve los nombres de las componentes de la bgt que intervienen
+	 *         en una formula. Esto es util para filtrar componentes que NO se
+	 *         usan en formulas
+	 */
+	public abstract Set<String> getNombresDeComponentes();
+	
     /**
      * devuelve el string que representa a esta fórmula con el formato del model checker
      */

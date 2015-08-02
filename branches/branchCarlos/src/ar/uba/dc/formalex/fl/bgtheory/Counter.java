@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 public class Counter {
@@ -28,6 +29,28 @@ public class Counter {
     public Counter(String name) {
         this.name = name;
     }
+    
+	public Counter clonar() {
+		Counter res = new Counter(getName());
+		res.setLocal(this.isLocal());
+		res.setInitValue(this.getInitValue());
+		res.setMinValue(this.getMinValue());
+		res.setMaxValue(this.getMaxValue());                
+		res.setMinImpedesActions(this.isMinImpedesActions());
+		res.setMaxImpedesActions(this.isMaxImpedesActions());
+		
+		for (Entry<Action, Integer> anIncreseActionEntry : increaseActions.entrySet()) {
+			Action anAction = anIncreseActionEntry.getKey();
+			res.addIncreaseAction(anAction.clonar(), anIncreseActionEntry.getValue(), this.getCondition(anAction));
+		}
+		
+		for (Entry<Action, Integer> anSetValueActionEntry : setValueActions.entrySet()) {
+			Action anAction = anSetValueActionEntry.getKey();
+			res.addSetValueAction(anAction.clonar(), anSetValueActionEntry.getValue(), this.getCondition(anAction));
+		}
+		
+		return res;
+	}
 
     //Devuelve todas las acciones que pueden modificar al contador
     public Set<Action> getAllActions(){
@@ -184,4 +207,6 @@ public class Counter {
             sb.delete(sb.length() - 2, sb.length() );
         logger.info(sb.toString());
     }
+
+
 }

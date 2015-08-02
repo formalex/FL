@@ -1,5 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.formula.terminals;
 
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 
 public class FLInside extends FLTerminal {
@@ -21,4 +23,10 @@ public class FLInside extends FLTerminal {
     public String toString() {
         return interval.getNameWithAgent() + " = ACTIVE ";
     }
+    
+    @Override
+	public Set<String> getNombresDeComponentes() {
+		
+		return this.interval.getNombresDeComponentes();
+	}
 }

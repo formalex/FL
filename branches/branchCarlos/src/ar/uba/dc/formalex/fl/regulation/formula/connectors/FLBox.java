@@ -1,5 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLInterval;
@@ -57,4 +59,15 @@ public class FLBox extends FLFormula{
         return !(lf instanceof FLNeg || lf instanceof FLTerminal || lf instanceof Permission
                 || lf instanceof Forbidden || lf instanceof Obligation);
     }
+    
+    @Override
+	public Set<String> getNombresDeComponentes() {
+		
+    	Set<String> res=this.formula.getNombresDeComponentes();
+    	
+    	if(this.interval!=null)
+    		res.addAll(this.interval.getNombresDeComponentes());
+    	
+    	return res;
+	}
 }

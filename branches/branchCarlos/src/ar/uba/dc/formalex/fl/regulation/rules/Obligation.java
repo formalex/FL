@@ -2,6 +2,7 @@ package ar.uba.dc.formalex.fl.regulation.rules;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
@@ -66,6 +67,17 @@ public class Obligation extends FLFormula{
 
 	public void setFormula(FLFormula formula) {
 		this.formula = formula;
+	}
+	
+	@Override
+	public Set<String> getNombresDeComponentes() {
+		
+    	Set<String> res=this.formula.getNombresDeComponentes();
+    	
+    	if(this.hasRepair())
+    		res.addAll(this.repair.getNombresDeComponentes());
+    	
+    	return res;
 	}
 	
 }
