@@ -1,5 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 
@@ -28,5 +30,11 @@ public class FLNeg extends FLFormula {
 
         return new FLNeg(newFormula);
     }
+    
+    @Override
+	public Set<String> getNombresDeComponentes() {
+		
+		return this.formula.getNombresDeComponentes();
+	}
 
 }

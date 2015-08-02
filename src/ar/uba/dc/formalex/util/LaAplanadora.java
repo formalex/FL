@@ -5,6 +5,7 @@ import ar.uba.dc.formalex.fl.bgtheory.*;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafo;
 import ar.uba.dc.formalex.grafoDeDependencia.Grafo;
+import ar.uba.dc.formalex.grafoDeDependencia.InfoComponenteBgt;
 
 import org.apache.log4j.Logger;
 
@@ -40,7 +41,7 @@ public class LaAplanadora {
 	private Set<Agente> agentes = null;
 
 
-	public Grafo<String> explotarYAplanar(FLInput input, ConstructorDeGrafo unConstructorDeGrafo) {
+	public Grafo<InfoComponenteBgt> explotarYAplanar(FLInput input, ConstructorDeGrafo unConstructorDeGrafo) {
 		Set<Action> accionesConAgentes = new HashSet<Action>();
 		Set<Action> accionesAplanadasConSyncActivo = crearAgentesYAplanarAcciones(input, accionesConAgentes);
 
@@ -61,7 +62,7 @@ public class LaAplanadora {
 		loguear(input);
 		
 		//Se arma y se devuelve el grafo de dependencias
-		return unConstructorDeGrafo.ejecutar(input.getBackgroundTheory(), this.accionesYAgentes);
+		return unConstructorDeGrafo.iniciar(input.getBackgroundTheory(), this.accionesYAgentes);
 		
 	}
 
@@ -242,6 +243,9 @@ public class LaAplanadora {
 
 
 	private Interval getIntervaloDeAgente(Set<Interval> intervals, Agente agente) {
+//		if(intervals== null)
+//			return null;
+		
 		for (Interval interval : intervals) {
 			if (interval.getName().startsWith(agente.getName() + SEPARADOR_AGENTE_INTERVALO))
 				return interval;

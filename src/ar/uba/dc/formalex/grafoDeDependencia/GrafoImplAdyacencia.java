@@ -18,6 +18,13 @@ public class GrafoImplAdyacencia<E> implements Grafo<E> {
 	public String toString() {
 		if (nodos != null) {
 			StringBuilder sb = new StringBuilder();
+			sb.append("Nodos = {\n");
+			for (Nodo<E> unNodo : this.nodos.values()) {
+					sb.append(unNodo.toString() + ",\n");
+			}
+
+			sb.append("}");
+			
 			sb.append("Aristas= {\n");
 			for (Nodo<E> unNodo : this.nodos.values()) {
 				if (!unNodo.getVecinos().isEmpty())
@@ -29,11 +36,10 @@ public class GrafoImplAdyacencia<E> implements Grafo<E> {
 
 			sb.append("}");
 
-			// TODO ver si los nodos se pueden imprimir mejor
-			return "GrafoImplAdyacencia [nodos=" + nodos.values() + "] "
+			return "GrafoImplAdyacencia "
 					+ sb.toString();
 		}
-		return "GrafoImplAdyacencia [nodos=" + nodos.values() + "] ";
+		return "GrafoImplAdyacencia Grafo vacio ";
 	}
 	  
     /**

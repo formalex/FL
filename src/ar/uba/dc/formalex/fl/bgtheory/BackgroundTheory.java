@@ -17,6 +17,31 @@ public class BackgroundTheory {
     private Set<Counter> counters = new HashSet<Counter>();
 
     private Set<Agente> agentes;
+    
+    public BackgroundTheory clonar() {
+    	BackgroundTheory res = new BackgroundTheory();
+        
+    	for (Action action : actions) {
+			res.add(action.clonar());
+		}
+    	
+    	for (Timer unTimer : timers) {
+    		res.add(unTimer.clonar());
+		}
+    	
+    	for (Interval unInterval : intervals) {
+			res.add(unInterval.clonar());
+		}  	
+    	//Los roles como no los voy a tocar, no me interesa clonarlos!
+    	for (Counter unCounter : counters) {
+			res.add(unCounter.clonar());
+		}
+    	
+    	//TODO ver lo de los Agentes, si los vamos a borrar o no. x ahora les asigno los mismos
+    	res.setAgentes(getAgentes());
+    	
+        return res;
+	}
 
     public void add(Action a){
         actions.add(a);
@@ -82,4 +107,37 @@ public class BackgroundTheory {
     public void add(Counter counter) {
         counters.add(counter);
     }
+
+	public void removeActionByName(String name) {
+
+		for (Action unAction : actions) {
+			if(unAction.getName().equals(name)){
+				actions.remove(unAction);
+				break;
+			}
+		}
+		
+	}
+
+	public void removeIntervalByName(String name) {
+		
+		for (Interval unInterval : intervals) {
+			if(unInterval.getName().equals(name)){
+				intervals.remove(unInterval);
+				break;
+			}
+		}
+		
+	}
+
+	public void removeCounterByName(String name) {
+		
+		for (Counter unCounter : counters) {
+			if(unCounter.getName().equals(name)){
+				counters.remove(unCounter);
+				break;
+			}
+		}
+		
+	}
 }

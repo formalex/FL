@@ -1,0 +1,16 @@
+#Background
+
+roles alumno, docente
+actions retirar_libro, devolver_libro only performable by
+alumno, docente
+actions aprobar, desaprobar only performable by
+alumno
+local counter libros_retirados init value 0, 
+increases with action retirar_libro, decreases with action devolver_libro
+local counter materias_aprobadas init value 0, 
+increases with action aprobar, decreases with action desaprobar
+
+#Clauses
+
+FORALL(i:alumno; F(i.materias_aprobadas < 0))
+FORALL(i; F(i.libros_retirados > 3))

@@ -24,7 +24,7 @@ public class NuSMVModelChecker {
     private static final Logger logger = Logger.getLogger(NuSMVModelChecker.class);
     private static String endOfline = System.getProperty("line.separator");
 
-    //crea un archivo con los comando que se le pasar�n a nusvm. Incluyen la expresi�n a validar.
+    //crea un archivo con los comando que se le pasarán a nusvm. Incluyen la expresión a validar.
     private static void crearComandos(File commandFile, String outputFile, String ltlExpr) throws IOException {
         String x = "go;" + endOfline + "check_ltlspec -o " + outputFile + " -p \"" + ltlExpr +
                 "\";" + endOfline + "quit;";
@@ -78,7 +78,7 @@ public class NuSMVModelChecker {
             throw new RuntimeException("Falta indicar el exe de nusmv (NUSMV_EXE)");
 
         //Niego lo que estoy buscando para que nusmv, si encuentra, me devuelva un contraejemplo
-        //Si no encuentra quiere decir que la f�rmula es v�lida
+        //Si no encuentra quiere decir que la fórmula es válida
         FLFormula formulaToTest = new FLNeg(formula);
 
         String ts = Fechas.getAAAAMMDD_HHMMSS();
@@ -112,7 +112,7 @@ public class NuSMVModelChecker {
 
         try {
             //Ej: system prompt> NuSMV -source ARCHIVO_CMD ej.nusmv
-            //todo: ver bien qu� hace -df
+            //todo: ver bien qué hace -df
             String command = nusmvExecutable +" -df -source " + nusmvCommands.getAbsolutePath() +
                     " " + nusmvInput.getAbsolutePath();
             logger.info("Comienza nusmv. Comando a ejecutar:  " + command);
@@ -131,7 +131,7 @@ public class NuSMVModelChecker {
                 sb.append(salida);
                 if (salida.startsWith("aborting")) //si aborta, lo que aborta es el comando ejecutado,
                 // pero se queda dentro de nusmv. Hay que forzar la salida. Esto puede pasar si hay
-                // alg�n error sint�ctico en lo que se le pas� a nusmv.
+                // algún error sintáctico en lo que se le pas� a nusmv.
                     break;
                 if (salida.startsWith("********   WARNING   ********"))
                     isWarning = true;

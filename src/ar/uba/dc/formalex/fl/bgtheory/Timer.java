@@ -23,4 +23,15 @@ public class Timer {
     public void setEventos(List<String> eventos) {
         this.eventos = eventos;
     }
+
+	public Timer clonar() {
+		Timer res= new Timer();
+		if (eventos != null){
+			for (String unEvento : eventos) {
+				res.addEvento(unEvento);
+			}
+		}
+		
+		return res;
+	}
 }

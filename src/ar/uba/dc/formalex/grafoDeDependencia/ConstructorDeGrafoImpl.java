@@ -13,7 +13,7 @@ public class ConstructorDeGrafoImpl implements ConstructorDeGrafo {
 	private Grafo<InfoComponenteBgt> grafoDeDependencias;
 
 	@Override
-	public Grafo<InfoComponenteBgt> ejecutar(BackgroundTheory bgt,
+	public Grafo<InfoComponenteBgt> iniciar(BackgroundTheory bgt,
 			Map<Action, Agente> accionesYAgentes) {
 		if (accionesYAgentes == null)
 			throw new RuntimeException(

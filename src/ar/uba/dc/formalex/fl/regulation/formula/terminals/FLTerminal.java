@@ -1,5 +1,8 @@
 package ar.uba.dc.formalex.fl.regulation.formula.terminals;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 
 /**
@@ -35,7 +38,7 @@ public abstract class FLTerminal extends FLFormula{
         String prefijo;
         if (variable == null)      //si es impersonal o local
             prefijo = "";
-        else if (agent == null)    //si todav�a no fue instanciado
+        else if (agent == null)    //si todavía no fue instanciado
             prefijo = getVariable() + ".";
         else
             prefijo = agent  + ".";
@@ -48,7 +51,7 @@ public abstract class FLTerminal extends FLFormula{
 
     //Usado para facilitar el toString
     protected String getAPerformer(){
-        if (agent == null) //esto deber�a pasar con las impersonal action y con los intervalos y contadores locales
+        if (agent == null) //esto debería pasar con las impersonal action y con los intervalos y contadores locales
             return "";
         else
             return agent + ".";
@@ -83,5 +86,17 @@ public abstract class FLTerminal extends FLFormula{
     public void setLocal(boolean local) {
         this.local = local;
     }
+    
+	@Override
+	public Set<String> getNombresDeComponentes() {
+		
+    	Set<String> res=new HashSet<String>();
+    	res.add(this.getNameWithAgent());
+    	
+//    	if(this.agent!=null)
+//    		res.add(agent);
+//    	
+    	return res;
+	}
 
 }

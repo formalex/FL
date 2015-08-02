@@ -1,5 +1,8 @@
 package ar.uba.dc.formalex.fl.regulation.formula.terminals;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 
@@ -25,6 +28,19 @@ public class FLBelongs extends FLTerminal {
 			res = new FLTrue();
 		}		
 		return res;
+	}
+	
+	//TODO Ver lo que me dice Fer sobre belongsTo
+	@Override
+	public Set<String> getNombresDeComponentes() {
+		
+    	Set<String> res=new HashSet<String>();
+//    	res.add(this.getName());
+//    	
+//    	if(this.agent!=null)
+//    		res.add(agent);
+    	
+    	return res;
 	}
 
 }

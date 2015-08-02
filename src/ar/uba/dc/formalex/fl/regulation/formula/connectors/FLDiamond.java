@@ -1,5 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLInterval;
@@ -49,4 +51,15 @@ public class FLDiamond extends FLFormula {
         else
             return "F(" + formula.toString() + ")";
     }
+    
+    @Override
+	public Set<String> getNombresDeComponentes() {
+		
+    	Set<String> res=this.formula.getNombresDeComponentes();
+    	
+    	if(this.interval!=null)
+    		res.addAll(this.interval.getNombresDeComponentes());
+    	
+    	return res;
+	}
 }

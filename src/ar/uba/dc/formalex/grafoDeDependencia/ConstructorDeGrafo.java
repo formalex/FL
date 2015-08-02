@@ -9,5 +9,5 @@ import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
 
 public interface ConstructorDeGrafo {
 
-	public Grafo ejecutar(BackgroundTheory bgt,  Map<Action, Agente> accionesYAgentes); 
+	public Grafo iniciar(BackgroundTheory bgt,  Map<Action, Agente> accionesYAgentes); 
 }
