@@ -20,6 +20,17 @@ public class FLParser implements FLParserConstants {
     private static FLInput flInput = new FLInput();
     private static String originalFormula; //usado para logueo
 
+    //TODO: Despues peterlo en el jj
+    public static void clean(){
+
+    	actions = new HashMap <String, Action> ();
+    	intervals = new HashMap<String, Interval> ();
+    	counters = new HashMap<String, Counter> ();
+    	rolesMap = new HashMap<String, Role> ();
+    	flInput = new FLInput();
+
+
+    }
     public static FLInput getFLInput(){
         return flInput;
     }
