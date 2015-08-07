@@ -20,7 +20,7 @@ public class FLParser implements FLParserConstants {
     private static FLInput flInput = new FLInput();
     private static String originalFormula; //usado para logueo
 
-    //TODO: Despues peterlo en el jj
+    //TODO: Despues meterlo en el jj
     public static void clean(){
 
     	actions = new HashMap <String, Action> ();

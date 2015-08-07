@@ -37,8 +37,13 @@ public class BackgroundTheory {
 			res.add(unCounter.clonar());
 		}
     	
-    	//TODO ver lo de los Agentes, si los vamos a borrar o no. x ahora les asigno los mismos
-    	res.setAgentes(getAgentes());
+    	Set<Agente> agentesClonados = new HashSet<Agente>();    	
+    	if(this.agentes!=null){
+	    	for (Agente unAgente : this.getAgentes()) {
+	    		agentesClonados.add(unAgente.clonar());
+			}
+    	}	
+    	res.setAgentes(agentesClonados);
     	
         return res;
 	}
@@ -135,6 +140,20 @@ public class BackgroundTheory {
 		for (Counter unCounter : counters) {
 			if(unCounter.getName().equals(name)){
 				counters.remove(unCounter);
+				break;
+			}
+		}
+		
+	}
+
+	public void removeAgenteByName(String name) {
+
+		if(this.getAgentes()==null)
+			return;
+		
+		for (Agente unAgente : agentes) {
+			if(unAgente.getName().equals(name)){
+				agentes.remove(unAgente);
 				break;
 			}
 		}
