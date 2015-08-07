@@ -57,7 +57,13 @@ public class TestMain {
 		
 		corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFull.txt");
 	}
+	
+	@Test
+	public void testEjemploActionConOutputValues() {
 		
+		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValues.txt");
+	}
+	
 	@Test
 	public void testEjemploPermisoPermanente() {
 		
