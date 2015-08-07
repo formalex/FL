@@ -9,7 +9,5 @@ import java.util.HashSet;
  */
 
 public class RolesCombination extends HashSet<HashSet<Role>>  {
-	
-	
-
+	//Se hace solo un renombre para que sea más claro al usarlo.
 }

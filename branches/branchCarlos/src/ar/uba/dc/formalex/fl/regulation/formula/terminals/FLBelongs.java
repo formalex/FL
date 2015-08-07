@@ -30,16 +30,9 @@ public class FLBelongs extends FLTerminal {
 		return res;
 	}
 	
-	//TODO Ver lo que me dice Fer sobre belongsTo
 	@Override
-	public Set<String> getNombresDeComponentes() {
-		
-    	Set<String> res=new HashSet<String>();
-//    	res.add(this.getName());
-//    	
-//    	if(this.agent!=null)
-//    		res.add(agent);
-    	
+	public Set<String> getNombresDeComponentes() {		
+    	Set<String> res=new HashSet<String>();	
     	return res;
 	}
 

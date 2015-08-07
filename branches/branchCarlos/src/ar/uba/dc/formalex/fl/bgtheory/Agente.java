@@ -91,4 +91,11 @@ public class Agente {
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
     }
+
+	public Agente clonar() {
+		Agente agenteClonado = new Agente(this.getName());
+		agenteClonado.setRoles(this.getRoles());
+		
+		return agenteClonado;
+	}
 }

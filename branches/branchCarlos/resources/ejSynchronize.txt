@@ -1,6 +1,6 @@
 #Background
 
-roles comprador,vendedor disjoint cover
+roles comprador,vendedor cover
 action comprar
 action vender synchronizes with comprar disallow autosync
 only performable by vendedor

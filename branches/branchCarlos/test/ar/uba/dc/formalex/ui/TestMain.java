@@ -52,7 +52,7 @@ public class TestMain {
 	}
 	
 	@Test
-	@Ignore("Hasta tener el txt final bien armado")
+	//@Ignore("Hasta tener el txt final bien armado")
 	public void testAcldcFull() {
 		
 		corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFull.txt");
@@ -326,7 +326,7 @@ public class TestMain {
 					bgt.removeCounterByName(unaInfoComponente.getName());
 					break;	
 				case AGENTE:		
-					//TODO x ahora no hacemos nada. Ver que dice Schapa
+					bgt.removeAgenteByName(unaInfoComponente.getName());
 					break;
 				default:
 					throw new RuntimeException("Tipo de componente inesperado!");
