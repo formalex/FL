@@ -59,9 +59,15 @@ public class TestMain {
 	}
 	
 	@Test
-	public void testEjemploActionConOutputValues() {
+	public void testEjemploActionConOutputValuesConRolesReferenciados() {
 		
-		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValues.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesConRolesReferenciadosEnRegla.txt");
+	}
+	
+	@Test
+	public void testEjemploActionConOutputValuesSinRolesReferenciados() {
+		
+		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesSinRolesReferenciadosEnRegla.txt");
 	}
 	
 	@Test
@@ -71,7 +77,7 @@ public class TestMain {
 	}
 	
 	@Test
-	@Ignore("Hasta que se arregle el tema del synchronize")
+	//@Ignore("Hasta que se arregle el tema del synchronize")
 	public void testEjemploSynchronize() {
 		
 		corridaDeFormaLex(ROOT_RESOURCES + "ejSynchronize.txt");
