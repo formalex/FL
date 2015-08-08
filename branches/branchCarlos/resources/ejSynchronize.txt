@@ -7,4 +7,4 @@ only performable by vendedor
 
 #Clauses
 
-P( FORALL(i:comprador; i.comprar))
+O( FORALL(i:comprador; i.comprar))

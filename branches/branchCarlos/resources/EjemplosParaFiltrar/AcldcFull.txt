@@ -402,7 +402,8 @@ FORALL(i:Proveedor; O(i.RespetarLeyDefensaConsumidor))
 
 FORALL(i:ProfesionalMatriculado; F(i.PublicitarServicioProfesional & !i.RespetarLeyDefensaConsumidor))
 
-FORALL(i:Consumidor; O(i.SolicitarInformacion -> EXISTS(j:Proveedor; j.SuministrarInformacion.CiertaClaraDetalladaGratuita)))
+FORALL(i:Consumidor; O(i.SolicitarInformacion -> EXISTS(j:Proveedor; j.SuministrarInformacion)))
+//FORALL(i:Consumidor; O(i.SolicitarInformacion -> EXISTS(j:Proveedor; j.SuministrarInformacion.CiertaClaraDetalladaGratuita)))
 
 FORALL(i; O(i.ProveerByS.Correctamente & i.UtilizarByS.Correctamente -> !RiesgoalConsumidor))
 
