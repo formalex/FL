@@ -101,7 +101,7 @@ public class LaAplanadora {
 		logger.info("# acciones impersonales: " + impersonalAction.size());
 		logger.info("# contadores: " + contCounters);
 		logger.info("# intervalos: " + contInterv);
-		logger.info("# formulas: " + input.getRules().size());
+		logger.info("# fórmulas: " + input.getRules().size());
 		logger.info("# permisos: " + input.getPermissions().size());
 		logger.info("");
 
@@ -243,9 +243,6 @@ public class LaAplanadora {
 
 
 	private Interval getIntervaloDeAgente(Set<Interval> intervals, Agente agente) {
-//		if(intervals== null)
-//			return null;
-		
 		for (Interval interval : intervals) {
 			if (interval.getName().startsWith(agente.getName() + SEPARADOR_AGENTE_INTERVALO))
 				return interval;
@@ -411,20 +408,20 @@ public class LaAplanadora {
 		if (ag.getName().equals("agent_without_role"))
 			return false;
 
-		Set<Action> accionesS = interval.getStartTriggers();
-		Set<Action> accionesE = interval.getEndTriggers();
-		return (ag.realizaAlgunaAccion(accionesS) || interval.isStartActive() || hayImpersonalAction(accionesS) )&&
-				(ag.realizaAlgunaAccion(accionesE) || interval.isEndActive() || hayImpersonalAction(accionesE) );
-	}
+        Set<Action> accionesS = interval.getStartTriggers();
+        Set<Action> accionesE = interval.getEndTriggers();
+        return (ag.realizaAlgunaAccion(accionesS) || interval.isStartActive() || hayImpersonalAction(accionesS) )&&
+                (ag.realizaAlgunaAccion(accionesE) || interval.isEndActive() || hayImpersonalAction(accionesE) );
+    }
 
-	//devuelve true si entre las acciones recibidas hay por lo menos una impersonal action
-	private static boolean hayImpersonalAction(Set<Action> actions) {
-		for(Action action : actions) {
-			if (action.isImpersonal())
-				return true;
-		}
-		return false;
-	}
+    //devuelve true si entre las acciones recibidas hay por lo menos una impersonal action
+    private static boolean hayImpersonalAction(Set<Action> actions) {
+        for(Action action : actions) {
+            if (action.isImpersonal())
+                return true;
+        }
+        return false;
+    }
 
 	//devuelve true si el agente realiza por lo menos una de las acciones que modifican al contador
 	private static boolean realizaAcciones(Agente ag, Counter counter) {
@@ -432,43 +429,39 @@ public class LaAplanadora {
 		return ag.realizaAlgunaAccion(acciones);
 	}
 
-	private Counter crearContadorGlobal(Counter counterOriginal) {
-		Counter res = new Counter(counterOriginal.getName());
-		res.setInitValue(counterOriginal.getInitValue());
-		res.setMinValue(counterOriginal.getMinValue());
-		res.setMaxValue(counterOriginal.getMaxValue());                        
-		res.setMinImpedesActions((Boolean)counterOriginal.isMinImpedesActions());
-		res.setMaxImpedesActions((Boolean)counterOriginal.isMaxImpedesActions());
+    private Counter crearContadorGlobal(Counter counterOriginal) {
+        Counter res = new Counter(counterOriginal.getName());
+        res.setInitValue(counterOriginal.getInitValue());
 
-		//reemplazo c/u de las acciones x las nuevas con agentes
-		Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
-		for (Action accOriginal : incrActions.keySet()) {
-			String pt = counterOriginal.getCondition(accOriginal);
-			if (accOriginal.isImpersonal()){
-				res.addIncreaseAction(accOriginal, incrActions.get(accOriginal), pt);
-			}
-			else {
-				Set<Action> accionesConAgentes = getAccionesConAgente(accOriginal);
-				for (Action accionConAgente : accionesConAgentes) {
-					res.addIncreaseAction(accionConAgente, incrActions.get(accOriginal), pt);
-				}
-			}
-		}
+        //reemplazo c/u de las acciones x las nuevas con agentes
+        Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
+        for (Action accOriginal : incrActions.keySet()) {
+            String pt = counterOriginal.getCondition(accOriginal);
+            if (accOriginal.isImpersonal()){
+                res.addIncreaseAction(accOriginal, incrActions.get(accOriginal), pt);
+            }
+            else {
+                Set<Action> accionesConAgentes = getAccionesConAgente(accOriginal);
+                for (Action accionConAgente : accionesConAgentes) {
+                    res.addIncreaseAction(accionConAgente, incrActions.get(accOriginal), pt);
+                }
+            }
+        }
 
-		Map<Action, Integer> setValueActions = counterOriginal.getSetValueActions();
-		for (Action accOriginal : setValueActions.keySet()) {
-			String pt = counterOriginal.getCondition(accOriginal);
-			if (accOriginal.isImpersonal()){
-				res.addSetValueAction(accOriginal, setValueActions.get(accOriginal), pt);
-			}
-			else {
-				Set<Action> accionesConAgentes = getAccionesConAgente(accOriginal);
-				for (Action accionConAgente : accionesConAgentes) {
-					res.addSetValueAction(accionConAgente, setValueActions.get(accOriginal), pt);
-				}
-			}
-		}
-
+        Map<Action, Integer> setValueActions = counterOriginal.getSetValueActions();
+        for (Action accOriginal : setValueActions.keySet()) {
+            String pt = counterOriginal.getCondition(accOriginal);
+            if (accOriginal.isImpersonal()){
+                res.addSetValueAction(accOriginal, setValueActions.get(accOriginal), pt);
+            }
+            else {
+                Set<Action> accionesConAgentes = getAccionesConAgente(accOriginal);
+                for (Action accionConAgente : accionesConAgentes) {
+                    res.addSetValueAction(accionConAgente, setValueActions.get(accOriginal), pt);
+                }
+            }
+        }
+        
 		return res;
 	}
 
@@ -650,7 +643,9 @@ public class LaAplanadora {
 		RolesCombination rolesParaAgentes = new RolesCombination();
 		for(RoleSpecification spec : listaRoles){
 			combineMainRoleSpec(spec);
-			rolesParaAgentes.addAll(spec.getRolesCombination());
+			//Se combina cada linea de role con las que ya se combinaron antes
+			RolesCombination partialResult = combineWithPreviousResults(spec.getRolesCombination(), rolesParaAgentes);
+			rolesParaAgentes = partialResult;			
 		}
 
 		//Por cada conjunto del powerSet (salvo el conjunto vacío), se forma un Agente que va a tener los roles del conjunto.		
@@ -664,6 +659,23 @@ public class LaAplanadora {
 		}
 
 		return res;
+	}
+	
+	private RolesCombination combineWithPreviousResults(RolesCombination combination, RolesCombination partialResult){
+		RolesCombination result = new RolesCombination();
+		for(HashSet<Role> currenSet: combination){
+			if(currenSet.size() > 0){							
+				result.add(currenSet);
+				for(HashSet<Role> currentPartialResult: partialResult){
+					HashSet<Role> newCombination = new HashSet<Role>();
+					newCombination.addAll(currenSet);
+					newCombination.addAll(currentPartialResult);
+					result.add(newCombination);
+				}
+			}
+		}
+		result.addAll(partialResult);
+		return result;
 	}
 
 	//Devuelve true si el conjunto tiene por lo menos algún rol de la lista
