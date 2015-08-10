@@ -1,35 +1,10 @@
 #Background
 
+//Consumidor_DanioDiferenciado debiera ser un subrol de consumidor
+// Infractor es un subrol de Proveed
 
 roles Consumidor, Proveedor disjoint  
-
-roles Consumidor_DanioDiferenciado
-
-//Consumidor_DanioDiferenciado debiera ser un subrol de consumidor
-
-roles ProfesionalMatriculado
-
-roles Oferente
-
-roles Vendedor
-
-roles Gobierno_Local
-roles proveedor_servicios_publicosd, proveedor_servicio_publicod
-roles consumidor_servicio_publicod, consumidor_servicio_publico_legislacion_propia
-roles Infractor 
-// Infractor es un subrol de Proveed
-roles EntidadFinanciera
-roles BCRA
-roles Autoridad_Aplicacion_Provincial
-roles Autoridad_Aplicacion_Nacional
-roles Autoridad_Aplicacion
-roles Asociacion_Consumidores 
-roles Ministerio_Publico_Fiscal
-roles Defensor_del_Pueblo
-roles autoridad_competente
-roles instrumento_medicion_autorizado
-roles Transportista
-roles Juez
+roles Consumidor_DanioDiferenciado, ProfesionalMatriculado, Oferente, Vendedor, Gobierno_Local, proveedor_servicios_publicosd, proveedor_servicio_publicod, consumidor_servicio_publicod, consumidor_servicio_publico_legislacion_propia, Infractor, EntidadFinanciera, BCRA, Autoridad_Aplicacion_Provincial, Autoridad_Aplicacion_Nacional, Autoridad_Aplicacion, Asociacion_Consumidores , Ministerio_Publico_Fiscal, Defensor_del_Pueblo, autoridad_competente, instrumento_medicion_autorizado, Transportista, Juez disjoint
 //ACCIONES
 
 impersonal action paso_un_dia
