@@ -35,9 +35,14 @@ roles Juez
 impersonal action paso_un_dia
 impersonal action paso_un_dia_reparandose
 impersonal action NuevoDiaHabil
-action ComienzaOferta only performable by  Proveedor output values {PorMediosConDatosOferente, PorMediosSinDatosOferente}
+action PagarGastosTraslado only performable by Proveedor
+action InterrupcionPrestacionServicioCulpaP
+action Iniciar_Accion_Judicial_Individual only performable by Consumidor
 
-action TerminaOferta only performable by  Proveedor
+action Incumplir_Obligacion only performable by Proveedor
+action ComienzaOferta only performable by Proveedor output values {PorMediosConDatosOferente, PorMediosSinDatosOferente}
+
+action TerminaOferta only performable by Proveedor
 
 action Consumir only performable by Consumidor
 
@@ -48,7 +53,8 @@ Onerosamente, Correctamente, Incorrectamente}
 
 action MantenerRelacionConsumo only performable by Consumidor
 
-action RespetarLeyDefensaConsumidor only performable by Proveedor
+//la original era esta action RespetarLeyDefensaConsumidor only performable by Proveedor
+action RespetarLeyDefensaConsumidor only performable by Proveedor, ProfesionalMatriculado
 
 action PublicitarServicioProfesional only performable by ProfesionalMatriculado
 
@@ -405,17 +411,19 @@ FORALL(i:ProfesionalMatriculado; F(i.PublicitarServicioProfesional & !i.Respetar
 FORALL(i:Consumidor; O(i.SolicitarInformacion -> EXISTS(j:Proveedor; j.SuministrarInformacion)))
 //FORALL(i:Consumidor; O(i.SolicitarInformacion -> EXISTS(j:Proveedor; j.SuministrarInformacion.CiertaClaraDetalladaGratuita)))
 
-FORALL(i; O(i.ProveerByS.Correctamente & i.UtilizarByS.Correctamente -> !RiesgoalConsumidor))
+//com Ov
+//FORALL(i; O(i.ProveerByS.Correctamente & i.UtilizarByS.Correctamente -> !RiesgoalConsumidor))
 
 FORALL(i; O(i.ProveerBySRiesgoso -> i.EntregarManual))
 
-FORALL(i;  F(i.ProveerBySRiesgoso & !i.SuministrarInformacion.EsRiesgosa))
+//com Ov
+//FORALL(i;  F(i.ProveerBySRiesgoso & !i.SuministrarInformacion.EsRiesgosa))
 
 FORALL(i:Proveedor; O(INSIDE(i.PeriodoOferta)->i.EspecificarCondicionesOferta))
 
 FORALL(i; F( INSIDE(i.PeriodoOferta) & i.RevocarOferta & !i.DifundirRevocacion ))
 
-FORALL(i; O(INSIDE(i.PeriodoOferta) & i.SolicitarOferta & i.IncumplirOferta -> Sancionar))
+FORALL(i; O(INSIDE(i.PeriodoOferta) & i.SolicitarOferta & i.IncumplirOferta -> i.Sancionar))
 
 FORALL(i; O(INSIDE(i.PeriodoOferta) & i.Comprar -> i.CumplirConCondicionesDeOferta & i.CumplirConCondicionesDePub))
 
@@ -441,35 +449,50 @@ FORALL(i:Proveedor; O(i.OfrecerServicios -> i.OfrecerRescindir))
 FORALL(i; O(i.Rescindir -> INSIDE(i.TiempoEnvioConstancia) & i.EnviarConstanciaRescicion))
 
 //ARTICULO 11. 
-P(dias_de_garantia_restantes >= 0 ˄ ViciosdelaCosa  → GozarGarantia)
-P(GozarGarantia  → EjecutarGarantia)
+//Hay que poner el agente
+//P(dias_de_garantia_restantes >= 0 ˄ ViciosdelaCosa  → GozarGarantia)
+//P(GozarGarantia  -> EjecutarGarantia)
 
-FORALL (i:consumidor;  P(i.dias_de_garantia_restantes >= 0 ˄ ViciosdelaCosa  → i.EjecutarGarantia))
+//FORALL(i:consumidor;  P(i.dias_de_garantia_restantes >= 0 ˄ ViciosdelaCosa  → i.EjecutarGarantia))
+FORALL(i:Consumidor;  P(i.dias_de_garantia_restantes >= 0 & ViciosdelaCosa  -> i.EjecutarGarantia))
 
-O(EjecutarGarantia ˄  TrasladarCosaTallerFabrica  → PagarGastosTraslado)
-FORALL (i:consumidor; O(i.EjecutarGarantia ˄  i.TrasladarCosaTallerFabrica  → EXIST(j:proveedor; j.PagarGastosTraslado) ))
+//Hay que poner el agente
+//O(EjecutarGarantia ˄  TrasladarCosaTallerFabrica  → PagarGastosTraslado)
+
+FORALL(i:Consumidor; O(i.EjecutarGarantia &  i.TrasladarCosaTallerFabrica  -> EXISTS(j:Proveedor; j.PagarGastosTraslado) ))
+//FORALL(i:consumidor; O(i.EjecutarGarantia ˄  i.TrasladarCosaTallerFabrica  → EXIST(j:Proveedor; j.PagarGastosTraslado) ))
 //ARTICULO 12.
 
-FORALL (i: Proveedor; O(i.ServicioTecnico.adecuado ˄  i.SuministrarRepuestos))
+//com Ov
+//FORALL(i: Proveedor; O(i.ServicioTecnico.adecuado &  i.SuministrarRepuestos))
+//FORALL(i: Proveedor; O(i.ServicioTecnico.adecuado ˄  i.SuministrarRepuestos))
 
 //ARTICULO 13. 
 
-FORALL (i:Consumidor; P(i.ExigirCumplimientoGarantia.Productor v i.ExigirCumplimientoGarantia.Importador v i.ExigirCumplimientoGarantia.Distribuidor v i.ExigirCumplimientoGarantia.Vendedor));
+//com Ov
+//FORALL(i:Consumidor; P(i.ExigirCumplimientoGarantia.Productor v i.ExigirCumplimientoGarantia.Importador v i.ExigirCumplimientoGarantia.Distribuidor v i.ExigirCumplimientoGarantia.Vendedor));
 
-FORALL(i:Proveedor;  O(EjecutarGarantia -> CumplirGarantia.Productor v CumplirGarantia.Importador v CumplirGarantia.Distribuidor v CumplirGarantia.Vendedor))
+//com Ov
+//FORALL(i:Proveedor;  O(i.EjecutarGarantia -> CumplirGarantia.Productor v CumplirGarantia.Importador v CumplirGarantia.Distribuidor v CumplirGarantia.Vendedor))
 
 //ARTICULO 14. 
-FORALL(i:Proveedor;  O(i.Vender → i.RedactarDocGarantia.EnIdiomaNacionalComprensibleCompleto)
-P(NotificarEntradaVigenciaGarantia) 
+//com Ov
+//FORALL(i:Proveedor;  O(i.Vender -> i.RedactarDocGarantia.EnIdiomaNacionalComprensibleCompleto)
+//Hay que poner el agente
+//P(NotificarEntradaVigenciaGarantia) 
 
-FORALL (i:Consumidor; O(i.comprar.NotificaciónNecesaria -> EXISTS(j:Vendedor; j.NotificarEntradaVigenciaGarantia)
+//com Ov
+//FORALL(i:Consumidor; O(i.comprar.NotificaciónNecesaria -> EXISTS(j:Vendedor; j.NotificarEntradaVigenciaGarantia)
 
 //ARTICULO 15.
-P(CumplirGarantia->RepararBajoGarantia)
-FORALL(i:Proveedor; O(i.RepararBajoGarantia → i.EntregarConstanciaReparacion.Completo)
+//Hay que poner el agente
+//P(CumplirGarantia->RepararBajoGarantia)
+//com Ov
+//FORALL(i:Proveedor; O(i.RepararBajoGarantia -> i.EntregarConstanciaReparacion.Completo)
 //ARTICULO 16. 
 //ARTICULO 17.
-FORALL(i:Proveedor; O(i.RepararBajoGarantia.Insatisfactorio  -> i.SustitucionProducto  v .iDevolucionDinero v i.QuitaPrecio)
+//com Ov
+//FORALL(i:Proveedor; O(i.RepararBajoGarantia.Insatisfactorio  -> i.SustitucionProducto  v .iDevolucionDinero v i.QuitaPrecio)
 //ARTICULO 18. 
 //LO COMENTO xq me parece que está mal escrita la ley
 //O(RespetarGarantiaPorViciosRedhibitorios)
@@ -478,175 +501,256 @@ FORALL(i:Proveedor; O(i.RepararBajoGarantia.Insatisfactorio  -> i.SustitucionPro
 
 //Art. 19
 
-FORALL(i: Poveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
+FORALL(i:Proveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
 
 //Art. 20 
 
-FORALL (i:Prooverdor; O(i.PrestarServicio.Reparar ˄ !PactoEscritoAceptarMaterialUsado -> PrestarServicioDeReparacionyMantenimiento.ConMaterialesNuevosoAdecuados))
+//com Ov
+//FORALL(i:Prooverdor; O(i.PrestarServicio.Reparar ˄ !PactoEscritoAceptarMaterialUsado -> PrestarServicioDeReparacionyMantenimiento.ConMaterialesNuevosoAdecuados))
 
-FORALL (i:Prooverdor; P(i.PrestarServicio.Reparar ˄ PactoEscritoAceptarMaterialUsado -> PrestarServicioDeReparacionyMantenimiento.ConMaterialesUsados))
+//com Ov
+//FORALL(i:Prooverdor; P(i.PrestarServicio.Reparar ˄ PactoEscritoAceptarMaterialUsado -> PrestarServicioDeReparacionyMantenimiento.ConMaterialesUsados))
 
 //Art. 21
-FORALL(i:Proveedor; ;O(i.PrestarServicioDeReparacionyMantenimiento -> i.ExtenderPresupuesto.Completo)
+//com Ov
+//FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.ExtenderPresupuesto.Completo)
 
 //Art. 22
 
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento.ConGastoAdicional ˄ i.PrestarServicioDeReparacionyMantenimiento.SePuedeInterrumpir -> i.ComunicarGastosAdicionalesAlPresupuesto)
+//com Ov
+//FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento.ConGastoAdicional ˄ i.PrestarServicioDeReparacionyMantenimiento.SePuedeInterrumpir -> i.ComunicarGastosAdicionalesAlPresupuesto)
 //Art. 23
-O(dias_de_garantia_restantes >= 0 ˄ ApareceUnaFalla ->  PrestarGarantiaReparacion)
+//Hay que poner el agente
+//O(dias_de_garantia_restantes >= 0 ˄ ApareceUnaFalla ->  PrestarGarantiaReparacion)
 
 // Art. 24
-FORALL(i;Proveedor; O(i.ContratoPrestacionServicios ->i.EntregarGarantiaPorEscrito.Completa))
+//com Ov
+//FORALL(i:Proveedor; O(i.ContratoPrestacionServicios ->i.EntregarGarantiaPorEscrito.Completa))
 //Art.25
-FORALL(i; O(i.TenerTerminosyCondiciones.EntregarporEscrito & i.TenerTerminosyCondiciones.mantenerenOficinaAtencionalPublico))
-FORALL(i; O(i.IncluirLeyenda.enOficinaAtencion) & O(i.FacturacionServicio -> i.IncluirLeyenda.enFacturacion))
-FORALL(i; O(i.AplicarLegislacion.Propia & i.AplicarLegislacion.DefensaConsumidor))
-FORALL(i; O(i.AplicarLegislacionmasFavorablealConsumidor.Propia | i.AplicarLegislacionmasFavorablealConsumidor.DefensaConsumidor))
-FORALL(i; P(i.ReclamarPorServicioPublico | i.ReclamarPorServicioPublicoconLegislacionPropia.AutoridadAplicacionLeyDC | i.ReclamarPorServicioPublicoconLegislacionPropia.AutoridadInstituida))
+//com Ov
+//FORALL(i; O(i.TenerTerminosyCondiciones.EntregarporEscrito & i.TenerTerminosyCondiciones.mantenerenOficinaAtencionalPublico))
+//com Ov
+//FORALL(i; O(i.IncluirLeyenda.enOficinaAtencion) & O(i.FacturacionServicio -> i.IncluirLeyenda.enFacturacion))
+//com Ov
+//FORALL(i; O(i.AplicarLegislacion.Propia & i.AplicarLegislacion.DefensaConsumidor))
+//com Ov
+//FORALL(i; O(i.AplicarLegislacionmasFavorablealConsumidor.Propia | i.AplicarLegislacionmasFavorablealConsumidor.DefensaConsumidor))
+//com Ov
+//FORALL(i; P(i.ReclamarPorServicioPublico | i.ReclamarPorServicioPublicoconLegislacionPropia.AutoridadAplicacionLeyDC | i.ReclamarPorServicioPublicoconLegislacionPropia.AutoridadInstituida))
 //Art.26
 FORALL(i; O(i.brindar_reciprocidad_trato))
 
 //Art.27
 FORALL(i; O(i.RecibirReclamo -> i.Entregar_Constancia_Reclamos  & i.Mantener_Registro_Reclamos))
-FORALL(i:consumidor_servicio_publicod; O(i.Reclamar -> (j:proveedor_servicio_publicod; j.Entregar_Constancia_Reclamos & j.Mantener_Registro_Reclamos)))
-FORALL(i:consumidor_servicio_publicod; O(i.Reclamar ->(j:proveedor_servicio_publicod; j.AtenderReclamo.enplazoperentorio)))
+FORALL(i:consumidor_servicio_publicod; O(i.Reclamar -> EXISTS(j:proveedor_servicio_publicod; j.Entregar_Constancia_Reclamos & j.Mantener_Registro_Reclamos)))
+//FORALL(i:consumidor_servicio_publicod; O(i.Reclamar -> (j:proveedor_servicio_publicod; j.Entregar_Constancia_Reclamos & j.Mantener_Registro_Reclamos)))
+//com Ov
+//FORALL(i:consumidor_servicio_publicod; O(i.Reclamar ->(j:proveedor_servicio_publicod; j.AtenderReclamo.enplazoperentorio)))
 //Art.28
-FORALL(i; O(i.Prestar_Servicio_Publico_D.conInstalacionesEspecificas -> i.InformarCondicionesdeSeguridad))
+//com Ov
+//FORALL(i; O(i.Prestar_Servicio_Publico_D.conInstalacionesEspecificas -> i.InformarCondicionesdeSeguridad))
 //Art.29
-FORALL(i:instrumento_medicion_autorizado; P(i.EmitirLecturasDudosas -> (j:autoridad_competente ; j.Verificar_Buen_funcionamiento_instrumento_medicion))
-FORALL(i; P(I.Control_Individual_Consumo))
-FORALL(i; O(i.FacturacionServicio ->i.EntregarFacturaServicio.diezdiasantesFVto))
+FORALL(i:instrumento_medicion_autorizado; P(i.EmitirLecturasDudosas -> EXISTS(j:autoridad_competente ; j.Verificar_Buen_funcionamiento_Instrumento_Medicion)))
+//FORALL(i:instrumento_medicion_autorizado; P(i.EmitirLecturasDudosas -> (j:autoridad_competente ; j.Verificar_Buen_funcionamiento_Instrumento_Medicion))
+FORALL(i; P(i.Control_Individual_Consumo))
+//com Ov
+//FORALL(i; O(i.FacturacionServicio ->i.EntregarFacturaServicio.diezdiasantesFVto))
 //Art.30
-FORALL(i; O (i.InterrupcionPrestacionServicioPublico & (j:proveedor_servicio_publicod; !j.DemostracionNoImputable > INSIDE(periodoDemostracionNoCulpaEmpresa))  -> j.InterrupcionPrestacionServicioPublicoCulpaP))
-FORALL(I; O((!I.DeduccionImporteServicioNoPrestado & i.InterrupcionPrestacionServicioCulpaP) -> i.ReintegrarImporteServicioNoPrestado))
+//Formula mal escrita
+//FORALL(i; O(i.InterrupcionPrestacionServicioPublico & (j:proveedor_servicio_publicod; !j.DemostracionNoImputable > INSIDE(periodoDemostracionNoCulpaEmpresa))  -> j.InterrupcionPrestacionServicioPublicoCulpaP))
+FORALL(i; O((!i.DeduccionImporteServicioNoPrestado & i.InterrupcionPrestacionServicioCulpaP) -> i.ReintegrarImporteServicioNoPrestado))
 //Art.30 bis
-FORALL(i:consumidor_servicio_publicod; F(i.PoseerDeuda & (j:proveedor_servicio_publicod; j.FacturacionServicio.AvisoLibreDeuda | j.FacturacionServicio.SinAviso)))
-FORALL(i:consumidor_servicio_publicod; j:proveedor_servicio_publicod;  O((i.PoseerDeuda &  j.FacturacionServicio.InformacionDeuda) -> j.FacturacionDeudasServicio))
-FORALL(j:proveedor_servicio_publicod; O(CambiarPrestatario ->j.NotificarDeuda.en120Dias))
-FORALL(j:proveedor_servicio_publicod; O(!j.NotificarDeuda.en120Dias -> j.CondonarDeuda))
+//com Ov
+//FORALL(i:consumidor_servicio_publicod; F(i.PoseerDeuda & (j:proveedor_servicio_publicod; j.FacturacionServicio.AvisoLibreDeuda | j.FacturacionServicio.SinAviso)))
+//com Ov
+//FORALL(i:consumidor_servicio_publicod; j:proveedor_servicio_publicod;  O((i.PoseerDeuda &  j.FacturacionServicio.InformacionDeuda) -> j.FacturacionDeudasServicio))
+//com Ov
+//FORALL(j:proveedor_servicio_publicod; O(CambiarPrestatario ->j.NotificarDeuda.en120Dias))
+//com Ov
+//FORALL(j:proveedor_servicio_publicod; O(!j.NotificarDeuda.en120Dias -> j.CondonarDeuda))
 
 //Art.31 Hay que hacerlo entre todos.
 //Art.32
-FORALL(i; (i.Ofertar.FueraDelEstablecimiento | i.PrestarServicio.FueraDelEstablecimiento) -> i.VentaDomiciliaria)
-FORALL(i; (i.ConvocaralConsumidor.ObjetivoDistintoaContratacion | i.ConvocaralConsumidor.premiouobsequio) -> i.VentaDomiciliaria)
-FORALL(i:consumidor; j:proveedor; O((j.VentaDomiciliaria  & !i.Comprar.BienesPerecederosalContado)-> RedactarDocVenta))
+//com Ov
+//FORALL(i; (i.Ofertar.FueraDelEstablecimiento | i.PrestarServicio.FueraDelEstablecimiento) -> i.VentaDomiciliaria)
+//com Ov
+//FORALL(i; (i.ConvocaralConsumidor.ObjetivoDistintoaContratacion | i.ConvocaralConsumidor.premiouobsequio) -> i.VentaDomiciliaria)
+//com Ov
+//FORALL(i:consumidor; j:proveedor; O((j.VentaDomiciliaria  & !i.Comprar.BienesPerecederosalContado)-> RedactarDocVenta))
 //Art.33
-FORALL(i:consumidor; j:proveedor; (j.VentaPorCorrespondenciayOtras <-> (j.Ofertar.PorMedios & i.Comprar.PorMedios)))
-FORALL(j:proveedor; F(j.PublicarNumeroPostalComoDomicilio))
+//com Ov
+//FORALL(i:consumidor; j:proveedor; (j.VentaPorCorrespondenciayOtras <-> (j.Ofertar.PorMedios & i.Comprar.PorMedios)))
+FORALL(j:Proveedor; F(j.PublicarNumeroPostalComoDomicilio))
 //Art.34
-FORALL(i; k:proveedor; O(k.VentaDomiciliaria -> k.EntregaDelBien & i.CelebracionDelContrato))
-FORALL(i; k:proveedor; O(k.VentaPorCorrespondenciayOtros -> k.EntregaDelBien & i.CelebracionDelContrato))
-FORALL(i:consumido; j:proveedor; P(INSIDE((j.VentaDomiciliaria | j.VentaPorCorrespondenciayOtros) -> i.RevocarAceptacion)))
-FORALL(i:consumidor; j:proveedor; O(i.RevocarAceptacion -> (i.PoneraDisposicionBien & j.AbonarGastosDevolucion)))
+//creo que no se puede declarar mas de un rol
+//FORALL(i, k:proveedor; O(k.VentaDomiciliaria -> k.EntregaDelBien & i.CelebracionDelContrato))
+//FORALL(i; k:proveedor; O(k.VentaPorCorrespondenciayOtros -> k.EntregaDelBien & i.CelebracionDelContrato))
+//FORALL(i:consumido; j:proveedor; P(INSIDE((j.VentaDomiciliaria | j.VentaPorCorrespondenciayOtros) -> i.RevocarAceptacion)))
+//FORALL(i:consumidor; j:proveedor; O(i.RevocarAceptacion -> (i.PoneraDisposicionBien & j.AbonarGastosDevolucion)))
 //Art.35
-FORALL(j: proveedor; F(j.Ofertar.PorMedios -> j.GenerarCargoAutomatico.SinConsentimientoDelConsumidor))
-FORALL(i:consumidor; j:proveedor; P((j.Ofertar.PorMedios & j.GenerarCargoAutomatico.SinConsentimientoDelConsumidor & j.EntregadelBien) ->  !i.PoneraDisposicionBien))
+//com Ov
+//FORALL(j: proveedor; F(j.Ofertar.PorMedios -> j.GenerarCargoAutomatico.SinConsentimientoDelConsumidor))
+//creo que no se puede declarar mas de un rol
+//FORALL(i:consumidor; j:proveedor; P((j.Ofertar.PorMedios & j.GenerarCargoAutomatico.SinConsentimientoDelConsumidor & j.EntregadelBien) ->  !i.PoneraDisposicionBien))
 //ART 36 AL 44
 
-FORALL(i:proveedor; O(i.Vender.PorCredito v i.Vender.PorFinancion -> i.InformarCondicionesOperacionesVentaCredito))
-FORALL(i:consumidor;P(j:proveedor; j.-InformarCondicionesOperacionesVentaCredito -> i.DemandarNulidadContrato))
-FORALL(i:proveedor; O(((i.Vender.PorCredito v i.Vender.PorFinancion) y i.-InformarCondicionesOperacionesVentaCredito.TasaInteresEfectivaAnual) -> i.EquipararTasaEfectivaAnualaTasaBCRA))
-FORALL(i:EntidadFinanciera; O (((i.CelebracionContrato.PorCredito v i.CelebracionContrato.PorFinanciacion) y i.OtorgarCreditoFinancion.noEfectivo )-> i.CelebracionContrato.NoEfectiva))
-FORALL(i:proveedor; O(j: EntidadFinanciera;j.OtorgarCreditoFinancion.NoEfectivo -> i.ResolverSinCosto))
-FORALL(i:BCRA; O(- InformarCondicionesOperacionesVentaCredito -> AdoptarMedidas))
-FORALL(i:Proveedor; F(RedactarClausulas.desnaturaliza_obligaciones v RedactarClausulas.limita_responsabilidad v RedactarClausulas.importa_renuncia v RedactarClausulas.restringe_derecho_consumidor v RedactarClausulas.amplia_derechos_proveedor v RedactarClausulas.invierta_carga_de_prueba))
-FORALL(i:autoridad_competente; O(interpretar_contrato => interpretar_contrato.pro_consumidor))
-FORALL(i:autoridad_competente; P(j:proveedor;j.violar_buena_fe v j.violar_deber_informacion v j.violar_legislacion_aplicable => i.demandar_nulidad  ))
-FORALL(i:autoridad_competente; P(declarar_nulidad_parcial => integrar_contrato ))
-FORALL(i:autoridad_competente; O(RedactarClausulas.en_contrato_adhesion => vigilar_contrato_adhesion ))
-FORALL(i:autoridad_competente; O(RedactarContratoAdhesion.requiereAprobacionAutoridad => modificarContratoAdhesion ))
-FORALL(i:Transportista; O(i.DaniaralaCosaporTransporte => i.ResponderPorDaniosdeTransporte))
-O(DaniaralConsumidor.PorVicioByS v DaniaralConsumidor.PorRiesgoByS v DaniaralConsumidor.EnPerjuiciooMenoscabo  => ResponderSolidariamentePorDanios.Fabricante v ResponderSolidariamentePorDanios.Distribuidor v ResponderSolidariamentePorDanios.Proovedor v ResponderSolidariamentePorDanios.Vendedor v ResponderSolidariamentePorDanios.Titulardelamarca)
-
-
-(DaniaralConsumidor.PorVicioByS v DaniaralConsumidor.PorRiesgoByS v DaniaralConsumidor.EnPerjuiciooMenoscabo) y (DaniaralConsumidor.PorAccion v DaniaralConsumidor.PorOmision) y DaniaralConsumidor.ApreciaciónPecuniaria y DaniaralConsumidor.Inmediato y DaniaralConsumidor.SobreSusBienesoPersona) <=> DanioDirecto
-FORALL(i:autoridad_competente; O(i.DeterminarDanioDirecto => i.ObligarResarcimiento))
+//com Ov
+//FORALL(i:proveedor; O(i.Vender.PorCredito v i.Vender.PorFinancion -> i.InformarCondicionesOperacionesVentaCredito))
+//mal escrita
+//FORALL(i:consumidor; P(j:proveedor; j.-InformarCondicionesOperacionesVentaCredito -> i.DemandarNulidadContrato))
+//com Ov
+//FORALL(i:proveedor; O(((i.Vender.PorCredito v i.Vender.PorFinancion) y i.-InformarCondicionesOperacionesVentaCredito.TasaInteresEfectivaAnual) -> i.EquipararTasaEfectivaAnualaTasaBCRA))
+//com Ov
+//FORALL(i:EntidadFinanciera; O (((i.CelebracionContrato.PorCredito v i.CelebracionContrato.PorFinanciacion) y i.OtorgarCreditoFinancion.noEfectivo )-> i.CelebracionContrato.NoEfectiva))
+//mal escrita
+//FORALL(i:proveedor; O(j: EntidadFinanciera;j.OtorgarCreditoFinancion.NoEfectivo -> i.ResolverSinCosto))
+FORALL(i:BCRA; O( i.InformarCondicionesOperacionesVentaCredito -> i.AdoptarMedidas))
+//com Ov
+//FORALL(i:Proveedor; F(RedactarClausulas.desnaturaliza_obligaciones v RedactarClausulas.limita_responsabilidad v RedactarClausulas.importa_renuncia v RedactarClausulas.restringe_derecho_consumidor v RedactarClausulas.amplia_derechos_proveedor v RedactarClausulas.invierta_carga_de_prueba))
+//com Ov
+//FORALL(i:autoridad_competente; O(i.interpretar_contrato => interpretar_contrato.pro_consumidor))
+//mal escrita
+//FORALL(i:autoridad_competente; P(j:proveedor;j.violar_buena_fe v j.violar_deber_informacion v j.violar_legislacion_aplicable => i.demandar_nulidad  ))
+FORALL(i:autoridad_competente; P(i.declarar_nulidad_parcial -> i.integrar_contrato ))
+//com Ov
+//FORALL(i:autoridad_competente; O(RedactarClausulas.en_contrato_adhesion => vigilar_contrato_adhesion ))
+//com Ov
+//FORALL(i:autoridad_competente; O(RedactarContratoAdhesion.requiereAprobacionAutoridad => modificarContratoAdhesion ))
+FORALL(i:Transportista; O(i.DaniaralaCosaporTransporte -> i.ResponderPorDaniosdeTransporte))
+//mal escrita
+//O(DaniaralConsumidor.PorVicioByS v DaniaralConsumidor.PorRiesgoByS v DaniaralConsumidor.EnPerjuiciooMenoscabo  => ResponderSolidariamentePorDanios.Fabricante v ResponderSolidariamentePorDanios.Distribuidor v ResponderSolidariamentePorDanios.Proovedor v ResponderSolidariamentePorDanios.Vendedor v ResponderSolidariamentePorDanios.Titulardelamarca)
+//(DaniaralConsumidor.PorVicioByS v DaniaralConsumidor.PorRiesgoByS v DaniaralConsumidor.EnPerjuiciooMenoscabo) y (DaniaralConsumidor.PorAccion v DaniaralConsumidor.PorOmision) y DaniaralConsumidor.ApreciaciónPecuniaria y DaniaralConsumidor.Inmediato y DaniaralConsumidor.SobreSusBienesoPersona) <=> DanioDirecto
+FORALL(i:autoridad_competente; O(i.DeterminarDanioDirecto -> i.ObligarResarcimiento))
 FORALL(i:Proveedor; P(i.ApelarActoAdministrativo))
-FORALL(i:proveedor; O(i.PagarSumadanioDirecto) y P(i.PagarSumadanioDirecto.DeducibledeOtrasIndemnizaciones))
-FORALL(i: Autoridad_Aplicacion_Nacional,j: Autoridad_Aplicacion_Provincial; O(i.ControlVigilanciaJuzgamiento_LeyDefensaConsumidor)y O(j.ControlVigilanciaJuzgamiento_LeyDefensaConsumidor))
+//com Ov
+//FORALL(i:proveedor; O(i.PagarSumaDanioDirecto) & P(i.PagarSumaDanioDirecto.DeducibledeOtrasIndemnizaciones))
+//creo que no se puede declarar mas de un rol
+//FORALL(i: Autoridad_Aplicacion_Nacional,j: Autoridad_Aplicacion_Provincial; O(i.ControlVigilanciaJuzgamiento_LeyDefensaConsumidor)y O(j.ControlVigilanciaJuzgamiento_LeyDefensaConsumidor))
 FORALL(i: Autoridad_Aplicacion_Nacional; P(i.ProponerDictadoReglamentacion))
 FORALL(i: Autoridad_Aplicacion_Nacional; P(i.ElaborarPoliticas))
 FORALL(i: Autoridad_Aplicacion_Nacional; P(i. IntervenirEnInstrumentacion))
 FORALL(i: Autoridad_Aplicacion_Nacional; P(i. MantenerRegistroAsociacionesConsumidoresUsuarios))
 FORALL(i: Autoridad_Aplicacion_Nacional; P(i. RecibirInquietudesDenuncias_DeConsumidoresUsuarios))
 FORALL(i: Autoridad_Aplicacion_Nacional; P(i. TratarInquietudesDenuncias_DeConsumidoresUsuarios))
-FORALL(i: Autoridad_Aplicacion_Provincial; P(i.DelegarFacultad.c -> i.RecibirInquietudesDenuncias_DeConsumidoresUsuarios_Delegada))
-FORALL(i: Autoridad_Aplicacion_Provincial; P(i.DelegarFacultad.c -> i. TratarInquietudesDenuncias_DeConsumidoresUsuarios_Delegada))
+//com Ov
+//FORALL(i: Autoridad_Aplicacion_Provincial; P(i.DelegarFacultad.c -> i.RecibirInquietudesDenuncias_DeConsumidoresUsuarios_Delegada))
+//com Ov
+//FORALL(i: Autoridad_Aplicacion_Provincial; P(i.DelegarFacultad.c -> i. TratarInquietudesDenuncias_DeConsumidoresUsuarios_Delegada))
 FORALL(i: Autoridad_Aplicacion_Nacional; P(i.DisponerRealizacionDeInspeccionesyPericias))
-FORALL(i: Autoridad_Aplicacion_Provincial; P(i.DelegarFacultad.d -> i.DisponerRealizacionDeInspeccionesyPericias_Delegada))
+//com Ov
+//FORALL(i: Autoridad_Aplicacion_Provincial; P(i.DelegarFacultad.d -> i.DisponerRealizacionDeInspeccionesyPericias_Delegada))
 FORALL(i: Autoridad_Aplicacion_Nacional; P(i. SolicitarInformesyOpiniones))
 FORALL(i: Autoridad_Aplicacion_Nacional; P(i. DisponerCelebracionAudiencia))
-FORALL(i: Autoridad_Aplicacion_ Provincial; P(i.DelegarFacultad.f -> i.DisponerCelebracionAudiencia_Delegada )))
-FORALL(i: Autoridad_Aplicacion_Nacional,j:Autoridad_Aplicacion_Provincial; P(i.j.DisponerRealizacionDeInspeccionesyPericias v i.j.DisponerRealizacionDeInspeccionesyPericias_Delegada -> i.j.SolicitarAuxilioFuerzaPublica))
-FORALL(i: Autoridad_Aplicacion_Nacional,j:Autoridad_Aplicacion_Provincial; P(i.j.DisponerCelebracionAudiencia v i.j.DisponerCelebracionAudiencia_Delegada -> i.j.SolicitarAuxilioFuerzaPublica))
+//com Ov
+//FORALL(i: Autoridad_Aplicacion_ Provincial; P(i.DelegarFacultad.f -> i.DisponerCelebracionAudiencia_Delegada )))
+//creo que no se puede declarar mas de un rol
+//FORALL(i: Autoridad_Aplicacion_Nacional,j:Autoridad_Aplicacion_Provincial; P(i.j.DisponerRealizacionDeInspeccionesyPericias v i.j.DisponerRealizacionDeInspeccionesyPericias_Delegada -> i.j.SolicitarAuxilioFuerzaPublica))
+//creo que no se puede declarar mas de un rol
+//FORALL(i: Autoridad_Aplicacion_Nacional,j:Autoridad_Aplicacion_Provincial; P(i.j.DisponerCelebracionAudiencia v i.j.DisponerCelebracionAudiencia_Delegada -> i.j.SolicitarAuxilioFuerzaPublica))
 //Art.45
-FORALL (i:Proveedor, j:Autoridad_Aplicacion_Nacional; O(i.Cometer_Infraccion → ((j.Iniciar_Actuaciones_Administrativas.DeOficio v j.Iniciar_Actuaciones_Administrativas.PorDenunciasParticulares) ^ Conciliar ^ j.LabrarActa.PorDenuncia )
-duda: como hago para decir que en conciliar confluyen ambos agentes (Proveedor y Consumidor)???
-FORALL (i;dias_realizar_descargo > 0 & P(i.RealizarDescargo)) only in scope periodo_realizar_descargo
+//creo que no se puede declarar mas de un rol
+//FORALL (i:Proveedor, j:Autoridad_Aplicacion_Nacional; O(i.Cometer_Infraccion → ((j.Iniciar_Actuaciones_Administrativas.DeOficio v j.Iniciar_Actuaciones_Administrativas.PorDenunciasParticulares) ^ Conciliar ^ j.LabrarActa.PorDenuncia )
 
-FORALL (i: Autoridad_Aplicacion_Nacional,i.Realizar_Inspeccion & i.Requerir_Verificacion_Tecnica.ResultadoPositivo) -> i.LabrarActa.PorInspeccionQueRequiereVerificación & i.IntimaARealizarDescargo) 
-duda: Como digo que Se intima a realizar Descargo a un Infractor en Particular q es el recibió el descargo...
-FORALL (I: Infractor, O(i.RealizarDescargo.AcreeditarPersoneria & i.RealizarDescargo.ConstituirDomicilio) & EXIST (i, P(i.Desvirtuar_Constancia_Acta.OfrecerPruebas))
-FORALL (i:Autoridad_Aplicacion_Nacional, P(Existencia_Hecho_Controvertido -> (i.Admitir_Pruebas |  i.Denegar_Medidas_Prueba))
-FORALL(i:Autoridad_Aplicacion_Nacional, j: Infractor, i.Denegar_Medidas_Prueba -> j.Interponer_Recurso_Reconsideracion)
-Forall (i:Autoridad_Aplicacion_Nacional, j: Infractor, P(dias_producir_prueba > 0 | i.ProrrogarPlazoPrueba )-> j.Producir_Prueba) only in scope periodo_producir_prueba
+//duda: como hago para decir que en conciliar confluyen ambos agentes (Proveedor y Consumidor)???
+
+//mal escrita
+//FORALL (i;dias_realizar_descargo > 0 & P(i.RealizarDescargo)) only in scope periodo_realizar_descargo
+
+//com Ov
+//FORALL (i: Autoridad_Aplicacion_Nacional,i.Realizar_Inspeccion & i.Requerir_Verificacion_Tecnica.ResultadoPositivo) -> i.LabrarActa.PorInspeccionQueRequiereVerificación & i.IntimaARealizarDescargo) 
+//duda: Como digo que Se intima a realizar Descargo a un Infractor en Particular q es el recibió el descargo...
+//com Ov
+//FORALL (I: Infractor, O(i.RealizarDescargo.AcreeditarPersoneria & i.RealizarDescargo.ConstituirDomicilio) & EXIST (i, P(i.Desvirtuar_Constancia_Acta.OfrecerPruebas))
+FORALL(i:Autoridad_Aplicacion_Nacional; P(Existencia_Hecho_Controvertido -> (i.Admitir_Pruebas |  i.Denegar_Medidas_Prueba)))
+//creo que no se puede declarar mas de un rol
+//FORALL(i:Autoridad_Aplicacion_Nacional, j: Infractor, i.Denegar_Medidas_Prueba -> j.Interponer_Recurso_Reconsideracion)
+//creo que no se puede declarar mas de un rol
+//Forall (i:Autoridad_Aplicacion_Nacional, j: Infractor, P(dias_producir_prueba > 0 | i.ProrrogarPlazoPrueba )-> j.Producir_Prueba) only in scope periodo_producir_prueba
 
 //Duda: no estoy convencida de que esté bien modelado
 
-Forall(i:Autoridad_Aplicacion_Nacional, P(ExistenciaCausaJustificada -> i.ProrrogarPlazoPrueba))
+FORALL(i:Autoridad_Aplicacion_Nacional; P(ExistenciaCausaJustificada -> i.ProrrogarPlazoPrueba))
 
-Forall(i:Autoridad_Aplicacion_Nacional, P(i.Ordenar_Medida_Preventiva))
-FORALL (i:Autoridad_Aplicacion_Nacional, j: infractor, k:consumidor, P((i.Conclusion_Diligencias_Sumariales | j.Conclusion_Diligencias_Sumariales | k.Conclusion_Diligencias_Sumariales) & dias_resolucion_infraccion > 0 -> i.Resolucion_Definitiva) only in scope periodo_resolucion_infraccion
+FORALL(i:Autoridad_Aplicacion_Nacional; P(i.Ordenar_Medida_Preventiva))
+//creo que no se puede declarar mas de un rol
+//FORALL (i:Autoridad_Aplicacion_Nacional, j: infractor, k:consumidor, P((i.Conclusion_Diligencias_Sumariales | j.Conclusion_Diligencias_Sumariales | k.Conclusion_Diligencias_Sumariales) & dias_resolucion_infraccion > 0 -> i.Resolucion_Definitiva) only in scope periodo_resolucion_infraccion
 
-FORALL (i:Autoridad_Aplicacion_Nacional, F(dias_resolucion_infraccion <= 0 y -Resolucion_Definitiva)
+FORALL(i:Autoridad_Aplicacion_Nacional; F(i.dias_resolucion_infraccion <= 0 & i.Resolucion_Definitiva))
 
-(Duda: Se podría haber traducido de otra manera? Me parece medio raro x la negativa)
+//(Duda: Se podría haber traducido de otra manera? Me parece medio raro x la negativa)
 
-FORALL (i:Autoridad_Aplicacion_Nacional, P(i.Dictar_Medidas_No_Innovar))
-FORALL (i, P(i.Recurrir_Acto_Administrativo_Ante_Autoridad_Aplicacion & dias_interponer_recurso > 0) only in scope periodo_resolucion_infraccion)
-FORALL (i, F(i.Recurrir_Acto_Administrativo_Ante_Autoridad_Aplicacion y dias_interponer_recurso <= 0 ))
-FORALL (i: Gobierno_Local, O(i.Dictar_Normas_Actuacion))
-//Art. 46.– Incumplimiento de acuerdos conciliatorios
-FORALL (i:Infractor, j:Autoridad_Aplicacion_Nacional, i.Incumplir_Acuerdo_Conciliatorio -> O(j.Sancionar & j.Exigir_cumplimiento_Imperativo))
-//Art. 47.– (Texto según ley 26361, art. 21 ) Sanciones.
-FORALL (i:Autoridad_Aplicacion_Nacional, P( i.Sancionar.apercibimiento|i.Sancionar.multa| i.Sancionar.decomiso|i.Sancionar.clausura|i.Sancionar.suspension|i.sancionar.perdida_privilegio)
-FORALL (i:Autoridad_Aplicacion_Nacional, i.Sancionar.multa| i.Sancionar.decomiso| i.Sancionar.clausura| i.Sancionar.suspension| i.sancionar.perdida_privilegio -> O(i.Publicar_Resolucion_Condenatoria))
-FORALL (i:Autoridad_Aplicacion_Nacional, i.Sancionar.apercibimiento -> P(i.Publicar_Resolucion_Condenatoria))
-FORALL (i:Autoridad_Aplicacion, j:Infractor, P(j.desarrollar_actividad.variasjurisdicciones -> i.Ordenar_Publicacion_Resolucion_condenatoria.nacional & i.Ordenar_Publicacion_Resolucion_Condenatoria.local)
-FORALL (i:Autoridad_Aplicacion, j:Infractor,i.Ordenar_Publicacion_Resolucion_Condenatoria -> O(j.Publicar_Resolucion_Condenatoria))
-FORALL (i:Autoridad_Aplicacion, i.Sancionar.multas -> O(i.Asignar50%_Fondo_Educacion_Consumidor))
-FORALL (i:Autoridad_Aplicacion_Nacional, O(i.Administrar_Fondo_Educacion_Consumidor))
-//Art. 48.– Denuncias maliciosas.
-FORALL (i, i.Presentar_Denuncia_Maliciosa -> P(Sancionar.Apercibimiento v Sancionar.Multa)) 
+FORALL(i:Autoridad_Aplicacion_Nacional; P(i.Dictar_Medidas_No_Innovar))
+FORALL(i; P(i.Recurrir_Acto_Administrativo_Ante_Autoridad_Aplicacion & i.dias_interponer_recurso > 0))
+FORALL(i; F(i.Recurrir_Acto_Administrativo_Ante_Autoridad_Aplicacion & i.dias_interponer_recurso <= 0 ))
+FORALL(i: Gobierno_Local; O(i.Dictar_Normas_Actuacion))
+
+//Art. 46. Incumplimiento de acuerdos conciliatorios
+//creo que no se puede declarar mas de un rol
+//FORALL(i:Infractor, j:Autoridad_Aplicacion_Nacional, i.Incumplir_Acuerdo_Conciliatorio -> O(j.Sancionar & j.Exigir_cumplimiento_Imperativo))
+//Art. 47. (Texto según ley 26361, art. 21 ) Sanciones.
+//com Ov
+//FORALL(i:Autoridad_Aplicacion_Nacional; P( i.Sancionar.apercibimiento|i.Sancionar.multa| i.Sancionar.decomiso|i.Sancionar.clausura|i.Sancionar.suspension|i.sancionar.perdida_privilegio)
+//com Ov
+//FORALL(i:Autoridad_Aplicacion_Nacional; i.Sancionar.multa| i.Sancionar.decomiso| i.Sancionar.clausura| i.Sancionar.suspension| i.sancionar.perdida_privilegio -> O(i.Publicar_Resolucion_Condenatoria))
+//com Ov
+//FORALL(i:Autoridad_Aplicacion_Nacional; i.Sancionar.apercibimiento -> P(i.Publicar_Resolucion_Condenatoria))
+//com Ov
+//FORALL(i:Autoridad_Aplicacion, j:Infractor, P(j.desarrollar_actividad.variasjurisdicciones -> i.Ordenar_Publicacion_Resolucion_condenatoria.nacional & i.Ordenar_Publicacion_Resolucion_Condenatoria.local)
+//creo que no se puede declarar mas de un rol
+//FORALL(i:Autoridad_Aplicacion, j:Infractor,i.Ordenar_Publicacion_Resolucion_Condenatoria -> O(j.Publicar_Resolucion_Condenatoria))
+//com Ov
+//FORALL(i:Autoridad_Aplicacion; i.Sancionar.multas -> O(i.Asignar50%_Fondo_Educacion_Consumidor))
+//com Ov
+//FORALL(i:Autoridad_Aplicacion_Nacional, O(i.Administrar_Fondo_Educacion_Consumidor))
+//Art. 48. Denuncias maliciosas.
+//com Ov
+//FORALL (i, i.Presentar_Denuncia_Maliciosa -> P(Sancionar.Apercibimiento v Sancionar.Multa)) 
 //revisar
 // Art. 49, 50, 51 no modelados
 // Art. 52. Acciones Judiciales
-FORALL (i:Consumidor, P(i.Iniciar_Accion_Judicial_Individual))
-FORALL (j:Ministerio_Publico_Fiscal|Defensor_del_Pueblo| Autoridad_Aplicacion_Nacional|Autoridad_Aplicacion_Provincial, k: Asociacion_Consumidores P(j.Iniciar_Accion_Judicial_Colectiva) -> P(k.Ser_Listisconsorte))
-FORALL (i: Asociacion_Consumidores, P(i.Iniciar_Accion_Judicial_Colectiva))
-FORALL (i: Asociacion_Consumidores, j: Ministerio_Publico_Fiscal, i.Iniciar_Accion_Judicial_Colectiva V i.Desistir_Accion_Judicial_Colectiva -> O(j.Asumir_Accion_Judicial_Colectiva))
+FORALL(i:Consumidor; P(i.Iniciar_Accion_Judicial_Individual))
+
+//mal escrita
+//FORALL(j:Ministerio_Publico_Fiscal|Defensor_del_Pueblo| Autoridad_Aplicacion_Nacional|Autoridad_Aplicacion_Provincial, k: Asociacion_Consumidores P(j.Iniciar_Accion_Judicial_Colectiva) -> P(k.Ser_Listisconsorte))
+FORALL(i: Asociacion_Consumidores; P(i.Iniciar_Accion_Judicial_Colectiva))
+//creo que no se puede declarar mas de un rol
+//FORALL(i: Asociacion_Consumidores j: Ministerio_Publico_Fiscal, i.Iniciar_Accion_Judicial_Colectiva V i.Desistir_Accion_Judicial_Colectiva -> O(j.Asumir_Accion_Judicial_Colectiva))
 // Art. 52 bis. Danio Punitivo
-action Incumplir_Obligacion performable by Proveedor
-FORALL(i:Proveedor, j:Juez i.Incumplir_Obligacion -> P(i.Aplicar_Danio_Punitivo))
+//mal escrita
+//FORALL(i:Proveedor; j:Juez i.Incumplir_Obligacion -> P(i.Aplicar_Danio_Punitivo))
 //Art 53. Normas del Proceso
-EXISTS (i: Proveedor, O(i.Aportar_Prueba_Proceso))
-//Art. 54.– Acciones de incidencia colectiva.
-FORALL (i: Consumidor, j: Proveedor, k:Ministerio_Publico_Fiscal, l:Juez (i.Firmar_Acuerdo_Conciliatorio_o_Transaccion y j.Firmar_Acuerdo_Conciliatorio_o_Transaccion) -> O((- k.Iniciar_Accion_Colectiva v - Asumir_Accion_Colectiva) -> l.Correr_Vista_Ministerio_Publico))
-FORALL (i:Juez, i.Homologar_Acuerdo_Conciliatorio_o_Transaccion V j.Fundamentar_Auto_Homologacion_Acuerdo_Conciliatorio_o_Transaccion)
-FORALL(i:Consumidor, j:Juez, k:Proveedor, P(i.Manifestar_Voluntad_Contraria -> j.Dictar_Sentencia))
-EXISTS (i:Consumidor, j:Proveedor, F(i.Iniciar_Accion_Judicial_Individual y - i.Manifestar_Voluntad_Contraria -> j.Apelar_Sentencia_Favorable_Consumidor))
-EXISTS (i:Juez, i.Dictar_Sentencia.contenido_patrimonial -> i.Ordenar_Reparacion_Integral)
-EXISTS (i:Consumidor_DanioDiferenciado, j:Juez P(i.Reclamar_porIncidente_Danio_Diferenciado -> j.Crear_Grupos_Consumidores)
+EXISTS(i: Proveedor; O(i.Aportar_Prueba_Proceso))
+//Art. 54. Acciones de incidencia colectiva.
+//mal escrita
+//FORALL(i: Consumidor, j: Proveedor, k:Ministerio_Publico_Fiscal, l:Juez (i.Firmar_Acuerdo_Conciliatorio_o_Transaccion y j.Firmar_Acuerdo_Conciliatorio_o_Transaccion) -> O((- k.Iniciar_Accion_Colectiva v - Asumir_Accion_Colectiva) -> l.Correr_Vista_Ministerio_Publico))
+//mal escrita
+//FORALL(i:Juez; i.Homologar_Acuerdo_Conciliatorio_o_Transaccion V j.Fundamentar_Auto_Homologacion_Acuerdo_Conciliatorio_o_Transaccion)
+//creo que no se puede declarar mas de un rol
+//FORALL(i:Consumidor, j:Juez, k:Proveedor, P(i.Manifestar_Voluntad_Contraria -> j.Dictar_Sentencia))
+//creo que no se puede declarar mas de un rol
+//EXISTS(i:Consumidor, j:Proveedor, F(i.Iniciar_Accion_Judicial_Individual y - i.Manifestar_Voluntad_Contraria -> j.Apelar_Sentencia_Favorable_Consumidor))
+//mal escrita?
+//EXISTS(i:Juez; i.Dictar_Sentencia.contenido_patrimonial -> i.Ordenar_Reparacion_Integral)
+//creo que no se puede declarar mas de un rol
+//EXISTS(i:Consumidor_DanioDiferenciado, j:Juez P(i.Reclamar_porIncidente_Danio_Diferenciado -> j.Crear_Grupos_Consumidores)
 //Art. 54. Efectos de la sentencia.
-Iniciar_Accion_Judicial_Colectiva y Dictar_Sentencia y - Afectar_Interes_General ->P(Apelar_Sentencia_Favorable_Consumidor)
-Apelar_Sentencia_Favorable_Consumidor -> P (Conceder_Recurso.con_efecto_devolutivo)
+//mal escrita
+//Iniciar_Accion_Judicial_Colectiva y Dictar_Sentencia y - Afectar_Interes_General ->P(Apelar_Sentencia_Favorable_Consumidor)
+//mal escrita
+//Apelar_Sentencia_Favorable_Consumidor -> P (Conceder_Recurso.con_efecto_devolutivo)
 //Art. 55. Legitimación.
-O(Iniciar_Accion_Judicial_Colectiva.gratuita)
-//Art. 56.– Autorización para funcionar.
-O (Requerir_Autorizacion_Autoridad_Aplicacion)
-Requerir_Autorizacion_Autoridad_Aplicacion -> P(Autorizar_Funcionamiento)
-// Art. 57.– Requisitos para obtener el reconocimiento. 
-Suscribir_Peticion_Asociacion -> P(Sustanciar_Reclamo_al_Proveedor)
-Sustanciar_Reclamo_al_Proveedor -> P(Invitar_Conciliacion)
+//com Ov
+//O(Iniciar_Accion_Judicial_Colectiva.gratuita)
+//Art. 56. Autorización para funcionar.
+//mal escrita?
+//O(Requerir_Autorizacion_Autoridad_Aplicacion)
+//mal escrita
+//Requerir_Autorizacion_Autoridad_Aplicacion -> P(Autorizar_Funcionamiento)
+// Art. 57. Requisitos para obtener el reconocimiento. 
+//mal escrita
+//Suscribir_Peticion_Asociacion -> P(Sustanciar_Reclamo_al_Proveedor)
+//mal escrita?
+//Sustanciar_Reclamo_al_Proveedor -> P(Invitar_Conciliacion)
 //Art. 59. Tribunales Arbitrales.
-P(Propiciar_Organizacion_Tribunales_Arbitrales)
+//mal escrita?
+//P(Propiciar_Organizacion_Tribunales_Arbitrales)
