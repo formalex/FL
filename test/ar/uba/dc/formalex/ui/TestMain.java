@@ -20,6 +20,7 @@ import ar.uba.dc.formalex.fl.bgtheory.Interval;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
+import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoFake;
 import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoImpl;
 import ar.uba.dc.formalex.grafoDeDependencia.Grafo;
 import ar.uba.dc.formalex.grafoDeDependencia.InfoComponenteBgt;
@@ -39,15 +40,20 @@ public class TestMain {
 	@BeforeClass
 	public static void setUp(){
 
-		System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");
+		boolean estoyEnWindows = true;
+		
+		if(estoyEnWindows){	
+			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
+			System.setProperty("TEMP_DIR", "C:/propsFl/salida");
+		}else{	//Linux
+			System.setProperty("NUSMV_EXE", "/Data/JAVA/NuSMV-2.5.4-x86_64-unknown-linux-gnu/bin/NuSMV");
+			System.setProperty("TEMP_DIR", "/media/charly/WINDOWS/propsFl/salida");
+		}
 		System.setProperty("TEMPLATE_VELOCITY", "fl.vm");
-		System.setProperty("TEMP_DIR", "C:/propsFl/salida");
 	}
 	
 	@Test
-	//@Ignore("Hasta meter el parche de las chicas")
-	public void testAcldc() {
-		
+	public void testAcldc() {		
 		corridaDeFormaLex(ROOT_RESOURCES + "ACLDC.txt");
 	}
 	
@@ -208,23 +214,23 @@ public class TestMain {
 		
         //TODO comentado para no correr el model checker. ve como se puede hacer
         //para no correrlo de una manera mas clara
-//        File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, aValidar);
-//        
-//        if (!file.exists()){
-//        //Si no se generó el archivo es porque el output del proceso está vacío. Eso suele pasar cuando hubo un error con nusmv.
-//            logger.error("Error al correr nusmv. Intentar correr a mano el comando previamente logueado.");
-//            throw new RuntimeException("Se abortó la ejecución de nusmv. Revisar archivo generado.");
-//        }
-//        boolean encontroTrace = encontroTrace(file);
-//        if (encontroTrace){
-//            logger.info("Se ha encontrado un comportamiento legal para las normas.");
-//            logger.info("Se puede ver el trace en: " + file.getAbsolutePath());
-//        }else
-//            logger.info("No se ha encontrado un comportamiento legal.");
-//        logger.info("");
-//        return encontroTrace;
+        File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, aValidar);
         
-        return true;
+        if (!file.exists()){
+        //Si no se generó el archivo es porque el output del proceso está vacío. Eso suele pasar cuando hubo un error con nusmv.
+            logger.error("Error al correr nusmv. Intentar correr a mano el comando previamente logueado.");
+            throw new RuntimeException("Se abortó la ejecución de nusmv. Revisar archivo generado.");
+        }
+        boolean encontroTrace = encontroTrace(file);
+        if (encontroTrace){
+            logger.info("Se ha encontrado un comportamiento legal para las normas.");
+            logger.info("Se puede ver el trace en: " + file.getAbsolutePath());
+        }else
+            logger.info("No se ha encontrado un comportamiento legal.");
+        logger.info("");
+        return encontroTrace;
+        
+//        return true;
 	}
 	
 	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias) {
@@ -309,22 +315,22 @@ public class TestMain {
 			FLFormula aValidar, Grafo<InfoComponenteBgt> elGrafoDeDependencias) {
 
 		BackgroundTheory res;
-		//Marcar los componentes que aparecen en la formula
-		Set<String> componentesParaMarcar = aValidar.getNombresDeComponentes();
-		for (String nombreDeComponente : componentesParaMarcar) {
-			elGrafoDeDependencias.marcarNodosEnBfs(nombreDeComponente);
-		}
-		
 		//Se hace la copia DE LA BGT solo si es necesario
-		if(elGrafoDeDependencias!=null && !componentesParaMarcar.isEmpty()){
-			res = backgroundTheory.clonar();
+		if(elGrafoDeDependencias!=null){
+			res = backgroundTheory.clonar();		
+			//Marcar los componentes que aparecen en la formula
+			Set<String> componentesParaMarcar = aValidar.getNombresDeComponentes();
+			for (String nombreDeComponente : componentesParaMarcar) {
+				elGrafoDeDependencias.marcarNodosEnBfs(nombreDeComponente);
+			}
+			
 			//Eliminarlos de la bgt
 			limpiarBgt(res, elGrafoDeDependencias);
+			
+			//limpiar las marcas del grafo
+			elGrafoDeDependencias.resetMarcas();
 		}else
 			res = backgroundTheory;
-			
-		//limpiar las marcas del grafo
-		elGrafoDeDependencias.resetMarcas();
 				
 		return res;
 	}
