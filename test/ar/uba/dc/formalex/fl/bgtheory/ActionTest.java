@@ -1,11 +1,10 @@
 package ar.uba.dc.formalex.fl.bgtheory;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
-import ar.uba.dc.formalex.fl.bgtheory.Action;
-import ar.uba.dc.formalex.fl.bgtheory.Role;
 
 public class ActionTest {
 
