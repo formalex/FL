@@ -81,6 +81,30 @@ public class TestMain {
 		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesSinRolesReferenciadosEnRegla.txt");
 	}
 	
+	/**** Estos dos tests los hice para saber si variaba la cantidad de agentes 
+	 * generados, segun la cantidad de lineas en las que se divida la definicion
+	 * de los roles. La realidad es que no varía. genera en ambos casos
+	 * 16 agentes
+	 */
+	@Test
+	public void testEjemploGeneracionDeAgentesConCuatroRolesEnUnaLinea() {
+		
+		corridaDeFormaLex(ROOT_RESOURCES + "EjCuatroRolesEnUnaLinea.txt");
+	}
+	
+	@Test
+	public void testEjemploGeneracionDeAgentesConCuatroRolesEnDosLineas() {
+		
+		corridaDeFormaLex(ROOT_RESOURCES + "EjCuatroRolesEnDosLineas.txt");
+	}
+	
+	@Test
+	public void testEjemploCombinacionRolesTesisChicas() {
+		// Lo hice para ver si segui comportando el bien despues del cambio de
+		// las chicas
+		corridaDeFormaLex(ROOT_RESOURCES + "EjCombinacionRolesTesisChicas.txt");
+	}
+	
 	@Test
 	public void testEjemploPermisoPermanente() {
 		
