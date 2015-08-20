@@ -5,6 +5,8 @@ import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
 import ar.uba.dc.formalex.util.Fechas;
 import ar.uba.dc.formalex.util.UtilFile;
+
+import org.apache.commons.collections.ExtendedProperties;
 import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -24,7 +26,7 @@ public class NuSMVModelChecker {
     private static final Logger logger = Logger.getLogger(NuSMVModelChecker.class);
     private static String endOfline = System.getProperty("line.separator");
 
-    //crea un archivo con los comando que se le pasarán a nusvm. Incluyen la expresión a validar.
+    //crea un archivo con los comando que se le pasarï¿½n a nusvm. Incluyen la expresiï¿½n a validar.
     private static void crearComandos(File commandFile, String outputFile, String ltlExpr) throws IOException {
         String x = "go;" + endOfline + "check_ltlspec -o " + outputFile + " -p \"" + ltlExpr +
                 "\";" + endOfline + "quit;";
@@ -57,7 +59,7 @@ public class NuSMVModelChecker {
             template.merge( context , writer);
         }
         catch( Exception e ){
-            logger.error("Error al generar el autómata", e);
+            logger.error("Error al generar el autÃ³mata", e);
         }
         finally {
             if ( writer != null){
@@ -65,7 +67,7 @@ public class NuSMVModelChecker {
                     writer.flush();
                     writer.close();
                 }catch( Exception ee ) {
-                    logger.error("Error al generar el autómata", ee);
+                    logger.error("Error al generar el autÃ³mata", ee);
                 }
             }
         }
@@ -78,7 +80,7 @@ public class NuSMVModelChecker {
             throw new RuntimeException("Falta indicar el exe de nusmv (NUSMV_EXE)");
 
         //Niego lo que estoy buscando para que nusmv, si encuentra, me devuelva un contraejemplo
-        //Si no encuentra quiere decir que la fórmula es válida
+        //Si no encuentra quiere decir que la fï¿½rmula es vï¿½lida
         FLFormula formulaToTest = new FLNeg(formula);
 
         String ts = Fechas.getAAAAMMDD_HHMMSS();
@@ -112,7 +114,7 @@ public class NuSMVModelChecker {
 
         try {
             //Ej: system prompt> NuSMV -source ARCHIVO_CMD ej.nusmv
-            //todo: ver bien qué hace -df
+            //todo: ver bien quï¿½ hace -df
             String command = nusmvExecutable +" -df -source " + nusmvCommands.getAbsolutePath() +
                     " " + nusmvInput.getAbsolutePath();
             logger.info("Comienza nusmv. Comando a ejecutar:  " + command);
@@ -131,7 +133,7 @@ public class NuSMVModelChecker {
                 sb.append(salida);
                 if (salida.startsWith("aborting")) //si aborta, lo que aborta es el comando ejecutado,
                 // pero se queda dentro de nusmv. Hay que forzar la salida. Esto puede pasar si hay
-                // algún error sintáctico en lo que se le pasó a nusmv.
+                // algï¿½n error sintï¿½ctico en lo que se le pasï¿½ a nusmv.
                     break;
                 if (salida.startsWith("********   WARNING   ********"))
                     isWarning = true;
@@ -141,7 +143,7 @@ public class NuSMVModelChecker {
                     logger.error("Error al correr nusmv.");
                     logger.error(sb.toString());
                     child.destroy();
-                    throw new RuntimeException("Se abortó la ejecución de nusmv. Revisar archivo generado.");
+                    throw new RuntimeException("Se abortÃ³ la ejecuciÃ³n de nusmv. Revisar archivo generado.");
                 }else{// si es un warning => logueo y sigo
                     logger.warn(sb.toString());
                 }
@@ -150,7 +152,7 @@ public class NuSMVModelChecker {
             child.waitFor();
             long fin = System.currentTimeMillis();
             long seg = (fin - ini);
-            logger.debug("Demoró " + seg + " ms");
+            logger.debug("DemorÃ³ " + seg + " ms");
 
         } catch (InterruptedException e) {
             logger.error("Error al ejecutar el programa");

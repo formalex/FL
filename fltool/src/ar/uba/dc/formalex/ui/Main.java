@@ -32,7 +32,7 @@ public class Main {
       	}
 
         if(args.length == 2){
-            System.setProperty("FLINPUT", args[1]);
+            System.setProperty("FL_INPUT", args[1]);
       	}
         String input = System.getProperty("FL_INPUT");
 

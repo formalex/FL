@@ -64,7 +64,9 @@ public class LaAplanadora {
 		List<FLFormula> newRules = new ArrayList<FLFormula>();
 		List<FLFormula> newPerms = new ArrayList<FLFormula>();
 
-		BGUtil bgUtil = new BGUtil(input.getAgentesPorRol(), input.getNamesWithAgent());
+		//[serge] No entiendo por qué en lugar de BGUtil no se pasa directamente la info que tiene LaAplanadora. BGUtil se maneja con strings planos...
+		// Como parche, paso las acciones activas y pasivas para poder instancia correctamente acciones atómicas cuando hay sincronizaciones
+		BGUtil bgUtil = new BGUtil(input.getAgentesPorRol(), input.getNamesWithAgent(), accionesSyncActivo, accionesSyncPasivo);
 
 		for(FLFormula formula : input.getRules()) {
 			newRules.add(formula.instanciar(null, null, bgUtil, false));
@@ -139,7 +141,7 @@ public class LaAplanadora {
 		logger.info("");
 
 		//F�rmulas
-		logger.info("F�rmulas expandidas:");
+		logger.info("Fórmulas expandidas:");
 
 		for(FLFormula f : input.getRules()) {
 			logger.info(f.toString());
