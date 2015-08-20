@@ -1,6 +1,14 @@
 package ar.uba.dc.formalex.fl.regulation.formula.terminals;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import ar.uba.dc.formalex.fl.bgtheory.Action;
+import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLOr;
 
 /**
  * User: P_BENEDETTI
@@ -84,4 +92,5 @@ public abstract class FLTerminal extends FLFormula{
         this.local = local;
     }
 
+	
 }
