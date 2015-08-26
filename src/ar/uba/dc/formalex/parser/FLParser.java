@@ -20,17 +20,16 @@ public class FLParser implements FLParserConstants {
     private static FLInput flInput = new FLInput();
     private static String originalFormula; //usado para logueo
 
-  //TODO: Despues meterlo en el jj
     public static void clean(){
-    	
-    	actions = new HashMap <String, Action> ();
-    	intervals = new HashMap<String, Interval> ();
-    	counters = new HashMap<String, Counter> ();
-    	rolesMap = new HashMap<String, Role> ();
-    	flInput = new FLInput();
+
+        actions = new HashMap <String, Action> ();
+        intervals = new HashMap<String, Interval> ();
+        counters = new HashMap<String, Counter> ();
+        rolesMap = new HashMap<String, Role> ();
+        flInput = new FLInput();
 
     }
-    
+
     public static FLInput getFLInput(){
         return flInput;
     }
@@ -3027,46 +3026,6 @@ FLFormula p_clauses666() :
     finally { jj_save(152, xla); }
   }
 
-  static private boolean jj_3_22() {
-    if (jj_scan_token(ONLY_OCCURS_IN)) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
-    return false;
-  }
-
-  static private boolean jj_3_105() {
-    if (jj_scan_token(REPAIRED_BY)) return true;
-    if (jj_scan_token(PAR_LEFT)) return true;
-    if (jj_3R_54()) return true;
-    return false;
-  }
-
-  static private boolean jj_3_61() {
-    if (jj_scan_token(COUNTER_RESET)) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3_60()) jj_scanpos = xsp;
-    return false;
-  }
-
-  static private boolean jj_3_59() {
-    if (jj_scan_token(COMMA)) return true;
-    if (jj_scan_token(COUNTER_MAX_IMPEDES_ACTIONS)) return true;
-    return false;
-  }
-
-  static private boolean jj_3_139() {
-    if (jj_scan_token(FORALL)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_46() {
-    if (jj_scan_token(FORBIDDEN)) return true;
-    if (jj_3R_54()) return true;
-    if (jj_scan_token(PAR_RIGHT)) return true;
-    return false;
-  }
-
   static private boolean jj_3_17() {
     Token xsp;
     xsp = jj_scanpos;
@@ -4344,6 +4303,46 @@ FLFormula p_clauses666() :
 
   static private boolean jj_3_60() {
     if (jj_scan_token(COUNTER_PROVIDED)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_22() {
+    if (jj_scan_token(ONLY_OCCURS_IN)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_61() {
+    if (jj_scan_token(COUNTER_RESET)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_60()) jj_scanpos = xsp;
+    return false;
+  }
+
+  static private boolean jj_3_105() {
+    if (jj_scan_token(REPAIRED_BY)) return true;
+    if (jj_scan_token(PAR_LEFT)) return true;
+    if (jj_3R_54()) return true;
+    return false;
+  }
+
+  static private boolean jj_3_59() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_scan_token(COUNTER_MAX_IMPEDES_ACTIONS)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_139() {
+    if (jj_scan_token(FORALL)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_46() {
+    if (jj_scan_token(FORBIDDEN)) return true;
+    if (jj_3R_54()) return true;
+    if (jj_scan_token(PAR_RIGHT)) return true;
     return false;
   }
 
