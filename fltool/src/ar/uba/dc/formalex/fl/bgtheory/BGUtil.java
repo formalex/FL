@@ -1,5 +1,6 @@
 package ar.uba.dc.formalex.fl.bgtheory;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -13,10 +14,20 @@ import java.util.Set;
 public class BGUtil {
     private Map<String, Set<Agente>> agentesPorRol;
     private Set<String> instanciasValidas;
-
-    public BGUtil(Map<String, Set<Agente>> agentesPorRol, Set<String> instanciasValidas) {
+    private Map<Action, Set<Action>> accionesSyncActivo;
+    private Map<Action, Set<Action>> accionesSyncPasivo;
+    private Map<Action, Set<Action>> accionesSincronizadas;
+    
+    //[serge] No entiendo bien la utilidad de esta clase. A la altura en la que se invoca ya están calculadas todas las acciones.
+    // Esta clase expone agentes y acciones en forma de strings planos...
+    // Agregando acciones con sync activo y pasivo para pode instanciar correctamente acciones sincronizadas como parche para evitar cambiar mucho más.
+    public BGUtil(Map<String, Set<Agente>> agentesPorRol, Set<String> instanciasValidas, 
+    		Map<Action, Set<Action>> accionesSyncActivo, Map<Action, Set<Action>> accionesSyncPasivo) {
         this.agentesPorRol = agentesPorRol;
         this.instanciasValidas = instanciasValidas;
+        this.accionesSyncActivo = accionesSyncActivo;
+        this.accionesSyncPasivo = accionesSyncPasivo;
+        this.updateAcciones();
     }
 
     /**
@@ -31,7 +42,34 @@ public class BGUtil {
         return agents;
     }
 
-    public Set<Agente> getAgentes() {
+
+    /**
+     * Devuelve la unión de las acciones sincronizadas activas y pasivas
+     * */
+    public Map<Action, Set<Action>> getAccionesSincronizadas() {
+    	return accionesSincronizadas;
+	}
+
+    
+    public Map<Action, Set<Action>> getAccionesSyncActivo() {
+		return accionesSyncActivo;
+	}
+
+	public void setAccionesSyncActivo(Map<Action, Set<Action>> accionesSyncActivo) {
+		this.accionesSyncActivo = accionesSyncActivo;
+		this.updateAcciones();
+	}
+
+	public Map<Action, Set<Action>> getAccionesSyncPasivo() {
+		return accionesSyncPasivo;
+	}
+
+	public void setAccionesSyncPasivo(Map<Action, Set<Action>> accionesSyncPasivo) {
+		this.accionesSyncPasivo = accionesSyncPasivo;
+		this.updateAcciones();
+	}
+
+	public Set<Agente> getAgentes() {
         Set<Agente> res = new HashSet<Agente>();
         for(Set<Agente> setAgentes : agentesPorRol.values()) {
             res.addAll(setAgentes);
@@ -55,5 +93,15 @@ public class BGUtil {
     		}
     	}
     	return false;		
+    }
+    
+    /**
+     * Construye la unión de todas las acciones sincronizadas
+     * */
+    private void updateAcciones()
+    {
+    	accionesSincronizadas = new HashMap<Action, Set<Action>>();
+    	accionesSincronizadas.putAll(accionesSyncActivo);
+    	accionesSincronizadas.putAll(accionesSyncPasivo);
     }
 }
