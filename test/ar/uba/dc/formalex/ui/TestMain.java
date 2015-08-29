@@ -40,7 +40,7 @@ public class TestMain {
 	@BeforeClass
 	public static void setUp(){
 
-		boolean estoyEnWindows = true;
+		boolean estoyEnWindows = false;
 		
 		if(estoyEnWindows){	
 			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
@@ -70,14 +70,13 @@ public class TestMain {
 	}
 	
 	@Test
-	//@Ignore("Hasta que se arregle lo de las acciones con output values")
 	public void testEjemploActionConOutputValuesConRolesReferenciados() {
 		
 		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesConRolesReferenciadosEnRegla.txt");
 	}
 	
 	@Test
-	//@Ignore("Hasta que se arregle lo de las acciones con output values")
+	@Ignore("No se puede instanciar la formula!")
 	public void testEjemploActionConOutputValuesSinRolesReferenciados() {
 		
 		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesSinRolesReferenciadosEnRegla.txt");

@@ -2,6 +2,7 @@
 
 action elegir_ganadores output values {doc_c1, doc_c2, doc_c3,no_elegido}
 action abrir_concurso
+action entrar
 
 global interval concurso defined by actions abrir_concurso - elegir_ganadores
 action postularse only occurs in scope concurso
@@ -11,4 +12,5 @@ global interval semana defined by actions comienza_semana - termina_semana
 
 #Clauses
 
-FORALL(i; O(i.postularse & (elegir_ganadores.doc_c1 | elegir_ganadores.doc_c2 | elegir_ganadores.doc_c3) ><>_{semana} i.entrar))
+FORALL(i; O(i.postularse & (elegir_ganadores results in doc_c1 | elegir_ganadores results in doc_c2 | elegir_ganadores results in doc_c3) -> <>_{semana} i.entrar))
+
