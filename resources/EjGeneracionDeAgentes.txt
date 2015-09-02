@@ -1,0 +1,11 @@
+#Background
+
+roles estudiante, docente cover
+action censar only performable by estudiante
+actions empieza_censo, termina_censo
+
+
+
+#Clauses
+
+FORALL(i:estudiante; O( i.censar))

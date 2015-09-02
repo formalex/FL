@@ -40,7 +40,7 @@ public class TestMain {
 	@BeforeClass
 	public static void setUp(){
 
-		boolean estoyEnWindows = false;
+		boolean estoyEnWindows = true;
 		
 		if(estoyEnWindows){	
 			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
@@ -91,6 +91,12 @@ public class TestMain {
 	public void testEjemploGeneracionDeAgentesConCuatroRolesEnUnaLinea() {
 		
 		corridaDeFormaLex(ROOT_RESOURCES + "EjCuatroRolesEnUnaLinea.txt");
+	}
+	
+	@Test
+	public void testEjemploGeneracionDeAgentes() {
+		
+		corridaDeFormaLex(ROOT_RESOURCES + "EjGeneracionDeAgentes.txt");
 	}
 	
 	@Test
