@@ -1,0 +1,20 @@
+#Background
+
+roles cliente {socioTitular {premium, select disjoint cover},
+relacionadoASocio {relacionadoASocioPremium {menor,mayor disjoint cover},
+relacionadoASocioSelect {menor,mayor disjoint cover} disjoint cover}
+disjoint cover},
+noCliente disjoint cover
+
+action ingresarASala only performable by cliente
+actions ingresarASalaDallas, ingresarASalaSorrento only performable by select
+action abonarTarifaCompleta only performable by relacionadoASocioPremium
+action abonarTarifaAl75 only performable by relacionadoASocioSelect
+action abonarTarifaAl50 only performable by menor
+
+#Clauses
+FORALL(i:relacionadoASocioPremium; O((i.belongsTo:mayor & i.ingresarASala) ->
+i.abonarTarifaCompleta))
+
+
+

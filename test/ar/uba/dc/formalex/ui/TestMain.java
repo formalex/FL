@@ -70,13 +70,18 @@ public class TestMain {
 	}
 	
 	@Test
+	public void testRompeNusmvPorqueFormulaMayorTo65Kb() {
+		
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConAccionesConOutputValuesQueRompeNusmv.txt");
+	}
+	
+	@Test
 	public void testEjemploActionConOutputValuesConRolesReferenciados() {
 		
 		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesConRolesReferenciadosEnRegla.txt");
 	}
 	
 	@Test
-	@Ignore("No se puede instanciar la formula!")
 	public void testEjemploActionConOutputValuesSinRolesReferenciados() {
 		
 		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesSinRolesReferenciadosEnRegla.txt");
@@ -91,6 +96,12 @@ public class TestMain {
 	public void testEjemploGeneracionDeAgentesConCuatroRolesEnUnaLinea() {
 		
 		corridaDeFormaLex(ROOT_RESOURCES + "EjCuatroRolesEnUnaLinea.txt");
+	}
+	
+	@Test
+	public void testEjemploConstruccionDeGrafo() {
+		
+		corridaDeFormaLex(ROOT_RESOURCES + "EjConstruccionDeGrafo.txt");
 	}
 	
 	@Test
@@ -110,6 +121,12 @@ public class TestMain {
 		// Lo hice para ver si se seguía comportandose bien despues del cambio de
 		// las chicas
 		corridaDeFormaLex(ROOT_RESOURCES + "EjCombinacionRolesTesisChicas.txt");
+	}
+	
+	@Test
+	public void testEjemploBelongsToTesisChicas() {
+		// Lo hice para ver el seguimiento de belongsTo
+		corridaDeFormaLex(ROOT_RESOURCES + "EjBelongsTo.txt");
 	}
 	
 	@Test
@@ -245,6 +262,8 @@ public class TestMain {
 		
         //TODO comentado para no correr el model checker. ve como se puede hacer
         //para no correrlo de una manera mas clara
+        //return true;
+        
         File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, aValidar);
         
         if (!file.exists()){
@@ -261,7 +280,7 @@ public class TestMain {
         logger.info("");
         return encontroTrace;
         
-//        return true;
+
 	}
 	
 	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias) {
@@ -285,15 +304,15 @@ public class TestMain {
             
           //TODO comentado para no correr el model checker. ve como se puede hacer
             //para no correrlo de una manera mas clara
-//            File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, conPermiso);
-//            boolean encontroTrace = encontroTrace(file);
-//            if (encontroTrace){
-//                logger.info("Se ha encontrado un comportamiento legal para el permiso.");
-//                logger.info("Se puede ver el trace en: " + file.getAbsolutePath());
-//            }else{
-//                logger.info("No se ha encontrado un comportamiento legal para el permiso.");
-//            }
-//            logger.info("");
+            File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, conPermiso);
+            boolean encontroTrace = encontroTrace(file);
+            if (encontroTrace){
+                logger.info("Se ha encontrado un comportamiento legal para el permiso.");
+                logger.info("Se puede ver el trace en: " + file.getAbsolutePath());
+            }else{
+                logger.info("No se ha encontrado un comportamiento legal para el permiso.");
+            }
+            logger.info("");
 
         }
 	}

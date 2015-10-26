@@ -235,7 +235,7 @@ local interval periodo_realizar_descargo defined by actions LabrarActa - Realiza
 
 actions Realizar_Inspeccion, IntimaARealizarDescargo only performable by Autoridad_Aplicacion_Nacional
 action Requerir_Verificacion_Tecnica only performable by Autoridad_Aplicacion_Nacional output values {ResultadoPositivo, ResultadoNegativo}
-action Desvirtuar_Constancia_Acta only performable by Infractor output values {OfrecerPruebas}
+action Desvirtuar_Constancia_Acta only performable by Infractor output values {OfrecerPruebasOv}
 action Admitir_Pruebas only performable by Autoridad_Aplicacion_Nacional
 impersonal action Existencia_Hecho_Controvertido
 action Denegar_Medidas_Prueba only performable by Autoridad_Aplicacion_Nacional

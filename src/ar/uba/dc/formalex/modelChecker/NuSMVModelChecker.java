@@ -129,6 +129,7 @@ public class NuSMVModelChecker {
                 if (sb == null)
                     sb = new StringBuilder();
                 sb.append(salida);
+                sb.append("\n");
                 if (salida.startsWith("aborting")) //si aborta, lo que aborta es el comando ejecutado,
                 // pero se queda dentro de nusmv. Hay que forzar la salida. Esto puede pasar si hay
                 // algún error sintáctico en lo que se le pas� a nusmv.
