@@ -35,6 +35,7 @@ public class TestMain {
 	private static final Logger logger = Logger.getLogger(Main.class);
 	private static String ROOT_RESOURCES = "resources/";
 	private static String ROOT_EJS_FILTROS = ROOT_RESOURCES + "EjemplosParaFiltrar/";
+	private static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
 	
 	private static int nroDeCorridas = 0;
 	@BeforeClass
@@ -62,11 +63,42 @@ public class TestMain {
 		
 		corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFullConFormulasConAccionesConOutputValuesModificadas.txt");
 	}
-	
+		
 	@Test
 	public void testAcldcFullSinFormulasConAccionesConOutputValues() {
 		
 		corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFullSinFormulasConAccionesConOutputValues.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio1NroDeClausulas60() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas60.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio1NroDeClausulas40() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas40.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio2NroDeClausulas28() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas28.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio3NroDeClausulas32() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas32.txt");
+	}
+	
+	
+	@Test
+	public void testCasoDeEstudioVipMemberPass() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPass.txt");
 	}
 	
 	@Test
