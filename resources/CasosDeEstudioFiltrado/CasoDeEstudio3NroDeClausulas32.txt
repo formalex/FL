@@ -15,24 +15,16 @@ action Iniciar_Accion_Judicial_Individual only performable by Consumidor
 
 action Incumplir_Obligacion only performable by Proveedor
 
-impersonal action RiesgoalConsumidor
-
-
 //--Tuve que agregar el output value NoPorMedios en las tres action siguientes xq un solo output value arroja error
 
 
-action SolicitarOferta only performable by Consumidor
 
 action CumplirConCondicionesDeOferta only performable by Proveedor
 
 //--Tuve que agregar el output value indicandoDefectos xq un solo output value arroja error
-action Rescindir only performable by Consumidor
-
-impersonal action CasoFortuito
 
 impersonal action FuerzaMayor
 
-impersonal action TerminarPeriodoEnvioRescindir
 
 action TenerTerminosyCondiciones only performable by proveedor_servicios_publicosd output values {entregarporescrito, mantenerenOficinaAtencionAlPublico}
 action IncluirLeyenda only performable by proveedor_servicio_publicod output values {enFactura, enOficinaAtencion}
@@ -70,15 +62,10 @@ action CondonarDeuda only performable by proveedor_servicio_publicod
 
 action PrestarServicio only performable by Proveedor output values {FueraDelEstablecimiento}
 
-actions VentaPorCorrespondenciayOtras  only performable by Proveedor
 impersonal action TerminaPeriodo
 
-
-impersonal action ViciosdelaCosa
 impersonal action PactoEscritoAceptarMaterialUsado
 impersonal action ApareceUnaFalla
-
-action NotificarEntradaVigenciaGarantia only performable by Vendedor
 
 action PrestarServicioDeReparacionyMantenimiento only performable by Proveedor output values {ConMaterialesNuevosoAdecuados, ConMaterialesUsados, ConGastoAdicional, SePuedeInterrumpir}
 
@@ -101,7 +88,6 @@ action Cometer_Infraccion  only performable by Proveedor
 action Cese_Infraccion 
 
 action Cese_Actuaciones only performable by Proveedor
-action OfrecerPruebas only performable by Infractor output values {AcreeditarPersoneria, ConstituirDomicilio}
 action RealizarDescargo only performable by Infractor output values {AcreeditarPersoneria, ConstituirDomicilio}
 
 local interval periodo_realizar_descargo defined by actions LabrarActa - RealizarDescargo 
@@ -140,7 +126,6 @@ action Ordenar_Publicacion_Resolucion_Condenatoria only performable by Autoridad
 action Desarrollar_Actividad only performable by Infractor output values {unajurisdiccion,  variasjurisdicciones}
 action asignarCincuentaPorciento_fondo_Educacion_Consumidor only performable by Autoridad_Aplicacion
 action Administrar_Fondo_Educacion_Consumidor only performable by Autoridad_Aplicacion_Nacional
-action OtorgarCreditoFinanciacion only performable by EntidadFinanciera output values {efectiva, noefectiva}
 action RedactarClausulas only performable by Proveedor output values {desnaturaliza_obligaciones, limita_responsabilidad, importa_renuncia, restringe_derecho_consumidor, amplia_derechos_proveedor, invierta_carga_de_prueba, en_contrato_adhesion}
 action interpretar_contrato only performable by autoridad_competente output values {pro_consumidor}
 action violar_buena_fe only performable by Proveedor
