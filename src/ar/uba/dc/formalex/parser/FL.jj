@@ -1597,9 +1597,9 @@ FLFormula forallWithDeontic() :
       String exception = token.image;
       if (exception != null)
       {
-        if (!(tempFormula.getClass().equals(Permission.class)))
+        if (!(tempFormula.getClass().equals(Permission.class) | tempFormula.getClass().equals(PermanentPermission.class)))
         {
-			//ERROR! las únicas formulas válidas como excepciones son los permisos con condiciones
+			//ERROR! las únicas formulas válidas como excepciones son los permisos
 			StringBuilder sb = new StringBuilder();
             sb.append("Hay una fórmula que es excepción de una regla pero no es un permiso: ('" + originalFormula + "'). ");
             throw new RuntimeException(sb.toString());
@@ -1670,9 +1670,9 @@ FLFormula existsWithDeontic() :
       String exception = token.image;
       if (exception != null)
       {
-        if (!(tempFormula.getClass().equals(Permission.class)))
+        if (!(tempFormula.getClass().equals(Permission.class) | tempFormula.getClass().equals(PermanentPermission.class)))
         {
-			//ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
+			//ERROR! las únicas formulas válidas como excepciones son los permisos
 			StringBuilder sb = new StringBuilder();
             sb.append("Hay una fórmula que es excepción de una regla pero no es un permiso: ('" + originalFormula + "'). ");
             throw new RuntimeException(sb.toString());

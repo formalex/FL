@@ -1444,9 +1444,9 @@ FLFormula p_clauses666() :
       String exception = token.image;
       if (exception != null)
       {
-        if (!(tempFormula.getClass().equals(Permission.class)))
+        if (!(tempFormula.getClass().equals(Permission.class) | tempFormula.getClass().equals(PermanentPermission.class)))
         {
-                        //ERROR! las únicas formulas válidas como excepciones son los permisos con condiciones
+                        //ERROR! las únicas formulas válidas como excepciones son los permisos
                         StringBuilder sb = new StringBuilder();
             sb.append("Hay una f\u00c3\u00b3rmula que es excepci\u00c3\u00b3n de una regla pero no es un permiso: ('" + originalFormula + "'). ");
             {if (true) throw new RuntimeException(sb.toString());}
@@ -1514,9 +1514,9 @@ FLFormula p_clauses666() :
       String exception = token.image;
       if (exception != null)
       {
-        if (!(tempFormula.getClass().equals(Permission.class)))
+        if (!(tempFormula.getClass().equals(Permission.class) | tempFormula.getClass().equals(PermanentPermission.class)))
         {
-                        //ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
+                        //ERROR! las únicas formulas válidas como excepciones son los permisos
                         StringBuilder sb = new StringBuilder();
             sb.append("Hay una f\u00c3\u00b3rmula que es excepci\u00c3\u00b3n de una regla pero no es un permiso: ('" + originalFormula + "'). ");
             {if (true) throw new RuntimeException(sb.toString());}
