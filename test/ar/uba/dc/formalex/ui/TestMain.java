@@ -289,6 +289,7 @@ public class TestMain {
         logger.info("FL: " + flRules);
         logger.info("NUSMV: " + aValidar.toString());
         logger.info("# de '=' : " + contadorDeSignosIgual(aValidar.toString()));
+        logger.info("# de Operadores Deonticos : " + contadorDeOperadoresDeonticos(aValidar.toString()));
         
         BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), aValidar, elGrafoDeDependencias);        
         logger.info("# bgt despues del filtro de la formula: "+ aValidar.toString());
@@ -338,6 +339,9 @@ public class TestMain {
             logger.info("FL: " + flInput.getFlPermission().get(ind++));
             logger.info("Nusmv: " + conPermiso.toString());
             logger.info("# de '=' : " + contadorDeSignosIgual(conPermiso.toString()));
+            logger.info("# de Operadores Deonticos : " + contadorDeOperadoresDeonticos(conPermiso.toString()));
+            
+            
             
             BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), conPermiso, elGrafoDeDependencias);        
             logger.info("# bgt despues del filtro del permiso: "+  conPermiso.toString());
@@ -358,7 +362,16 @@ public class TestMain {
         }
 	}
 
-    private static boolean encontroTrace(File file){
+    private static String contadorDeOperadoresDeonticos(String stringDeLaFormula) {
+		
+    	int countGs = StringUtils.countMatches(stringDeLaFormula, "G (");  
+    	int countFs = StringUtils.countMatches(stringDeLaFormula, "F(");
+    	
+    	return String.valueOf(countGs + countFs);
+    	
+	}
+
+	private static boolean encontroTrace(File file){
         BufferedReader bf= null;
 
         try {
