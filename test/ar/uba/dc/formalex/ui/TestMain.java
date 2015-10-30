@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -287,6 +288,7 @@ public class TestMain {
         logger.info("Buscando trace para la formula:");
         logger.info("FL: " + flRules);
         logger.info("NUSMV: " + aValidar.toString());
+        logger.info("# de '=' : " + contadorDeSignosIgual(aValidar.toString()));
         
         BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), aValidar, elGrafoDeDependencias);        
         logger.info("# bgt despues del filtro de la formula: "+ aValidar.toString());
@@ -315,6 +317,12 @@ public class TestMain {
 
 	}
 	
+	private static String contadorDeSignosIgual(String stringDeLaFormula) {
+		
+		int countMatches = StringUtils.countMatches(stringDeLaFormula, "=");
+		return String.valueOf(countMatches);
+	}
+
 	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias) {
         FLFormula aValidar = new FLTrue();
         //Uno todas las prohibiciones y obligaciones en una fórmula con conjunciones.
@@ -329,6 +337,7 @@ public class TestMain {
             logger.info("Buscando trace para el permiso:");
             logger.info("FL: " + flInput.getFlPermission().get(ind++));
             logger.info("Nusmv: " + conPermiso.toString());
+            logger.info("# de '=' : " + contadorDeSignosIgual(conPermiso.toString()));
             
             BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), conPermiso, elGrafoDeDependencias);        
             logger.info("# bgt despues del filtro del permiso: "+  conPermiso.toString());
