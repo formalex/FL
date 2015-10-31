@@ -42,7 +42,7 @@ public class TestMain {
 	@BeforeClass
 	public static void setUp(){
 
-		boolean estoyEnWindows = true;
+		boolean estoyEnWindows = false;
 		
 		if(estoyEnWindows){	
 			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
@@ -69,6 +69,36 @@ public class TestMain {
 	public void testAcldcFullSinFormulasConAccionesConOutputValues() {
 		
 		corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFullSinFormulasConAccionesConOutputValues.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio1NroDeClausulas1() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas1.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio1NroDeClausulas5() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas5.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio1NroDeClausulas15() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas15.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio1NroDeClausulas25() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas25.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio1NroDeClausulas28() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas28.txt");
 	}
 	
 	@Test
@@ -288,8 +318,8 @@ public class TestMain {
         logger.info("Buscando trace para la formula:");
         logger.info("FL: " + flRules);
         logger.info("NUSMV: " + aValidar.toString());
+        logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(aValidar.toString()));
         logger.info("# de '=' : " + contadorDeSignosIgual(aValidar.toString()));
-        logger.info("# de Operadores Deonticos : " + contadorDeOperadoresDeonticos(aValidar.toString()));
         
         BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), aValidar, elGrafoDeDependencias);        
         logger.info("# bgt despues del filtro de la formula: "+ aValidar.toString());
@@ -339,7 +369,7 @@ public class TestMain {
             logger.info("FL: " + flInput.getFlPermission().get(ind++));
             logger.info("Nusmv: " + conPermiso.toString());
             logger.info("# de '=' : " + contadorDeSignosIgual(conPermiso.toString()));
-            logger.info("# de Operadores Deonticos : " + contadorDeOperadoresDeonticos(conPermiso.toString()));
+            logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(conPermiso.toString()));
             
             
             
@@ -362,7 +392,7 @@ public class TestMain {
         }
 	}
 
-    private static String contadorDeOperadoresDeonticos(String stringDeLaFormula) {
+    private static String contadorDeOperadoresModales(String stringDeLaFormula) {
 		
     	int countGs = StringUtils.countMatches(stringDeLaFormula, "G (");  
     	int countFs = StringUtils.countMatches(stringDeLaFormula, "F(");
