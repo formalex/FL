@@ -235,68 +235,7 @@ local interval periodo_producir_prueba defined by actions Admitir_Pruebas - Prod
 //Art. 19 .
 FORALL(i:Proveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
 
-//Art. 20 
-FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento))
-//Art. 21
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.ExtenderPresupuesto))
-//Art. 22
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.NoComunicarGastosAdicionalesAlPresupuesto))
-// Art. 24
-FORALL(i:Proveedor; O(i.ContratoPrestacionServicios ->i.EntregarGarantiaPorEscrito))
 
-//CAPITULO VI - USUARIOS DE SERVICIOS PUBLICOS DOMICILIARIOS
-//Art.25
-FORALL(i; O(i.TenerTerminosyCondiciones))
-FORALL(i; O(i.IncluirLeyenda) & O(i.FacturacionServicio -> i.IncluirLeyenda))
-FORALL(i; O(AplicarLegislacion))
-FORALL(i; O(AplicarLegislacionmasFavorablealConsumidor))
-
-//Art.26
-FORALL(i; O(i.brindar_reciprocidad_trato))
-
-//Art.27
-FORALL(i; O(i.RecibirReclamo -> i.Entregar_Constancia_Reclamos  & i.Mantener_Registro_Reclamos))
-FORALL(i:consumidor_servicio_publicod; O(i.Reclamar ->EXISTS(j:proveedor_servicio_publicod; j.AtenderReclamo)))
-FORALL(i:consumidor_servicio_publicod; O(i.Reclamar -> EXISTS(j:proveedor_servicio_publicod; j.Entregar_Constancia_Reclamos & j.Mantener_Registro_Reclamos)))
-
-//Art.29
-FORALL(i; O(i.FacturacionServicio ->i.EntregarFacturaServicio))
-
-//Art.30
-FORALL(i; O((!i.DeduccionImporteServicioNoPrestado & i.InterrupcionPrestacionServicioCulpaP) -> i.ReintegrarImporteServicioNoPrestado))
-
-//Art.30 bis
-FORALL(i:consumidor_servicio_publicod; F(i.PoseerDeuda & EXISTS(j:proveedor_servicio_publicod; j.FacturacionServicio | j.FacturacionServicio)))
-FORALL(j:proveedor_servicio_publicod; O(CambiarPrestatario ->j.NotificarDeuda))
-FORALL(j:proveedor_servicio_publicod; O(!j.NotificarDeuda -> j.CondonarDeuda))
-
-//CAPITULO IX - DE LOS TERMINOS ABUSIVOS Y CLAUSULAS INEFICACES
-//ART 37 al 39
-FORALL(i:Proveedor; F(i.RedactarClausulas))
-FORALL(i:autoridad_competente; O(i.interpretar_contrato -> i.interpretar_contrato))
-FORALL(i:autoridad_competente; O(i.RedactarClausulas results in en_contrato_adhesion -> i.vigilar_contrato_adhesion ))
-FORALL(i:autoridad_competente; O(i.RedactarContratoAdhesion -> i.modificarContratoAdhesion ))
-
-//CAPITULO X - RESPONSABILIDAD POR DAÑOS
-//CAPITULO XI - AUTORIDAD DE APLICACION
-FORALL(i:Transportista; O(i.DaniaralaCosaporTransporte -> i.ResponderPorDaniosdeTransporte))
-FORALL(i:autoridad_competente; O(i.DeterminarDanioDirecto -> i.ObligarResarcimiento))
-FORALL(i:Proveedor; O(i.PagarSumaDanioDirecto))
-
-//CAPITULO XII - PROCEDIMIENTO Y SANCIONES
-//CAPITULO XIII - DE LAS ACCIONES
-//ART 45
-FORALL(i: Autoridad_Aplicacion_Nacional; O((i.Realizar_Inspeccion & i.Requerir_Verificacion_Tecnica) -> i.LabrarActa & i.IntimaARealizarDescargo))
-FORALL(i: Infractor; O(i.RealizarDescargo | i.Desvirtuar_Constancia_Acta))
-FORALL(i:Autoridad_Aplicacion_Nacional; F(i.dias_resolucion_infraccion <= 0 & i.Resolucion_Definitiva))
-FORALL(i; F(i.Recurrir_Acto_Administrativo_Ante_Autoridad_Aplicacion & i.dias_interponer_recurso <= 0 ))
-FORALL(i: Gobierno_Local; O(i.Dictar_Normas_Actuacion))
-
-//ART 47
-FORALL(i:Autoridad_Aplicacion_Nacional; O(i.Administrar_Fondo_Educacion_Consumidor))
-
-//Art 53. Normas del Proceso
-EXISTS(i: Proveedor; O(i.Aportar_Prueba_Proceso))
 
 
 

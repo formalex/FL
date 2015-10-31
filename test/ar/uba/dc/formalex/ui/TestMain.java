@@ -144,6 +144,29 @@ public class TestMain {
 	}
 	
 	@Test
+	public void testCasoDeEstudio3NroDeClausulas1() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas1.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio3NroDeClausulas5() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas5.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio3NroDeClausulas15() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas15.txt");
+	}
+	
+	@Test
+	public void testCasoDeEstudio3NroDeClausulas25() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas25.txt");
+	}
+	@Test
 	public void testCasoDeEstudio3NroDeClausulas32() {
 		
 		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas32.txt");

@@ -63,7 +63,6 @@ action CondonarDeuda only performable by proveedor_servicio_publicod
 // Agregué DentroDelEstablecimiento xq si NO rompe al buscar un contraejemplo
 // Si una accion se define con output values tiene que tener mas de 1
 action PrestarServicio only performable by Proveedor output values {FueraDelEstablecimiento, DentroDelEstablecimiento}
-
 impersonal action TerminaPeriodo
 
 impersonal action PactoEscritoAceptarMaterialUsado
@@ -265,38 +264,6 @@ FORALL(i; O(i.FacturacionServicio ->i.EntregarFacturaServicio))
 //Art.30
 FORALL(i; O((!i.DeduccionImporteServicioNoPrestado & i.InterrupcionPrestacionServicioCulpaP) -> i.ReintegrarImporteServicioNoPrestado))
 
-//Art.30 bis
-FORALL(i:consumidor_servicio_publicod; F(i.PoseerDeuda & EXISTS(j:proveedor_servicio_publicod; j.FacturacionServicio | j.FacturacionServicio)))
-FORALL(j:proveedor_servicio_publicod; O(CambiarPrestatario ->j.NotificarDeuda))
-FORALL(j:proveedor_servicio_publicod; O(!j.NotificarDeuda -> j.CondonarDeuda))
-
-//CAPITULO IX - DE LOS TERMINOS ABUSIVOS Y CLAUSULAS INEFICACES
-//ART 37 al 39
-FORALL(i:Proveedor; F(i.RedactarClausulas))
-FORALL(i:autoridad_competente; O(i.interpretar_contrato -> i.interpretar_contrato))
-FORALL(i:autoridad_competente; O(i.RedactarClausulas results in en_contrato_adhesion -> i.vigilar_contrato_adhesion ))
-FORALL(i:autoridad_competente; O(i.RedactarContratoAdhesion -> i.modificarContratoAdhesion ))
-
-//CAPITULO X - RESPONSABILIDAD POR DAÑOS
-//CAPITULO XI - AUTORIDAD DE APLICACION
-FORALL(i:Transportista; O(i.DaniaralaCosaporTransporte -> i.ResponderPorDaniosdeTransporte))
-FORALL(i:autoridad_competente; O(i.DeterminarDanioDirecto -> i.ObligarResarcimiento))
-FORALL(i:Proveedor; O(i.PagarSumaDanioDirecto))
-
-//CAPITULO XII - PROCEDIMIENTO Y SANCIONES
-//CAPITULO XIII - DE LAS ACCIONES
-//ART 45
-FORALL(i: Autoridad_Aplicacion_Nacional; O((i.Realizar_Inspeccion & i.Requerir_Verificacion_Tecnica) -> i.LabrarActa & i.IntimaARealizarDescargo))
-FORALL(i: Infractor; O(i.RealizarDescargo | i.Desvirtuar_Constancia_Acta))
-FORALL(i:Autoridad_Aplicacion_Nacional; F(i.dias_resolucion_infraccion <= 0 & i.Resolucion_Definitiva))
-FORALL(i; F(i.Recurrir_Acto_Administrativo_Ante_Autoridad_Aplicacion & i.dias_interponer_recurso <= 0 ))
-FORALL(i: Gobierno_Local; O(i.Dictar_Normas_Actuacion))
-
-//ART 47
-FORALL(i:Autoridad_Aplicacion_Nacional; O(i.Administrar_Fondo_Educacion_Consumidor))
-
-//Art 53. Normas del Proceso
-EXISTS(i: Proveedor; O(i.Aportar_Prueba_Proceso))
 
 
 
