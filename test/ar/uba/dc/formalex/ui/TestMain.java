@@ -180,6 +180,12 @@ public class TestMain {
 	}
 	
 	@Test
+	public void testCasoDeEstudioVipMemberPassFull() {
+		
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPassFull.txt");
+	}
+	
+	@Test
 	public void testRompeNusmvPorqueFormulaMayorTo65Kb() {
 		
 		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConAccionesConOutputValuesQueRompeNusmv.txt");
