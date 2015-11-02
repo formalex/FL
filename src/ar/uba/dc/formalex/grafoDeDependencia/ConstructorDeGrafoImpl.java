@@ -27,6 +27,12 @@ public class ConstructorDeGrafoImpl implements ConstructorDeGrafo {
 
 		return grafoDeDependencias;
 	}
+	
+	@Override
+	public String toString() {
+		
+		return ConstructorDeGrafoImpl.class.getSimpleName();
+	}
 
 	private void agregarAristasConOrigenContador(BackgroundTheory bgt) {
 		// Si un counter c tiene acciones que lo incrementan a1..an entonces se

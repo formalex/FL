@@ -14,8 +14,11 @@ public class ConstructorDeGrafoFake implements ConstructorDeGrafo {
 		return null;
 	}
 
-	
-
+	@Override
+	public String toString() {
+		
+		return ConstructorDeGrafoFake.class.getSimpleName();
+	}
 	
 
 }
