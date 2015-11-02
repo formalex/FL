@@ -42,7 +42,7 @@ public class TestMain {
 	@BeforeClass
 	public static void setUp(){
 
-		boolean estoyEnWindows = false;
+		boolean estoyEnWindows = true;
 		
 		if(estoyEnWindows){	
 			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
@@ -298,6 +298,12 @@ public class TestMain {
 	public void testEjemploFiltroConCountersQueSeUsan() {
 		
 		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConCountersQueSeUsan.txt");
+	}
+	
+	@Test
+	public void testEjemploFiltroConPpConExcepcion() {
+		
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConPpConExcepcion.txt");
 	}
 	
 	private void corridaDeFormaLex(String rutaArchivoDeEjemplo) {
