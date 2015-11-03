@@ -33,174 +33,200 @@ import ar.uba.dc.formalex.util.LaAplanadora;
 
 public class TestMain {
 
+	private static final String CORRIENDO_SIN_MODEL_CHECKER = "Corriendo sin Model Checker";
 	private static final Logger logger = Logger.getLogger(Main.class);
 	private static String ROOT_RESOURCES = "resources/";
 	private static String ROOT_EJS_FILTROS = ROOT_RESOURCES + "EjemplosParaFiltrar/";
 	private static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
 	
 	private static int nroDeCorridas = 0;
+	
+	public enum SistemaOperativo {
+		LINUX,
+		MAC,
+		WINDOWS;
+		
+		private String tipo;
+
+		public String getTipo() {
+			return tipo;
+		}
+
+		public void setTipo(String tipo) {
+			this.tipo = tipo;
+		}
+		
+		
+	}
+	
 	@BeforeClass
 	public static void setUp(){
 
-		boolean estoyEnWindows = true;
+		SistemaOperativo soEnElQueCorre = SistemaOperativo.WINDOWS;
 		
-		if(estoyEnWindows){	
-			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
-			System.setProperty("TEMP_DIR", "C:/propsFl/salida");
-		}else{	//Linux
+		switch (soEnElQueCorre) {
+		case LINUX:
 			System.setProperty("NUSMV_EXE", "/Data/JAVA/NuSMV-2.5.4-x86_64-unknown-linux-gnu/bin/NuSMV");
 			System.setProperty("TEMP_DIR", "/media/charly/WINDOWS/propsFl/salida");
+		case WINDOWS:
+			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
+			System.setProperty("TEMP_DIR", "C:/propsFl/salida");
+			break;
+
+		default:
+			break;
 		}
+		
 		System.setProperty("TEMPLATE_VELOCITY", "fl.vm");
 	}
 	
 	@Test
 	public void testAcldc() {		
-		corridaDeFormaLex(ROOT_RESOURCES + "ACLDC.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "ACLDC.txt", false);
 	}
 	
 	@Test
 	public void testAcldcFullConFormulasConAccionesConOutputValuesModificadas() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFullConFormulasConAccionesConOutputValuesModificadas.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFullConFormulasConAccionesConOutputValuesModificadas.txt", false);
 	}
 		
 	@Test
 	public void testAcldcFullSinFormulasConAccionesConOutputValues() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFullSinFormulasConAccionesConOutputValues.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFullSinFormulasConAccionesConOutputValues.txt", false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas1() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas1.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas1.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas5() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas5.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas5.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas15() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas15.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas15.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas25() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas25.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas25.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas28() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas28.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas28.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas60() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas60.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas60.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas40() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas40.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas40.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio2NroDeClausulas1() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas1.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas1.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio2NroDeClausulas5() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas5.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas5.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio2NroDeClausulas15() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas15.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas15.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio2NroDeClausulas25() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas25.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas25.txt", true);
 	}
 		
 	@Test
 	public void testCasoDeEstudio2NroDeClausulas28() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas28.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas28.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas1() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas1.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas1.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas5() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas5.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas5.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas15() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas15.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas15.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas25() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas25.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas25.txt", true);
 	}
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas32() {
 		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas32.txt");
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas32.txt", true);
 	}
 	
 	
 	@Test
 	public void testCasoDeEstudioVipMemberPass() {
-		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPass.txt");
+		//Este ejemplo tiene un PP con excepcion
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPass.txt", true);
 	}
 	
 	@Test
 	public void testCasoDeEstudioVipMemberPassFull() {
-		
-		corridaDeFormaLex(ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPassFull.txt");
+		//Este ejemplo tiene dos PP con excepcion
+		corridaDeFormaLex(ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPassFull.txt", true);
 	}
 	
 	@Test
 	public void testRompeNusmvPorqueFormulaMayorTo65Kb() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConAccionesConOutputValuesQueRompeNusmv.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConAccionesConOutputValuesQueRompeNusmv.txt", true);
 	}
 	
 	@Test
 	public void testEjemploActionConOutputValuesConRolesReferenciados() {
 		
-		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesConRolesReferenciadosEnRegla.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesConRolesReferenciadosEnRegla.txt", true);
 	}
 	
 	@Test
 	public void testEjemploActionConOutputValuesSinRolesReferenciados() {
 		
-		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesSinRolesReferenciadosEnRegla.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "EjActionConOutputValuesSinRolesReferenciadosEnRegla.txt", true);
 	}
 	
 	/**** Estos dos tests los hice para saber si variaba la cantidad de agentes 
@@ -211,102 +237,102 @@ public class TestMain {
 	@Test
 	public void testEjemploGeneracionDeAgentesConCuatroRolesEnUnaLinea() {
 		
-		corridaDeFormaLex(ROOT_RESOURCES + "EjCuatroRolesEnUnaLinea.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "EjCuatroRolesEnUnaLinea.txt", false);
 	}
 	
 	@Test
 	public void testEjemploConstruccionDeGrafo() {
 		
-		corridaDeFormaLex(ROOT_RESOURCES + "EjConstruccionDeGrafo.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "EjConstruccionDeGrafo.txt", false);
 	}
 	
 	@Test
 	public void testEjemploGeneracionDeAgentes() {
 		
-		corridaDeFormaLex(ROOT_RESOURCES + "EjGeneracionDeAgentes.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "EjGeneracionDeAgentes.txt", false);
 	}
 	
 	@Test
 	public void testEjemploGeneracionDeAgentesConCuatroRolesEnDosLineas() {
 		
-		corridaDeFormaLex(ROOT_RESOURCES + "EjCuatroRolesEnDosLineas.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "EjCuatroRolesEnDosLineas.txt", false);
 	}
 	
 	@Test
 	public void testEjemploCombinacionRolesTesisChicas() {
 		// Lo hice para ver si se seguía comportandose bien despues del cambio de
 		// las chicas
-		corridaDeFormaLex(ROOT_RESOURCES + "EjCombinacionRolesTesisChicas.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "EjCombinacionRolesTesisChicas.txt", false);
 	}
 	
 	@Test
 	public void testEjemploBelongsToTesisChicas() {
 		// Lo hice para ver el seguimiento de belongsTo
-		corridaDeFormaLex(ROOT_RESOURCES + "EjBelongsTo.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "EjBelongsTo.txt", true);
 	}
 	
 	@Test
 	public void testEjemploPermisoPermanente() {
 		
-		corridaDeFormaLex(ROOT_RESOURCES + "permisoPermanente.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "permisoPermanente.txt", false);
 	}
 	
 	@Test
 	@Ignore("Hasta que se arregle el tema del synchronize")
 	public void testEjemploSynchronize() {
 		
-		corridaDeFormaLex(ROOT_RESOURCES + "ejSynchronize.txt");
+		corridaDeFormaLex(ROOT_RESOURCES + "ejSynchronize.txt", false);
 	}
 	
 	@Test
 	public void testEjemploFiltroConIntervalOnlyOccursInScope() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConIntervalosConOnlyOccursInScopeQueSeUsan.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConIntervalosConOnlyOccursInScopeQueSeUsan.txt", false);
 	}
 	
 	@Test
 	public void testEjemploFiltroConActionsOnlyOccursInScope() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConActionsOnlyOccursInScope.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConActionsOnlyOccursInScope.txt", false);
 	}
 	
 	@Test
 	public void testEjemploFiltroConAccionesQueNoSeReferencian() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConAccionesQueNoSeReferencian.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConAccionesQueNoSeReferencian.txt", false);
 	}
 	
 	@Test
 	public void testEjemploFiltroConIntervalosQueNoSeUsan() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConIntervalosQueNoSeUsan.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConIntervalosQueNoSeUsan.txt", false);
 	}
 	
 	@Test
 	public void testEjemploFiltroConIntervalosQueSeUsan() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConIntervalosQueSeUsan.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConIntervalosQueSeUsan.txt", false);
 	}
 	
 	@Test
 	public void testEjemploFiltroConCountersQueNoSeUsan() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConCountersQueNoSeUsan.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConCountersQueNoSeUsan.txt", false);
 	}
 	
 	@Test
 	public void testEjemploFiltroConCountersQueSeUsan() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConCountersQueSeUsan.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConCountersQueSeUsan.txt", false);
 	}
 	
 	@Test
 	public void testEjemploFiltroConPpConExcepcion() {
 		
-		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConPpConExcepcion.txt");
+		corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConPpConExcepcion.txt", false);
 	}
 	
-	private void corridaDeFormaLex(String rutaArchivoDeEjemplo) {
+	private void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker) {
 		try {
 			java.io.FileInputStream streamFile = new java.io.FileInputStream(rutaArchivoDeEjemplo);
 			
@@ -332,7 +358,8 @@ public class TestMain {
 				Grafo<InfoComponenteBgt> elgrafoDeDependenciasBgt = divididos
 						.explotarYAplanar(flInput, new ConstructorDeGrafoImpl());
 				// loguearEntSal(flInput);
-				validar(flInput, elgrafoDeDependenciasBgt);
+				
+				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker);
 
 				logger.debug("Listo");
 			} catch (TokenMgrError e) {
@@ -349,13 +376,14 @@ public class TestMain {
 		}
 	}
 
-	private static void validar(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias) {
+	private static void validar(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker) {
         boolean b = true;
+        
         if (flInput.getRules().size() > 0)
-            b = validarReglas(flInput, elGrafoDeDependencias);
+            b = validarReglas(flInput, elGrafoDeDependencias, conModelChecker);
 
         if (b){
-            validarPermisos(flInput, elGrafoDeDependencias);
+            validarPermisos(flInput, elGrafoDeDependencias, conModelChecker);
         }else{
             if (flInput.getPermissions().size() > 0){
                 logger.debug("No se validan los permisos");
@@ -363,7 +391,7 @@ public class TestMain {
         }
 	}
 
-	private static boolean validarReglas(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias) {
+	private static boolean validarReglas(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker) {
         FLFormula aValidar = new FLTrue();
 
         String flRules = "TRUE";
@@ -384,36 +412,32 @@ public class TestMain {
         logger.info("# bgt despues del filtro de la formula: "+ aValidar.toString());
         loguearBgt(unaBgtFiltrada);
 		
-        //TODO comentado para no correr el model checker. ve como se puede hacer
-        //para no correrlo de una manera mas clara
-        //return true;
-        
-        File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, aValidar);
-        
-        if (!file.exists()){
-        //Si no se generó el archivo es porque el output del proceso está vacío. Eso suele pasar cuando hubo un error con nusmv.
-            logger.error("Error al correr nusmv. Intentar correr a mano el comando previamente logueado.");
-            throw new RuntimeException("Se abortó la ejecución de nusmv. Revisar archivo generado.");
-        }
-        boolean encontroTrace = encontroTrace(file);
-        if (encontroTrace){
-            logger.info("Se ha encontrado un comportamiento legal para las normas.");
-            logger.info("Se puede ver el trace en: " + file.getAbsolutePath());
+        boolean encontroTrace = true;
+        if(conModelChecker){
+        	File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, aValidar);
+
+        	if (!file.exists()){
+        		//Si no se generó el archivo es porque el output del proceso está vacío. Eso suele pasar cuando hubo un error con nusmv.
+        		logger.error("Error al correr nusmv. Intentar correr a mano el comando previamente logueado.");
+        		throw new RuntimeException("Se abortó la ejecución de nusmv. Revisar archivo generado.");
+        	}
+        	encontroTrace = encontroTrace(file);
+        	if (encontroTrace){
+        		logger.info("Se ha encontrado un comportamiento legal para las normas.");
+        		logger.info("Se puede ver el trace en: " + file.getAbsolutePath());
+        	}else
+        		logger.info("No se ha encontrado un comportamiento legal.");
         }else
-            logger.info("No se ha encontrado un comportamiento legal.");
+        	logger.info(CORRIENDO_SIN_MODEL_CHECKER);
+        
         logger.info("");
+        
         return encontroTrace;
         
-
 	}
 	
-	private static String contadorDeSignosIgual(String stringDeLaFormula) {
-		
-		int countMatches = StringUtils.countMatches(stringDeLaFormula, "=");
-		return String.valueOf(countMatches);
-	}
 
-	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias) {
+	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker) {
         FLFormula aValidar = new FLTrue();
         //Uno todas las prohibiciones y obligaciones en una fórmula con conjunciones.
         for(FLFormula formula : flInput.getRules()) {
@@ -436,21 +460,29 @@ public class TestMain {
             logger.info("# bgt despues del filtro del permiso: "+  conPermiso.toString());
             loguearBgt(unaBgtFiltrada);
             
-          //TODO comentado para no correr el model checker. ve como se puede hacer
-            //para no correrlo de una manera mas clara
-            File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, conPermiso);
-            boolean encontroTrace = encontroTrace(file);
-            if (encontroTrace){
-                logger.info("Se ha encontrado un comportamiento legal para el permiso.");
-                logger.info("Se puede ver el trace en: " + file.getAbsolutePath());
-            }else{
-                logger.info("No se ha encontrado un comportamiento legal para el permiso.");
-            }
+            if(conModelChecker){
+	            File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, conPermiso);
+	            boolean encontroTrace = encontroTrace(file);
+	            if (encontroTrace){
+	                logger.info("Se ha encontrado un comportamiento legal para el permiso.");
+	                logger.info("Se puede ver el trace en: " + file.getAbsolutePath());
+	            }else{
+	                logger.info("No se ha encontrado un comportamiento legal para el permiso.");
+	            }
+            }else
+            	logger.info(CORRIENDO_SIN_MODEL_CHECKER);
+            
             logger.info("");
 
         }
 	}
 
+	private static String contadorDeSignosIgual(String stringDeLaFormula) {
+		
+		int countMatches = StringUtils.countMatches(stringDeLaFormula, "=");
+		return String.valueOf(countMatches);
+	}
+	
     private static String contadorDeOperadoresModales(String stringDeLaFormula) {
 		
     	int countGs = StringUtils.countMatches(stringDeLaFormula, "G (");  
