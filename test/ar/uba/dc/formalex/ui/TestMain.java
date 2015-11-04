@@ -1,6 +1,5 @@
 package ar.uba.dc.formalex.ui;
 
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
