@@ -5,7 +5,7 @@ import org.junit.Test;
 import ar.uba.dc.formalex.fl.utils.FlTest;
 import ar.uba.dc.formalex.fl.utils.TestUtils;
 
-public class FlParserTest extends FlTest{
+public class FlParserBgtTest extends FlTest{
 
 	private static String ROOT_RESOURCES = "resources/";
 	private static String ROOT_EJS_ACTIONS_PRODUCTIONS = ROOT_RESOURCES + "EjemplosParserActionsProduction/";
@@ -51,4 +51,7 @@ public class FlParserTest extends FlTest{
 	public void testEjActionsProductionWithSomeActionsAndOnlyOccursInAndOccurrencesAndSomePerformable() {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTIONS_PRODUCTIONS + "EjActionsProductionWithSomeActionsAndOnlyOccursInAndOccurrencesAndSomePerformable.txt", false);
 	}
+	
+	//TODO Agregar tests que corra bien cuando procesa un action
+	//TODO Agregar tests que rompan cuando procesa un action
 }

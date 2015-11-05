@@ -2,9 +2,8 @@ options
 {
   JDK_VERSION = "1.7";
 
-  static = true;
-  Ignore_Case = true;
-
+  	static = true;
+  	Ignore_Case = true;
   LOOKAHEAD= 3;
 }
 
@@ -1941,15 +1940,19 @@ FLFormula terminal() :
     int beginColumn = token.next.beginColumn;
 }
 {
-    //Puede ser una accion, un counter o un intervalo
+    //Puede ser una accion IMPERSONAL. Por ej 'Hablar' en P(Hablar)
+    //O un counter GLOBAL. Por ej 'dias_de_garantia_restantes' en O(dias_de_garantia_restantes > 0)
+    //O puede ser un nombre de variable cuando se hace referencia a:
+    	// una accion que NO es Impersonal. Por ej 'i' en FORALL(i:noCliente; F(i.ingresarASala))
+    	//un Contador LOCAL. Por ej 'i' en FORALL(i:socioTitular; F(i.puntosMembresia > 20))
     (
-        < IDENTIFIER >           //ej i.Enroll en P(EXISTS(i : john ; i.Enroll))
+        < IDENTIFIER >           
         {
             name = token.image;
             originalFormula += name;
         }
         (
-          < DOT > < IDENTIFIER > //esto pasa si usa variable
+          < DOT > < IDENTIFIER > //esto pasa si usa variable. ej i.Enroll en P(EXISTS(i : john ; i.Enroll))
           {
             variable = name;
             name = token.image;
