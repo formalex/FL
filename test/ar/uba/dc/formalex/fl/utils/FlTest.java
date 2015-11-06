@@ -30,12 +30,13 @@ public class FlTest {
 	@BeforeClass
 	public static void setUp(){
 
-		SistemaOperativo soEnElQueCorre = SistemaOperativo.WINDOWS;
+		SistemaOperativo soEnElQueCorre = SistemaOperativo.LINUX;
 		
 		switch (soEnElQueCorre) {
 		case LINUX:
 			System.setProperty("NUSMV_EXE", "/Data/JAVA/NuSMV-2.5.4-x86_64-unknown-linux-gnu/bin/NuSMV");
 			System.setProperty("TEMP_DIR", "/media/charly/WINDOWS/propsFl/salida");
+			break;
 		case WINDOWS:
 			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
 			System.setProperty("TEMP_DIR", "C:/propsFl/salida");

@@ -17,6 +17,7 @@ import ar.uba.dc.formalex.fl.bgtheory.Interval;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
+import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoFake;
 import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoImpl;
 import ar.uba.dc.formalex.grafoDeDependencia.Grafo;
 import ar.uba.dc.formalex.grafoDeDependencia.InfoComponenteBgt;
@@ -59,7 +60,7 @@ public class TestUtils {
 				FLInput flInput = FLParser.getFLInput();
 				LaAplanadora divididos = new LaAplanadora();
 				Grafo<InfoComponenteBgt> elgrafoDeDependenciasBgt = divididos
-						.explotarYAplanar(flInput, new ConstructorDeGrafoImpl());
+						.explotarYAplanar(flInput, new ConstructorDeGrafoFake());
 				// loguearEntSal(flInput);
 				
 				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker);
