@@ -40,6 +40,16 @@ public class FlParserClausesTest extends FlTest{
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIdentifierWithResultsIn.txt", false);
 	}
 	
+	@Test
+	public void testEjTerminalWithIsHappeningWithIdentifier() {
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifier.txt", false);
+	}
+	
+	@Test
+	public void testEjTerminalWithIsHappeningWithIdentifierDotIdentifier() {
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifierDotIdentifier.txt", false);
+	}
+	
 	//TODO Agregar tests para Inside	
 
 	/******************* TESTS QUE ROMPEN AL PARSEAR UN TERMINAL *************/

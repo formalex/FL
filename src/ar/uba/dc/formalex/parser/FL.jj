@@ -43,6 +43,7 @@ public class FLParser{
         return flInput;
     }
 
+  private static FLFormula parsearFlAction(String variable, String name, FLFormula aFormula , int beginLine, int beginColumn)  {    Action tmp = actions.get(name);    if (tmp == null)    {      StringBuilder sb = new StringBuilder();      sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +       "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);      throw new RuntimeException(sb.toString());    }    if (!tmp.isImpersonal() & variable == null)    {      StringBuilder sb = new StringBuilder();      sb.append("En una fórmula se hace referencia a una acción sin usar agente: ('" + name + "'). " +       "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);      throw new RuntimeException(sb.toString());    }    if (tmp.isImpersonal() & variable != null)    {      StringBuilder sb = new StringBuilder();      sb.append("En una fórmula se hace referencia a una acción impersonal usando agente: ('" + name + "'). " +       "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);      throw new RuntimeException(sb.toString());    }    aFormula = new FLAction(variable, name);    return aFormula;  }
 
     private static Interval getInterval(String name){
         Interval res = intervals.get(name);
@@ -187,6 +188,8 @@ TOKEN :
 | < INSIDE : "inside" >
 | < EXISTS : "EXISTS(" >
 | < FORALL : "FORALL(" >
+| < IS_HAPPENING : "isHappening(" >
+| < JUST_HAPPENNED : "justHappened(" >
 }
 
 // COMPARATORS
@@ -1932,7 +1935,7 @@ FLFormula quantifier() :
 
 FLFormula terminal() :
 {
-    FLFormula aFormula;
+    FLFormula aFormula=null;
     String name;
     String variable = null;
     FLCounter counter = null;
@@ -2055,28 +2058,7 @@ FLFormula terminal() :
             }
         }
         {
-            Action tmp = actions.get(name);
-            if (tmp == null){
-                StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +
-                "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
-                throw new RuntimeException(sb.toString());
-            }
-
-            if ( !tmp.isImpersonal() & variable == null){
-                StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a una acción sin usar agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
-                throw new RuntimeException(sb.toString());
-            }
-            if ( tmp.isImpersonal() & variable != null){
-                StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a una acción impersonal usando agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
-                throw new RuntimeException(sb.toString());
-            }
-            aFormula = new FLAction(variable, name);
-            return aFormula;
+          return parsearFlAction(variable, name, aFormula, beginLine, beginColumn);            
         }
     )
     |
@@ -2126,6 +2108,10 @@ FLFormula terminal() :
             return new FLInside(interval);
         }
     )
+    |
+  (    < IS_HAPPENING > < IDENTIFIER > // 'j' en isHappening(j.Correr) o 'empezoElDia' en isHappening(empezoElDia)
+    {      name = token.image;      originalFormula += "isHappening(" + name;    }    (    < DOT > < IDENTIFIER > //isHappening(j.Correr)
+    {      variable = name;      name = token.image;      originalFormula += "." + name;    }    )?     < PAR_RIGHT >    {      return parsearFlAction(variable, name, aFormula, beginLine, beginColumn);    }  )
 }
 
 
