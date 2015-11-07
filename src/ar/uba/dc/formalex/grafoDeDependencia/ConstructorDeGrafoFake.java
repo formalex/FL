@@ -17,7 +17,7 @@ public class ConstructorDeGrafoFake implements ConstructorDeGrafo {
 	@Override
 	public String toString() {
 		
-		return ConstructorDeGrafoFake.class.getSimpleName();
+		return "SIN Filtro";
 	}
 	
 

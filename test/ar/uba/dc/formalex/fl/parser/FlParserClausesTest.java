@@ -43,7 +43,6 @@ public class FlParserClausesTest extends FlTest{
 	//TODO Agregar tests para Inside	
 
 	/******************* TESTS QUE ROMPEN AL PARSEAR UN TERMINAL *************/
-	//TODO Agregar tests que rompan cuando procesa terminal
 	@Test
 	public void testEjTerminalWithUndefinedRoleFail(){
 		
@@ -52,7 +51,57 @@ public class FlParserClausesTest extends FlTest{
 			fail();
 		} catch (RuntimeException re) {
 			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a un rol no definido: ("));
-			//re.printStackTrace();
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithUndefinedActionReferredToResultsInFail(){
+ 
+		try {
+			//System.out.println("\u00e1\u00e9\u00ed\u00f3\u00fa");
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithUndefinedActionReferredToResultsInFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			System.out.println(re.getMessage());
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción no definida: ("));
+			
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithUndefinedCounterFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithUndefinedCounterFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a un contador no definido: ("));
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithLocalCounterWithoutAgentFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithLocalCounterWithoutAgentFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a un contador local sin usar agente: ("));
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithGlobalCounterWithAgentFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithGlobalCounterWithAgentFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a un contador global usando agente: ("));
 		}
 		
 	}
@@ -61,13 +110,71 @@ public class FlParserClausesTest extends FlTest{
 	public void testEjTerminalWithUndefinedActionFail(){
  
 		try {
-			//System.out.println("\u00e1\u00e9\u00ed\u00f3\u00fa");
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithUndefinedActionFail.txt", false);
 			fail();
 		} catch (RuntimeException re) {
 			System.out.println(re.getMessage());
-			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción no definida: ("));
-			
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción no definida: ("));			
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithPersonalActionWithoutAgentFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithPersonalActionWithoutAgentFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción sin usar agente: ("));
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithImpersonalActionWithAgentFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithImpersonalActionWithAgentFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción impersonal usando agente: ("));
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithInsideWithoutIntervalFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithInsideWithoutIntervalFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a un intervalo no definido: ("));
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithInsideWithLocalIntervalWithoutAgentFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithInsideWithLocalIntervalWithoutAgentFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a un intervalo local sin usar variable: ("));
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithInsideWithGlobalIntervalWithAgentFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithInsideWithGlobalIntervalWithAgentFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a un intervalo global usando agente: ("));
 		}
 		
 	}

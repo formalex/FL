@@ -45,7 +45,7 @@ public class LaAplanadora {
 		Set<Action> accionesConAgentes = new HashSet<Action>();
 		Set<Action> accionesAplanadasConSyncActivo = crearAgentesYAplanarAcciones(input, accionesConAgentes);
 
-		logger.info("El filtro del grafo es: " + unConstructorDeGrafo.toString());
+		logger.info(unConstructorDeGrafo.toString());
 		//Aplano acciones sincronizadas
 		aplanarAccionesSincronizadas(accionesConAgentes, accionesAplanadasConSyncActivo);
 		input.setActions(accionesConAgentes);

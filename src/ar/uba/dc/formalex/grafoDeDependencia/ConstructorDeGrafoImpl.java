@@ -31,7 +31,7 @@ public class ConstructorDeGrafoImpl implements ConstructorDeGrafo {
 	@Override
 	public String toString() {
 		
-		return ConstructorDeGrafoImpl.class.getSimpleName();
+		return "CON Filtro";
 	}
 
 	private void agregarAristasConOrigenContador(BackgroundTheory bgt) {
