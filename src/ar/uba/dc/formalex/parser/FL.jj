@@ -189,7 +189,7 @@ TOKEN :
 | < EXISTS : "EXISTS(" >
 | < FORALL : "FORALL(" >
 | < IS_HAPPENING : "isHappening(" >
-| < JUST_HAPPENNED : "justHappened(" >
+| < JUST_HAPPENED : "justHappened(" >
 }
 
 // COMPARATORS
@@ -2112,6 +2112,26 @@ FLFormula terminal() :
   (    < IS_HAPPENING > < IDENTIFIER > // 'j' en isHappening(j.Correr) o 'empezoElDia' en isHappening(empezoElDia)
     {      name = token.image;      originalFormula += "isHappening(" + name;    }    (    < DOT > < IDENTIFIER > //isHappening(j.Correr)
     {      variable = name;      name = token.image;      originalFormula += "." + name;    }    )?     < PAR_RIGHT >    {      return parsearFlAction(variable, name, aFormula, beginLine, beginColumn);    }  )
+   |   //TODO: VER SI HAY TIEMPO, SI SE PUEDEN SIMPLIFICAR LOS DOS CASOS
+  (
+    < JUST_HAPPENED > < IDENTIFIER > // 'j' en justHappened(j.Correr) o 'empezoElDia' en justHappened(empezoElDia)
+    {
+      name = token.image;
+      originalFormula += "justHappened(" + name;
+    }
+    (
+    < DOT > < IDENTIFIER > //justHappened(j.Correr)
+    {
+      variable = name;
+      name = token.image;
+      originalFormula += "." + name;
+    }
+    )? 
+    < PAR_RIGHT >
+    {
+      return parsearFlAction(variable, name, aFormula, beginLine, beginColumn);
+    }
+  )
 }
 
 

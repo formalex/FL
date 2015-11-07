@@ -139,7 +139,7 @@ public interface FLParserConstants {
   /** RegularExpression Id. */
   int IS_HAPPENING = 69;
   /** RegularExpression Id. */
-  int JUST_HAPPENNED = 70;
+  int JUST_HAPPENED = 70;
   /** RegularExpression Id. */
   int EQUAL = 71;
   /** RegularExpression Id. */

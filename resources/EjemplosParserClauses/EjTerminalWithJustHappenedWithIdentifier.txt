@@ -1,0 +1,25 @@
+#Background
+
+roles Consumidor, Proveedor
+impersonal action paso_un_dia
+impersonal action paso_un_dia_reparandose
+impersonal action ViciosdelaCosa
+impersonal action GozarGarantia 
+
+//action InterrupcionPrestacionServicioPublico
+//action Treinta_dias_postInterrupcion
+
+//local interval periodoDemostracionNoCulpaEmpresa defined by actions InterrupcionPrestacionServicioPublico - Treinta_dias_postInterrupcion
+
+global counter dias_de_garantia_restantes  init value  90 
+increases with action paso_un_dia_reparandose by 1, 
+decreases with action paso_un_dia by 1
+
+
+ 
+#Clauses
+//Ejemplo con justHappened en acciones impersonales
+P(justHappened(ViciosdelaCosa)  -> GozarGarantia)
+O(justHappened(GozarGarantia))
+
+

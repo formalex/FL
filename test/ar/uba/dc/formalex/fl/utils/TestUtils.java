@@ -60,7 +60,7 @@ public class TestUtils {
 				FLInput flInput = FLParser.getFLInput();
 				LaAplanadora divididos = new LaAplanadora();
 				Grafo<InfoComponenteBgt> elgrafoDeDependenciasBgt = divididos
-						.explotarYAplanar(flInput, new ConstructorDeGrafoFake());
+						.explotarYAplanar(flInput, new ConstructorDeGrafoImpl());
 				// loguearEntSal(flInput);
 				
 				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker);
