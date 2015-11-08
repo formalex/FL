@@ -128,7 +128,7 @@ action Prestar_Servicio_Publico_D only performable by proveedor_servicio_publico
 action Verificar_Buen_funcionamiento_Instrumento_Medicion only performable by autoridad_competente
 action EmitirLecturasDudosas only performable by instrumento_medicion_autorizado
 action Control_Individual_Consumo only performable by  consumidor_servicio_publicod
-action EntregarFacturaServicio only performable by proveedor_servicio_publicod output values {diezdiasantesFVto}
+action EntregarFacturaServicio only performable by proveedor_servicio_publicod output values {diezdiasantesFVto, diezDiasDespuesDelVto}
 action InterrupcionPrestacionServicioPublico
 action Treinta_dias_postInterrupcion
 

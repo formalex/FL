@@ -111,7 +111,7 @@ action EmitirLecturasDudosas only performable by instrumento_medicion_autorizado
 
 action Control_Individual_Consumo only performable by consumidor_servicio_publicod
 
-action EntregarFacturaServicio only performable by proveedor_servicio_publicod output values {diezdiasantesFVto,masdias}
+action EntregarFacturaServicio only performable by proveedor_servicio_publicod output values {diezdiasantesFVto, diezDiasDespuesDelVto}
 
 impersonal action InterrupcionPrestacionServicioPublico
 
