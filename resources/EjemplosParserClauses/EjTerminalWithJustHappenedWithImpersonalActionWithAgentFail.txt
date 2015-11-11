@@ -13,6 +13,6 @@ global interval semana defined by actions comienza_semana - termina_semana
 
 #Clauses
 
-//Ej de terminal con una accion ('undefinedAction') NO definida
-FORALL(i; O(i.postularse & i.undefinedAction)) 
+//Ej de terminal con una accion impersonal ('comienza_semana') siendo referenciada con un agente
+FORALL(i; O(justHappened(i.comienza_semana))) 
 

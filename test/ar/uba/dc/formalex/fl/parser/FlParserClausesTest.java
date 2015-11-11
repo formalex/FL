@@ -200,6 +200,80 @@ public class FlParserClausesTest extends FlTest{
 		
 	}
 	
+	@Test
+	public void testEjTerminalWithIsHappeningWithUndefinedActionFail(){
+ 
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithUndefinedActionFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			System.out.println(re.getMessage());
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción no definida: ("));			
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithJustHappenedWithUndefinedActionFail(){
+ 
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithUndefinedActionFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			System.out.println(re.getMessage());
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción no definida: ("));			
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithIsHappeningWithPersonalActionWithoutAgentFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithPersonalActionWithoutAgentFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción sin usar agente: ("));
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithJustHappenedWithPersonalActionWithoutAgentFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithPersonalActionWithoutAgentFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción sin usar agente: ("));
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithIsHappeningWithImpersonalActionWithAgentFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithImpersonalActionWithAgentFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción impersonal usando agente: ("));
+		}
+		
+	}
+	
+	@Test
+	public void testEjTerminalWithJustHappenedWithImpersonalActionWithAgentFail(){
+		
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithImpersonalActionWithAgentFail.txt", false);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().startsWith("En una fórmula se hace referencia a una acción impersonal usando agente: ("));
+		}
+		
+	}
+	
 
 	
 	private String unescape(String s) {
