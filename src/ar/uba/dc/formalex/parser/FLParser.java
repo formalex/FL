@@ -40,22 +40,22 @@ public class FLParser implements FLParserConstants {
     if (tmp == null)
     {
       StringBuilder sb = new StringBuilder();
-      sb.append("En una f\u00f3rmula se hace referencia a una acci\u00f3n no definida: ('" + name + "'). " +
-      "Revisar datos del archivo de entrada, cerca de l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+      sb.append("En una f\u00c3\u00b3rmula se hace referencia a una acci\u00c3\u00b3n no definida: ('" + name + "'). " +
+      "Revisar datos del archivo de entrada, cerca de l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
       throw new RuntimeException(sb.toString());
     }
     if (!tmp.isImpersonal() & variable == null)
     {
       StringBuilder sb = new StringBuilder();
-      sb.append("En una f\u00f3rmula se hace referencia a una acci\u00f3n sin usar agente: ('" + name + "'). " +
-      "Revisar datos del archivo de entrada, cerca de l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+      sb.append("En una f\u00c3\u00b3rmula se hace referencia a una acci\u00c3\u00b3n sin usar agente: ('" + name + "'). " +
+      "Revisar datos del archivo de entrada, cerca de l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
       throw new RuntimeException(sb.toString());
     }
     if (tmp.isImpersonal() & variable != null)
     {
       StringBuilder sb = new StringBuilder();
-      sb.append("En una f\u00f3rmula se hace referencia a una acci\u00f3n impersonal usando agente: ('" + name + "'). " +
-      "Revisar datos del archivo de entrada, cerca de l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+      sb.append("En una f\u00c3\u00b3rmula se hace referencia a una acci\u00c3\u00b3n impersonal usando agente: ('" + name + "'). " +
+      "Revisar datos del archivo de entrada, cerca de l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
       throw new RuntimeException(sb.toString());
     }
     aFormula = new FLAction(variable, name);
@@ -66,7 +66,7 @@ public class FLParser implements FLParserConstants {
         Interval res = intervals.get(name);
         if (res ==  null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Se est\u00e1 haciendo referencia a un intervalo no definido ('" + name + "'). Revisar datos del archivo de entrada");
+            sb.append("Se est\u00c3\u00a1 haciendo referencia a un intervalo no definido ('" + name + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
         return res;
@@ -76,7 +76,7 @@ public class FLParser implements FLParserConstants {
         Action res = actions.get(name);
         if (res ==  null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Se est\u00e1 haciendo referencia a una acci\u00f3n no definida ('" + name + "'). Revisar datos del archivo de entrada");
+            sb.append("Se est\u00c3\u00a1 haciendo referencia a una acci\u00c3\u00b3n no definida ('" + name + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
         return res;
@@ -91,7 +91,7 @@ public class FLParser implements FLParserConstants {
         Role res = rolesMap.get(name);
         if (res ==  null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Se est\u00e1 haciendo referencia a un rol no definido ('" + name + "'). Revisar datos del archivo de entrada");
+            sb.append("Se est\u00c3\u00a1 haciendo referencia a un rol no definido ('" + name + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
         return res;
@@ -242,7 +242,7 @@ public class FLParser implements FLParserConstants {
         Action tmp = actions.put(anAction.getName(), anAction);
         if (tmp != null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Nombre de acci\u00f3n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+            sb.append("Nombre de acci\u00c3\u00b3n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
             {if (true) throw new RuntimeException(sb.toString());}
         }
     label_4:
@@ -258,14 +258,14 @@ public class FLParser implements FLParserConstants {
         actionOutputs = set();
         jj_consume_token(BRA_RIGHT);
               if (hasOutput)
-                {if (true) throw new RuntimeException("La acci\u00f3n "+ anAction.getName() + " tiene definido m\u00e1s de un output value");}
+                {if (true) throw new RuntimeException("La acci\u00c3\u00b3n "+ anAction.getName() + " tiene definido m\u00c3\u00a1s de un output value");}
               hasOutput = true;
               anAction.setOutputValues(actionOutputs);
       } else if (jj_2_22(3)) {
         jj_consume_token(ONLY_OCCURS_IN);
         jj_consume_token(IDENTIFIER);
                 if (hasOnlyOccurs)
-                    {if (true) throw new RuntimeException("La acci\u00f3n "+ anAction.getName() + " tiene definido m\u00e1s de un 'only occurs in'");}
+                    {if (true) throw new RuntimeException("La acci\u00c3\u00b3n "+ anAction.getName() + " tiene definido m\u00c3\u00a1s de un 'only occurs in'");}
                 hasOnlyOccurs = true;
                 Interval tempInterval = getInterval(token.image);
                 anAction.setOccursIn(tempInterval);
@@ -273,14 +273,14 @@ public class FLParser implements FLParserConstants {
         jj_consume_token(OCCURRENCES);
         jj_consume_token(NUMBER);
                 if (hasOccurrences)
-                    {if (true) throw new RuntimeException("La acci\u00f3n "+ anAction.getName() + " tiene definido m\u00e1s de un 'occurrences'");}
+                    {if (true) throw new RuntimeException("La acci\u00c3\u00b3n "+ anAction.getName() + " tiene definido m\u00c3\u00a1s de un 'occurrences'");}
                 hasOccurrences = true;
                 anAction.setOccurrences(new Integer(token.image));
       } else if (jj_2_24(3)) {
         jj_consume_token(SYNC);
         jj_consume_token(IDENTIFIER);
                 if (hasSync)
-                    {if (true) throw new RuntimeException("La acci\u00f3n "+ anAction.getName() + " tiene definido m\u00e1s de un 'sync'");}
+                    {if (true) throw new RuntimeException("La acci\u00c3\u00b3n "+ anAction.getName() + " tiene definido m\u00c3\u00a1s de un 'sync'");}
                 hasSync = true;
                 Action syncAction = getAction(token.image);
                 anAction.setSync(syncAction, true);
@@ -299,7 +299,7 @@ public class FLParser implements FLParserConstants {
         jj_consume_token(PERFORMABLE);
         jj_consume_token(IDENTIFIER);
                 if (hasPerformable)
-                    {if (true) throw new RuntimeException("La acci\u00f3n "+ anAction.getName() + " tiene definido m\u00e1s de un 'performable by'");}
+                    {if (true) throw new RuntimeException("La acci\u00c3\u00b3n "+ anAction.getName() + " tiene definido m\u00c3\u00a1s de un 'performable by'");}
                 hasPerformable = true;
 
                 if (isImpersonal){
@@ -343,7 +343,7 @@ public class FLParser implements FLParserConstants {
         Action tmp = actions.put(anAction.getName(), anAction);
         if (tmp != null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Nombre de acci\u00f3n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+            sb.append("Nombre de acci\u00c3\u00b3n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
             {if (true) throw new RuntimeException(sb.toString());}
         }
     label_6:
@@ -362,7 +362,7 @@ public class FLParser implements FLParserConstants {
           tmp = actions.put(anotherAction.getName(), anotherAction);
           if (tmp != null){
               StringBuilder sb = new StringBuilder();
-              sb.append("Nombre de acci\u00f3n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+              sb.append("Nombre de acci\u00c3\u00b3n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
               {if (true) throw new RuntimeException(sb.toString());}
           }
     }
@@ -534,7 +534,7 @@ public class FLParser implements FLParserConstants {
                 int auxMin = Integer.parseInt(token.image);
                         if (auxMin > counter.getInitValue()){
                 StringBuilder sb = new StringBuilder();
-                sb.append("El valor m\u00ednimo del contador '" + counter.getName() + "' no puede ser mayor a su valor inicial. Revisar datos del archivo de entrada");
+                sb.append("El valor m\u00c3\u00adnimo del contador '" + counter.getName() + "' no puede ser mayor a su valor inicial. Revisar datos del archivo de entrada");
                         {if (true) throw new RuntimeException(sb.toString());}
                 }
                 else
@@ -550,7 +550,7 @@ public class FLParser implements FLParserConstants {
                 int auxMax = Integer.parseInt(token.image);
                         if (auxMax < counter.getInitValue()){
                 StringBuilder sb = new StringBuilder();
-                sb.append("El valor m\u00e1ximo del contador '" + counter.getName() + "' no puede ser menor a su valor inicial. Revisar datos del archivo de entrada");
+                sb.append("El valor m\u00c3\u00a1ximo del contador '" + counter.getName() + "' no puede ser menor a su valor inicial. Revisar datos del archivo de entrada");
                         {if (true) throw new RuntimeException(sb.toString());}
                 }
                 else
@@ -1314,7 +1314,7 @@ FLFormula p_clauses666() :
         {
                         //ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
                         StringBuilder sb = new StringBuilder();
-            sb.append("Hay una f\u00f3rmula que es excepci\u00f3n de una regla pero no posee condici\u00f3n: ('" + originalFormula + "'). ");
+            sb.append("Hay una f\u00c3\u00b3rmula que es excepci\u00c3\u00b3n de una regla pero no posee condici\u00c3\u00b3n: ('" + originalFormula + "'). ");
             {if (true) throw new RuntimeException(sb.toString());}
         }  else {
                         FLFormula rule = flInput.getFLFormulaFromTag(exception);
@@ -1475,7 +1475,7 @@ FLFormula p_clauses666() :
         {
                         //ERROR! las únicas formulas válidas como excepciones son los permisos
                         StringBuilder sb = new StringBuilder();
-            sb.append("Hay una f\u00f3rmula que es excepci\u00f3n de una regla pero no es un permiso: ('" + originalFormula + "'). ");
+            sb.append("Hay una f\u00c3\u00b3rmula que es excepci\u00c3\u00b3n de una regla pero no es un permiso: ('" + originalFormula + "'). ");
             {if (true) throw new RuntimeException(sb.toString());}
         }  else {
                         FLFormula rule = flInput.getFLFormulaFromTag(exception);
@@ -1490,7 +1490,7 @@ FLFormula p_clauses666() :
                         } else {
                           //ERROR! las únicas formulas que pueden tener excepciones son las reglas
                                         StringBuilder sb = new StringBuilder();
-                        sb.append("Hay una f\u00f3rmula que tiene una excepci\u00f3n pero no es una regla: ('" + rule.toString() + "'). ");
+                        sb.append("Hay una f\u00c3\u00b3rmula que tiene una excepci\u00c3\u00b3n pero no es una regla: ('" + rule.toString() + "'). ");
                         {if (true) throw new RuntimeException(sb.toString());}
                         }
         }
@@ -1545,7 +1545,7 @@ FLFormula p_clauses666() :
         {
                         //ERROR! las únicas formulas válidas como excepciones son los permisos
                         StringBuilder sb = new StringBuilder();
-            sb.append("Hay una f\u00f3rmula que es excepci\u00f3n de una regla pero no es un permiso: ('" + originalFormula + "'). ");
+            sb.append("Hay una f\u00c3\u00b3rmula que es excepci\u00c3\u00b3n de una regla pero no es un permiso: ('" + originalFormula + "'). ");
             {if (true) throw new RuntimeException(sb.toString());}
         }  else {
                     FLFormula rule = flInput.getFLFormulaFromTag(exception);
@@ -1561,7 +1561,7 @@ FLFormula p_clauses666() :
                 } else {
                                 //ERROR! las únicas formulas que pueden tener excepciones son las reglas
                                 StringBuilder sb = new StringBuilder();
-                sb.append("Hay una f\u00f3rmula que tiene una excepci\u00f3n pero no es una regla: ('" + rule.toString() + "'). ");
+                sb.append("Hay una f\u00c3\u00b3rmula que tiene una excepci\u00c3\u00b3n pero no es una regla: ('" + rule.toString() + "'). ");
                 {if (true) throw new RuntimeException(sb.toString());}
                     }
        }
@@ -1775,7 +1775,8 @@ FLFormula p_clauses666() :
     FLCounter counter = null;
     int beginLine = token.next.beginLine;
     int beginColumn = token.next.beginColumn;
-    if (jj_2_152(3)) {
+    boolean isHappening = false;
+    if (jj_2_153(3)) {
       jj_consume_token(IDENTIFIER);
             name = token.image;
             originalFormula += name;
@@ -1798,8 +1799,8 @@ FLFormula p_clauses666() :
             Role tmp = rolesMap.get(name);
             if (tmp == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una f\u00f3rmula se hace referencia a un rol no definido: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de la l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una f\u00c3\u00b3rmula se hace referencia a un rol no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de la l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
                 {if (true) throw new RuntimeException(sb.toString());}
             }
             {if (true) return new FLBelongs(variable, name);}
@@ -1813,8 +1814,8 @@ FLFormula p_clauses666() :
                 Action tmp = actions.get(name);
                 if (tmp == null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una f\u00f3rmula se hace referencia a una acci\u00f3n no definida: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de la l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una f\u00c3\u00b3rmula se hace referencia a una acci\u00c3\u00b3n no definida: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de la l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
                     {if (true) throw new RuntimeException(sb.toString());}
                 }
                 {if (true) return new FLActionOutput(variable, name, token.image);}
@@ -1865,28 +1866,28 @@ FLFormula p_clauses666() :
                 Counter tmp = counters.get(counter.getName());
                 if (tmp == null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una f\u00f3rmula se hace referencia a un contador no definido: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una f\u00c3\u00b3rmula se hace referencia a un contador no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
                     {if (true) throw new RuntimeException(sb.toString());}
                 }
 
                 if (tmp.isLocal() & counter.getVariable() == null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una f\u00f3rmula se hace referencia a un contador local sin usar agente: ('" + name + "'). " +
-                        "Revisar datos del archivo de entrada, cerca de l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una f\u00c3\u00b3rmula se hace referencia a un contador local sin usar agente: ('" + name + "'). " +
+                        "Revisar datos del archivo de entrada, cerca de l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
                     {if (true) throw new RuntimeException(sb.toString());}
                 }
 
                 if (!tmp.isLocal() & counter.getVariable() != null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una f\u00f3rmula se hace referencia a un contador global usando agente: ('" + name + "').  " +
-                        "Revisar datos del archivo de entrada, cerca de l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una f\u00c3\u00b3rmula se hace referencia a un contador global usando agente: ('" + name + "').  " +
+                        "Revisar datos del archivo de entrada, cerca de l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
                     {if (true) throw new RuntimeException(sb.toString());}
                 }
                 {if (true) return counter;}
             }
           {if (true) return parsearFlAction(variable, name, aFormula, beginLine, beginColumn);}
-    } else if (jj_2_153(3)) {
+    } else if (jj_2_154(3)) {
       jj_consume_token(INSIDE);
       jj_consume_token(PAR_LEFT);
       jj_consume_token(IDENTIFIER);
@@ -1913,45 +1914,41 @@ FLFormula p_clauses666() :
             Interval tmp = intervals.get(name);
             if (tmp == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una f\u00f3rmula se hace referencia a un intervalo no definido: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una f\u00c3\u00b3rmula se hace referencia a un intervalo no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
                 {if (true) throw new RuntimeException(sb.toString());}
             }
             if (tmp.isLocal() & interval.getVariable() == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una f\u00f3rmula se hace referencia a un intervalo local sin usar variable: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una f\u00c3\u00b3rmula se hace referencia a un intervalo local sin usar variable: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
                 {if (true) throw new RuntimeException(sb.toString());}
             }
             if (!tmp.isLocal() & interval.getVariable() != null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una f\u00f3rmula se hace referencia a un intervalo global usando agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de l\u00ednea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una f\u00c3\u00b3rmula se hace referencia a un intervalo global usando agente: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de l\u00c3\u00adnea: " + beginLine + ", columna: " + beginColumn);
                 {if (true) throw new RuntimeException(sb.toString());}
             }
             {if (true) return new FLInside(interval);}
-    } else if (jj_2_154(3)) {
-      jj_consume_token(IS_HAPPENING);
-      jj_consume_token(IDENTIFIER);
+    } else if (jj_2_155(3)) {
+      if (jj_2_150(3)) {
+        jj_consume_token(IS_HAPPENING);
+        jj_consume_token(IDENTIFIER);
+      isHappening = true;
       name = token.image;
       originalFormula += "isHappening(" + name;
-      if (jj_2_150(3)) {
-        jj_consume_token(DOT);
+      } else if (jj_2_151(3)) {
+        jj_consume_token(JUST_HAPPENED);
         jj_consume_token(IDENTIFIER);
-      variable = name;
-      name = token.image;
-      originalFormula += "." + name;
-      } else {
-        ;
-      }
-      jj_consume_token(PAR_RIGHT);
-      {if (true) return parsearFlAction(variable, name, aFormula, beginLine, beginColumn);}
-    } else if (jj_2_155(3)) {
-      jj_consume_token(JUST_HAPPENED);
-      jj_consume_token(IDENTIFIER);
+          isHappening = false;
       name = token.image;
       originalFormula += "justHappened(" + name;
-      if (jj_2_151(3)) {
+      } else {
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
+      if (jj_2_152(3)) {
         jj_consume_token(DOT);
         jj_consume_token(IDENTIFIER);
       variable = name;
@@ -3289,13 +3286,6 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_157() {
-    if (jj_scan_token(IDENTIFIER)) return true;
-    if (jj_scan_token(DOT)) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
-    return false;
-  }
-
   static private boolean jj_3_6() {
     if (jj_scan_token(BRA_LEFT)) return true;
     return false;
@@ -3312,6 +3302,13 @@ FLFormula p_clauses666() :
     if (jj_3_8()) jj_scanpos = xsp;
     xsp = jj_scanpos;
     if (jj_3_9()) jj_scanpos = xsp;
+    return false;
+  }
+
+  static private boolean jj_3_157() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(DOT)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
@@ -3349,15 +3346,15 @@ FLFormula p_clauses666() :
     return false;
   }
 
+  static private boolean jj_3_4() {
+    if (jj_3R_33()) return true;
+    return false;
+  }
+
   static private boolean jj_3_156() {
     if (jj_scan_token(IDENTIFIER)) return true;
     if (jj_scan_token(DOT)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
-    return false;
-  }
-
-  static private boolean jj_3_4() {
-    if (jj_3R_33()) return true;
     return false;
   }
 
@@ -3512,7 +3509,7 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_151() {
+  static private boolean jj_3_152() {
     if (jj_scan_token(DOT)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
     return false;
@@ -3526,16 +3523,6 @@ FLFormula p_clauses666() :
   static private boolean jj_3_125() {
     if (jj_scan_token(ML_THEN)) return true;
     if (jj_3R_54()) return true;
-    return false;
-  }
-
-  static private boolean jj_3_155() {
-    if (jj_scan_token(JUST_HAPPENED)) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3_151()) jj_scanpos = xsp;
-    if (jj_scan_token(PAR_RIGHT)) return true;
     return false;
   }
 
@@ -3595,6 +3582,12 @@ FLFormula p_clauses666() :
     return false;
   }
 
+  static private boolean jj_3_151() {
+    if (jj_scan_token(JUST_HAPPENED)) return true;
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
   static private boolean jj_3_124() {
     if (jj_scan_token(ML_OR)) return true;
     if (jj_3R_54()) return true;
@@ -3602,7 +3595,7 @@ FLFormula p_clauses666() :
   }
 
   static private boolean jj_3_150() {
-    if (jj_scan_token(DOT)) return true;
+    if (jj_scan_token(IS_HAPPENING)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
@@ -3637,12 +3630,15 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_154() {
-    if (jj_scan_token(IS_HAPPENING)) return true;
-    if (jj_scan_token(IDENTIFIER)) return true;
+  static private boolean jj_3_155() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3_150()) jj_scanpos = xsp;
+    if (jj_3_150()) {
+    jj_scanpos = xsp;
+    if (jj_3_151()) return true;
+    }
+    xsp = jj_scanpos;
+    if (jj_3_152()) jj_scanpos = xsp;
     if (jj_scan_token(PAR_RIGHT)) return true;
     return false;
   }
@@ -3788,15 +3784,15 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_34() {
-    if (jj_scan_token(INFINITE)) return true;
-    return false;
-  }
-
-  static private boolean jj_3_153() {
+  static private boolean jj_3_154() {
     if (jj_scan_token(INSIDE)) return true;
     if (jj_scan_token(PAR_LEFT)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_34() {
+    if (jj_scan_token(INFINITE)) return true;
     return false;
   }
 
@@ -3971,14 +3967,14 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3R_50() {
-    if (jj_3R_53()) return true;
-    return false;
-  }
-
   static private boolean jj_3_145() {
     if (jj_scan_token(LESS)) return true;
     if (jj_scan_token(NUMBER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_50() {
+    if (jj_3R_53()) return true;
     return false;
   }
 
@@ -4063,15 +4059,15 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_112() {
-    if (jj_3R_58()) return true;
-    return false;
-  }
-
   static private boolean jj_3_142() {
     if (jj_scan_token(DOT)) return true;
     if (jj_scan_token(BELONGS_TO)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  static private boolean jj_3_112() {
+    if (jj_3R_58()) return true;
     return false;
   }
 
@@ -4143,8 +4139,6 @@ FLFormula p_clauses666() :
   static private boolean jj_3R_61() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3_152()) {
-    jj_scanpos = xsp;
     if (jj_3_153()) {
     jj_scanpos = xsp;
     if (jj_3_154()) {
@@ -4152,11 +4146,10 @@ FLFormula p_clauses666() :
     if (jj_3_155()) return true;
     }
     }
-    }
     return false;
   }
 
-  static private boolean jj_3_152() {
+  static private boolean jj_3_153() {
     if (jj_scan_token(IDENTIFIER)) return true;
     Token xsp;
     xsp = jj_scanpos;

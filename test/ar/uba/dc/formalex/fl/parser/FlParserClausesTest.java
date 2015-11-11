@@ -14,7 +14,12 @@ public class FlParserClausesTest extends FlTest{
 	private static String ROOT_EJS_PARSER_CLAUSES = ROOT_RESOURCES + "EjemplosParserClauses/";
 //	private static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
 	
-
+	@Test
+	public void characterEncoding(){
+		//System.setProperty("file.encoding", "UTF-16");
+	 System.out.println(System.getProperty("file.encoding"));
+	}
+	
 	@Test
 	public void testEjTerminalWithIdentifier() {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIdentifier.txt", false);
@@ -51,8 +56,8 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithJustsHappenedgWithIdentifier() {
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustsHappenedgWithIdentifier.txt", false);
+	public void testEjTerminalWithJustHappenedWithIdentifier() {
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifier.txt", false);
 	}
 	
 	@Test
@@ -63,7 +68,6 @@ public class FlParserClausesTest extends FlTest{
 	//TODO Agregar tests para Inside	
 
 	/******************* TESTS QUE ROMPEN AL PARSEAR UN TERMINAL *************/
-	//TODO AGREGAR TESTS QUE ROMPAN EL ISHAPPENING Y EL JUSTHAPPENED
 	@Test
 	public void testEjTerminalWithUndefinedRoleFail(){
 		

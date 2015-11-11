@@ -1941,6 +1941,7 @@ FLFormula terminal() :
     FLCounter counter = null;
     int beginLine = token.next.beginLine;
     int beginColumn = token.next.beginColumn;
+    boolean isHappening = false;
 }
 {
     //Puede ser una accion IMPERSONAL. Por ej 'Hablar' en P(Hablar)
@@ -2062,7 +2063,7 @@ FLFormula terminal() :
         }
     )
     |
-    (
+    (    
         < INSIDE > < PAR_LEFT > < IDENTIFIER >  //inside (j.interL) o inside (interG)
         {
             String variableONombre = token.image;
@@ -2109,16 +2110,23 @@ FLFormula terminal() :
         }
     )
     |
-  (    < IS_HAPPENING > < IDENTIFIER > // 'j' en isHappening(j.Correr) o 'empezoElDia' en isHappening(empezoElDia)
-    {      name = token.image;      originalFormula += "isHappening(" + name;    }    (    < DOT > < IDENTIFIER > //isHappening(j.Correr)
-    {      variable = name;      name = token.image;      originalFormula += "." + name;    }    )?     < PAR_RIGHT >    {      return parsearFlAction(variable, name, aFormula, beginLine, beginColumn);    }  )
-   |   //TODO: VER SI HAY TIEMPO, SI SE PUEDEN SIMPLIFICAR LOS DOS CASOS
   (
+     // (< ACTION >             { isImpersonal = false;  }
+    //| <IMPERSONAL_ACTION>   { isImpersonal = true; })
+        (      < IS_HAPPENING > < IDENTIFIER > // 'j' en isHappening(j.Correr) o 'empezoElDia' en isHappening(empezoElDia)
+    {
+      isHappening = true;      name = token.image;      originalFormula += "isHappening(" + name;    }
+    
+   |   //TODO: VER SI HAY TIEMPO, SI SE PUEDEN SIMPLIFICAR LOS DOS CASOS
+  
     < JUST_HAPPENED > < IDENTIFIER > // 'j' en justHappened(j.Correr) o 'empezoElDia' en justHappened(empezoElDia)
     {
+	  isHappening = false;
       name = token.image;
       originalFormula += "justHappened(" + name;
     }
+  	)
+  	
     (
     < DOT > < IDENTIFIER > //justHappened(j.Correr)
     {
@@ -2132,6 +2140,7 @@ FLFormula terminal() :
       return parsearFlAction(variable, name, aFormula, beginLine, beginColumn);
     }
   )
+	
 }
 
 
