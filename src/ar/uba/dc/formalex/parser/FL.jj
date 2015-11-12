@@ -1941,7 +1941,7 @@ FLFormula terminal() :
     FLCounter counter = null;
     int beginLine = token.next.beginLine;
     int beginColumn = token.next.beginColumn;
-    boolean isHappening = false;
+    FLActionRepresentation flActionRepresentation = FLActionRepresentation.TRES_ESTADOS;
 }
 {
     //Puede ser una accion IMPERSONAL. Por ej 'Hablar' en P(Hablar)
@@ -2110,18 +2110,15 @@ FLFormula terminal() :
         }
     )
     |
-  (
-     // (< ACTION >             { isImpersonal = false;  }
-    //| <IMPERSONAL_ACTION>   { isImpersonal = true; })
-        (      < IS_HAPPENING > < IDENTIFIER > // 'j' en isHappening(j.Correr) o 'empezoElDia' en isHappening(empezoElDia)
+  (        (      < IS_HAPPENING > < IDENTIFIER > // 'j' en isHappening(j.Correr) o 'empezoElDia' en isHappening(empezoElDia)
     {
-      isHappening = true;      name = token.image;      originalFormula += "isHappening(" + name;    }
+	  flActionRepresentation = FLActionRepresentation.DOS_ESTADOS;      name = token.image;      originalFormula += "isHappening(" + name;    }
     
    |   //TODO: VER SI HAY TIEMPO, SI SE PUEDEN SIMPLIFICAR LOS DOS CASOS
   
     < JUST_HAPPENED > < IDENTIFIER > // 'j' en justHappened(j.Correr) o 'empezoElDia' en justHappened(empezoElDia)
     {
-	  isHappening = false;
+	  flActionRepresentation = FLActionRepresentation.TRES_ESTADOS;
       name = token.image;
       originalFormula += "justHappened(" + name;
     }
@@ -2137,7 +2134,9 @@ FLFormula terminal() :
     )? 
     < PAR_RIGHT >
     {
-      return parsearFlAction(variable, name, aFormula, beginLine, beginColumn);
+      FLAction flAction = (FLAction) parsearFlAction(variable, name, aFormula, beginLine, beginColumn);
+      flAction.setRepresentation(flActionRepresentation);
+      return flAction;
     }
   )
 	
