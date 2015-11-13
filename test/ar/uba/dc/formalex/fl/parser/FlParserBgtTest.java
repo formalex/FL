@@ -9,6 +9,8 @@ public class FlParserBgtTest extends FlTest{
 
 	private static String ROOT_RESOURCES = "resources/";
 	private static String ROOT_EJS_ACTIONS_PRODUCTIONS = ROOT_RESOURCES + "EjemplosParserActionsProduction/";
+	private static String ROOT_EJS_ACTION_PRODUCTIONS = ROOT_RESOURCES + "EjemplosParserActionProduction/";
+	
 //	private static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
 	
 
@@ -52,6 +54,42 @@ public class FlParserBgtTest extends FlTest{
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTIONS_PRODUCTIONS + "EjActionsProductionWithSomeActionsAndOnlyOccursInAndOccurrencesAndSomePerformable.txt", false);
 	}
 	
-	//TODO Agregar tests que corra bien cuando procesa un action
+
+	//TODO Agregar ejemplos con action e impersonal action	
+	/*************************** EJS ACTION PRODUCTIONS *********************/
+	@Test
+	public void testEjActionProductionWithIdentifier() {
+		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifier.txt", false);
+	}
+	
+	@Test
+	public void testEjActionProductionWithIdentifierWithOutputValues() {
+		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValues.txt", false);
+	}
+	
+	@Test
+	public void testEjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn() {
+		//TODO ver si puedo crear una impersonal Action con only occurs In de un intervalo LOCAL
+		//TODO probar con un intervalo GLOBAL tambien
+		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn.txt", false);
+	}
+	
+	@Test
+	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumber() {
+		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumber.txt", false);
+	}
+	
+	@Test
+	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchro() {
+		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchro.txt", false);
+	}
+	
+	@Test
+	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchroWithOnlyPerformable() {
+		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchroWithOnlyPerformable.txt", false);
+	}
+	
+	
+
 	//TODO Agregar tests que rompan cuando procesa un action
 }
