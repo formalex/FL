@@ -69,8 +69,7 @@ public class FlParserBgtTest extends FlTest{
 	
 	@Test
 	public void testEjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn() {
-		//TODO ver si puedo crear una impersonal Action con only occurs In de un intervalo LOCAL
-		//TODO probar con un intervalo GLOBAL tambien
+		//TODO ver si puedo crear una impersonal Action con only occurs In de un intervalo LOCAL. NOOO
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn.txt", false);
 	}
 	
