@@ -1,0 +1,24 @@
+#Background
+
+
+roles Consumidor, Proveedor disjoint  
+
+action AdquirirByS 
+//ACCIONES. Prueba con actions con ovs y ocurrences Number
+
+action Consumir output values {ovC1, ovC2} occurrences 3 synchronizes with AdquirirByS allow autosync
+impersonal action unaImpersonalAction output values {ovIa1, ovIa2} occurrences 4
+
+
+
+#Clauses
+
+FORALL(i:Consumidor; O(i.Consumir -> i.AdquirirByS ))
+F(unaImpersonalAction)
+
+
+
+
+
+
+

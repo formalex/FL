@@ -1,5 +1,6 @@
 package ar.uba.dc.formalex.fl.parser;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import ar.uba.dc.formalex.fl.utils.FlTest;
@@ -69,7 +70,7 @@ public class FlParserBgtTest extends FlTest{
 	
 	@Test
 	public void testEjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn() {
-		//TODO ver si puedo crear una impersonal Action con only occurs In de un intervalo LOCAL. NOOO
+		//TODO ver si puedo crear una impersonal Action con 'only occurs in scope' de un intervalo LOCAL. NOOO
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn.txt", false);
 	}
 	
@@ -79,13 +80,14 @@ public class FlParserBgtTest extends FlTest{
 	}
 	
 	@Test
+	@Ignore("Hasta que tome el parche del synchronize")
 	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchro() {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchro.txt", false);
 	}
 	
 	@Test
-	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchroWithOnlyPerformable() {
-		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchroWithOnlyPerformable.txt", false);
+	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithOnlyPerformable() {
+		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithOnlyPerformable.txt", false);
 	}
 	
 	
