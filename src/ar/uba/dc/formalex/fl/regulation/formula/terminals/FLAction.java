@@ -4,6 +4,7 @@ import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 
 public class FLAction extends FLTerminal {
 
+	//Sirve para saber de qué forma se referencia a la acción en una formula
 	//Por ahora este es el default
 	ActionReferencedState referencedState = ActionReferencedState.JUST_HAPPENED;
 	
@@ -36,11 +37,8 @@ public class FLAction extends FLTerminal {
 
 	@Override
     public String toString() {
-    	//TODO simplificarlo usando el text del ENUM
-    	if(this.getReferencedState().equals(ActionReferencedState.JUST_HAPPENED))
-    		return getNameWithAgent() + " = JUST_HAPPENED";
-    	
-    	return getNameWithAgent() + " = HAPPENING";
+		
+		return getNameWithAgent() + " = " + this.getReferencedState().getValueInLtlFormula();
     }
 	
     public ActionReferencedState getReferencedState() {

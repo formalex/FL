@@ -20,6 +20,6 @@ decreases with action paso_un_dia by 1
 #Clauses
 //Ejemplo con isHappening en acciones impersonales
 P(isHappening(ViciosdelaCosa)  -> GozarGarantia)
-O(isHappening(GozarGarantia))
+F(isHappening(GozarGarantia))
 
 

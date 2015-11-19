@@ -2134,6 +2134,7 @@ FLFormula terminal() :
     )? 
     < PAR_RIGHT >
     {
+      originalFormula += ")";
       FLAction flAction = (FLAction) parsearFlAction(variable, name, aFormula, beginLine, beginColumn);
       flAction.setReferencedState(referencedState);
       return flAction;

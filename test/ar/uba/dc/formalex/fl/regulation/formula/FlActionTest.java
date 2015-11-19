@@ -39,12 +39,12 @@ public class FlActionTest {
 	public void ejemploReferenciaConJH() {
 
 		FLAction unFlActionConVariableAndAgentAndAction = getUnFlActionConVariableAndAgentAndAction();
-		FLAction unFlActionConDosEstados = new FLAction(unFlActionConVariableAndAgentAndAction.getVariable(), 
+		FLAction unFlActionConJH = new FLAction(unFlActionConVariableAndAgentAndAction.getVariable(), 
 																unFlActionConVariableAndAgentAndAction.getAgent(), 
 																unFlActionConVariableAndAgentAndAction.getName(), ActionReferencedState.JUST_HAPPENED);
 			
 		//Se chequea el estado referenciado
-		assertEquals(ActionReferencedState.JUST_HAPPENED, unFlActionConDosEstados.getReferencedState());
+		assertEquals(ActionReferencedState.JUST_HAPPENED, unFlActionConJH.getReferencedState());
 		
 	}
 

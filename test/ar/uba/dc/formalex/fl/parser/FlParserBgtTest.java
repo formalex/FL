@@ -8,7 +8,6 @@ import ar.uba.dc.formalex.fl.utils.TestUtils;
 
 public class FlParserBgtTest extends FlTest{
 
-	private static String ROOT_RESOURCES = "resources/";
 	private static String ROOT_EJS_ACTIONS_PRODUCTIONS = ROOT_RESOURCES + "EjemplosParserActionsProduction/";
 	private static String ROOT_EJS_ACTION_PRODUCTIONS = ROOT_RESOURCES + "EjemplosParserActionProduction/";
 	

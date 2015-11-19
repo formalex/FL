@@ -1958,6 +1958,7 @@ FLFormula p_clauses666() :
         ;
       }
       jj_consume_token(PAR_RIGHT);
+      originalFormula += ")";
       FLAction flAction = (FLAction) parsearFlAction(variable, name, aFormula, beginLine, beginColumn);
       flAction.setReferencedState(referencedState);
       {if (true) return flAction;}
@@ -3353,15 +3354,15 @@ FLFormula p_clauses666() :
     return false;
   }
 
-  static private boolean jj_3_102() {
-    if (jj_scan_token(EXCEPTION_OF)) return true;
+  static private boolean jj_3_156() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    if (jj_scan_token(DOT)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
-  static private boolean jj_3_156() {
-    if (jj_scan_token(IDENTIFIER)) return true;
-    if (jj_scan_token(DOT)) return true;
+  static private boolean jj_3_102() {
+    if (jj_scan_token(EXCEPTION_OF)) return true;
     if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }

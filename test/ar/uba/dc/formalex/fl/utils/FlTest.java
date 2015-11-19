@@ -8,6 +8,11 @@ import org.junit.BeforeClass;
  *
  */
 public class FlTest {
+	
+	public static String ROOT_RESOURCES = "resources/";
+	public static String ROOT_EJS_PARSER_CLAUSES = FlTest.ROOT_RESOURCES + "EjemplosParserClauses/";
+	//	private static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
+	
 
 	public enum SistemaOperativo {
 		LINUX,
