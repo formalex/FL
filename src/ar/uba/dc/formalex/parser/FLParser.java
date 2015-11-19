@@ -1775,7 +1775,7 @@ FLFormula p_clauses666() :
     FLCounter counter = null;
     int beginLine = token.next.beginLine;
     int beginColumn = token.next.beginColumn;
-    FLActionRepresentation flActionRepresentation = FLActionRepresentation.TRES_ESTADOS;
+    ActionReferencedState referencedState = ActionReferencedState.JUST_HAPPENED;
     if (jj_2_153(3)) {
       jj_consume_token(IDENTIFIER);
             name = token.image;
@@ -1935,13 +1935,13 @@ FLFormula p_clauses666() :
       if (jj_2_150(3)) {
         jj_consume_token(IS_HAPPENING);
         jj_consume_token(IDENTIFIER);
-          flActionRepresentation = FLActionRepresentation.DOS_ESTADOS;
+          referencedState = ActionReferencedState.IS_HAPPENING;
       name = token.image;
       originalFormula += "isHappening(" + name;
       } else if (jj_2_151(3)) {
         jj_consume_token(JUST_HAPPENED);
         jj_consume_token(IDENTIFIER);
-          flActionRepresentation = FLActionRepresentation.TRES_ESTADOS;
+          referencedState = ActionReferencedState.JUST_HAPPENED;
       name = token.image;
       originalFormula += "justHappened(" + name;
       } else {
@@ -1959,7 +1959,7 @@ FLFormula p_clauses666() :
       }
       jj_consume_token(PAR_RIGHT);
       FLAction flAction = (FLAction) parsearFlAction(variable, name, aFormula, beginLine, beginColumn);
-      flAction.setRepresentation(flActionRepresentation);
+      flAction.setReferencedState(referencedState);
       {if (true) return flAction;}
     } else {
       jj_consume_token(-1);

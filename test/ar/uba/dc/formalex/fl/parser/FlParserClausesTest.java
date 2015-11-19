@@ -21,47 +21,47 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithIdentifier() {
+	public void testEjTerminalWithIdentifier() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIdentifier.txt", false);
 	}
 	
 	@Test
-	public void testEjTerminalWithIdentifierDotIdentifier() {
+	public void testEjTerminalWithIdentifierDotIdentifier() throws Exception  {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIdentifierDotIdentifier.txt", false);
 	}
 	
 	@Test
-	public void testEjTerminalWithIdentifierWithDotBelongsToIdentifier() {
+	public void testEjTerminalWithIdentifierWithDotBelongsToIdentifier() throws Exception  {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIdentifierDotBelongsToIdentifier.txt", false);
 	}
 	
 	@Test
-	public void testEjTerminalWithIdentifierDotIdentifierWithResultsIn() {
+	public void testEjTerminalWithIdentifierDotIdentifierWithResultsIn() throws Exception  {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIdentifierDotIdentifierWithResultsIn.txt", false);
 	}
 	
 	@Test
-	public void testEjTerminalWithIdentifierWithResultsIn() {
+	public void testEjTerminalWithIdentifierWithResultsIn() throws Exception  {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIdentifierWithResultsIn.txt", false);
 	}
 	
 	@Test
-	public void testEjTerminalWithIsHappeningWithIdentifier() {
+	public void testEjTerminalWithIsHappeningWithIdentifier() throws Exception  {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifier.txt", false);
 	}
 	
 	@Test
-	public void testEjTerminalWithIsHappeningWithIdentifierDotIdentifier() {
+	public void testEjTerminalWithIsHappeningWithIdentifierDotIdentifier() throws Exception  {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifierDotIdentifier.txt", false);
 	}
 	
 	@Test
-	public void testEjTerminalWithJustHappenedWithIdentifier() {
+	public void testEjTerminalWithJustHappenedWithIdentifier() throws Exception  {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifier.txt", false);
 	}
 	
 	@Test
-	public void testEjTerminalWithJustHappenedWithIdentifierDotIdentifier() {
+	public void testEjTerminalWithJustHappenedWithIdentifierDotIdentifier() throws Exception  {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifierDotIdentifier.txt", false);
 	}
 	
@@ -69,7 +69,7 @@ public class FlParserClausesTest extends FlTest{
 
 	/******************* TESTS QUE ROMPEN AL PARSEAR UN TERMINAL *************/
 	@Test
-	public void testEjTerminalWithUndefinedRoleFail(){
+	public void testEjTerminalWithUndefinedRoleFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithUndefinedRoleFail.txt", false);
@@ -81,7 +81,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithUndefinedActionReferredToResultsInFail(){
+	public void testEjTerminalWithUndefinedActionReferredToResultsInFail() throws Exception {
  
 		try {
 			//System.out.println("\u00e1\u00e9\u00ed\u00f3\u00fa");
@@ -96,7 +96,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithUndefinedCounterFail(){
+	public void testEjTerminalWithUndefinedCounterFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithUndefinedCounterFail.txt", false);
@@ -108,7 +108,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithLocalCounterWithoutAgentFail(){
+	public void testEjTerminalWithLocalCounterWithoutAgentFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithLocalCounterWithoutAgentFail.txt", false);
@@ -120,7 +120,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithGlobalCounterWithAgentFail(){
+	public void testEjTerminalWithGlobalCounterWithAgentFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithGlobalCounterWithAgentFail.txt", false);
@@ -132,7 +132,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithUndefinedActionFail(){
+	public void testEjTerminalWithUndefinedActionFail() throws Exception {
  
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithUndefinedActionFail.txt", false);
@@ -145,7 +145,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithPersonalActionWithoutAgentFail(){
+	public void testEjTerminalWithPersonalActionWithoutAgentFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithPersonalActionWithoutAgentFail.txt", false);
@@ -157,7 +157,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithImpersonalActionWithAgentFail(){
+	public void testEjTerminalWithImpersonalActionWithAgentFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithImpersonalActionWithAgentFail.txt", false);
@@ -169,7 +169,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithInsideWithoutIntervalFail(){
+	public void testEjTerminalWithInsideWithoutIntervalFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithInsideWithoutIntervalFail.txt", false);
@@ -181,7 +181,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithInsideWithLocalIntervalWithoutAgentFail(){
+	public void testEjTerminalWithInsideWithLocalIntervalWithoutAgentFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithInsideWithLocalIntervalWithoutAgentFail.txt", false);
@@ -193,7 +193,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithInsideWithGlobalIntervalWithAgentFail(){
+	public void testEjTerminalWithInsideWithGlobalIntervalWithAgentFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithInsideWithGlobalIntervalWithAgentFail.txt", false);
@@ -205,7 +205,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithIsHappeningWithUndefinedActionFail(){
+	public void testEjTerminalWithIsHappeningWithUndefinedActionFail() throws Exception {
  
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithUndefinedActionFail.txt", false);
@@ -218,7 +218,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithJustHappenedWithUndefinedActionFail(){
+	public void testEjTerminalWithJustHappenedWithUndefinedActionFail() throws Exception {
  
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithUndefinedActionFail.txt", false);
@@ -231,7 +231,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithIsHappeningWithPersonalActionWithoutAgentFail(){
+	public void testEjTerminalWithIsHappeningWithPersonalActionWithoutAgentFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithPersonalActionWithoutAgentFail.txt", false);
@@ -243,7 +243,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithJustHappenedWithPersonalActionWithoutAgentFail(){
+	public void testEjTerminalWithJustHappenedWithPersonalActionWithoutAgentFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithPersonalActionWithoutAgentFail.txt", false);
@@ -255,7 +255,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithIsHappeningWithImpersonalActionWithAgentFail(){
+	public void testEjTerminalWithIsHappeningWithImpersonalActionWithAgentFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithImpersonalActionWithAgentFail.txt", false);
@@ -267,7 +267,7 @@ public class FlParserClausesTest extends FlTest{
 	}
 	
 	@Test
-	public void testEjTerminalWithJustHappenedWithImpersonalActionWithAgentFail(){
+	public void testEjTerminalWithJustHappenedWithImpersonalActionWithAgentFail() throws Exception {
 		
 		try {
 			TestUtils.corridaDeFormaLex(ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithImpersonalActionWithAgentFail.txt", false);

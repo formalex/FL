@@ -36,7 +36,7 @@ public class TestUtils {
 	private static final Logger logger = Logger.getLogger(Main.class);
 	private static int nroDeCorridas = 0;
 	
-	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker) {
+	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker) throws Exception {
 		try {
 			java.io.FileInputStream streamFile = new java.io.FileInputStream(rutaArchivoDeEjemplo);
 			
@@ -76,7 +76,7 @@ public class TestUtils {
 				System.exit(-1);
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("El parser no se pudo instanciar");
+			throw new Exception("No se pudo encontrar el archivo a parsear");
 		}
 	}
 	

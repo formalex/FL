@@ -1941,7 +1941,7 @@ FLFormula terminal() :
     FLCounter counter = null;
     int beginLine = token.next.beginLine;
     int beginColumn = token.next.beginColumn;
-    FLActionRepresentation flActionRepresentation = FLActionRepresentation.TRES_ESTADOS;
+    ActionReferencedState referencedState = ActionReferencedState.JUST_HAPPENED;
 }
 {
     //Puede ser una accion IMPERSONAL. Por ej 'Hablar' en P(Hablar)
@@ -2112,13 +2112,13 @@ FLFormula terminal() :
     |
   (        (      < IS_HAPPENING > < IDENTIFIER > // 'j' en isHappening(j.Correr) o 'empezoElDia' en isHappening(empezoElDia)
     {
-	  flActionRepresentation = FLActionRepresentation.DOS_ESTADOS;      name = token.image;      originalFormula += "isHappening(" + name;    }
+	  referencedState = ActionReferencedState.IS_HAPPENING;      name = token.image;      originalFormula += "isHappening(" + name;    }
     
    |   //TODO: VER SI HAY TIEMPO, SI SE PUEDEN SIMPLIFICAR LOS DOS CASOS
   
     < JUST_HAPPENED > < IDENTIFIER > // 'j' en justHappened(j.Correr) o 'empezoElDia' en justHappened(empezoElDia)
     {
-	  flActionRepresentation = FLActionRepresentation.TRES_ESTADOS;
+	  referencedState = ActionReferencedState.JUST_HAPPENED;
       name = token.image;
       originalFormula += "justHappened(" + name;
     }
@@ -2135,7 +2135,7 @@ FLFormula terminal() :
     < PAR_RIGHT >
     {
       FLAction flAction = (FLAction) parsearFlAction(variable, name, aFormula, beginLine, beginColumn);
-      flAction.setRepresentation(flActionRepresentation);
+      flAction.setReferencedState(referencedState);
       return flAction;
     }
   )

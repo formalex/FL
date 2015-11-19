@@ -5,7 +5,7 @@ import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 public class FLAction extends FLTerminal {
 
 	//Por ahora este es el default
-	FLActionRepresentation representation = FLActionRepresentation.TRES_ESTADOS;
+	ActionReferencedState referencedState = ActionReferencedState.JUST_HAPPENED;
 	
 	public FLAction(String variable, String actionName) {
 		super(variable, actionName);
@@ -15,14 +15,14 @@ public class FLAction extends FLTerminal {
 		super(variable, agent,  actionName);
 	}
 	
-	public FLAction(String variable, String agent, String actionName, FLActionRepresentation anRepresentation) {
+	public FLAction(String variable, String agent, String actionName, ActionReferencedState anReferencedState) {
 		super(variable, agent,  actionName);
-		representation = anRepresentation;
+		referencedState = anReferencedState;
 	}
 
     @Override
     public FLTerminal instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
-        FLAction res = new FLAction(getVariable(), getAgent(), getName(), getRepresentation());
+        FLAction res = new FLAction(getVariable(), getAgent(), getName(), getReferencedState());
         if (res.setVariable(variable, agente, forceAgent)){
             //Si no la puede instanciar, no pasa nada y queda con el valor en null, pero si la
             // instancia hay que validar que sea válida (o sea, que exista la combinación
@@ -34,20 +34,20 @@ public class FLAction extends FLTerminal {
         return res;
     }
 
-    @Override
+	@Override
     public String toString() {
-    	
-    	if(this.getRepresentation().equals(FLActionRepresentation.TRES_ESTADOS))
+    	//TODO simplificarlo usando el text del ENUM
+    	if(this.getReferencedState().equals(ActionReferencedState.JUST_HAPPENED))
     		return getNameWithAgent() + " = JUST_HAPPENED";
     	
     	return getNameWithAgent() + " = HAPPENING";
     }
-    
-	public FLActionRepresentation getRepresentation() {
-		return representation;
+	
+    public ActionReferencedState getReferencedState() {
+		return referencedState;
 	}
 
-	public void setRepresentation(FLActionRepresentation representation) {
-		this.representation = representation;
+	public void setReferencedState(ActionReferencedState referencedState) {
+		this.referencedState = referencedState;
 	}
 }

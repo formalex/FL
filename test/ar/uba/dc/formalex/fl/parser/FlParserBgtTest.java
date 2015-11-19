@@ -16,77 +16,77 @@ public class FlParserBgtTest extends FlTest{
 	
 
 	@Test
-	public void testEjActionsProductionWithOneAction() {
+	public void testEjActionsProductionWithOneAction() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTIONS_PRODUCTIONS + "EjActionsProductionWithOneAction.txt", false);
 	}
 	
 	@Test
-	public void testEjActionsProductionWithSomeActions() {
+	public void testEjActionsProductionWithSomeActions() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTIONS_PRODUCTIONS + "EjActionsProductionWithSomeActions.txt", false);
 	}
 	
 	@Test
-	public void testEjActionsProductionWithOneActionAndOnlyOccursIn() {
+	public void testEjActionsProductionWithOneActionAndOnlyOccursIn() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTIONS_PRODUCTIONS + "EjActionsProductionWithOneActionAndOnlyOccursIn.txt", false);
 	}
 	
 	@Test
-	public void testEjActionsProductionWithSomeActionsAndOnlyOccursIn() {
+	public void testEjActionsProductionWithSomeActionsAndOnlyOccursIn() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTIONS_PRODUCTIONS + "EjActionsProductionWithSomeActionsAndOnlyOccursIn.txt", false);
 	}
 	
 	@Test
-	public void testEjActionsProductionWithOneActionAndOnlyOccursInAndOccurrences() {
+	public void testEjActionsProductionWithOneActionAndOnlyOccursInAndOccurrences() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTIONS_PRODUCTIONS + "EjActionsProductionWithOneActionAndOnlyOccursInAndOccurrences.txt", false);
 	}
 	
 	@Test
-	public void testEjActionsProductionWithSomeActionsAndOnlyOccursInAndOccurrences() {
+	public void testEjActionsProductionWithSomeActionsAndOnlyOccursInAndOccurrences() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTIONS_PRODUCTIONS + "EjActionsProductionWithSomeActionsAndOnlyOccursInAndOccurrences.txt", false);
 	}
 
 	@Test
-	public void testEjActionsProductionWithOneActionAndOnlyOccursInAndOccurrencesAndOnePerformable() {
+	public void testEjActionsProductionWithOneActionAndOnlyOccursInAndOccurrencesAndOnePerformable() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTIONS_PRODUCTIONS + "EjActionsProductionWithOneActionAndOnlyOccursInAndOccurrencesAndOnePerformable.txt", false);
 	}
 	
 	@Test
-	public void testEjActionsProductionWithSomeActionsAndOnlyOccursInAndOccurrencesAndSomePerformable() {
+	public void testEjActionsProductionWithSomeActionsAndOnlyOccursInAndOccurrencesAndSomePerformable() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTIONS_PRODUCTIONS + "EjActionsProductionWithSomeActionsAndOnlyOccursInAndOccurrencesAndSomePerformable.txt", false);
 	}
 	
 
-	//TODO Agregar ejemplos con action e impersonal action	
-	/*************************** EJS ACTION PRODUCTIONS *********************/
+	/*************************** EJS ACTION PRODUCTIONS 
+	 * @throws Exception *********************/
 	@Test
-	public void testEjActionProductionWithIdentifier() {
+	public void testEjActionProductionWithIdentifier() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifier.txt", false);
 	}
 	
 	@Test
-	public void testEjActionProductionWithIdentifierWithOutputValues() {
+	public void testEjActionProductionWithIdentifierWithOutputValues() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValues.txt", false);
 	}
 	
 	@Test
-	public void testEjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn() {
+	public void testEjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn() throws Exception {
 		//TODO ver si puedo crear una impersonal Action con 'only occurs in scope' de un intervalo LOCAL. NOOO
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn.txt", false);
 	}
 	
 	@Test
-	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumber() {
+	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumber() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumber.txt", false);
 	}
 	
 	@Test
 	@Ignore("Hasta que tome el parche del synchronize")
-	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchro() {
+	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchro() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithSynchro.txt", false);
 	}
 	
 	@Test
-	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithOnlyPerformable() {
+	public void testEjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithOnlyPerformable() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithOnlyPerformable.txt", false);
 	}
 	

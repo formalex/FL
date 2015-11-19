@@ -4,54 +4,50 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.ActionReferencedState;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLAction;
-import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLActionRepresentation;
 
 public class FlActionTest {
 
 	@Test
-	public void elDefaultDeLaRepresentationEsTresEstados() {
+	public void elDefaultDelEstadoReferenciadoEsJH() {
 
-		//Si no se le setea la flActionRepresentacion, el default es tres estados!
+		//Si no se le setea el estado referenciado, el default es JH!
 		FLAction unFlActionConVariableAndAction = getUnFlActionConVariableAndAction();
 		FLAction unFlActionConVariableAndAgentAndAction = getUnFlActionConVariableAndAgentAndAction();
 		
-		//El default es TRES ESTADOS
-		assertEquals(FLActionRepresentation.TRES_ESTADOS, unFlActionConVariableAndAction.getRepresentation());
-		assertEquals(FLActionRepresentation.TRES_ESTADOS, unFlActionConVariableAndAgentAndAction.getRepresentation());
+		//El default es JH
+		assertEquals(ActionReferencedState.JUST_HAPPENED, unFlActionConVariableAndAction.getReferencedState());
+		assertEquals(ActionReferencedState.JUST_HAPPENED, unFlActionConVariableAndAgentAndAction.getReferencedState());
 		
 	}
 	
 	@Test
-	public void ejemploConRepresentationDeDosEstados() {
+	public void ejemploReferenciaConIsHappening() {
 
 		FLAction unFlActionConVariableAndAgentAndAction = getUnFlActionConVariableAndAgentAndAction();
-		FLAction unFlActionConDosEstados = new FLAction(unFlActionConVariableAndAgentAndAction.getVariable(), 
+		FLAction unFlActionReferenciadoConIsHappening = new FLAction(unFlActionConVariableAndAgentAndAction.getVariable(), 
 																unFlActionConVariableAndAgentAndAction.getAgent(), 
-																unFlActionConVariableAndAgentAndAction.getName(), FLActionRepresentation.DOS_ESTADOS);
+																unFlActionConVariableAndAgentAndAction.getName(), ActionReferencedState.IS_HAPPENING);
 			
-		//Se chequea la FLActionRepresentation
-		assertEquals(FLActionRepresentation.DOS_ESTADOS, unFlActionConDosEstados.getRepresentation());
-
+		//Se chequea el estado referenciado
+		assertEquals(ActionReferencedState.IS_HAPPENING, unFlActionReferenciadoConIsHappening.getReferencedState());
 		
 	}
 	
 	@Test
-	public void ejemploConRepresentationDeTresEstados() {
+	public void ejemploReferenciaConJH() {
 
 		FLAction unFlActionConVariableAndAgentAndAction = getUnFlActionConVariableAndAgentAndAction();
 		FLAction unFlActionConDosEstados = new FLAction(unFlActionConVariableAndAgentAndAction.getVariable(), 
 																unFlActionConVariableAndAgentAndAction.getAgent(), 
-																unFlActionConVariableAndAgentAndAction.getName(), FLActionRepresentation.TRES_ESTADOS);
+																unFlActionConVariableAndAgentAndAction.getName(), ActionReferencedState.JUST_HAPPENED);
 			
-		//Se chequea la FLActionRepresentation
-		assertEquals(FLActionRepresentation.TRES_ESTADOS, unFlActionConDosEstados.getRepresentation());
-
+		//Se chequea el estado referenciado
+		assertEquals(ActionReferencedState.JUST_HAPPENED, unFlActionConDosEstados.getReferencedState());
 		
 	}
 
-
-	
 	private FLAction getUnFlActionConVariableAndAction() {
 		FLAction flActionDefault = new FLAction("i", "correr");
 		return flActionDefault;
