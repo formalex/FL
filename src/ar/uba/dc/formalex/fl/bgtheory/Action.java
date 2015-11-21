@@ -293,6 +293,7 @@ public class Action {
 
         }
 
+        sb.append(" " + getRepresentation());
         logger.info(sb.toString());
     }
 }

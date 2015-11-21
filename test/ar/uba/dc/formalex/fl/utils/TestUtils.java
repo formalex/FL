@@ -10,6 +10,9 @@ import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
+import ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion.ReductorDeRepresentacionDeAccionADosEstados;
+import ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion.ReductorDeRepresentacionDeAccionADosEstadosFake;
+import ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion.ReductorDeRepresentacionDeAccionADosEstadosImpl;
 import ar.uba.dc.formalex.fl.FLInput;
 import ar.uba.dc.formalex.fl.bgtheory.Action;
 import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
@@ -36,7 +39,7 @@ public class TestUtils {
 	private static final Logger logger = Logger.getLogger(Main.class);
 	private static int nroDeCorridas = 0;
 	
-	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker) throws Exception {
+	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker, boolean conReductor) throws Exception {
 		try {
 			java.io.FileInputStream streamFile = new java.io.FileInputStream(rutaArchivoDeEjemplo);
 			
@@ -63,7 +66,7 @@ public class TestUtils {
 						.explotarYAplanar(flInput, new ConstructorDeGrafoImpl());
 				// loguearEntSal(flInput);
 				
-				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker);
+				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker, conReductor);
 
 				logger.debug("Listo");
 			} catch (TokenMgrError e) {
@@ -80,14 +83,14 @@ public class TestUtils {
 		}
 	}
 	
-	private static void validar(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker) {
+	private static void validar(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor) {
         boolean b = true;
         
         if (flInput.getRules().size() > 0)
-            b = validarReglas(flInput, elGrafoDeDependencias, conModelChecker);
+            b = validarReglas(flInput, elGrafoDeDependencias, conModelChecker, conReductor);
 
         if (b){
-            validarPermisos(flInput, elGrafoDeDependencias, conModelChecker);
+            validarPermisos(flInput, elGrafoDeDependencias, conModelChecker, conReductor);
         }else{
             if (flInput.getPermissions().size() > 0){
                 logger.debug("No se validan los permisos");
@@ -95,7 +98,7 @@ public class TestUtils {
         }
 	}
 
-	private static boolean validarReglas(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker) {
+	private static boolean validarReglas(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor) {
         FLFormula aValidar = new FLTrue();
 
         String flRules = "TRUE";
@@ -115,10 +118,14 @@ public class TestUtils {
         BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), aValidar, elGrafoDeDependencias);        
         logger.info("# bgt despues del filtro de la formula: "+ aValidar.toString());
         loguearBgt(unaBgtFiltrada);
+        
+      //Se crea e invoca al reductor
+        BackgroundTheory bgtConRepresentacionDeAccionesReducidas = invocarReductor(
+				conReductor, aValidar, unaBgtFiltrada);
 		
         boolean encontroTrace = true;
         if(conModelChecker){
-        	File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, aValidar);
+        	File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, aValidar);
 
         	if (!file.exists()){
         		//Si no se generó el archivo es porque el output del proceso está vacío. Eso suele pasar cuando hubo un error con nusmv.
@@ -139,9 +146,8 @@ public class TestUtils {
         return encontroTrace;
         
 	}
-	
 
-	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker) {
+	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor) {
         FLFormula aValidar = new FLTrue();
         //Uno todas las prohibiciones y obligaciones en una fórmula con conjunciones.
         for(FLFormula formula : flInput.getRules()) {
@@ -161,11 +167,15 @@ public class TestUtils {
             
             
             BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), conPermiso, elGrafoDeDependencias);        
-            logger.info("# bgt despues del filtro del permiso: "+  conPermiso.toString());
+            logger.info("bgt despues del filtro del permiso: "+  conPermiso.toString());
             loguearBgt(unaBgtFiltrada);
             
+            //Se crea e invoca al reductor
+            BackgroundTheory bgtConRepresentacionDeAccionesReducidas = invocarReductor(
+					conReductor, conPermiso, unaBgtFiltrada);
+            
             if(conModelChecker){
-	            File file = NuSMVModelChecker.findTrace(unaBgtFiltrada, conPermiso);
+	            File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, conPermiso);
 	            boolean encontroTrace = encontroTrace(file);
 	            if (encontroTrace){
 	                logger.info("Se ha encontrado un comportamiento legal para el permiso.");
@@ -181,6 +191,27 @@ public class TestUtils {
         }
 	}
 
+	private static BackgroundTheory invocarReductor(boolean conReductor,
+			FLFormula aFormula, BackgroundTheory unaBgtFiltrada) {
+		ReductorDeRepresentacionDeAccionADosEstados reductorDeAccionADosEstados = getReductor(conReductor, aFormula, unaBgtFiltrada);
+		BackgroundTheory bgtConRepresentacionDeAccionesReducidas = reductorDeAccionADosEstados.ejecutar();            
+		logger.info(" Acciones DESPUES de la REDUCCION con F: "+  aFormula.toString());
+		logOnlyActions(bgtConRepresentacionDeAccionesReducidas);
+		return bgtConRepresentacionDeAccionesReducidas;
+	}
+
+	private static ReductorDeRepresentacionDeAccionADosEstados getReductor(boolean conReductor, FLFormula aValidar,
+			BackgroundTheory unaBgtFiltrada) {
+		ReductorDeRepresentacionDeAccionADosEstados reductorDeAccionADosEstados;
+        if(conReductor){
+        	reductorDeAccionADosEstados = new ReductorDeRepresentacionDeAccionADosEstadosImpl(unaBgtFiltrada, aValidar);
+        }else {
+        	reductorDeAccionADosEstados = new ReductorDeRepresentacionDeAccionADosEstadosFake(unaBgtFiltrada);
+        }
+        
+        return reductorDeAccionADosEstados;
+	}
+	
 	private static String contadorDeSignosIgual(String stringDeLaFormula) {
 		
 		int countMatches = StringUtils.countMatches(stringDeLaFormula, "=");
@@ -229,15 +260,19 @@ public class TestUtils {
 		logger.info("# contadores: " + unaBgtFiltrada.getCounters().size());
 		logger.info("# intervalos: " + unaBgtFiltrada.getIntervals().size());
 		logger.info("");
-		logger.info("Acciones");
-		for (Action a : unaBgtFiltrada.getActions()) {
-			a.logFL();
-		}
-		logger.info("");
+		logOnlyActions(unaBgtFiltrada);
 		logger.info("Intervalos");
 		for (Interval i : unaBgtFiltrada.getIntervals()) {
 			i.logFL();
 		}
+	}
+
+	private static void logOnlyActions(BackgroundTheory unaBgt) {
+		logger.info("Acciones");
+		for (Action a : unaBgt.getActions()) {
+			a.logFL();
+		}
+		logger.info("");
 	}
 
 	private static BackgroundTheory filtrar(BackgroundTheory backgroundTheory,
