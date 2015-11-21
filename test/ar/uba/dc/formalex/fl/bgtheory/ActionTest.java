@@ -74,6 +74,10 @@ public class ActionTest {
 		
 		actionPasiva.setSync(actionActiva, !actionActiva.hasActiveSync());
 	}
+	
+	//TODO Agregar tests con ActionRepresentation!
+	//TODO Si hay tiempo agregar test del clonar()
+	
 	private Action getAccionSinRolDefinido() {
 		Action acccionSinRolDefinido = new Action();
 		acccionSinRolDefinido.setName("Accion sin rol definido");

@@ -4,6 +4,7 @@ import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 import ar.uba.dc.formalex.fl.regulation.rules.Obligation;
 
 public class PermanentPermission extends FLFormula {
@@ -40,6 +41,12 @@ public class PermanentPermission extends FLFormula {
 	public Set<String> getNombresDeComponentes() {
 		
 		return this.formula.getNombresDeComponentes();
+	}
+	
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		
+		return this.formula.getTerminals();
 	}
 
 }

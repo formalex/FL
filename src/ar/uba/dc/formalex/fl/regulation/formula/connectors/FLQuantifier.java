@@ -7,6 +7,7 @@ import java.util.Set;
 import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
 
 public abstract class FLQuantifier extends FLFormula{
@@ -17,6 +18,11 @@ public abstract class FLQuantifier extends FLFormula{
 	public Set<String> getNombresDeComponentes(){
 		
 		throw new RuntimeException("Los nombres de las componentes se los pedimos a formulas instanciadas"); 
+	}
+	
+	public  Set<FLTerminal> getTerminals(){
+		throw new RuntimeException("Los terminales se los pedimos a formulas instanciadas"); 
+		
 	}
 
     public String getRole() {

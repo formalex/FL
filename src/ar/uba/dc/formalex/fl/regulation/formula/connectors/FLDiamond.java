@@ -5,6 +5,7 @@ import java.util.Set;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLInterval;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
 public class FLDiamond extends FLFormula {
     private FLFormula formula;
@@ -59,6 +60,16 @@ public class FLDiamond extends FLFormula {
     	
     	if(this.interval!=null)
     		res.addAll(this.interval.getNombresDeComponentes());
+    	
+    	return res;
+	}
+
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		Set<FLTerminal> res=this.formula.getTerminals();
+    	
+    	if(this.interval!=null)
+    		res.addAll(this.interval.getTerminals());
     	
     	return res;
 	}

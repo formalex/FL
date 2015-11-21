@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLAction;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLActionOutput;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
 public abstract class FLFormula {
 	
@@ -16,6 +19,43 @@ public abstract class FLFormula {
 	 */
 	public abstract Set<String> getNombresDeComponentes();
 	
+	/**
+	 * @return Devuelve el conjunto de terminales de la formula
+	 */
+	public abstract Set<FLTerminal> getTerminals();
+	
+	/**
+	 * @return Devuelve las referencias a acciones en la formula
+	 */
+	public Set<FLAction> getReferencedActions(){
+		
+		Set<FLTerminal> terminals = this.getTerminals();
+		
+		Set<FLAction> res = new HashSet<FLAction>();
+		for (FLTerminal flTerminal : terminals) {
+			if(flTerminal instanceof FLAction)
+				res.add((FLAction) flTerminal);
+		}
+		return res;
+		
+	}
+	
+	/**
+	 * @return Devuelve las referencias a acciones con output values
+	 * mediante el uso de la construccion "results in" en la formula
+	 */
+	public Set<FLActionOutput> getReferencedActionsWithResultsIn(){
+
+		Set<FLTerminal> terminals = this.getTerminals();
+
+		Set<FLActionOutput> res = new HashSet<FLActionOutput>();
+		for (FLTerminal flTerminal : terminals) {
+			if(flTerminal instanceof FLActionOutput)
+				res.add((FLActionOutput) flTerminal);
+		}
+		return res;
+
+	}
     /**
      * devuelve el string que representa a esta fórmula con el formato del model checker
      */

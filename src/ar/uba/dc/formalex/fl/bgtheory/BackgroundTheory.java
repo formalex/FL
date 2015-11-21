@@ -159,4 +159,39 @@ public class BackgroundTheory {
 		}
 		
 	}
+	
+	public Set<String> getActionNamesReferencedByInterval(){
+		Set<String> res = new HashSet<String>();
+		
+		if(this.getIntervals()==null)
+			return res;
+		
+		for (Interval anInterval : this.getIntervals()) {
+			for (Action aStartTrigger : anInterval.getStartTriggers()) {
+				res.add(aStartTrigger.getName());				
+			}
+			
+			for (Action anEndTrigger : anInterval.getEndTriggers()) {
+				res.add(anEndTrigger.getName());				
+			}
+		}
+		
+		return res;
+	}
+	
+	public Set<String> getActionNamesReferencedByCounter(){
+		Set<String> res = new HashSet<String>();
+		
+		if(this.getCounters()==null)
+			return res;
+		
+		for (Counter aCounter : this.getCounters()) {
+			Set<Action> allActions = aCounter.getAllActions();
+			for (Action anAction : allActions) {
+				res.add(anAction.getName());
+			}
+		}
+		
+		return res;
+	}
 }

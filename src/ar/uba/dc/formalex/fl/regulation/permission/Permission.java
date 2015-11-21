@@ -6,6 +6,7 @@ import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLThen;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 import ar.uba.dc.formalex.fl.regulation.rules.Forbidden;
 
 
@@ -43,6 +44,12 @@ public class Permission extends FLFormula {
 	public Set<String> getNombresDeComponentes() {
 		
 		return this.formula.getNombresDeComponentes();
+	}
+	
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		
+		return this.formula.getTerminals();
 	}
 
 }

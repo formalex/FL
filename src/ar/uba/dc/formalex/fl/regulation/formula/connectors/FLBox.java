@@ -70,4 +70,14 @@ public class FLBox extends FLFormula{
     	
     	return res;
 	}
+
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		Set<FLTerminal> res=this.formula.getTerminals();
+    	
+    	if(this.interval!=null)
+    		res.addAll(this.interval.getTerminals());
+    	
+    	return res;
+	}
 }

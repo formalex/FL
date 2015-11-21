@@ -12,6 +12,10 @@ public enum ActionReferencedState {
 	IS_HAPPENING("HAPPENING"),
 	JUST_HAPPENED("JUST_HAPPENED");
 	
+	/**
+	 * Mantiene el valor de la variable con la que se representa 
+	 * la acción en el automata
+	 */
 	String valueInLtlFormula;
 	
 	private ActionReferencedState(String anValueInLtlFormula){

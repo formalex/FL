@@ -7,6 +7,7 @@ import java.util.Set;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLOr;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
 
 public class Obligation extends FLFormula{
@@ -76,6 +77,16 @@ public class Obligation extends FLFormula{
     	
     	if(this.hasRepair())
     		res.addAll(this.repair.getNombresDeComponentes());
+    	
+    	return res;
+	}
+	
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		Set<FLTerminal> res=this.formula.getTerminals();
+    	
+    	if(this.hasRepair())
+    		res.addAll(this.repair.getTerminals());
     	
     	return res;
 	}

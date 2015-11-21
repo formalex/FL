@@ -6,6 +6,7 @@ import java.util.Set;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
 
 public class Forbidden extends FLFormula {
@@ -40,5 +41,11 @@ public class Forbidden extends FLFormula {
 	public Set<String> getNombresDeComponentes() {
 		
 		return this.formula.getNombresDeComponentes();
+	}
+	
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		
+		return this.formula.getTerminals();
 	}
 }

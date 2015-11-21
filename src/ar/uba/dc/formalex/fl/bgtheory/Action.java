@@ -12,7 +12,8 @@ import java.util.Set;
 @SuppressWarnings({"RedundantIfStatement", "NonFinalFieldReferencedInHashCode"})
 public class Action {
     private static final Logger logger = Logger.getLogger(Action.class);
-	private String name;
+	
+    private String name;
 	private boolean isImpersonal;
 
 	/**
@@ -38,6 +39,8 @@ public class Action {
     public static final boolean ALLOW_AUTO_SYNC_DEFAULT = true;
     private boolean allowAutoSync = ALLOW_AUTO_SYNC_DEFAULT;
 
+    //El default es que la acción se represente en el automata con 3 estados
+	private ActionRepresentation representation= ActionRepresentation.THREE_STATES;
 	
 	public Action clonar() {
         return clonar(getName());
@@ -47,12 +50,15 @@ public class Action {
         Action res = new Action();
         res.setName(nuevoNombre);
         res.setImpersonal(isImpersonal);
-        res.setOccursIn(getOccursIn());
         res.setOutputValues(getOutputValues());
-        res.setSync(getSync(), hasActiveSync());
-        res.setAllowAutoSync(isAllowAutoSync());
-        res.setOccurrences(getOccurrences());
         res.setPerformableBy(getPerformableBy());
+        res.setOccursIn(getOccursIn());
+        res.setOccurrences(getOccurrences());
+        res.setSync(getSync(), hasActiveSync()); 
+        res.setAllowAutoSync(isAllowAutoSync());
+        res.setRepresentation(getRepresentation());
+        
+        
         return res;
 	}
 
@@ -246,7 +252,15 @@ public class Action {
         isImpersonal = impersonal;
     }
 
-    public void logFL(){
+    public ActionRepresentation getRepresentation() {
+		return representation;
+	}
+
+	public void setRepresentation(ActionRepresentation representation) {
+		this.representation = representation;
+	}
+
+	public void logFL(){
         StringBuilder sb;
         if (isImpersonal())
             sb = new StringBuilder("impersonal action ");

@@ -98,5 +98,13 @@ public abstract class FLTerminal extends FLFormula{
 //    	
     	return res;
 	}
+	
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		
+		Set<FLTerminal> res = new HashSet<FLTerminal>();
+		res.add(this);
+		return res;
+	}
 
 }
