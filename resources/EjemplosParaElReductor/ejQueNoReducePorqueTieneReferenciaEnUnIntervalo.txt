@@ -1,0 +1,25 @@
+#Background
+
+roles ciudadano {cliente {socioTitular {premium, select disjoint cover}, relacionadoASocio {relacionadoASocioPremium {menor,mayor disjoint cover}, relacionadoASocioSelect {menor,mayor disjoint cover} disjoint cover} disjoint cover}, noCliente disjoint cover}
+
+impersonal action pasaUnAnio
+impersonal action nuevoSocioRecomendadoPremium
+impersonal action nuevoSocioRecomendadoSelect
+actions activaPase,primerUsoTarjeta only performable by socioTitular
+
+local interval tarjetaVigente defined by actions activaPase - pasaUnAnio
+
+actions ingresarASala, ingresarASalaDallas, ingresarASalaSorrento
+action abonarTarifaCompleta only performable by relacionadoASocioPremium
+action abonarTarifaAl75 only performable by relacionadoASocioSelect
+action abonarTarifaAl50 only performable by menor
+ 
+
+#Clauses
+
+//Las accion activaPase y pasaUnAnio tienen todas las referencias a isHappening
+//Pero No pueden reducirse porque son referenciadas x el intervalo 'tarjetaVigente'
+FORALL(i; O(isHappening(i.activaPase) | INSIDE(i.tarjetaVigente)))
+
+FORALL(i:socioTitular; PP(i.ingresarASala given that INSIDE(i.tarjetaVigente)))
+P(isHappening(pasaUnAnio))
