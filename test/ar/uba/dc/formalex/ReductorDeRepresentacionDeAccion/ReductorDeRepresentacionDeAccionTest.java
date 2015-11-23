@@ -1,7 +1,5 @@
 package ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import ar.uba.dc.formalex.fl.utils.FlTest;
@@ -23,9 +21,9 @@ public class ReductorDeRepresentacionDeAccionTest extends FlTest {
 	}
 	
 	@Test
-	public void noReducePorqueHayRefecerenciasEnUnContador() throws Exception {
+	public void noReducePorqueHayReferenciasEnUnContador() throws Exception {
 		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueHayRefecerenciasEnUnContador.txt", false, true);
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueHayReferenciasEnUnContador.txt", false, true);
 	}
 	
 	@Test
