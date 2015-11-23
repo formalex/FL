@@ -259,6 +259,12 @@ public class Action {
 	public void setRepresentation(ActionRepresentation representation) {
 		this.representation = representation;
 	}
+	
+	public boolean hasTwotSates(){
+		
+		return ActionRepresentation.TWO_STATES.equals(this.getRepresentation());
+		
+	}
 
 	public void logFL(){
         StringBuilder sb;

@@ -5,6 +5,7 @@ import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
 import ar.uba.dc.formalex.util.Fechas;
 import ar.uba.dc.formalex.util.UtilFile;
+
 import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -13,6 +14,7 @@ import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 import java.io.*;
+import java.nio.charset.Charset;
 
 /**
  * User: P_BENEDETTI
@@ -33,6 +35,7 @@ public class NuSMVModelChecker {
 
     private static void crearAutomata(BackgroundTheory backgroundTheory, File fileOut){
         PrintWriter writer = null;
+        String strCodificacionArchivo = "UTF-8";
 
         try{
             VelocityContext context = new VelocityContext();
@@ -50,6 +53,9 @@ public class NuSMVModelChecker {
             VelocityEngine ve = new VelocityEngine();
             ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
             ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+            
+			ve.setProperty("input.encoding", strCodificacionArchivo);      
+            ve.setProperty("output.encoding", strCodificacionArchivo);
             ve.init();
             Template template = ve.getTemplate( System.getProperty("TEMPLATE_VELOCITY") )  ;
 
