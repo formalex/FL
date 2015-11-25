@@ -69,7 +69,6 @@ public class FlParserBgtTest extends FlTest{
 	
 	@Test
 	public void testEjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn() throws Exception {
-		//TODO ver si puedo crear una impersonal Action con 'only occurs in scope' de un intervalo LOCAL. NOOO
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOnlyOccursIn.txt", false, true);
 	}
 	
@@ -89,7 +88,19 @@ public class FlParserBgtTest extends FlTest{
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifierWithOutputValuesWithOcurrencesNumberWithOnlyPerformable.txt", false, true);
 	}
 	
-	
-
+	@Test
+	public void testEjImpersonalActionLikeTriggerInLocalInterval() throws Exception {
+		// SE PUEDE USAR UNA IMPERSONAL ACTION COMO TRIGGER DE UN INTERVALO LOCAL!
+		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjImpersonalActionLikeTriggerInLocalInterval.txt", false, true);
+	}
 	//TODO Agregar tests que rompan cuando procesa un action
+	
+	@Test
+	public void testEjActionProductionWithImpersonalActionWithOnlyOccursInLocalIntervalFail() throws Exception {
+		//NO se puede crear una impersonal Action con 'only occurs in scope' de un intervalo LOCAL. 
+		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithImpersonalActionWithOnlyOccursInLocalIntervalFail.txt", false, true);
+	}
+	
+	
+	
 }
