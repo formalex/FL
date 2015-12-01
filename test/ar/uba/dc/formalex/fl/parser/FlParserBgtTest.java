@@ -98,6 +98,7 @@ public class FlParserBgtTest extends FlTest{
 	@Test
 	public void testEjActionProductionWithImpersonalActionWithOnlyOccursInLocalIntervalFail() throws Exception {
 		//NO se puede crear una impersonal Action con 'only occurs in scope' de un intervalo LOCAL. 
+		//se metió un parche para que NO rompa asquerosamente con un null pointer exception
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithImpersonalActionWithOnlyOccursInLocalIntervalFail.txt", false, true);
 	}
 	

@@ -220,7 +220,7 @@ public class LaAplanadora {
 //				if(intervals==null){
 //				throw new RuntimeException("Fallo en interval" + occursIn.getName());
 //			}
-				Interval newInt;
+				Interval newInt = null;
 				if(!occursIn.isLocal()){
 					if (intervals.size() != 1){
 						//no debería pasar
@@ -228,10 +228,15 @@ public class LaAplanadora {
 					}
 					newInt = intervals.iterator().next();
 				}else{// es local
-					Agente agente = accionesYAgentes.get(accion); //todo: ver impersonal action
-					newInt = getIntervaloDeAgente(intervals,  agente);
+					if(!accion.isImpersonal()){	
+						//todo: si NO es impersonal action
+						//Si es impersonal action NO hay nada que hacer
+						Agente agente = accionesYAgentes.get(accion); 
+						newInt = getIntervaloDeAgente(intervals,  agente);
+					}
 				}
 				accion.setOccursIn(newInt);
+
 			}
 		}
 	}
