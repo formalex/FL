@@ -1,10 +1,14 @@
 package ar.uba.dc.formalex.fl.parser;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import org.junit.Ignore;
 import org.junit.Test;
 
 import ar.uba.dc.formalex.fl.utils.FlTest;
 import ar.uba.dc.formalex.fl.utils.TestUtils;
+import ar.uba.dc.formalex.parser.ParseException;
 
 public class FlParserBgtTest extends FlTest{
 
@@ -55,8 +59,7 @@ public class FlParserBgtTest extends FlTest{
 	}
 	
 
-	/*************************** EJS ACTION PRODUCTIONS 
-	 * @throws Exception *********************/
+	/*************************** EJS ACTION PRODUCTIONS  *********************/
 	@Test
 	public void testEjActionProductionWithIdentifier() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithIdentifier.txt", false, true);
@@ -93,7 +96,6 @@ public class FlParserBgtTest extends FlTest{
 		// SE PUEDE USAR UNA IMPERSONAL ACTION COMO TRIGGER DE UN INTERVALO LOCAL!
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjImpersonalActionLikeTriggerInLocalInterval.txt", false, true);
 	}
-	//TODO Agregar tests que rompan cuando procesa un action
 	
 	@Test
 	public void testEjActionProductionWithImpersonalActionWithOnlyOccursInLocalIntervalFail() throws Exception {
@@ -102,6 +104,29 @@ public class FlParserBgtTest extends FlTest{
 		TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithImpersonalActionWithOnlyOccursInLocalIntervalFail.txt", false, true);
 	}
 	
+	//TODO Agregar tests que rompan cuando procesa un action
+	
+	@Test
+	public void testEjActionProductionWithOutputValuesWithZeroValueFail()  throws Exception {
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithOutputValuesWithZeroValueFail.txt", false, true);
+		} catch (ParseException pe) {
+			
+			//TODO ver si puedo poner en el assert algo mas descriptivo sobre el error
+			assertTrue(pe.getMessage().startsWith("Encountered "));
+		}
+	} 
+	
+	
+	@Test
+	public void testEjActionProductionWithOutputValuesWithOnlyOneValueFail()  throws Exception {
+		try {
+			TestUtils.corridaDeFormaLex(ROOT_EJS_ACTION_PRODUCTIONS + "EjActionProductionWithOutputValuesWithOnlyOneValueFail.txt", false, true);
+			fail();
+		} catch (RuntimeException re) {
+			assertTrue(re.getMessage().endsWith("con output values tiene definido un unico valor de salida"));
+		}
+	} 
 	
 	
 }

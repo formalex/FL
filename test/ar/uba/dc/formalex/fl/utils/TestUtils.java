@@ -27,6 +27,7 @@ import ar.uba.dc.formalex.grafoDeDependencia.InfoComponenteBgt;
 import ar.uba.dc.formalex.grafoDeDependencia.Nodo;
 import ar.uba.dc.formalex.modelChecker.NuSMVModelChecker;
 import ar.uba.dc.formalex.parser.FLParser;
+import ar.uba.dc.formalex.parser.ParseException;
 import ar.uba.dc.formalex.parser.TokenMgrError;
 import ar.uba.dc.formalex.ui.Main;
 import ar.uba.dc.formalex.util.LaAplanadora;
@@ -76,7 +77,8 @@ public class TestUtils {
 			} catch (ar.uba.dc.formalex.parser.ParseException e) {
 				logger.error("FormaLex: Ha ocurrido un error durante el parseo.");
 				logger.error(e.getMessage(), e);
-				System.exit(-1);
+				throw new ParseException(e.getMessage());
+				//System.exit(-1);
 			}
 		} catch (FileNotFoundException e) {
 			throw new Exception("No se pudo encontrar el archivo a parsear");

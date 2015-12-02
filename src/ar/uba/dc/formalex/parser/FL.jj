@@ -376,6 +376,11 @@ void action() :
             {
               if (hasOutput)
                 throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un output value");
+
+			  //Si se definen output values, tienen que ser con mas de un valor	
+              if(actionOutputs.size()==1)
+              	throw new RuntimeException("La acción "+ anAction.getName() + " con output values tiene definido un unico valor de salida");
+              	 
               hasOutput = true;
               anAction.setOutputValues(actionOutputs);
             }
