@@ -11,8 +11,9 @@ public class FlTest {
 	
 	public static String ROOT_RESOURCES = "resources/";
 	public static String ROOT_EJS_PARSER_CLAUSES = FlTest.ROOT_RESOURCES + "EjemplosParserClauses/";
+	protected static String ROOT_EJS_FILTROS = ROOT_RESOURCES + "EjemplosParaFiltrar/";
 	protected static String ROOT_EJS_PARA_EL_REDUCTOR = FlTest.ROOT_RESOURCES + "EjemplosParaElReductor/";
-	//	private static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
+	//protected static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
 	
 
 	public enum SistemaOperativo {
@@ -36,7 +37,7 @@ public class FlTest {
 	@BeforeClass
 	public static void setUp(){
 
-		SistemaOperativo soEnElQueCorre = SistemaOperativo.LINUX;
+		SistemaOperativo soEnElQueCorre = SistemaOperativo.WINDOWS;
 		
 		switch (soEnElQueCorre) {
 		case LINUX:
@@ -54,5 +55,7 @@ public class FlTest {
 		
 		System.setProperty("TEMPLATE_VELOCITY", "fl.vm");
 	}
+
+	
 
 }

@@ -9,7 +9,6 @@ import ar.uba.dc.formalex.fl.utils.TestUtils;
 public class TestMain extends FlTest{
 
 	private static String ROOT_RESOURCES = "resources/";
-	private static String ROOT_EJS_FILTROS = ROOT_RESOURCES + "EjemplosParaFiltrar/";
 	private static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
 		
 
@@ -219,53 +218,6 @@ public class TestMain extends FlTest{
 		TestUtils.corridaDeFormaLex(ROOT_RESOURCES + "ejSynchronize.txt", false, true);
 	}
 	
-	@Test
-	public void testEjemploFiltroConIntervalOnlyOccursInScope() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConIntervalosConOnlyOccursInScopeQueSeUsan.txt", false, true);
-	}
-	
-	@Test
-	public void testEjemploFiltroConActionsOnlyOccursInScope() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConActionsOnlyOccursInScope.txt", false, true);
-	}
-	
-	@Test
-	public void testEjemploFiltroConAccionesQueNoSeReferencian() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConAccionesQueNoSeReferencian.txt", false, true);
-	}
-	
-	@Test
-	public void testEjemploFiltroConIntervalosQueNoSeUsan() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConIntervalosQueNoSeUsan.txt", false, true);
-	}
-	
-	@Test
-	public void testEjemploFiltroConIntervalosQueSeUsan() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConIntervalosQueSeUsan.txt", false, true);
-	}
-	
-	@Test
-	public void testEjemploFiltroConCountersQueNoSeUsan() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConCountersQueNoSeUsan.txt", false, true);
-	}
-	
-	@Test
-	public void testEjemploFiltroConCountersQueSeUsan() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConCountersQueSeUsan.txt", false, true);
-	}
-	
-	@Test
-	public void testEjemploFiltroConPpConExcepcion() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_FILTROS + "EjConPpConExcepcion.txt", false, true);
-	}
 	
 
 }

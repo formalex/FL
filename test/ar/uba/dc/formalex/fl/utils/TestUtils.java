@@ -4,7 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
@@ -19,6 +24,7 @@ import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
 import ar.uba.dc.formalex.fl.bgtheory.Interval;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLActionOutput;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
 import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoFake;
 import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoImpl;
@@ -293,6 +299,9 @@ public class TestUtils {
 			//Eliminarlos de la bgt
 			limpiarBgt(res, elGrafoDeDependencias);
 			
+			// filtrar Output values
+			filtrarOutputValues(res, aValidar);
+			
 			//limpiar las marcas del grafo
 			elGrafoDeDependencias.resetMarcas();
 		}else
@@ -300,6 +309,53 @@ public class TestUtils {
 				
 		return res;
 	}
+	
+	private static void filtrarOutputValues(BackgroundTheory res,
+			FLFormula aValidar) {
+		// Hay que armar el diccionario con las referencias a output values
+		Set<FLActionOutput> referencedActionsWithResultsInInFormula = aValidar.getReferencedActionsWithResultsIn();
+		Map<String, List<FLActionOutput>> actionWithResultsInReferencesGroupByActionName = agruparActionWithResultsInReferences(referencedActionsWithResultsInInFormula);
+
+		for (Action anAction : res.getActions()) {
+
+			if(anAction.hasOutputValues()){
+				String anActionName = anAction.getName();
+				List<FLActionOutput> anActionWithResultsInReferences = actionWithResultsInReferencesGroupByActionName.get(anActionName);
+				Set<String> outputsEnLaformula = new HashSet <String>();
+				
+				//Si no tiene referencias a los output values en la formula, le limpio los output values a la action
+				if(anActionWithResultsInReferences== null || anActionWithResultsInReferences.isEmpty() ){
+				}else{ //Si hay referencias , hay que ver si se utilizan todas, y las que NO se utilizan agruparlas en una sola
+					Set<String> referenciasOvs = getOuputValues(anActionWithResultsInReferences);
+					for (String unOv : anAction.getOutputValues()) {
+						if(referenciasOvs.contains(unOv)){
+							outputsEnLaformula.add(unOv);
+						}
+					}
+					
+					//Si hay mas outputs definidos que referencias a estos en la formula
+					if(anAction.getOutputValues().size()>outputsEnLaformula.size()){
+						//Hay que crear un output ficticio por todas los outputs que NO se referencian en las formulas
+						outputsEnLaformula.add("ningunoDeLosOtrosValores");
+					}
+				}
+				anAction.setOutputValues(outputsEnLaformula);
+			}
+		}
+
+	}
+
+	private static Set<String> getOuputValues(
+			List<FLActionOutput> anActionWithResultsInReferences) {
+		
+		Set<String> res = new HashSet <String> ();
+		for (FLActionOutput unaReferenciaConOv : anActionWithResultsInReferences) {
+			res.add(unaReferenciaConOv.getOutput());
+		}
+		
+		return res;
+	}
+
 	private static void limpiarBgt(BackgroundTheory bgt,
 			Grafo<InfoComponenteBgt> elGrafoDeDependencias) {
 		
@@ -329,6 +385,31 @@ public class TestUtils {
 			}
 			
 		}	
+	}
+	
+	/**Se agrupan por nombre de accion, las referencias a las acciones con output values 
+	 * mediante 'results in' en una formula
+	 * @param referencedActionsWithResultsInInTheFormula referencias a las 
+	 * acciones con output values mediante 'results in' en una formula
+	 */
+	private static Map<String, List<FLActionOutput>> agruparActionWithResultsInReferences(
+			Set<FLActionOutput> referencedActionsWithResultsInInTheFormula) {
+		HashMap<String, List<FLActionOutput>> actionWithResultsInReferencesGroupByActionName = new HashMap<String, List<FLActionOutput>>();
+		
+		for (FLActionOutput flActionOutput : referencedActionsWithResultsInInTheFormula) {
+			String mapKey = flActionOutput.getNameWithAgent();
+			List<FLActionOutput> actionReferencesWithResultsInList;
+			if(actionWithResultsInReferencesGroupByActionName.containsKey(mapKey)){
+				actionReferencesWithResultsInList = actionWithResultsInReferencesGroupByActionName.get(mapKey);
+			}else {
+				actionReferencesWithResultsInList = new ArrayList<FLActionOutput>();
+			}
+
+			actionReferencesWithResultsInList.add(flActionOutput);
+			actionWithResultsInReferencesGroupByActionName.put(mapKey, actionReferencesWithResultsInList);
+		}
+		
+		return actionWithResultsInReferencesGroupByActionName;
 	}
 
 }

@@ -28,4 +28,8 @@ public class FLActionOutput extends FLTerminal {
 
         return res;
     }
+
+	public String getOutput() {
+		return output;
+	}
 }

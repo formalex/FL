@@ -1,7 +1,5 @@
 package ar.uba.dc.formalex.ui;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import ar.uba.dc.formalex.fl.utils.FlTest;
