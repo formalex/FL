@@ -16,7 +16,7 @@ public class TestMain extends FlTest{
 	@Test
 	public void testAcldc() throws Exception  {		
 		
-		TestUtils.corridaDeFormaLex(ROOT_RESOURCES + "ACLDC.txt", false, true);
+		TestUtils.corridaDeFormaLex(ROOT_RESOURCES + "ACLDC.txt", true, true);
 	}
 	
 	@Test
@@ -40,37 +40,37 @@ public class TestMain extends FlTest{
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas5() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas5.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas5.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas15() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas15.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas15.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas25() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas25.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas25.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas28() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas28.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas28.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas60() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas60.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas60.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas40() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas40.txt", true, true);
+		//TODO ver si desapareció en el quilombo de git
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas40.txt", true, false);
 	}
 	
 	@Test
