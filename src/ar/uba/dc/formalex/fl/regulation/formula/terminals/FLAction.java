@@ -7,7 +7,7 @@ public class FLAction extends FLTerminal {
 	//Sirve para saber de qué forma se referencia a la acción en una formula
 	//Por ahora este es el default
 	ActionReferencedState referencedState = ActionReferencedState.JUST_HAPPENED;
-	
+	//ActionReferencedState referencedState = ActionReferencedState.IS_HAPPENING;
 	public FLAction(String variable, String actionName) {
 		super(variable, actionName);
 	}

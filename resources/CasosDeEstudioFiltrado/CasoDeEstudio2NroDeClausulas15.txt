@@ -110,18 +110,18 @@ action ReclamarPorServicioPublico only performable by consumidor_servicio_public
 action Treinta_dias_postInterrupcion
 
 
-action PrestarServicio only performable by Proveedor output values {FueraDelEstablecimiento}
+action PrestarServicio only performable by Proveedor output values {FueraDelEstablecimiento, ningunoDeLosAnteriores}
 actions VentaDomiciliaria, VentaPorCorrespondenciayOtros only performable by Proveedor
 action ConvocaralConsumidor only performable by Proveedor output values {objetivoDistintoaContratacion, premiouibsequio}
 
 actions VentaPorCorrespondenciayOtras, PublicarNumeroPostalComoDomicilio  only performable by Proveedor
-action RevocarAceptacion only performable by Consumidor output values {SinResponsabilidad}
+action RevocarAceptacion only performable by Consumidor output values {SinResponsabilidad, ningunoDeLosAnteriores}
 action EntregaDelBien only performable by Proveedor
 action CelebracionDelContrato only performable by Proveedor, Consumidor output values {porCredito, porFinancion, noEfectiva}
 impersonal action TerminaPeriodo
 
 local interval PeriodoRevocacionAceptacion defined by actions EntregaDelBien, CelebracionDelContrato - TerminaPeriodo
-action GenerarCargoAutomatico only performable by Proveedor output values {SinConsentimientodelConsumidor}
+action GenerarCargoAutomatico only performable by Proveedor output values {SinConsentimientodelConsumidor, ningunoDeLosAnteriores}
 action PoneraDisposicionBien only performable by Consumidor
 action AbonarGastosDevolucion only performable by Proveedor
 
@@ -135,13 +135,13 @@ action ExigirCumplimientoGarantia only performable by Consumidor output values {
 
 action CumplirGarantia only performable by Proveedor output values {Productor, Importador, Distribuidor, Vendedor}
 
-action RedactarDocGarantia only performable by Proveedor output values {EnIdiomaNacionalComprensibleCompleto }
+action RedactarDocGarantia only performable by Proveedor output values {EnIdiomaNacionalComprensibleCompleto, ningunoDeLosAnteriores}
 
 action NotificarEntradaVigenciaGarantia only performable by Vendedor
 
 action RepararBajoGarantia only performable by Proveedor output values {Insatisfactorio, Satisfactorio}
 
-action EntregarConstanciaReparacion only performable by Proveedor output values {completo}
+action EntregarConstanciaReparacion only performable by Proveedor output values {completo, ningunoDeLosAnteriores}
 
 actions SustitucionProducto ,  DevolucionDinero,  QuitaPrecio only performable by Proveedor
 
@@ -154,7 +154,7 @@ action OfrecerPruebas only performable by Infractor output values {AcreeditarPer
 
 action Sancionar only performable by Autoridad_Aplicacion_Nacional output values {apercibimiento, multa, decomiso, clausura, suspension, perdida_privilegios}
 
-action InformarCondicionesOperacionesVentaCredito only performable by Proveedor output values {TasaInteresEfectivaAnual}
+action InformarCondicionesOperacionesVentaCredito only performable by Proveedor output values {TasaInteresEfectivaAnual, ningunoDeLosAnteriores}
 actions DemandarNulidadContrato only performable by Consumidor
 actions EquipararTasaEfectivaAnualaTasaBCRA only performable by Proveedor
 action OtorgarCreditoFinanciacion only performable by EntidadFinanciera output values {efectiva, noefectiva}
@@ -182,6 +182,7 @@ decreases with action paso_un_dia by 1
 
 // saque la condicion, dias_producir_prueba = 0 (DUDA, se puede poner una condición ??)
 local interval TiempoEnvioConstancia defined by actions Rescindir - TerminarPeriodoEnvioRescindir
+
 
 
 

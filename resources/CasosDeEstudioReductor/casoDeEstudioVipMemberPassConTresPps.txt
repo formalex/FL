@@ -1,0 +1,46 @@
+#Background
+
+roles ciudadano {cliente {socioTitular {premium, select disjoint cover}, relacionadoASocio {relacionadoASocioPremium {menor,mayor disjoint cover}, relacionadoASocioSelect {menor,mayor disjoint cover} disjoint cover} disjoint cover}, noCliente disjoint cover}
+
+impersonal action pasaUnAnio
+impersonal action nuevoSocioRecomendadoPremium
+impersonal action nuevoSocioRecomendadoSelect
+actions activaPase,primerUsoTarjeta only performable by socioTitular
+
+local interval tarjetaVigente defined by actions activaPase - pasaUnAnio
+
+actions ingresarASala, ingresarASalaDallas, ingresarASalaSorrento
+action abonarTarifaCompleta only performable by relacionadoASocioPremium
+action abonarTarifaAl75 only performable by relacionadoASocioSelect
+action abonarTarifaAl50 only performable by menor
+ 
+local counter pasesRestantes init value 5
+min value 0
+decreases with action ingresarASala by 1,
+decreases with action ingresarASalaDallas by 1,
+reaching min impedes actions
+resets with action pasaUnAnio
+
+local counter puntosMembresia init value 0
+min value 0 max value 20
+increases with action nuevoSocioRecomendadoPremium by 2,
+increases with action nuevoSocioRecomendadoSelect by 5,
+increases with action ingresarASala by 1,
+resets with action pasaUnAnio
+
+#Clauses
+FORALL(i:cliente; PP(i.ingresarASala))
+tag: prohibidoIngresoSalaDallas FORALL(i:ciudadano; F(isHappening(i.ingresarASalaDallas)))
+FORALL(i:select; PP(i.ingresarASalaDallas)) is exception of prohibidoIngresoSalaDallas
+tag: prohibidoIngresoSalaSorrento FORALL(i:ciudadano; F(isHappening(i.ingresarASalaSorrento)))
+FORALL(i:select; PP(i.ingresarASalaSorrento)) is exception of prohibidoIngresoSalaSorrento
+
+FORALL(i:noCliente; F(isHappening(i.ingresarASala)))
+
+//DUDA. Para mí las dos pueden ir con isHappening
+FORALL(i:relacionadoASocioPremium; O((i.belongsTo:mayor & i.ingresarASala) -> i.abonarTarifaCompleta)) 
+FORALL(i:relacionadoASocioSelect; O((i.belongsTo:mayor & i.ingresarASala) -> i.abonarTarifaAl75))
+FORALL(i:relacionadoASocio; O((i.belongsTo:menor & i.ingresarASala) -> i.abonarTarifaAl50))
+
+FORALL(i:socioTitular; F(i.pasesRestantes = 0 & isHappening(i.ingresarASala)))
+FORALL(i:socioTitular; F(i.puntosMembresia > 20))

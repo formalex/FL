@@ -40,8 +40,8 @@ action RecibirReclamo only performable by proveedor_servicios_publicosd
 //Esta definida mas arriba y tiene synchro. asi que mejor comento esta
 //action Reclamar synchronizes with RecibirReclamo only performable by {consumidor_servicio_publicod}
 actions Entregar_Constancia_Reclamos, Mantener_Registro_Reclamos, InformarCondicionesdeSeguridad  only performable by proveedor_servicios_publicosd
-action AtenderReclamo only performable by proveedor_servicios_publicosd output values {enplazoperentorio}
-action Prestar_Servicio_Publico_D only performable by proveedor_servicio_publicod output values {conInstalacionEspecifica}
+action AtenderReclamo only performable by proveedor_servicios_publicosd output values {enplazoperentorio, ningunoDeLosAnteriores}
+action Prestar_Servicio_Publico_D only performable by proveedor_servicio_publicod output values {conInstalacionEspecifica, ningunoDeLosAnteriores}
 action Verificar_Buen_funcionamiento_Instrumento_Medicion only performable by autoridad_competente
 action EmitirLecturasDudosas only performable by instrumento_medicion_autorizado
 action Control_Individual_Consumo only performable by  consumidor_servicio_publicod
@@ -55,9 +55,9 @@ action DemostracionNoImputable only performable by proveedor_servicio_publicod o
 action InterrupcionPrestacionServicioPublicoCulpaP only performable by proveedor_servicio_publicod
 actions ReintegrarImporteServicioNoPrestado, DeduccionImporteServicioNoPrestado  only performable by  proveedor_servicio_publicod 
 action PoseerDeuda only performable by consumidor_servicio_publicod
-action FacturacionDeudasServicio only performable by proveedor_servicio_publicod output values {FechaVto} 
+action FacturacionDeudasServicio only performable by proveedor_servicio_publicod output values {FechaVto, ningunoDeLosAnteriores} 
 impersonal action CambiarPrestatario
-action NotificarDeuda only performable by  proveedor_servicio_publicod output values {en120Dias}
+action NotificarDeuda only performable by  proveedor_servicio_publicod output values {en120Dias, ningunoDeLosAnteriores} 
 action CondonarDeuda only performable by proveedor_servicio_publicod 
 
 // Agregué DentroDelEstablecimiento xq si NO rompe al buscar un contraejemplo
@@ -97,7 +97,7 @@ local interval periodo_realizar_descargo defined by actions LabrarActa - Realiza
 
 actions Realizar_Inspeccion, IntimaARealizarDescargo only performable by Autoridad_Aplicacion_Nacional
 action Requerir_Verificacion_Tecnica only performable by Autoridad_Aplicacion_Nacional output values {ResultadoPositivo, ResultadoNegativo}
-action Desvirtuar_Constancia_Acta only performable by Infractor output values {OfrecerPruebasOv}
+action Desvirtuar_Constancia_Acta only performable by Infractor output values {OfrecerPruebasOv, ningunoDeLosAnteriores} 
 action Admitir_Pruebas only performable by Autoridad_Aplicacion_Nacional
 impersonal action Existencia_Hecho_Controvertido
 action Denegar_Medidas_Prueba only performable by Autoridad_Aplicacion_Nacional
@@ -129,25 +129,25 @@ action Desarrollar_Actividad only performable by Infractor output values {unajur
 action asignarCincuentaPorciento_fondo_Educacion_Consumidor only performable by Autoridad_Aplicacion
 action Administrar_Fondo_Educacion_Consumidor only performable by Autoridad_Aplicacion_Nacional
 action RedactarClausulas only performable by Proveedor output values {desnaturaliza_obligaciones, limita_responsabilidad, importa_renuncia, restringe_derecho_consumidor, amplia_derechos_proveedor, invierta_carga_de_prueba, en_contrato_adhesion}
-action interpretar_contrato only performable by autoridad_competente output values {pro_consumidor}
+action interpretar_contrato only performable by autoridad_competente output values {pro_consumidor, ningunoDeLosAnteriores} 
 action violar_buena_fe only performable by Proveedor
 action violar_legislacion_aplicable only performable by Proveedor
 action demandar_nulidad only performable by Consumidor output values {total, parcial}
 action declarar_nulidad_parcial only performable by autoridad_competente
 action integrar_contrato only performable by autoridad_competente
 action vigilar_contrato_adhesion only performable by autoridad_competente
-action RedactarContratoAdhesion  only performable by autoridad_competente output values {requiereAprobacionAutoridad}
+action RedactarContratoAdhesion  only performable by autoridad_competente output values {requiereAprobacionAutoridad, ningunoDeLosAnteriores} 
 action modificarContratoAdhesion only performable by Autoridad_Aplicacion_Nacional, Autoridad_Aplicacion_Provincial, autoridad_competente
 action ResponderSolidariamentePorDanios only performable by Proveedor output values{Productor, Fabricante, Importador, Distribuidor, Proveedor, Vendedor, Titulardelamarca}
 action ResponderPorDaniosdeTransporte only performable by Transportista
-action DaniaralaCosaporTransporte only performable by Transportista  Output Values {ConMotivoEnOcasionDelServicio}
+action DaniaralaCosaporTransporte only performable by Transportista  Output Values {ConMotivoEnOcasionDelServicio, ningunoDeLosAnteriores} 
 action DaniaralConsumidor only performable by Proveedor  Output Values {PorVicioByS, PorRiesgoByS, EnPerjuiciooMenoscabo, PorAccion, PorOmision, conApreciacionPecuniaria,Inmediato, SobreSusBienesoPersona}
 
 action DanioDirecto only performable by Proveedor
 action DeterminarDanioDirecto only performable by autoridad_competente
 action ObligarResarcimiento only performable by autoridad_competente
 action ApelarActoAdministrativo only performable by Proveedor
-action PagarSumaDanioDirecto only performable by Proveedor output values { deducibledeOtrasIndemnizaciones}
+action PagarSumaDanioDirecto only performable by Proveedor output values { deducibledeOtrasIndemnizaciones, ningunoDeLosAnteriores} 
 action DelegarFacultad only performable by Autoridad_Aplicacion_Nacional, Autoridad_Aplicacion_Provincial output values {c,d,f}
 actions ProponerDictadoReglamentacion only performable by Autoridad_Aplicacion_Nacional
 actions ElaborarPoliticas only performable by Autoridad_Aplicacion_Nacional

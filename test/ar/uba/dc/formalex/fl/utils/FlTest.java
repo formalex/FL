@@ -37,7 +37,7 @@ public class FlTest {
 	@BeforeClass
 	public static void setUp(){
 
-		SistemaOperativo soEnElQueCorre = SistemaOperativo.WINDOWS;
+		SistemaOperativo soEnElQueCorre = SistemaOperativo.LINUX;
 		
 		switch (soEnElQueCorre) {
 		case LINUX:

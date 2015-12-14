@@ -34,7 +34,7 @@ public class TestMain extends FlTest{
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas1() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas1.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas1.txt", true, false);
 	}
 	
 	@Test
@@ -76,60 +76,60 @@ public class TestMain extends FlTest{
 	@Test
 	public void testCasoDeEstudio2NroDeClausulas1() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas1.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas1.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio2NroDeClausulas5() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas5.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas5.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio2NroDeClausulas15() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas15.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas15.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio2NroDeClausulas25() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas25.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas25.txt", true, false);
 	}
 		
 	@Test
 	public void testCasoDeEstudio2NroDeClausulas28() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas28.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas28.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas1() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas1.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas1.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas5() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas5.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas5.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas15() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas15.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas15.txt", true, false);
 	}
 	
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas25() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas25.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas25.txt", true, false);
 	}
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas32() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas32.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas32.txt", true, false);
 	}
 	
 	
