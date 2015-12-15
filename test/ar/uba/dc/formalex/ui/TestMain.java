@@ -9,9 +9,6 @@ import ar.uba.dc.formalex.fl.utils.TestUtils;
 public class TestMain extends FlTest{
 
 	private static String ROOT_RESOURCES = "resources/";
-	private static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
-		
-
 	
 	@Test
 	public void testAcldc() throws Exception  {		
@@ -31,120 +28,7 @@ public class TestMain extends FlTest{
 		TestUtils.corridaDeFormaLex(ROOT_EJS_FILTROS + "AcldcFullSinFormulasConAccionesConOutputValues.txt", false, true);
 	}
 	
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas1() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas1.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas5() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas5.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas15() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas15.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas25() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas25.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas28() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas28.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas60() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas60.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas40() throws Exception  {
-		//TODO ver si desapareció en el quilombo de git
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas40.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio2NroDeClausulas1() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas1.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio2NroDeClausulas5() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas5.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio2NroDeClausulas15() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas15.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio2NroDeClausulas25() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas25.txt", true, false);
-	}
-		
-	@Test
-	public void testCasoDeEstudio2NroDeClausulas28() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas28.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio3NroDeClausulas1() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas1.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio3NroDeClausulas5() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas5.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio3NroDeClausulas15() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas15.txt", true, false);
-	}
-	
-	@Test
-	public void testCasoDeEstudio3NroDeClausulas25() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas25.txt", true, false);
-	}
-	@Test
-	public void testCasoDeEstudio3NroDeClausulas32() throws Exception  {
-		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas32.txt", true, false);
-	}
-	
-	
-	@Test
-	public void testCasoDeEstudioVipMemberPass() throws Exception  {
-		//Este ejemplo tiene un PP con excepcion
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPass.txt", true, true);
-	}
-	
-	@Test
-	public void testCasoDeEstudioVipMemberPassFull() throws Exception  {
-		//Este ejemplo tiene dos PP con excepcion
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPassFull.txt", true, true);
-	}
-	
 	@Test
 	public void testRompeNusmvPorqueFormulaMayorTo65Kb() throws Exception  {
 		

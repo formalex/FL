@@ -56,6 +56,9 @@ public class FlTest {
 		System.setProperty("TEMPLATE_VELOCITY", "fl.vm");
 	}
 
+	//Las pruebas hay que correrlas siempre con el model checker
+	public static final boolean CON_MODEL_CHECKER = true;
+
 	
 
 }
