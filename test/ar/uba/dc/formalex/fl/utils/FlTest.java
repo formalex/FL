@@ -15,6 +15,9 @@ public class FlTest {
 	protected static String ROOT_EJS_PARA_EL_REDUCTOR = FlTest.ROOT_RESOURCES + "EjemplosParaElReductor/";
 	//protected static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
 	
+	//Las pruebas hay que correrlas siempre con el model checker
+	public static final boolean CON_MODEL_CHECKER = false;
+	
 
 	public enum SistemaOperativo {
 		LINUX,
@@ -55,9 +58,6 @@ public class FlTest {
 		
 		System.setProperty("TEMPLATE_VELOCITY", "fl.vm");
 	}
-
-	//Las pruebas hay que correrlas siempre con el model checker
-	public static final boolean CON_MODEL_CHECKER = true;
 
 	
 

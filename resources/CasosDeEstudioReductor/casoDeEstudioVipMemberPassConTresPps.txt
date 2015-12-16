@@ -29,18 +29,18 @@ increases with action ingresarASala by 1,
 resets with action pasaUnAnio
 
 #Clauses
-FORALL(i:cliente; PP(i.ingresarASala))
+FORALL(i:cliente; PP(isHappening(i.ingresarASala)))
 tag: prohibidoIngresoSalaDallas FORALL(i:ciudadano; F(isHappening(i.ingresarASalaDallas)))
-FORALL(i:select; PP(i.ingresarASalaDallas)) is exception of prohibidoIngresoSalaDallas
+FORALL(i:select; PP(isHappening(i.ingresarASalaDallas))) is exception of prohibidoIngresoSalaDallas
 tag: prohibidoIngresoSalaSorrento FORALL(i:ciudadano; F(isHappening(i.ingresarASalaSorrento)))
-FORALL(i:select; PP(i.ingresarASalaSorrento)) is exception of prohibidoIngresoSalaSorrento
+FORALL(i:select; PP(isHappening(i.ingresarASalaSorrento))) is exception of prohibidoIngresoSalaSorrento
 
 FORALL(i:noCliente; F(isHappening(i.ingresarASala)))
 
-//DUDA. Para mí las dos pueden ir con isHappening
-FORALL(i:relacionadoASocioPremium; O((i.belongsTo:mayor & i.ingresarASala) -> i.abonarTarifaCompleta)) 
-FORALL(i:relacionadoASocioSelect; O((i.belongsTo:mayor & i.ingresarASala) -> i.abonarTarifaAl75))
-FORALL(i:relacionadoASocio; O((i.belongsTo:menor & i.ingresarASala) -> i.abonarTarifaAl50))
+
+FORALL(i:relacionadoASocioPremium; O((i.belongsTo:mayor & isHappening(i.ingresarASala)) -> isHappening(i.abonarTarifaCompleta))) 
+FORALL(i:relacionadoASocioSelect; O((i.belongsTo:mayor & isHappening(i.ingresarASala)) -> isHappening(i.abonarTarifaAl75)))
+FORALL(i:relacionadoASocio; O((i.belongsTo:menor & isHappening(i.ingresarASala)) -> isHappening(i.abonarTarifaAl50)))
 
 FORALL(i:socioTitular; F(i.pasesRestantes = 0 & isHappening(i.ingresarASala)))
 FORALL(i:socioTitular; F(i.puntosMembresia > 20))

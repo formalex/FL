@@ -15,5 +15,11 @@ public class CasosDeEstudioReductorTest extends FlTest {
 	public void casoDeEstudioVipMemberPassConTresPps() throws Exception {
 		TestUtils.corridaDeFormaLex(ROOT_CDE_REDUCTOR + "casoDeEstudioVipMemberPassConTresPps.txt", CON_MODEL_CHECKER, true);
 	}
+	
+	@Test
+	public void testCasoDeEstudio1NroDeClausulas25WithIsHappening() throws Exception  {
+		
+		TestUtils.corridaDeFormaLex(ROOT_CDE_REDUCTOR + "CasoDeEstudio1NroDeClausulas25WithIsHappening.txt", CON_MODEL_CHECKER, true);
+	}
 
 }
