@@ -41,6 +41,9 @@ import ar.uba.dc.formalex.util.LaAplanadora;
 
 public class TestUtils {
 	
+	//Es el valor default para unificar los output values que NO se usan 
+	private static final String OV_NONE_OF_THE_OTHERS = "noneOfTheOthers";
+
 	private static final String CORRIENDO_SIN_MODEL_CHECKER = "Corriendo sin Model Checker";
 	
 	private static final Logger logger = Logger.getLogger(Main.class);
@@ -336,7 +339,7 @@ public class TestUtils {
 					//Si hay mas outputs definidos que referencias a estos en la formula
 					if(anAction.getOutputValues().size()>outputsEnLaformula.size()){
 						//Hay que crear un output ficticio por todas los outputs que NO se referencian en las formulas
-						outputsEnLaformula.add("ningunoDeLosOtrosValores");
+						outputsEnLaformula.add(OV_NONE_OF_THE_OTHERS);
 					}
 				}
 				anAction.setOutputValues(outputsEnLaformula);
