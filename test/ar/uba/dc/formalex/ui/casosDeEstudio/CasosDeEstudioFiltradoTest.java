@@ -35,13 +35,7 @@ public class CasosDeEstudioFiltradoTest extends FlTest {
 		
 		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas25.txt", FlTest.CON_MODEL_CHECKER, CON_REDUCTOR);
 	}
-	
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas28() throws Exception  {
 		
-		TestUtils.corridaDeFormaLex(ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas28.txt", FlTest.CON_MODEL_CHECKER, CON_REDUCTOR);
-	}
-	
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas60() throws Exception  {
 		

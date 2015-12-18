@@ -236,7 +236,7 @@ local interval periodo_producir_prueba defined by actions Admitir_Pruebas - Prod
 FORALL(i:Proveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
 
 //Art. 20 
-FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento))
+FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento results in ConMaterialesNuevosoAdecuados))
 //Art. 21
 FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.ExtenderPresupuesto))
 //Art. 22
@@ -246,36 +246,36 @@ FORALL(i:Proveedor; O(i.ContratoPrestacionServicios ->i.EntregarGarantiaPorEscri
 
 //CAPITULO VI - USUARIOS DE SERVICIOS PUBLICOS DOMICILIARIOS
 //Art.25
-FORALL(i; O(i.TenerTerminosyCondiciones))
-FORALL(i; O(i.IncluirLeyenda) & O(i.FacturacionServicio -> i.IncluirLeyenda))
-FORALL(i; O(AplicarLegislacion))
-FORALL(i; O(AplicarLegislacionmasFavorablealConsumidor))
+FORALL(i; O(i.TenerTerminosyCondiciones results in entregarporescrito & i.TenerTerminosyCondiciones results in mantenerenOficinaAtencionAlPublico))
+FORALL(i; O(i.IncluirLeyenda results in enOficinaAtencion) & O(i.FacturacionServicio -> i.IncluirLeyenda results in enFactura))
+FORALL(i; O(AplicarLegislacion results in Propia | AplicarLegislacion results in DefensaConsumidor ))
+FORALL(i; O(AplicarLegislacionmasFavorablealConsumidor results in Propia | AplicarLegislacionmasFavorablealConsumidor results in DefensaConsumidor ))
 
 //Art.26
 FORALL(i; O(i.brindar_reciprocidad_trato))
 
 //Art.27
 FORALL(i; O(i.RecibirReclamo -> i.Entregar_Constancia_Reclamos  & i.Mantener_Registro_Reclamos))
-FORALL(i:consumidor_servicio_publicod; O(i.Reclamar ->EXISTS(j:proveedor_servicio_publicod; j.AtenderReclamo)))
+FORALL(i:consumidor_servicio_publicod; O(i.Reclamar ->EXISTS(j:proveedor_servicio_publicod; j.AtenderReclamo results in enplazoperentorio)))
 FORALL(i:consumidor_servicio_publicod; O(i.Reclamar -> EXISTS(j:proveedor_servicio_publicod; j.Entregar_Constancia_Reclamos & j.Mantener_Registro_Reclamos)))
 
 //Art.29
-FORALL(i; O(i.FacturacionServicio ->i.EntregarFacturaServicio))
+FORALL(i; O(i.FacturacionServicio -> i.EntregarFacturaServicio results in diezdiasantesFVto))
 
 //Art.30
 FORALL(i; O((!i.DeduccionImporteServicioNoPrestado & i.InterrupcionPrestacionServicioCulpaP) -> i.ReintegrarImporteServicioNoPrestado))
 
 //Art.30 bis
-FORALL(i:consumidor_servicio_publicod; F(i.PoseerDeuda & EXISTS(j:proveedor_servicio_publicod; j.FacturacionServicio | j.FacturacionServicio)))
-FORALL(j:proveedor_servicio_publicod; O(CambiarPrestatario ->j.NotificarDeuda))
-FORALL(j:proveedor_servicio_publicod; O(!j.NotificarDeuda -> j.CondonarDeuda))
+FORALL(i:consumidor_servicio_publicod; F(i.PoseerDeuda & EXISTS(j:proveedor_servicio_publicod; j.FacturacionServicio results in AvisoLibreDeuda | j.FacturacionServicio results in SinAviso)))
+FORALL(j:proveedor_servicio_publicod; O(CambiarPrestatario -> j.NotificarDeuda results in en120Dias))
+FORALL(j:proveedor_servicio_publicod; O(!j.NotificarDeuda results in en120Dias -> j.CondonarDeuda))
 
 //CAPITULO IX - DE LOS TERMINOS ABUSIVOS Y CLAUSULAS INEFICACES
 //ART 37 al 39
-FORALL(i:Proveedor; F(i.RedactarClausulas))
-FORALL(i:autoridad_competente; O(i.interpretar_contrato -> i.interpretar_contrato))
+FORALL(i:Proveedor; F(i.RedactarClausulas results in desnaturaliza_obligaciones | i.RedactarClausulas results in limita_responsabilidad | i.RedactarClausulas results in importa_renuncia | i.RedactarClausulas results in restringe_derecho_consumidor | i.RedactarClausulas results in amplia_derechos_proveedor | i.RedactarClausulas results in invierta_carga_de_prueba ))
+FORALL(i:autoridad_competente; O(i.interpretar_contrato -> i.interpretar_contrato results in pro_consumidor))
 FORALL(i:autoridad_competente; O(i.RedactarClausulas results in en_contrato_adhesion -> i.vigilar_contrato_adhesion ))
-FORALL(i:autoridad_competente; O(i.RedactarContratoAdhesion -> i.modificarContratoAdhesion ))
+FORALL(i:autoridad_competente; O(i.RedactarContratoAdhesion results in requiereAprobacionAutoridad  -> i.modificarContratoAdhesion ))
 
 //CAPITULO X - RESPONSABILIDAD POR DAÑOS
 //CAPITULO XI - AUTORIDAD DE APLICACION

@@ -378,10 +378,10 @@ FORALL(i:Proveedor; O(i.OfrecerServicios -> i.OfrecerRescindir))
 FORALL(i:Consumidor; O(i.EjecutarGarantia &  i.TrasladarCosaTallerFabrica  -> EXISTS(j:Proveedor; j.PagarGastosTraslado) ))
 
 //ARTICULO 12.
-FORALL(i: Proveedor; O(i.ServicioTecnico &  i.SuministrarRepuestos))
+FORALL(i: Proveedor; O(i.ServicioTecnico results in adecuado &  i.SuministrarRepuestos))
 FORALL(i: Proveedor; O(i.ServicioTecnico | i.SuministrarRepuestos))
 //ARTICULO 13. 
-FORALL(i:Proveedor;  O(i.EjecutarGarantia -> i.CumplirGarantia))
+FORALL(i:Proveedor;  O(i.EjecutarGarantia -> i.CumplirGarantia results in Productor | i.CumplirGarantia results in Importador | i.CumplirGarantia results in Distribuidor | i.CumplirGarantia results in Vendedor  ))
 
 //ARTICULO 14. 
 FORALL(i:Proveedor;  O(i.Vender -> i.RedactarDocGarantia))
@@ -389,14 +389,14 @@ FORALL(i:Consumidor; O(i.Comprar -> EXISTS(j:Vendedor; j.NotificarEntradaVigenci
 FORALL(i:Proveedor; O(i.RepararBajoGarantia -> i.EntregarConstanciaReparacion))
 //ARTICULO 16. 
 //ARTICULO 17.
-FORALL(i:Proveedor; O(i.RepararBajoGarantia  -> i.SustitucionProducto  | i.DevolucionDinero | i.QuitaPrecio))
+FORALL(i:Proveedor; O(i.RepararBajoGarantia results in Insatisfactorio -> i.SustitucionProducto  | i.DevolucionDinero | i.QuitaPrecio))
 
 //CAPITULO V - DE LA PRESTACION DE LOS SERVICIOS
 //Art. 19 .
 FORALL(i:Proveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
 
 //Art. 20 
-FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento))
+FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento results in ConMaterialesNuevosoAdecuados))
 //Art. 21
 FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.ExtenderPresupuesto))
 //Art. 22

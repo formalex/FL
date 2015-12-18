@@ -22,4 +22,15 @@ public class CasosDeEstudioReductorTest extends FlTest {
 		TestUtils.corridaDeFormaLex(ROOT_CDE_REDUCTOR + "CasoDeEstudio1NroDeClausulas25WithIsHappening.txt", CON_MODEL_CHECKER, true);
 	}
 
+	@Test
+	public void testCasoDeEstudio2NroDeClausulas25WithIsHappening() throws Exception  {
+		
+		TestUtils.corridaDeFormaLex(ROOT_CDE_REDUCTOR + "CasoDeEstudio2NroDeClausulas25WithIsHappening.txt", CON_MODEL_CHECKER, true);
+	}
+	
+	@Test
+	public void testCasoDeEstudio3NroDeClausulas25WithIsHappening() throws Exception  {
+		
+		TestUtils.corridaDeFormaLex(ROOT_CDE_REDUCTOR + "CasoDeEstudio3NroDeClausulas25WithIsHappening.txt", CON_MODEL_CHECKER, true);
+	}
 }

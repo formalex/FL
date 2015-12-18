@@ -188,52 +188,58 @@ local interval TiempoEnvioConstancia defined by actions Rescindir - TerminarPeri
 #Clauses
 
 //CAPITULO I - Disposiciones generales
-FORALL(i:Consumidor; O(i.Consumir -> i.AdquirirByS | i.UtilizarByS |i.MantenerRelacionConsumo))
-FORALL(i:Proveedor; O(i.RespetarLeyDefensaConsumidor))
-FORALL(i:ProfesionalMatriculado; F(i.PublicitarServicioProfesional & !i.RespetarLeyDefensaConsumidor))
+FORALL(i:Consumidor; O(isHappening(i.Consumir) -> isHappening(i.AdquirirByS) | isHappening(i.UtilizarByS) |isHappening(i.MantenerRelacionConsumo)))
+FORALL(i:Proveedor; O(isHappening(i.RespetarLeyDefensaConsumidor)))
+FORALL(i:ProfesionalMatriculado; F(isHappening(i.PublicitarServicioProfesional) & !isHappening(i.RespetarLeyDefensaConsumidor)))
 
 //CAPITULO II - INFORMACION AL CONSUMIDOR Y PROTECCION DE SU SALUD
-FORALL(i:Consumidor; O(i.SolicitarInformacion -> EXISTS(j:Proveedor; j.SuministrarInformacion)))
-FORALL(i; O(i.ProveerBySRiesgoso -> i.EntregarManual))
-FORALL(i;  F(i.ProveerBySRiesgoso & !i.SuministrarInformacion))
+FORALL(i:Consumidor; O(isHappening(i.SolicitarInformacion) -> EXISTS(j:Proveedor; isHappening(j.SuministrarInformacion))))
+FORALL(i; O(isHappening(i.ProveerBySRiesgoso) -> isHappening(i.EntregarManual)))
+FORALL(i;  F(isHappening(i.ProveerBySRiesgoso) & !isHappening(i.SuministrarInformacion)))
 
 //CAPITULO III - CONDICIONES DE LA OFERTA Y VENTA
-FORALL(i:Proveedor; O(INSIDE(i.PeriodoOferta)->i.EspecificarCondicionesOferta))
-FORALL(i; F( INSIDE(i.PeriodoOferta) & i.RevocarOferta & !i.DifundirRevocacion ))
-FORALL(i; O(i.Ofertar -> ComenzarOferta))
-FORALL(i; F(reclamoExtrajudicial & aparienciaDeReclamoJudicial) repaired by (SancionesVarias))
-FORALL(i:Proveedor; F(i.ofrecerPublicamenteCosasDeficientes))
-FORALL(i:Proveedor; O(i.Vender -> (i.RedactarDocVenta)))
-FORALL(i:Proveedor; O(i.OfrecerServicios -> i.OfrecerRescindir))
+FORALL(i:Proveedor; O(INSIDE(i.PeriodoOferta)->isHappening(i.EspecificarCondicionesOferta)))
+FORALL(i; F( INSIDE(i.PeriodoOferta) & isHappening(i.RevocarOferta) & !isHappening(i.DifundirRevocacion) ))
+FORALL(i; O(isHappening(i.Ofertar) -> isHappening(ComenzarOferta)))
+FORALL(i; F(isHappening(reclamoExtrajudicial) & isHappening(aparienciaDeReclamoJudicial)) repaired by (isHappening(SancionesVarias)))
+FORALL(i:Proveedor; F(isHappening(i.ofrecerPublicamenteCosasDeficientes)))
+FORALL(i:Proveedor; O(justHappened(i.Vender) -> isHappening(i.RedactarDocVenta)))//DUDAJH
+FORALL(i:Proveedor; O(isHappening(i.OfrecerServicios) -> isHappening(i.OfrecerRescindir)))
 
 //CAPITULO IV - COSAS MUEBLES NO CONSUMIBLES
-FORALL(i:Consumidor; O(i.EjecutarGarantia &  i.TrasladarCosaTallerFabrica  -> EXISTS(j:Proveedor; j.PagarGastosTraslado) ))
+FORALL(i:Consumidor; O(isHappening(i.EjecutarGarantia) &  isHappening(i.TrasladarCosaTallerFabrica)  -> EXISTS(j:Proveedor; isHappening(j.PagarGastosTraslado)) ))
 
-//ARTICULO 12.
-FORALL(i: Proveedor; O(i.ServicioTecnico results in adecuado &  i.SuministrarRepuestos))
-FORALL(i: Proveedor; O(i.ServicioTecnico | i.SuministrarRepuestos))
+//ARTICULO 12. 
+//Servicio Técnico. Los fabricantes, importadores y vendedores de las cosas mencionadas en el artículo anterior, 
+//deben asegurar un servicio técnico adecuado y el suministro de partes y repuestos.
+FORALL(i: Proveedor; O(i.ServicioTecnico results in adecuado &  isHappening(i.SuministrarRepuestos)))
+FORALL(i: Proveedor; O(i.ServicioTecnico | isHappening(i.SuministrarRepuestos)))
 //ARTICULO 13. 
-FORALL(i:Proveedor;  O(i.EjecutarGarantia -> i.CumplirGarantia results in Productor | i.CumplirGarantia results in Importador | i.CumplirGarantia results in Distribuidor | i.CumplirGarantia results in Vendedor  ))
+FORALL(i:Proveedor;  O(isHappening(i.EjecutarGarantia) -> i.CumplirGarantia results in Productor | i.CumplirGarantia results in Importador | i.CumplirGarantia results in Distribuidor | i.CumplirGarantia results in Vendedor  ))
 
 //ARTICULO 14. 
-FORALL(i:Proveedor;  O(i.Vender -> i.RedactarDocGarantia))
-FORALL(i:Consumidor; O(i.Comprar -> EXISTS(j:Vendedor; j.NotificarEntradaVigenciaGarantia)))
-FORALL(i:Proveedor; O(i.RepararBajoGarantia -> i.EntregarConstanciaReparacion))
+FORALL(i:Proveedor;  O(justHappened(i.Vender) -> isHappening(i.RedactarDocGarantia))) //DUDAJH dependa de lo que diga Fer
+FORALL(i:Consumidor; O(justHappened(i.Comprar) -> EXISTS(j:Vendedor; isHappening(j.NotificarEntradaVigenciaGarantia))))
+
+//ARTICULO 15. Constancia de Reparacion. Cuando la cosa hubiese sido reparada bajo los terminos de una garantia legal, 
+//el garante estara obligado a entregar al consumidor una constancia de reparacion en donde se indique:
+FORALL(i:Proveedor; O(justHappened(i.RepararBajoGarantia) -> isHappening(i.EntregarConstanciaReparacion)))
 //ARTICULO 16. 
 //ARTICULO 17.
-FORALL(i:Proveedor; O(i.RepararBajoGarantia results in Insatisfactorio   -> i.SustitucionProducto  | i.DevolucionDinero | i.QuitaPrecio))
+FORALL(i:Proveedor; O(i.RepararBajoGarantia results in Insatisfactorio  -> isHappening(i.SustitucionProducto)  | isHappening(i.DevolucionDinero) | isHappening(i.QuitaPrecio)))
+
 
 //CAPITULO VII - DE LA VENTA DOMICILIARIA, POR CORRESPONDENCIA Y OTRAS
 
 //Art.32
-FORALL(i; O((i.Ofertar | i.PrestarServicio) -> i.VentaDomiciliaria))
-FORALL(i; O((i.ConvocaralConsumidor) -> i.VentaDomiciliaria))
+FORALL(i; O((isHappening(i.Ofertar) | isHappening(i.PrestarServicio)) -> isHappening(i.VentaDomiciliaria)))
+FORALL(i; O(isHappening(i.ConvocaralConsumidor) -> isHappening(i.VentaDomiciliaria)))
 //Art 33
-FORALL(j:Proveedor; F(j.PublicarNumeroPostalComoDomicilio))
+FORALL(j:Proveedor; F(isHappening(j.PublicarNumeroPostalComoDomicilio)))
 
 //CAPITULO VIII - DE LAS OPERACIONES DE VENTA DE CREDITO
 //ART 36
-FORALL(i:Proveedor; O(i.Vender -> i.InformarCondicionesOperacionesVentaCredito))
+FORALL(i:Proveedor; O(i.Vender -> i.InformarCondicionesOperacionesVentaCredito)) //DUDAJH. Parecería JH
 
 
 

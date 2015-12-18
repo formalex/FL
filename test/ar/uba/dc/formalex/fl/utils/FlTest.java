@@ -16,7 +16,7 @@ public class FlTest {
 	//protected static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
 	
 	//Las pruebas hay que correrlas siempre con el model checker
-	public static final boolean CON_MODEL_CHECKER = false;
+	public static final boolean CON_MODEL_CHECKER = true;
 	
 
 	public enum SistemaOperativo {
@@ -40,7 +40,7 @@ public class FlTest {
 	@BeforeClass
 	public static void setUp(){
 
-		SistemaOperativo soEnElQueCorre = SistemaOperativo.WINDOWS;
+		SistemaOperativo soEnElQueCorre = SistemaOperativo.LINUX;
 		
 		switch (soEnElQueCorre) {
 		case LINUX:

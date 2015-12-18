@@ -10,104 +10,21 @@ roles Consumidor_DanioDiferenciado, ProfesionalMatriculado, Oferente, Vendedor, 
 impersonal action paso_un_dia
 impersonal action paso_un_dia_reparandose
 impersonal action NuevoDiaHabil
-action PagarGastosTraslado only performable by Proveedor
 action InterrupcionPrestacionServicioCulpaP
 action Iniciar_Accion_Judicial_Individual only performable by Consumidor
 
 action Incumplir_Obligacion only performable by Proveedor
-action ComienzaOferta only performable by Proveedor output values {PorMediosConDatosOferente, PorMediosSinDatosOferente}
-
-action TerminaOferta only performable by Proveedor
-
-action Consumir only performable by Consumidor
-
-action AdquirirByS only performable by Consumidor
-
-action UtilizarByS only performable by Consumidor output values {Gratuitamente, 
-Onerosamente, Correctamente, Incorrectamente}
-
-action MantenerRelacionConsumo only performable by Consumidor
-
-action RespetarLeyDefensaConsumidor only performable by Proveedor, ProfesionalMatriculado
-
-action PublicitarServicioProfesional only performable by ProfesionalMatriculado
-
-action SolicitarInformacion only performable by Consumidor
-
-action SuministrarInformacion only performable by Proveedor output values {CiertaClaraDetalladaGratuita, NocumpleCiertaClaraDetalladaGratuita, EsRiesgosa}
-
-action ProveerByS only performable by Proveedor output values {Correctamente, Incorrectamente}
-
-impersonal action RiesgoalConsumidor
-
-action ProveerBySRiesgoso only performable by Proveedor
-
-action EntregarManual only performable by Proveedor output values {EnEspCInstdeUsoInstalyMant,SinEspCInstdeUsoInstalyMant}
-
 
 //--Tuve que agregar el output value NoPorMedios en las tres action siguientes xq un solo output value arroja error
 
-local interval PeriodoOferta defined by actions ComienzaOferta - TerminaOferta
 
-action EspecificarCondicionesOferta only occurs in scope PeriodoOferta only performable by Oferente output values {PorMedios,NoPorMedios}
-
-action RevocarOferta only occurs in scope PeriodoOferta only performable by Proveedor output values {PorMedios,NoPorMedios}
-
-action DifundirRevocacion only occurs in scope PeriodoOferta only performable by Oferente output values {PorMedios,NoPorMedios}
-
-action SolicitarOferta only performable by Consumidor
-
-action IncumplirContrato only performable by Proveedor output values {Justificada, Injustificada}
-
-action IncumplirOferta only performable by Proveedor output values {Justificada, Injustificada}
-
-
-action Vender only performable by Proveedor output values {Muebles, Inmuebles, Consumibles, NoConsumibles, Nuevos, Usados, FueraDelEstablecimiento, porCredito, porFinanciacion}
-//--Tuve que sacar: synchronizes with Vender xq tira error
-
-action Comprar only performable by Consumidor only occurs in scope PeriodoOferta 
-output values {BienesPerecederosalContado, PorMedios}
 
 action CumplirConCondicionesDeOferta only performable by Proveedor
 
-action CumplirConCondicionesDePub only performable by Proveedor
-
-action Ofertar only occurs in scope PeriodoOferta only performable by Proveedor output values {PorMedios, FueraDelEstablecimiento}
-
-impersonal action ComenzarOferta
-
-impersonal action reclamoExtrajudicial 
-
-impersonal action aparienciaDeReclamoJudicial
-
-impersonal action SancionesVarias
 //--Tuve que agregar el output value indicandoDefectos xq un solo output value arroja error
-
-action ofrecerPublicamenteCosasDeficientes only performable by Proveedor output values {sinIndicarQueSonDefectuosa,indicandoDefectos}
-
-action RedactarDocVenta only performable by Proveedor output values {IncluirDatosVenta, NoIncluirDatosVenta, IncluirInformacionRevocacionClarayNotoria}
-
-action ExigirCumplirObligacion only performable by Consumidor
-
-action AceptarEquivalente only performable by Consumidor
-
-action Rescindir only performable by Consumidor
-
-actions ExigirDaniosPerjuicios
-
-impersonal action CasoFortuito
 
 impersonal action FuerzaMayor
 
-action ContratarServicios only performable by Consumidor output values {Personalmente, Electronicamente}
-
-action OfrecerServicios only performable by Proveedor output values {Personalmente, Electronicamente}
-
-action OfrecerRescindir only performable by Proveedor output values {Personalmente, Electronicamente}
-
-impersonal action TerminarPeriodoEnvioRescindir
-
-action EnviarConstanciaRescicion only performable by Proveedor
 
 action TenerTerminosyCondiciones only performable by proveedor_servicios_publicosd output values {entregarporescrito, mantenerenOficinaAtencionAlPublico}
 action IncluirLeyenda only performable by proveedor_servicio_publicod output values {enFactura, enOficinaAtencion}
@@ -143,45 +60,14 @@ impersonal action CambiarPrestatario
 action NotificarDeuda only performable by  proveedor_servicio_publicod output values {en120Dias, ningunoDeLosAnteriores} 
 action CondonarDeuda only performable by proveedor_servicio_publicod 
 
-action PrestarServicio only performable by Proveedor output values {FueraDelEstablecimiento, ningunoDeLosAnteriores}
-actions VentaDomiciliaria, VentaPorCorrespondenciayOtros only performable by Proveedor
-action ConvocaralConsumidor only performable by Proveedor output values {objetivoDistintoaContratacion, premiouibsequio}
+// Agregué DentroDelEstablecimiento xq si NO rompe al buscar un contraejemplo
+// Si una accion se define con output values tiene que tener mas de 1
+action PrestarServicio only performable by Proveedor output values {FueraDelEstablecimiento, DentroDelEstablecimiento}
 
-actions VentaPorCorrespondenciayOtras, PublicarNumeroPostalComoDomicilio  only performable by Proveedor
-action RevocarAceptacion only performable by Consumidor output values {SinResponsabilidad, ningunoDeLosAnteriores}
-action EntregaDelBien only performable by Proveedor
-action CelebracionDelContrato only performable by Proveedor, Consumidor output values {porCredito, porFinancion, noEfectiva}
 impersonal action TerminaPeriodo
 
-local interval PeriodoRevocacionAceptacion defined by actions EntregaDelBien, CelebracionDelContrato - TerminaPeriodo
-action GenerarCargoAutomatico only performable by Proveedor output values {SinConsentimientodelConsumidor, ningunoDeLosAnteriores}
-action PoneraDisposicionBien only performable by Consumidor
-action AbonarGastosDevolucion only performable by Proveedor
-
-impersonal action ViciosdelaCosa
 impersonal action PactoEscritoAceptarMaterialUsado
 impersonal action ApareceUnaFalla
-action EjecutarGarantia  only performable by Consumidor, Proveedor
-action TrasladarCosaTallerFabrica only performable by Consumidor
-action ServicioTecnico output values {adecuado, inadecuado} only performable by Proveedor
-action SuministrarRepuestos only performable by Proveedor
-
-action ExigirCumplimientoGarantia only performable by Consumidor output values {Productor, Importador, Distribuidor, Vendedor}
-
-action CumplirGarantia only performable by Proveedor output values {Productor, Importador, Distribuidor, Vendedor}
-
-action RedactarDocGarantia only performable by Proveedor output values {EnIdiomaNacionalComprensibleCompleto, ningunoDeLosAnteriores}
-
-action NotificarEntradaVigenciaGarantia only performable by Vendedor
-
-action RepararBajoGarantia only performable by Proveedor output values {Insatisfactorio, Satisfactorio}
-
-action EntregarConstanciaReparacion only performable by Proveedor output values {completo, ningunoDeLosAnteriores}
-
-actions SustitucionProducto ,  DevolucionDinero,  QuitaPrecio only performable by Proveedor
-
-actions RespetarGarantiaPorViciosRedhibitorios only performable by Proveedor
-
 
 action PrestarServicioDeReparacionyMantenimiento only performable by Proveedor output values {ConMaterialesNuevosoAdecuados, ConMaterialesUsados, ConGastoAdicional, SePuedeInterrumpir}
 
@@ -204,7 +90,6 @@ action Cometer_Infraccion  only performable by Proveedor
 action Cese_Infraccion 
 
 action Cese_Actuaciones only performable by Proveedor
-action OfrecerPruebas only performable by Infractor output values {AcreeditarPersoneria, ConstituirDomicilio}
 action RealizarDescargo only performable by Infractor output values {AcreeditarPersoneria, ConstituirDomicilio}
 
 local interval periodo_realizar_descargo defined by actions LabrarActa - RealizarDescargo 
@@ -243,16 +128,9 @@ action Ordenar_Publicacion_Resolucion_Condenatoria only performable by Autoridad
 action Desarrollar_Actividad only performable by Infractor output values {unajurisdiccion,  variasjurisdicciones}
 action asignarCincuentaPorciento_fondo_Educacion_Consumidor only performable by Autoridad_Aplicacion
 action Administrar_Fondo_Educacion_Consumidor only performable by Autoridad_Aplicacion_Nacional
-action InformarCondicionesOperacionesVentaCredito only performable by Proveedor output values {TasaInteresEfectivaAnual, ningunoDeLosAnteriores}
-actions DemandarNulidadContrato only performable by Consumidor
-actions EquipararTasaEfectivaAnualaTasaBCRA only performable by Proveedor
-action OtorgarCreditoFinanciacion only performable by EntidadFinanciera output values {efectiva, noefectiva}
-actions ResolverSinCosto only performable by Proveedor
-actions AdoptarMedidas only performable by BCRA
 action RedactarClausulas only performable by Proveedor output values {desnaturaliza_obligaciones, limita_responsabilidad, importa_renuncia, restringe_derecho_consumidor, amplia_derechos_proveedor, invierta_carga_de_prueba, en_contrato_adhesion}
-action interpretar_contrato only performable by autoridad_competente output values {pro_consumidor, ningunoDeLosAnteriores}
+action interpretar_contrato only performable by autoridad_competente output values {pro_consumidor, ningunoDeLosAnteriores} 
 action violar_buena_fe only performable by Proveedor
-action violar_deber_informacion only performable by Proveedor
 action violar_legislacion_aplicable only performable by Proveedor
 action demandar_nulidad only performable by Consumidor output values {total, parcial}
 action declarar_nulidad_parcial only performable by autoridad_competente
@@ -348,74 +226,71 @@ sets with action Notificacion_Resolucion to value 10
 
 local interval periodo_producir_prueba defined by actions Admitir_Pruebas - Producir_Prueba
 // saque la condicion, dias_producir_prueba = 0 (DUDA, se puede poner una condición ??)
-local interval TiempoEnvioConstancia defined by actions Rescindir - TerminarPeriodoEnvioRescindir
 
 
 
 #Clauses
 
-
-//CAPITULO I - Disposiciones generales
-FORALL(i:Consumidor; O(i.Consumir -> i.AdquirirByS | i.UtilizarByS |i.MantenerRelacionConsumo))
-FORALL(i:Proveedor; O(i.RespetarLeyDefensaConsumidor))
-FORALL(i:ProfesionalMatriculado; F(i.PublicitarServicioProfesional & !i.RespetarLeyDefensaConsumidor))
-
-//CAPITULO II - INFORMACION AL CONSUMIDOR Y PROTECCION DE SU SALUD
-FORALL(i:Consumidor; O(i.SolicitarInformacion -> EXISTS(j:Proveedor; j.SuministrarInformacion)))
-FORALL(i; O(i.ProveerBySRiesgoso -> i.EntregarManual))
-FORALL(i;  F(i.ProveerBySRiesgoso & !i.SuministrarInformacion))
-
-//CAPITULO III - CONDICIONES DE LA OFERTA Y VENTA
-FORALL(i:Proveedor; O(INSIDE(i.PeriodoOferta)->i.EspecificarCondicionesOferta))
-FORALL(i; F( INSIDE(i.PeriodoOferta) & i.RevocarOferta & !i.DifundirRevocacion ))
-FORALL(i; O(i.Ofertar -> ComenzarOferta))
-FORALL(i; F(reclamoExtrajudicial & aparienciaDeReclamoJudicial) repaired by (SancionesVarias))
-FORALL(i:Proveedor; F(i.ofrecerPublicamenteCosasDeficientes))
-FORALL(i:Proveedor; O(i.Vender -> (i.RedactarDocVenta)))
-FORALL(i:Proveedor; O(i.OfrecerServicios -> i.OfrecerRescindir))
-
-//CAPITULO IV - COSAS MUEBLES NO CONSUMIBLES
-FORALL(i:Consumidor; O(i.EjecutarGarantia &  i.TrasladarCosaTallerFabrica  -> EXISTS(j:Proveedor; j.PagarGastosTraslado) ))
-
-//ARTICULO 12.
-FORALL(i: Proveedor; O(i.ServicioTecnico &  i.SuministrarRepuestos))
-FORALL(i: Proveedor; O(i.ServicioTecnico | i.SuministrarRepuestos))
-//ARTICULO 13. 
-FORALL(i:Proveedor;  O(i.EjecutarGarantia -> i.CumplirGarantia))
-
-//ARTICULO 14. 
-FORALL(i:Proveedor;  O(i.Vender -> i.RedactarDocGarantia))
-FORALL(i:Consumidor; O(i.Comprar -> EXISTS(j:Vendedor; j.NotificarEntradaVigenciaGarantia)))
-FORALL(i:Proveedor; O(i.RepararBajoGarantia -> i.EntregarConstanciaReparacion))
-//ARTICULO 16. 
-//ARTICULO 17.
-FORALL(i:Proveedor; O(i.RepararBajoGarantia  -> i.SustitucionProducto  | i.DevolucionDinero | i.QuitaPrecio))
-
 //CAPITULO V - DE LA PRESTACION DE LOS SERVICIOS
 //Art. 19 .
-FORALL(i:Proveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
-
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicio) -> isHappening(i.CumplirConCondicionesDeOferta)))
 //Art. 20 
-FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento))
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicio) & !isHappening(PactoEscritoAceptarMaterialUsado) -> i.PrestarServicioDeReparacionyMantenimiento results in ConMaterialesNuevosoAdecuados))
 //Art. 21
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.ExtenderPresupuesto))
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicioDeReparacionyMantenimiento) -> isHappening(i.ExtenderPresupuesto)))
 //Art. 22
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.NoComunicarGastosAdicionalesAlPresupuesto))
-// Art. 24
-FORALL(i:Proveedor; O(i.ContratoPrestacionServicios ->i.EntregarGarantiaPorEscrito))
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicioDeReparacionyMantenimiento) -> isHappening(i.NoComunicarGastosAdicionalesAlPresupuesto)))
+// Art. 24 Garantía. La garantía sobre un contrato de prestación de servicios deberá documentarse por escrito haciendo constar:
+//a) La correcta individualización del trabajo realizado;
+FORALL(i:Proveedor; O(justHappened(i.ContratoPrestacionServicios) -> isHappening(i.EntregarGarantiaPorEscrito)))
 
 //CAPITULO VI - USUARIOS DE SERVICIOS PUBLICOS DOMICILIARIOS
 //Art.25
-FORALL(i; O(i.TenerTerminosyCondiciones))
-FORALL(i; O(i.IncluirLeyenda) & O(i.FacturacionServicio -> i.IncluirLeyenda))
+FORALL(i; O(i.TenerTerminosyCondiciones results in entregarporescrito & i.TenerTerminosyCondiciones results in mantenerenOficinaAtencionAlPublico))
+//Las empresas prestadoras de servicios públicos domiciliarios deberán colocar en toda facturación
+// que se extienda al usuario y en las oficinas de atención al público carteles con la leyenda: 
+//"Usted tiene derecho a reclamar una indemnización si le facturamos sumas o conceptos indebidos o reclamamos el pago de facturas ya abonadas, Ley Nº 24.240".
+FORALL(i; O(i.IncluirLeyenda results in enOficinaAtencion) & O(isHappening(i.FacturacionServicio) -> i.IncluirLeyenda results in enFactura))
+FORALL(i; O(AplicarLegislacion results in Propia | AplicarLegislacion results in DefensaConsumidor ))
+FORALL(i; O(AplicarLegislacionmasFavorablealConsumidor results in Propia | AplicarLegislacionmasFavorablealConsumidor results in DefensaConsumidor ))
 
+//Art.26
+FORALL(i; O(isHappening(i.brindar_reciprocidad_trato)))
 
+//Art.27 Registro de reclamos. Atención personalizada. Las empresas prestadoras deben habilitar un registro de reclamos 
+//donde quedarán asentadas las presentaciones de los usuarios. Los mismos podrán efectuarse por nota, teléfono, fax, 
+//correo o correo electrónico, o por otro medio disponible, debiendo extenderse constancia con la identificación del reclamo. 
+FORALL(i; O(i.RecibirReclamo -> isHappening(i.Entregar_Constancia_Reclamos)  & isHappening(i.Mantener_Registro_Reclamos))) //DUDAJH. esperar rta FER
+FORALL(i:consumidor_servicio_publicod; O(i.Reclamar -> EXISTS(j:proveedor_servicio_publicod; j.Entregar_Constancia_Reclamos & j.Mantener_Registro_Reclamos)))//DUDAJH. esperar rta FER
+//Dichos reclamos deben ser satisfechos en plazos perentorios
+FORALL(i:consumidor_servicio_publicod; O(isHappening(i.Reclamar) ->EXISTS(j:proveedor_servicio_publicod; j.AtenderReclamo results in enplazoperentorio)))
 
+//Art.29 Las empresas prestatarias garantizarán a los usuarios el control individual de los consumos. 
+//Las facturas deberán ser entregadas al usuario con no menos de diez (10) días de anticipación 
+//a la fecha de su vencimiento.
+FORALL(i; O(isHappening(i.FacturacionServicio) ->i.EntregarFacturaServicio results in diezdiasantesFVto))
 
+//Art.30
+FORALL(i; O((!isHappening(i.DeduccionImporteServicioNoPrestado) & isHappening(i.InterrupcionPrestacionServicioCulpaP)) -> isHappening(i.ReintegrarImporteServicioNoPrestado)))
 
+//Art.30 bis
+FORALL(i:consumidor_servicio_publicod; F(isHappening(i.PoseerDeuda) & EXISTS(j:proveedor_servicio_publicod; j.FacturacionServicio results in AvisoLibreDeuda | j.FacturacionServicio results in SinAviso)))
+FORALL(j:proveedor_servicio_publicod; O(isHappening(CambiarPrestatario) ->j.NotificarDeuda results in en120Dias))
+FORALL(j:proveedor_servicio_publicod; O(!j.NotificarDeuda results in en120Dias-> isHappening(j.CondonarDeuda)))
 
+//CAPITULO IX - DE LOS TERMINOS ABUSIVOS Y CLAUSULAS INEFICACES
+//ART 37 al 39
+FORALL(i:Proveedor; F(i.RedactarClausulas results in desnaturaliza_obligaciones | i.RedactarClausulas results in limita_responsabilidad | i.RedactarClausulas results in importa_renuncia | i.RedactarClausulas results in restringe_derecho_consumidor | i.RedactarClausulas results in amplia_derechos_proveedor | i.RedactarClausulas results in invierta_carga_de_prueba ))
+FORALL(i:autoridad_competente; O(isHappening(i.interpretar_contrato) -> i.interpretar_contrato results in pro_consumidor))
+FORALL(i:autoridad_competente; O(i.RedactarClausulas results in en_contrato_adhesion -> isHappening(i.vigilar_contrato_adhesion) ))
+FORALL(i:autoridad_competente; O(i.RedactarContratoAdhesion results in requiereAprobacionAutoridad -> isHappening(i.modificarContratoAdhesion) ))
 
-
+//CAPITULO X - RESPONSABILIDAD POR DAÑOS
+//CAPITULO XI - AUTORIDAD DE APLICACION
+// El transportista responderá por los daños ocasionados a la cosa con motivo o en ocasión del servicio.
+FORALL(i:Transportista; O(i.DaniaralaCosaporTransporte -> isHappening(i.ResponderPorDaniosdeTransporte))) //DUDAJH. esperar rta FER
+FORALL(i:autoridad_competente; O(isHappening(i.DeterminarDanioDirecto) -> isHappening(i.ObligarResarcimiento)))
+FORALL(i:Proveedor; O(isHappening(i.PagarSumaDanioDirecto)))
 
 
 
