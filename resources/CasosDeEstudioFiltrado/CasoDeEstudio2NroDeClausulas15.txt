@@ -211,7 +211,7 @@ FORALL(i:Proveedor; O(i.OfrecerServicios -> i.OfrecerRescindir))
 FORALL(i:Consumidor; O(i.EjecutarGarantia &  i.TrasladarCosaTallerFabrica  -> EXISTS(j:Proveedor; j.PagarGastosTraslado) ))
 
 //ARTICULO 12.
-FORALL(i: Proveedor; O(i.ServicioTecnico &  i.SuministrarRepuestos))
+FORALL(i: Proveedor; O(i.ServicioTecnico results in adecuado &  i.SuministrarRepuestos))
 
 
 

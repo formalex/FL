@@ -236,7 +236,7 @@ local interval periodo_producir_prueba defined by actions Admitir_Pruebas - Prod
 FORALL(i:Proveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
 
 //Art. 20 
-FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento))
+FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento results in ConMaterialesNuevosoAdecuados))
 //Art. 21
 FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.ExtenderPresupuesto))
 //Art. 22
