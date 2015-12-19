@@ -260,22 +260,22 @@ FORALL(i; O(isHappening(i.brindar_reciprocidad_trato)))
 //Art.27 Registro de reclamos. Atención personalizada. Las empresas prestadoras deben habilitar un registro de reclamos 
 //donde quedarán asentadas las presentaciones de los usuarios. Los mismos podrán efectuarse por nota, teléfono, fax, 
 //correo o correo electrónico, o por otro medio disponible, debiendo extenderse constancia con la identificación del reclamo. 
-FORALL(i; O(i.RecibirReclamo -> isHappening(i.Entregar_Constancia_Reclamos)  & isHappening(i.Mantener_Registro_Reclamos))) //DUDAJH. esperar rta FER
-FORALL(i:consumidor_servicio_publicod; O(i.Reclamar -> EXISTS(j:proveedor_servicio_publicod; j.Entregar_Constancia_Reclamos & j.Mantener_Registro_Reclamos)))//DUDAJH. esperar rta FER
+FORALL(i; O(justHappened(i.RecibirReclamo) -> justHappened(i.Entregar_Constancia_Reclamos)  & justHappened(i.Mantener_Registro_Reclamos))) 
+FORALL(i:consumidor_servicio_publicod; O(justHappened(i.Reclamar) -> EXISTS(j:proveedor_servicio_publicod; justHappened(j.Entregar_Constancia_Reclamos) & justHappened(j.Mantener_Registro_Reclamos))))
 //Dichos reclamos deben ser satisfechos en plazos perentorios
 FORALL(i:consumidor_servicio_publicod; O(isHappening(i.Reclamar) ->EXISTS(j:proveedor_servicio_publicod; j.AtenderReclamo results in enplazoperentorio)))
 
 //Art.29 Las empresas prestatarias garantizarán a los usuarios el control individual de los consumos. 
 //Las facturas deberán ser entregadas al usuario con no menos de diez (10) días de anticipación 
 //a la fecha de su vencimiento.
-FORALL(i; O(isHappening(i.FacturacionServicio) ->i.EntregarFacturaServicio results in diezdiasantesFVto))
+FORALL(i; O(justHappened(i.FacturacionServicio) ->i.EntregarFacturaServicio results in diezdiasantesFVto))
 
 //Art.30
-FORALL(i; O((!isHappening(i.DeduccionImporteServicioNoPrestado) & isHappening(i.InterrupcionPrestacionServicioCulpaP)) -> isHappening(i.ReintegrarImporteServicioNoPrestado)))
+FORALL(i; O((!justHappened(i.DeduccionImporteServicioNoPrestado) & justHappened(i.InterrupcionPrestacionServicioCulpaP)) -> justHappened(i.ReintegrarImporteServicioNoPrestado)))
 
 //Art.30 bis
 FORALL(i:consumidor_servicio_publicod; F(isHappening(i.PoseerDeuda) & EXISTS(j:proveedor_servicio_publicod; j.FacturacionServicio results in AvisoLibreDeuda | j.FacturacionServicio results in SinAviso)))
-FORALL(j:proveedor_servicio_publicod; O(isHappening(CambiarPrestatario) ->j.NotificarDeuda results in en120Dias))
+FORALL(j:proveedor_servicio_publicod; O(justHappened(CambiarPrestatario) ->j.NotificarDeuda results in en120Dias))
 FORALL(j:proveedor_servicio_publicod; O(!j.NotificarDeuda results in en120Dias-> isHappening(j.CondonarDeuda)))
 
 //CAPITULO IX - DE LOS TERMINOS ABUSIVOS Y CLAUSULAS INEFICACES
@@ -288,7 +288,7 @@ FORALL(i:autoridad_competente; O(i.RedactarContratoAdhesion results in requiereA
 //CAPITULO X - RESPONSABILIDAD POR DAÑOS
 //CAPITULO XI - AUTORIDAD DE APLICACION
 // El transportista responderá por los daños ocasionados a la cosa con motivo o en ocasión del servicio.
-FORALL(i:Transportista; O(i.DaniaralaCosaporTransporte -> isHappening(i.ResponderPorDaniosdeTransporte))) //DUDAJH. esperar rta FER
+FORALL(i:Transportista; O(justHappened(i.DaniaralaCosaporTransporte) -> justHappened(i.ResponderPorDaniosdeTransporte))) 
 FORALL(i:autoridad_competente; O(isHappening(i.DeterminarDanioDirecto) -> isHappening(i.ObligarResarcimiento)))
 FORALL(i:Proveedor; O(isHappening(i.PagarSumaDanioDirecto)))
 

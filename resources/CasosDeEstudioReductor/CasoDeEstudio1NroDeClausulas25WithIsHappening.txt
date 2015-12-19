@@ -371,10 +371,13 @@ FORALL(i; F( INSIDE(i.PeriodoOferta) & isHappening(i.RevocarOferta) & !isHappeni
 FORALL(i; O(isHappening(i.Ofertar) -> isHappening(ComenzarOferta)))
 FORALL(i; F(isHappening(reclamoExtrajudicial) & isHappening(aparienciaDeReclamoJudicial)) repaired by (isHappening(SancionesVarias)))
 FORALL(i:Proveedor; F(isHappening(i.ofrecerPublicamenteCosasDeficientes)))
-FORALL(i:Proveedor; O(justHappened(i.Vender) -> isHappening(i.RedactarDocVenta)))//DUDAJH
+FORALL(i:Proveedor; O(isHappening(i.Vender) -> isHappening(i.RedactarDocVenta)))
 FORALL(i:Proveedor; O(isHappening(i.OfrecerServicios) -> isHappening(i.OfrecerRescindir)))
 
 //CAPITULO IV - COSAS MUEBLES NO CONSUMIBLES
+//En caso de que la cosa deba trasladarse a fábrica o taller habilitado el transporte 
+//será realizado por el responsable de la garantía, y serán a su cargo los gastos de 
+//flete y seguros y cualquier otro que deba realizarse para la ejecución del mismo.
 FORALL(i:Consumidor; O(isHappening(i.EjecutarGarantia) &  isHappening(i.TrasladarCosaTallerFabrica)  -> EXISTS(j:Proveedor; isHappening(j.PagarGastosTraslado)) ))
 
 //ARTICULO 12. 
@@ -386,8 +389,10 @@ FORALL(i: Proveedor; O(i.ServicioTecnico | isHappening(i.SuministrarRepuestos)))
 FORALL(i:Proveedor;  O(isHappening(i.EjecutarGarantia) -> i.CumplirGarantia results in Productor | i.CumplirGarantia results in Importador | i.CumplirGarantia results in Distribuidor | i.CumplirGarantia results in Vendedor  ))
 
 //ARTICULO 14. 
-FORALL(i:Proveedor;  O(justHappened(i.Vender) -> isHappening(i.RedactarDocGarantia))) //DUDAJH dependa de lo que diga Fer
-FORALL(i:Consumidor; O(justHappened(i.Comprar) -> EXISTS(j:Vendedor; isHappening(j.NotificarEntradaVigenciaGarantia))))
+FORALL(i:Proveedor;  O(justHappened(i.Vender) -> justHappened(i.RedactarDocGarantia)))
+
+//para cuando terminaste de comprar el vendedor ya tiene que haberte notificado de la entrada en vigencia de la garantía.
+FORALL(i:Consumidor; O(justHappened(i.Comprar) -> EXISTS(j:Vendedor; justHappened(j.NotificarEntradaVigenciaGarantia))))
 
 //ARTICULO 15. Constancia de Reparacion. Cuando la cosa hubiese sido reparada bajo los terminos de una garantia legal, 
 //el garante estara obligado a entregar al consumidor una constancia de reparacion en donde se indique:
