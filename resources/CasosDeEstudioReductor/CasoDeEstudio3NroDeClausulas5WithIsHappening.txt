@@ -233,17 +233,21 @@ local interval periodo_producir_prueba defined by actions Admitir_Pruebas - Prod
 
 //CAPITULO V - DE LA PRESTACION DE LOS SERVICIOS
 //Art. 19 .
-FORALL(i:Proveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
-
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicio) -> isHappening(i.CumplirConCondicionesDeOferta)))
 //Art. 20 
-//FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento))
-FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento results in ConMaterialesNuevosoAdecuados))
+//FORALL(i:Proveedor; O(isHappening(i.PrestarServicio) & !isHappening(PactoEscritoAceptarMaterialUsado) -> i.PrestarServicioDeReparacionyMantenimiento))
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicio) & !isHappening(PactoEscritoAceptarMaterialUsado) -> i.PrestarServicioDeReparacionyMantenimiento results in ConMaterialesNuevosoAdecuados))
 //Art. 21
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.ExtenderPresupuesto))
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicioDeReparacionyMantenimiento) -> isHappening(i.ExtenderPresupuesto)))
 //Art. 22
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.NoComunicarGastosAdicionalesAlPresupuesto))
-// Art. 24
-FORALL(i:Proveedor; O(i.ContratoPrestacionServicios ->i.EntregarGarantiaPorEscrito))
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicioDeReparacionyMantenimiento) -> isHappening(i.NoComunicarGastosAdicionalesAlPresupuesto)))
+// Art. 24 Garantía. La garantía sobre un contrato de prestación de servicios deberá documentarse por escrito haciendo constar:
+//a) La correcta individualización del trabajo realizado;
+FORALL(i:Proveedor; O(justHappened(i.ContratoPrestacionServicios) -> isHappening(i.EntregarGarantiaPorEscrito)))
+
+
+
+
 
 
 

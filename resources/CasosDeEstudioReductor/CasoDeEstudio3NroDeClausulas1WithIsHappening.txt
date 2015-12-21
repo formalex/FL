@@ -233,17 +233,8 @@ local interval periodo_producir_prueba defined by actions Admitir_Pruebas - Prod
 
 //CAPITULO V - DE LA PRESTACION DE LOS SERVICIOS
 //Art. 19 .
-FORALL(i:Proveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicio) -> isHappening(i.CumplirConCondicionesDeOferta)))
 
-//Art. 20 
-//FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento))
-FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento results in ConMaterialesNuevosoAdecuados))
-//Art. 21
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.ExtenderPresupuesto))
-//Art. 22
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.NoComunicarGastosAdicionalesAlPresupuesto))
-// Art. 24
-FORALL(i:Proveedor; O(i.ContratoPrestacionServicios ->i.EntregarGarantiaPorEscrito))
 
 
 

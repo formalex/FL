@@ -233,17 +233,47 @@ local interval periodo_producir_prueba defined by actions Admitir_Pruebas - Prod
 
 //CAPITULO V - DE LA PRESTACION DE LOS SERVICIOS
 //Art. 19 .
-FORALL(i:Proveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
-
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicio) -> isHappening(i.CumplirConCondicionesDeOferta)))
 //Art. 20 
-//FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento))
-FORALL(i:Proveedor; O(i.PrestarServicio & !PactoEscritoAceptarMaterialUsado -> i.PrestarServicioDeReparacionyMantenimiento results in ConMaterialesNuevosoAdecuados))
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicio) & !isHappening(PactoEscritoAceptarMaterialUsado) -> i.PrestarServicioDeReparacionyMantenimiento results in ConMaterialesNuevosoAdecuados))
 //Art. 21
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.ExtenderPresupuesto))
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicioDeReparacionyMantenimiento) -> isHappening(i.ExtenderPresupuesto)))
 //Art. 22
-FORALL(i:Proveedor; O(i.PrestarServicioDeReparacionyMantenimiento -> i.NoComunicarGastosAdicionalesAlPresupuesto))
-// Art. 24
-FORALL(i:Proveedor; O(i.ContratoPrestacionServicios ->i.EntregarGarantiaPorEscrito))
+FORALL(i:Proveedor; O(isHappening(i.PrestarServicioDeReparacionyMantenimiento) -> isHappening(i.NoComunicarGastosAdicionalesAlPresupuesto)))
+// Art. 24 Garantía. La garantía sobre un contrato de prestación de servicios deberá documentarse por escrito haciendo constar:
+//a) La correcta individualización del trabajo realizado;
+FORALL(i:Proveedor; O(justHappened(i.ContratoPrestacionServicios) -> isHappening(i.EntregarGarantiaPorEscrito)))
+
+//CAPITULO VI - USUARIOS DE SERVICIOS PUBLICOS DOMICILIARIOS
+//Art.25
+FORALL(i; O(i.TenerTerminosyCondiciones results in entregarporescrito & i.TenerTerminosyCondiciones results in mantenerenOficinaAtencionAlPublico))
+//Las empresas prestadoras de servicios públicos domiciliarios deberán colocar en toda facturación
+// que se extienda al usuario y en las oficinas de atención al público carteles con la leyenda: 
+//"Usted tiene derecho a reclamar una indemnización si le facturamos sumas o conceptos indebidos o reclamamos el pago de facturas ya abonadas, Ley Nº 24.240".
+FORALL(i; O(i.IncluirLeyenda results in enOficinaAtencion) & O(isHappening(i.FacturacionServicio) -> i.IncluirLeyenda results in enFactura))
+FORALL(i; O(AplicarLegislacion results in Propia | AplicarLegislacion results in DefensaConsumidor ))
+FORALL(i; O(AplicarLegislacionmasFavorablealConsumidor results in Propia | AplicarLegislacionmasFavorablealConsumidor results in DefensaConsumidor ))
+
+//Art.26
+FORALL(i; O(isHappening(i.brindar_reciprocidad_trato)))
+
+//Art.27 Registro de reclamos. Atención personalizada. Las empresas prestadoras deben habilitar un registro de reclamos 
+//donde quedarán asentadas las presentaciones de los usuarios. Los mismos podrán efectuarse por nota, teléfono, fax, 
+//correo o correo electrónico, o por otro medio disponible, debiendo extenderse constancia con la identificación del reclamo. 
+FORALL(i; O(justHappened(i.RecibirReclamo) -> justHappened(i.Entregar_Constancia_Reclamos)  & justHappened(i.Mantener_Registro_Reclamos))) 
+FORALL(i:consumidor_servicio_publicod; O(justHappened(i.Reclamar) -> EXISTS(j:proveedor_servicio_publicod; justHappened(j.Entregar_Constancia_Reclamos) & justHappened(j.Mantener_Registro_Reclamos))))
+//Dichos reclamos deben ser satisfechos en plazos perentorios
+FORALL(i:consumidor_servicio_publicod; O(isHappening(i.Reclamar) ->EXISTS(j:proveedor_servicio_publicod; j.AtenderReclamo results in enplazoperentorio)))
+
+//Art.29 Las empresas prestatarias garantizarán a los usuarios el control individual de los consumos. 
+//Las facturas deberán ser entregadas al usuario con no menos de diez (10) días de anticipación 
+//a la fecha de su vencimiento.
+FORALL(i; O(justHappened(i.FacturacionServicio) ->i.EntregarFacturaServicio results in diezdiasantesFVto))
+
+//Art.30
+FORALL(i; O((!justHappened(i.DeduccionImporteServicioNoPrestado) & justHappened(i.InterrupcionPrestacionServicioCulpaP)) -> justHappened(i.ReintegrarImporteServicioNoPrestado)))
+
+
 
 
 

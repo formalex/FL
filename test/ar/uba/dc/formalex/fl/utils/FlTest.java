@@ -13,7 +13,9 @@ public class FlTest {
 	public static String ROOT_EJS_PARSER_CLAUSES = FlTest.ROOT_RESOURCES + "EjemplosParserClauses/";
 	protected static String ROOT_EJS_FILTROS = ROOT_RESOURCES + "EjemplosParaFiltrar/";
 	protected static String ROOT_EJS_PARA_EL_REDUCTOR = FlTest.ROOT_RESOURCES + "EjemplosParaElReductor/";
-	//protected static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
+	
+	protected static String ROOT_CDE_FILTRADO = ROOT_RESOURCES + "CasosDeEstudioFiltrado/";
+
 	
 	//Las pruebas hay que correrlas siempre con el model checker
 	public static final boolean CON_MODEL_CHECKER = true;
@@ -58,7 +60,6 @@ public class FlTest {
 		
 		System.setProperty("TEMPLATE_VELOCITY", "fl.vm");
 	}
-
 	
 
 }
