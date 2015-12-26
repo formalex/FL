@@ -384,7 +384,7 @@ FORALL(i:Consumidor; O(isHappening(i.EjecutarGarantia) &  isHappening(i.Traslada
 //Servicio Técnico. Los fabricantes, importadores y vendedores de las cosas mencionadas en el artículo anterior, 
 //deben asegurar un servicio técnico adecuado y el suministro de partes y repuestos.
 FORALL(i: Proveedor; O(i.ServicioTecnico results in adecuado &  isHappening(i.SuministrarRepuestos)))
-FORALL(i: Proveedor; O(i.ServicioTecnico | isHappening(i.SuministrarRepuestos)))
+FORALL(i: Proveedor; O(isHappening(i.ServicioTecnico) & isHappening(i.SuministrarRepuestos)))
 //ARTICULO 13. 
 FORALL(i:Proveedor;  O(isHappening(i.EjecutarGarantia) -> i.CumplirGarantia results in Productor | i.CumplirGarantia results in Importador | i.CumplirGarantia results in Distribuidor | i.CumplirGarantia results in Vendedor  ))
 
