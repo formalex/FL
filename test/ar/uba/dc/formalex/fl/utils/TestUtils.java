@@ -280,9 +280,19 @@ public class TestUtils {
 
 	private static void logOnlyActions(BackgroundTheory unaBgt) {
 		logger.info("Acciones");
+		long countActionsWithTwoStates=0;
+		long countActionsWithThreeStates=0;
 		for (Action a : unaBgt.getActions()) {
 			a.logFL();
+			if(a.hasTwotSates())
+				countActionsWithTwoStates++;
+			else
+				countActionsWithThreeStates++;
+				
 		}
+		
+		logger.info("#Acciones 3 states: " + countActionsWithThreeStates);
+		logger.info("#Acciones 2 states: " + countActionsWithTwoStates);
 		logger.info("");
 	}
 
