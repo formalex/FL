@@ -70,6 +70,7 @@ public class TestUtils {
 				long seg = (fin - ini);
 				logger.debug("Tiempo del parser: " + seg + " ms");
 
+				logger.info("CON Reductor: " + conReductor);
 				FLInput flInput = FLParser.getFLInput();
 				LaAplanadora divididos = new LaAplanadora();
 				Grafo<InfoComponenteBgt> elgrafoDeDependenciasBgt = null;
