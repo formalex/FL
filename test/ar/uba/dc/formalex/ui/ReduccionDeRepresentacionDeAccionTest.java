@@ -15,19 +15,19 @@ public class ReduccionDeRepresentacionDeAccionTest extends FlTest {
 	@Test
 	public void reducePorQueTodasLasReferenciasSonConIsHappening() throws Exception {
 		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueReduce.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueReduce.txt", true, CORRER_CON_FILTRADO, true);
 	}
 	
 	@Test
 	public void noReducePorqueHayReferenciasEnUnContador() throws Exception {
 		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueHayReferenciasEnUnContador.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueHayReferenciasEnUnContador.txt", true, CORRER_CON_FILTRADO, true);
 	}
 	
 	@Test
 	public void noReducePorqueTieneReferenciaEnUnIntervalo() throws Exception {
 		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneReferenciaEnUnIntervalo.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneReferenciaEnUnIntervalo.txt", true, CORRER_CON_FILTRADO, true);
 	}
 	
 	@Test
@@ -35,18 +35,18 @@ public class ReduccionDeRepresentacionDeAccionTest extends FlTest {
 		
 		//Hay una referencia default a la accion, es decir sin ninguno de los dos 
 		//nuevos predicados
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaAlDefaultJH.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaAlDefaultJH.txt", true, CORRER_CON_FILTRADO, true);
 	}
 	
 	@Test
 	public void noReducePorqueTieneUnaReferenciaEnJH() throws Exception {
 		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaEnJH.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaEnJH.txt", true, CORRER_CON_FILTRADO, true);
 	}
 	
 	@Test
 	public void noReducePorqueTieneUnaReferenciaConResultsIn() throws Exception {
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaConResultsIn.txt", true, true);
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaConResultsIn.txt", true, CORRER_CON_FILTRADO, true);
 	}
 
 }

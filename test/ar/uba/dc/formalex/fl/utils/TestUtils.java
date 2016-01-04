@@ -49,7 +49,7 @@ public class TestUtils {
 	private static final Logger logger = Logger.getLogger(Main.class);
 	private static int nroDeCorridas = 0;
 	
-	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker, boolean conReductor) throws Exception {
+	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker, boolean conFiltrado, boolean conReductor) throws Exception {
 		try {
 			java.io.FileInputStream streamFile = new java.io.FileInputStream(rutaArchivoDeEjemplo);
 			
@@ -72,11 +72,18 @@ public class TestUtils {
 
 				FLInput flInput = FLParser.getFLInput();
 				LaAplanadora divididos = new LaAplanadora();
-				Grafo<InfoComponenteBgt> elgrafoDeDependenciasBgt = divididos
-						.explotarYAplanar(flInput, new ConstructorDeGrafoImpl());
-				// loguearEntSal(flInput);
+				Grafo<InfoComponenteBgt> elgrafoDeDependenciasBgt = null;
 				
-				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker, conReductor);
+				if (conFiltrado)
+					elgrafoDeDependenciasBgt = divididos.explotarYAplanar(
+							flInput, new ConstructorDeGrafoImpl());
+				else
+					elgrafoDeDependenciasBgt = divididos.explotarYAplanar(
+							flInput, new ConstructorDeGrafoFake());
+				// loguearEntSal(flInput);
+
+				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker,
+						conReductor);
 
 				logger.debug("Listo");
 			} catch (TokenMgrError e) {

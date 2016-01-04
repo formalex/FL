@@ -18,8 +18,10 @@ public class FlTest {
 
 	
 	//Las pruebas hay que correrlas siempre con el model checker
-	public static final boolean CON_MODEL_CHECKER = true;
-	
+	protected static final boolean CORRER_CON_MODEL_CHECKER = true;
+	protected static final boolean CORRER_SIN_FILTRADO = false;
+	protected static final boolean CORRER_CON_FILTRADO = true;
+	protected static final boolean CORRER_SIN_REDUCTOR = false;
 
 	public enum SistemaOperativo {
 		LINUX,
@@ -42,7 +44,7 @@ public class FlTest {
 	@BeforeClass
 	public static void setUp(){
 
-		SistemaOperativo soEnElQueCorre = SistemaOperativo.LINUX;
+		SistemaOperativo soEnElQueCorre = SistemaOperativo.WINDOWS;
 		
 		switch (soEnElQueCorre) {
 		case LINUX:
