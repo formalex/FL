@@ -11,11 +11,11 @@ impersonal action paso_un_dia
 impersonal action paso_un_dia_reparandose
 action PagarGastosTraslado only performable by Proveedor
 
-action ComienzaOferta only performable by ProfesionalMatriculado, Proveedor output values {PorMediosConDatosOferente, PorMediosSinDatosOferente}
+action ComienzaOferta only performable by Proveedor output values {PorMediosConDatosOferente, PorMediosSinDatosOferente}
 
-action TerminaOferta only performable by ProfesionalMatriculado, Proveedor
+action TerminaOferta only performable by Proveedor
 
-local interval PeriodoOferta defined by actions ComienzaOferta - TerminaOferta
+global interval PeriodoOferta defined by actions ComienzaOferta - TerminaOferta
 
 action Consumir only performable by Consumidor
 
