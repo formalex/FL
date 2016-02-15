@@ -13,6 +13,12 @@ import ar.uba.dc.formalex.fl.utils.TestUtils;
 public class ReduccionDeRepresentacionDeAccionTest extends FlTest {
 
 	@Test
+	public void casoDeEstudio2NroDeClausulas5WithIsHappeningWithInterval() throws Exception {
+		
+		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "CasoDeEstudio2NroDeClausulas5WithIsHappening With Interval.txt", true, CORRER_CON_FILTRADO, true);
+	}
+	
+	@Test
 	public void reducePorQueTodasLasReferenciasSonConIsHappening() throws Exception {
 		
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueReduce.txt", true, CORRER_CON_FILTRADO, true);
