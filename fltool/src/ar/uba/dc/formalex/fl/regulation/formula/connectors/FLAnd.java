@@ -2,6 +2,7 @@ package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLFalse;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
 import ar.uba.dc.formalex.fl.regulation.permission.Permission;
@@ -51,8 +52,12 @@ public class FLAnd extends FormulaConnectorBinary {
         FLFormula newRightFormula = getRightFormula().instanciar(variable, agente, bgUtil, forceAgent);
         if (newLeftFormula == null || newRightFormula == null)
             return null;
-
-        return new FLAnd(newLeftFormula, newRightFormula);
+        
+        FLFormula res = new FLAnd(newLeftFormula, newRightFormula);
+        if (newLeftFormula instanceof FLFalse)
+        	res.setConditionValue(false);
+        
+        return res;
     }
 	
 	

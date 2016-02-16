@@ -6,6 +6,7 @@ import java.util.Iterator;
 import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLFalse;
 
 
 public abstract class FLQuantifier extends FLFormula{
@@ -35,14 +36,14 @@ public abstract class FLQuantifier extends FLFormula{
     protected FLFormula exceptionsInstantiator(FLFormula rule, Agente agent, BGUtil bgUtil){
     	if (exceptions != null && !exceptions.isEmpty()){ // se realiza la disyunción de todos los Permisos que son excepciones a la regla
         	Iterator<FLFormula> exceptionsFormulas = exceptions.iterator();
-        	FLFormula exceptionFormOr = exceptionsFormulas.next(); 
         	while (exceptionsFormulas.hasNext()){
         		FLFormula next = exceptionsFormulas.next();
-        		exceptionFormOr = new FLOr(exceptionFormOr, next);
+            	FLFormula exceptionFormInst = next.instanciar(variable, agent.getName(), bgUtil, true);     	        	
+            	if (exceptionFormInst != null)
+            		rule = new FLOr(rule, exceptionFormInst);
+            	else
+            		rule = new FLOr(rule, new FLFalse());
         	}
-        	//instancio con los agentes la conjunción de los Permisos que representan la excepción.
-        	FLFormula exceptionFormInst = exceptionFormOr.instanciar(variable, agent.getName(), bgUtil, true);     	        	
-        	rule = new FLOr(rule, exceptionFormInst);
         }
     	return rule;
     }

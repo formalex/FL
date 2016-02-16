@@ -64,14 +64,15 @@ public class FLForall extends FLQuantifier {
 				if (izq != null){
 					cont++;
 					izq = exceptionsInstantiator(izq, agenteE, bgUtil);
-					if (andFormula != null) 
+					if (andFormula != null && andFormula.getConditionValue()) {
 						andFormula = new FLAnd(izq, andFormula);
-					else
+					} else {
 						andFormula = new FLAnd(izq, new FLTrue());
+					}
 				}
 			}
 		}
-		logger.info("Al expandir el FLForall quedó una fórmula con '" + cont + "' AND");
+		logger.info("Al expandir el FLForall quedó una fórmula con '" + cont + "' AND ");
         
 		yaInstanciada = true;
 		return andFormula;

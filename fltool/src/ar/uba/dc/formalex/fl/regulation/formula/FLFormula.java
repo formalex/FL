@@ -7,7 +7,8 @@ import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 
 public abstract class FLFormula {
 	
-	protected Set<FLFormula> exceptions = new HashSet<FLFormula>();	
+	protected Set<FLFormula> exceptions = new HashSet<FLFormula>();
+	protected boolean conditionValue = true;
 	
     /**
      * devuelve el string que representa a esta fórmula con el formato del model checker
@@ -39,5 +40,12 @@ public abstract class FLFormula {
 	public void addException(FLFormula formula){
 		this.exceptions.add(formula);	
 	}	     
-
+	
+	public void setConditionValue(boolean value) {
+		this.conditionValue = value;
+	}
+	
+	public boolean getConditionValue() {
+		return this.conditionValue;
+	}
 }

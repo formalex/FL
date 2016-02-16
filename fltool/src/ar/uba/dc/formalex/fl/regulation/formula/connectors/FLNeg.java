@@ -26,7 +26,10 @@ public class FLNeg extends FLFormula {
         if (newFormula == null )
             return null;
 
-        return new FLNeg(newFormula);
+        FLFormula res = new FLNeg(newFormula);
+        res.setConditionValue(newFormula.getConditionValue());
+        
+        return res;
     }
 
 }

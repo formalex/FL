@@ -2,14 +2,14 @@ package ar.uba.dc.formalex.fl.regulation.permission;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
-import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLThen;
 import ar.uba.dc.formalex.fl.regulation.rules.Forbidden;
 
 
 public class Permission extends FLFormula {
 	private FLFormula formula;
-
+    
     public Permission(FLFormula formula) {
         //P( fórmula ) =  !  F( fórmula )
         Forbidden prohibition = new Forbidden(formula);
@@ -17,10 +17,9 @@ public class Permission extends FLFormula {
     }
     
     public Permission(FLFormula formula, FLFormula condition) {
-        //P( formula, condition ) = condition -> ! F(formula)
-    	Forbidden prohibition = new Forbidden(formula);
-        FLNeg prohibitionNeg =  new FLNeg(prohibition);
-        this.formula = new FLThen(condition, prohibitionNeg);        
+        //P( formula, condition ) = ! F(condition & formula)        
+        FLAnd permissionAndCondition = new FLAnd(condition, formula);
+        this.formula = new Permission(permissionAndCondition);        
     }
 
     @Override
@@ -30,7 +29,8 @@ public class Permission extends FLFormula {
 
     @Override
     public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
-        return formula.instanciar(variable, agente, bgUtil, forceAgent);
+    	FLFormula res = formula.instanciar(variable, agente, bgUtil, forceAgent);
+        return res;
     }
 
 }
