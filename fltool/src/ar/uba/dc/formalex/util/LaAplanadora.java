@@ -624,13 +624,15 @@ public class LaAplanadora {
 		Set<Agente> res = new HashSet<Agente>();
 
 		//Creo un agente sin roles
-		Agente agenteSinRol = new Agente("agent_without_role");
-		res.add(agenteSinRol);
-		//parche x rol dummy
-		Set<Role> rolesTmp = new HashSet<Role>();
-		Role role = new Role("no_assigned_role");
-		rolesTmp.add(role);
-		agenteSinRol.setRoles(rolesTmp);
+		if(!listaRoles.isEmpty() && !listaRoles.iterator().next().isCover()){
+			Agente agenteSinRol = new Agente("agent_without_role");
+			res.add(agenteSinRol);
+			//parche x rol dummy
+			Set<Role> rolesTmp = new HashSet<Role>();
+			Role role = new Role("no_assigned_role");
+			rolesTmp.add(role);
+			agenteSinRol.setRoles(rolesTmp);
+		}
 
 		RolesCombination rolesParaAgentes = new RolesCombination();
 		for(RoleSpecification spec : listaRoles){
