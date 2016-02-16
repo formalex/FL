@@ -39,7 +39,7 @@ public class FLParser{
         Interval res = intervals.get(name);
         if (res ==  null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Se est� haciendo referencia a un intervalo no definido ('" + name + "'). Revisar datos del archivo de entrada");
+            sb.append("Se está haciendo referencia a un intervalo no definido ('" + name + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
         return res;
@@ -49,7 +49,7 @@ public class FLParser{
         Action res = actions.get(name);
         if (res ==  null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Se est� haciendo referencia a una acci�n no definida ('" + name + "'). Revisar datos del archivo de entrada");
+            sb.append("Se está haciendo referencia a una acción no definida ('" + name + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
         return res;
@@ -64,7 +64,7 @@ public class FLParser{
         Role res = rolesMap.get(name);
         if (res ==  null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Se est� haciendo referencia a un rol no definido ('" + name + "'). Revisar datos del archivo de entrada");
+            sb.append("Se está haciendo referencia a un rol no definido ('" + name + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
         return res;
@@ -354,7 +354,7 @@ void action() :
         Action tmp = actions.put(anAction.getName(), anAction);
         if (tmp != null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Nombre de acci�n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+            sb.append("Nombre de acción repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
     }
@@ -363,7 +363,7 @@ void action() :
             < OUTPUT_VALUES > < BRA_LEFT > actionOutputs = set() < BRA_RIGHT >
             {
               if (hasOutput)
-                throw new RuntimeException("La acci�n "+ anAction.getName() + " tiene definido m�s de un output value");
+                throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un output value");
               hasOutput = true;
               anAction.setOutputValues(actionOutputs);
             }
@@ -373,7 +373,7 @@ void action() :
             < ONLY_OCCURS_IN > < IDENTIFIER >
             {
                 if (hasOnlyOccurs)
-                    throw new RuntimeException("La acci�n "+ anAction.getName() + " tiene definido m�s de un 'only occurs in'");
+                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'only occurs in'");
                 hasOnlyOccurs = true;
                 Interval tempInterval = getInterval(token.image);
                 anAction.setOccursIn(tempInterval);
@@ -384,7 +384,7 @@ void action() :
             < OCCURRENCES > < NUMBER >
             {
                 if (hasOccurrences)
-                    throw new RuntimeException("La acci�n "+ anAction.getName() + " tiene definido m�s de un 'occurrences'");
+                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'occurrences'");
                 hasOccurrences = true;
                 anAction.setOccurrences(new Integer(token.image));
             }
@@ -394,7 +394,7 @@ void action() :
             < SYNC > < IDENTIFIER >
             {
                 if (hasSync)
-                    throw new RuntimeException("La acci�n "+ anAction.getName() + " tiene definido m�s de un 'sync'");
+                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'sync'");
                 hasSync = true;
                 Action syncAction = getAction(token.image);
                 anAction.setSync(syncAction, true);
@@ -417,7 +417,7 @@ void action() :
             < PERFORMABLE > < IDENTIFIER >
             {
                 if (hasPerformable)
-                    throw new RuntimeException("La acci�n "+ anAction.getName() + " tiene definido m�s de un 'performable by'");
+                    throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un 'performable by'");
                 hasPerformable = true;
 
                 if (isImpersonal){
@@ -457,7 +457,7 @@ void actions() :
         Action tmp = actions.put(anAction.getName(), anAction);
         if (tmp != null){
             StringBuilder sb = new StringBuilder();
-            sb.append("Nombre de acci�n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+            sb.append("Nombre de acción repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
             throw new RuntimeException(sb.toString());
         }
     }
@@ -471,7 +471,7 @@ void actions() :
           tmp = actions.put(anotherAction.getName(), anotherAction);
           if (tmp != null){
               StringBuilder sb = new StringBuilder();
-              sb.append("Nombre de acci�n repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
+              sb.append("Nombre de acción repetida: ('" + anAction.getName() + "'). Revisar datos del archivo de entrada");
               throw new RuntimeException(sb.toString());
           }
         }
@@ -630,7 +630,7 @@ void counter() :
           	int auxMin = Integer.parseInt(token.image);
 			if (auxMin > counter.getInitValue()){
             	StringBuilder sb = new StringBuilder();
-            	sb.append("El valor m�nimo del contador '" + counter.getName() + "' no puede ser mayor a su valor inicial. Revisar datos del archivo de entrada");
+            	sb.append("El valor mínimo del contador '" + counter.getName() + "' no puede ser mayor a su valor inicial. Revisar datos del archivo de entrada");
            		throw new RuntimeException(sb.toString());
         	}
         	else        	{        		counter.setMinValue(auxMin);
@@ -642,7 +642,7 @@ void counter() :
           	int auxMax = Integer.parseInt(token.image);
 			if (auxMax < counter.getInitValue()){
             	StringBuilder sb = new StringBuilder();
-            	sb.append("El valor m�ximo del contador '" + counter.getName() + "' no puede ser menor a su valor inicial. Revisar datos del archivo de entrada");
+            	sb.append("El valor máximo del contador '" + counter.getName() + "' no puede ser menor a su valor inicial. Revisar datos del archivo de entrada");
            		throw new RuntimeException(sb.toString());
         	}
         	else
@@ -962,7 +962,7 @@ void clause() :
     |
     (
       //EXISTS (var (: rol)? ; (O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva) ) |
-      //FORALL (var (: rol)? ; (O-cláusula-conjuntiva | F-cl�sula-conjuntiva | P-cláusula-conjuntiva) )
+      //FORALL (var (: rol)? ; (O-cláusula-conjuntiva | F-clásula-conjuntiva | P-cláusula-conjuntiva) )
       p = quantifierWithDeontic()
       {
         if (Util.hasPermission(p)){
@@ -983,7 +983,7 @@ void clause() :
 
 //F-cláusula-disyuntiva :=     F-cláusula (or F-cláusula)*
 //F-cláusula-conjuntiva :=     F-cláusula (and F-cláusula)*
-//1 o m�s F-cláusulas con OR o  1 o m�s con AND, pero no combinando OR y AND
+//1 o más F-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
 FLFormula f_clauses() :
 {
     FLFormula p;
@@ -1033,7 +1033,7 @@ FLFormula f_clauses() :
 
 //O-cláusula-disyuntiva :=     O-cláusula (or O-cláusula)*
 //O-cláusula-conjuntiva :=     O-cláusula (and O-cláusula)*
-//1 o m�s O-cláusulas con OR o  1 o m�s con AND, pero no combinando OR y AND
+//1 o más O-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
 FLFormula o_clauses() :
 {
     FLFormula p;
@@ -1089,7 +1089,7 @@ FLFormula o_clauses() :
 /*
 //P-cláusula-disyuntiva :=     P-cláusula (or P-cláusula)*
 //p_clause_conjunctive :=     P-cláusula (and P-cláusula)*
-//1 o m�s P-cláusulas con OR o  1 o m�s con AND, pero no combinando OR y AND
+//1 o más P-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
 FLFormula p_clauses666() :
 {
     FLFormula p;
@@ -1140,7 +1140,7 @@ FLFormula p_clauses666() :
 
 //P-cláusula-disyuntiva :=     P-cláusula (or P-cláusula)*
 //p_clause_conjunctive :=     P-cláusula (and P-cláusula)*
-//1 o m�s P-cláusulas con OR o  1 o m�s con AND, pero no combinando OR y AND
+//1 o más P-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
 FLFormula p_clauses() :
 {
     FLFormula p = null;
@@ -1969,8 +1969,8 @@ FLFormula terminal() :
                 Action tmp = actions.get(name);
                 if (tmp == null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una f�rmula se hace referencia a una acci�n no definida: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de la l�nea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de la línea: " + beginLine + ", columna: " + beginColumn);
                     throw new RuntimeException(sb.toString());
                 }
                 return new FLActionOutput(variable, name, token.image);
@@ -2020,22 +2020,22 @@ FLFormula terminal() :
                 Counter tmp = counters.get(counter.getName());
                 if (tmp == null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una f�rmula se hace referencia a un contador no definido: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de l�nea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una fórmula se hace referencia a un contador no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                     throw new RuntimeException(sb.toString());
                 }
 
                 if (tmp.isLocal() & counter.getVariable() == null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una f�rmula se hace referencia a un contador local sin usar agente: ('" + name + "'). " +
-                        "Revisar datos del archivo de entrada, cerca de l�nea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una fórmula se hace referencia a un contador local sin usar agente: ('" + name + "'). " +
+                        "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                     throw new RuntimeException(sb.toString());
                 }
 
                 if (!tmp.isLocal() & counter.getVariable() != null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una f�rmula se hace referencia a un contador global usando agente: ('" + name + "').  " +
-                        "Revisar datos del archivo de entrada, cerca de l�nea: " + beginLine + ", columna: " + beginColumn);
+                    sb.append("En una fórmula se hace referencia a un contador global usando agente: ('" + name + "').  " +
+                        "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                     throw new RuntimeException(sb.toString());
                 }
                 return counter;
@@ -2045,21 +2045,21 @@ FLFormula terminal() :
             Action tmp = actions.get(name);
             if (tmp == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una f�rmula se hace referencia a una acci�n no definida: ('" + name + "'). " +
-                "Revisar datos del archivo de entrada, cerca de l�nea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +
+                "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
 
             if ( !tmp.isImpersonal() & variable == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una f�rmula se hace referencia a una acci�n sin usar agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de l�nea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fórmula se hace referencia a una acción sin usar agente: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
             if ( tmp.isImpersonal() & variable != null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una f�rmula se hace referencia a una acci�n impersonal usando agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de l�nea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fórmula se hace referencia a una acción impersonal usando agente: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
             aFormula = new FLAction(variable, name);
@@ -2094,20 +2094,20 @@ FLFormula terminal() :
             Interval tmp = intervals.get(name);
             if (tmp == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una f�rmula se hace referencia a un intervalo no definido: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de l�nea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fórmula se hace referencia a un intervalo no definido: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
             if (tmp.isLocal() & interval.getVariable() == null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una f�rmula se hace referencia a un intervalo local sin usar variable: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de l�nea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fórmula se hace referencia a un intervalo local sin usar variable: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
             if (!tmp.isLocal() & interval.getVariable() != null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una f�rmula se hace referencia a un intervalo global usando agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de l�nea: " + beginLine + ", columna: " + beginColumn);
+                sb.append("En una fórmula se hace referencia a un intervalo global usando agente: ('" + name + "'). " +
+                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }
             return new FLInside(interval);
