@@ -1,5 +1,6 @@
 package ar.uba.dc.formalex.ui;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import ar.uba.dc.formalex.fl.utils.FlTest;
@@ -13,6 +14,7 @@ import ar.uba.dc.formalex.fl.utils.TestUtils;
 public class ReduccionDeRepresentacionDeAccionTest extends FlTest {
 
 	@Test
+	@Ignore("El ejemplo tarda mucho, fue una prueba aparte de la tesis")
 	public void casoDeEstudio2NroDeClausulas5WithIsHappeningWithInterval() throws Exception {
 		
 		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "CasoDeEstudio2NroDeClausulas5WithIsHappeningWithInterval.txt", true, CORRER_CON_FILTRADO, true, false);
