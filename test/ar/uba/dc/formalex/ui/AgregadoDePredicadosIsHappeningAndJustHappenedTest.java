@@ -15,22 +15,22 @@ public class AgregadoDePredicadosIsHappeningAndJustHappenedTest extends FlTest {
 
 	@Test
 	public void testEjTerminalWithIsHappeningWithIdentifier() throws Exception  {
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifier.txt", true, CORRER_CON_FILTRADO, true);
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifier.txt", true, CORRER_CON_FILTRADO, true, false);
 	}
 	
 	@Test
 	public void testEjTerminalWithIsHappeningWithIdentifierDotIdentifier() throws Exception  {
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifierDotIdentifier.txt", true, CORRER_CON_FILTRADO, true);
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifierDotIdentifier.txt", true, CORRER_CON_FILTRADO, true, false);
 	}
 	
 	@Test
 	public void testEjTerminalWithJustHappenedWithIdentifier() throws Exception  {
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifier.txt", true, CORRER_CON_FILTRADO, true);
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifier.txt", true, CORRER_CON_FILTRADO, true, false);
 	}
 	
 	@Test
 	public void testEjTerminalWithJustHappenedWithIdentifierDotIdentifier() throws Exception  {
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifierDotIdentifier.txt", true, CORRER_CON_FILTRADO, true);
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifierDotIdentifier.txt", true, CORRER_CON_FILTRADO, true, false);
 	}
 
 }

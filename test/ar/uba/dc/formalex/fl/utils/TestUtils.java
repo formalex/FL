@@ -49,7 +49,7 @@ public class TestUtils {
 	private static final Logger logger = Logger.getLogger(Main.class);
 	private static int nroDeCorridas = 0;
 	
-	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker, boolean conFiltrado, boolean conReductor) throws Exception {
+	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker, boolean conFiltrado, boolean conReductor, boolean conTemplateSinJh) throws Exception {
 		try {
 			java.io.FileInputStream streamFile = new java.io.FileInputStream(rutaArchivoDeEjemplo);
 			
@@ -71,6 +71,14 @@ public class TestUtils {
 				logger.debug("Tiempo del parser: " + seg + " ms");
 
 				logger.info("CON Reductor: " + conReductor);
+				
+				String nombreTemplateUsado; 
+				if(conTemplateSinJh)
+					nombreTemplateUsado = System.getProperty("TEMPLATE_VELOCITY_SIN_JH");
+				else
+					nombreTemplateUsado = System.getProperty("TEMPLATE_VELOCITY");
+				
+				logger.info("Template usado: " + nombreTemplateUsado);
 				FLInput flInput = FLParser.getFLInput();
 				LaAplanadora divididos = new LaAplanadora();
 				Grafo<InfoComponenteBgt> elgrafoDeDependenciasBgt = null;
@@ -84,7 +92,7 @@ public class TestUtils {
 				// loguearEntSal(flInput);
 
 				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker,
-						conReductor);
+						conReductor, conTemplateSinJh);
 
 				logger.debug("Listo");
 			} catch (TokenMgrError e) {
@@ -102,14 +110,14 @@ public class TestUtils {
 		}
 	}
 	
-	private static void validar(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor) {
+	private static void validar(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor, boolean conTemplateSinJh) {
         boolean b = true;
         
         if (flInput.getRules().size() > 0)
-            b = validarReglas(flInput, elGrafoDeDependencias, conModelChecker, conReductor);
+            b = validarReglas(flInput, elGrafoDeDependencias, conModelChecker, conReductor, conTemplateSinJh);
 
         if (b){
-            validarPermisos(flInput, elGrafoDeDependencias, conModelChecker, conReductor);
+            validarPermisos(flInput, elGrafoDeDependencias, conModelChecker, conReductor, conTemplateSinJh);
         }else{
             if (flInput.getPermissions().size() > 0){
                 logger.debug("No se validan los permisos");
@@ -117,7 +125,7 @@ public class TestUtils {
         }
 	}
 
-	private static boolean validarReglas(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor) {
+	private static boolean validarReglas(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor, boolean conTemplateSinJh) {
         FLFormula aValidar = new FLTrue();
 
         String flRules = "TRUE";
@@ -144,7 +152,7 @@ public class TestUtils {
 		
         boolean encontroTrace = true;
         if(conModelChecker){
-        	File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, aValidar);
+        	File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, aValidar, conTemplateSinJh);
 
         	if (!file.exists()){
         		//Si no se generó el archivo es porque el output del proceso está vacío. Eso suele pasar cuando hubo un error con nusmv.
@@ -166,7 +174,7 @@ public class TestUtils {
         
 	}
 
-	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor) {
+	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor, boolean conTemplateSinJh) {
         FLFormula aValidar = new FLTrue();
         //Uno todas las prohibiciones y obligaciones en una fórmula con conjunciones.
         for(FLFormula formula : flInput.getRules()) {
@@ -194,7 +202,7 @@ public class TestUtils {
 					conReductor, conPermiso, unaBgtFiltrada);
             
             if(conModelChecker){
-	            File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, conPermiso);
+	            File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, conPermiso, conTemplateSinJh);
 	            boolean encontroTrace = encontroTrace(file);
 	            if (encontroTrace){
 	                logger.info("Se ha encontrado un comportamiento legal para el permiso.");

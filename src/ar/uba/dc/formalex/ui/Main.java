@@ -115,7 +115,7 @@ public class Main {
         logger.info("Buscando trace para la formula:");
         logger.info("FL: " + flRules);
         logger.info("NUSMV: " + aValidar.toString());
-        File file = NuSMVModelChecker.findTrace(flInput.getBackgroundTheory(), aValidar);
+        File file = NuSMVModelChecker.findTrace(flInput.getBackgroundTheory(), aValidar, false);
         if (!file.exists()){
         //Si no se generó el archivo es porque el output del proceso está vacío. Eso suele pasar cuando hubo un error con nusmv.
             logger.error("Error al correr nusmv. Intentar correr a mano el comando previamente logueado.");
@@ -145,7 +145,7 @@ public class Main {
             logger.info("Buscando trace para el permiso:");
             logger.info("FL: " + flInput.getFlPermission().get(ind++));
             logger.info("Nusmv: " + conPermiso.toString());
-            File file = NuSMVModelChecker.findTrace(flInput.getBackgroundTheory(), conPermiso);
+            File file = NuSMVModelChecker.findTrace(flInput.getBackgroundTheory(), conPermiso, false);
             boolean encontroTrace = encontroTrace(file);
             if (encontroTrace){
                 logger.info("Se ha encontrado un comportamiento legal para el permiso.");

@@ -33,7 +33,7 @@ public class NuSMVModelChecker {
         UtilFile.guardar(commandFile, x, false);
     }
 
-    private static void crearAutomata(BackgroundTheory backgroundTheory, File fileOut){
+    private static void crearAutomata(BackgroundTheory backgroundTheory, File fileOut, boolean conTemplateSinJh){
         PrintWriter writer = null;
         String strCodificacionArchivo = "UTF-8";
 
@@ -57,8 +57,14 @@ public class NuSMVModelChecker {
 			ve.setProperty("input.encoding", strCodificacionArchivo);      
             ve.setProperty("output.encoding", strCodificacionArchivo);
             ve.init();
-            //Template template = ve.getTemplate( System.getProperty("TEMPLATE_VELOCITY") )  ;
-            Template template = ve.getTemplate( System.getProperty("TEMPLATE_VELOCITY_SIN_JH") )  ;
+            
+            String nombreTemplateUsado; 
+			if(conTemplateSinJh)
+				nombreTemplateUsado = System.getProperty("TEMPLATE_VELOCITY_SIN_JH");
+			else
+				nombreTemplateUsado = System.getProperty("TEMPLATE_VELOCITY");
+			
+            Template template = ve.getTemplate( nombreTemplateUsado )  ;
 
 
             writer = new PrintWriter (fileOut);
@@ -80,7 +86,7 @@ public class NuSMVModelChecker {
     }
 
     //Devuelve el archivo de salida
-    public static File findTrace(BackgroundTheory backgroundTheory, FLFormula formula) {
+    public static File findTrace(BackgroundTheory backgroundTheory, FLFormula formula, boolean conTemplateSinJh) {
         final String nusmvExecutable = System.getProperty("NUSMV_EXE");
         if (nusmvExecutable == null)
             throw new RuntimeException("Falta indicar el exe de nusmv (NUSMV_EXE)");
@@ -109,7 +115,7 @@ public class NuSMVModelChecker {
             nusmvOutput = new File(temp_dir, nusvmOutputFileName );
         }
         try {
-            crearAutomata(backgroundTheory, nusmvInput);
+            crearAutomata(backgroundTheory, nusmvInput, conTemplateSinJh);
 //            String ltlExpr = formulaToTest.toString() + " & !X X X X X TRUE";
             String ltlExpr = formulaToTest.toString();
             crearComandos(nusmvCommands, nusmvOutput.getAbsolutePath(), ltlExpr);
