@@ -61,6 +61,7 @@ public class FlTest {
 		}
 		
 		System.setProperty("TEMPLATE_VELOCITY", "fl.vm");
+		System.setProperty("TEMPLATE_VELOCITY_SIN_JH", "flSinJH.vm");
 	}
 	
 

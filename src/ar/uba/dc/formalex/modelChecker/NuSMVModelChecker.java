@@ -57,7 +57,9 @@ public class NuSMVModelChecker {
 			ve.setProperty("input.encoding", strCodificacionArchivo);      
             ve.setProperty("output.encoding", strCodificacionArchivo);
             ve.init();
-            Template template = ve.getTemplate( System.getProperty("TEMPLATE_VELOCITY") )  ;
+            //Template template = ve.getTemplate( System.getProperty("TEMPLATE_VELOCITY") )  ;
+            Template template = ve.getTemplate( System.getProperty("TEMPLATE_VELOCITY_SIN_JH") )  ;
+
 
             writer = new PrintWriter (fileOut);
             template.merge( context , writer);
