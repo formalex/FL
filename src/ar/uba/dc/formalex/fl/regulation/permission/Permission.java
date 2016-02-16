@@ -27,8 +27,8 @@ public class Permission extends FLFormula {
     }
 
     @Override
-    public String toString() {
-        return formula.toString();
+    public String translateToLTL() {
+        return formula.translateToLTL();
     }
 
     @Override

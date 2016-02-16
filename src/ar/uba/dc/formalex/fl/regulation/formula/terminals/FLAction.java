@@ -36,7 +36,7 @@ public class FLAction extends FLTerminal {
     }
 
 	@Override
-    public String toString() {
+    public String translateToLTL() {
 		
 		return getNameWithAgent() + " = " + this.getReferencedState().getValueInLtlFormula();
     }

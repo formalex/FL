@@ -29,13 +29,13 @@ public class Obligation extends FLFormula{
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL() {
         //    O( fórmula ) repaired by  rep → G ( !fórmula -> rep)
         //    O( fórmula ) → G ( fórmula )
         if (hasRepair())
-            return "G ( !" + formula.toString() + " -> (" + repair.toString() + ") )";
+            return "G ( !" + formula.translateToLTL() + " -> (" + repair.translateToLTL() + ") )";
         else
-            return "G ( " + formula.toString() + " )";
+            return "G ( " + formula.translateToLTL() + " )";
     }
 
     @Override

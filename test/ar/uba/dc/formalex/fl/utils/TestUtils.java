@@ -138,12 +138,12 @@ public class TestUtils {
 
         logger.info("Buscando trace para la formula:");
         logger.info("FL: " + flRules);
-        logger.info("NUSMV: " + aValidar.toString());
-        logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(aValidar.toString()));
-        logger.info("# de '=' : " + contadorDeSignosIgual(aValidar.toString()));
+        logger.info("NUSMV: " + aValidar.translateToLTL());
+        logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(aValidar.translateToLTL()));
+        logger.info("# de '=' : " + contadorDeSignosIgual(aValidar.translateToLTL()));
         
         BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), aValidar, elGrafoDeDependencias);        
-        logger.info("# bgt despues del filtro de la formula: "+ aValidar.toString());
+        logger.info("# bgt despues del filtro de la formula: "+ aValidar.translateToLTL());
         loguearBgt(unaBgtFiltrada);
         
       //Se crea e invoca al reductor
@@ -187,14 +187,14 @@ public class TestUtils {
             FLFormula conPermiso = new FLAnd(aValidar, formula);
             logger.info("Buscando trace para el permiso:");
             logger.info("FL: " + flInput.getFlPermission().get(ind++));
-            logger.info("Nusmv: " + conPermiso.toString());
-            logger.info("# de '=' : " + contadorDeSignosIgual(conPermiso.toString()));
-            logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(conPermiso.toString()));
+            logger.info("Nusmv: " + conPermiso.translateToLTL());
+            logger.info("# de '=' : " + contadorDeSignosIgual(conPermiso.translateToLTL()));
+            logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(conPermiso.translateToLTL()));
             
             
             
             BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), conPermiso, elGrafoDeDependencias);        
-            logger.info("bgt despues del filtro del permiso: "+  conPermiso.toString());
+            logger.info("bgt despues del filtro del permiso: "+  conPermiso.translateToLTL());
             loguearBgt(unaBgtFiltrada);
             
             //Se crea e invoca al reductor
@@ -222,7 +222,7 @@ public class TestUtils {
 			FLFormula aFormula, BackgroundTheory unaBgtFiltrada) {
 		ReductorDeRepresentacionDeAccionADosEstados reductorDeAccionADosEstados = getReductor(conReductor, aFormula, unaBgtFiltrada);
 		BackgroundTheory bgtConRepresentacionDeAccionesReducidas = reductorDeAccionADosEstados.ejecutar();            
-		logger.info(" Acciones DESPUES de la REDUCCION con F: "+  aFormula.toString());
+		logger.info(" Acciones DESPUES de la REDUCCION con F: "+  aFormula.translateToLTL());
 		logOnlyActions(bgtConRepresentacionDeAccionesReducidas);
 		return bgtConRepresentacionDeAccionesReducidas;
 	}

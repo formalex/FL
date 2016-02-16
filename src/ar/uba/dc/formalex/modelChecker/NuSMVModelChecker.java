@@ -117,7 +117,7 @@ public class NuSMVModelChecker {
         try {
             crearAutomata(backgroundTheory, nusmvInput, conTemplateSinJh);
 //            String ltlExpr = formulaToTest.toString() + " & !X X X X X TRUE";
-            String ltlExpr = formulaToTest.toString();
+            String ltlExpr = formulaToTest.translateToLTL();
             crearComandos(nusmvCommands, nusmvOutput.getAbsolutePath(), ltlExpr);
         } catch (IOException e1) {
             logger.error(e1.getMessage(), e1);

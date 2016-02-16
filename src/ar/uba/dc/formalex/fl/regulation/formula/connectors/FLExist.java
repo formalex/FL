@@ -16,15 +16,15 @@ public class FLExist extends FLQuantifier {
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL() {
         if (yaInstanciada)
-            return getFormula().toString();
+            return getFormula().translateToLTL();
         else {
             //usada para loguear y debug
             String rol = "";
             if (getRole() != null)
                 rol = ":" + getRole();
-            return "EXISTS (" + getVariable() + rol + " ; " + getFormula().toString() + " )";
+            return "EXISTS (" + getVariable() + rol + " ; " + getFormula().translateToLTL() + " )";
         }
     }
 

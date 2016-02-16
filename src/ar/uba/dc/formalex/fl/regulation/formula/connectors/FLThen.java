@@ -12,9 +12,9 @@ public class FLThen extends FormulaConnectorBinary {
     }
 
     @Override
-    public String toString() {
-        String izq = getLeftFormula().toString();
-        String der = getRightFormula().toString();
+    public String translateToLTL() {
+        String izq = getLeftFormula().translateToLTL();
+        String der = getRightFormula().translateToLTL();
 
         //Si la parte izq no es terminal -> pongo esa parte entre paréntesis.
         //Lo mismo con la parte derecha

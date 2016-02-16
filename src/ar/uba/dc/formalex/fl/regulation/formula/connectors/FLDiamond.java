@@ -41,16 +41,16 @@ public class FLDiamond extends FLFormula {
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL() {
         /**
          * Tr (<> f1 )          ?    F Tr(f1)
          * Tr (<>_{i} f1 )      ?     i = activo -> (i = activo U Tr(f1) )
          */
         if (interval != null){
-            return interval.toString() + " -> (" + interval.toString() + " U " + formula.toString() + ")";
+            return interval.translateToLTL() + " -> (" + interval.translateToLTL() + " U " + formula.translateToLTL() + ")";
         }
         else
-            return "F(" + formula.toString() + ")";
+            return "F(" + formula.translateToLTL() + ")";
     }
     
     @Override

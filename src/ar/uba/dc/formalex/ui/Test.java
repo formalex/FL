@@ -66,7 +66,7 @@ public class Test {
 
         //"Reglas:");
         for(FLFormula formula : flInput.getRules()) {
-            String nueva = formula.toString();
+            String nueva = formula.translateToLTL();
             String vieja = salidaOK.get(ind++);
             if (!nueva.equals(vieja)){
                 contMal++;
@@ -77,7 +77,7 @@ public class Test {
         }
         //("Permisos:");
         for(FLFormula formula : flInput.getPermissions()) {
-            String nueva = formula.toString();
+            String nueva = formula.translateToLTL();
             String vieja = salidaOK.get(ind++);
             if (!nueva.equals(vieja)){
                 contMal++;

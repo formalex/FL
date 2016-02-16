@@ -151,11 +151,11 @@ public class LaAplanadora {
 		logger.info("Fórmulas expandidas:");
 
 		for(FLFormula f : input.getRules()) {
-			logger.info(f.toString());
+			logger.info(f.translateToLTL());
 		}
 		logger.info("");
 		for(FLFormula f : input.getPermissions()) {
-			logger.info(f.toString());
+			logger.info(f.translateToLTL());
 		}
 		logger.info("");
 	}

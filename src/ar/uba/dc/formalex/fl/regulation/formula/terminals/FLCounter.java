@@ -14,7 +14,7 @@ public class FLCounter extends FLTerminal {
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL() {
         return getNameWithAgent()
                 + comparator.toString() + valueToCompare ;
     }

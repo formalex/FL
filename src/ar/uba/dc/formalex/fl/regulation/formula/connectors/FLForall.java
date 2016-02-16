@@ -20,14 +20,14 @@ public class FLForall extends FLQuantifier {
 	}
 
 	@Override
-	public String toString() {
+	public String translateToLTL() {
 		if (yaInstanciada)
-			return getFormula().toString();
+			return getFormula().translateToLTL();
 		else {
 			String rol = "";
 			if (getRole() != null)
 				rol = ":" + getRole();
-			return "FORALL (" + getVariable() + rol + " ; " + getFormula().toString() + " )";
+			return "FORALL (" + getVariable() + rol + " ; " + getFormula().translateToLTL() + " )";
 		}
 	}
 

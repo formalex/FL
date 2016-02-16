@@ -27,7 +27,7 @@ public class FLInterval extends FLTerminal {
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL() {
         return getNameWithAgent() + " = ACTIVE ";
     }
 }

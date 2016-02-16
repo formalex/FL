@@ -59,7 +59,7 @@ public abstract class FLFormula {
     /**
      * devuelve el string que representa a esta fórmula con el formato del model checker
      */
-	public abstract String toString();
+	public abstract String translateToLTL();
 
     /**
      * Crea y devuelve una nueva fórmula.

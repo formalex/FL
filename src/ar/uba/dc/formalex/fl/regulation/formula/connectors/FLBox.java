@@ -45,14 +45,14 @@ public class FLBox extends FLFormula{
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL() {
         String res = "";
         if (interval != null)
-            res = interval.toString() + " -> ";
+            res = interval.translateToLTL() + " -> ";
         if (ponerParentesis(formula))
-            return res + "(" + formula.toString() + ")";
+            return res + "(" + formula.translateToLTL() + ")";
         else
-            return res + formula.toString();
+            return res + formula.translateToLTL();
     }
 
     private boolean ponerParentesis(FLFormula lf) {

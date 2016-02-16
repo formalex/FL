@@ -15,7 +15,7 @@ public class FLFalse extends FLTerminal {
     public static final String SIMBOLO = " FALSE ";
 
     @Override
-    public String toString() {
+    public String translateToLTL() {
         return SIMBOLO;
     }
 

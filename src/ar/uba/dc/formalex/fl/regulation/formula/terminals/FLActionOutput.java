@@ -11,7 +11,7 @@ public class FLActionOutput extends FLTerminal {
 	}
 
     @Override
-    public String toString() {
+    public String translateToLTL() {
         return getNameWithAgent() + "_OUTPUT = " + output;
     }
 

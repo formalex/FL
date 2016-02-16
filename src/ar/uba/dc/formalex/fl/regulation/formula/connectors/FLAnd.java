@@ -17,11 +17,11 @@ public class FLAnd extends FormulaConnectorBinary {
 	}
 
     @Override
-    public String toString() {
+    public String translateToLTL() {
         FLFormula lf = getLeftFormula();
-        String izq = lf.toString();
+        String izq = lf.translateToLTL();
         FLFormula rf = getRightFormula();
-        String der = rf.toString();
+        String der = rf.translateToLTL();
         //Si la parte izq no es terminal ni FLAnd -> pongo esa parte entre paréntesis.
         //Lo mismo con la parte derecha
         if (ponerParentesis(lf))

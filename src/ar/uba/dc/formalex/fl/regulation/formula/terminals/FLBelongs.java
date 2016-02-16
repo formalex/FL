@@ -17,7 +17,7 @@ public class FLBelongs extends FLTerminal {
     }
 
     @Override
-	public String toString() {
+	public String translateToLTL() {
 		return getNameWithAgent() + "belongsTo:" + getName();
 	}
 

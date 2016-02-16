@@ -20,7 +20,7 @@ public class FLInside extends FLTerminal {
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL() {
         return interval.getNameWithAgent() + " = ACTIVE ";
     }
     
