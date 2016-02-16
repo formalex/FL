@@ -27,7 +27,7 @@ VAR
 ########################################################
 ##
 #####Acciones (con occurrences y outputValues)#####
-##Por cada acción defino una variable. Las acciones ya vienen con los roles ('rol.accion').
+##Por cada acciï¿½n defino una variable. Las acciones ya vienen con los roles ('rol.accion').
 #foreach ($action in $acciones )
 	$action: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
  #if ($action.hasOutputValues())
@@ -65,7 +65,7 @@ VAR
 	$evento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
  #end 
 ##Luego de definir todos los eventos, agrego una nueva variable booleana(una por timer) que indica
-##si ya ocurrió el primer evento del timer. Si ya ocurrió => no puede volver a ocurrir.
+##si ya ocurriï¿½ el primer evento del timer. Si ya ocurriï¿½ => no puede volver a ocurrir.
 ##El nombre de la variable es el nombre del primer evento con sufijo $sufijoTimer
 	$timer.getEventos().get(0)$sufijoTimer: boolean;
 #end 
@@ -87,10 +87,10 @@ INIT
 #if ($hayOutputValue)
 	--Las variables que representan los output_values no se inicializan (toman un 
 	--valor aleatorio entre los posibles), la idea es que el valor de la variable solo 
-	--tiene sentido si la acción correspondiente está en JH
+	--tiene sentido si la acciï¿½n correspondiente estï¿½ en JH
 #end
 ##
-##Por cada acción con occurrences inicializo la variable en 0.
+##Por cada acciï¿½n con occurrences inicializo la variable en 0.
 #foreach ($action in $acciones )
  #if ($action.hasOccurrences())
 	${action}$sufijoOccurrence = 0 &
@@ -127,7 +127,7 @@ INIT
  #foreach ($evento in $timer.getEventos())
 	$evento = NOT_HAPPENING &
  #end 
-##El siguiente es el flag que se agrega por cada timer para indicar si ya ocurrió
+##El siguiente es el flag que se agrega por cada timer para indicar si ya ocurriï¿½
 	$timer.getEventos().get(0)$sufijoTimer = FALSE &
 #end 
 ##
@@ -141,10 +141,10 @@ INIT
 
 TRANS
 #####Acciones#####
-	--Las acciones que están en JH pasan a NH
+	--Las acciones que estï¿½n en JH pasan a NH
 	--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
 	--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
-	--Si tienen hasOccursIn => si están en H => hasOccursIn = activo
+	--Si tienen hasOccursIn => si estï¿½n en H => hasOccursIn = activo
 #foreach ($action in $acciones )
 	($action = JUST_HAPPENED -> next($action) = NOT_HAPPENING) &
 	($action = HAPPENING -> next($action) != NOT_HAPPENING ) &
@@ -162,21 +162,21 @@ TRANS
 #end
 ##	
 #####OutputValues#####
-	--Si una acción tienen output values, al pasar de JH a NH, la variable que  
+	--Si una acciï¿½n tienen output values, al pasar de JH a NH, la variable que  
 	--representa el output value toma alguno de sus valores posibles. Si la 
-	--acción no hace ese cambio de JH a NH => el valor queda igual
+	--acciï¿½n no hace ese cambio de JH a NH => el valor queda igual
 	--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
 	--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
 #foreach ($action in $acciones )
  #if ($action.hasOutputValues())
-  ##Si la action está en JH => el output_value toma un nuevo valor
+  ##Si la action estï¿½ en JH => el output_value toma un nuevo valor
 	(next($action) = JUST_HAPPENED -> (
   #foreach ($ov in $action.getOutputValues() )
 ##Se hace un or con cada output_value
 		next(${action}$sufijoOutputValue) = $ov |
   #end
 		FALSE)) &
-##Si el siguiente estado de la acción no es JH => el output_value no cambia de valor
+##Si el siguiente estado de la acciï¿½n no es JH => el output_value no cambia de valor
 	(next($action) != JUST_HAPPENED ->
 		${action}$sufijoOutputValue = next (${action}$sufijoOutputValue)) &
  #end
@@ -201,8 +201,7 @@ TRANS
    #foreach ($accStart in $inter.getStartTriggers() )
 		($accStart = HAPPENING & next($accStart) = JUST_HAPPENED) 
 		#if( $foreach.hasNext )|#end 
-   #end
-		)) & 
+   #end	 
   #end		
   #if( !$inter.isEndActive() ) ## si es isEndActive => no termina nunca
 	(($inter = ACTIVE  & next($inter) = ENDING) -> (
@@ -218,7 +217,7 @@ TRANS
    #end 
 		)) &
   #end	
-	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--si cambia alguna acciï¿½n inicial o final, estando el INT en determinado 
 	--estado => el INT cambia de valor
   #if( !$inter.isStartActive() )
 	($inter = INACTIVE & (
@@ -285,7 +284,9 @@ TRANS
 		#if( $foreach.hasNext )|#end 
    #end
   #end
-		)) & 
+  #if( !$inter.isStartActive() )
+		)) &
+  #end	 
   #if( !$inter.isEndActive() ) ## si es isEndActive => no termina nunca
   --si el intervalo pasa de A a I es porque una AF pasa de H a JH
 	(($inter = ACTIVE  & next($inter) = INACTIVE) -> (
@@ -295,7 +296,7 @@ TRANS
    #end 
 		)) &
   #end	
-	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--si cambia alguna acciï¿½n inicial o final, estando el INT en determinado 
 	--estado => el INT cambia de valor
   #if( !$inter.isStartActive() )
 	($inter = INACTIVE & (
@@ -315,7 +316,7 @@ TRANS
   #end
 ##		
   #if( !$inter.isStartActive() )
-  --si una AI pasa de NH a H -> el intervalo no está activo
+  --si una AI pasa de NH a H -> el intervalo no estï¿½ activo
 	((
    #foreach ($accStart in $inter.getStartTriggers() )
 			($accStart = NOT_HAPPENING & next($accStart) = HAPPENING) 
@@ -324,7 +325,7 @@ TRANS
 		)-> ($inter = INACTIVE)) & 
   #end		
   #if( !$inter.isEndActive() )
-  --si una AF pasa de NH a H -> el intervalo está activo
+  --si una AF pasa de NH a H -> el intervalo estï¿½ activo
 	((
    #foreach ($accEnd in $inter.getEndTriggers() )
 			($accEnd = NOT_HAPPENING & next($accEnd) = HAPPENING) 
@@ -333,7 +334,7 @@ TRANS
 		)-> ($inter = ACTIVE)) & 
   #end
 ##
---si una AI está en H => ninguna otra puede estarlo
+--si una AI estï¿½ en H => ninguna otra puede estarlo
 #foreach ($st in $inter.getStartTriggers() )
   	(next($st) = HAPPENING -> (TRUE 
  #foreach ($otroST in $inter.getStartTriggers() )	
@@ -342,7 +343,7 @@ TRANS
 	)) &
 #end 
 ##
---si una AF está en H => ninguna otra puede estarlo
+--si una AF estï¿½ en H => ninguna otra puede estarlo
 #foreach ($et in $inter.getEndTriggers() )
   	(next($et) = HAPPENING -> (TRUE 
  #foreach ($otroET in $inter.getEndTriggers() )	
@@ -366,16 +367,16 @@ TRANS
 #end
 ##
 #####Contadores#####
-##implementado así, no pueden ocurrir dos acciones a la vez que modifiquen al contador
+##implementado asï¿½, no pueden ocurrir dos acciones a la vez que modifiquen al contador
 ##logueo:
 #if ($contadores.size() > 0)
 	--Contadores:
 	--Si ocurre alguna de las acciones que incrementan/decrementan al contador y esto no provoca que se excedan los limites del mismo => se modifica al contador
-	--Si ocurre alguna de las acciones que incrementan/decrementan al contador pero se excede algún limite del mismo => se le asigna el valor del límite alcanzado
+	--Si ocurre alguna de las acciones que incrementan/decrementan al contador pero se excede algï¿½n limite del mismo => se le asigna el valor del lï¿½mite alcanzado
 	--Si no ocurre ninguna de las acciones que modifican al contador => este no se modifica.
 	--Si ocurre alguna de las acciones que asignan valor al contador ('resets with action' o 'sets with action')=> se modifica al contador.
 	--Si ocurre alguna de las acciones que modifican al contador => no puede ocurrir ninguna otra.
-	--Si está por ocurrir alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo y el contador controla alguno de estos límites => no se permite la ejecución de la acción.
+	--Si estï¿½ por ocurrir alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo y el contador controla alguno de estos lï¿½mites => no se permite la ejecuciï¿½n de la acciï¿½n.
 #end
 #foreach ($contador in $contadores )
 ##si ocurre alguna de las acciones que incrementan/decrementan al contador y esto no provoca que se excedan los limites del mismo => se modifica al contador
@@ -387,8 +388,8 @@ TRANS
 ##
 
 #foreach ($contador in $contadores )
-##si ocurre alguna de las acciones que incrementan/decrementan al contador pero se excede algún limite del mismo y no se impide la ejecución de la accion
-## => se le asigna el valor del límite alcanzado
+##si ocurre alguna de las acciones que incrementan/decrementan al contador pero se excede algï¿½n limite del mismo y no se impide la ejecuciï¿½n de la accion
+## => se le asigna el valor del lï¿½mite alcanzado
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
  	#if(!$contador.isMaxImpedesActions()) 
 	(next($incAct) = JUST_HAPPENED #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end  
@@ -435,18 +436,18 @@ TRANS
 ##
 
 #foreach ($contador in $contadores )
-## si está por ocurrir alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo y 
-## el contador controla alguno de estos límites => no se permite la ejecución de la acción. 
+## si estï¿½ por ocurrir alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo y 
+## el contador controla alguno de estos lï¿½mites => no se permite la ejecuciï¿½n de la acciï¿½n. 
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
  	#if($contador.isMinImpedesActions()) 
  	($incAct = NOT_HAPPENING & 
-	##Si es una acción que decrementa, el contador controla tope mínimo y se excede el mismo 
+	##Si es una acciï¿½n que decrementa, el contador controla tope mï¿½nimo y se excede el mismo 
 	($contador.getIncreaseActions().get($incAct) < 0)  & 
 	($contador + $contador.getIncreaseActions().get($incAct) < $contador.getMinValue()) -> next($incAct) = NOT_HAPPENING ) &		
     #end        
     #if($contador.isMaxImpedesActions())
     ($incAct = NOT_HAPPENING & 
-    ##Si es una acción que incrementa, el contador controla tope máximo y se excede el mismo
+    ##Si es una acciï¿½n que incrementa, el contador controla tope mï¿½ximo y se excede el mismo
 	($contador.getIncreaseActions().get($incAct) > 0) & 
 	($contador + $contador.getIncreaseActions().get($incAct) > $contador.getMaxValue()) -> next($incAct) = NOT_HAPPENING ) &		
     #end 			 
@@ -456,10 +457,10 @@ TRANS
 #####Timers#####
 #if ($timers.size() > 0)
 	--Transiciones de Timers (ex acciones temporales).
-	--defino comportamiento del flag que indica si ya ocurrió.
+	--defino comportamiento del flag que indica si ya ocurriï¿½.
 #end
 #foreach ($timer in $timers)
-##Por cada uno de los timers defino el comportamiento del flag que indica si ya ocurrió su primer evento.
+##Por cada uno de los timers defino el comportamiento del flag que indica si ya ocurriï¿½ su primer evento.
 #set( $primerEvento = $timer.getEventos().get(0))
 #set( $flag = "$primerEvento$sufijoTimer")
 	($primerEvento=NOT_HAPPENING & next($primerEvento) = HAPPENING -> !$flag) &
@@ -482,10 +483,10 @@ TRANS
 	#set( $eventoSiguiente = $NULL)
 #end
 ##
-	-- Si está en JH tiene que cambiar
+	-- Si estï¿½ en JH tiene que cambiar
 	($evento = JUST_HAPPENED -> next($evento) = NOT_HAPPENING) &	
-	--Si un evento cambia de estado, indico cuáles son los valores posibles y 
-	--cómo se comportan los demás evento del timer:
+	--Si un evento cambia de estado, indico cuï¿½les son los valores posibles y 
+	--cï¿½mo se comportan los demï¿½s evento del timer:
 	($evento != next($evento) -> (($evento=NOT_HAPPENING & next($evento) = HAPPENING &
   #foreach ($otroEvento in $timer.getEventos())
    #if ($eventoPrevio == $otroEvento )   
