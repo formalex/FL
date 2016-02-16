@@ -10,7 +10,7 @@
 #set( $hayOutputValue = false)
 #set( $INTERVAL_WITH_STARTING_ENDING = false)
 ########################################################
-## FIN Defino variables internas que voy a usar con velocity
+## FIN Defino variables internas que voy a usar con Velocity
 ########################################################
 ##agrego comentarios con los agentes
 --Agente: roles asignados
@@ -23,7 +23,7 @@
 MODULE main
 VAR	
 ########################################################
-## Defino variables de nusmv
+## Defino variables de NuSMV
 ########################################################
 ##
 #####Acciones (con occurrences y outputValues)#####
@@ -86,7 +86,7 @@ INIT
 #####OutputValues#####
 #if ($hayOutputValue)
 	--Las variables que representan los output_values no se inicializan (toman un 
-	--valor aleatorio entre los posibles), la idea es que el valor de la variable solo 
+	--valor aleatorio entre los posibles), la idea es que el valor de la variable sólo 
 	--tiene sentido si la acción correspondiente está en JH
 #end
 ##
@@ -185,7 +185,7 @@ TRANS
 #####Intervalos#####
 #if ($intervalos.size() > 0)
 	--Modificaciones de intervalos
-	--El intervalo se modifica solo ante algunas transiciones de las acciones que lo delimitan
+	--El intervalo se modifica sólo ante algunas transiciones de las acciones que lo delimitan
 #end
 ##
 #foreach ($inter in $intervalos )
@@ -495,7 +495,7 @@ TRANS
   #end
   TRUE)| ($evento=JUST_HAPPENED & next($evento) = NOT_HAPPENING)| 
   ($evento=HAPPENING & next($evento) = JUST_HAPPENED &
-##Definino el comportamiento del 'eventoSiguiente' (si existe)
+##Defino el comportamiento del 'eventoSiguiente' (si existe)
 #if ($eventoSiguiente != $NULL)
 	next($eventoSiguiente) = HAPPENING &
 #end
