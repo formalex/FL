@@ -2,6 +2,7 @@ package ar.uba.dc.formalex.ui;
 
 import org.junit.Test;
 
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.utils.FlTest;
 import ar.uba.dc.formalex.fl.utils.TestUtils;
 
@@ -15,22 +16,22 @@ public class AgregadoDePredicadosIsHappeningAndJustHappenedTest extends FlTest {
 
 	@Test
 	public void testEjTerminalWithIsHappeningWithIdentifier() throws Exception  {
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifier.txt", true, CORRER_CON_FILTRADO, true, false);
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifier.txt", true, CORRER_CON_FILTRADO, true, LTLTranslationType.WITH_JH);
 	}
 	
 	@Test
 	public void testEjTerminalWithIsHappeningWithIdentifierDotIdentifier() throws Exception  {
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifierDotIdentifier.txt", true, CORRER_CON_FILTRADO, true, false);
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithIsHappeningWithIdentifierDotIdentifier.txt", true, CORRER_CON_FILTRADO, true, LTLTranslationType.WITH_JH);
 	}
 	
 	@Test
 	public void testEjTerminalWithJustHappenedWithIdentifier() throws Exception  {
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifier.txt", true, CORRER_CON_FILTRADO, true, false);
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifier.txt", true, CORRER_CON_FILTRADO, true, LTLTranslationType.WITH_JH);
 	}
 	
 	@Test
 	public void testEjTerminalWithJustHappenedWithIdentifierDotIdentifier() throws Exception  {
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifierDotIdentifier.txt", true, CORRER_CON_FILTRADO, true, false);
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_EJS_PARSER_CLAUSES + "EjTerminalWithJustHappenedWithIdentifierDotIdentifier.txt", true, CORRER_CON_FILTRADO, true, LTLTranslationType.WITH_JH);
 	}
 
 }

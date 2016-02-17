@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLFalse;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
 
@@ -20,14 +21,14 @@ public class FLForall extends FLQuantifier {
 	}
 
 	@Override
-	public String translateToLTL() {
+	public String translateToLTL(LTLTranslationType anLTLTranslationType) {
 		if (yaInstanciada)
-			return getFormula().translateToLTL();
+			return getFormula().translateToLTL(anLTLTranslationType );
 		else {
 			String rol = "";
 			if (getRole() != null)
 				rol = ":" + getRole();
-			return "FORALL (" + getVariable() + rol + " ; " + getFormula().translateToLTL() + " )";
+			return "FORALL (" + getVariable() + rol + " ; " + getFormula().translateToLTL(anLTLTranslationType ) + " )";
 		}
 	}
 

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLOr;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
@@ -29,13 +30,13 @@ public class Obligation extends FLFormula{
     }
 
     @Override
-    public String translateToLTL() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         //    O( fórmula ) repaired by  rep → G ( !fórmula -> rep)
         //    O( fórmula ) → G ( fórmula )
         if (hasRepair())
-            return "G ( !" + formula.translateToLTL() + " -> (" + repair.translateToLTL() + ") )";
+            return "G ( !" + formula.translateToLTL(anLTLTranslationType ) + " -> (" + repair.translateToLTL(anLTLTranslationType ) + ") )";
         else
-            return "G ( " + formula.translateToLTL() + " )";
+            return "G ( " + formula.translateToLTL(anLTLTranslationType ) + " )";
     }
 
     @Override

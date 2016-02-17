@@ -5,6 +5,7 @@ import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 
 /**
  * User: P_BENEDETTI
@@ -16,7 +17,7 @@ public class FLTrue extends FLTerminal {
     public static final String SIMBOLO = " TRUE ";
 
     @Override
-    public String translateToLTL() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         return SIMBOLO;
     }
 

@@ -23,6 +23,7 @@ import ar.uba.dc.formalex.fl.bgtheory.Action;
 import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
 import ar.uba.dc.formalex.fl.bgtheory.Interval;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLActionOutput;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
@@ -37,6 +38,7 @@ import ar.uba.dc.formalex.parser.ParseException;
 import ar.uba.dc.formalex.parser.TokenMgrError;
 import ar.uba.dc.formalex.ui.Main;
 import ar.uba.dc.formalex.util.LaAplanadora;
+import ar.uba.dc.formalex.util.Util;
 
 
 public class TestUtils {
@@ -49,7 +51,7 @@ public class TestUtils {
 	private static final Logger logger = Logger.getLogger(Main.class);
 	private static int nroDeCorridas = 0;
 	
-	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker, boolean conFiltrado, boolean conReductor, boolean conTemplateSinJh) throws Exception {
+	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker, boolean conFiltrado, boolean conReductor, LTLTranslationType anLtlTranslationType) throws Exception {
 		try {
 			java.io.FileInputStream streamFile = new java.io.FileInputStream(rutaArchivoDeEjemplo);
 			
@@ -72,12 +74,7 @@ public class TestUtils {
 
 				logger.info("CON Reductor: " + conReductor);
 				
-				String nombreTemplateUsado; 
-				if(conTemplateSinJh)
-					nombreTemplateUsado = System.getProperty("TEMPLATE_VELOCITY_SIN_JH");
-				else
-					nombreTemplateUsado = System.getProperty("TEMPLATE_VELOCITY");
-				
+				String nombreTemplateUsado = Util.getTemplateName(anLtlTranslationType);				
 				logger.info("Template usado: " + nombreTemplateUsado);
 				FLInput flInput = FLParser.getFLInput();
 				LaAplanadora divididos = new LaAplanadora();
@@ -85,14 +82,14 @@ public class TestUtils {
 				
 				if (conFiltrado)
 					elgrafoDeDependenciasBgt = divididos.explotarYAplanar(
-							flInput, new ConstructorDeGrafoImpl());
+							flInput, new ConstructorDeGrafoImpl(), LTLTranslationType.WITH_JH);
 				else
 					elgrafoDeDependenciasBgt = divididos.explotarYAplanar(
-							flInput, new ConstructorDeGrafoFake());
+							flInput, new ConstructorDeGrafoFake(), LTLTranslationType.WITH_JH);
 				// loguearEntSal(flInput);
 
 				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker,
-						conReductor, conTemplateSinJh);
+						conReductor, anLtlTranslationType);
 
 				logger.debug("Listo");
 			} catch (TokenMgrError e) {
@@ -110,14 +107,14 @@ public class TestUtils {
 		}
 	}
 	
-	private static void validar(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor, boolean conTemplateSinJh) {
+	private static void validar(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor, LTLTranslationType anLtlTranslationType) {
         boolean b = true;
         
         if (flInput.getRules().size() > 0)
-            b = validarReglas(flInput, elGrafoDeDependencias, conModelChecker, conReductor, conTemplateSinJh);
+            b = validarReglas(flInput, elGrafoDeDependencias, conModelChecker, conReductor, anLtlTranslationType);
 
         if (b){
-            validarPermisos(flInput, elGrafoDeDependencias, conModelChecker, conReductor, conTemplateSinJh);
+            validarPermisos(flInput, elGrafoDeDependencias, conModelChecker, conReductor, anLtlTranslationType);
         }else{
             if (flInput.getPermissions().size() > 0){
                 logger.debug("No se validan los permisos");
@@ -125,7 +122,7 @@ public class TestUtils {
         }
 	}
 
-	private static boolean validarReglas(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor, boolean conTemplateSinJh) {
+	private static boolean validarReglas(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor, LTLTranslationType anLtlTranslationType) {
         FLFormula aValidar = new FLTrue();
 
         String flRules = "TRUE";
@@ -138,21 +135,21 @@ public class TestUtils {
 
         logger.info("Buscando trace para la formula:");
         logger.info("FL: " + flRules);
-        logger.info("NUSMV: " + aValidar.translateToLTL());
-        logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(aValidar.translateToLTL()));
-        logger.info("# de '=' : " + contadorDeSignosIgual(aValidar.translateToLTL()));
+        logger.info("NUSMV: " + aValidar.translateToLTL(anLtlTranslationType));
+        logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(aValidar.translateToLTL(anLtlTranslationType )));
+        logger.info("# de '=' : " + contadorDeSignosIgual(aValidar.translateToLTL(anLtlTranslationType )));
         
         BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), aValidar, elGrafoDeDependencias);        
-        logger.info("# bgt despues del filtro de la formula: "+ aValidar.translateToLTL());
+        logger.info("# bgt despues del filtro de la formula: "+ aValidar.translateToLTL(anLtlTranslationType ));
         loguearBgt(unaBgtFiltrada);
         
       //Se crea e invoca al reductor
         BackgroundTheory bgtConRepresentacionDeAccionesReducidas = invocarReductor(
-				conReductor, aValidar, unaBgtFiltrada);
+				conReductor, aValidar, unaBgtFiltrada, anLtlTranslationType);
 		
         boolean encontroTrace = true;
         if(conModelChecker){
-        	File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, aValidar, conTemplateSinJh);
+        	File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, aValidar, anLtlTranslationType);
 
         	if (!file.exists()){
         		//Si no se generó el archivo es porque el output del proceso está vacío. Eso suele pasar cuando hubo un error con nusmv.
@@ -174,7 +171,7 @@ public class TestUtils {
         
 	}
 
-	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor, boolean conTemplateSinJh) {
+	private static void validarPermisos(FLInput flInput, Grafo<InfoComponenteBgt> elGrafoDeDependencias, boolean conModelChecker, boolean conReductor, LTLTranslationType anLTLTranslationType) {
         FLFormula aValidar = new FLTrue();
         //Uno todas las prohibiciones y obligaciones en una fórmula con conjunciones.
         for(FLFormula formula : flInput.getRules()) {
@@ -187,22 +184,22 @@ public class TestUtils {
             FLFormula conPermiso = new FLAnd(aValidar, formula);
             logger.info("Buscando trace para el permiso:");
             logger.info("FL: " + flInput.getFlPermission().get(ind++));
-            logger.info("Nusmv: " + conPermiso.translateToLTL());
-            logger.info("# de '=' : " + contadorDeSignosIgual(conPermiso.translateToLTL()));
-            logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(conPermiso.translateToLTL()));
+            logger.info("Nusmv: " + conPermiso.translateToLTL(anLTLTranslationType ));
+            logger.info("# de '=' : " + contadorDeSignosIgual(conPermiso.translateToLTL(anLTLTranslationType )));
+            logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(conPermiso.translateToLTL(anLTLTranslationType )));
             
             
             
             BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), conPermiso, elGrafoDeDependencias);        
-            logger.info("bgt despues del filtro del permiso: "+  conPermiso.translateToLTL());
+            logger.info("bgt despues del filtro del permiso: "+  conPermiso.translateToLTL(anLTLTranslationType ));
             loguearBgt(unaBgtFiltrada);
             
             //Se crea e invoca al reductor
             BackgroundTheory bgtConRepresentacionDeAccionesReducidas = invocarReductor(
-					conReductor, conPermiso, unaBgtFiltrada);
+					conReductor, conPermiso, unaBgtFiltrada, anLTLTranslationType);
             
             if(conModelChecker){
-	            File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, conPermiso, conTemplateSinJh);
+	            File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, conPermiso, anLTLTranslationType);
 	            boolean encontroTrace = encontroTrace(file);
 	            if (encontroTrace){
 	                logger.info("Se ha encontrado un comportamiento legal para el permiso.");
@@ -219,10 +216,10 @@ public class TestUtils {
 	}
 
 	private static BackgroundTheory invocarReductor(boolean conReductor,
-			FLFormula aFormula, BackgroundTheory unaBgtFiltrada) {
+			FLFormula aFormula, BackgroundTheory unaBgtFiltrada, LTLTranslationType anLTLTranslationType) {
 		ReductorDeRepresentacionDeAccionADosEstados reductorDeAccionADosEstados = getReductor(conReductor, aFormula, unaBgtFiltrada);
 		BackgroundTheory bgtConRepresentacionDeAccionesReducidas = reductorDeAccionADosEstados.ejecutar();            
-		logger.info(" Acciones DESPUES de la REDUCCION con F: "+  aFormula.translateToLTL());
+		logger.info(" Acciones DESPUES de la REDUCCION con F: "+  aFormula.translateToLTL(anLTLTranslationType));
 		logOnlyActions(bgtConRepresentacionDeAccionesReducidas);
 		return bgtConRepresentacionDeAccionesReducidas;
 	}

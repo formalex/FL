@@ -4,6 +4,7 @@ import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
 public class FLNeg extends FLFormula {
@@ -19,8 +20,8 @@ public class FLNeg extends FLFormula {
     }
 
     @Override
-    public String translateToLTL() {
-        return "!( " + formula.translateToLTL() + " )";
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
+        return "!( " + formula.translateToLTL(anLTLTranslationType ) + " )";
     }
 
     @Override

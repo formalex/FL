@@ -1,10 +1,10 @@
 package ar.uba.dc.formalex.modelChecker;
 
-import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
-import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
-import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
-import ar.uba.dc.formalex.util.Fechas;
-import ar.uba.dc.formalex.util.UtilFile;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
@@ -13,8 +13,13 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
-import java.io.*;
-import java.nio.charset.Charset;
+import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
+import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
+import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
+import ar.uba.dc.formalex.util.Fechas;
+import ar.uba.dc.formalex.util.Util;
+import ar.uba.dc.formalex.util.UtilFile;
 
 /**
  * User: P_BENEDETTI
@@ -33,7 +38,7 @@ public class NuSMVModelChecker {
         UtilFile.guardar(commandFile, x, false);
     }
 
-    private static void crearAutomata(BackgroundTheory backgroundTheory, File fileOut, boolean conTemplateSinJh){
+    private static void crearAutomata(BackgroundTheory backgroundTheory, File fileOut, LTLTranslationType anLTLTranslationType){
         PrintWriter writer = null;
         String strCodificacionArchivo = "UTF-8";
 
@@ -58,13 +63,9 @@ public class NuSMVModelChecker {
             ve.setProperty("output.encoding", strCodificacionArchivo);
             ve.init();
             
-            String nombreTemplateUsado; 
-			if(conTemplateSinJh)
-				nombreTemplateUsado = System.getProperty("TEMPLATE_VELOCITY_SIN_JH");
-			else
-				nombreTemplateUsado = System.getProperty("TEMPLATE_VELOCITY");
+            String nombreTemplateUsado = Util.getTemplateName(anLTLTranslationType);
 			
-            Template template = ve.getTemplate( nombreTemplateUsado )  ;
+            Template template = ve.getTemplate(nombreTemplateUsado)  ;
 
 
             writer = new PrintWriter (fileOut);
@@ -85,8 +86,8 @@ public class NuSMVModelChecker {
         }
     }
 
-    //Devuelve el archivo de salida
-    public static File findTrace(BackgroundTheory backgroundTheory, FLFormula formula, boolean conTemplateSinJh) {
+	//Devuelve el archivo de salida
+    public static File findTrace(BackgroundTheory backgroundTheory, FLFormula formula, LTLTranslationType anLTLTranslationType) {
         final String nusmvExecutable = System.getProperty("NUSMV_EXE");
         if (nusmvExecutable == null)
             throw new RuntimeException("Falta indicar el exe de nusmv (NUSMV_EXE)");
@@ -115,9 +116,9 @@ public class NuSMVModelChecker {
             nusmvOutput = new File(temp_dir, nusvmOutputFileName );
         }
         try {
-            crearAutomata(backgroundTheory, nusmvInput, conTemplateSinJh);
+            crearAutomata(backgroundTheory, nusmvInput, anLTLTranslationType);
 //            String ltlExpr = formulaToTest.toString() + " & !X X X X X TRUE";
-            String ltlExpr = formulaToTest.translateToLTL();
+            String ltlExpr = formulaToTest.translateToLTL(anLTLTranslationType );
             crearComandos(nusmvCommands, nusmvOutput.getAbsolutePath(), ltlExpr);
         } catch (IOException e1) {
             logger.error(e1.getMessage(), e1);

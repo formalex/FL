@@ -58,8 +58,9 @@ public abstract class FLFormula {
 	}
     /**
      * devuelve el string que representa a esta fórmula con el formato del model checker
+     * @param anLTLTranslationType TODO
      */
-	public abstract String translateToLTL();
+	public abstract String translateToLTL(LTLTranslationType anLTLTranslationType);
 
     /**
      * Crea y devuelve una nueva fórmula.

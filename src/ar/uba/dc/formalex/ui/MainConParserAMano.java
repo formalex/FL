@@ -1,10 +1,8 @@
 package ar.uba.dc.formalex.ui;
 
-import ar.uba.dc.formalex.fl.FLInput;
-import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoFake;
-import ar.uba.dc.formalex.parser.ParserAMano;
-import ar.uba.dc.formalex.util.Fechas;
-import ar.uba.dc.formalex.util.LaAplanadora;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -12,9 +10,12 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import ar.uba.dc.formalex.fl.FLInput;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
+import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoFake;
+import ar.uba.dc.formalex.parser.ParserAMano;
+import ar.uba.dc.formalex.util.Fechas;
+import ar.uba.dc.formalex.util.LaAplanadora;
 
 
 //clase usada para pruebas
@@ -36,7 +37,7 @@ public class MainConParserAMano {
         }
         FLInput datosAutomata = ParserAMano.getFLInput(fileData);
         LaAplanadora divididos = new LaAplanadora();
-        divididos.explotarYAplanar(datosAutomata, new ConstructorDeGrafoFake());
+        divididos.explotarYAplanar(datosAutomata, new ConstructorDeGrafoFake(), LTLTranslationType.WITH_JH);
 
         File out = new File(dataFileName+ "_" + Fechas.getAAAAMMDD_HHMMSS()+ ".txt");
         hacerAutomata(datosAutomata, out)  ;

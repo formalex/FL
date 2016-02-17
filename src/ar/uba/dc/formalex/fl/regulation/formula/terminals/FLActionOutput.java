@@ -1,6 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.formula.terminals;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 
 public class FLActionOutput extends FLTerminal {
 	private String output;
@@ -11,7 +12,7 @@ public class FLActionOutput extends FLTerminal {
 	}
 
     @Override
-    public String translateToLTL() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         return getNameWithAgent() + "_OUTPUT = " + output;
     }
 

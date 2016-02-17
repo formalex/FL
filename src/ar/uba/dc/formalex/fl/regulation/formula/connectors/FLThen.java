@@ -2,6 +2,7 @@ package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
 public class FLThen extends FormulaConnectorBinary {
@@ -12,9 +13,9 @@ public class FLThen extends FormulaConnectorBinary {
     }
 
     @Override
-    public String translateToLTL() {
-        String izq = getLeftFormula().translateToLTL();
-        String der = getRightFormula().translateToLTL();
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
+        String izq = getLeftFormula().translateToLTL(anLTLTranslationType );
+        String der = getRightFormula().translateToLTL(anLTLTranslationType );
 
         //Si la parte izq no es terminal -> pongo esa parte entre paréntesis.
         //Lo mismo con la parte derecha

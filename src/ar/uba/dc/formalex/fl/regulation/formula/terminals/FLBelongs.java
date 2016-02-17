@@ -5,6 +5,7 @@ import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 
 public class FLBelongs extends FLTerminal {
 
@@ -17,7 +18,7 @@ public class FLBelongs extends FLTerminal {
     }
 
     @Override
-	public String translateToLTL() {
+	public String translateToLTL(LTLTranslationType anLTLTranslationType) {
 		return getNameWithAgent() + "belongsTo:" + getName();
 	}
 

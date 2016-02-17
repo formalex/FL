@@ -1,6 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.formula.terminals;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 
 public class FLAction extends FLTerminal {
 
@@ -36,9 +37,14 @@ public class FLAction extends FLTerminal {
     }
 
 	@Override
-    public String translateToLTL() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
 		
-		return getNameWithAgent() + " = " + this.getReferencedState().getValueInLtlFormula();
+		String actionNameWithAgent = getNameWithAgent();
+		if(!LTLTranslationType.WITH_NEXT_FOR_JH.equals(anLTLTranslationType))
+			return actionNameWithAgent + " = " + this.getReferencedState().getValueInLtlFormula();
+		
+		//acción = HAPPENING & next(acción) = NOT_HAPPENING
+		return String.format("%s = HAPPENING & next(%s) =  NOT_HAPPENING", actionNameWithAgent, actionNameWithAgent );
     }
 	
     public ActionReferencedState getReferencedState() {

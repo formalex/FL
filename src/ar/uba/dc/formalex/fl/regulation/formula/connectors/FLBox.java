@@ -4,6 +4,7 @@ import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLInterval;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 import ar.uba.dc.formalex.fl.regulation.permission.Permission;
@@ -45,14 +46,14 @@ public class FLBox extends FLFormula{
     }
 
     @Override
-    public String translateToLTL() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         String res = "";
         if (interval != null)
-            res = interval.translateToLTL() + " -> ";
+            res = interval.translateToLTL(anLTLTranslationType ) + " -> ";
         if (ponerParentesis(formula))
-            return res + "(" + formula.translateToLTL() + ")";
+            return res + "(" + formula.translateToLTL(anLTLTranslationType ) + ")";
         else
-            return res + formula.translateToLTL();
+            return res + formula.translateToLTL(anLTLTranslationType );
     }
 
     private boolean ponerParentesis(FLFormula lf) {

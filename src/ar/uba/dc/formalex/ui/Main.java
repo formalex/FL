@@ -1,7 +1,17 @@
 package ar.uba.dc.formalex.ui;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
+
+import org.apache.log4j.Logger;
+
 import ar.uba.dc.formalex.fl.FLInput;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
 import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoImpl;
@@ -12,11 +22,6 @@ import ar.uba.dc.formalex.parser.FLParser;
 import ar.uba.dc.formalex.parser.TokenMgrError;
 import ar.uba.dc.formalex.util.LaAplanadora;
 import ar.uba.dc.formalex.util.Util;
-
-import org.apache.log4j.Logger;
-
-import java.io.*;
-import java.text.ParseException;
 
 public class Main {
     private static final Logger logger = Logger.getLogger(Main.class);
@@ -67,7 +72,7 @@ public class Main {
 
       	FLInput flInput = FLParser.getFLInput();
         LaAplanadora divididos = new LaAplanadora();
-        Grafo<InfoComponenteBgt> elgrafoDeDependenciasBgt = divididos.explotarYAplanar(flInput, new ConstructorDeGrafoImpl());
+        Grafo<InfoComponenteBgt> elgrafoDeDependenciasBgt = divididos.explotarYAplanar(flInput, new ConstructorDeGrafoImpl(), LTLTranslationType.WITH_JH);
 //        loguearEntSal(flInput);
         validar(flInput);
 
@@ -114,8 +119,8 @@ public class Main {
 
         logger.info("Buscando trace para la formula:");
         logger.info("FL: " + flRules);
-        logger.info("NUSMV: " + aValidar.translateToLTL());
-        File file = NuSMVModelChecker.findTrace(flInput.getBackgroundTheory(), aValidar, false);
+        logger.info("NUSMV: " + aValidar.translateToLTL(LTLTranslationType.WITH_JH ));
+        File file = NuSMVModelChecker.findTrace(flInput.getBackgroundTheory(), aValidar, LTLTranslationType.WITH_JH);
         if (!file.exists()){
         //Si no se generó el archivo es porque el output del proceso está vacío. Eso suele pasar cuando hubo un error con nusmv.
             logger.error("Error al correr nusmv. Intentar correr a mano el comando previamente logueado.");
@@ -144,8 +149,8 @@ public class Main {
             FLFormula conPermiso = new FLAnd(aValidar, formula);
             logger.info("Buscando trace para el permiso:");
             logger.info("FL: " + flInput.getFlPermission().get(ind++));
-            logger.info("Nusmv: " + conPermiso.translateToLTL());
-            File file = NuSMVModelChecker.findTrace(flInput.getBackgroundTheory(), conPermiso, false);
+            logger.info("Nusmv: " + conPermiso.translateToLTL(LTLTranslationType.WITH_JH ));
+            File file = NuSMVModelChecker.findTrace(flInput.getBackgroundTheory(), conPermiso, LTLTranslationType.WITH_JH);
             boolean encontroTrace = encontroTrace(file);
             if (encontroTrace){
                 logger.info("Se ha encontrado un comportamiento legal para el permiso.");

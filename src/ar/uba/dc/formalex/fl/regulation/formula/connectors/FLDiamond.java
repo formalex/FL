@@ -4,6 +4,7 @@ import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLInterval;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
@@ -41,16 +42,16 @@ public class FLDiamond extends FLFormula {
     }
 
     @Override
-    public String translateToLTL() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         /**
          * Tr (<> f1 )          ?    F Tr(f1)
          * Tr (<>_{i} f1 )      ?     i = activo -> (i = activo U Tr(f1) )
          */
         if (interval != null){
-            return interval.translateToLTL() + " -> (" + interval.translateToLTL() + " U " + formula.translateToLTL() + ")";
+            return interval.translateToLTL(anLTLTranslationType ) + " -> (" + interval.translateToLTL(anLTLTranslationType ) + " U " + formula.translateToLTL(anLTLTranslationType ) + ")";
         }
         else
-            return "F(" + formula.translateToLTL() + ")";
+            return "F(" + formula.translateToLTL(anLTLTranslationType) + ")";
     }
     
     @Override

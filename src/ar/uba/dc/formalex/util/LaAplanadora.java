@@ -1,15 +1,29 @@
 package ar.uba.dc.formalex.util;
 
-import ar.uba.dc.formalex.fl.FLInput;
-import ar.uba.dc.formalex.fl.bgtheory.*;
-import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
-import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafo;
-import ar.uba.dc.formalex.grafoDeDependencia.Grafo;
-import ar.uba.dc.formalex.grafoDeDependencia.InfoComponenteBgt;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import java.util.*;
+import ar.uba.dc.formalex.fl.FLInput;
+import ar.uba.dc.formalex.fl.bgtheory.Action;
+import ar.uba.dc.formalex.fl.bgtheory.Agente;
+import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
+import ar.uba.dc.formalex.fl.bgtheory.Counter;
+import ar.uba.dc.formalex.fl.bgtheory.Interval;
+import ar.uba.dc.formalex.fl.bgtheory.Role;
+import ar.uba.dc.formalex.fl.bgtheory.RoleSpecification;
+import ar.uba.dc.formalex.fl.bgtheory.RolesCombination;
+import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
+import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafo;
+import ar.uba.dc.formalex.grafoDeDependencia.Grafo;
+import ar.uba.dc.formalex.grafoDeDependencia.InfoComponenteBgt;
 
 /**
  * User: P_BENEDETTI
@@ -41,7 +55,7 @@ public class LaAplanadora {
 	private Set<Agente> agentes = null;
 
 
-	public Grafo<InfoComponenteBgt> explotarYAplanar(FLInput input, ConstructorDeGrafo unConstructorDeGrafo) {
+	public Grafo<InfoComponenteBgt> explotarYAplanar(FLInput input, ConstructorDeGrafo unConstructorDeGrafo, LTLTranslationType anLtlTranslationType) {
 		Set<Action> accionesConAgentes = new HashSet<Action>();
 		Set<Action> accionesAplanadasConSyncActivo = crearAgentesYAplanarAcciones(input, accionesConAgentes);
 
@@ -60,7 +74,7 @@ public class LaAplanadora {
 		actualizarOccurrsIn(accionesConAgentes);
 
 		expandirClausulas(input);
-		loguear(input);
+		loguear(input, anLtlTranslationType);
 		
 		//Se arma y se devuelve el grafo de dependencias
 		return unConstructorDeGrafo.iniciar(input.getBackgroundTheory(), this.accionesYAgentes);
@@ -87,7 +101,7 @@ public class LaAplanadora {
 	}
 
 
-	private void loguear(FLInput input) {
+	private void loguear(FLInput input, LTLTranslationType anTranslationType) {
 		int contInterv = 0;
 		for (Set<Interval> si : intervalosOriginales.values()) {
 			contInterv += si.size();
@@ -151,11 +165,11 @@ public class LaAplanadora {
 		logger.info("Fórmulas expandidas:");
 
 		for(FLFormula f : input.getRules()) {
-			logger.info(f.translateToLTL());
+			logger.info(f.translateToLTL(anTranslationType ));
 		}
 		logger.info("");
 		for(FLFormula f : input.getPermissions()) {
-			logger.info(f.translateToLTL());
+			logger.info(f.translateToLTL(anTranslationType ));
 		}
 		logger.info("");
 	}
