@@ -40,11 +40,11 @@ public class FLAction extends FLTerminal {
     public String translateToLTL(LTLTranslationType anLTLTranslationType) {
 		
 		String actionNameWithAgent = getNameWithAgent();
-		if(!LTLTranslationType.WITH_NEXT_FOR_JH.equals(anLTLTranslationType))
+		if(!LTLTranslationType.WITH_NEXT_FOR_JH.equals(anLTLTranslationType) || ActionReferencedState.IS_HAPPENING.equals(referencedState) )
 			return actionNameWithAgent + " = " + this.getReferencedState().getValueInLtlFormula();
 		
-		//acción = HAPPENING & next(acción) = NOT_HAPPENING
-		return String.format("%s = HAPPENING & next(%s) =  NOT_HAPPENING", actionNameWithAgent, actionNameWithAgent );
+		//Se reemplaza el accion = JUST_HAPPENED por acción = HAPPENING & next(acción) = NOT_HAPPENING
+		return String.format("%s = HAPPENING & X(%s) =  NOT_HAPPENING", actionNameWithAgent, actionNameWithAgent );
     }
 	
     public ActionReferencedState getReferencedState() {

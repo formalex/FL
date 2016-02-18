@@ -30,11 +30,7 @@ VAR
 ##Por cada acción defino una variable. Las acciones ya vienen con los roles ('rol.accion').
 #foreach ($action in $acciones )
 ## De acuerdo a la representacion, se definen con dos o tres estados
-#if ($action.hasTwotSates())
 	$action: {HAPPENING, NOT_HAPPENING};
-#else
-	$action: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
-#end	
  #if ($action.hasOutputValues())
 	${action}$sufijoOutputValue: {$action.getOutputValuesCSV()};
 	#set( $hayOutputValue = true)
@@ -146,22 +142,12 @@ INIT
 
 TRANS
 #####Acciones#####
-	--En el caso de representar la accion con tres estados:
-		--Las acciones que están en JH pasan a NH
-		--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
-		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
 	--En el caso de representar la accion con dos estados:
 		--Desde H se puede pasar a NH o quedarse en H (ya no pueden pasar a JH)
 		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
 	--Si tienen hasOccursIn => si están en H => hasOccursIn = activo
 #foreach ($action in $acciones )
-	#if ($action.hasTwotSates())
 		## NO hay restricciones! se puede navegar entre los dos estados libremente!
-	 #else
-	 	($action = JUST_HAPPENED -> next($action) = NOT_HAPPENING) &
-		($action = HAPPENING -> next($action) != NOT_HAPPENING ) &
-		($action = NOT_HAPPENING -> next($action) != JUST_HAPPENED) &
-	#end
 #####only occurs in scope #####
  #if ($action.hasOccursIn())
 	(next($action) = HAPPENING -> next($action.getOccursIn()) = ACTIVE) &

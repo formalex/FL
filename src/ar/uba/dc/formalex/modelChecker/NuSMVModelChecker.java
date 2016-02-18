@@ -63,9 +63,10 @@ public class NuSMVModelChecker {
             ve.setProperty("output.encoding", strCodificacionArchivo);
             ve.init();
             
-            String nombreTemplateUsado = Util.getTemplateName(anLTLTranslationType);
-			
+            
+            String nombreTemplateUsado = Util.getTemplateName(anLTLTranslationType);			
             Template template = ve.getTemplate(nombreTemplateUsado)  ;
+          //Template template = ve.getTemplate( System.getProperty("TEMPLATE_VELOCITY") )  ;
 
 
             writer = new PrintWriter (fileOut);
