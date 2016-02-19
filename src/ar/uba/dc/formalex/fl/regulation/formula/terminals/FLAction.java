@@ -44,7 +44,8 @@ public class FLAction extends FLTerminal {
 			return actionNameWithAgent + " = " + this.getReferencedState().getValueInLtlFormula();
 		
 		//Se reemplaza el accion = JUST_HAPPENED por acción = HAPPENING & next(acción) = NOT_HAPPENING
-		return String.format("%s = HAPPENING & X(%s) =  NOT_HAPPENING", actionNameWithAgent, actionNameWithAgent );
+		//return String.format("%s = HAPPENING & X(%s) =  NOT_HAPPENING", actionNameWithAgent, actionNameWithAgent );
+		return "(" + String.format("%s = HAPPENING & X(%s) =  NOT_HAPPENING", actionNameWithAgent, actionNameWithAgent ) + ")";
     }
 	
     public ActionReferencedState getReferencedState() {

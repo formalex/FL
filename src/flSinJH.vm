@@ -168,7 +168,7 @@ TRANS
 #foreach ($action in $acciones )
  #if ($action.hasOutputValues())
   ##Si la action finalizó => el output_value toma un nuevo valor
-	($action = HAPPENING & next($action) = NOT_HAPPENING -> (
+	(($action = HAPPENING & next($action) = NOT_HAPPENING) -> (
   #foreach ($ov in $action.getOutputValues() )
 ##Se hace un or con cada output_value
 		next(${action}$sufijoOutputValue) = $ov |
@@ -378,7 +378,7 @@ TRANS
 #foreach ($contador in $contadores )
 ##si ocurre alguna de las acciones que incrementan/decrementan al contador y esto no provoca que se excedan los limites del mismo => se modifica al contador
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
-	($incAct = HAPPENING & next($incAct) = NOT_HAPPENING  #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end & ($contador + $contador.getIncreaseActions().get($incAct) <= $contador.getMaxValue()) 
+	(($incAct = HAPPENING & next($incAct) = NOT_HAPPENING)  #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end & ($contador + $contador.getIncreaseActions().get($incAct) <= $contador.getMaxValue()) 
 	& ($contador + $contador.getIncreaseActions().get($incAct) >= $contador.getMinValue()) -> next($contador) = $contador + $contador.getIncreaseActions().get($incAct)) &		
  #end 
 #end 
@@ -389,12 +389,12 @@ TRANS
 ## => se le asigna el valor del límite alcanzado
  #foreach ($incAct in $contador.getIncreaseActions().keySet() )
  	#if(!$contador.isMaxImpedesActions()) 
-	($incAct = HAPPENING & next($incAct) = NOT_HAPPENING  #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end  
+	(($incAct = HAPPENING & next($incAct) = NOT_HAPPENING)  #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end  
 	& ($contador + $contador.getIncreaseActions().get($incAct) > $contador.getMaxValue())
 	-> next($contador) = $contador.getMaxValue() ) &	
 	#end	
  	#if(!$contador.isMinImpedesActions()) 
-	($incAct = HAPPENING & next($incAct) = NOT_HAPPENING  #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end 
+	(($incAct = HAPPENING & next($incAct) = NOT_HAPPENING)  #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct)) #end 
 	& ($contador + $contador.getIncreaseActions().get($incAct) < $contador.getMinValue()) 
 	-> next($contador) = $contador.getMinValue() ) &	
 	#end	
@@ -415,7 +415,7 @@ TRANS
 #foreach ($contador in $contadores )
 	##si ocurre alguna de las acciones que asignan valor al contador ('resets with action' o 'sets with action')=> se modifica al contador
  #foreach ($incAct in $contador.getSetValueActions().keySet() )	
-	($incAct = HAPPENING & next($incAct) = NOT_HAPPENING  #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct))#end
+	(($incAct = HAPPENING & next($incAct) = NOT_HAPPENING)  #if ($contador.hasCondition($incAct)) & ($contador.getCondition($incAct))#end
 	-> next($contador) = $contador.getSetValueActions().get($incAct)) &		
  #end 
 #end 
@@ -423,7 +423,7 @@ TRANS
 #foreach ($contador in $contadores )
 	##si ocurre alguna de las acciones que modifican al contador => no puede ocurrir ninguna otra
  #foreach ($actJH in $contador.getAllActions() )	
-	($actJH = HAPPENING & next($actJH) = NOT_HAPPENING -> TRUE 
+	(($actJH = HAPPENING & next($actJH) = NOT_HAPPENING) -> TRUE 
   #foreach ($actNotJH in $contador.getAllActions() )		
    #if (!$actJH.equals($actNotJH)) & !($actJH = HAPPENING & next($actJH) = NOT_HAPPENING) #end 
   #end 
