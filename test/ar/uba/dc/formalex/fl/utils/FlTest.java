@@ -21,6 +21,7 @@ public class FlTest {
 	protected static final boolean CORRER_CON_MODEL_CHECKER = true;
 	protected static final boolean CORRER_SIN_FILTRADO = false;
 	protected static final boolean CORRER_CON_FILTRADO = true;
+	protected static final boolean CORRER_CON_REDUCTOR = true;
 	protected static final boolean CORRER_SIN_REDUCTOR = false;
 
 	public enum SistemaOperativo {
