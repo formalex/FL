@@ -103,6 +103,25 @@ public class TestMain extends FlTest{
 		TestUtils.corridaDeFormaLex(ROOT_RESOURCES + "ejSynchronize.txt", false, true, true, LTLTranslationType.WITH_JH);
 	}
 	
+	@Test
+	// formulas + 1 permiso permanente
+	public void testEjemploVipMemberPass1F1PP() throws Exception {
+		// Este ejemplo tiene un PP con excepcion
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_RESOURCES + "EjemplosSinJH/"
+				+ "EjVipMemberPass1F1PP.txt",
+				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
+				LTLTranslationType.WITH_NEXT_FOR_JH);
+	}
 	
+	@Test
+	// formulas + 1 permiso permanente
+	//Simplificado los roles
+	public void testEjemploVipMemberPass1F1PPSimplificado() throws Exception {
+		// Este ejemplo tiene un PP con excepcion
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_RESOURCES + "EjemplosSinJH/"
+				+ "EjVipMemberPass1F1PPSimplificado.txt",
+				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
+				LTLTranslationType.WITH_NEXT_FOR_JH);
+	}
 
 }

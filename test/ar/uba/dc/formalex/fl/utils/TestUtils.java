@@ -25,6 +25,7 @@ import ar.uba.dc.formalex.fl.bgtheory.Interval;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.ActionReferencedState;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLActionOutput;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
 import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoFake;
@@ -135,12 +136,14 @@ public class TestUtils {
 
         logger.info("Buscando trace para la formula:");
         logger.info("FL: " + flRules);
-        logger.info("NUSMV: " + aValidar.translateToLTL(anLtlTranslationType));
-        logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(aValidar.translateToLTL(anLtlTranslationType )));
-        logger.info("# de '=' : " + contadorDeSignosIgual(aValidar.translateToLTL(anLtlTranslationType )));
+        String formulaLTL = aValidar.translateToLTL(anLtlTranslationType );
+		logger.info("NUSMV: " + formulaLTL);
+        logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(formulaLTL));
+        logger.info("# de '=' : " + contadorDeSignosIgual(formulaLTL));
+        logger.info("# de JH : " + contadorDeJH(formulaLTL));
         
         BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), aValidar, elGrafoDeDependencias);        
-        logger.info("# bgt despues del filtro de la formula: "+ aValidar.translateToLTL(anLtlTranslationType ));
+        logger.info("# bgt despues del filtro de la formula: "+ formulaLTL);
         loguearBgt(unaBgtFiltrada);
         
       //Se crea e invoca al reductor
@@ -184,14 +187,14 @@ public class TestUtils {
             FLFormula conPermiso = new FLAnd(aValidar, formula);
             logger.info("Buscando trace para el permiso:");
             logger.info("FL: " + flInput.getFlPermission().get(ind++));
-            logger.info("Nusmv: " + conPermiso.translateToLTL(anLTLTranslationType ));
-            logger.info("# de '=' : " + contadorDeSignosIgual(conPermiso.translateToLTL(anLTLTranslationType )));
-            logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(conPermiso.translateToLTL(anLTLTranslationType )));
-            
-            
-            
+            String formulaLTL = conPermiso.translateToLTL(anLTLTranslationType );
+			logger.info("Nusmv: " + formulaLTL);
+			logger.info("# de Operadores Modales : " + contadorDeOperadoresModales(formulaLTL));
+			logger.info("# de '=' : " + contadorDeSignosIgual(formulaLTL));           
+            logger.info("# de JH : " + contadorDeJH(formulaLTL));
+                       
             BackgroundTheory unaBgtFiltrada= filtrar(flInput.getBackgroundTheory(), conPermiso, elGrafoDeDependencias);        
-            logger.info("bgt despues del filtro del permiso: "+  conPermiso.translateToLTL(anLTLTranslationType ));
+            logger.info("bgt despues del filtro del permiso: "+  formulaLTL);
             loguearBgt(unaBgtFiltrada);
             
             //Se crea e invoca al reductor
@@ -250,6 +253,14 @@ public class TestUtils {
     	return String.valueOf(countGs + countFs);
     	
 	}
+    
+    private static String contadorDeJH(String stringDeLaFormula) {
+
+    	int countMatches = StringUtils.countMatches(stringDeLaFormula, ActionReferencedState.JUST_HAPPENED.getValueInLtlFormula()); 
+    	
+    	return String.valueOf(countMatches);
+
+    }
 
 	private static boolean encontroTrace(File file){
         BufferedReader bf= null;

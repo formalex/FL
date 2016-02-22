@@ -425,7 +425,7 @@ TRANS
  #foreach ($actJH in $contador.getAllActions() )	
 	(($actJH = HAPPENING & next($actJH) = NOT_HAPPENING) -> TRUE 
   #foreach ($actNotJH in $contador.getAllActions() )		
-   #if (!$actJH.equals($actNotJH)) & !($actJH = HAPPENING & next($actJH) = NOT_HAPPENING) #end 
+   #if (!$actJH.equals($actNotJH)) & !($actNotJH = HAPPENING & next($actNotJH) = NOT_HAPPENING) #end 
   #end 
      ) &
  #end 
