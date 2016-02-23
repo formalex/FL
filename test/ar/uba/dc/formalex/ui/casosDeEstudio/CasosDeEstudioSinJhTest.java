@@ -137,7 +137,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 		TestUtils.corridaDeFormaLex(ROOT_CDE_REDUCTOR
 				+ "CasoDeEstudio3NroDeClausulas1WithIsHappening.txt",
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				true, LTLTranslationType.WITH_NEXT_FOR_JH);
+				true, LTLTranslationType.WITH_JH);
 	}
 
 	@Test

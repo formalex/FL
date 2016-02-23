@@ -161,7 +161,7 @@ TRANS
 #end
 ##	
 #####OutputValues#####
-	--Si una acción tienen output values, 
+	--Si una acción tiene output values, 
 	--al pasar de H a NH(eso quiere decir que finalizó), la variable que  
 	--representa el output value toma alguno de sus valores posibles. Si la 
 	--acción no hace ese cambio de H a NH => el valor queda igual

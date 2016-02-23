@@ -103,6 +103,8 @@ public class TestMain extends FlTest{
 		TestUtils.corridaDeFormaLex(ROOT_RESOURCES + "ejSynchronize.txt", false, true, true, LTLTranslationType.WITH_JH);
 	}
 	
+	
+	/********************* EJEMPLOS DE SIN JH ********************************/
 	@Test
 	// formulas + 1 permiso permanente
 	public void testEjemploVipMemberPass1F1PP() throws Exception {
@@ -124,4 +126,17 @@ public class TestMain extends FlTest{
 				LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
 
+	@Test
+	//Tiene JH = 0, 23/116
+	// sin JH : 339 segundos, 10 corridas
+	//con JH : 444, 10 corridas
+	public void testCasoDeEstudio3NroDeClausulas4() throws Exception {
+
+		for(int i= 0;i<10;i++){
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_RESOURCES + "EjemplosSinJH/"
+				+ "EjCasoDeEstudio3NroDeClausulas4WithIsHappening.txt",
+				FlTest.CORRER_CON_MODEL_CHECKER, true, true,
+				LTLTranslationType.WITH_JH);
+		}
+	}
 }

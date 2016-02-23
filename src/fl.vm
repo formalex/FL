@@ -175,9 +175,9 @@ TRANS
 #end
 ##	
 #####OutputValues#####
-	--Si una acción tienen output values, al pasar de JH a NH, la variable que  
+	--Si una acción tiene output values, al pasar de H a JH, la variable que  
 	--representa el output value toma alguno de sus valores posibles. Si la 
-	--acción no hace ese cambio de JH a NH => el valor queda igual
+	--acción no hace ese cambio de H a JH => el valor queda igual
 	--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
 	--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
 #foreach ($action in $acciones )
