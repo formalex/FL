@@ -128,8 +128,13 @@ public class NuSMVModelChecker {
 
         try {
             //Ej: system prompt> NuSMV -source ARCHIVO_CMD ej.nusmv
-            //todo: ver bien qué hace -df
-            String command = nusmvExecutable +" -df -source " + nusmvCommands.getAbsolutePath() +
+        	// -df Disable the computation of the set of reachable states.
+//            String command = nusmvExecutable +" -df -source " + nusmvCommands.getAbsolutePath() +
+//                    " " + nusmvInput.getAbsolutePath();
+        	
+        	//Agregado de dynamic: Enables dynamic reordering of variables
+        	//Maneja mejor la memoria y corre más rapido!
+            String command = nusmvExecutable +" -df -dynamic -source " + nusmvCommands.getAbsolutePath() +
                     " " + nusmvInput.getAbsolutePath();
             logger.info("Comienza nusmv. Comando a ejecutar:  " + command);
             logger.info("Corriendo...");
