@@ -12,7 +12,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 			+ "CasosDeEstudioReductor/";
 
 	/* Ejs con #JH en la formula > 0   */
-	
+
 	@Test
 	//SIN JH en 4 minutos consumió 6Gb
 	//CON JH
@@ -43,7 +43,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
 				LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
-	
+
 	@Test
 	//Con JH mas de 48 minutos
 	//Sin JH 42 minutos se queda sin memoria
@@ -64,7 +64,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
 				LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
-	
+
 	@Test
 	//SIN JH. En 21 llega a 6 gb
 	//CON JH igual
@@ -74,7 +74,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 		TestUtils.corridaDeFormaLex(ROOT_CDE_REDUCTOR
 				+ "CasoDeEstudio2NroDeClausulas25WithIsHappening.txt",
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
+				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
 
 	@Test
@@ -85,8 +85,17 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
 				LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
-	
-		
+
+	@Test
+	//SIN JH NO TERMINAAAAAAAAAAAAAAAAAAAAAAA
+	public void testCasoDeEstudio3NroDeClausulas1() throws Exception {
+
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
+				+ "CasoDeEstudio3NroDeClausulas1.txt",
+				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
+				LTLTranslationType.WITH_NEXT_FOR_JH);
+	}
+
 	@Test
 	//Tiene 23 JH y 46 3st/162
 	//Sigue sin terminar
@@ -98,43 +107,91 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
 				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
-	
+
 	@Test
+	public void testCasoDeEstudio3NroDeClausulas5() throws Exception {
+
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
+				+ "CasoDeEstudio3NroDeClausulas5.txt",
+				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
+				LTLTranslationType.WITH_NEXT_FOR_JH);
+	}
+
+	@Test
+	//SIN JH TODO OJO CON EL MSJ QUE TIRA EL MODEL CHECKER
+//	********   WARNING   ********
+//	The initial states set of the finite state machine is empty.
+//	This might make results of model checking not trustable.
+//	******** END WARNING ********
 	public void testCasoDeEstudio3NroDeClausulas15WithIsHappening()
 			throws Exception {
 
 		TestUtils.corridaDeFormaLex(ROOT_CDE_REDUCTOR
 				+ "CasoDeEstudio3NroDeClausulas15WithIsHappening.txt",
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
+				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
 
 	@Test
+	public void testCasoDeEstudio3NroDeClausulas15() throws Exception {
+
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
+				+ "CasoDeEstudio3NroDeClausulas15.txt",
+				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
+				LTLTranslationType.WITH_JH);
+	}
+
+	@Test
+	//SIN JH TODO OJO CON EL MSJ QUE TIRA EL MODEL CHECKER
+//	********   WARNING   ********
+//	The initial states set of the finite state machine is empty.
+//	This might make results of model checking not trustable.
+//	******** END WARNING ********
 	public void testCasoDeEstudio3NroDeClausulas25WithIsHappening()
 			throws Exception {
 
 		TestUtils.corridaDeFormaLex(ROOT_CDE_REDUCTOR
 				+ "CasoDeEstudio3NroDeClausulas25WithIsHappening.txt",
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
+				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
-	
-	
+
+	@Test
+	public void testCasoDeEstudio3NroDeClausulas25() throws Exception {
+
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
+				+ "CasoDeEstudio3NroDeClausulas25.txt",
+				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
+				LTLTranslationType.WITH_NEXT_FOR_JH);
+	}
+
+	@Test
+	public void testCasoDeEstudio3NroDeClausulas32() throws Exception {
+
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
+				+ "CasoDeEstudio3NroDeClausulas32.txt",
+				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
+				LTLTranslationType.WITH_NEXT_FOR_JH);
+	}
+
+
+
+
 	@Test
 	//7 formulas + 6 permisos
 	//sin jh 1155 10 veces
 	//con jh 1441 10 veces
 	public void testCasoDeEstudioVipMemberPass() throws Exception {
 		// Este ejemplo tiene un PP con excepcion
-		
+
 		for(int i= 0;i<10;i++){
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
-				+ "casoDeEstudioVipMemberPass.txt",
-				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_JH);
+			TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
+					+ "casoDeEstudioVipMemberPass.txt",
+					FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
+					LTLTranslationType.WITH_JH);
 		}
 	}
-	
+
 	@Test
 	//OJO QUE ESTE NO TIENE LOS IS HAPPENING Y NO ES PARTE DE NINGUN CASO DE ESTUDIO
 	//PORQUE TARDA BASTANTE
@@ -149,57 +206,9 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 	}
 
 
-	
 
-	@Test
-	//SIN JH NO TERMINAAAAAAAAAAAAAAAAAAAAAAA
-	public void testCasoDeEstudio3NroDeClausulas1() throws Exception {
-
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
-				+ "CasoDeEstudio3NroDeClausulas1.txt",
-				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_NEXT_FOR_JH);
-	}
-
-	@Test
-	public void testCasoDeEstudio3NroDeClausulas5() throws Exception {
-
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
-				+ "CasoDeEstudio3NroDeClausulas5.txt",
-				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_JH);
-	}
-
-	@Test
-	public void testCasoDeEstudio3NroDeClausulas15() throws Exception {
-
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
-				+ "CasoDeEstudio3NroDeClausulas15.txt",
-				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_JH);
-	}
-
-	@Test
-	public void testCasoDeEstudio3NroDeClausulas25() throws Exception {
-
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
-				+ "CasoDeEstudio3NroDeClausulas25.txt",
-				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_JH);
-	}
-
-	@Test
-	public void testCasoDeEstudio3NroDeClausulas32() throws Exception {
-
-		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
-				+ "CasoDeEstudio3NroDeClausulas32.txt",
-				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_JH);
-	}
-		
-	
 	/* Ejs con #JH en la formula == 0   */
-	
+
 	//Tiene 0 JH y 7/30. Entonces la mejora opera SOLO sobre la codificacion del automata
 	@Test
 	public void casoDeEstudioVipMemberPassConTresPps() throws Exception {
@@ -208,7 +217,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
 				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
-	
+
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas15WithIsHappening()
 			throws Exception {
@@ -218,7 +227,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
 				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
-	
+
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas60WithDefaultIsHappening()
 			throws Exception {
@@ -228,7 +237,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
 				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
-	
+
 	@Test	
 	// 0 JH 65/491
 	//No termina
@@ -240,7 +249,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
 				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
-	
+
 	@Test
 	//O JH 111/842
 	//No termina
@@ -252,7 +261,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
 				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
-	
+
 	@Test
 	//Tiene JH =0 3st= 73/ 336
 	//Sigue sin terminar
@@ -295,7 +304,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
 				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
-	
+
 	@Test
 	// 3 st = 0
 	public void testCasoDeEstudio2NroDeClausulas5WithIsHappening()
@@ -306,7 +315,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
 				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
-	
+
 	@Test
 	//Tiene JH= 0 . tarda tambien un segundo
 	public void testCasoDeEstudio3NroDeClausulas1WithIsHappening()
@@ -317,7 +326,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
 				true, LTLTranslationType.WITH_JH);
 	}
-	
+
 	@Test
 	public void testCasoDeEstudio1NroDeClausulas60() throws Exception {
 
