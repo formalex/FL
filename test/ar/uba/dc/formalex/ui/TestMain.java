@@ -106,6 +106,20 @@ public class TestMain extends FlTest{
 	
 	/********************* EJEMPLOS DE SIN JH ********************************/
 	@Test
+//	********   WARNING   ********
+//	The initial states set of the finite state machine is empty.
+//	This might make results of model checking not trustable.
+//	******** END WARNING ********
+	public void testResultsInConAndTiraWarning()
+			throws Exception {
+
+		TestUtils.corridaDeFormaLex(FlTest.ROOT_RESOURCES + "EjemplosSinJH/"
+				+ "EjResultsInConAndTiraWarning.txt",
+				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
+				false, LTLTranslationType.WITH_JH);
+	}
+	
+	@Test
 	// formulas + 1 permiso permanente
 	public void testEjemploVipMemberPass1F1PP() throws Exception {
 		// Este ejemplo tiene un PP con excepcion

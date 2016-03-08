@@ -118,11 +118,6 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 	}
 
 	@Test
-	//SIN JH TODO OJO CON EL MSJ QUE TIRA EL MODEL CHECKER
-//	********   WARNING   ********
-//	The initial states set of the finite state machine is empty.
-//	This might make results of model checking not trustable.
-//	******** END WARNING ********
 	public void testCasoDeEstudio3NroDeClausulas15WithIsHappening()
 			throws Exception {
 
@@ -138,15 +133,10 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 		TestUtils.corridaDeFormaLex(FlTest.ROOT_CDE_FILTRADO
 				+ "CasoDeEstudio3NroDeClausulas15.txt",
 				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_JH);
+				LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
 
 	@Test
-	//SIN JH TODO OJO CON EL MSJ QUE TIRA EL MODEL CHECKER
-//	********   WARNING   ********
-//	The initial states set of the finite state machine is empty.
-//	This might make results of model checking not trustable.
-//	******** END WARNING ********
 	public void testCasoDeEstudio3NroDeClausulas25WithIsHappening()
 			throws Exception {
 

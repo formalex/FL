@@ -245,7 +245,7 @@ FORALL(i:Proveedor; O(i.ContratoPrestacionServicios ->i.EntregarGarantiaPorEscri
 
 //CAPITULO VI - USUARIOS DE SERVICIOS PUBLICOS DOMICILIARIOS
 //Art.25
-FORALL(i; O(i.TenerTerminosyCondiciones results in entregarporescrito & i.TenerTerminosyCondiciones results in mantenerenOficinaAtencionAlPublico))
+FORALL(i; O(i.TenerTerminosyCondiciones results in entregarporescrito | i.TenerTerminosyCondiciones results in mantenerenOficinaAtencionAlPublico))
 FORALL(i; O(i.IncluirLeyenda results in enOficinaAtencion) & O(i.FacturacionServicio -> i.IncluirLeyenda results in enFactura))
 FORALL(i; O(AplicarLegislacion results in Propia | AplicarLegislacion results in DefensaConsumidor ))
 FORALL(i; O(AplicarLegislacionmasFavorablealConsumidor results in Propia | AplicarLegislacionmasFavorablealConsumidor results in DefensaConsumidor ))

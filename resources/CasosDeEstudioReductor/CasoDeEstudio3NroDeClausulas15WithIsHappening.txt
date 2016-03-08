@@ -246,7 +246,7 @@ FORALL(i:Proveedor; O(justHappened(i.ContratoPrestacionServicios) -> isHappening
 
 //CAPITULO VI - USUARIOS DE SERVICIOS PUBLICOS DOMICILIARIOS
 //Art.25
-FORALL(i; O(i.TenerTerminosyCondiciones results in entregarporescrito & i.TenerTerminosyCondiciones results in mantenerenOficinaAtencionAlPublico))
+FORALL(i; O(i.TenerTerminosyCondiciones results in entregarporescrito | i.TenerTerminosyCondiciones results in mantenerenOficinaAtencionAlPublico))
 //Las empresas prestadoras de servicios públicos domiciliarios deberán colocar en toda facturación
 // que se extienda al usuario y en las oficinas de atención al público carteles con la leyenda: 
 //"Usted tiene derecho a reclamar una indemnización si le facturamos sumas o conceptos indebidos o reclamamos el pago de facturas ya abonadas, Ley Nº 24.240".
