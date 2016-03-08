@@ -1,4 +1,4 @@
-package ar.uba.dc.formalex.fl.utils;
+package ar.uba.dc.formalex.fl;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,7 +18,6 @@ import org.apache.log4j.Logger;
 import ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion.ReductorDeRepresentacionDeAccionADosEstados;
 import ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion.ReductorDeRepresentacionDeAccionADosEstadosFake;
 import ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion.ReductorDeRepresentacionDeAccionADosEstadosImpl;
-import ar.uba.dc.formalex.fl.FLInput;
 import ar.uba.dc.formalex.fl.bgtheory.Action;
 import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
 import ar.uba.dc.formalex.fl.bgtheory.Interval;
@@ -42,7 +41,11 @@ import ar.uba.dc.formalex.util.LaAplanadora;
 import ar.uba.dc.formalex.util.Util;
 
 
-public class TestUtils {
+/**
+ * @author cfaciano
+ * Es una especie de fachada de Formalex
+ */
+public class Formalex {
 	
 	//Es el valor default para unificar los output values que NO se usan 
 	private static final String OV_NONE_OF_THE_OTHERS = "noneOfTheOthers";
@@ -52,7 +55,7 @@ public class TestUtils {
 	private static final Logger logger = Logger.getLogger(Main.class);
 	private static int nroDeCorridas = 0;
 	
-	public static void corridaDeFormaLex(String rutaArchivoDeEjemplo, boolean conModelChecker, boolean conFiltrado, boolean conReductor, LTLTranslationType anLtlTranslationType) throws Exception {
+	public static void run(String rutaArchivoDeEjemplo, boolean conModelChecker, boolean conFiltrado, boolean conReductor, LTLTranslationType anLtlTranslationType) throws Exception {
 		try {
 			java.io.FileInputStream streamFile = new java.io.FileInputStream(rutaArchivoDeEjemplo);
 			

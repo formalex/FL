@@ -2,9 +2,9 @@ package ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion;
 
 import org.junit.Test;
 
+import ar.uba.dc.formalex.fl.Formalex;
 import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.utils.FlTest;
-import ar.uba.dc.formalex.fl.utils.TestUtils;
 
 /**
  * Pruebo el reductor sin llamar al model Checker
@@ -23,19 +23,19 @@ public class ReductorDeRepresentacionDeAccionTest extends FlTest {
 	@Test
 	public void reducePorQueTodasLasReferenciasSonConIsHappening() throws Exception {
 		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueReduce.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
+		Formalex.run(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueReduce.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 	
 	@Test
 	public void noReducePorqueHayReferenciasEnUnContador() throws Exception {
 		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueHayReferenciasEnUnContador.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
+		Formalex.run(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueHayReferenciasEnUnContador.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 	
 	@Test
 	public void noReducePorqueTieneReferenciaEnUnIntervalo() throws Exception {
 		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneReferenciaEnUnIntervalo.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
+		Formalex.run(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneReferenciaEnUnIntervalo.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 	
 	@Test
@@ -43,18 +43,18 @@ public class ReductorDeRepresentacionDeAccionTest extends FlTest {
 		
 		//Hay una referencia default a la accion, es decir sin ninguno de los dos 
 		//nuevos predicados
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaAlDefaultJH.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
+		Formalex.run(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaAlDefaultJH.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 	
 	@Test
 	public void noReducePorqueTieneUnaReferenciaEnJH() throws Exception {
 		
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaEnJH.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
+		Formalex.run(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaEnJH.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 	
 	@Test
 	public void noReducePorqueTieneUnaReferenciaConResultsIn() throws Exception {
-		TestUtils.corridaDeFormaLex(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaConResultsIn.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
+		Formalex.run(ROOT_EJS_PARA_EL_REDUCTOR + "ejQueNoReducePorqueTieneUnaReferenciaConResultsIn.txt", CON_MODEL_CHECKER_MODELO, CORRER_CON_FILTRADO, CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 
 	

@@ -53,7 +53,10 @@ public class FlTest {
 			System.setProperty("TEMP_DIR", "/media/charly/WINDOWS/propsFl/salida");
 			break;
 		case WINDOWS:
-			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
+			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV-2.6.0-win64/bin/NuSMV.exe");			
+			//Version anterior
+			//System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
+			
 			System.setProperty("TEMP_DIR", "C:/propsFl/salida");
 			break;
 
