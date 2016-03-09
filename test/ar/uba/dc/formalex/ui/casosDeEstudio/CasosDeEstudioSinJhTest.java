@@ -23,6 +23,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 	}
 
 	@Test
+	//Con JH en el server de Lisan no trajo resultados en menos de 3 horas
 	public void testCasoDeEstudio1NroDeClausulas5() throws Exception {
 
 		Formalex.run(FlTest.ROOT_CDE_FILTRADO
@@ -62,8 +63,8 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 	}
 
 	@Test
-	//SIN JH. En 21 llega a 6 gb
-	//CON JH igual
+	//SIN JH en el server de Lisan no trajo resultados en 2h 10. 
+	//CON JH 
 	public void testCasoDeEstudio2NroDeClausulas25WithIsHappening()
 			throws Exception {
 
@@ -160,39 +161,10 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 
 
 
-	@Test
-	//7 formulas + 6 permisos
-	//sin jh 1155 10 veces
-	//con jh 1441 10 veces
-	public void testCasoDeEstudioVipMemberPass() throws Exception {
-		// Este ejemplo tiene un PP con excepcion
-
-		for(int i= 0;i<10;i++){
-			Formalex.run(FlTest.ROOT_CDE_FILTRADO
-					+ "casoDeEstudioVipMemberPass.txt",
-					FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
-					LTLTranslationType.WITH_JH);
-		}
-	}
-
-	@Test
-	//OJO QUE ESTE NO TIENE LOS IS HAPPENING Y NO ES PARTE DE NINGUN CASO DE ESTUDIO
-	//PORQUE TARDA BASTANTE
-	//CON JH 6621 SEGUNDOS
-	//SIN JH 
-	public void testCasoDeEstudioVipMemberPassFull() throws Exception {
-		// Este ejemplo tiene dos PP con excepcion
-		Formalex.run(FlTest.ROOT_CDE_FILTRADO
-				+ "casoDeEstudioVipMemberPassFull.txt",
-				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_NEXT_FOR_JH);
-	}
-
-
-
 	/* Ejs con #JH en la formula == 0   */
 
 	//Tiene 0 JH y 7/30. Entonces la mejora opera SOLO sobre la codificacion del automata
+	//TODO ver si amerita incluirlo
 	@Test
 	public void casoDeEstudioVipMemberPassConTresPps() throws Exception {
 		Formalex.run(ROOT_CDE_REDUCTOR
@@ -222,8 +194,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 	}
 
 	@Test	
-	// 0 JH 65/491
-	//No termina
+	// TODO SI ES IGUAL AL LDC1_15' VOLARLO
 	public void testCasoDeEstudio2NroDeClausulas15WithIsHappening()
 			throws Exception {
 
@@ -257,66 +228,5 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
 	}
 
-	/* Ejs que DESAPARECEN XQ ya se redujeron TODAS las acciones a 2 estados  */
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas1WithIsHappening()
-			throws Exception {
-
-		Formalex.run(ROOT_CDE_REDUCTOR
-				+ "CasoDeEstudio1NroDeClausulas1WithIsHappening.txt",
-				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
-	}
-
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas5WithIsHappening()
-			throws Exception {
-
-		Formalex.run(ROOT_CDE_REDUCTOR
-				+ "CasoDeEstudio1NroDeClausulas5WithIsHappening.txt",
-				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
-	}
-
-	@Test
-	public void testCasoDeEstudio2NroDeClausulas1WithIsHappening()
-			throws Exception {
-
-		Formalex.run(ROOT_CDE_REDUCTOR
-				+ "CasoDeEstudio2NroDeClausulas1WithIsHappening.txt",
-				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
-	}
-
-	@Test
-	// 3 st = 0
-	public void testCasoDeEstudio2NroDeClausulas5WithIsHappening()
-			throws Exception {
-
-		Formalex.run(ROOT_CDE_REDUCTOR
-				+ "CasoDeEstudio2NroDeClausulas5WithIsHappening.txt",
-				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
-	}
-
-	@Test
-	//Tiene JH= 0 . tarda tambien un segundo
-	public void testCasoDeEstudio3NroDeClausulas1WithIsHappening()
-			throws Exception {
-
-		Formalex.run(ROOT_CDE_REDUCTOR
-				+ "CasoDeEstudio3NroDeClausulas1WithIsHappening.txt",
-				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				true, LTLTranslationType.WITH_JH);
-	}
-
-	@Test
-	public void testCasoDeEstudio1NroDeClausulas60() throws Exception {
-
-		Formalex.run(FlTest.ROOT_CDE_FILTRADO
-				+ "CasoDeEstudio1NroDeClausulas60.txt",
-				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_JH);
-	}
 
 }

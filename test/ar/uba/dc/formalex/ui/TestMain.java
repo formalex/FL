@@ -153,4 +153,33 @@ public class TestMain extends FlTest{
 				LTLTranslationType.WITH_JH);
 		}
 	}
+	
+	@Test
+	//7 formulas + 6 permisos
+	//sin jh 1155 10 veces
+	//con jh 1441 10 veces
+	public void testCasoDeEstudioVipMemberPass() throws Exception {
+		// Este ejemplo tiene un PP con excepcion
+
+		for(int i= 0;i<10;i++){
+			Formalex.run(FlTest.ROOT_CDE_FILTRADO
+					+ "casoDeEstudioVipMemberPass.txt",
+					FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
+					LTLTranslationType.WITH_JH);
+		}
+	}
+
+	@Test
+	//OJO QUE ESTE NO TIENE LOS IS HAPPENING Y NO ES PARTE DE NINGUN CASO DE ESTUDIO
+	//PORQUE TARDA BASTANTE
+	//CON JH 6621 SEGUNDOS
+	//SIN JH 
+	public void testCasoDeEstudioVipMemberPassFull() throws Exception {
+		// Este ejemplo tiene dos PP con excepcion
+		Formalex.run(FlTest.ROOT_CDE_FILTRADO
+				+ "casoDeEstudioVipMemberPassFull.txt",
+				FlTest.CORRER_CON_MODEL_CHECKER, true, CORRER_SIN_REDUCTOR,
+				LTLTranslationType.WITH_NEXT_FOR_JH);
+	}
+
 }
