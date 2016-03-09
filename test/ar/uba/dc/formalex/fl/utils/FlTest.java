@@ -49,14 +49,15 @@ public class FlTest {
 		
 		switch (soEnElQueCorre) {
 		case LINUX:
-			System.setProperty("NUSMV_EXE", "/Data/JAVA/NuSMV-2.5.4-x86_64-unknown-linux-gnu/bin/NuSMV");
+			System.setProperty("NUSMV_EXE", "/Data/JAVA/NuSMV-2.6.0-Linux/bin/NuSMV");
+			//Version anterior
+			//System.setProperty("NUSMV_EXE", "/Data/JAVA/NuSMV-2.5.4-x86_64-unknown-linux-gnu/bin/NuSMV");			
 			System.setProperty("TEMP_DIR", "/media/charly/WINDOWS/propsFl/salida");
 			break;
 		case WINDOWS:
 			System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV-2.6.0-win64/bin/NuSMV.exe");			
 			//Version anterior
-			//System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");		
-			
+			//System.setProperty("NUSMV_EXE", "C:/Program Files/NuSMV/2.5.4/bin/NuSMV.exe");					
 			System.setProperty("TEMP_DIR", "C:/propsFl/salida");
 			break;
 

@@ -14,19 +14,15 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 	/* Ejs con #JH en la formula > 0   */
 
 	@Test
-	//SIN JH en 4 minutos consumió 6Gb
-	//CON JH
 	public void testCasoDeEstudio1NroDeClausulas1() throws Exception {
 
 		Formalex.run(FlTest.ROOT_CDE_FILTRADO
 				+ "CasoDeEstudio1NroDeClausulas1.txt",
 				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_NEXT_FOR_JH);
+				LTLTranslationType.WITH_JH);
 	}
 
 	@Test
-	//SIN JH en 4 minutos consumió 6Gb
-	//CON JH
 	public void testCasoDeEstudio1NroDeClausulas5() throws Exception {
 
 		Formalex.run(FlTest.ROOT_CDE_FILTRADO
@@ -87,25 +83,22 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 	}
 
 	@Test
-	//SIN JH NO TERMINAAAAAAAAAAAAAAAAAAAAAAA
 	public void testCasoDeEstudio3NroDeClausulas1() throws Exception {
 
 		Formalex.run(FlTest.ROOT_CDE_FILTRADO
 				+ "CasoDeEstudio3NroDeClausulas1.txt",
 				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_NEXT_FOR_JH);
+				LTLTranslationType.WITH_JH);
 	}
 
 	@Test
-	//Tiene 23 JH y 46 3st/162
-	//Sigue sin terminar
 	public void testCasoDeEstudio3NroDeClausulas5WithIsHappening()
 			throws Exception {
 
 		Formalex.run(ROOT_CDE_REDUCTOR
 				+ "CasoDeEstudio3NroDeClausulas5WithIsHappening.txt",
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
+				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 
 	@Test
@@ -114,7 +107,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 		Formalex.run(FlTest.ROOT_CDE_FILTRADO
 				+ "CasoDeEstudio3NroDeClausulas5.txt",
 				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR,
-				LTLTranslationType.WITH_NEXT_FOR_JH);
+				LTLTranslationType.WITH_JH);
 	}
 
 	@Test
