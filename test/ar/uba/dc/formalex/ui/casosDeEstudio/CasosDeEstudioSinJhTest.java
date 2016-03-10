@@ -118,7 +118,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 		Formalex.run(ROOT_CDE_REDUCTOR
 				+ "CasoDeEstudio3NroDeClausulas15WithIsHappening.txt",
 				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
+				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 
 	@Test
@@ -193,16 +193,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 
-	@Test	
-	// TODO SI ES IGUAL AL LDC1_15' VOLARLO
-	public void testCasoDeEstudio2NroDeClausulas15WithIsHappening()
-			throws Exception {
 
-		Formalex.run(ROOT_CDE_REDUCTOR
-				+ "CasoDeEstudio2NroDeClausulas15WithIsHappening.txt",
-				CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
-	}
 
 	@Test
 	//O JH 111/842
@@ -213,7 +204,7 @@ public class CasosDeEstudioSinJhTest extends FlTest {
 		Formalex.run(FlTest.ROOT_CDE_FILTRADO
 				+ "CasoDeEstudio2NroDeClausulas28.txt",
 				FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO,
-				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_NEXT_FOR_JH);
+				CORRER_CON_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 
 	@Test
