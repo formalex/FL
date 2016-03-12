@@ -40,12 +40,6 @@ public class CasosDeEstudioReductorTest extends FlTest {
 	}
 	
 	@Test
-	public void testCasoDeEstudio1NroDeClausulas60WithDefaultIsHappening() throws Exception  {
-		
-		Formalex.run(FlTest.ROOT_CDE_FILTRADO + "CasoDeEstudio1NroDeClausulas60.txt", FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, true, LTLTranslationType.WITH_JH);
-	}
-
-	@Test
 	public void testCasoDeEstudio2NroDeClausulas1WithIsHappening() throws Exception  {
 		
 		Formalex.run(ROOT_CDE_REDUCTOR + "CasoDeEstudio2NroDeClausulas1WithIsHappening.txt", CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, true, LTLTranslationType.WITH_JH);
@@ -68,13 +62,7 @@ public class CasosDeEstudioReductorTest extends FlTest {
 		
 		Formalex.run(ROOT_CDE_REDUCTOR + "CasoDeEstudio2NroDeClausulas25WithIsHappening.txt", CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, true, LTLTranslationType.WITH_JH);
 	}
-	
-	@Test
-	public void testCasoDeEstudio2NroDeClausulas28WithDefaultIsHappening() throws Exception  {
 		
-		Formalex.run(FlTest.ROOT_CDE_FILTRADO + "CasoDeEstudio2NroDeClausulas28.txt", FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, true, LTLTranslationType.WITH_JH);
-	}
-	
 	@Test
 	public void testCasoDeEstudio3NroDeClausulas1WithIsHappening() throws Exception  {
 		
@@ -99,9 +87,4 @@ public class CasosDeEstudioReductorTest extends FlTest {
 		Formalex.run(ROOT_CDE_REDUCTOR + "CasoDeEstudio3NroDeClausulas25WithIsHappening.txt", CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, true, LTLTranslationType.WITH_JH);
 	}
 		
-	@Test
-	public void testCasoDeEstudio3NroDeClausulas32WithDefaultIsHappening() throws Exception  {
-		
-		Formalex.run(FlTest.ROOT_CDE_FILTRADO + "CasoDeEstudio3NroDeClausulas32.txt", FlTest.CORRER_CON_MODEL_CHECKER, CORRER_CON_FILTRADO, true, LTLTranslationType.WITH_JH);
-	}
 }
