@@ -48,17 +48,6 @@ public class TestMain extends FlTest{
 		Formalex.run(ROOT_RESOURCES + "EjActionConOutputValuesSinRolesReferenciadosEnRegla.txt", true, true, true, LTLTranslationType.WITH_JH);
 	}
 	
-	/**** Estos dos tests los hice para saber si variaba la cantidad de agentes 
-	 * generados, segun la cantidad de lineas en las que se divida la definicion
-	 * de los roles. La realidad es que no varía. genera en ambos casos
-	 * 16 agentes
-	 */
-	@Test
-	public void testEjemploGeneracionDeAgentesConCuatroRolesEnUnaLinea() throws Exception  {
-		
-		Formalex.run(ROOT_RESOURCES + "EjCuatroRolesEnUnaLinea.txt", false, true, true, LTLTranslationType.WITH_JH);
-	}
-	
 	@Test
 	public void testEjemploConstruccionDeGrafo() throws Exception  {
 		
@@ -71,6 +60,17 @@ public class TestMain extends FlTest{
 		Formalex.run(ROOT_RESOURCES + "EjGeneracionDeAgentes.txt", false, true, true, LTLTranslationType.WITH_JH);
 	}
 	
+	/**** Estos dos tests los hice para saber si variaba la cantidad de agentes 
+	 * generados, segun la cantidad de lineas en las que se divida la definicion
+	 * de los roles. La realidad es que no varía. genera en ambos casos
+	 * 16 agentes
+	 */
+	@Test
+	public void testEjemploGeneracionDeAgentesConCuatroRolesEnUnaLinea() throws Exception  {
+		
+		Formalex.run(ROOT_RESOURCES + "EjCuatroRolesEnUnaLinea.txt", false, true, true, LTLTranslationType.WITH_JH);
+	}
+		
 	@Test
 	public void testEjemploGeneracionDeAgentesConCuatroRolesEnDosLineas() throws Exception  {
 		
@@ -82,6 +82,13 @@ public class TestMain extends FlTest{
 		// Lo hice para ver si se seguía comportandose bien despues del cambio de
 		// las chicas
 		Formalex.run(ROOT_RESOURCES + "EjCombinacionRolesTesisChicas.txt", false, true, true, LTLTranslationType.WITH_JH);
+	}
+	
+	@Test
+	public void testEjemploMaximaCombinacionRolesSinDisjoint() throws Exception  {
+		// Lo hice para ver si se seguía comportandose bien despues del cambio de
+		// las chicas
+		Formalex.run(ROOT_RESOURCES + "EjMaximaCombinacionDeRolesSinDisjoint.txt", false, true, true, LTLTranslationType.WITH_JH);
 	}
 	
 	@Test
