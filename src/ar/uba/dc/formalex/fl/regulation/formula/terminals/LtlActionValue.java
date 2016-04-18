@@ -12,16 +12,16 @@ public enum LtlActionValue {
 	HAPPENING("HAPPENING"),
 	JUST_HAPPENED("JUST_HAPPENED");
 	
-	String valueInLtlFormula;
+	String value;
 	
 	private LtlActionValue(String anValueInLtlFormula){
 		
-		this.valueInLtlFormula = anValueInLtlFormula;
+		this.value = anValueInLtlFormula;
 		
 	}
 
-	public String getValueInLtlFormula() {
-		return valueInLtlFormula;
+	public String getValue() {
+		return value;
 	}
 	
 }

@@ -36,15 +36,15 @@ public class FLAction extends FLTerminal {
         return res;
     }
 
-	@Override
+    @Override
     public String translateToLTL(LTLTranslationType anLTLTranslationType) {
-		
-		String actionNameWithAgent = getNameWithAgent();
-		if(!LTLTranslationType.WITH_NEXT_FOR_JH.equals(anLTLTranslationType) || ActionReferencedState.IS_HAPPENING.equals(referencedState) )
-			return actionNameWithAgent + " = " + this.getReferencedState().getValueInLtlFormula();
-		
-		//Se reemplaza el accion = JUST_HAPPENED por acción = HAPPENING & next(acción) = NOT_HAPPENING
-		return String.format("(%s = %s & X(%s) =  %s)", actionNameWithAgent, LtlActionValue.HAPPENING.getValueInLtlFormula(), actionNameWithAgent, LtlActionValue.NOT_HAPPENING.getValueInLtlFormula() );
+
+    	String actionNameWithAgent = getNameWithAgent();
+    	if(!LTLTranslationType.WITH_NEXT_FOR_JH.equals(anLTLTranslationType) || ActionReferencedState.IS_HAPPENING.equals(referencedState) )
+    		return actionNameWithAgent + " = " + this.getReferencedState().getValueInLtlFormula();
+
+    	//Se reemplaza el accion = JUST_HAPPENED por acción = HAPPENING & next(acción) = NOT_HAPPENING
+    	return String.format("(%s = %s & X(%s) =  %s)", actionNameWithAgent, LtlActionValue.HAPPENING.getValue(), actionNameWithAgent, LtlActionValue.NOT_HAPPENING.getValue() );
     }
 	
     public ActionReferencedState getReferencedState() {
