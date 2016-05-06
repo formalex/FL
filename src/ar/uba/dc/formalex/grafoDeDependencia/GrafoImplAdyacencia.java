@@ -1,8 +1,10 @@
 package ar.uba.dc.formalex.grafoDeDependencia;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
@@ -40,6 +42,60 @@ public class GrafoImplAdyacencia<E> implements Grafo<E> {
 					+ sb.toString();
 		}
 		return "GrafoImplAdyacencia Grafo vacio ";
+	}
+	
+	/**
+     * Crea un String con el formato de graphViz
+     */
+	@Override
+	public String toGraphViz() {
+		//		digraph structs {
+		//			node [shape=Mrecord];
+		//			struct1 [shape=Mrecord,label="<f0> agent_1|<f1> AGENTE", style=filled];
+		//			struct2 [shape=Mrecord,label="<f0> empieza_censo|<f1> ACTION", style=filled];
+		//			struct3 [shape=Mrecord,label="<f0> en_censo|<f1> INTERVAL", style=filled];
+		//			struct4 [shape=Mrecord,label="<f0> agent_1.censarse|<f1> ACTION", style=filled];
+		//			struct5 [shape=Mrecord,label="<f0> termina_censo|<f1> ACTION", style=filled];
+		//			struct3 -> struct5;
+		//			struct3 -> struct2;
+		//			struct4 -> struct1;
+		//			}
+
+		if (nodos != null) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("digraph structs {\n");
+			sb.append("node [shape=Mrecord];\n");
+			int i=1;
+			Map<String, String> nombreNodos = new HashMap<String, String>();
+			//Creo los nodos
+			for (Nodo<E> unNodo : this.nodos.values()) { 
+				InfoComponenteBgt unaInfoDeComponente = (InfoComponenteBgt)unNodo.getValor();
+				String nombreNodoGv = "struct" + i;
+				String idNodo = unNodo.getId();
+
+				nombreNodos.put(idNodo, nombreNodoGv);		
+				if(unNodo.isMarcado())
+					sb.append(String.format("%s [shape=Mrecord,label=\"<f0> %s|<f1> %s\", style=filled];\n", nombreNodoGv, idNodo, unaInfoDeComponente.getTipoDeComponente()) );
+				else
+					sb.append(String.format("%s [shape=Mrecord,label=\"<f0> %s|<f1> %s\"];\n", nombreNodoGv, idNodo, unaInfoDeComponente.getTipoDeComponente()) );
+				i++;
+			}
+
+			//Creo las aristas
+			for (Nodo<E> unNodo : this.nodos.values()) { 
+				String nombreNodoGv = nombreNodos.get(unNodo.getId());	
+				if (!unNodo.getVecinos().isEmpty())
+					for (Nodo<E> unVecino : unNodo.getVecinos()) {
+						sb.append(String.format("%s -> %s;\n", nombreNodoGv, nombreNodos.get(unVecino.getId()) ));
+					}
+			}
+			sb.append("}");
+
+			return sb.toString();
+
+		}
+
+		return "";
 	}
 	  
     /**

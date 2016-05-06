@@ -92,9 +92,13 @@ public class Formalex {
 							flInput, new ConstructorDeGrafoFake(), LTLTranslationType.WITH_JH);
 				// loguearEntSal(flInput);
 
+				String graphVizAntesDelFiltro = elgrafoDeDependenciasBgt.toGraphViz();
+				
 				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker,
 						conReductor, anLtlTranslationType);
 
+				
+				
 				logger.debug("Listo");
 			} catch (TokenMgrError e) {
 				logger.error("FormaLex: Ha ocurrido un error de tokens durante el parseo.");
@@ -335,6 +339,8 @@ public class Formalex {
 			for (String nombreDeComponente : componentesParaMarcar) {
 				elGrafoDeDependencias.marcarNodosEnBfs(nombreDeComponente);
 			}
+			
+			String graphVizDespuesDelFiltro = elGrafoDeDependencias.toGraphViz();
 			
 			//Eliminarlos de la bgt
 			limpiarBgt(res, elGrafoDeDependencias);

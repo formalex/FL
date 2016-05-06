@@ -11,4 +11,5 @@ public interface Grafo<E> {
 	public Nodo<E> getNodoById(String idNodo);
 	public void marcarNodosEnBfs(String idNodoOrigen);
 	public void resetMarcas();
+	String toGraphViz();
 }
