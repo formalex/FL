@@ -104,6 +104,12 @@ public class TestMain extends FlTest{
 	}
 	
 	@Test
+	public void testEjemploCounterWithProvidedThat() throws Exception  {
+		
+		Formalex.run(ROOT_RESOURCES + "EjCounterWithProvidedThat.txt", true, true, true, LTLTranslationType.WITH_JH);
+	}
+	
+	@Test
 	@Ignore("Hasta que se arregle el tema del synchronize")
 	public void testEjemploSynchronize() throws Exception  {
 		
