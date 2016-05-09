@@ -104,9 +104,9 @@ public class TestMain extends FlTest{
 	}
 	
 	@Test
-	public void testEjemploCounterWithProvidedThat() throws Exception  {
-		
-		Formalex.run(ROOT_RESOURCES + "EjCounterWithProvidedThat.txt", true, true, true, LTLTranslationType.WITH_JH);
+	public void testEjCounterWithImpersonalActions() throws Exception  {
+		//rompe xq tiene un contador con todas las acciones impersonales!
+		Formalex.run(ROOT_RESOURCES + "EjCounterWithImpersonalActions.txt", true, true, true, LTLTranslationType.WITH_JH);
 	}
 	
 	@Test

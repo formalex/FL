@@ -199,28 +199,18 @@ actions ControlVigilanciaJuzgamiento_LeyDefensaConsumidor only performable by Au
 
 //CONTADORES
 
-local counter dias_de_garantia_restantes  init value  90 
+local counter counterConTodasAccionesImpersonales  init value  90 
 increases with action paso_un_dia_reparandose by 1, 
 decreases with action paso_un_dia by 1
 //,sets with action comprar.usado to value 90,
 //sets with action comprar.nuevo to value 180
 
+//Este tiene al menos una accion personal x eso anda!
 local counter dias_realizar_descargo init value 5 
 decreases with action NuevoDiaHabil by 1
 sets with action LabrarActa to value 5
 
-local counter dias_producir_prueba init value 10 
-increases with action ExistenciaCausaJustificada by 1,
-decreases with action NuevoDiaHabil by 1,
-sets with action Admitir_Pruebas to value 10 //Antes estaba escrito AdmitirPrueba que no existe
 
-local counter dias_resolucion_infraccion init value 20 
-decreases with action NuevoDiaHabil by 1,
-sets with action Conclusion_Diligencias_Sumariales to value 20
-
-local counter dias_interponer_recurso init value 10
-decreases with action NuevoDiaHabil by 1,
-sets with action Notificacion_Resolucion to value 10
 
 //INTERVALOS
 
@@ -232,9 +222,8 @@ local interval periodo_producir_prueba defined by actions Admitir_Pruebas - Prod
 #Clauses
 
 //CAPITULO V - DE LA PRESTACION DE LOS SERVICIOS
-//Art. 19 .
-FORALL(i:Proveedor; O(i.PrestarServicio -> i.CumplirConCondicionesDeOferta))
-FORALL(i:Consumidor;O(i.dias_de_garantia_restantes > 0))
+//Rompe xq al tener todas las acciones impersonales NO puede crear al contador!
+FORALL(i:Consumidor;O(i.counterConTodasAccionesImpersonales > 0))
 
 
 
