@@ -100,16 +100,16 @@ public class CasosDeEstudioFiltradoTest extends FlTest {
 	}
 	
 	
-	@Test
-	public void testCasoDeEstudioVipMemberPass() throws Exception  {
-		//Este ejemplo tiene un PP con excepcion
-		Formalex.run(FlTest.ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPass.txt", FlTest.CORRER_CON_MODEL_CHECKER, true, CON_REDUCTOR_EN_PRUEBAS_DEL_FILTRADO, LTLTranslationType.WITH_JH);
-	}
-	
-	@Test
-	public void testCasoDeEstudioVipMemberPassFull() throws Exception  {
-		//Este ejemplo tiene dos PP con excepcion
-		Formalex.run(FlTest.ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPassFull.txt", FlTest.CORRER_CON_MODEL_CHECKER, true, CON_REDUCTOR_EN_PRUEBAS_DEL_FILTRADO, LTLTranslationType.WITH_JH);
-	}
+//	@Test
+//	public void testCasoDeEstudioVipMemberPass() throws Exception  {
+//		//Este ejemplo tiene un PP con excepcion
+//		Formalex.run(FlTest.ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPass.txt", FlTest.CORRER_CON_MODEL_CHECKER, true, CON_REDUCTOR_EN_PRUEBAS_DEL_FILTRADO, LTLTranslationType.WITH_JH);
+//	}
+//	
+//	@Test
+//	public void testCasoDeEstudioVipMemberPassFull() throws Exception  {
+//		//Este ejemplo tiene dos PP con excepcion
+//		Formalex.run(FlTest.ROOT_CDE_FILTRADO + "casoDeEstudioVipMemberPassFull.txt", FlTest.CORRER_CON_MODEL_CHECKER, true, CON_REDUCTOR_EN_PRUEBAS_DEL_FILTRADO, LTLTranslationType.WITH_JH);
+//	}
 
 }
