@@ -73,5 +73,11 @@ public class FiltradoTest extends FlTest {
 		Formalex.run(FlTest.ROOT_EJS_FILTROS + "EjConAccionesConOvsQueNoSeReferencianTodosLosOvs.txt", true, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 	
+	@Test
+	public void testEjemploFiltroParaPresentacion() throws Exception  {
+		
+		Formalex.run(FlTest.ROOT_EJS_FILTROS + "EjParaPresentacion.txt", true, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR, LTLTranslationType.WITH_JH);
+	}
+	
 
 }
