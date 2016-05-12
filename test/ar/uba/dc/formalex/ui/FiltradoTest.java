@@ -8,6 +8,7 @@ import ar.uba.dc.formalex.fl.utils.FlTest;
 
 /**
  * * Acá se prueba el proceso de filtrado  completo(con llamada al Model Checker incluido)
+ * Son ejemplos chiquitos que si se quiere se pueden correr todos juntos
  * @author cfaciano
  *
  */
@@ -79,5 +80,10 @@ public class FiltradoTest extends FlTest {
 		Formalex.run(FlTest.ROOT_EJS_FILTROS + "EjParaPresentacion.txt", true, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR, LTLTranslationType.WITH_JH);
 	}
 	
+	@Test
+	public void testEjemploFiltroParaPresentacionConUnRol() throws Exception  {
+		
+		Formalex.run(FlTest.ROOT_EJS_FILTROS + "EjParaPresentacionConUnRol.txt", true, CORRER_CON_FILTRADO, CORRER_SIN_REDUCTOR, LTLTranslationType.WITH_JH);
+	}
 
 }
