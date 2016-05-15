@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="tesis" default="compilar" basedir=".">
 
-	<property environment="env"/>           
-	
-    <property name="DIR_ROOT"  value="C:\Users\ety\Documents\UBA\TESIS\workspace\tesis"/>
+    <property environment="env"/>
 
-    <property name="src" location="${DIR_ROOT}\src"/>
-    <property name="build" location="${DIR_ROOT}\clases"/>
-    <property name="jars"  location="${DIR_ROOT}\jar"/>
- 
-    	
-    <property name="jars"  value="
-        ${jar}\velocity-1.7-dep.jar;
-        "/>
+    <property name="DIR_ROOT"  value="."/>
 
+    <property name="src" location="${DIR_ROOT}/src"/>
+    <property name="build" location="${DIR_ROOT}/bin"/>
+    <property name="jar"  location="${DIR_ROOT}/jar"/>
+    <property name="jars"  value="${jar}/*"/>
 
     <target name="compilar" depends="init"  >
         <echo message="javaHome = ${env.JAVA_HOME}"/>
@@ -21,12 +16,12 @@
         <javac  srcdir="${src}" 
                 destdir="${build}"
                 classpath="${jar}"/>                         
-		
-		<!-- copio resources -->
-		<copy todir="${build}">
-			<fileset dir="${src}"
-				includes="**/*.xml,**/*.properties,**/*.txt,**/*.ico, **/*.JPG" />
-		</copy>
+
+        <!-- copio resources -->
+        <copy todir="${build}">
+            <fileset dir="${src}"
+                includes="**/*.xml,**/*.properties,**/*.txt,**/*.ico, **/*.JPG" />
+        </copy>
 
     </target>
 
@@ -38,13 +33,13 @@
         <javacc
                 target="${src}/ar/uba/dc/formalex/parser/FL.jj"
                 outputdirectory="${src}/ar/uba/dc/formalex/parser"
-                javacchome="C:\Users\ety\Documents\UBA\TESIS\workspace\tesis\jar"
+                javacchome="./jar"
         />
         <antcall target="compilar" />
     </target>
 
     <target name="copiarVelocity" >
-        <copy todir="${DIR_ROOT}\clases\templates">
+        <copy todir="${DIR_ROOT}/clases/templates">
             <fileset dir="C:\Users\ety\Documents\UBA\TESIS\apuntesTesis"
                      includes="*.vm" />
         </copy>
