@@ -1,12 +1,11 @@
 package ar.uba.dc.formalex.modelChecker;
 
-import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
-import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
-import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
-import ar.uba.dc.formalex.util.Fechas;
-import ar.uba.dc.formalex.util.UtilFile;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
-import org.apache.commons.collections.ExtendedProperties;
 import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -14,7 +13,13 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
-import java.io.*;
+import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
+import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
+import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
+import ar.uba.dc.formalex.util.Fechas;
+import ar.uba.dc.formalex.util.Util;
+import ar.uba.dc.formalex.util.UtilFile;
 
 /**
  * User: P_BENEDETTI
@@ -26,15 +31,16 @@ public class NuSMVModelChecker {
     private static final Logger logger = Logger.getLogger(NuSMVModelChecker.class);
     private static String endOfline = System.getProperty("line.separator");
 
-    //crea un archivo con los comando que se le pasar�n a nusvm. Incluyen la expresi�n a validar.
+    //crea un archivo con los comando que se le pasarán a nusvm. Incluyen la expresión a validar.
     private static void crearComandos(File commandFile, String outputFile, String ltlExpr) throws IOException {
         String x = "go;" + endOfline + "check_ltlspec -o " + outputFile + " -p \"" + ltlExpr +
                 "\";" + endOfline + "quit;";
         UtilFile.guardar(commandFile, x, false);
     }
 
-    private static void crearAutomata(BackgroundTheory backgroundTheory, FLFormula formula, File fileOut){
+    private static void crearAutomata(BackgroundTheory backgroundTheory, File fileOut, LTLTranslationType anLTLTranslationType){
         PrintWriter writer = null;
+        String strCodificacionArchivo = "UTF-8";
 
         try{
             VelocityContext context = new VelocityContext();
@@ -52,8 +58,16 @@ public class NuSMVModelChecker {
             VelocityEngine ve = new VelocityEngine();
             ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
             ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+            
+			ve.setProperty("input.encoding", strCodificacionArchivo);      
+            ve.setProperty("output.encoding", strCodificacionArchivo);
             ve.init();
-            Template template = ve.getTemplate( System.getProperty("TEMPLATE_VELOCITY") )  ;
+            
+            
+            String nombreTemplateUsado = Util.getTemplateName(anLTLTranslationType);			
+            Template template = ve.getTemplate(nombreTemplateUsado)  ;
+          //Template template = ve.getTemplate( System.getProperty("TEMPLATE_VELOCITY") )  ;
+
 
             writer = new PrintWriter (fileOut);
             template.merge( context , writer);
@@ -73,14 +87,14 @@ public class NuSMVModelChecker {
         }
     }
 
-    //Devuelve el archivo de salida
-    public static File findTrace(BackgroundTheory backgroundTheory, FLFormula formula) {
+	//Devuelve el archivo de salida
+    public static File findTrace(BackgroundTheory backgroundTheory, FLFormula formula, LTLTranslationType anLTLTranslationType) {
         final String nusmvExecutable = System.getProperty("NUSMV_EXE");
         if (nusmvExecutable == null)
             throw new RuntimeException("Falta indicar el exe de nusmv (NUSMV_EXE)");
 
         //Niego lo que estoy buscando para que nusmv, si encuentra, me devuelva un contraejemplo
-        //Si no encuentra quiere decir que la f�rmula es v�lida
+        //Si no encuentra quiere decir que la fórmula es válida
         FLFormula formulaToTest = new FLNeg(formula);
 
         String ts = Fechas.getAAAAMMDD_HHMMSS();
@@ -103,9 +117,9 @@ public class NuSMVModelChecker {
             nusmvOutput = new File(temp_dir, nusvmOutputFileName );
         }
         try {
-            crearAutomata(backgroundTheory, formulaToTest, nusmvInput);
+            crearAutomata(backgroundTheory, nusmvInput, anLTLTranslationType);
 //            String ltlExpr = formulaToTest.toString() + " & !X X X X X TRUE";
-            String ltlExpr = formulaToTest.toString();
+            String ltlExpr = formulaToTest.translateToLTL(anLTLTranslationType );
             crearComandos(nusmvCommands, nusmvOutput.getAbsolutePath(), ltlExpr);
         } catch (IOException e1) {
             logger.error(e1.getMessage(), e1);
@@ -114,8 +128,13 @@ public class NuSMVModelChecker {
 
         try {
             //Ej: system prompt> NuSMV -source ARCHIVO_CMD ej.nusmv
-            //todo: ver bien qu� hace -df
-            String command = nusmvExecutable +" -df -source " + nusmvCommands.getAbsolutePath() +
+        	// -df Disable the computation of the set of reachable states.
+//            String command = nusmvExecutable +" -df -source " + nusmvCommands.getAbsolutePath() +
+//                    " " + nusmvInput.getAbsolutePath();
+        	
+        	//Agregado de dynamic: Enables dynamic reordering of variables
+        	//Maneja mejor la memoria y corre más rapido!
+            String command = nusmvExecutable +" -df -dynamic -source " + nusmvCommands.getAbsolutePath() +
                     " " + nusmvInput.getAbsolutePath();
             logger.info("Comienza nusmv. Comando a ejecutar:  " + command);
             logger.info("Corriendo...");
@@ -131,9 +150,10 @@ public class NuSMVModelChecker {
                 if (sb == null)
                     sb = new StringBuilder();
                 sb.append(salida);
+                sb.append("\n");
                 if (salida.startsWith("aborting")) //si aborta, lo que aborta es el comando ejecutado,
                 // pero se queda dentro de nusmv. Hay que forzar la salida. Esto puede pasar si hay
-                // alg�n error sint�ctico en lo que se le pas� a nusmv.
+                // algún error sintáctico en lo que se le pas� a nusmv.
                     break;
                 if (salida.startsWith("********   WARNING   ********"))
                     isWarning = true;

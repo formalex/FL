@@ -1,0 +1,25 @@
+#Background
+
+
+roles Consumidor, Proveedor disjoint  
+
+//ACCIONES. Prueba con actions con un solo id de action
+
+action Consumir 
+action AdquirirByS 
+impersonal action unaImpersonalAction
+
+
+
+#Clauses
+
+//CAPITULO I - Disposiciones generales
+FORALL(i:Consumidor; O(i.Consumir -> i.AdquirirByS ))
+F(unaImpersonalAction)
+
+
+
+
+
+
+

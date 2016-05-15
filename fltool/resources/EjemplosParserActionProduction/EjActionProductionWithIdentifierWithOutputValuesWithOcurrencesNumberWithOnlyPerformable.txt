@@ -1,0 +1,26 @@
+#Background
+
+
+roles Consumidor, Proveedor disjoint  
+
+
+//ACCIONES. Prueba con actions con ovs y ocurrences Number y only performable
+action delProveedor only performable by Proveedor
+action deTodos  only performable by Proveedor, Consumidor
+action AdquirirByS only performable by Consumidor
+action Consumir output values {ovC1, ovC2} occurrences 3 only performable by Consumidor
+impersonal action unaImpersonalAction output values {ovIa1, ovIa2} occurrences 4
+
+
+
+#Clauses
+
+FORALL(i:Consumidor; O(i.Consumir -> i.AdquirirByS ))
+F(unaImpersonalAction)
+
+
+
+
+
+
+

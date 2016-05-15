@@ -1,0 +1,12 @@
+#Background
+
+roles estudiante,docente
+action censar only performable by estudiante
+actions empieza_censo, termina_censo
+actions iniciarExamen, finalizarExamen, corregir, darNota only performable by docente
+global interval en_censo defined by actions empieza_censo - termina_censo
+local interval tomarExamen defined by actions iniciarExamen - finalizarExamen
+local interval correccionDeExamen defined by actions corregir - darNota
+#Clauses
+
+FORALL(i:estudiante; O(<>_{en_censo} i.censar))

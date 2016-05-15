@@ -1,17 +1,20 @@
 package ar.uba.dc.formalex.ui;
 
-import ar.uba.dc.formalex.fl.FLInput;
-import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
-import ar.uba.dc.formalex.parser.FLParser;
-import ar.uba.dc.formalex.parser.TokenMgrError;
-import ar.uba.dc.formalex.util.LaAplanadora;
-import ar.uba.dc.formalex.util.UtilFile;
-import org.apache.log4j.Logger;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import ar.uba.dc.formalex.fl.FLInput;
+import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
+import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoFake;
+import ar.uba.dc.formalex.parser.FLParser;
+import ar.uba.dc.formalex.parser.TokenMgrError;
+import ar.uba.dc.formalex.util.LaAplanadora;
+import ar.uba.dc.formalex.util.UtilFile;
 
 public class Test {
     private static final Logger logger = Logger.getLogger(Test.class);
@@ -54,7 +57,7 @@ public class Test {
     	FLInput flInput = FLParser.getFLInput();
 
         LaAplanadora divididos = new LaAplanadora();
-        divididos.explotarYAplanar(flInput);
+        divididos.explotarYAplanar(flInput, new ConstructorDeGrafoFake(), LTLTranslationType.WITH_JH);
 
 
 
@@ -64,7 +67,7 @@ public class Test {
 
         //"Reglas:");
         for(FLFormula formula : flInput.getRules()) {
-            String nueva = formula.toString();
+            String nueva = formula.translateToLTL(LTLTranslationType.WITH_JH );
             String vieja = salidaOK.get(ind++);
             if (!nueva.equals(vieja)){
                 contMal++;
@@ -75,7 +78,7 @@ public class Test {
         }
         //("Permisos:");
         for(FLFormula formula : flInput.getPermissions()) {
-            String nueva = formula.toString();
+            String nueva = formula.translateToLTL(LTLTranslationType.WITH_JH );
             String vieja = salidaOK.get(ind++);
             if (!nueva.equals(vieja)){
                 contMal++;

@@ -1,0 +1,24 @@
+#Background
+
+
+roles Consumidor, Proveedor disjoint  
+
+//ACCIONES. Prueba con actions con un solo id de action
+
+action Consumir output values {ovC1, ovC2}
+action AdquirirByS 
+impersonal action unaImpersonalAction output values {ovIa1, ovIa2}
+
+
+
+#Clauses
+
+FORALL(i:Consumidor; O(i.Consumir -> i.AdquirirByS ))
+F(unaImpersonalAction)
+
+
+
+
+
+
+

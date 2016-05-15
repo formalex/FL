@@ -5,10 +5,15 @@ import org.apache.log4j.Logger;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author cfaciano
+ *
+ */
 @SuppressWarnings({"RedundantIfStatement", "NonFinalFieldReferencedInHashCode"})
 public class Action {
     private static final Logger logger = Logger.getLogger(Action.class);
-	private String name;
+	
+    private String name;
 	private boolean isImpersonal;
 
 	/**
@@ -34,6 +39,8 @@ public class Action {
     public static final boolean ALLOW_AUTO_SYNC_DEFAULT = true;
     private boolean allowAutoSync = ALLOW_AUTO_SYNC_DEFAULT;
 
+    //El default es que la acción se represente en el automata con 3 estados
+	private ActionRepresentation representation= ActionRepresentation.THREE_STATES;
 	
 	public Action clonar() {
         return clonar(getName());
@@ -43,12 +50,15 @@ public class Action {
         Action res = new Action();
         res.setName(nuevoNombre);
         res.setImpersonal(isImpersonal);
-        res.setOccursIn(getOccursIn());
         res.setOutputValues(getOutputValues());
-        res.setSync(getSync(), hasActiveSync());
-        res.setAllowAutoSync(isAllowAutoSync());
-        res.setOccurrences(getOccurrences());
         res.setPerformableBy(getPerformableBy());
+        res.setOccursIn(getOccursIn());
+        res.setOccurrences(getOccurrences());
+        res.setSync(getSync(), hasActiveSync()); 
+        res.setAllowAutoSync(isAllowAutoSync());
+        res.setRepresentation(getRepresentation());
+        
+        
         return res;
 	}
 
@@ -139,6 +149,17 @@ public class Action {
 	public void addPerformableBy(Role aRole) {
         performableBy.add(aRole);
 	}
+    /**
+     * Una accion sin rol definido es una accion que NO es impersonal
+     * y no tiene roles asociados, eso quiere decir que la puede ejecutar
+     * cualquier agente
+     * @return
+     */
+    public boolean isSinRolDefinido(){
+    	
+    	Set<Role> rolesDeLaAccion = this.getPerformableBy();
+		return !this.isImpersonal() && rolesDeLaAccion.isEmpty();
+    }
 
 	/**
 	 * @return the occursIn
@@ -166,6 +187,7 @@ public class Action {
 
         return true;
     }
+    
 
     @Override
     public int hashCode() {
@@ -188,6 +210,14 @@ public class Action {
 		return sync != null && !(isActive);
 	}
 
+	
+	/**Devuelve true si es una accion sincronizada, sin importar
+	 * si es Activa o Pasiva
+	 * @return
+	 */
+	public Boolean isSync(){
+		return sync != null;
+	}
 
     public Action getSync() {
         return sync;
@@ -222,7 +252,21 @@ public class Action {
         isImpersonal = impersonal;
     }
 
-    public void logFL(){
+    public ActionRepresentation getRepresentation() {
+		return representation;
+	}
+
+	public void setRepresentation(ActionRepresentation representation) {
+		this.representation = representation;
+	}
+	
+	public boolean hasTwotSates(){
+		
+		return ActionRepresentation.TWO_STATES.equals(this.getRepresentation());
+		
+	}
+
+	public void logFL(){
         StringBuilder sb;
         if (isImpersonal())
             sb = new StringBuilder("impersonal action ");
@@ -255,6 +299,7 @@ public class Action {
 
         }
 
+        sb.append(" " + getRepresentation());
         logger.info(sb.toString());
     }
 }

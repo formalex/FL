@@ -1,7 +1,10 @@
 package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLInterval;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 import ar.uba.dc.formalex.fl.regulation.permission.Permission;
@@ -43,18 +46,39 @@ public class FLBox extends FLFormula{
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         String res = "";
         if (interval != null)
-            res = interval.toString() + " -> ";
+            res = interval.translateToLTL(anLTLTranslationType ) + " -> ";
         if (ponerParentesis(formula))
-            return res + "(" + formula.toString() + ")";
+            return res + "(" + formula.translateToLTL(anLTLTranslationType ) + ")";
         else
-            return res + formula.toString();
+            return res + formula.translateToLTL(anLTLTranslationType );
     }
 
     private boolean ponerParentesis(FLFormula lf) {
         return !(lf instanceof FLNeg || lf instanceof FLTerminal || lf instanceof Permission
                 || lf instanceof Forbidden || lf instanceof Obligation);
     }
+    
+    @Override
+	public Set<String> getNombresDeComponentes() {
+		
+    	Set<String> res=this.formula.getNombresDeComponentes();
+    	
+    	if(this.interval!=null)
+    		res.addAll(this.interval.getNombresDeComponentes());
+    	
+    	return res;
+	}
+
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		Set<FLTerminal> res=this.formula.getTerminals();
+    	
+    	if(this.interval!=null)
+    		res.addAll(this.interval.getTerminals());
+    	
+    	return res;
+	}
 }

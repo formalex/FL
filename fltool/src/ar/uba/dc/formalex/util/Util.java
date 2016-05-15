@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import ar.uba.dc.formalex.fl.bgtheory.Role;
 import ar.uba.dc.formalex.fl.bgtheory.RoleSpecification;
 import ar.uba.dc.formalex.fl.bgtheory.RolesCombination;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -114,5 +115,15 @@ public class Util {
 		}catch(IOException e){
 			logger.error(e.getMessage(), e);
 		}
+	}
+
+	public static String getTemplateName(
+			LTLTranslationType anLTLTranslationType) {
+		String nombreTemplateUsado; 
+		if(LTLTranslationType.WITH_NEXT_FOR_JH.equals(anLTLTranslationType))
+			nombreTemplateUsado = System.getProperty("TEMPLATE_VELOCITY_SIN_JH");
+		else
+			nombreTemplateUsado = System.getProperty("TEMPLATE_VELOCITY");
+		return nombreTemplateUsado;
 	}
 }

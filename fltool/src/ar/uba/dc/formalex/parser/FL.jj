@@ -2,9 +2,8 @@ options
 {
   JDK_VERSION = "1.7";
 
-  static = true;
-  Ignore_Case = true;
-
+  	static = true;
+  	Ignore_Case = true;
   LOOKAHEAD= 3;
 }
 
@@ -30,10 +29,21 @@ public class FLParser{
     private static FLInput flInput = new FLInput();
     private static String originalFormula; //usado para logueo
 
+    public static void clean(){
+    	
+    	actions = new HashMap <String, Action> ();
+    	intervals = new HashMap<String, Interval> ();
+    	counters = new HashMap<String, Counter> ();
+    	rolesMap = new HashMap<String, Role> ();
+    	flInput = new FLInput();
+
+    }
+    
     public static FLInput getFLInput(){
         return flInput;
     }
 
+  private static FLFormula parsearFlAction(String variable, String name, FLFormula aFormula , int beginLine, int beginColumn)  {    Action tmp = actions.get(name);    if (tmp == null)    {      StringBuilder sb = new StringBuilder();      sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +       "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);      throw new RuntimeException(sb.toString());    }    if (!tmp.isImpersonal() & variable == null)    {      StringBuilder sb = new StringBuilder();      sb.append("En una fórmula se hace referencia a una acción sin usar agente: ('" + name + "'). " +       "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);      throw new RuntimeException(sb.toString());    }    if (tmp.isImpersonal() & variable != null)    {      StringBuilder sb = new StringBuilder();      sb.append("En una fórmula se hace referencia a una acción impersonal usando agente: ('" + name + "'). " +       "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);      throw new RuntimeException(sb.toString());    }    aFormula = new FLAction(variable, name);    return aFormula;  }
 
     private static Interval getInterval(String name){
         Interval res = intervals.get(name);
@@ -178,6 +188,8 @@ TOKEN :
 | < INSIDE : "inside" >
 | < EXISTS : "EXISTS(" >
 | < FORALL : "FORALL(" >
+| < IS_HAPPENING : "isHappening(" >
+| < JUST_HAPPENED : "justHappened(" >
 }
 
 // COMPARATORS
@@ -364,6 +376,11 @@ void action() :
             {
               if (hasOutput)
                 throw new RuntimeException("La acción "+ anAction.getName() + " tiene definido más de un output value");
+
+			  //Si se definen output values, tienen que ser con mas de un valor	
+              if(actionOutputs.size()==1)
+              	throw new RuntimeException("La acción "+ anAction.getName() + " con output values tiene definido un unico valor de salida");
+              	 
               hasOutput = true;
               anAction.setOutputValues(actionOutputs);
             }
@@ -1589,7 +1606,7 @@ FLFormula forallWithDeontic() :
       {
         if (!(tempFormula.getClass().equals(Permission.class) | tempFormula.getClass().equals(PermanentPermission.class)))
         {
-			//ERROR! las únicas formulas válidas como excepciones son los permisos con condiciones
+			//ERROR! las únicas formulas válidas como excepciones son los permisos
 			StringBuilder sb = new StringBuilder();
             sb.append("Hay una fórmula que es excepción de una regla pero no es un permiso: ('" + originalFormula + "'). ");
             throw new RuntimeException(sb.toString());
@@ -1662,7 +1679,7 @@ FLFormula existsWithDeontic() :
       {
         if (!(tempFormula.getClass().equals(Permission.class) | tempFormula.getClass().equals(PermanentPermission.class)))
         {
-			//ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
+			//ERROR! las únicas formulas válidas como excepciones son los permisos
 			StringBuilder sb = new StringBuilder();
             sb.append("Hay una fórmula que es excepción de una regla pero no es un permiso: ('" + originalFormula + "'). ");
             throw new RuntimeException(sb.toString());
@@ -1923,23 +1940,28 @@ FLFormula quantifier() :
 
 FLFormula terminal() :
 {
-    FLFormula aFormula;
+    FLFormula aFormula=null;
     String name;
     String variable = null;
     FLCounter counter = null;
     int beginLine = token.next.beginLine;
     int beginColumn = token.next.beginColumn;
+    ActionReferencedState referencedState = ActionReferencedState.JUST_HAPPENED;
 }
 {
-    //Puede ser una accion, un counter o un intervalo
+    //Puede ser una accion IMPERSONAL. Por ej 'Hablar' en P(Hablar)
+    //O un counter GLOBAL. Por ej 'dias_de_garantia_restantes' en O(dias_de_garantia_restantes > 0)
+    //O puede ser un nombre de variable cuando se hace referencia a:
+    	// una accion que NO es Impersonal. Por ej 'i' en FORALL(i:noCliente; F(i.ingresarASala))
+    	//un Contador LOCAL. Por ej 'i' en FORALL(i:socioTitular; F(i.puntosMembresia > 20))
     (
-        < IDENTIFIER >           //ej i.Enroll en P(EXISTS(i : john ; i.Enroll))
+        < IDENTIFIER >           
         {
             name = token.image;
             originalFormula += name;
         }
         (
-          < DOT > < IDENTIFIER > //esto pasa si usa variable
+          < DOT > < IDENTIFIER > //esto pasa si usa variable. ej i.Enroll en P(EXISTS(i : john ; i.Enroll))
           {
             variable = name;
             name = token.image;
@@ -2042,32 +2064,11 @@ FLFormula terminal() :
             }
         }
         {
-            Action tmp = actions.get(name);
-            if (tmp == null){
-                StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +
-                "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
-                throw new RuntimeException(sb.toString());
-            }
-
-            if ( !tmp.isImpersonal() & variable == null){
-                StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a una acción sin usar agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
-                throw new RuntimeException(sb.toString());
-            }
-            if ( tmp.isImpersonal() & variable != null){
-                StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a una acción impersonal usando agente: ('" + name + "'). " +
-                    "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
-                throw new RuntimeException(sb.toString());
-            }
-            aFormula = new FLAction(variable, name);
-            return aFormula;
+          return parsearFlAction(variable, name, aFormula, beginLine, beginColumn);            
         }
     )
     |
-    (
+    (    
         < INSIDE > < PAR_LEFT > < IDENTIFIER >  //inside (j.interL) o inside (interG)
         {
             String variableONombre = token.image;
@@ -2113,6 +2114,38 @@ FLFormula terminal() :
             return new FLInside(interval);
         }
     )
+    |
+  (        (      < IS_HAPPENING > < IDENTIFIER > // 'j' en isHappening(j.Correr) o 'empezoElDia' en isHappening(empezoElDia)
+    {
+	  referencedState = ActionReferencedState.IS_HAPPENING;      name = token.image;      originalFormula += "isHappening(" + name;    }
+    
+   |   //TODO: VER SI HAY TIEMPO, SI SE PUEDEN SIMPLIFICAR LOS DOS CASOS
+  
+    < JUST_HAPPENED > < IDENTIFIER > // 'j' en justHappened(j.Correr) o 'empezoElDia' en justHappened(empezoElDia)
+    {
+	  referencedState = ActionReferencedState.JUST_HAPPENED;
+      name = token.image;
+      originalFormula += "justHappened(" + name;
+    }
+  	)
+  	
+    (
+    < DOT > < IDENTIFIER > //justHappened(j.Correr)
+    {
+      variable = name;
+      name = token.image;
+      originalFormula += "." + name;
+    }
+    )? 
+    < PAR_RIGHT >
+    {
+      originalFormula += ")";
+      FLAction flAction = (FLAction) parsearFlAction(variable, name, aFormula, beginLine, beginColumn);
+      flAction.setReferencedState(referencedState);
+      return flAction;
+    }
+  )
+	
 }
 
 

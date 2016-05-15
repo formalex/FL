@@ -1,0 +1,17 @@
+#Background
+
+roles alumno 
+actions accionQueNoSeReferencia1, accionQueNoSeReferencia2 only performable by
+alumno
+actions aprobar, desaprobar only performable by
+alumno
+
+local counter contadorQueNoSeReferencia init value 0, 
+increases with action accionQueNoSeReferencia1, decreases with action accionQueNoSeReferencia2
+
+local counter materias_aprobadas init value 0, 
+increases with action aprobar, decreases with action desaprobar
+
+#Clauses
+
+FORALL(i:alumno; F(i.materias_aprobadas < 0))

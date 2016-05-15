@@ -1,0 +1,18 @@
+#Background
+
+roles alumno
+action elegir_ganadores output values {doc_c1, doc_c2, doc_c3,no_elegido}
+actions abrir_concurso, cerrar_concurso
+action entrar
+
+global interval concurso defined by actions abrir_concurso - cerrar_concurso
+action postularse only occurs in scope concurso
+impersonal action comienza_semana
+impersonal action termina_semana
+global interval semana defined by actions comienza_semana - termina_semana
+
+#Clauses
+//la accion elegir ganadores tiene referencias a output values mediante results in
+//Por eso NO se va a poder reducir su representacion en el automata
+FORALL(i; O(i.postularse & (i.elegir_ganadores results in doc_c1 | i.elegir_ganadores results in doc_c3) -> <>_{semana} i.entrar)) 
+FORALL(i; F(i.postularse -> isHappening(i.elegir_ganadores)))

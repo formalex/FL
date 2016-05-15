@@ -1,0 +1,31 @@
+#Background
+
+
+roles Consumidor, Proveedor disjoint  
+
+//ACCIONES. Prueba con actions con un solo id de action
+
+actions Consumir 
+actions AdquirirByS 
+actions UtilizarByS
+actions MantenerRelacionConsumo
+
+action ComienzaOferta 
+action TerminaOferta
+
+local interval PeriodoOferta defined by actions ComienzaOferta - TerminaOferta
+
+actions EspecificarCondicionesOferta, RevocarOferta, DifundirRevocacion only occurs in scope PeriodoOferta occurrences 4 only performable by Proveedor,Consumidor
+
+
+#Clauses
+
+//CAPITULO I - Disposiciones generales
+FORALL(i:Consumidor; O(i.Consumir -> i.AdquirirByS | i.UtilizarByS |i.MantenerRelacionConsumo))
+
+
+
+
+
+
+

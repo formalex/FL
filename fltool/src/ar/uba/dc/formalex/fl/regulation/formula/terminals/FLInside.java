@@ -1,6 +1,9 @@
 package ar.uba.dc.formalex.fl.regulation.formula.terminals;
 
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 
 public class FLInside extends FLTerminal {
     private FLInterval interval;
@@ -18,7 +21,13 @@ public class FLInside extends FLTerminal {
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         return interval.getNameWithAgent() + " = ACTIVE ";
     }
+    
+    @Override
+	public Set<String> getNombresDeComponentes() {
+		
+		return this.interval.getNombresDeComponentes();
+	}
 }

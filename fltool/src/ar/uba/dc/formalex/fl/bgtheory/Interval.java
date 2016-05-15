@@ -11,8 +11,8 @@ public class Interval {
     private static final Logger logger = Logger.getLogger(Interval.class);
 
 	private String name;
-    private Set<Action> startTriggers = new HashSet<Action>();;
-    private Set<Action> endTriggers = new HashSet<Action>();;
+    private Set<Action> startTriggers = new HashSet<Action>();
+    private Set<Action> endTriggers = new HashSet<Action>();
 	private Interval occursIn;
 	private int occurrences;
     private boolean isLocal = IS_LOCAL_DEFAULT;

@@ -1,0 +1,29 @@
+Opción CON_FILTRO
+
+Cuando está activa esta opción se elimina de la teoría marco todo lo que no se usa. 
+¿Qué quiere decir que no se “usa”?
+Son todas las componentes (agentes, acciones, intervalos y contadores) de la teoría marco 
+a las cuáles no se hace referencia (directa o indirectamente) en las fórmulas (reglas y permisos) a validar.
+
+Opción CON_REDUCTOR
+
+Cuando está activa esta opción se reduce la representación de las acciones de 3 a 2 estados.
+Una acción para que pueda ser reducida su representación debe cumplir las siguientes condiciones:
+1- No puede ser acción de inicio ni de fin de algún intervalo, 
+ni tampoco ser acción modificadora de algún contador.
+2- Todas las referencias en las cláusulas, deben ser mediante el predicado isHappening.
+3- NO tener referencias en las cláusulas mediante results in.
+
+
+Opción SIN_JH
+
+Cuando está activa esta opción la herramienta elimina el estado JUST_HAPPENED
+de la representación de todas las acciones en el automata y de las referencias de las acciones en las fórmulas.
+ Para prescindir de ese estado y representar una acción sólo 
+ con los estados NOT_HAPPENING y HAPPENING, la forma de hacerlo es la siguiente: 
+ acción = HAPPENING & next(acción) = NOT_HAPPENING, es decir una acción termina de ocurrir 
+ cuando estaba ocurriendo y en el siguiente estado dejó de ocurrir. 
+ Lo que se está  haciendo es reemplazar un estado del autómata por una transición.
+En el caso de las fórmulas se reemplaza toda referencia a acción = JUST_HAPPENED 
+por acción = HAPPENING & X(acción) = NOT_HAPPENING
+ 

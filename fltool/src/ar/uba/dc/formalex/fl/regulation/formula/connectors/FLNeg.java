@@ -1,7 +1,11 @@
 package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
 public class FLNeg extends FLFormula {
 
@@ -16,8 +20,8 @@ public class FLNeg extends FLFormula {
     }
 
     @Override
-    public String toString() {
-        return "!( " + formula.toString() + " )";
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
+        return "!( " + formula.translateToLTL(anLTLTranslationType ) + " )";
     }
 
     @Override
@@ -26,10 +30,19 @@ public class FLNeg extends FLFormula {
         if (newFormula == null )
             return null;
 
-        FLFormula res = new FLNeg(newFormula);
-        res.setConditionValue(newFormula.getConditionValue());
-        
-        return res;
+        return new FLNeg(newFormula);
     }
+    
+    @Override
+	public Set<String> getNombresDeComponentes() {
+		
+		return this.formula.getNombresDeComponentes();
+	}
+
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		
+		return this.formula.getTerminals();
+	}
 
 }

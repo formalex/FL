@@ -3,6 +3,7 @@ package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLFalse;
 
 import java.util.Iterator;
@@ -16,15 +17,15 @@ public class FLExist extends FLQuantifier {
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         if (yaInstanciada)
-            return getFormula().toString();
+            return getFormula().translateToLTL(anLTLTranslationType );
         else {
             //usada para loguear y debug
             String rol = "";
             if (getRole() != null)
                 rol = ":" + getRole();
-            return "EXISTS (" + getVariable() + rol + " ; " + getFormula().toString() + " )";
+            return "EXISTS (" + getVariable() + rol + " ; " + getFormula().translateToLTL(anLTLTranslationType ) + " )";
         }
     }
 

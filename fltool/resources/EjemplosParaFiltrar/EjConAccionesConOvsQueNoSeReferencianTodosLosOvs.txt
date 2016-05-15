@@ -1,0 +1,32 @@
+#Background
+
+
+roles Consumidor, Proveedor disjoint  
+
+action ComienzaOferta
+action TerminaOferta
+local interval PeriodoOferta defined by actions ComienzaOferta - TerminaOferta
+
+
+impersonal action unaImpersonalAction output values {ovIa1, ovIa2} only occurs in scope PeriodoOferta
+
+//Ejs con acciones con only occurs In
+action EspecificarCondicionesOferta only occurs in scope PeriodoOferta output values {valor1,valor2,valor3,valor4}
+action RevocarOferta only occurs in scope PeriodoOferta  output values {valor1,valor2,valor3,valor4}
+action DifundirRevocacion only occurs in scope PeriodoOferta output values {valor1,valor2,valor3,valor4}
+
+
+
+#Clauses
+
+FORALL(i:Consumidor; O(i.EspecificarCondicionesOferta results in valor1))
+FORALL(i:Consumidor; F(i.RevocarOferta results in valor2 | i.RevocarOferta results in valor4 ))
+FORALL(i:Consumidor; O( i.DifundirRevocacion results in valor1 | i.DifundirRevocacion results in valor2 | i.DifundirRevocacion results in valor3))
+F(unaImpersonalAction)
+
+
+
+
+
+
+

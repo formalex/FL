@@ -1,6 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.formula.terminals;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 
 public class FLCounter extends FLTerminal {
 
@@ -14,7 +15,7 @@ public class FLCounter extends FLTerminal {
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         return getNameWithAgent()
                 + comparator.toString() + valueToCompare ;
     }

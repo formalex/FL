@@ -1,0 +1,35 @@
+#Background
+
+roles ciudadano {cliente {socioTitular {premium, select disjoint cover}, relacionadoASocio {relacionadoASocioPremium {menor,mayor disjoint cover}, relacionadoASocioSelect {menor,mayor disjoint cover} disjoint cover} disjoint cover}, noCliente disjoint cover}
+
+impersonal action pasaUnAnio
+impersonal action nuevoSocioRecomendadoPremium
+impersonal action nuevoSocioRecomendadoSelect
+actions activaPase,primerUsoTarjeta only performable by socioTitular
+
+local interval tarjetaVigente defined by actions activaPase - pasaUnAnio
+
+action ingresarASala
+action ingresarASalaDallas
+action abonarTarifaCompleta only performable by relacionadoASocioPremium
+action abonarTarifaAl75 only performable by relacionadoASocioSelect
+action abonarTarifaAl50 only performable by menor
+ 
+local counter pasesRestantes init value 5
+min value 0
+decreases with action ingresarASala by 1,
+decreases with action ingresarASalaDallas by 1,
+reaching min impedes actions
+resets with action pasaUnAnio
+
+local counter puntosMembresia init value 0
+min value 0 max value 20
+increases with action nuevoSocioRecomendadoPremium by 2,
+increases with action nuevoSocioRecomendadoSelect by 5,
+increases with action ingresarASala by 1,
+resets with action pasaUnAnio
+
+#Clauses
+
+//Ej de terminal con INSIDE, haciendo referencia a un intervalo indefinido
+FORALL(i:socioTitular; PP(i.ingresarASala given that INSIDE(i.intervaloIndefinido)))

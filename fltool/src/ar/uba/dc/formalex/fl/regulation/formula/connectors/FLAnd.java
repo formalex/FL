@@ -2,7 +2,7 @@ package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
-import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLFalse;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
 import ar.uba.dc.formalex.fl.regulation.permission.Permission;
@@ -18,11 +18,11 @@ public class FLAnd extends FormulaConnectorBinary {
 	}
 
     @Override
-    public String toString() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         FLFormula lf = getLeftFormula();
-        String izq = lf.toString();
+        String izq = lf.translateToLTL(anLTLTranslationType );
         FLFormula rf = getRightFormula();
-        String der = rf.toString();
+        String der = rf.translateToLTL(anLTLTranslationType );
         //Si la parte izq no es terminal ni FLAnd -> pongo esa parte entre paréntesis.
         //Lo mismo con la parte derecha
         if (ponerParentesis(lf))
@@ -52,12 +52,8 @@ public class FLAnd extends FormulaConnectorBinary {
         FLFormula newRightFormula = getRightFormula().instanciar(variable, agente, bgUtil, forceAgent);
         if (newLeftFormula == null || newRightFormula == null)
             return null;
-        
-        FLFormula res = new FLAnd(newLeftFormula, newRightFormula);
-        if (newLeftFormula instanceof FLFalse)
-        	res.setConditionValue(false);
-        
-        return res;
+
+        return new FLAnd(newLeftFormula, newRightFormula);
     }
 	
 	

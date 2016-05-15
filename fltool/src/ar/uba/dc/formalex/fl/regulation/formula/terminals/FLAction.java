@@ -1,18 +1,14 @@
 package ar.uba.dc.formalex.fl.regulation.formula.terminals;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import ar.uba.dc.formalex.fl.bgtheory.Action;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
-import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
-import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLOr;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 
 public class FLAction extends FLTerminal {
 
+	//Sirve para saber de qué forma se referencia a la acción en una formula
+	//Por ahora este es el default
+	ActionReferencedState referencedState = ActionReferencedState.JUST_HAPPENED;
+	//ActionReferencedState referencedState = ActionReferencedState.IS_HAPPENING;
 	public FLAction(String variable, String actionName) {
 		super(variable, actionName);
 	}
@@ -20,76 +16,42 @@ public class FLAction extends FLTerminal {
 	public FLAction(String variable, String agent, String actionName) {
 		super(variable, agent,  actionName);
 	}
+	
+	public FLAction(String variable, String agent, String actionName, ActionReferencedState anReferencedState) {
+		super(variable, agent,  actionName);
+		referencedState = anReferencedState;
+	}
 
     @Override
-    public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
-        
-    	FLAction res = new FLAction(getVariable(), getAgent(), getName());
+    public FLTerminal instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
+        FLAction res = new FLAction(getVariable(), getAgent(), getName(), getReferencedState());
         if (res.setVariable(variable, agente, forceAgent)){
             //Si no la puede instanciar, no pasa nada y queda con el valor en null, pero si la
             // instancia hay que validar que sea válida (o sea, que exista la combinación
             // agente.name), si no lo es devuelve null.
-        	
-        	//Si la acción es sincronizada hay que representarla como una disyunción de posibles acciones
-        	return instanciarSincronizadasHelper(variable, agente, bgUtil, res);
+            if (!bgUtil.isValid(res.getNameWithAgent()))
+                return null;
         }
-		return res;
+
+        return res;
     }
 
     @Override
-    public String toString() {
-        return getNameWithAgent() + " = JUST_HAPPENED";
-    }
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
 
-    /**
-	 * Instancia una fórmula teniendo en cuenta si es una acción sincronizada. Se usa @res de modelo.
-	 */
-	protected FLFormula instanciarSincronizadasHelper(String variable, String agente, BGUtil bgUtil, FLTerminal res) {
-		Action a = new Action();
-		a.setName(res.getNameWithAgent());
-		
-		if (bgUtil.getAccionesSincronizadas().containsKey(a))
-		{
-			Set<Action> acciones = bgUtil.getAccionesSincronizadas().get(a);
-			return buildSyncAction(res, acciones, variable, agente);
-		}
-		else
-		{
-		    if (!bgUtil.isValid(res.getNameWithAgent()))
-		        return null;
-		    else
-		    	return res;
-		}
+    	String actionNameWithAgent = getNameWithAgent();
+    	if(!LTLTranslationType.WITH_NEXT_FOR_JH.equals(anLTLTranslationType) || ActionReferencedState.IS_HAPPENING.equals(referencedState) )
+    		return actionNameWithAgent + " = " + this.getReferencedState().getValueInLtlFormula();
+
+    	//Se reemplaza el accion = JUST_HAPPENED por acción = HAPPENING & next(acción) = NOT_HAPPENING
+    	return String.format("(%s = %s & X(%s) =  %s)", actionNameWithAgent, LtlActionValue.HAPPENING.getValue(), actionNameWithAgent, LtlActionValue.NOT_HAPPENING.getValue() );
+    }
+	
+    public ActionReferencedState getReferencedState() {
+		return referencedState;
 	}
 
-    
-    /**
-     * Una referencia a una acción sincronizada se traduce en la disyunción de todas las posibles acciones aplanadas
-     * que representan al par concreto agenteA.accionA-agenteB.accionB
-     * */
-    private FLFormula buildSyncAction(FLTerminal res, Set<Action> accionesSync, String variable, String agente)
-    {
-		FLFormula syncRes = null;
-		List<FLFormula> disyuntos = new LinkedList<FLFormula>();
-		
-		for (Action a: accionesSync)
-		{
-			FLAction disyunto = getDisyunto(agente, a.getName(), res);
-			disyuntos.add(disyunto);
-		}
-		
-		Stream<FLFormula> st = disyuntos.stream();
-		syncRes = st.reduce(new FLFalse(), FLOr::new);
-
-		return syncRes;
+	public void setReferencedState(ActionReferencedState referencedState) {
+		this.referencedState = referencedState;
 	}
-
-    /**
-     * Devuelve el disyunto usando @modelo de modelo
-     * */
-    protected FLAction getDisyunto(String agente, String name, FLTerminal modelo)
-    {
-    	return new FLAction(null, agente, name);
-    }
-    
 }

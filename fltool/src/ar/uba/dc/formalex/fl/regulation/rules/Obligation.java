@@ -2,10 +2,13 @@ package ar.uba.dc.formalex.fl.regulation.rules;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLOr;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
 
 public class Obligation extends FLFormula{
@@ -27,20 +30,20 @@ public class Obligation extends FLFormula{
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         //    O( fórmula ) repaired by  rep → G ( !fórmula -> rep)
         //    O( fórmula ) → G ( fórmula )
         if (hasRepair())
-            return "G ( !" + formula.toString() + " -> (" + repair.toString() + ") )";
+            return "G ( !" + formula.translateToLTL(anLTLTranslationType ) + " -> (" + repair.translateToLTL(anLTLTranslationType ) + ") )";
         else
-            return "G ( " + formula.toString() + " )";
+            return "G ( " + formula.translateToLTL(anLTLTranslationType ) + " )";
     }
 
     @Override
     public FLFormula instanciar(String variable, String agente, BGUtil bgUtil, Boolean forceAgent) {
         FLFormula rep = null;
         FLFormula f = formula.instanciar(variable, agente, bgUtil, forceAgent);
-        if (f == null || !f.getConditionValue())
+        if (f == null)
             return null;
         if (repair != null)
             rep = repair.instanciar(variable, agente, bgUtil, forceAgent);
@@ -54,13 +57,9 @@ public class Obligation extends FLFormula{
         	/* Se instancia con los agentes la conjunción de los Permisos que representan la excepción. Los
         	 * agentes son forzados para evitar errores de instanciacion.*/
         	FLFormula exceptionFormInst = exceptionFormOr.instanciar(variable, agente, bgUtil, true);        	        	
-        	FLFormula oblig = new Obligation(new FLOr(f, exceptionFormInst), rep);
-        	oblig.setConditionValue(f.getConditionValue());
-        	return oblig;
-        } else {
-        	FLFormula oblig = new Obligation(f, rep);
-        	oblig.setConditionValue(f.getConditionValue());
-        	return oblig;
+        	return new Obligation(new FLOr(f, exceptionFormInst), rep);
+        }else{
+        	return new Obligation(f, rep);
         }        	        
     }
 
@@ -70,6 +69,27 @@ public class Obligation extends FLFormula{
 
 	public void setFormula(FLFormula formula) {
 		this.formula = formula;
+	}
+	
+	@Override
+	public Set<String> getNombresDeComponentes() {
+		
+    	Set<String> res=this.formula.getNombresDeComponentes();
+    	
+    	if(this.hasRepair())
+    		res.addAll(this.repair.getNombresDeComponentes());
+    	
+    	return res;
+	}
+	
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		Set<FLTerminal> res=this.formula.getTerminals();
+    	
+    	if(this.hasRepair())
+    		res.addAll(this.repair.getTerminals());
+    	
+    	return res;
 	}
 	
 }

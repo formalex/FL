@@ -1,0 +1,16 @@
+#Background
+
+
+roles ciudadanoCivil, rol2, rol3, rol4
+
+actions fin_libertad, inicio
+
+
+
+global interval en_libertad defined by actions inicio - fin_libertad
+
+
+
+#Clauses
+
+FORALL(h:ciudadanoCivil; PP(INSIDE(en_libertad)))

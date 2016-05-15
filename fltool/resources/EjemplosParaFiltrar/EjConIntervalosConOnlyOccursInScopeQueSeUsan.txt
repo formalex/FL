@@ -1,0 +1,17 @@
+#Background
+
+roles estudiante,docente
+
+action comienzo_cursada
+action fin_cursada 
+action comienzo_examenes
+action fin_examenes
+
+global interval periodo_escolar defined by actions comienzo_cursada - fin_cursada
+local interval periodo_examenes defined by actions comienzo_examenes - fin_examenes only occurs in scope periodo_escolar
+
+action rendir_examen only occurs in scope periodo_escolar only performable by estudiante
+
+#Clauses
+
+FORALL(i:estudiante; O(<>_{i.periodo_examenes} i.rendir_examen))

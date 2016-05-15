@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLFalse;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTrue;
 
@@ -20,14 +21,14 @@ public class FLForall extends FLQuantifier {
 	}
 
 	@Override
-	public String toString() {
+	public String translateToLTL(LTLTranslationType anLTLTranslationType) {
 		if (yaInstanciada)
-			return getFormula().toString();
+			return getFormula().translateToLTL(anLTLTranslationType );
 		else {
 			String rol = "";
 			if (getRole() != null)
 				rol = ":" + getRole();
-			return "FORALL (" + getVariable() + rol + " ; " + getFormula().toString() + " )";
+			return "FORALL (" + getVariable() + rol + " ; " + getFormula().translateToLTL(anLTLTranslationType ) + " )";
 		}
 	}
 
@@ -64,15 +65,14 @@ public class FLForall extends FLQuantifier {
 				if (izq != null){
 					cont++;
 					izq = exceptionsInstantiator(izq, agenteE, bgUtil);
-					if (andFormula != null && andFormula.getConditionValue()) {
+					if (andFormula != null) 
 						andFormula = new FLAnd(izq, andFormula);
-					} else {
+					else
 						andFormula = new FLAnd(izq, new FLTrue());
-					}
 				}
 			}
 		}
-		logger.info("Al expandir el FLForall quedó una fórmula con '" + cont + "' AND ");
+		logger.info("Al expandir el FLForall quedó una fórmula con '" + cont + "' AND");
         
 		yaInstanciada = true;
 		return andFormula;

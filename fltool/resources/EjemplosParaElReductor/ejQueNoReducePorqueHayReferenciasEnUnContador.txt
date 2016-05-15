@@ -1,0 +1,35 @@
+#Background
+
+roles ciudadano {cliente {socioTitular {premium, select disjoint cover}, relacionadoASocio {relacionadoASocioPremium {menor,mayor disjoint cover}, relacionadoASocioSelect {menor,mayor disjoint cover} disjoint cover} disjoint cover}, noCliente disjoint cover}
+
+impersonal action pasaUnAnio
+impersonal action nuevoSocioRecomendadoPremium
+impersonal action nuevoSocioRecomendadoSelect
+actions activaPase,primerUsoTarjeta only performable by socioTitular
+
+local interval tarjetaVigente defined by actions activaPase - pasaUnAnio
+
+actions ingresarASala, ingresarASalaDallas, ingresarASalaSorrento
+action abonarTarifaCompleta only performable by relacionadoASocioPremium
+action abonarTarifaAl75 only performable by relacionadoASocioSelect
+action abonarTarifaAl50 only performable by menor
+
+local counter pasesRestantes init value 5
+min value 0
+decreases with action ingresarASala by 1,
+decreases with action ingresarASalaDallas by 1,
+reaching min impedes actions
+resets with action pasaUnAnio
+ 
+#Clauses
+
+//La accion 'ingresarASala' tiene todas referencias con isHappening
+//PERO es REFERENCIADA por el contadorpasesRestantes => NO PUEDE SER REDUCIDA
+FORALL(i:noCliente; F(isHappening(i.ingresarASala)))
+FORALL(i; F(i.pasesRestantes = 0 & isHappening(i.ingresarASala)))
+//FORALL(i:socioTitular; F(i.pasesRestantes = 0 & isHappening(i.ingresarASala)))
+
+FORALL(i:cliente; P(isHappening(i.ingresarASala)))
+
+
+

@@ -45,12 +45,12 @@ public class Agente {
     }
 
 
-    public boolean realizaAccion(ar.uba.dc.formalex.fl.bgtheory.Action action) {
+    public boolean realizaAccion(Action action) {
         if (action.isImpersonal())
             return false;
         Set<Role> performableBy = action.getPerformableBy();
         //Si no es una 'impersonal action' y  no se pone el keyword 'only performable by'
-        //(performableBy.size() = 0) en una acci�n entonces la puede ejecutar cualquier agente.
+        //(performableBy.size() = 0) en una acción entonces la puede ejecutar cualquier agente.
         if( roles != null && performableBy != null){
             if (performableBy.size() == 0)
                 return true;
@@ -63,8 +63,8 @@ public class Agente {
     }
 
     //devuelve true si el agente realiza alguna de las acciones
-    public boolean realizaAlgunaAccion(Set<ar.uba.dc.formalex.fl.bgtheory.Action> acciones) {
-        for (ar.uba.dc.formalex.fl.bgtheory.Action a : acciones) {
+    public boolean realizaAlgunaAccion(Set<Action> acciones) {
+        for (Action a : acciones) {
             if(realizaAccion(a))
                 return true;
         }
@@ -91,4 +91,11 @@ public class Agente {
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
     }
+
+	public Agente clonar() {
+		Agente agenteClonado = new Agente(this.getName());
+		agenteClonado.setRoles(this.getRoles());
+		
+		return agenteClonado;
+	}
 }

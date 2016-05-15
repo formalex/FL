@@ -1,7 +1,11 @@
 package ar.uba.dc.formalex.fl.regulation.formula.terminals;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 
 public class FLBelongs extends FLTerminal {
 
@@ -14,7 +18,7 @@ public class FLBelongs extends FLTerminal {
     }
 
     @Override
-	public String toString() {
+	public String translateToLTL(LTLTranslationType anLTLTranslationType) {
 		return getNameWithAgent() + "belongsTo:" + getName();
 	}
 
@@ -25,6 +29,12 @@ public class FLBelongs extends FLTerminal {
 			res = new FLTrue();
 		}		
 		return res;
+	}
+	
+	@Override
+	public Set<String> getNombresDeComponentes() {		
+    	Set<String> res=new HashSet<String>();	
+    	return res;
 	}
 
 }

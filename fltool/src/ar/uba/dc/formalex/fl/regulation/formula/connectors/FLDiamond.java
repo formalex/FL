@@ -1,8 +1,12 @@
 package ar.uba.dc.formalex.fl.regulation.formula.connectors;
 
+import java.util.Set;
+
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
+import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLInterval;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
 
 public class FLDiamond extends FLFormula {
     private FLFormula formula;
@@ -38,15 +42,36 @@ public class FLDiamond extends FLFormula {
     }
 
     @Override
-    public String toString() {
+    public String translateToLTL(LTLTranslationType anLTLTranslationType) {
         /**
          * Tr (<> f1 )          ?    F Tr(f1)
          * Tr (<>_{i} f1 )      ?     i = activo -> (i = activo U Tr(f1) )
          */
         if (interval != null){
-            return interval.toString() + " -> (" + interval.toString() + " U " + formula.toString() + ")";
+            return interval.translateToLTL(anLTLTranslationType ) + " -> (" + interval.translateToLTL(anLTLTranslationType ) + " U " + formula.translateToLTL(anLTLTranslationType ) + ")";
         }
         else
-            return "F(" + formula.toString() + ")";
+            return "F(" + formula.translateToLTL(anLTLTranslationType) + ")";
     }
+    
+    @Override
+	public Set<String> getNombresDeComponentes() {
+		
+    	Set<String> res=this.formula.getNombresDeComponentes();
+    	
+    	if(this.interval!=null)
+    		res.addAll(this.interval.getNombresDeComponentes());
+    	
+    	return res;
+	}
+
+	@Override
+	public Set<FLTerminal> getTerminals() {
+		Set<FLTerminal> res=this.formula.getTerminals();
+    	
+    	if(this.interval!=null)
+    		res.addAll(this.interval.getTerminals());
+    	
+    	return res;
+	}
 }

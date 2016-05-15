@@ -1,0 +1,26 @@
+#Background
+
+
+roles Consumidor, Proveedor disjoint  
+
+//ACCIONES. Prueba con actions con un solo id de action
+
+actions Consumir 
+actions AdquirirByS 
+actions UtilizarByS
+actions MantenerRelacionConsumo
+
+//action ProveerByS only performable by Proveedor output values {Correctamente, Incorrectamente}
+
+
+#Clauses
+
+//CAPITULO I - Disposiciones generales
+FORALL(i:Consumidor; O(i.Consumir -> i.AdquirirByS | i.UtilizarByS |i.MantenerRelacionConsumo))
+
+
+
+
+
+
+

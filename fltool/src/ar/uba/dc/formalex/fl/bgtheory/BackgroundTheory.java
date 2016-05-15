@@ -17,6 +17,36 @@ public class BackgroundTheory {
     private Set<Counter> counters = new HashSet<Counter>();
 
     private Set<Agente> agentes;
+    
+    public BackgroundTheory clonar() {
+    	BackgroundTheory res = new BackgroundTheory();
+        
+    	for (Action action : actions) {
+			res.add(action.clonar());
+		}
+    	
+    	for (Timer unTimer : timers) {
+    		res.add(unTimer.clonar());
+		}
+    	
+    	for (Interval unInterval : intervals) {
+			res.add(unInterval.clonar());
+		}  	
+    	//Los roles como no los voy a tocar, no me interesa clonarlos!
+    	for (Counter unCounter : counters) {
+			res.add(unCounter.clonar());
+		}
+    	
+    	Set<Agente> agentesClonados = new HashSet<Agente>();    	
+    	if(this.agentes!=null){
+	    	for (Agente unAgente : this.getAgentes()) {
+	    		agentesClonados.add(unAgente.clonar());
+			}
+    	}	
+    	res.setAgentes(agentesClonados);
+    	
+        return res;
+	}
 
     public void add(Action a){
         actions.add(a);
@@ -82,4 +112,86 @@ public class BackgroundTheory {
     public void add(Counter counter) {
         counters.add(counter);
     }
+
+	public void removeActionByName(String name) {
+
+		for (Action unAction : actions) {
+			if(unAction.getName().equals(name)){
+				actions.remove(unAction);
+				break;
+			}
+		}
+		
+	}
+
+	public void removeIntervalByName(String name) {
+		
+		for (Interval unInterval : intervals) {
+			if(unInterval.getName().equals(name)){
+				intervals.remove(unInterval);
+				break;
+			}
+		}
+		
+	}
+
+	public void removeCounterByName(String name) {
+		
+		for (Counter unCounter : counters) {
+			if(unCounter.getName().equals(name)){
+				counters.remove(unCounter);
+				break;
+			}
+		}
+		
+	}
+
+	public void removeAgenteByName(String name) {
+
+		if(this.getAgentes()==null)
+			return;
+		
+		for (Agente unAgente : agentes) {
+			if(unAgente.getName().equals(name)){
+				agentes.remove(unAgente);
+				break;
+			}
+		}
+		
+	}
+	
+	public Set<String> getActionNamesReferencedByInterval(){
+		Set<String> res = new HashSet<String>();
+		
+		if(this.getIntervals()==null)
+			return res;
+		
+		for (Interval anInterval : this.getIntervals()) {
+			for (Action aStartTrigger : anInterval.getStartTriggers()) {
+				res.add(aStartTrigger.getName());				
+			}
+			
+			for (Action anEndTrigger : anInterval.getEndTriggers()) {
+				res.add(anEndTrigger.getName());				
+			}
+		}
+		
+		return res;
+	}
+	
+	public Set<String> getActionNamesReferencedByCounter(){
+		Set<String> res = new HashSet<String>();
+		
+		if(this.getCounters()==null)
+			return res;
+		
+		for (Counter aCounter : this.getCounters()) {
+			Set<Action> allActions = aCounter.getAllActions();
+			for (Action anAction : allActions) {
+				res.add(anAction.getName());
+			}
+		}
+		
+		return res;
+	}
 }

@@ -1,0 +1,18 @@
+#Background
+
+roles alumno
+impersonal action elegir_ganadores output values {doc_c1, doc_c2, doc_c3,no_elegido}
+action abrir_concurso
+action entrar
+
+global interval concurso defined by actions abrir_concurso - elegir_ganadores
+action postularse only occurs in scope concurso
+impersonal action comienza_semana
+impersonal action termina_semana
+global interval semana defined by actions comienza_semana - termina_semana
+
+#Clauses
+
+//Ej de terminal con una accion impersonal ('comienza_semana') siendo referenciada con un agente
+FORALL(i; O(i.comienza_semana)) 
+
