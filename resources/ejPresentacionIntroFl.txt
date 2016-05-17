@@ -1,0 +1,17 @@
+#Background
+
+roles estudiante,docente
+action censar only performable by estudiante
+actions empieza_censo, termina_censo
+actions retirar_libro, devolver_libro only performable by
+estudiante, docente
+
+local counter libros_retirados init value 0, 
+increases with action retirar_libro, decreases with action devolver_libro
+
+global interval en_censo defined by actions empieza_censo - termina_censo
+
+#Clauses
+
+FORALL(i:estudiante; O(<>_{en_censo} i.censar))
+FORALL(i:estudiante; F(i.libros_retirados > 3))

@@ -116,6 +116,12 @@ public class TestMain extends FlTest{
 		Formalex.run(ROOT_RESOURCES + "ejSynchronize.txt", false, true, true, LTLTranslationType.WITH_JH);
 	}
 	
+	@Test
+	public void testEjIntroFl() throws Exception  {
+		//Presenta la mayoría de los componentes de la teoría marco 
+		Formalex.run(ROOT_RESOURCES + "ejPresentacionIntroFl.txt", true, true, true, LTLTranslationType.WITH_JH);
+	}
+	
 	
 	/********************* EJEMPLOS DE SIN JH ********************************/
 	@Test
