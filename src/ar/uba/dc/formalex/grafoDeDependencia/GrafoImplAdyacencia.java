@@ -75,7 +75,8 @@ public class GrafoImplAdyacencia<E> implements Grafo<E> {
 
 				nombreNodos.put(idNodo, nombreNodoGv);		
 				if(unNodo.isMarcado())
-					sb.append(String.format("%s [shape=Mrecord,label=\"<f0> %s|<f1> %s\", style=filled];\n", nombreNodoGv, idNodo, unaInfoDeComponente.getTipoDeComponente()) );
+					//sb.append(String.format("%s [shape=Mrecord,label=\"<f0> %s|<f1> %s\", style=filled ];\n", nombreNodoGv, idNodo, unaInfoDeComponente.getTipoDeComponente()) );
+					sb.append(String.format("%s [shape=Mrecord,label=\"<f0> %s|<f1> %s\", style=filled fillcolor=green ];\n", nombreNodoGv, idNodo, unaInfoDeComponente.getTipoDeComponente()) );
 				else
 					sb.append(String.format("%s [shape=Mrecord,label=\"<f0> %s|<f1> %s\"];\n", nombreNodoGv, idNodo, unaInfoDeComponente.getTipoDeComponente()) );
 				i++;
