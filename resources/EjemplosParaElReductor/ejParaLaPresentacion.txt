@@ -1,0 +1,48 @@
+#Background
+
+roles ciudadano {cliente {socioTitular, relacionadoASocio {relacionadoASocioPremium {menor,mayor disjoint cover}, relacionadoASocioSelect {menor,mayor disjoint cover} disjoint cover} disjoint cover}, noCliente disjoint cover}
+
+impersonal action pasaUnAnio
+impersonal action nuevoSocioRecomendadoPremium
+impersonal action nuevoSocioRecomendadoSelect
+action activaPase only performable by socioTitular
+
+local interval tarjetaVigente defined by actions activaPase - pasaUnAnio
+
+actions ingresarASala, ingresarASalaDallas, ingresarASalaSorrento
+
+action abonarTarifa output values {al100PorCiento, al75PorCiento, al50PorCiento, ningunaDeLasAnteriores}
+
+
+local counter puntosMembresia init value 0
+min value 0 max value 20
+increases with action nuevoSocioRecomendadoPremium by 2,
+increases with action nuevoSocioRecomendadoSelect by 5,
+increases with action ingresarASala by 1,
+resets with action pasaUnAnio
+
+
+ 
+#Clauses
+
+FORALL(i:noCliente; F(isHappening(i.ingresarASala)))
+FORALL(i:ciudadano; F(isHappening(i.ingresarASalaDallas)))
+FORALL(i:socioTitular; PP(isHappening(i.ingresarASala) given that INSIDE(i.tarjetaVigente)))
+FORALL(i:socioTitular; F(i.puntosMembresia > 20))
+FORALL(i:ciudadano; F(i.ingresarASalaSorrento))
+FORALL(i:relacionadoASocioPremium; O((i.belongsTo:mayor & isHappening(i.ingresarASala)) -> i.abonarTarifa results in al100PorCiento ))
+FORALL(i:relacionadoASocioSelect; O((i.belongsTo:mayor & isHappening(i.ingresarASala)) -> i.abonarTarifa results in al75PorCiento ))
+FORALL(i:relacionadoASocio; O((i.belongsTo:menor & isHappening(i.ingresarASala)) -> i.abonarTarifa results in al50PorCiento ))
+
+
+//	1- acción que SE PUEDE reducir porque cumple las tres condiciones: ingresarASalaDallas
+//	2- acción que NO se puede reducir porque es referenciada en un contador: ingresarASala, nuevoSocioRecomendadoPremium, nuevoSocioRecomendadoSelect
+//	3- acción que NO se puede reducir porque es referenciada en un intervalo: activaPase, pasaUnAnio
+//	4- acción que NO se puede reducir porque es referenciada mediante "results in" TODO PENSARLO! en el original NO HAY
+//	5- acción que NO se puede reducir porque es referenciada mediante JH. ingresarASalaSorrento
+
+//DATO DE COLOR
+// EN ingresarASala UNA SOLA NO ME PUDO REDUCIR!  
+// Que es la del agente que es socioTitular  por esto FORALL(i:socioTitular; F(i.puntosMembresia > 20))
+// El contador DESPUIES DEL FILTRADO solo queda para socioTitular!
+
