@@ -1,0 +1,43 @@
+#Background
+
+//EJEMPLO PARA LA PRESENTACION DEL LENGUAJE FL
+
+//roles y subroles
+roles ciudadano {cliente {socioTitular, relacionadoASocio disjoint cover}, noCliente disjoint cover}
+
+//Ejs de acciones impersonales
+impersonal action pasaUnAnio
+impersonal action nuevoSocioRecomendadoPremium
+impersonal action nuevoSocioRecomendadoSelect
+
+//Ejs de acciones comunes y corrientes
+action activaPase only performable by socioTitular
+actions ingresarASala, ingresarASalaDallas
+
+//Ej de acciones con output values
+action abonarTarifa output values {al100PorCiento, al75PorCiento, al50PorCiento, ningunaDeLasAnteriores}
+
+
+//Ej de intervalo local
+local interval tarjetaVigente defined by actions activaPase - pasaUnAnio
+
+//Ej de contador local
+local counter puntosMembresia init value 0
+min value 0 max value 20
+increases with action nuevoSocioRecomendadoPremium by 2,
+increases with action nuevoSocioRecomendadoSelect by 5,
+increases with action ingresarASala by 1,
+resets with action pasaUnAnio
+
+
+#Clauses
+
+//Ejs de O,F y P aplicados a diferentes roles
+FORALL(i:noCliente; F(isHappening(i.ingresarASala)))
+FORALL(i:ciudadano; F(isHappening(i.ingresarASalaDallas)))
+FORALL(i:socioTitular; F(i.puntosMembresia > 20))
+FORALL(i:relacionadoASocio; O(isHappening(i.ingresarASala) -> i.abonarTarifa results in al50PorCiento ))
+FORALL(i:socioTitular; P(isHappening(i.ingresarASala) given that INSIDE(i.tarjetaVigente)))
+
+
+

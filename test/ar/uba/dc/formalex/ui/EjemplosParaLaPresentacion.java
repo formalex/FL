@@ -15,6 +15,13 @@ public class EjemplosParaLaPresentacion extends FlTest {
 
 	private static final String EJ_PARA_LA_PRESENTACION_TXT = "ejParaLaPresentacion.txt";
 
+	@Test
+	public void conFiltrado() throws Exception {
+		
+		Formalex.run(ROOT_RESOURCES + "ejParaLaPresentacionLenguajeFl.txt", CORRER_CON_MODEL_CHECKER , CORRER_CON_FILTRADO, false, LTLTranslationType.WITH_JH);
+	}
+	
+	
 	/******************* EJS para el REDUCTOR y el REEMPLAZO DE JH **********/
 	@Test
 	public void conFiltradoSinReductor() throws Exception {

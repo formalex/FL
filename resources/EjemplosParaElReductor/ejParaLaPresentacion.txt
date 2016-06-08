@@ -30,8 +30,6 @@ FORALL(i:ciudadano; F(isHappening(i.ingresarASalaDallas)))
 FORALL(i:socioTitular; PP(isHappening(i.ingresarASala) given that INSIDE(i.tarjetaVigente)))
 FORALL(i:socioTitular; F(i.puntosMembresia > 20))
 FORALL(i:ciudadano; F(i.ingresarASalaSorrento))
-FORALL(i:relacionadoASocioPremium; O((i.belongsTo:mayor & isHappening(i.ingresarASala)) -> i.abonarTarifa results in al100PorCiento ))
-FORALL(i:relacionadoASocioSelect; O((i.belongsTo:mayor & isHappening(i.ingresarASala)) -> i.abonarTarifa results in al75PorCiento ))
 FORALL(i:relacionadoASocio; O((i.belongsTo:menor & isHappening(i.ingresarASala)) -> i.abonarTarifa results in al50PorCiento ))
 
 
@@ -44,5 +42,5 @@ FORALL(i:relacionadoASocio; O((i.belongsTo:menor & isHappening(i.ingresarASala))
 //DATO DE COLOR
 // EN ingresarASala UNA SOLA NO ME PUDO REDUCIR!  
 // Que es la del agente que es socioTitular  por esto FORALL(i:socioTitular; F(i.puntosMembresia > 20))
-// El contador DESPUIES DEL FILTRADO solo queda para socioTitular!
+// El contador DESPUES DEL FILTRADO solo queda para socioTitular!
 
