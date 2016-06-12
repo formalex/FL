@@ -1,0 +1,48 @@
+#Background
+
+//Agregué a proposito el rol noCiudadano para que se vea que se borra el agente
+//con ese perfil y todas las acciones, intervalos y contadores de ese agente
+roles ciudadano {cliente {socioTitular , relacionadoASocio disjoint cover}, noCliente disjoint cover}, noCiudadano disjoint
+
+//COMPONENTES REFERENCIADAS DIRECTA O INDIRECTAMENTE(SE MANTIENEN!!!)
+//accion que se referencia en un contador que SI se referencia		
+impersonal action pasaUnAnio
+actions ingresarASala, ingresarASalaDallas
+
+//Accion con valores de salida donde no se referencian TODOS
+action abonarTarifa output values {al100PorCiento, al75PorCiento, al50PorCiento}
+
+local counter pasesRestantes init value 5
+min value 0
+decreases with action ingresarASala by 1,
+decreases with action ingresarASalaDallas by 1,
+resets with action pasaUnAnio
+
+//ACCIONES NO REFERENCIADAS (Esto es lo que desaparece)
+
+//acciones que se usan en un intervalo que NO se referencia
+actions activaPase,primerUsoTarjeta only performable by socioTitular
+
+//acciones que se usan en un contador que NO se referencia
+impersonal action nuevoSocioRecomendadoPremium
+impersonal action nuevoSocioRecomendadoSelect
+
+//intervalos que no se referencian
+local interval tarjetaVigente defined by actions activaPase - pasaUnAnio
+
+//Contador que NO se referencia
+local counter puntosMembresia init value 0
+min value 0 max value 20
+increases with action nuevoSocioRecomendadoPremium by 2,
+increases with action nuevoSocioRecomendadoSelect by 5,
+increases with action ingresarASala by 1,
+resets with action pasaUnAnio
+
+#Clauses
+
+FORALL(i:noCliente; F(i.ingresarASala))
+
+FORALL(i:relacionadoASocio; O(i.ingresarASala -> i.abonarTarifa results in al50PorCiento ))
+
+FORALL(i:socioTitular; F(i.pasesRestantes = 0 & i.ingresarASala))
+

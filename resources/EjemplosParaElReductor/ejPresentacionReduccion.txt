@@ -1,6 +1,6 @@
 #Background
 
-roles ciudadano {cliente {socioTitular, relacionadoASocio {relacionadoASocioPremium {menor,mayor disjoint cover}, relacionadoASocioSelect {menor,mayor disjoint cover} disjoint cover} disjoint cover}, noCliente disjoint cover}
+roles ciudadano {cliente {socioTitular, relacionadoASocio {menor, mayor disjoint cover} } disjoint cover}, noCliente disjoint cover}
 
 impersonal action pasaUnAnio
 impersonal action nuevoSocioRecomendadoPremium
@@ -11,7 +11,7 @@ local interval tarjetaVigente defined by actions activaPase - pasaUnAnio
 
 actions ingresarASala, ingresarASalaDallas, ingresarASalaSorrento
 
-action abonarTarifa output values {al100PorCiento, al75PorCiento, al50PorCiento, ningunaDeLasAnteriores}
+action abonarTarifa output values {al100PorCiento, al75PorCiento, al50PorCiento}
 
 
 local counter puntosMembresia init value 0
@@ -36,11 +36,13 @@ FORALL(i:relacionadoASocio; O((i.belongsTo:menor & isHappening(i.ingresarASala))
 //	1- acción que SE PUEDE reducir porque cumple las tres condiciones: ingresarASalaDallas
 //	2- acción que NO se puede reducir porque es referenciada en un contador: ingresarASala, nuevoSocioRecomendadoPremium, nuevoSocioRecomendadoSelect
 //	3- acción que NO se puede reducir porque es referenciada en un intervalo: activaPase, pasaUnAnio
-//	4- acción que NO se puede reducir porque es referenciada mediante "results in" TODO PENSARLO! en el original NO HAY
+//	4- acción que NO se puede reducir porque es referenciada mediante "results in" . abonarTarifa
 //	5- acción que NO se puede reducir porque es referenciada mediante JH. ingresarASalaSorrento
 
-//DATO DE COLOR
+//DATO DE COLOR: REDUCTOR
 // EN ingresarASala UNA SOLA NO ME PUDO REDUCIR!  
 // Que es la del agente que es socioTitular  por esto FORALL(i:socioTitular; F(i.puntosMembresia > 20))
 // El contador DESPUES DEL FILTRADO solo queda para socioTitular!
+
+//REEMPLAZO DE JH: MOSTRAR REEMPLAZO EN FORMULA ADEMAS!!!!!
 

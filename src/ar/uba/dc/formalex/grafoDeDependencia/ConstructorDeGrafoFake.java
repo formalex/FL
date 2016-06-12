@@ -11,7 +11,7 @@ public class ConstructorDeGrafoFake implements ConstructorDeGrafo {
 	@Override
 	public Grafo iniciar(BackgroundTheory bgt,
 			Map<Action, Agente> accionesYAgentes) {
-		return null;
+		return new GrafoImplAdyacencia();
 	}
 
 	@Override

@@ -92,6 +92,7 @@ public class Formalex {
 							flInput, new ConstructorDeGrafoFake(), LTLTranslationType.WITH_JH);
 				// loguearEntSal(flInput);
 
+				//FIXME: esto está para generar una prepresentacion del grafo con grahViz
 				String graphVizAntesDelFiltro = elgrafoDeDependenciasBgt.toGraphViz();
 				
 				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker,
@@ -332,7 +333,7 @@ public class Formalex {
 
 		BackgroundTheory res;
 		//Se hace la copia DE LA BGT solo si es necesario
-		if(elGrafoDeDependencias!=null){
+		if(elGrafoDeDependencias.getNodos().hasNext()){
 			res = backgroundTheory.clonar();		
 			//Marcar los componentes que aparecen en la formula
 			Set<String> componentesParaMarcar = aValidar.getNombresDeComponentes();
@@ -340,6 +341,7 @@ public class Formalex {
 				elGrafoDeDependencias.marcarNodosEnBfs(nombreDeComponente);
 			}
 			
+			//FIXME: esto está para generar una prepresentacion del grafo con grahViz
 			String graphVizDespuesDelFiltro = elGrafoDeDependencias.toGraphViz();
 			
 			//Eliminarlos de la bgt

@@ -2,8 +2,8 @@
 
 //EJEMPLO PARA LA PRESENTACION DEL LENGUAJE FL
 
-//roles y subroles
-roles ciudadano {cliente {socioTitular, relacionadoASocio disjoint cover}, noCliente disjoint cover}
+//roles
+roles socioTitular, relacionadoASocio, noCliente disjoint cover
 
 //Ejs de acciones impersonales
 impersonal action pasaUnAnio
@@ -31,13 +31,16 @@ resets with action pasaUnAnio
 
 
 #Clauses
-
 //Ejs de O,F y P aplicados a diferentes roles
-FORALL(i:noCliente; F(isHappening(i.ingresarASala)))
-FORALL(i:ciudadano; F(isHappening(i.ingresarASalaDallas)))
+
+FORALL(i:noCliente; F(i.ingresarASala))
+
+//Ej de uso de contador
 FORALL(i:socioTitular; F(i.puntosMembresia > 20))
-FORALL(i:relacionadoASocio; O(isHappening(i.ingresarASala) -> i.abonarTarifa results in al50PorCiento ))
-FORALL(i:socioTitular; P(isHappening(i.ingresarASala) given that INSIDE(i.tarjetaVigente)))
+//Ej de referencia a accion con o.v
+FORALL(i:relacionadoASocio; O(i.ingresarASala -> i.abonarTarifa results in al50PorCiento ))
+//Ej de uso de intervalo
+FORALL(i:socioTitular; P(i.ingresarASala given that INSIDE(i.tarjetaVigente)))
 
 
 
