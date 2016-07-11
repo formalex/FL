@@ -1,0 +1,18 @@
+#Background
+
+roles regular { individual, familiar disjoint cover }, vip disjoint cover
+
+impersonal action pasaUnDia
+actions comprar_entrada only performable by regular, vip
+
+shared counter entradas_para_regular for regular init value 0 max value 10,
+increases with action comprar_entrada,
+reaching max impedes actions
+
+shared counter entradas_para_vip for vip init value 0 max value 5,
+increases with action comprar_entrada,
+reaching max impedes actions
+resets with action pasaUnDia
+
+
+#Clauses

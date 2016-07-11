@@ -1,9 +1,8 @@
 options
 {
-  JDK_VERSION = "1.7";
-
-  	static = true;
-  	Ignore_Case = true;
+  JDK_VERSION = "1.8";
+  static = true;
+  IGNORE_CASE = true;
   LOOKAHEAD= 3;
 }
 
@@ -43,7 +42,33 @@ public class FLParser{
         return flInput;
     }
 
-  private static FLFormula parsearFlAction(String variable, String name, FLFormula aFormula , int beginLine, int beginColumn)  {    Action tmp = actions.get(name);    if (tmp == null)    {      StringBuilder sb = new StringBuilder();      sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " +       "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);      throw new RuntimeException(sb.toString());    }    if (!tmp.isImpersonal() & variable == null)    {      StringBuilder sb = new StringBuilder();      sb.append("En una fórmula se hace referencia a una acción sin usar agente: ('" + name + "'). " +       "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);      throw new RuntimeException(sb.toString());    }    if (tmp.isImpersonal() & variable != null)    {      StringBuilder sb = new StringBuilder();      sb.append("En una fórmula se hace referencia a una acción impersonal usando agente: ('" + name + "'). " +       "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);      throw new RuntimeException(sb.toString());    }    aFormula = new FLAction(variable, name);    return aFormula;  }
+  private static FLFormula parsearFlAction(String variable, String name, FLFormula aFormula , int beginLine, int beginColumn)
+  {
+    Action tmp = actions.get(name);
+    if (tmp == null)
+    {
+      StringBuilder sb = new StringBuilder();
+      sb.append("En una fórmula se hace referencia a una acción no definida: ('" + name + "'). " + 
+      "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+      throw new RuntimeException(sb.toString());
+    }
+    if (!tmp.isImpersonal() & variable == null)
+    {
+      StringBuilder sb = new StringBuilder();
+      sb.append("En una fórmula se hace referencia a una acción sin usar agente: ('" + name + "'). " + 
+      "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+      throw new RuntimeException(sb.toString());
+    }
+    if (tmp.isImpersonal() & variable != null)
+    {
+      StringBuilder sb = new StringBuilder();
+      sb.append("En una fórmula se hace referencia a una acción impersonal usando agente: ('" + name + "'). " + 
+      "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
+      throw new RuntimeException(sb.toString());
+    }
+    aFormula = new FLAction(variable, name);
+    return aFormula;
+  }
 
     private static Interval getInterval(String name){
         Interval res = intervals.get(name);
@@ -136,10 +161,13 @@ TOKEN :
 TOKEN :
 {
   < LOCAL_COUNTER : "local counter" >
+| < SHARED_COUNTER : "shared counter" >
 | < GLOBAL_COUNTER : "global counter" >
+| < SHARED_ROLE_COUNTER: "for" >
 | < COUNTER_INCREASES : "increases with action" >
 | < COUNTER_DECREASES : "decreases with action" >
 | < COUNTER_BY : "by" >
+| < SHARED_ROLE_SPECIFICITY: "without further refinment" >
 | < COUNTER_PROVIDED : "provided that" >
 | < COUNTER_RESET : "resets with action" >
 | < COUNTER_SETS_WITH : "sets with action" >
@@ -620,11 +648,15 @@ void counter() :
 {
     (< LOCAL_COUNTER >
         {
-            counter.setLocal(true);
+            counter.setLocal();
+        }
+    | <SHARED_COUNTER>
+        {
+            counter.setShared();
         }
     | <GLOBAL_COUNTER>
         {
-            counter.setLocal(false);
+            counter.setGlobal();
         }
     )
     < IDENTIFIER >
@@ -634,6 +666,24 @@ void counter() :
         if (tmp != null){
             StringBuilder sb = new StringBuilder();
             sb.append("Nombre de contador repetido: ('" + tmp.getName() + "'). Revisar datos del archivo de entrada");
+            throw new RuntimeException(sb.toString());
+        }
+    }
+    (< SHARED_ROLE_COUNTER> < IDENTIFIER >
+        {
+            if (counter.isShared()) {
+                counter.setRoleForCounter(getRole(token.image));
+            } else {
+                StringBuilder sb = new StringBuilder();
+                sb.append("Error al definir el rol: ('" + counter.getName() + "'). Solo los contadores shared pueden especificar rol.");
+                throw new RuntimeException(sb.toString());
+            }
+        }
+    )?
+    {
+        if (counter.isShared() && counter.getRoleForCounter() == null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Se definio el rol compartido ('" + counter.getName() + "') sin especificar para que rol.");
             throw new RuntimeException(sb.toString());
         }
     }
@@ -650,7 +700,9 @@ void counter() :
             	sb.append("El valor mínimo del contador '" + counter.getName() + "' no puede ser mayor a su valor inicial. Revisar datos del archivo de entrada");
            		throw new RuntimeException(sb.toString());
         	}
-        	else        	{        		counter.setMinValue(auxMin);
+        	else
+        	{
+        		counter.setMinValue(auxMin);
         	}
         }
     )?
@@ -695,11 +747,17 @@ void counter() :
             Action action = getAction(token.image);
             String providedThat = null;
             int value = 1;
+            Set<Role> affectedRoles = new HashSet<Role>();
         }
         (<COUNTER_BY> < NUMBER >
            {
                value = Integer.parseInt(token.image);
            }
+           (< SHARED_ROLE_COUNTER > < IDENTIFIER >
+               {
+                    affectedRoles.add(getRole(token.image));
+               }
+           )*
         )?
         (<COUNTER_PROVIDED>
            {
@@ -754,7 +812,8 @@ void counter() :
             }
     )*
     (
-      	(",") < COUNTER_MIN_IMPEDES_ACTIONS >        {
+      	(",") < COUNTER_MIN_IMPEDES_ACTIONS >
+        {
             counter.setMinImpedesActions(true);
         }
     )?
@@ -932,9 +991,11 @@ void clause() :
     originalFormula = "";
 }
 {
-   (     < TAG > < IDENTIFIER > 
+   (
+     < TAG > < IDENTIFIER > 
      {
-       tag = token.image;            }
+       tag = token.image;       
+     }
    )?
    (
    	(
@@ -995,7 +1056,8 @@ void clause() :
   )
   {
      if (tag != null)
-      	flInput.addTaggedFormula(tag,p);        }
+      	flInput.addTaggedFormula(tag,p);      
+  }
 }
 
 //F-cláusula-disyuntiva :=     F-cláusula (or F-cláusula)*
@@ -1415,21 +1477,28 @@ Permission p_clause() :
   (    
       < GIVEN_THAT > 
       {
-        originalFormula += " given that ";      }
+        originalFormula += " given that ";
+      }
       conditionFormula = sentence()
   )? < PAR_RIGHT >
   {
-    if (conditionFormula == null)    {
-      res = new Permission(mainFormula);    } else {
-      res = new Permission(mainFormula, conditionFormula);    }     
+    if (conditionFormula == null)
+    {
+      res = new Permission(mainFormula);
+    } else {
+      res = new Permission(mainFormula, conditionFormula);
+    }     
     originalFormula += ")";
   }
   (
     <EXCEPTION_OF> <IDENTIFIER>	
     {
       String exception = token.image;
-      if (exception != null)      {
-        if (conditionFormula == null)        {			//ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
+      if (exception != null)
+      {
+        if (conditionFormula == null)
+        {
+			//ERROR! las únicas formulas con excepciones pueden ser los permisos con condiciones
 			StringBuilder sb = new StringBuilder();
             sb.append("Hay una fórmula que es excepción de una regla pero no posee condición: ('" + originalFormula + "'). ");
             throw new RuntimeException(sb.toString());
@@ -1443,7 +1512,8 @@ Permission p_clause() :
       }
     }
   )?
-  {      return res;
+  {
+      return res;
   }
 }
 
@@ -1614,12 +1684,14 @@ FLFormula forallWithDeontic() :
 		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
 		        if (rule.getClass().equals(Obligation.class) | rule.getClass().equals(Forbidden.class) |
 		        ( (rule.getClass().equals(FLForall.class) | rule.getClass().equals(FLExist.class))
-		        	& ( ((FLQuantifier)rule).getFormula().getClass().equals(Obligation.class) | ((FLQuantifier)rule).getFormula().getClass().equals(Forbidden.class))))		        {
+		        	& ( ((FLQuantifier)rule).getFormula().getClass().equals(Obligation.class) | ((FLQuantifier)rule).getFormula().getClass().equals(Forbidden.class))))
+		        {
 		        	rule.addException(forallFormula);
 		        	flInput.addRule(rule);
 		        	originalFormula += " is exception of " + rule.toString();
 		        	flInput.addFLRule(originalFormula);
-		        } else {		          //ERROR! las únicas formulas que pueden tener excepciones son las reglas
+		        } else {
+		          //ERROR! las únicas formulas que pueden tener excepciones son las reglas
 					StringBuilder sb = new StringBuilder();
             		sb.append("Hay una fórmula que tiene una excepción pero no es una regla: ('" + rule.toString() + "'). ");
             		throw new RuntimeException(sb.toString());
@@ -1661,7 +1733,8 @@ FLFormula existsWithDeontic() :
     }
     //EXISTS (var (: rol)? ; O-cláusula-disyuntiva | F-cláusula-disyuntiva | P-cláusula-disyuntiva | PP-cláusula-disyuntiva )
     (
-        tempFormula = p_clause_disjunctive()        |
+        tempFormula = p_clause_disjunctive()
+        |
         tempFormula = pp_clause_disjunctive()
         |
         tempFormula = o_clause_disjunctive()
@@ -1669,7 +1742,8 @@ FLFormula existsWithDeontic() :
         tempFormula = f_clause_disjunctive()
     )    
     < PAR_RIGHT >
-    {      FLFormula existsFormula = new FLExist(variableName, role, tempFormula );
+    {
+      FLFormula existsFormula = new FLExist(variableName, role, tempFormula );
   	}  
 	(
     <EXCEPTION_OF> <IDENTIFIER>	
@@ -1694,7 +1768,8 @@ FLFormula existsWithDeontic() :
 			    flInput.addRule(rule);
 			    originalFormula += " is exception of " + rule.toString();
 		    	flInput.addFLRule(originalFormula);
-      		} else {				//ERROR! las únicas formulas que pueden tener excepciones son las reglas
+      		} else {
+				//ERROR! las únicas formulas que pueden tener excepciones son las reglas
 				StringBuilder sb = new StringBuilder();
             	sb.append("Hay una fórmula que tiene una excepción pero no es una regla: ('" + rule.toString() + "'). ");
             	throw new RuntimeException(sb.toString());
@@ -2054,7 +2129,11 @@ FLFormula terminal() :
                     throw new RuntimeException(sb.toString());
                 }
 
-                if (!tmp.isLocal() & counter.getVariable() != null){
+                if (tmp.isShared() & counter.getVariable() == null){
+                    // TODO ver que hacer
+                }
+
+                if (tmp.isGlobal() & counter.getVariable() != null){
                     StringBuilder sb = new StringBuilder();
                     sb.append("En una fórmula se hace referencia a un contador global usando agente: ('" + name + "').  " +
                         "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
@@ -2115,9 +2194,14 @@ FLFormula terminal() :
         }
     )
     |
-  (        (      < IS_HAPPENING > < IDENTIFIER > // 'j' en isHappening(j.Correr) o 'empezoElDia' en isHappening(empezoElDia)
+  (    
+    (
+      < IS_HAPPENING > < IDENTIFIER > // 'j' en isHappening(j.Correr) o 'empezoElDia' en isHappening(empezoElDia)
     {
-	  referencedState = ActionReferencedState.IS_HAPPENING;      name = token.image;      originalFormula += "isHappening(" + name;    }
+	  referencedState = ActionReferencedState.IS_HAPPENING;
+      name = token.image;
+      originalFormula += "isHappening(" + name;
+    }
     
    |   //TODO: VER SI HAY TIEMPO, SI SE PUEDEN SIMPLIFICAR LOS DOS CASOS
   

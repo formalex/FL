@@ -1,0 +1,29 @@
+#Background
+
+roles regular, vip disjoint cover
+
+impersonal action pasaUnDia
+actions comprar_entrada only performable by regular, vip
+
+global counter entradas_vendidas init value 0 max value 15,
+increases with action comprar_entrada,
+reaching max impedes actions
+
+local counter paquetes_comprado_por_dia init value 0 max value 1,
+increases with action comprar_entrada,
+reaching max impedes actions,
+resets with action pasaUnDia
+
+shared counter entradas_para_regular for regular init value 0 max value 10,
+increases with action comprar_entrada,
+reaching max impedes actions,
+resets with action pasaUnDia
+
+shared counter entradas_para_vip for vip init value 0 max value 5,
+increases with action comprar_entrada,
+reaching max impedes actions,
+resets with action pasaUnDia
+
+
+#Clauses
+P(entradas_vendidas > 5)

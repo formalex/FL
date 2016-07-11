@@ -1,10 +1,13 @@
 #Background
 
-roles alumno, docente
-actions retirar_libro, devolver_libro only performable by
-alumno, docente
-local counter libros_retirados init value 0, 
-increases with action retirar_libro, decreases with action devolver_libro
+roles alumno, docente { titular, ayudante disjoint cover }
+
+actions retirar_libro, devolver_libro only performable by alumno, docente
+
+local counter libros_retirados init value 0,
+increases with action retirar_libro, decreases with action devolver_libro,
+reaching min impedes actions,
+reaching max impedes actions
 
 #Clauses
 
