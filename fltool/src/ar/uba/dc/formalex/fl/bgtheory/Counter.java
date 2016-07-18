@@ -19,6 +19,7 @@ public class Counter {
     private boolean maxImpedesActions = false;
 
     private Map<Action, Integer> increaseActions = new HashMap<Action, Integer>();
+    private Map<Action, Map<Role, Integer>> increaseActionsByRole = new HashMap<>();
     private Map<Action, Integer> setValueActions = new HashMap<Action, Integer>();
 
     private Map<Action, String> conditions = new HashMap<Action, String>();
@@ -100,6 +101,24 @@ public class Counter {
     public void addIncreaseAction(Action a, Integer value, String providedThat) {
         increaseActions.put(a, value);
         addProvidedThat(a, providedThat);
+    }
+
+    public void addIncreaseActionForRole(Action a, Role role, Integer value, String providedThat) {
+        Map<Role, Integer> valueForRoles = increaseActionsByRole.get(a);
+        if(valueForRoles == null) {
+            valueForRoles = new HashMap<>();
+            increaseActionsByRole.put(a, valueForRoles);
+        }
+        if(valueForRoles.containsKey(role)) {
+            throw new RuntimeException("El valor del contador " + getName() + " para el rol " + role.getName() +
+                    "en la accion " + a.getName() +  " fue previamente definido");
+        }
+        valueForRoles.put(role, value);
+        addProvidedThat(a, providedThat);
+    }
+
+    public void addDecreaseActionForRole(Action a, Role role, Integer value, String providedThat) {
+        addIncreaseActionForRole(a, role, value * -1, providedThat);
     }
 
     public void addDecreaseAction(Action a, Integer value) {
@@ -200,6 +219,39 @@ public class Counter {
 
     public void setMaxImpedesActions(boolean maxImpedesActions) {
         this.maxImpedesActions = maxImpedesActions;
+    }
+
+    public void normalizeSharedCounter() {
+        for(Action action : increaseActionsByRole.keySet()) {
+            if(!getIncreaseActions().containsKey(action)) {
+                addIncreaseAction(action, null);
+            }
+        }
+    }
+
+    public Integer getIncreaseValueForAgent(Action action, Agente agent) {
+        Integer value = null;
+        Integer maxDepth = 0;
+        Map<Role, Integer> valueForRole = increaseActionsByRole.get(action);
+
+        if(valueForRole != null) {
+            for(Role role : agent.getRoles()) {
+                if(valueForRole.containsKey(role)) {
+                    if(maxDepth < role.getRoleSpecification().getDepth()) {
+                        maxDepth = role.getRoleSpecification().getDepth();
+                        value = valueForRole.get(role);
+                    }
+                }
+            }
+        }
+        if(value != null) {
+            return value;
+        }
+        if(getIncreaseActions().get(action) == null) {
+            throw new RuntimeException("No se puede calcular el modificador del contador " + getName() + " para el " +
+                agent.getName() + " en la accion " + action.getName());
+        }
+        return getIncreaseActions().get(action);
     }
 
     //usado para logueo y debug

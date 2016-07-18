@@ -1,0 +1,28 @@
+#Background
+
+roles compradores {
+    regular { independiente, socioDeBanco disjoint cover }, vip disjoint cover
+}
+
+impersonal action pasa_un_dia
+actions comprar_entrada
+
+shared counter entradas_para_vip for vip max value 100,
+increases with action comprar_entrada,
+reaching max impedes actions
+
+shared counter entradas_para_regular for regular max value 500,
+increases with action comprar_entrada by 1 for independiente,
+increases with action comprar_entrada by 2 for socioDeBanco,
+reaching max impedes actions
+
+shared counter entradas_del_banco for socioDeBanco max value 10,
+increases with action comprar_entrada by 1 for socioDeBanco,
+reaching max impedes actions,
+resets with action pasa_un_dia
+
+shared counter ingresos_entradas for compradores,
+increases with action comprar_entrada by 300 for vip,
+increases with action comprar_entrada by 100 for compradores without further refinement
+
+#Clauses

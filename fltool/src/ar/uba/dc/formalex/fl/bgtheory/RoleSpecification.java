@@ -10,6 +10,7 @@ public class RoleSpecification {
 	private Boolean cover = false;
 	private RolesCombination rolesCombination = new RolesCombination();
 	private Boolean isCombined = false;
+	private Integer depth = 0;
 	
 	public RoleSpecification(Set<Role> roles) {
 		this.roles = roles;
@@ -70,5 +71,13 @@ public class RoleSpecification {
 
 	public void setCombined(Boolean isCombined) {
 		this.isCombined = isCombined;
-	}		
+	}
+
+	public Integer getDepth() {
+		return this.depth;
+	}
+
+	public void setDepth(Integer depth) {
+		this.depth = depth;
+	}
 }

@@ -54,6 +54,8 @@ public class LaAplanadora {
     private Set<Action> impersonalAction = new HashSet<Action>();
     private Set<Agente> agentes = null;
 
+    private Map<Role, Integer> profundidadDelRol = new HashMap<>();
+
 
     public Grafo<InfoComponenteBgt> explotarYAplanar(FLInput input, ConstructorDeGrafo unConstructorDeGrafo, LTLTranslationType anLtlTranslationType) {
         Set<Action> accionesConAgentes = new HashSet<Action>();
@@ -514,29 +516,24 @@ public class LaAplanadora {
 
         logger.info("CANTIDAD DE AGENTES EN EL ROL "  + counterRole.getName() + ": " + agentesDelRol.size());
 
-//        for(Agente a : this.agentes) {
-//            logger.info("Agente " + a.getName() + " es " + counterRole.getName() + "? " + ( a.hasRole(counterRole) ? "SI" : "NO"));
-//        }
-
-
         Map<Action, Integer> incrActions = counterOriginal.getIncreaseActions();
         for (Action accOriginal : incrActions.keySet()) {
             String pt = counterOriginal.getCondition(accOriginal);
-            Integer value = incrActions.get(accOriginal);
             // la accion impersonal la usa seguro
             if (accOriginal.isImpersonal()) {
-                res.addIncreaseAction(accOriginal, value, pt);
+                res.addIncreaseAction(accOriginal, incrActions.get(accOriginal), pt);
             } else {
                 // para cada agente que este en la accion Y tenga como rol al actual
                 for(Agente agente : agentesDelRol) {
                     Action accionConAgente = getAccionConAgente(accOriginal, agente);
                     if (accionConAgente != null) { //es null si el agente no realiza la acción.
+                        Integer agentValue = counterOriginal.getIncreaseValueForAgent(accOriginal, agente);
                         if (!accOriginal.isSync()) {
-                            res.addIncreaseAction(accionConAgente, value, pt);
+                            res.addIncreaseAction(accionConAgente, agentValue, pt);
                         } else {
                             Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
                             for (Action actionSync : accionesSync) {
-                                res.addIncreaseAction(actionSync, value, pt);
+                                res.addIncreaseAction(actionSync, agentValue, pt);
                             }
                         }
                     }
@@ -795,9 +792,8 @@ public class LaAplanadora {
      */
     private void combineMainRoleSpec(RoleSpecification spec) {
         if (!spec.getRoles().isEmpty()) {
-            Iterator<Role> roleIterator = spec.getRoles().iterator();
-            while (roleIterator.hasNext()) {
-                Role nextRole = roleIterator.next();
+            for (Role nextRole : spec.getRoles()) {
+                nextRole.getRoleSpecification().setDepth(spec.getDepth() + 1);
                 addRoleToSpecCombination(nextRole);
             }
         }

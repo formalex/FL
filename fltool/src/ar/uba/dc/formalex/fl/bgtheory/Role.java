@@ -8,6 +8,10 @@ public class Role {
         this.name = name;
     }
 
+    public Role(String name, Integer depth) {
+        this.name = name;
+        this.roleSpec.setDepth(depth);
+    }
 
     public String getName() {
 		return this.name;

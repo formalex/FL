@@ -167,7 +167,7 @@ TOKEN :
 | < COUNTER_INCREASES : "increases with action" >
 | < COUNTER_DECREASES : "decreases with action" >
 | < COUNTER_BY : "by" >
-| < SHARED_ROLE_SPECIFICITY: "without further refinment" >
+| < SHARED_ROLE_SPECIFICITY: "without further refinement" >
 | < COUNTER_PROVIDED : "provided that" >
 | < COUNTER_RESET : "resets with action" >
 | < COUNTER_SETS_WITH : "sets with action" >
@@ -721,33 +721,13 @@ void counter() :
         }
     )?
     (
-        < COUNTER_INCREASES > < IDENTIFIER >
-        {
-            Action action = getAction(token.image);
-            String providedThat = null;
-            int value = 1;
-        }
-        (<COUNTER_BY> < NUMBER >
-           {
-               value = Integer.parseInt(token.image);
-           }
-        )?
-        (<COUNTER_PROVIDED>
-           {
-               providedThat = raw_text();
-           }
-        )?
-        {
-            counter.addIncreaseAction(action, value, providedThat);
-        }
-    )?
-    (
         (",") < COUNTER_INCREASES > < IDENTIFIER >
         {
             Action action = getAction(token.image);
             String providedThat = null;
             int value = 1;
-            Set<Role> affectedRoles = new HashSet<Role>();
+            List<Role> affectedRoles = new ArrayList<Role>();
+            boolean isDefaultForRole = false;
         }
         (<COUNTER_BY> < NUMBER >
            {
@@ -755,8 +735,33 @@ void counter() :
            }
            (< SHARED_ROLE_COUNTER > < IDENTIFIER >
                {
-                    affectedRoles.add(getRole(token.image));
+                   Role roleToAdd = getRole(token.image);
+                   if (counter.isShared()) {
+                       affectedRoles.add(roleToAdd);
+                   } else {
+                       StringBuilder sb = new StringBuilder();
+                       sb.append("Solo se pueden especificar variaciones por rol en contadores compartidos.");
+                       throw new RuntimeException(sb.toString());
+                   }
                }
+               ("," < IDENTIFIER >
+                    {
+                        roleToAdd = getRole(token.image);
+                        if (counter.isShared()) {
+                           affectedRoles.add(roleToAdd);
+                        } else {
+                           StringBuilder sb = new StringBuilder();
+                           sb.append("Solo se pueden especificar variaciones por rol en contadores compartidos.");
+                           throw new RuntimeException(sb.toString());
+                        }
+                    }
+
+               )*
+               (< SHARED_ROLE_SPECIFICITY >
+                    {
+                        isDefaultForRole = true;
+                    }
+               )?
            )*
         )?
         (<COUNTER_PROVIDED>
@@ -765,42 +770,58 @@ void counter() :
            }
         )?
         {
-            counter.addIncreaseAction(action, value, providedThat);
+            if(counter.isShared() && affectedRoles.size() > 0 && !isDefaultForRole) {
+                for(Role role : affectedRoles) {
+                    counter.addIncreaseActionForRole(action, role, value, providedThat);
+                }
+            } else {
+                counter.addIncreaseAction(action, value, providedThat);
+            }
         }
     )*
-
-    (
-        < COUNTER_DECREASES > < IDENTIFIER >
-            {
-                Action action = getAction(token.image);
-                String providedThat = null;
-                int value = 1;
-            }
-            (<COUNTER_BY> < NUMBER >
-               {
-                   value = Integer.parseInt(token.image);
-               }
-            )?
-            (<COUNTER_PROVIDED>
-               {
-                   providedThat = raw_text();
-               }
-            )?
-            {
-                counter.addDecreaseAction(action, value, providedThat);
-            }
-    )?
     (
         (",") < COUNTER_DECREASES > < IDENTIFIER >
             {
                 Action action = getAction(token.image);
                 String providedThat = null;
                 int value = 1;
+                List<Role> affectedRoles = new ArrayList<Role>();
+                boolean isDefaultForRole = false;
             }
             (<COUNTER_BY> < NUMBER >
                {
                    value = Integer.parseInt(token.image);
                }
+               (< SHARED_ROLE_COUNTER > < IDENTIFIER >
+                   {
+                       Role roleToAdd = getRole(token.image);
+                       if (counter.isShared()) {
+                           affectedRoles.add(roleToAdd);
+                       } else {
+                           StringBuilder sb = new StringBuilder();
+                           sb.append("Solo se pueden especificar variaciones por rol en contadores compartidos.");
+                           throw new RuntimeException(sb.toString());
+                       }
+                   }
+                   ("," < IDENTIFIER >
+                        {
+                            roleToAdd = getRole(token.image);
+                            if (counter.isShared()) {
+                               affectedRoles.add(roleToAdd);
+                            } else {
+                               StringBuilder sb = new StringBuilder();
+                               sb.append("Solo se pueden especificar variaciones por rol en contadores compartidos.");
+                               throw new RuntimeException(sb.toString());
+                            }
+                        }
+
+                   )*
+                   (< SHARED_ROLE_SPECIFICITY >
+                        {
+                            isDefaultForRole = true;
+                        }
+                   )?
+               )*
             )?
             (<COUNTER_PROVIDED>
                {
@@ -808,9 +829,20 @@ void counter() :
                }
             )?
             {
-                counter.addDecreaseAction(action, value, providedThat);
+                if(counter.isShared() && affectedRoles.size() > 0 && !isDefaultForRole) {
+                    for(Role role : affectedRoles) {
+                        counter.addDecreaseActionForRole(action, role, value, providedThat);
+                    }
+                } else {
+                    counter.addDecreaseAction(action, value, providedThat);
+                }
             }
     )*
+    {
+        if(counter.isShared()) {
+            counter.normalizeSharedCounter();
+        }
+    }
     (
       	(",") < COUNTER_MIN_IMPEDES_ACTIONS >
         {
