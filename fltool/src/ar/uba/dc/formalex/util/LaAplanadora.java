@@ -288,7 +288,16 @@ public class LaAplanadora {
                             intervalosYAgentes.put(intL, ag);
                         }
                     }
-                } else {//es global-> al hacer la explotación-aplanamiento queda un solo intervalo con varias acciones iniciales y finales
+                } else if (interval.isShared()) {
+                    //es compartido -> al hacer la explotación-aplanamiento queda un solo contador donde las acciones que
+                    //lo modifican se amplían con las nuevas acciones con agentes
+                    Interval intS = crearIntervaloCompartido(interval);
+
+                    res.add(intS);
+                    agregar(intervalosOriginales, interval, intS);
+                } else if (interval.isGlobal()) {
+                    //es global-> al hacer la explotación-aplanamiento queda un solo intervalo
+                    // con varias acciones iniciales y finales
                     Interval intG = crearIntervaloGlobal(interval);
 
                     res.add(intG);
@@ -569,6 +578,21 @@ public class LaAplanadora {
         return res;
     }
 
+
+    private Interval crearIntervaloCompartido(Interval interval) {
+        Interval res = interval.clonar();
+
+        //reemplazo c/u de las accIni x las nuevas con agentes
+        Set<Action> newST = getAccionesParaIntervaloCompartido(interval.getRoleForInterval(), interval.getStartTriggers());
+        res.setStartTriggers(newST);
+
+        //reemplazo c/u de las accFin x las nuevas con agentes
+        Set<Action> newET = getAccionesParaIntervaloCompartido(interval.getRoleForInterval(), interval.getEndTriggers());
+        res.setEndTriggers(newET);
+
+        return res;
+    }
+
     private Set<Agente> getAgentesParaRol(Role role) {
         Set<Agente> agentes = new HashSet<>();
         for(Agente agente : this.agentes) {
@@ -597,6 +621,29 @@ public class LaAplanadora {
                     newSet.add(ai);//si no tiene roles -> no tiene agentes. Agrego la original
                     //ahora con el agente sin roles esto no debe pasar
                     throw new RuntimeException("VER");
+                }
+            }
+        }
+        return newSet;
+    }
+
+    private Set<Action> getAccionesParaIntervaloCompartido(Role role, Set<Action> acciones) {
+        Set<Action> newSet = new HashSet<Action>(); // con el set evito repetidos por active/pasive
+        Set<Agente> agentesDelRol = getAgentesParaRol(role);
+        for (Action accOriginal : acciones) {
+            if (accOriginal.isImpersonal()) {
+                newSet.add(accOriginal);
+            } else {
+                for(Agente agente : agentesDelRol) {
+                    Action accionConAgente = getAccionConAgente(accOriginal, agente);
+                    if (accionConAgente != null) { //es null si el agente no realiza la acción.
+                        if (!accOriginal.isSync()) {
+                            newSet.add(accionConAgente);
+                        } else {
+                            Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
+                            newSet.addAll(accionesSync);
+                        }
+                    }
                 }
             }
         }

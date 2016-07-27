@@ -1,0 +1,28 @@
+#Background
+
+roles compradores {
+    regular { independiente, socioDeBanco disjoint cover }, vip disjoint cover
+}, empleado disjoint cover
+
+actions comprar_entrada only performable by compradores
+
+actions iniciar_recital, finalizar_recital only performable by compradores
+
+global interval recital defined by actions iniciar_recital - finalizar_recital
+
+actions iniciar_pogo, finalizar_pogo only performable by compradores
+
+shared interval pogo_regular for regular
+defined by actions iniciar_pogo - finalizar_pogo
+only occurs in scope recital
+occurrences 3
+
+shared interval pogo_vip for vip
+defined by actions iniciar_pogo - finalizar_pogo
+only occurs in scope recital
+
+actions saltar, empujar only occurs in scope pogo_regular only performable by compradores
+
+action sacar_espectador only occurs in scope pogo_regular only performable by empleado
+
+#Clauses

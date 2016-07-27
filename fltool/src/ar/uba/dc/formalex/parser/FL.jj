@@ -140,7 +140,9 @@ TOKEN :
 | < IMPERSONAL_ACTION : "impersonal action" >
 | < TIMER : "timer" >
 | < LOCAL_INTERVAL : "local interval" >
+| < SHARED_INTERVAL : "shared interval" >
 | < GLOBAL_INTERVAL : "global interval" >
+| < SHARED_ROLE_REFERENCE: "for" >
 | < INFINITE : "infinite" >
 | < DEFINED_BY : "defined by actions" >
 | < ONLY_OCCURS_IN : "only occurs in scope" >
@@ -163,7 +165,6 @@ TOKEN :
   < LOCAL_COUNTER : "local counter" >
 | < SHARED_COUNTER : "shared counter" >
 | < GLOBAL_COUNTER : "global counter" >
-| < SHARED_ROLE_COUNTER: "for" >
 | < COUNTER_INCREASES : "increases with action" >
 | < COUNTER_DECREASES : "decreases with action" >
 | < COUNTER_BY : "by" >
@@ -565,12 +566,14 @@ void interval() :
 }
 {
   (< LOCAL_INTERVAL >{
-    anInterval.setLocal(true);
+        anInterval.setLocal();
+   }
+   | < SHARED_INTERVAL > {
+        anInterval.setShared();
    }
    | <GLOBAL_INTERVAL>{
-      anInterval.setLocal(false);
+        anInterval.setGlobal();
    })
-
   < IDENTIFIER >
   {
 
@@ -582,6 +585,24 @@ void interval() :
         throw new RuntimeException(sb.toString());
     }
     flInput.add(anInterval);
+  }
+  (< SHARED_ROLE_REFERENCE> < IDENTIFIER >
+      {
+          if (anInterval.isShared()) {
+              anInterval.setRoleForInterval(getRole(token.image));
+          } else {
+              StringBuilder sb = new StringBuilder();
+              sb.append("Error al definir el intervalo: ('" + anInterval.getName() + "'). Solo los intervalos shared pueden especificar rol.");
+              throw new RuntimeException(sb.toString());
+          }
+      }
+  )?
+  {
+      if (anInterval.isShared() && anInterval.getRoleForInterval() == null) {
+          StringBuilder sb = new StringBuilder();
+          sb.append("Se definio el intervalo compartido ('" + anInterval.getName() + "') sin especificar para que rol.");
+          throw new RuntimeException(sb.toString());
+      }
   }
   < DEFINED_BY >
   (< INFINITE >
@@ -669,13 +690,13 @@ void counter() :
             throw new RuntimeException(sb.toString());
         }
     }
-    (< SHARED_ROLE_COUNTER> < IDENTIFIER >
+    (< SHARED_ROLE_REFERENCE> < IDENTIFIER >
         {
             if (counter.isShared()) {
                 counter.setRoleForCounter(getRole(token.image));
             } else {
                 StringBuilder sb = new StringBuilder();
-                sb.append("Error al definir el rol: ('" + counter.getName() + "'). Solo los contadores shared pueden especificar rol.");
+                sb.append("Error al definir el contador: ('" + counter.getName() + "'). Solo los contadores shared pueden especificar rol.");
                 throw new RuntimeException(sb.toString());
             }
         }
@@ -683,7 +704,7 @@ void counter() :
     {
         if (counter.isShared() && counter.getRoleForCounter() == null) {
             StringBuilder sb = new StringBuilder();
-            sb.append("Se definio el rol compartido ('" + counter.getName() + "') sin especificar para que rol.");
+            sb.append("Se definio el contador compartido ('" + counter.getName() + "') sin especificar para que rol.");
             throw new RuntimeException(sb.toString());
         }
     }
@@ -733,7 +754,7 @@ void counter() :
            {
                value = Integer.parseInt(token.image);
            }
-           (< SHARED_ROLE_COUNTER > < IDENTIFIER >
+           (< SHARED_ROLE_REFERENCE > < IDENTIFIER >
                {
                    Role roleToAdd = getRole(token.image);
                    if (counter.isShared()) {
@@ -792,7 +813,7 @@ void counter() :
                {
                    value = Integer.parseInt(token.image);
                }
-               (< SHARED_ROLE_COUNTER > < IDENTIFIER >
+               (< SHARED_ROLE_REFERENCE > < IDENTIFIER >
                    {
                        Role roleToAdd = getRole(token.image);
                        if (counter.isShared()) {
@@ -2161,13 +2182,9 @@ FLFormula terminal() :
                     throw new RuntimeException(sb.toString());
                 }
 
-                if (tmp.isShared() & counter.getVariable() == null){
-                    // TODO ver que hacer
-                }
-
-                if (tmp.isGlobal() & counter.getVariable() != null){
+                if (!tmp.isGlobal() & counter.getVariable() != null){
                     StringBuilder sb = new StringBuilder();
-                    sb.append("En una fórmula se hace referencia a un contador global usando agente: ('" + name + "').  " +
+                    sb.append("En una fórmula se hace referencia a un contador global o compartido usando agente: ('" + name + "').  " +
                         "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                     throw new RuntimeException(sb.toString());
                 }
@@ -2218,7 +2235,7 @@ FLFormula terminal() :
             }
             if (!tmp.isLocal() & interval.getVariable() != null){
                 StringBuilder sb = new StringBuilder();
-                sb.append("En una fórmula se hace referencia a un intervalo global usando agente: ('" + name + "'). " +
+                sb.append("En una fórmula se hace referencia a un intervalo global o compartido usando agente: ('" + name + "'). " +
                     "Revisar datos del archivo de entrada, cerca de línea: " + beginLine + ", columna: " + beginColumn);
                 throw new RuntimeException(sb.toString());
             }

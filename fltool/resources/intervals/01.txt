@@ -1,0 +1,11 @@
+#Background
+
+roles compradores, lala
+
+actions comprar_entrada only performable by compradores
+
+actions iniciar_recital, finalizar_recital only performable by compradores
+
+global interval recital defined by actions iniciar_recital - finalizar_recital
+
+#Clauses
