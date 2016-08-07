@@ -14,7 +14,7 @@ public class PermanentPermission extends FLFormula {
 	public PermanentPermission(FLFormula formula) {
         //O(P( fórmula ))
         Permission permission = new Permission(formula);
-        this.formula =  new Obligation(permission);        
+        this.formula =  new Obligation(permission);
     }
 
 	public PermanentPermission(FLFormula formula, FLFormula condition) {

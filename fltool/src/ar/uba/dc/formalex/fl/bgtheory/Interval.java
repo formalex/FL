@@ -14,6 +14,8 @@ public class Interval {
 	private String name;
     private Set<Action> startTriggers = new HashSet<Action>();
     private Set<Action> endTriggers = new HashSet<Action>();
+    private Set<Action> startTriggersWithoutRefinement = new HashSet<Action>();
+    private Set<Action> endTriggersWithoutRefinement = new HashSet<Action>();
 	private Interval occursIn;
 	private int occurrences;
     private String type = DEFAULT_TYPE;
@@ -95,12 +97,26 @@ public class Interval {
     public void addStartTrigger(Action a){
         startTriggers.add(a);
     }
+    public void addStartTriggerWithoutRefinement(Action a){
+        startTriggersWithoutRefinement.add(a);
+    }
     public void addEndTrigger(Action a){
         endTriggers.add(a);
+    }
+    public void addEndTriggerWithoutRefinement(Action a){
+        endTriggersWithoutRefinement.add(a);
     }
 
     public Set<Action> getStartTriggers() {
         return startTriggers;
+    }
+
+    public Set<Action> getStartTriggersWithoutRefinement() {
+        return startTriggersWithoutRefinement;
+    }
+
+    public Set<Action> getEndTriggersWithoutRefinement() {
+        return endTriggersWithoutRefinement;
     }
 
     public Set<Action> getEndTriggers() {

@@ -583,11 +583,11 @@ public class LaAplanadora {
         Interval res = interval.clonar();
 
         //reemplazo c/u de las accIni x las nuevas con agentes
-        Set<Action> newST = getAccionesParaIntervaloCompartido(interval.getRoleForInterval(), interval.getStartTriggers());
+        Set<Action> newST = getAccionesParaIntervaloCompartido(interval.getRoleForInterval(), interval.getStartTriggers(), interval.getStartTriggersWithoutRefinement());
         res.setStartTriggers(newST);
 
         //reemplazo c/u de las accFin x las nuevas con agentes
-        Set<Action> newET = getAccionesParaIntervaloCompartido(interval.getRoleForInterval(), interval.getEndTriggers());
+        Set<Action> newET = getAccionesParaIntervaloCompartido(interval.getRoleForInterval(), interval.getEndTriggers(), interval.getEndTriggersWithoutRefinement());
         res.setEndTriggers(newET);
 
         return res;
@@ -627,21 +627,44 @@ public class LaAplanadora {
         return newSet;
     }
 
-    private Set<Action> getAccionesParaIntervaloCompartido(Role role, Set<Action> acciones) {
+    private Set<Action> getAccionesParaIntervaloCompartido(Role role, Set<Action> acciones, Set<Action> accionesSinRefinar) {
         Set<Action> newSet = new HashSet<Action>(); // con el set evito repetidos por active/pasive
         Set<Agente> agentesDelRol = getAgentesParaRol(role);
+        Agente agenteRaiz = null;
+        Integer minQtyRoles = 100;
+        for(Agente agente : agentesDelRol) {
+            if(agente.getRoles().size() < minQtyRoles) {
+                agenteRaiz = agente;
+                minQtyRoles = agente.getRoles().size();
+            }
+        }
+        if(agenteRaiz == null && accionesSinRefinar.size() > 0) {
+            throw new RuntimeException("Se definieron acciones without further refinement para roles disjuntos.");
+        }
         for (Action accOriginal : acciones) {
             if (accOriginal.isImpersonal()) {
                 newSet.add(accOriginal);
             } else {
-                for(Agente agente : agentesDelRol) {
-                    Action accionConAgente = getAccionConAgente(accOriginal, agente);
+                if(accionesSinRefinar.contains(accOriginal)) {
+                    Action accionConAgente = getAccionConAgente(accOriginal, agenteRaiz);
                     if (accionConAgente != null) { //es null si el agente no realiza la acción.
                         if (!accOriginal.isSync()) {
                             newSet.add(accionConAgente);
                         } else {
                             Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
                             newSet.addAll(accionesSync);
+                        }
+                    }
+                } else {
+                    for(Agente agente : agentesDelRol) {
+                        Action accionConAgente = getAccionConAgente(accOriginal, agente);
+                        if (accionConAgente != null) { //es null si el agente no realiza la acción.
+                            if (!accOriginal.isSync()) {
+                                newSet.add(accionConAgente);
+                            } else {
+                                Set<Action> accionesSync = getAccionesSync(accionConAgente, true, true);
+                                newSet.addAll(accionesSync);
+                            }
                         }
                     }
                 }

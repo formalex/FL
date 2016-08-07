@@ -615,12 +615,22 @@ void interval() :
         Action startAction = getAction(token.image);
         anInterval.addStartTrigger(startAction);
     }
+    (< SHARED_ROLE_SPECIFICITY >
+        {
+            anInterval.addStartTriggerWithoutRefinement(startAction);
+        }
+    )?
     (
         "," < IDENTIFIER >
         {
             startAction = getAction(token.image);
             anInterval.addStartTrigger(startAction);
         }
+        (< SHARED_ROLE_SPECIFICITY >
+            {
+                anInterval.addStartTriggerWithoutRefinement(startAction);
+            }
+        )?
     )*
   )
   "-"
@@ -634,12 +644,22 @@ void interval() :
         Action endAction = getAction(token.image);
         anInterval.addEndTrigger(endAction);
     }
+    (< SHARED_ROLE_SPECIFICITY >
+        {
+            anInterval.addEndTriggerWithoutRefinement(endAction);
+        }
+    )?
     (
         "," < IDENTIFIER >
         {
             endAction = getAction(token.image);
             anInterval.addEndTrigger(endAction);
         }
+        (< SHARED_ROLE_SPECIFICITY >
+            {
+                anInterval.addEndTriggerWithoutRefinement(endAction);
+            }
+        )?
     )*
   )
   (

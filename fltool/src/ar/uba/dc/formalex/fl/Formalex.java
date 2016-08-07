@@ -95,7 +95,7 @@ public class Formalex {
 //                    elgrafoDeDependenciasBgt = divididos.explotarYAplanar(flInput, new ConstructorDeGrafoFake(), LTLTranslationType.WITH_JH);
 //                }
 //                String graphVizAntesDelFiltro = elgrafoDeDependenciasBgt.toGraphViz();
-//                validar(flInput, elgrafoDeDependenciasBgt, conModelChecker, conReductor, anLtlTranslationType);
+                validar(flInput, elgrafoDeDependenciasBgt, conModelChecker, conReductor, anLtlTranslationType);
 
                 logger.debug("Listo");
             } catch (TokenMgrError e) {
@@ -217,7 +217,6 @@ public class Formalex {
                 logger.info(CORRIENDO_SIN_MODEL_CHECKER);
 
             logger.info("");
-
         }
     }
 
