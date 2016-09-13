@@ -1,0 +1,11 @@
+#Background
+//tipo 1
+
+roles alumno
+
+actions votar, cumplir21
+local interval mayor defined by actions cumplir21 - infinite
+
+#Clauses
+//FORALL(i:alumno; F(i.cumplir21))
+FORALL(i:alumno; P(i.votar given that INSIDE(i.mayor)))

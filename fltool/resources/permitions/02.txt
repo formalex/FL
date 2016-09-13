@@ -1,0 +1,18 @@
+#Background
+//tipo 2
+
+roles pasajero
+
+action desabrochar_cinturon
+
+impersonal action prender_luz_roja
+impersonal action apagar_luz_roja
+
+global interval luz_roja_prendida defined by actions prender_luz_roja - apagar_luz_roja
+
+#Clauses
+
+// FORALL(i:pasajero; F(INSIDE(luz_roja_prendida) & i.desabrochar_cinturon))
+// FORALL(i:pasajero; P(i.desabrochar_cinturon given that !INSIDE(luz_roja_prendida) ))
+
+FORALL(i:pasajero; P(i.desabrochar_cinturon given that !INSIDE(luz_roja_prendida) it is mandatory))

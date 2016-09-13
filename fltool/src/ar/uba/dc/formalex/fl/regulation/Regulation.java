@@ -27,7 +27,7 @@ public class Regulation {
     		int index = rules.indexOf(p);
     		//Se reemplaza en la misma posición por la nueva fórmula.
     		rules.remove(index);
-    		rules.add(index, p);    		
+    		rules.add(index, p);
     	}else{
     		rules.add(p);
     	}

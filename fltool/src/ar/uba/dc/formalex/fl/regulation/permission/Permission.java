@@ -5,6 +5,7 @@ import java.util.Set;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
+import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLThen;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
@@ -14,17 +15,32 @@ import ar.uba.dc.formalex.fl.regulation.rules.Forbidden;
 public class Permission extends FLFormula {
 	private FLFormula formula;
 
+    private FLFormula mandatoryRule = null;
+
     public Permission(FLFormula formula) {
         //P( fórmula ) =  !  F( fórmula )
         Forbidden prohibition = new Forbidden(formula);
-        this.formula =  new FLNeg(prohibition);        
+        this.formula =  new FLNeg(prohibition);
     }
-    
+
     public Permission(FLFormula formula, FLFormula condition) {
-        //P( formula, condition ) = condition -> ! F(formula)
-    	Forbidden prohibition = new Forbidden(formula);
-        FLNeg prohibitionNeg =  new FLNeg(prohibition);
-        this.formula = new FLThen(condition, prohibitionNeg);        
+        //P( formula, condition ) = condition -> ! F(formula) = P(C & f)
+        this(new FLAnd(condition, formula));
+    }
+
+    public Permission(FLFormula formula, FLFormula condition, boolean mandatory) {
+        this(formula, condition);
+        if(mandatory) {
+            this.mandatoryRule = new Forbidden(new FLAnd(new FLNeg(condition), formula));
+        }
+    }
+
+    public boolean isMandatory() {
+        return this.mandatoryRule != null;
+    }
+
+    public FLFormula getMandatoryRule() {
+        return this.mandatoryRule;
     }
 
     @Override

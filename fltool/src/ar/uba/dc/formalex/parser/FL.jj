@@ -214,6 +214,7 @@ TOKEN :
 | < REPAIRED_BY : "repaired by" >
 | < EXCEPTION_OF : "is exception of" >
 | < GIVEN_THAT : "given that" >
+| < MANDATORY : "it is mandatory" >
 | < INSIDE : "inside" >
 | < EXISTS : "EXISTS(" >
 | < FORALL : "FORALL(" >
@@ -1541,30 +1542,44 @@ Permission p_clause() :
 {
   FLFormula mainFormula;
   FLFormula conditionFormula = null;
+  FLFormula temporalFormula = null;
   Permission res;
   originalFormula += "P(";
+  boolean mandatory = false;
 }
 {
 //FIXME! Arreglar el log si se puede ya que sentence ya emite log!
   < PERMISSION > mainFormula = sentence()     //P(...)
-  (    
-      < GIVEN_THAT > 
+  (
+      < GIVEN_THAT >
       {
         originalFormula += " given that ";
       }
       conditionFormula = sentence()
+      (","
+          temporalFormula = sentence()
+          {
+            conditionFormula = new FLAnd(conditionFormula, temporalFormula);
+          }
+       )*
+       ( < MANDATORY >
+        {
+            mandatory = true;
+            originalFormula += " it is mandatory ";
+        }
+       )?
   )? < PAR_RIGHT >
   {
     if (conditionFormula == null)
     {
       res = new Permission(mainFormula);
     } else {
-      res = new Permission(mainFormula, conditionFormula);
-    }     
+      res = new Permission(mainFormula, conditionFormula, mandatory);
+    }
     originalFormula += ")";
   }
   (
-    <EXCEPTION_OF> <IDENTIFIER>	
+    <EXCEPTION_OF> <IDENTIFIER>
     {
       String exception = token.image;
       if (exception != null)
@@ -1575,13 +1590,13 @@ Permission p_clause() :
 			StringBuilder sb = new StringBuilder();
             sb.append("Hay una fórmula que es excepción de una regla pero no posee condición: ('" + originalFormula + "'). ");
             throw new RuntimeException(sb.toString());
-        }  else {          
-		        FLFormula rule = flInput.getFLFormulaFromTag(exception);		       
+        }  else {
+		        FLFormula rule = flInput.getFLFormulaFromTag(exception);
 		        rule.addException(res);
 		        flInput.addRule(rule);
 		        originalFormula += " is exception of " + rule.toString();
 		        flInput.addFLRule(originalFormula);
-      	}      		
+      	}
       }
     }
   )?

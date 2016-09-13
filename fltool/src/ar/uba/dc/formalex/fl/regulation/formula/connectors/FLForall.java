@@ -78,4 +78,9 @@ public class FLForall extends FLQuantifier {
 		return andFormula;
 	}
 
+	@Override
+	protected FLFormula createForFormula(FLFormula formula) {
+		return new FLForall(this.getVariable(), this.getRole(), formula);
+	}
+
 }

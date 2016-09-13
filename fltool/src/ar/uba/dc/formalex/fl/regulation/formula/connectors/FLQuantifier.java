@@ -8,6 +8,8 @@ import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.terminals.FLTerminal;
+import ar.uba.dc.formalex.fl.regulation.permission.Permission;
+import javafx.util.converter.PercentageStringConverter;
 
 
 public abstract class FLQuantifier extends FLFormula{
@@ -37,6 +39,16 @@ public abstract class FLQuantifier extends FLFormula{
         return formula;
     }
 
+	public FLFormula getMandatoryRuleForPermission() {
+		if(this.formula instanceof Permission) {
+			Permission permission = (Permission)this.formula;
+			if(permission.isMandatory()) {
+				return this.createForFormula(permission.getMandatoryRule());
+			}
+		}
+		return  null;
+	}
+
     public FLQuantifier(String variable, String role, FLFormula formula) {
 		this.role = role;
 		this.variable = variable;
@@ -58,4 +70,6 @@ public abstract class FLQuantifier extends FLFormula{
         }
     	return rule;
     }
+
+	protected abstract FLFormula createForFormula(FLFormula formula);
 }
