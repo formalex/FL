@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLQuantifier;
-import ar.uba.dc.formalex.fl.regulation.permission.Permission;
 import org.apache.log4j.Logger;
 
 import ar.uba.dc.formalex.fl.FLInput;
@@ -99,23 +97,15 @@ public class LaAplanadora {
         }
         input.setRules(newRules);
 
-        for (FLFormula formula : input.getRegulation().getPermissions()) {
+        for (FLFormula formula : input.getRegulation().getPermissions(true)) {
             newPerms.add(formula.instanciar(null, null, bgUtil, false));
-            if(formula instanceof Permission) {
-                FLFormula newForbidden = ((Permission) formula).getMandatoryRule();
-                if(newForbidden != null) {
-                    input.addRule(newForbidden.instanciar(null, null, bgUtil, false));
-                    input.addFLRule("(from mandatory permission)");
-                }
-            } else if (formula instanceof FLQuantifier) {
-                FLFormula newForbidden = ((FLQuantifier) formula).getMandatoryRuleForPermission();
-                if(newForbidden != null) {
-                    input.addRule(newForbidden.instanciar(null, null, bgUtil, false));
-                    input.addFLRule("(from mandatory permission)");
-                }
-            }
         }
+        normalizeConditionalPermissions(newPerms);
         input.setPermissions(newPerms);
+    }
+
+    private void normalizeConditionalPermissions(List<FLFormula> permissions) {
+
     }
 
 
@@ -128,6 +118,7 @@ public class LaAplanadora {
         for (Set<Counter> c : contadoresOriginales.values()) {
             contCounters += c.size();
         }
+
         logger.info("# agentes: " + agentes.size());
         logger.info("# acciones: " + accionesYAgentes.size());
         logger.info("# acciones impersonales: " + impersonalAction.size());
@@ -135,6 +126,60 @@ public class LaAplanadora {
         logger.info("# intervalos: " + contInterv);
         logger.info("# fórmulas: " + input.getRules().size());
         logger.info("# permisos: " + input.getPermissions().size());
+        logger.info("");
+
+        logger.info("Agentes creados: ");
+
+        for (Agente agente : agentes) {
+            logger.info(agente.getName() + ": " + agente.getRolesCSV());
+        }
+        logger.info("");
+        logger.info("Acciones con agentes:");
+        for (Action a : accionesYAgentes.keySet()) {
+            a.logFL();
+        }
+        logger.info("");
+        if (impersonalAction.size() > 0) {
+            logger.info("Acciones impersonales:");
+            for (Action a : impersonalAction) {
+                a.logFL();
+            }
+            logger.info("");
+        }
+
+        if (intervalosOriginales.values().size() > 0) {
+            logger.info("");
+            logger.info("Intervalos:");
+            for (Set<Interval> si : intervalosOriginales.values()) {
+                for (Interval i : si) {
+                    i.logFL();
+                }
+            }
+        }
+
+        if (contadoresOriginales.values().size() > 0) {
+            logger.info("");
+            logger.info("Contadores:");
+            for (Set<Counter> si : contadoresOriginales.values()) {
+                for (Counter i : si) {
+                    i.logFL();
+                }
+            }
+        }
+        logger.info("");
+        logger.info("");
+
+        //Fórmulas
+        logger.info("Fórmulas expandidas:");
+
+        for (FLFormula f : input.getRules()) {
+            logger.info(f.translateToLTL(anTranslationType));
+        }
+        logger.info("");
+        for (FLFormula f : input.getPermissions()) {
+            logger.info(f.translateToLTL(anTranslationType));
+        }
+        logger.info("");
     }
 
     /*

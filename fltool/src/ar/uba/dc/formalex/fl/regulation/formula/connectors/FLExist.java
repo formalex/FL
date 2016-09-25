@@ -73,7 +73,7 @@ public class FLExist extends FLQuantifier {
     }
 
     @Override
-    protected FLFormula createForFormula(FLFormula formula) {
+    public FLFormula createForFormula(FLFormula formula) {
         return new FLExist(this.getVariable(), this.getRole(), formula);
     }
 }

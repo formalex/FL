@@ -2,27 +2,27 @@
 
 roles compradores {
     regular { independiente, socioDeBanco disjoint cover }, vip disjoint cover
-}, empleado disjoint cover
+}, empleado {  seguridad, vendedor_regular, vendedor_vip disjont cover} disjoint cover
 
 actions comprar_entrada only performable by compradores
 
-actions iniciar_recital, finalizar_recital only performable by compradores
+impersonal actions iniciar_recital, finalizar_recital
 
 global interval recital defined by actions iniciar_recital - finalizar_recital
 
-actions iniciar_pogo, finalizar_pogo only performable by compradores
+actions iniciar_happy_hour, finalizar_happy_hour for empleado
 
-shared interval pogo_regular for regular
-defined by actions iniciar_pogo - finalizar_pogo
+shared interval happy_hour_regular for vendedor_regular
+defined by actions iniciar_happy_hour - finalizar_happy_hour
+only occurs in scope recital
+occurrences 1
+
+shared interval happy_hour_vip for vendedor_vip
+defined by actions iniciar_happy_hour - finalizar_happy_hour
 only occurs in scope recital
 occurrences 3
 
-shared interval pogo_vip for vip
-defined by actions iniciar_pogo - finalizar_pogo
-only occurs in scope recital
-
-actions saltar, empujar only occurs in scope pogo_regular only performable by compradores
-
-action sacar_espectador only occurs in scope pogo_regular only performable by empleado
+actions vender2x1 only occurs in scope happy_hour_regular only performable by vendedor_regular
+action sacar_espectador only occurs in scope happy_hour_regular only performable by empleado
 
 #Clauses

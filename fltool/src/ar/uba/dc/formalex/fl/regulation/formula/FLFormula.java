@@ -1,6 +1,7 @@
 package ar.uba.dc.formalex.fl.regulation.formula;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import ar.uba.dc.formalex.fl.bgtheory.BGUtil;
@@ -86,6 +87,17 @@ public abstract class FLFormula {
 	
 	public void addException(FLFormula formula){
 		this.exceptions.add(formula);	
-	}	     
+	}
 
+	public boolean equals(Object obj) {
+		return obj instanceof FLFormula &&
+			Objects.equals(
+					this.translateToLTL(LTLTranslationType.WITH_JH),
+					((FLFormula) obj).translateToLTL(LTLTranslationType.WITH_JH)
+			);
+	}
+
+	public String toString() {
+		return this.translateToLTL(LTLTranslationType.WITH_JH);
+	}
 }

@@ -214,7 +214,7 @@ TOKEN :
 | < REPAIRED_BY : "repaired by" >
 | < EXCEPTION_OF : "is exception of" >
 | < GIVEN_THAT : "given that" >
-| < MANDATORY : "it is mandatory" >
+| < ONLY_WHEN : "only when">
 | < INSIDE : "inside" >
 | < EXISTS : "EXISTS(" >
 | < FORALL : "FORALL(" >
@@ -606,21 +606,25 @@ void interval() :
       }
   }
   < DEFINED_BY >
-  (< INFINITE >
-    {
-        anInterval.setStartActive(true);
-    }
-    |
-   < IDENTIFIER >
-    {
-        Action startAction = getAction(token.image);
-        anInterval.addStartTrigger(startAction);
-    }
-    (< SHARED_ROLE_SPECIFICITY >
+  { Action startAction = null; }
+  (
+    (
+        < INFINITE >
         {
-            anInterval.addStartTriggerWithoutRefinement(startAction);
+            anInterval.setStartActive(true);
         }
-    )?
+        |
+        < IDENTIFIER >
+        {
+            startAction = getAction(token.image);
+            anInterval.addStartTrigger(startAction);
+        }
+        (< SHARED_ROLE_SPECIFICITY >
+            {
+                anInterval.addStartTriggerWithoutRefinement(startAction);
+            }
+        )?
+    )
     (
         "," < IDENTIFIER >
         {
@@ -635,21 +639,25 @@ void interval() :
     )*
   )
   "-"
-  (< INFINITE >
-    {
-        anInterval.setEndActive(true);
-    }
-  |
-    < IDENTIFIER >
-    {
-        Action endAction = getAction(token.image);
-        anInterval.addEndTrigger(endAction);
-    }
-    (< SHARED_ROLE_SPECIFICITY >
+  { Action endAction = null; }
+  (
+    (
+        < INFINITE >
         {
-            anInterval.addEndTriggerWithoutRefinement(endAction);
+            anInterval.setEndActive(true);
         }
-    )?
+        |
+        < IDENTIFIER >
+        {
+            endAction = getAction(token.image);
+            anInterval.addEndTrigger(endAction);
+        }
+        (< SHARED_ROLE_SPECIFICITY >
+            {
+                anInterval.addEndTriggerWithoutRefinement(endAction);
+            }
+        )?
+    )
     (
         "," < IDENTIFIER >
         {
@@ -1079,6 +1087,10 @@ void clause() :
       {
         flInput.addPermission(p);
         flInput.addFLPermission(originalFormula);
+        if(((Permission) p).isMandatory()) {
+            flInput.addRule(((Permission) p).getMandatoryRule());
+            flInput.addFLRule("Mandatory rule for: " + originalFormula);
+        }
       }
     )
     |
@@ -1120,6 +1132,11 @@ void clause() :
         if (Util.hasPermission(p)){
             flInput.addPermission(p);
             flInput.addFLPermission(originalFormula);
+            FLFormula qtyP = ((FLQuantifier)p).getMandatoryRuleForPermission();
+            if(qtyP != null) {
+                flInput.addRule(qtyP);
+                flInput.addFLRule("Mandatory rule for: " + originalFormula);
+            }
         }
         else{
             flInput.addRule(p);
@@ -1238,58 +1255,6 @@ FLFormula o_clauses() :
     return p;
   }
 }
-
-/*
-//P-cláusula-disyuntiva :=     P-cláusula (or P-cláusula)*
-//p_clause_conjunctive :=     P-cláusula (and P-cláusula)*
-//1 o más P-cláusulas con OR o  1 o más con AND, pero no combinando OR y AND
-FLFormula p_clauses666() :
-{
-    FLFormula p;
-    FLFormula p2;
-}
-{
-  (
-    p = p_clause()
-  )
-  (
-    (
-      < ML_AND >
-        {
-            originalFormula += " & ";
-        }
-        p2 = p_clause()
-        {
-            p = new FLAnd(p, p2);
-        }
-        (   < ML_AND > p2 = p_clause()
-            {
-                originalFormula += " & ";
-                p = new FLAnd(p, p2);
-            }
-        )*
-     |
-      < ML_OR >
-        {
-            originalFormula += " | ";
-        }
-        p2 = p_clause()
-        {
-            p = new FLOr(p, p2);
-        }
-        (   < ML_OR > p2 = p_clause()
-            {
-                originalFormula += " | ";
-                p = new FLOr(p, p2);
-            }
-        )*
-    )?
-  )
-  {
-    return p;
-  }
-}
-*/
 
 //P-cláusula-disyuntiva :=     P-cláusula (or P-cláusula)*
 //p_clause_conjunctive :=     P-cláusula (and P-cláusula)*
@@ -1542,32 +1507,29 @@ Permission p_clause() :
 {
   FLFormula mainFormula;
   FLFormula conditionFormula = null;
-  FLFormula temporalFormula = null;
   Permission res;
-  originalFormula += "P(";
   boolean mandatory = false;
+  originalFormula += "P(";
 }
 {
-//FIXME! Arreglar el log si se puede ya que sentence ya emite log!
   < PERMISSION > mainFormula = sentence()     //P(...)
   (
-      < GIVEN_THAT >
-      {
-        originalFormula += " given that ";
-      }
-      conditionFormula = sentence()
-      (","
-          temporalFormula = sentence()
-          {
-            conditionFormula = new FLAnd(conditionFormula, temporalFormula);
-          }
-       )*
-       ( < MANDATORY >
+      (
+        < GIVEN_THAT >
         {
-            mandatory = true;
-            originalFormula += " it is mandatory ";
+          originalFormula += " given that ";
         }
-       )?
+        conditionFormula = sentence()
+      )
+      |
+      (
+        < ONLY_WHEN >
+        {
+          originalFormula += " only when ";
+          mandatory = true;
+        }
+        conditionFormula = sentence()
+      )
   )? < PAR_RIGHT >
   {
     if (conditionFormula == null)

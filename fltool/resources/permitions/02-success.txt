@@ -1,0 +1,19 @@
+#Background
+//tipo 2
+
+roles pasajero
+
+action desabrochar_cinturon only performable by pasajero
+
+impersonal action prender_luz_roja
+impersonal action apagar_luz_roja
+
+global interval luz_roja_prendida defined by actions infinite, prender_luz_roja - apagar_luz_roja
+
+#Clauses
+//O(apagar_luz_roja)
+//FORALL(i:pasajero; F(i.desabrochar_cinturon & INSIDE(luz_roja_prendida)))
+
+//FORALL(i:pasajero; P(i.desabrochar_cinturon & !INSIDE(luz_roja_prendida)))
+//FORALL(i:pasajero; P(i.desabrochar_cinturon given that !INSIDE(luz_roja_prendida)))
+FORALL(i:pasajero; P(i.desabrochar_cinturon only when !INSIDE(luz_roja_prendida) ))

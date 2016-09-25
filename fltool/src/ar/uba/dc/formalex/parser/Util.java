@@ -35,4 +35,5 @@ public class Util {
 
         throw new RuntimeException("Util.hasPermission: falta implementar......: " + f.getClass());
     }
+    
 }

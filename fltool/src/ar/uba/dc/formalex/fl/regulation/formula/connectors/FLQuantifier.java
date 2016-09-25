@@ -71,5 +71,5 @@ public abstract class FLQuantifier extends FLFormula{
     	return rule;
     }
 
-	protected abstract FLFormula createForFormula(FLFormula formula);
+	public abstract FLFormula createForFormula(FLFormula formula);
 }

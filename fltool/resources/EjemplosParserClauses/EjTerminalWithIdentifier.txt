@@ -11,17 +11,16 @@ impersonal action GozarGarantia
 
 //local interval periodoDemostracionNoCulpaEmpresa defined by actions InterrupcionPrestacionServicioPublico - Treinta_dias_postInterrupcion
 
-global counter dias_de_garantia_restantes  init value  90 
-increases with action paso_un_dia_reparandose by 1, 
-decreases with action paso_un_dia by 1
+global counter dias_de_garantia_restantes init value 90,
+increases with action paso_un_dia_reparandose,
+decreases with action paso_un_dia
 
+global interval lala defined by actions paso_un_dia - paso_un_dia_reparandose
 
- 
 #Clauses
 //Ejemplo sentencia con accion impersonal
-P( ViciosdelaCosa  -> GozarGarantia)
+// P( ViciosdelaCosa  -> GozarGarantia)
 
 //Ejemplo sentencia con contador global
-O(dias_de_garantia_restantes > 0)
-
+P(dias_de_garantia_restantes > 0 given that INSIDE(lala))
 

@@ -1,0 +1,18 @@
+#Background
+//tipo 3
+
+roles comprador
+
+actions comprar_entrada
+impersonal action en_dos_dias
+
+global interval antes_del_evento defined by actions infinite - en_dos_dias
+
+global counter entradas_vendidas,
+increases with action comprar_entrada
+
+
+#Clauses
+O(en_dos_dias)
+FORALL(i:comprador; P(i.comprar_entrada given that entradas_vendidas < 10 ))
+FORALL(i:comprador; P(i.comprar_entrada given that INSIDE(antes_del_evento) ))

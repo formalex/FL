@@ -139,7 +139,7 @@ public interface FLParserConstants {
   /** RegularExpression Id. */
   int GIVEN_THAT = 69;
   /** RegularExpression Id. */
-  int MANDATORY = 70;
+  int ONLY_WHEN = 70;
   /** RegularExpression Id. */
   int INSIDE = 71;
   /** RegularExpression Id. */
@@ -258,7 +258,7 @@ public interface FLParserConstants {
     "\"repaired by\"",
     "\"is exception of\"",
     "\"given that\"",
-    "\"it is mandatory\"",
+    "\"only when\"",
     "\"inside\"",
     "\"EXISTS(\"",
     "\"FORALL(\"",

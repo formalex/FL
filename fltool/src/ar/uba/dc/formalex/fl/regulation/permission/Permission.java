@@ -15,32 +15,44 @@ import ar.uba.dc.formalex.fl.regulation.rules.Forbidden;
 public class Permission extends FLFormula {
 	private FLFormula formula;
 
-    private FLFormula mandatoryRule = null;
+    private FLFormula expresion;
+    private FLFormula condition;
+    private boolean mandatory = false;
 
     public Permission(FLFormula formula) {
         //P( fórmula ) =  !  F( fórmula )
         Forbidden prohibition = new Forbidden(formula);
         this.formula =  new FLNeg(prohibition);
+        this.expresion = formula;
     }
-
+    
     public Permission(FLFormula formula, FLFormula condition) {
-        //P( formula, condition ) = condition -> ! F(formula) = P(C & f)
+        //P( formula, condition ) = condition -> ! F(formula)
         this(new FLAnd(condition, formula));
+        this.expresion = formula;
+        this.condition = condition;
     }
 
     public Permission(FLFormula formula, FLFormula condition, boolean mandatory) {
+        //P( formula, condition ) = condition -> ! F(formula)
         this(formula, condition);
-        if(mandatory) {
-            this.mandatoryRule = new Forbidden(new FLAnd(new FLNeg(condition), formula));
-        }
+        this.mandatory = mandatory;
     }
 
     public boolean isMandatory() {
-        return this.mandatoryRule != null;
+        return this.mandatory;
     }
 
     public FLFormula getMandatoryRule() {
-        return this.mandatoryRule;
+        return new Forbidden(new FLAnd(new FLNeg(this.condition), this.expresion));
+    }
+
+    public FLFormula getExpresion() {
+        return this.expresion;
+    }
+
+    public FLFormula getCondition() {
+        return this.condition;
     }
 
     @Override
