@@ -132,6 +132,7 @@ public class Regulation {
 				} else {
 					ret.add(getNormalizedQtyPermission(permissionList));
 				}
+				logger.info("Se juntaron " + permissionList.size() + " permisos suficientes para la condición" + ((Permission)permissions.get(0)).getExpresion());
 			} else {
 				ret.add(permissionList.get(0));
 			}
