@@ -22,14 +22,14 @@ public class AutomatonCompactorTest {
 	@Test 
 	public void generateAutomatonVariablesAndStateReplacements() throws IOException {
 		
-		BackgroundTheory bt = new BackgroundTheory();
 		String automatonName = "automaton1";
 		
+		BackgroundTheory bt = new BackgroundTheory();
 		Action action1 = new Action();
 		action1.setName("empieza_censo");
 		bt.add(action1);
 		
-		AutomatonReplacementsGenerator automatonReplacementsGenerator = new AutomatonReplacementsGenerator(bt,dir,automatonName);
+		AutomatonReplacementsGenerator automatonReplacementsGenerator = new AutomatonReplacementsGenerator(bt, dir, automatonName);
 		Map<String, String> replacements = automatonReplacementsGenerator.createVariableAndStatesReplacements();
 		
 		assertEquals("NH", replacements.get("NOT_HAPPENING"));
@@ -37,7 +37,7 @@ public class AutomatonCompactorTest {
 		
 		File expectedReplacementFile = new File(dir + "/" +"expectedReplacement1");;
 		File resultReplacementFile = automatonReplacementsGenerator.getReplacementFile();
-		assertAllLinesEquals(expectedReplacementFile, resultReplacementFile);
+		assertAllFilesLinesEquals(expectedReplacementFile, resultReplacementFile);
 		
 	}
 	
@@ -68,7 +68,7 @@ public class AutomatonCompactorTest {
 		File expectedAutomaton = new File(dir + "/" +"expectedAutomaton1.nusmv");
 		File compactedAutomatonFile = automatonCompactor.getCompactedAutomatonFile();
 
-		assertAllLinesEquals(expectedAutomaton, compactedAutomatonFile);
+		assertAllFilesLinesEquals(expectedAutomaton, compactedAutomatonFile);
 
 	}
 	
@@ -87,7 +87,7 @@ public class AutomatonCompactorTest {
 		    put("en_censo","i3");
 		}};		
 		
-		String automatonName = "automaton3";
+		String automatonName = "automaton2";
 		String automatonExtension = ".nusmv";
 		
 		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir,automatonName, automatonExtension, replacements);
@@ -104,7 +104,7 @@ public class AutomatonCompactorTest {
 	}
 	
 	
-	private void assertAllLinesEquals(File expectedFile, File resultFile) throws IOException {
+	private void assertAllFilesLinesEquals(File expectedFile, File resultFile) throws IOException {
 		List<String> expectedLines = FileUtils.readLines(expectedFile, "default");
 		List<String> automatonCompactedLines = FileUtils.readLines(resultFile, "default");
 		
