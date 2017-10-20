@@ -3,13 +3,13 @@ package ar.uba.dc.formalex.automatoncompactor;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import ar.uba.dc.formalex.fl.bgtheory.Action;
@@ -20,7 +20,7 @@ public class AutomatonCompactorTest {
 	private String dir = "./resources/automatonVariablesCompactor";
 
 	@Test 
-	public void generateAutomatonVariablesAndStateReplacements() throws IOException {
+	public void anAutomatonReplacementsGeneratorMustGenerateVariablesAndStateReplacementsAsExpected() throws IOException {
 		
 		String automatonName = "automaton1";
 		
@@ -42,7 +42,7 @@ public class AutomatonCompactorTest {
 	}
 	
 	@Test
-	public void test01() throws IOException {
+	public void anAutomatonCompactorShouldReplaceVariablesAndStatesAsExpected() throws IOException {
 
 		Map<String, String> replacements = new HashMap<String, String>() {{
 		    put("NOT_HAPPENING", "NH");
@@ -59,7 +59,7 @@ public class AutomatonCompactorTest {
 		String automatonName = "automaton1";
 		String automatonExtension = ".nusmv";
 		
-		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir,automatonName, automatonExtension, replacements);
+		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
 		
 		automatonCompactor.compact();
 		
@@ -90,7 +90,7 @@ public class AutomatonCompactorTest {
 		String automatonName = "automaton2";
 		String automatonExtension = ".nusmv";
 		
-		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir,automatonName, automatonExtension, replacements);
+		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
 
 		long init = System.currentTimeMillis();
 		
@@ -98,18 +98,26 @@ public class AutomatonCompactorTest {
 		
 		long end = System.currentTimeMillis();
 		long elapsed = end - init;
+		System.out.println("elapsed time in miliseconds:" + elapsed);
 		
 		assertTrue(elapsed < 6000);
-		System.out.println("elapsed time in miliseconds:" +elapsed);
 	}
 	
 	
 	private void assertAllFilesLinesEquals(File expectedFile, File resultFile) throws IOException {
-		List<String> expectedLines = FileUtils.readLines(expectedFile, "default");
-		List<String> automatonCompactedLines = FileUtils.readLines(resultFile, "default");
-		
-		for (int i = 0; i < expectedLines.size(); i++) {
-			assertEquals(expectedLines.get(i), automatonCompactedLines.get(i));
+//		List<String> expectedLines = FileUtils.readLines(expectedFile, "default");
+//		List<String> automatonCompactedLines = FileUtils.readLines(resultFile, "default");
+//		
+//		for (int i = 0; i < expectedLines.size(); i++) {
+//			assertEquals(expectedLines.get(i), automatonCompactedLines.get(i));
+//		}
+		BufferedReader expectedBufferedReader = Files.newBufferedReader(expectedFile.toPath());
+		BufferedReader resultBufferedReader = Files.newBufferedReader(resultFile.toPath());
+		String expectedLine = null;
+		String resultLine = null;
+		while ((expectedLine = expectedBufferedReader.readLine()) != null) {
+			resultLine = resultBufferedReader.readLine();
+			assertEquals(expectedLine, resultLine);
 		}
 	}
 
