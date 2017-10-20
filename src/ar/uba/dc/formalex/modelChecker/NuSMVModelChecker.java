@@ -2,9 +2,22 @@ package ar.uba.dc.formalex.modelChecker;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.apache.velocity.Template;
@@ -13,13 +26,20 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
+import ar.uba.dc.formalex.automatoncompactor.AutomatonCompactor;
+import ar.uba.dc.formalex.automatoncompactor.AutomatonReplacementsGenerator;
+import ar.uba.dc.formalex.fl.bgtheory.Action;
 import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
+import ar.uba.dc.formalex.fl.bgtheory.Counter;
+import ar.uba.dc.formalex.fl.bgtheory.Interval;
+import ar.uba.dc.formalex.fl.bgtheory.Timer;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLNeg;
 import ar.uba.dc.formalex.util.Fechas;
 import ar.uba.dc.formalex.util.Util;
 import ar.uba.dc.formalex.util.UtilFile;
+import sun.java2d.BackBufferCapsProvider;
 
 /**
  * User: P_BENEDETTI
@@ -118,9 +138,24 @@ public class NuSMVModelChecker {
         }
         try {
             crearAutomata(backgroundTheory, nusmvInput, anLTLTranslationType);
+            
 //            String ltlExpr = formulaToTest.toString() + " & !X X X X X TRUE";
             String ltlExpr = formulaToTest.translateToLTL(anLTLTranslationType );
             crearComandos(nusmvCommands, nusmvOutput.getAbsolutePath(), ltlExpr);
+            
+            // Genero los reemplazos de variables y estados 
+            AutomatonReplacementsGenerator automatonReplacementsGenerator = new AutomatonReplacementsGenerator(backgroundTheory, temp_dir, "automata_" + ts);
+            Map<String, String> variableAndStatesReplacements = automatonReplacementsGenerator.createVariableAndStatesReplacements();
+            
+        // Se crea el archivo del automata con las reducciones.
+            AutomatonCompactor automatonCompactor = new AutomatonCompactor(temp_dir, "automata_" + ts, ".nusmv",variableAndStatesReplacements);
+            automatonCompactor.compact();
+            automatonCompactor.reduceExpression(ltlExpr);
+        // Se crean los comandos con la expresion reducida
+            String nusmvCommandsReducedFileName = "nusmvCommandsReduced" + ts + ".nusmv";
+            File nusmvCommandsReduced = new File(temp_dir, nusmvCommandsReducedFileName);    
+            crearComandos(nusmvCommandsReduced, nusmvOutput.getAbsolutePath(), automatonCompactor.getReducedExpression());
+
         } catch (IOException e1) {
             logger.error(e1.getMessage(), e1);
             throw new RuntimeException(e1);
@@ -182,5 +217,11 @@ public class NuSMVModelChecker {
 
         return nusmvOutput;
     }
+
+
+	private static void crearAutomataCompacto(String dir, String automatonName, String automatonExtension, Map<String, String> replacements) {
+		new AutomatonCompactor(dir, automatonName, automatonExtension, replacements).compact();;
+	}
+	
 }
 
