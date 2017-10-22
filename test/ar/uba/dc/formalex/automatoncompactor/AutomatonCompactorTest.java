@@ -19,7 +19,9 @@ public class AutomatonCompactorTest {
 	
 	private String dir = "./resources/automatonVariablesCompactor";
 
-	@Test 
+	
+	@Test
+	// Test que verifica que a partir de una background theory con una accion se genera correctamente un archivo de reemplazos de variables. 
 	public void anAutomatonReplacementsGeneratorMustGenerateVariablesAndStateReplacementsAsExpected() throws IOException {
 		
 		String automatonName = "automaton1";
@@ -42,6 +44,7 @@ public class AutomatonCompactorTest {
 	}
 	
 	@Test
+	// Test que verifica que a partir de un archivo de automata y un map de reemplazos se realizan correctamente la compactacion del automata.
 	public void anAutomatonCompactorShouldReplaceVariablesAndStatesAsExpected() throws IOException {
 
 		Map<String, String> replacements = new HashMap<String, String>() {{
@@ -73,7 +76,8 @@ public class AutomatonCompactorTest {
 	}
 	
 	@Test
-	public void test02() throws IOException {
+	// Test que verifica que la compactacion de un archivo de 100 MB demora menos de 6000 milisegundos
+	public void aBigFileAutomatonVariablesAndStatesReplacementShouldNotTakeMoreThan6000Milliseconds() throws IOException {
 		
 		Map<String, String> replacements = new HashMap<String, String>() {{
 		    put("NOT_HAPPENING", "NH");
