@@ -1,0 +1,116 @@
+
+
+MODULE main
+VAR	
+	i0: {HA, NH, JH};
+  	i1: {HA, NH, JH};
+  	i3: {HA, NH, JH};
+  	i4: {HA, NH, JH};
+ 	i4_OUTPUT: {noneOfTheOthers, doc_c3, doc_c2, doc_c1};
+	  	i5: {HA, NH, JH};
+  	i6: {HA, NH, JH};
+  	i8: {HA, NH, JH};
+  	i9: {HA, NH, JH};
+  	i10: {AC, IA};
+  	i11: {AC, IA};
+INIT
+	i0 = NH &
+	i1 = NH &
+	i3 = NH &
+	i4 = NH &
+	i5 = NH &
+	i6 = NH &
+	i8 = NH &
+	i9 = NH &
+  	i10 = IA &
+      	i11 = IA &
+        TRUE 
+TRANS
+		 	(i0 = JH -> next(i0) = NH) &
+		(i0 = HA -> next(i0) != NH ) &
+		(i0 = NH -> next(i0) != JH) &
+	  		 	(i1 = JH -> next(i1) = NH) &
+		(i1 = HA -> next(i1) != NH ) &
+		(i1 = NH -> next(i1) != JH) &
+	  		 	(i3 = JH -> next(i3) = NH) &
+		(i3 = HA -> next(i3) != NH ) &
+		(i3 = NH -> next(i3) != JH) &
+	  		 	(i4 = JH -> next(i4) = NH) &
+		(i4 = HA -> next(i4) != NH ) &
+		(i4 = NH -> next(i4) != JH) &
+	  		 	(i5 = JH -> next(i5) = NH) &
+		(i5 = HA -> next(i5) != NH ) &
+		(i5 = NH -> next(i5) != JH) &
+	  		 	(i6 = JH -> next(i6) = NH) &
+		(i6 = HA -> next(i6) != NH ) &
+		(i6 = NH -> next(i6) != JH) &
+	 	(next(i6) = HA -> next(i11) = AC) &
+  		 	(i8 = JH -> next(i8) = NH) &
+		(i8 = HA -> next(i8) != NH ) &
+		(i8 = NH -> next(i8) != JH) &
+	  		 	(i9 = JH -> next(i9) = NH) &
+		(i9 = HA -> next(i9) != NH ) &
+		(i9 = NH -> next(i9) != JH) &
+      	(next(i4) = JH -> (
+  		next(i4_OUTPUT) = noneOfTheOthers |
+  		next(i4_OUTPUT) = doc_c3 |
+  		next(i4_OUTPUT) = doc_c2 |
+  		next(i4_OUTPUT) = doc_c1 |
+  		FALSE)) &
+	(next(i4) != JH ->
+		i4_OUTPUT = next (i4_OUTPUT)) &
+    (( i10 = IA & next(i10) = AC) -> (
+   		(i3 = HA & next(i3) = JH) 
+		     		)) & 
+	((i10 = AC  & next(i10) = IA) -> (
+   		(i8 = HA & next(i8) = JH) 
+		   		)) &
+  	(i10 = IA & (
+   			(i3 = HA & next(i3) = JH) 
+			   		)-> (next(i10) = AC)) & 		
+    	(i10 = AC & (
+   			(i8 = HA & next(i8) = JH) 
+			   		)-> (next(i10) = IA)) & 	
+	((
+   			(i3 = NH & next(i3) = HA) 
+			   		)-> (i10 = IA)) & 
+	((
+   			(i8 = NH & next(i8) = HA) 
+			   		)-> (i10 = AC)) & 
+  	(next(i3) = HA -> (TRUE 
+     	)) &
+  	(next(i8) = HA -> (TRUE 
+     & next(i8) !=  HA 	)) &
+    (( i11 = IA & next(i11) = AC) -> (
+   		(i5 = HA & next(i5) = JH) 
+		|   		(i9 = HA & next(i9) = JH) 
+		     		)) & 
+	((i11 = AC  & next(i11) = IA) -> (
+   		(i0 = HA & next(i0) = JH) 
+		|   		(i4 = HA & next(i4) = JH) 
+		   		)) &
+  	(i11 = IA & (
+   			(i5 = HA & next(i5) = JH) 
+			|   			(i9 = HA & next(i9) = JH) 
+			   		)-> (next(i11) = AC)) & 		
+    	(i11 = AC & (
+   			(i0 = HA & next(i0) = JH) 
+			|   			(i4 = HA & next(i4) = JH) 
+			   		)-> (next(i11) = IA)) & 	
+	((
+   			(i5 = NH & next(i5) = HA) 
+			|   			(i9 = NH & next(i9) = HA) 
+			   		)-> (i11 = IA)) & 
+	((
+   			(i0 = NH & next(i0) = HA) 
+			|   			(i4 = NH & next(i4) = HA) 
+			   		)-> (i11 = AC)) & 
+  	(next(i5) = HA -> (TRUE 
+         & next(i9) !=  HA 	)) &
+  	(next(i9) = HA -> (TRUE 
+     & next(i5) !=  HA     	)) &
+  	(next(i0) = HA -> (TRUE 
+     & next(i0) !=  HA     & next(i4) !=  HA 	)) &
+  	(next(i4) = HA -> (TRUE 
+     & next(i0) !=  HA     & next(i4) !=  HA 	)) &
+ TRUE

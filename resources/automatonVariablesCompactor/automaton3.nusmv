@@ -1,0 +1,158 @@
+--Agente: roles asignados
+--agent_without_role: no_assigned_role
+--agent_1: alumno
+
+MODULE main
+VAR	
+	agent_without_role.elegir_ganadores: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_1.entrar: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	comienza_semana: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_1.elegir_ganadores: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_1.elegir_ganadores_OUTPUT: {noneOfTheOthers, doc_c3, doc_c2, doc_c1};
+	  	agent_1.abrir_concurso: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_1.postularse: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	termina_semana: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_without_role.abrir_concurso: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	semana: {ACTIVE, INACTIVE};
+  	concurso: {ACTIVE, INACTIVE};
+  
+INIT
+	--Se inicializan todas las acciones en NOT_HAPPENING 
+	agent_without_role.elegir_ganadores = NOT_HAPPENING &
+	agent_1.entrar = NOT_HAPPENING &
+	comienza_semana = NOT_HAPPENING &
+	agent_1.elegir_ganadores = NOT_HAPPENING &
+	agent_1.abrir_concurso = NOT_HAPPENING &
+	agent_1.postularse = NOT_HAPPENING &
+	termina_semana = NOT_HAPPENING &
+	agent_without_role.abrir_concurso = NOT_HAPPENING &
+	--Las variables que representan los output_values no se inicializan (toman un 
+	--valor aleatorio entre los posibles), la idea es que el valor de la variable solo 
+	--tiene sentido si la acción correspondiente está en JH
+        	--Se inicializan todos los intervalos en INACTIVE, salvo que sean isStartActive
+  	semana = INACTIVE &
+      	concurso = INACTIVE &
+        TRUE 
+
+TRANS
+	--En el caso de representar la accion con tres estados:
+		--Las acciones que están en JH pasan a NH
+		--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--En el caso de representar la accion con dos estados:
+		--Desde H se puede pasar a NH o quedarse en H (ya no pueden pasar a JH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--Si tienen hasOccursIn => si están en H => hasOccursIn = activo
+		 	(agent_without_role.elegir_ganadores = JUST_HAPPENED -> next(agent_without_role.elegir_ganadores) = NOT_HAPPENING) &
+		(agent_without_role.elegir_ganadores = HAPPENING -> next(agent_without_role.elegir_ganadores) != NOT_HAPPENING ) &
+		(agent_without_role.elegir_ganadores = NOT_HAPPENING -> next(agent_without_role.elegir_ganadores) != JUST_HAPPENED) &
+	  		 	(agent_1.entrar = JUST_HAPPENED -> next(agent_1.entrar) = NOT_HAPPENING) &
+		(agent_1.entrar = HAPPENING -> next(agent_1.entrar) != NOT_HAPPENING ) &
+		(agent_1.entrar = NOT_HAPPENING -> next(agent_1.entrar) != JUST_HAPPENED) &
+	  		 	(comienza_semana = JUST_HAPPENED -> next(comienza_semana) = NOT_HAPPENING) &
+		(comienza_semana = HAPPENING -> next(comienza_semana) != NOT_HAPPENING ) &
+		(comienza_semana = NOT_HAPPENING -> next(comienza_semana) != JUST_HAPPENED) &
+	  		 	(agent_1.elegir_ganadores = JUST_HAPPENED -> next(agent_1.elegir_ganadores) = NOT_HAPPENING) &
+		(agent_1.elegir_ganadores = HAPPENING -> next(agent_1.elegir_ganadores) != NOT_HAPPENING ) &
+		(agent_1.elegir_ganadores = NOT_HAPPENING -> next(agent_1.elegir_ganadores) != JUST_HAPPENED) &
+	  		 	(agent_1.abrir_concurso = JUST_HAPPENED -> next(agent_1.abrir_concurso) = NOT_HAPPENING) &
+		(agent_1.abrir_concurso = HAPPENING -> next(agent_1.abrir_concurso) != NOT_HAPPENING ) &
+		(agent_1.abrir_concurso = NOT_HAPPENING -> next(agent_1.abrir_concurso) != JUST_HAPPENED) &
+	  		 	(agent_1.postularse = JUST_HAPPENED -> next(agent_1.postularse) = NOT_HAPPENING) &
+		(agent_1.postularse = HAPPENING -> next(agent_1.postularse) != NOT_HAPPENING ) &
+		(agent_1.postularse = NOT_HAPPENING -> next(agent_1.postularse) != JUST_HAPPENED) &
+	 	(next(agent_1.postularse) = HAPPENING -> next(concurso) = ACTIVE) &
+  		 	(termina_semana = JUST_HAPPENED -> next(termina_semana) = NOT_HAPPENING) &
+		(termina_semana = HAPPENING -> next(termina_semana) != NOT_HAPPENING ) &
+		(termina_semana = NOT_HAPPENING -> next(termina_semana) != JUST_HAPPENED) &
+	  		 	(agent_without_role.abrir_concurso = JUST_HAPPENED -> next(agent_without_role.abrir_concurso) = NOT_HAPPENING) &
+		(agent_without_role.abrir_concurso = HAPPENING -> next(agent_without_role.abrir_concurso) != NOT_HAPPENING ) &
+		(agent_without_role.abrir_concurso = NOT_HAPPENING -> next(agent_without_role.abrir_concurso) != JUST_HAPPENED) &
+	  	--Si una acción tiene output values, al pasar de H a JH, la variable que  
+	--representa el output value toma alguno de sus valores posibles. Si la 
+	--acción no hace ese cambio de H a JH => el valor queda igual
+	--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+	--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+      	(next(agent_1.elegir_ganadores) = JUST_HAPPENED -> (
+  		next(agent_1.elegir_ganadores_OUTPUT) = noneOfTheOthers |
+  		next(agent_1.elegir_ganadores_OUTPUT) = doc_c3 |
+  		next(agent_1.elegir_ganadores_OUTPUT) = doc_c2 |
+  		next(agent_1.elegir_ganadores_OUTPUT) = doc_c1 |
+  		FALSE)) &
+	(next(agent_1.elegir_ganadores) != JUST_HAPPENED ->
+		agent_1.elegir_ganadores_OUTPUT = next (agent_1.elegir_ganadores_OUTPUT)) &
+     	--Modificaciones de intervalos
+	--El intervalo se modifica solo ante algunas transiciones de las acciones que lo delimitan
+      --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( semana = INACTIVE & next(semana) = ACTIVE) -> (
+   		(comienza_semana = HAPPENING & next(comienza_semana) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((semana = ACTIVE  & next(semana) = INACTIVE) -> (
+   		(termina_semana = HAPPENING & next(termina_semana) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(semana = INACTIVE & (
+   			(comienza_semana = HAPPENING & next(comienza_semana) = JUST_HAPPENED) 
+			   		)-> (next(semana) = ACTIVE)) & 		
+    	(semana = ACTIVE & (
+   			(termina_semana = HAPPENING & next(termina_semana) = JUST_HAPPENED) 
+			   		)-> (next(semana) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(comienza_semana = NOT_HAPPENING & next(comienza_semana) = HAPPENING) 
+			   		)-> (semana = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(termina_semana = NOT_HAPPENING & next(termina_semana) = HAPPENING) 
+			   		)-> (semana = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(comienza_semana) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(termina_semana) = HAPPENING -> (TRUE 
+     & next(termina_semana) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( concurso = INACTIVE & next(concurso) = ACTIVE) -> (
+   		(agent_1.abrir_concurso = HAPPENING & next(agent_1.abrir_concurso) = JUST_HAPPENED) 
+		|   		(agent_without_role.abrir_concurso = HAPPENING & next(agent_without_role.abrir_concurso) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((concurso = ACTIVE  & next(concurso) = INACTIVE) -> (
+   		(agent_without_role.elegir_ganadores = HAPPENING & next(agent_without_role.elegir_ganadores) = JUST_HAPPENED) 
+		|   		(agent_1.elegir_ganadores = HAPPENING & next(agent_1.elegir_ganadores) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(concurso = INACTIVE & (
+   			(agent_1.abrir_concurso = HAPPENING & next(agent_1.abrir_concurso) = JUST_HAPPENED) 
+			|   			(agent_without_role.abrir_concurso = HAPPENING & next(agent_without_role.abrir_concurso) = JUST_HAPPENED) 
+			   		)-> (next(concurso) = ACTIVE)) & 		
+    	(concurso = ACTIVE & (
+   			(agent_without_role.elegir_ganadores = HAPPENING & next(agent_without_role.elegir_ganadores) = JUST_HAPPENED) 
+			|   			(agent_1.elegir_ganadores = HAPPENING & next(agent_1.elegir_ganadores) = JUST_HAPPENED) 
+			   		)-> (next(concurso) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_1.abrir_concurso = NOT_HAPPENING & next(agent_1.abrir_concurso) = HAPPENING) 
+			|   			(agent_without_role.abrir_concurso = NOT_HAPPENING & next(agent_without_role.abrir_concurso) = HAPPENING) 
+			   		)-> (concurso = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_without_role.elegir_ganadores = NOT_HAPPENING & next(agent_without_role.elegir_ganadores) = HAPPENING) 
+			|   			(agent_1.elegir_ganadores = NOT_HAPPENING & next(agent_1.elegir_ganadores) = HAPPENING) 
+			   		)-> (concurso = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_1.abrir_concurso) = HAPPENING -> (TRUE 
+         & next(agent_without_role.abrir_concurso) !=  HAPPENING 	)) &
+  	(next(agent_without_role.abrir_concurso) = HAPPENING -> (TRUE 
+     & next(agent_1.abrir_concurso) !=  HAPPENING     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_without_role.elegir_ganadores) = HAPPENING -> (TRUE 
+     & next(agent_without_role.elegir_ganadores) !=  HAPPENING     & next(agent_1.elegir_ganadores) !=  HAPPENING 	)) &
+  	(next(agent_1.elegir_ganadores) = HAPPENING -> (TRUE 
+     & next(agent_without_role.elegir_ganadores) !=  HAPPENING     & next(agent_1.elegir_ganadores) !=  HAPPENING 	)) &
+     
+
+ TRUE

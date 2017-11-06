@@ -17,7 +17,6 @@ public class AutomatonCompactor {
 	private String automatonName;
 	private String automatonExtension;
 	private Map<String, String> replacements;
-	private boolean alreadyCompacted;
 	private File compactedAutomatonFile;
 	private String dir;
 	private StringBuffer reducedExpression;
@@ -27,11 +26,14 @@ public class AutomatonCompactor {
 		this.automatonName = automatonName;
 		this.automatonExtension = automatonExtension;
 		this.replacements = replacements;
-		this.alreadyCompacted = false;
 		this.dir = dir;
 	}
 
-	public void compact() {
+	public void compact(boolean removeComments) {
+		if (removeComments) {
+			this.removeCommentsAndEmptyLines();
+			automatonName = automatonName + "WithoutCommentsAndEmptyLines";
+		}
 		try {
 			StringBuffer compactedStringBuffer = new StringBuffer();
 			pattern = new StringBuffer();
@@ -56,8 +58,6 @@ public class AutomatonCompactor {
 			compactedFileWriter.flush();
 			compactedFileWriter.close();
 			
-			alreadyCompacted = true;
-		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -74,7 +74,41 @@ public class AutomatonCompactor {
 		m.appendTail(reducedExpression);
 	}
 
+	public void removeCommentsAndEmptyLines() {
+		try {
+			StringBuffer automatonWithoutCommentsStringBuffer = new StringBuffer();
+			
+			Pattern p = Pattern.compile("(^|\\s)--.*");
+			Matcher m = p.matcher(fromFile(dir + "/"+ automatonName + automatonExtension));
+			
+			while (m.find()) {
+				m.appendReplacement(automatonWithoutCommentsStringBuffer, "");
+			}
+			m.appendTail(automatonWithoutCommentsStringBuffer);
+
+			StringBuffer automatonWithoutCommentsAndEmptyLinesStringBuffer = new StringBuffer();
+			
+			Pattern pEmptyLines = Pattern.compile("(?m)^[ \\t]*\\r?\\n");
+//			Pattern pEmptyLines = Pattern.compile("(?m)^\\\\s");
+			Matcher mEmptyLines = pEmptyLines.matcher(automatonWithoutCommentsStringBuffer);
+			
+			while (mEmptyLines.find()) {
+				mEmptyLines.appendReplacement(automatonWithoutCommentsAndEmptyLinesStringBuffer, "");
+			}
+			mEmptyLines.appendTail(automatonWithoutCommentsAndEmptyLinesStringBuffer);
 	
+			File automatonWithoutCommentsFile = new File(dir + "/"+automatonName + "WithoutCommentsAndEmptyLines" + automatonExtension);
+			FileWriter compactedFileWriter = new FileWriter(automatonWithoutCommentsFile);
+			compactedFileWriter.write(automatonWithoutCommentsAndEmptyLinesStringBuffer.toString());
+			compactedFileWriter.flush();
+			compactedFileWriter.close();
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
     public CharSequence fromFile(String filename) throws IOException {
         FileInputStream input = new FileInputStream(filename);
         FileChannel channel = input.getChannel();
@@ -89,12 +123,8 @@ public class AutomatonCompactor {
 		return compactedAutomatonFile;
 	}
 
-	public boolean isAlreadyCompacted() {
-		return alreadyCompacted;
-	}
-
 	public String getReducedExpression() {
 		return reducedExpression.toString();
 	}
-
+	
 }

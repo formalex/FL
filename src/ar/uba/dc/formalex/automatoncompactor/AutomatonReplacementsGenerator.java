@@ -11,6 +11,7 @@ import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
 import ar.uba.dc.formalex.fl.bgtheory.Counter;
 import ar.uba.dc.formalex.fl.bgtheory.Interval;
 import ar.uba.dc.formalex.fl.bgtheory.Timer;
+import ar.uba.dc.formalex.fl.regulation.formula.terminals.LtlActionValue;
 
 public class AutomatonReplacementsGenerator {
 
@@ -30,19 +31,25 @@ public class AutomatonReplacementsGenerator {
 		try {
 			StringBuffer replacementStringBuffer = new StringBuffer();
 			
+			String notHappening = LtlActionValue.NOT_HAPPENING.getValue();
+			String happening = LtlActionValue.HAPPENING.getValue();
+			String justHappened = LtlActionValue.JUST_HAPPENED.getValue();
+			String active = "ACTIVE";
+			String inactive = "INACTIVE";
+
 			replacements = new HashMap<String, String>() {{
-			    put("NOT_HAPPENING", "NH");
-			    put("HAPPENING", "H");
-			    put("JUST_HAPPENED", "JH");
-			    put("ACTIVE", "A");
-			    put("INACTIVE", "I");
+				put(notHappening, "NH");
+				put(happening, "HA");
+				put(justHappened, "JH");
+				put(active, "AC");
+				put(inactive, "IA");
 			}};
 	
-			replacementStringBuffer.append("NOT_HAPPENING="+replacements.get("NOT_HAPPENING")+"\n");
-			replacementStringBuffer.append("HAPPENING="+replacements.get("HAPPENING")+"\n");
-			replacementStringBuffer.append("JUST_HAPPENED="+replacements.get("JUST_HAPPENED")+"\n");
-			replacementStringBuffer.append("ACTIVE="+replacements.get("ACTIVE")+"\n");
-			replacementStringBuffer.append("INACTIVE="+replacements.get("INACTIVE")+"\n");
+			replacementStringBuffer.append(notHappening + "=" + replacements.get(notHappening)+"\n");
+			replacementStringBuffer.append(happening + "=" + replacements.get(happening)+"\n");
+			replacementStringBuffer.append(justHappened + "=" + replacements.get(justHappened)+"\n");
+			replacementStringBuffer.append(active + "=" + replacements.get(active)+"\n");
+			replacementStringBuffer.append(inactive + "=" + replacements.get(inactive)+"\n");
 			
 			int variableCounter = 0;
 			
