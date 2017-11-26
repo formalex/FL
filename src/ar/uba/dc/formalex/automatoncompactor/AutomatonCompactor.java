@@ -1,5 +1,6 @@
 package ar.uba.dc.formalex.automatoncompactor;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -8,6 +9,8 @@ import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,61 +20,65 @@ public class AutomatonCompactor {
 	private String automatonName;
 	private String automatonExtension;
 	private Map<String, String> replacements;
-	private File compactedAutomatonFile;
 	private String dir;
-	private StringBuffer reducedExpression;
-	private StringBuffer pattern;
+	private Map<String, String> inverseReplacements;
 
 	public AutomatonCompactor(String dir, String automatonName, String automatonExtension, Map<String, String> replacements) {
 		this.automatonName = automatonName;
 		this.automatonExtension = automatonExtension;
 		this.replacements = replacements;
+		this.inverseReplacements = inverseReplacements(replacements);
 		this.dir = dir;
 	}
 
-	public void compact(boolean removeComments) {
-		if (removeComments) {
-			this.removeCommentsAndEmptyLines();
-			automatonName = automatonName + "WithoutCommentsAndEmptyLines";
-		}
+	public AutomatonCompactor(String dir, String automatonName, String automatonExtension, String replacementsFileName) {
+		Map<String, String> replacements = new HashMap<String, String>();
 		try {
-			StringBuffer compactedStringBuffer = new StringBuffer();
-			pattern = new StringBuffer();
-			
-			for (String toBeReplaced : replacements.keySet()) {
-				pattern.append("|"+toBeReplaced);
-			}
-			
-			pattern.deleteCharAt(0);
-			
-			Pattern p = Pattern.compile(pattern.toString());
-			Matcher m = p.matcher(fromFile(dir + "/"+ automatonName + automatonExtension));
-			
-			while (m.find()) {
-				m.appendReplacement(compactedStringBuffer, replacements.get(m.group()));
-			}
-			m.appendTail(compactedStringBuffer);
-	
-			compactedAutomatonFile = new File(dir + "/"+automatonName + "Compacted" + automatonExtension);
-			FileWriter compactedFileWriter = new FileWriter(compactedAutomatonFile);
-			compactedFileWriter.write(compactedStringBuffer.toString());
-			compactedFileWriter.flush();
-			compactedFileWriter.close();
-			
+			File replacementsFile = new File(dir + "/" + replacementsFileName);
+			BufferedReader bufferedReader = Files.newBufferedReader(replacementsFile.toPath());
+			String line = null;
+			while ((line = bufferedReader.readLine()) != null) {
+				String[] parts = line.split("=");
+				replacements.put(parts[0], parts[1]);
+			}			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
+		this.automatonName = automatonName;
+		this.automatonExtension = automatonExtension;
+		this.replacements = replacements;
+		this.inverseReplacements = inverseReplacements(replacements);
+		this.dir = dir;
 	}
 
-	public void reduceExpression(String ltlExpr) {
-		reducedExpression = new StringBuffer();
-		Pattern p = Pattern.compile(pattern.toString());
-		Matcher m = p.matcher(ltlExpr);
-		while (m.find()) {
-			m.appendReplacement(reducedExpression, replacements.get(m.group()));
+	private Map<String, String> inverseReplacements(Map<String, String> replacements) {
+		Map<String, String> inverseReplacements = new HashMap<String, String>();
+		for (String replacement : replacements.keySet()) {
+			inverseReplacements.put(replacements.get(replacement), replacement);
 		}
-		m.appendTail(reducedExpression);
+		return inverseReplacements;
+	}
+
+	public File compact(boolean removeComments, String compactedFileName) {
+		if (removeComments) {
+			this.removeCommentsAndEmptyLines();
+			automatonName = automatonName + "WithoutCommentsAndEmptyLines";
+		}
+		
+		return performFileReplacements(dir, automatonName + automatonExtension, compactedFileName + automatonExtension, replacements);
+
+	}
+
+	public File decompact(String decompactedFileName) {
+		
+		return performFileReplacements(dir, automatonName + automatonExtension, decompactedFileName, inverseReplacements);
+		
+	}
+
+	public String reduceExpression(String ltlExpr, Map<String, String> replacements) {
+		
+		return performStringReplacements(ltlExpr, replacements);
 	}
 
 	public void removeCommentsAndEmptyLines() {
@@ -89,7 +96,6 @@ public class AutomatonCompactor {
 			StringBuffer automatonWithoutCommentsAndEmptyLinesStringBuffer = new StringBuffer();
 			
 			Pattern pEmptyLines = Pattern.compile("(?m)^[ \\t]*\\r?\\n");
-//			Pattern pEmptyLines = Pattern.compile("(?m)^\\\\s");
 			Matcher mEmptyLines = pEmptyLines.matcher(automatonWithoutCommentsStringBuffer);
 			
 			while (mEmptyLines.find()) {
@@ -109,6 +115,49 @@ public class AutomatonCompactor {
 		
 	}
 
+	public File performFileReplacements(String dir, String originalFileName, String fileWithReplacementsName, Map<String, String> replacementsMap) {
+
+		File fileWithReplacement = null;
+		
+		try {
+			String stringWithReplacements = performStringReplacements(fromFile(dir + "/"+ originalFileName), replacementsMap);
+
+			fileWithReplacement = new File(dir + "/" + fileWithReplacementsName);
+			
+			FileWriter fileWithReplacementsFileWriter = new FileWriter(fileWithReplacement);
+			fileWithReplacementsFileWriter.write(stringWithReplacements);
+			fileWithReplacementsFileWriter.flush();
+			fileWithReplacementsFileWriter.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+		return fileWithReplacement;
+	}
+	
+	public String performStringReplacements(CharSequence originalString, Map<String, String> replacementMap) {
+
+			StringBuffer stringWithReplacementsBuffer = new StringBuffer();
+			StringBuffer pattern = new StringBuffer();
+			
+			for (String toBeReplaced : replacementMap.keySet()) {
+				pattern.append("|"+toBeReplaced);
+			}
+			
+			pattern.deleteCharAt(0);
+			
+			Pattern p = Pattern.compile(pattern.toString());
+			Matcher m = p.matcher(originalString);
+			
+			while (m.find()) {
+				m.appendReplacement(stringWithReplacementsBuffer, replacementMap.get(m.group()));
+			}
+			m.appendTail(stringWithReplacementsBuffer);
+	
+			return stringWithReplacementsBuffer.toString();
+			
+	}
+
     public CharSequence fromFile(String filename) throws IOException {
         FileInputStream input = new FileInputStream(filename);
         FileChannel channel = input.getChannel();
@@ -116,15 +165,8 @@ public class AutomatonCompactor {
         // Create a read-only CharBuffer on the file
         ByteBuffer bbuf = channel.map(FileChannel.MapMode.READ_ONLY, 0, (int)channel.size());
         CharBuffer cbuf = Charset.forName("UTF-8").newDecoder().decode(bbuf);
+        input.close();
         return cbuf;
     }
 
-	public File getCompactedAutomatonFile() {
-		return compactedAutomatonFile;
-	}
-
-	public String getReducedExpression() {
-		return reducedExpression.toString();
-	}
-	
 }

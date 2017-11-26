@@ -27,14 +27,14 @@ public class AutomatonCompactorTest {
 	// Test que verifica que a partir de una background theory con una accion se genera correctamente un archivo de reemplazos de variables. 
 	public void anAutomatonReplacementsGeneratorMustGenerateVariablesAndStateReplacementsAsExpected() throws IOException {
 		
-		String automatonName = "automaton1";
+		String replacementFileName = "automaton1Replacements";
 		
 		BackgroundTheory bt = new BackgroundTheory();
 		Action action1 = new Action();
 		action1.setName("empieza_censo");
 		bt.add(action1);
 		
-		AutomatonReplacementsGenerator automatonReplacementsGenerator = new AutomatonReplacementsGenerator(bt, dir, automatonName);
+		AutomatonReplacementsGenerator automatonReplacementsGenerator = new AutomatonReplacementsGenerator(bt, dir, replacementFileName);
 		Map<String, String> replacements = automatonReplacementsGenerator.createVariableAndStatesReplacements();
 		
 		assertEquals("NH", replacements.get("NOT_HAPPENING"));
@@ -68,10 +68,9 @@ public class AutomatonCompactorTest {
 		
 		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
 		
-		automatonCompactor.compact(removeComments);
+		File compactedAutomatonFile = automatonCompactor.compact(removeComments, automatonName + "Compacted");
 		
 		File expectedAutomaton = new File(dir + "/" +"expectedAutomaton1.nusmv");
-		File compactedAutomatonFile = automatonCompactor.getCompactedAutomatonFile();
 
 		assertAllFilesLinesEquals(expectedAutomaton, compactedAutomatonFile);
 
@@ -101,7 +100,7 @@ public class AutomatonCompactorTest {
 
 		long init = System.currentTimeMillis();
 		
-		automatonCompactor.compact(removeComments);
+		automatonCompactor.compact(removeComments, automatonName + "Compacted");
 		
 		long end = System.currentTimeMillis();
 		long elapsed = end - init;
@@ -167,13 +166,28 @@ public class AutomatonCompactorTest {
 		
 		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
 		
-		automatonCompactor.compact(removeComments);
+		File compactedAutomatonFile = automatonCompactor.compact(removeComments, automatonName + "Compacted");
 		
 		File expectedAutomaton = new File(dir + "/" +"expectedAutomaton3.nusmv");
-		File compactedAutomatonFile = automatonCompactor.getCompactedAutomatonFile();
 
 		assertAllFilesLinesEquals(expectedAutomaton, compactedAutomatonFile);
 
+	}
+	
+	@Test
+	public void test() throws IOException {
+		String replacementsFileName = "replacements";
+		String nusmvOutReducedName = "nusmvOutReduced";
+		String nusmvOutReducedExtension = ".nusmv";
+		String nusmvOutFileName = "nusmvOutReducedDecompacted";
+		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, nusmvOutReducedName, nusmvOutReducedExtension, replacementsFileName);
+		File nusmvOut = null;
+		File nusmvOutExpected = new File(dir + "/nusmvOutExpected.nusmv");
+		
+		nusmvOut = automatonCompactor.decompact(nusmvOutFileName);
+		
+		assertAllFilesLinesEquals(nusmvOutExpected, nusmvOut);
+		
 	}
 	
 	// Funcion auxiliar que verifica si dos archivos tienen el mismo contenido linea a linea.

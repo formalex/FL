@@ -17,13 +17,13 @@ public class AutomatonReplacementsGenerator {
 
 	private BackgroundTheory backgroundTheory;
 	private String dir;
-	private String automatonName;
+	private String replacementsFileName;
 	private File replacementsFile;
 
-	public AutomatonReplacementsGenerator(BackgroundTheory bt, String dir, String automatonName) {
+	public AutomatonReplacementsGenerator(BackgroundTheory bt, String dir, String replacementsFileName) {
 		this.backgroundTheory = bt;
 		this.dir = dir;
-		this.automatonName = automatonName;
+		this.replacementsFileName = replacementsFileName;
 	}
 
 	public Map<String, String> createVariableAndStatesReplacements() {
@@ -79,7 +79,7 @@ public class AutomatonReplacementsGenerator {
 				}
 			}
 			
-			replacementsFile = new File(dir + "/"+automatonName + "Replacements");
+			replacementsFile = new File(dir + "/"+replacementsFileName);
 			FileWriter replacementsFileWriter;
 			replacementsFileWriter = new FileWriter(replacementsFile);
 			replacementsFileWriter.write(replacementStringBuffer.toString());

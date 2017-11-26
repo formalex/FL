@@ -1,0 +1,8 @@
+NOT_HAPPENING=NH
+HAPPENING=HA
+JUST_HAPPENED=JH
+ACTIVE=AC
+INACTIVE=IA
+agent_2.comprar_entrada=i0
+agent_1.comprar_entrada=i1
+entradas_vendidas=i2

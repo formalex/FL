@@ -101,26 +101,27 @@ public class NuSMVModelChecker {
         FLFormula formulaToTest = new FLNeg(formula);
 
         String ts = Fechas.getAAAAMMDD_HHMMSS();
-        String nusmvAutomataFileName = "automata_" + ts + ".nusmv";
-        String nusmvCommandsFileName = "nusmvCommands_" + ts + ".nusmv";
-        String nusvmOutputFileName = "nusmvOut_" + ts + ".nusmv";
-
+        String automataName = "automata_" + ts;
+		String automataExtension = ".nusmv";
+		String nusmvAutomataFileName = automataName + automataExtension;
+        String nusmvCommandsName = "nusmvCommands_" + ts;
+		String nusmvCommandsFileName = nusmvCommandsName + automataExtension;
+        String nusmvOutputName = "nusmvOut_" + ts;
+		String nusvmOutputFileName = nusmvOutputName + automataExtension;
+        
         String temp_dir = System.getProperty("TEMP_DIR");
         File nusmvInput = new File(temp_dir, nusmvAutomataFileName);
         File nusmvCommands = new File(temp_dir, nusmvCommandsFileName);
         File nusmvOutput = new File(temp_dir, nusvmOutputFileName);
         
-        File nusmvCommandsReduced = null;
-        AutomatonCompactor automatonCompactor = null;
-        
         int ind = 1;
         while (nusmvCommands.exists()) {
-            nusmvCommandsFileName = "nusmvCommands_" + ts + "_" + ind++ + ".nusmv";
+            nusmvCommandsFileName = "nusmvCommands_" + ts + "_" + ind++ + automataExtension;
             nusmvCommands = new File(temp_dir, nusmvCommandsFileName );
         }
         ind = 1;
         while (nusmvOutput.exists()) {
-            nusvmOutputFileName = "nusmvOut_" + ts + "_" + ind++ + ".nusmv";
+            nusvmOutputFileName = "nusmvOut_" + ts + "_" + ind++ + automataExtension;
             nusmvOutput = new File(temp_dir, nusvmOutputFileName );
         }
         try {
@@ -147,27 +148,9 @@ public class NuSMVModelChecker {
                 command = nusmvExecutable +" -df -dynamic -source " + nusmvCommands.getAbsolutePath() +
                         " " + nusmvInput.getAbsolutePath();
             } else {
-            	//Si se eligio compactar el automata se generan todos los archivos necesarios.
-                // Genero los reemplazos de variables y estados 
-                AutomatonReplacementsGenerator automatonReplacementsGenerator = new AutomatonReplacementsGenerator(backgroundTheory, temp_dir, "automata_" + ts);
-                Map<String, String> variableAndStatesReplacements = automatonReplacementsGenerator.createVariableAndStatesReplacements();
-                // Se crea el archivo del automata con las reducciones.
-                automatonCompactor = new AutomatonCompactor(temp_dir, "automata_" + ts, ".nusmv", variableAndStatesReplacements);;
-                
-                boolean removeComments = false;
-        		String strSinComentarios = System.getProperty("NUSMV_SIN_COMENTARIOS");
-        		if(strSinComentarios != null){
-        			removeComments = Boolean.parseBoolean(strSinComentarios);
-        		}
-    			automatonCompactor.compact(removeComments);
-    			automatonCompactor.reduceExpression(ltlExpr);
-    			// Se crean los comandos con la expresion reducida
-                String nusmvCommandsReducedFileName = "nusmvCommandsReduced" + ts + ".nusmv";
-                nusmvCommandsReduced = new File(temp_dir, nusmvCommandsReducedFileName);    
-                crearComandos(nusmvCommandsReduced, nusmvOutput.getAbsolutePath(), automatonCompactor.getReducedExpression());
-            	
-                command = nusmvExecutable +" -df -dynamic -source " + nusmvCommandsReduced.getAbsolutePath() +
-    	        " " + automatonCompactor.getCompactedAutomatonFile().getAbsolutePath();
+            	//Si se eligio compactar el automata se generan todos los archivos necesarios y obtengo el string de comandos correspondientes.
+            	command = compactNuSMVFiles(backgroundTheory, temp_dir, automataName, automataExtension, 
+            								nusmvCommandsName, nusmvOutputName, nusmvExecutable, ltlExpr);
             }
         	
             logger.info("Comienza nusmv. Comando a ejecutar:  " + command);
@@ -204,6 +187,13 @@ public class NuSMVModelChecker {
             }
 
             child.waitFor();
+            
+            if (compactAutomaton) {
+            	// Se hace la inversa de los reemplazos de la compactacion en la vuelta de nusmv
+        		AutomatonCompactor nusmvOutDecompactor = 
+        				new AutomatonCompactor(temp_dir, nusmvOutputName + "Compacted" , automataExtension, automataName + "Replacements"); 
+        		nusmvOutDecompactor.decompact(nusvmOutputFileName);
+            }
             long fin = System.currentTimeMillis();
             long seg = (fin - ini);
             logger.debug("Demoró " + seg + " ms");
@@ -217,6 +207,50 @@ public class NuSMVModelChecker {
 
         return nusmvOutput;
     }
+
+	private static String compactNuSMVFiles(BackgroundTheory backgroundTheory, String temp_dir,
+			String automataFileName, String automataExtension, String commandsFileName, String nusvmOutputFileName,
+			String nusmvExecutable, String ltlExpr) throws IOException {
+		
+		//Es el string de retorno que representa el command que se va a ejecutar cuando se invoca a Nusmv
+		String command;
+		
+		// Genero el archivo de reemplazos de variables y estados a partir de la backgroundTheory. 
+		String replacementsFileName = automataFileName + "Replacements";
+		AutomatonReplacementsGenerator automatonReplacementsGenerator = new AutomatonReplacementsGenerator(backgroundTheory, temp_dir, replacementsFileName);
+		
+		// Obtengo el mapa de los reemplazos generados
+		Map<String, String> variableAndStatesReplacements = automatonReplacementsGenerator.createVariableAndStatesReplacements();
+		
+		// Se crea el compactador del automata con las reducciones.
+		AutomatonCompactor automatonCompactor = new AutomatonCompactor(temp_dir, automataFileName, automataExtension, variableAndStatesReplacements);
+
+		// Verifico si se requiere eliminar comentarios del archivo del automata para la compactacion.
+		boolean removeComments = false;
+		String strSinComentarios = System.getProperty("NUSMV_SIN_COMENTARIOS");
+		if(strSinComentarios != null){
+			removeComments = Boolean.parseBoolean(strSinComentarios);
+		}
+		
+		// Se realiza la compactacion del archivo del automata con la opcion de eliminar comentarios
+		File compactedAutomatonFile = automatonCompactor.compact(removeComments, automataFileName + "Compacted");
+		
+		// Se realiza la compactacion de la expresion
+		String reduceExpression = automatonCompactor.reduceExpression(ltlExpr, variableAndStatesReplacements);
+		
+		// Se crea el archivo con los comandos que van a hacer referencia a los archivos con los nombres de variables reducidos
+		File nusmvCommandsReduced = new File(temp_dir, commandsFileName + "Compacted" + automataExtension);
+		
+		// Se crea el archivo en donde se va a retornar el resultado de nusmv con los nombres de variables reducidos
+		File nusmvOutputReduced = new File(temp_dir, nusvmOutputFileName + "Compacted" + automataExtension);
+		
+		// Se crean los comandos con todos los archivos generados anteriormente con todos los nombres de las variables reducidos
+		crearComandos(nusmvCommandsReduced, nusmvOutputReduced.getAbsolutePath(), reduceExpression);
+		
+		command = nusmvExecutable +" -df -dynamic -source " + nusmvCommandsReduced.getAbsolutePath() + " " + compactedAutomatonFile.getAbsolutePath();
+		
+		return command;
+	}
 
 }
 
