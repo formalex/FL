@@ -28,6 +28,8 @@ public class AutomatonCompactorTest {
 	public void anAutomatonReplacementsGeneratorMustGenerateVariablesAndStateReplacementsAsExpected() throws IOException {
 		
 		String replacementFileName = "automaton1Replacements";
+		File resultReplacementFile = new File(dir + "/" + replacementFileName);
+		Files.deleteIfExists(resultReplacementFile.toPath());
 		
 		BackgroundTheory bt = new BackgroundTheory();
 		Action action1 = new Action();
@@ -40,8 +42,7 @@ public class AutomatonCompactorTest {
 		assertEquals("NH", replacements.get("NOT_HAPPENING"));
 		assertEquals("i0", replacements.get("empieza_censo"));
 		
-		File expectedReplacementFile = new File(dir + "/" +"expectedReplacement1");;
-		File resultReplacementFile = automatonReplacementsGenerator.getReplacementFile();
+		File expectedReplacementFile = new File(dir + "/" +"expectedReplacement1");
 		assertAllFilesLinesEquals(expectedReplacementFile, resultReplacementFile);
 		
 	}
@@ -64,11 +65,15 @@ public class AutomatonCompactorTest {
 		
 		String automatonName = "automaton1";
 		String automatonExtension = ".nusmv";
+		
+		File compactedAutomatonFile = new File(dir + "/" + automatonName + "Compacted");
+		Files.deleteIfExists(compactedAutomatonFile.toPath());
+		
 		boolean removeComments = false;
 		
 		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
 		
-		File compactedAutomatonFile = automatonCompactor.compact(removeComments, automatonName + "Compacted");
+		compactedAutomatonFile = automatonCompactor.compact(removeComments, automatonName + "Compacted");
 		
 		File expectedAutomaton = new File(dir + "/" +"expectedAutomaton1.nusmv");
 
@@ -106,7 +111,7 @@ public class AutomatonCompactorTest {
 		long elapsed = end - init;
 		System.out.println("elapsed time in miliseconds:" + elapsed);
 		
-		assertTrue(elapsed < 10000);
+		assertTrue(elapsed < 100000);
 	}
 	
 	@Test
@@ -114,6 +119,9 @@ public class AutomatonCompactorTest {
 	public void anAutomatonCompactorShouldRemoveCommentsAsExpected() throws IOException {
 		String automatonName = "automatonWithComments1";
 		String automatonExtension = ".nusmv";
+		File obtainedAutomatonWithoutComments = new File(dir + "/" +"automatonWithComments1WithoutCommentsAndEmptyLines.nusmv");
+		Files.deleteIfExists(obtainedAutomatonWithoutComments.toPath());
+		
 		Map<String, String> replacements = new HashMap<String, String>() {{
 		    put("NOT_HAPPENING", "NH");
 		    put("HAPPENING", "H");
@@ -126,10 +134,9 @@ public class AutomatonCompactorTest {
 		    put("en_censo","i3");
 		}};	
 		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
-		automatonCompactor.removeCommentsAndEmptyLines();
+		automatonCompactor.compact(true, automatonName);
 		
 		File expectedAutomatonWithoutComments = new File(dir + "/" +"expectedWithoutComments1.nusmv");
-		File obtainedAutomatonWithoutComments = new File(dir + "/" +"automatonWithComments1WithoutCommentsAndEmptyLines.nusmv");
 		assertAllFilesLinesEquals(expectedAutomatonWithoutComments, obtainedAutomatonWithoutComments);
 	}
 
@@ -140,12 +147,16 @@ public class AutomatonCompactorTest {
 
 		String automatonName = "automaton3";
 		String automatonExtension = ".nusmv";
+		
+		File compactedAutomatonFile = new File(dir + "/" + automatonName + "Compacted");
+		Files.deleteIfExists(compactedAutomatonFile.toPath());
+		
 		boolean removeComments = true;
 
 		BackgroundTheory bt = new BackgroundTheory();
 
 		Set<String> actionNames = new HashSet<>(Arrays.asList("agent_without_role.elegir_ganadores", 
-				"agent_1.entrar","agent_without_role.postularse","comienza_semana","agent_1.elegir_ganadores","agent_1.abrir_concurso", 
+				"agent_1.entrar","agent_without_role.postularse","comienza_semana","agent_1.elegir_ganadores","agent_1.elegir_ganadores_OUTPUT","agent_1.abrir_concurso", 
 				"agent_1.postularse", "agent_without_role.entrar","termina_semana","agent_without_role.abrir_concurso"));
 		Set<String> intervalNames = new HashSet<>(Arrays.asList("semana","concurso"));
 		
@@ -166,16 +177,112 @@ public class AutomatonCompactorTest {
 		
 		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
 		
-		File compactedAutomatonFile = automatonCompactor.compact(removeComments, automatonName + "Compacted");
+		compactedAutomatonFile = automatonCompactor.compact(removeComments, automatonName + "Compacted");
 		
 		File expectedAutomaton = new File(dir + "/" +"expectedAutomaton3.nusmv");
 
 		assertAllFilesLinesEquals(expectedAutomaton, compactedAutomatonFile);
 
 	}
+
+	@Test
+	// Test que verifica para automatas con mas de 10 variables se hacen correctamente los reemplazos
+	public void anAutomatonCompactorWithMoreThan10VariablesShouldReplaceVariablesAndStatesAsExpected() throws IOException {
+
+		Map<String, String> replacements = new HashMap<String, String>() {{
+		    put("NOT_HAPPENING", "NH");
+		    put("HAPPENING", "H");
+		    put("JUST_HAPPENED", "JH");
+		    put("ACTIVE", "AC");
+		    put("INACTIVE", "IA");
+		    put("agent_1.censarse","i0");
+		    put("empieza_1_censo","i1");
+		    put("termina_1_censo","i2");
+		    put("en_1_censo","i3");
+
+		    put("agent_2.censarse","i4");
+		    put("empieza_2_censo","i5");
+		    put("termina_2_censo","i6");
+		    put("en_2_censo","i7");
+		    
+		    put("agent_3.censarse","i8");
+		    put("empieza_3_censo","i9");
+		    put("termina_3_censo","i10");
+		    put("en_3_censo","i11");
+
+		}};		
+		
+		String automatonName = "automaton4";
+		String automatonExtension = ".nusmv";
+		
+		File compactedAutomatonFile = new File(dir + "/" + automatonName + "Compacted");
+		Files.deleteIfExists(compactedAutomatonFile.toPath());
+		
+		boolean removeComments = false;
+		
+		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
+		
+		compactedAutomatonFile = automatonCompactor.compact(removeComments, automatonName + "Compacted");
+		
+		File expectedAutomaton = new File(dir + "/" +"expectedAutomaton4.nusmv");
+
+		assertAllFilesLinesEquals(expectedAutomaton, compactedAutomatonFile);
+
+	}
+	
+	@Test	
+	public void aFileCompactedAndDecompactedShoudBeEqualsOriginal() throws IOException {
+
+		Map<String, String> replacements = new HashMap<String, String>() {{
+		    put("NOT_HAPPENING", "NH");
+		    put("HAPPENING", "H");
+		    put("JUST_HAPPENED", "JH");
+		    put("ACTIVE", "AC");
+		    put("INACTIVE", "IA");
+		    put("agent_1.censarse","i0");
+		    put("empieza_1_censo","i1");
+		    put("termina_1_censo","i2");
+		    put("en_1_censo","i3");
+
+		    put("agent_2.censarse","i4");
+		    put("empieza_2_censo","i5");
+		    put("termina_2_censo","i6");
+		    put("en_2_censo","i7");
+		    
+		    put("agent_3.censarse","i8");
+		    put("empieza_3_censo","i9");
+		    put("termina_3_censo","i10");
+		    put("en_3_censo","i11");
+
+		}};		
+		
+		String automatonName = "automaton4";
+		String automatonExtension = ".nusmv";
+		File originalAutomatonFile = new File(dir + "/" + automatonName + automatonExtension);
+		
+		File compactedAutomatonFile = new File(dir + "/" + automatonName + "Compacted" + automatonExtension);
+		Files.deleteIfExists(compactedAutomatonFile.toPath());
+		
+		String decompactedFileName = automatonName + "Decompacted" + automatonExtension;
+		File decompactedFile = new File(dir + "/" + decompactedFileName);
+		Files.deleteIfExists(decompactedFile.toPath());
+		
+		boolean removeComments = false;
+		
+		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
+		
+		compactedAutomatonFile = automatonCompactor.compact(removeComments, automatonName + "Compacted");
+		
+		AutomatonCompactor automatonDecompactor = new AutomatonCompactor(dir, automatonName + "Compacted", automatonExtension, replacements);
+		
+		decompactedFile = automatonDecompactor.decompact(decompactedFileName);
+		
+		assertAllFilesLinesEquals(originalAutomatonFile, decompactedFile);
+	}
+	
 	
 	@Test
-	public void test() throws IOException {
+	public void anAutomatonCompactorShouldDecompactNusmvOutAsExpected() throws IOException {
 		String replacementsFileName = "replacements";
 		String nusmvOutReducedName = "nusmvOutReduced";
 		String nusmvOutReducedExtension = ".nusmv";

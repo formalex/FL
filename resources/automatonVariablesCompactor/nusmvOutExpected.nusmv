@@ -1,65 +1,77 @@
--- specification !(!( G !(entradas_vendidas > 9)))  is false
+-- specification !(!( G !(entradas1_vendidas > 9)))  is false
 -- as demonstrated by the following execution sequence
 Trace Description: LTL Counterexample 
 Trace Type: Counterexample 
   -> State: 1.1 <-
     agent_2.comprar_entrada = NOT_HAPPENING
     agent_1.comprar_entrada = NOT_HAPPENING
-    entradas_vendidas = 0
+    entradas1_vendidas = 0
+    agent_3.comprar_entrada = NOT_HAPPENING
+    agent_4.comprar_entrada = NOT_HAPPENING
+    entradas2_vendidas = 0
+    agent_5.comprar_entrada = NOT_HAPPENING
+    agent_6.comprar_entrada = NOT_HAPPENING
+    entradas3_vendidas = 0
+    agent_7.comprar_entrada = NOT_HAPPENING
+    agent_8.comprar_entrada = NOT_HAPPENING
+    entradas4_vendidas = 0
+    agent_9.comprar_entrada = NOT_HAPPENING
+    agent_10.comprar_entrada = NOT_HAPPENING
+    entradas5_vendidas = 0
   -> State: 1.2 <-
     agent_2.comprar_entrada = HAPPENING
   -> State: 1.3 <-
     agent_2.comprar_entrada = JUST_HAPPENED
     agent_1.comprar_entrada = HAPPENING
-    entradas_vendidas = 1
+    entradas1_vendidas = 1
   -> State: 1.4 <-
     agent_2.comprar_entrada = NOT_HAPPENING
     agent_1.comprar_entrada = JUST_HAPPENED
-    entradas_vendidas = 2
+    entradas1_vendidas = 2
   -> State: 1.5 <-
     agent_2.comprar_entrada = HAPPENING
     agent_1.comprar_entrada = NOT_HAPPENING
   -> State: 1.6 <-
     agent_2.comprar_entrada = JUST_HAPPENED
     agent_1.comprar_entrada = HAPPENING
-    entradas_vendidas = 3
+    entradas1_vendidas = 3
   -> State: 1.7 <-
     agent_2.comprar_entrada = NOT_HAPPENING
     agent_1.comprar_entrada = JUST_HAPPENED
-    entradas_vendidas = 4
+    entradas1_vendidas = 4
   -> State: 1.8 <-
     agent_2.comprar_entrada = HAPPENING
     agent_1.comprar_entrada = NOT_HAPPENING
   -> State: 1.9 <-
     agent_2.comprar_entrada = JUST_HAPPENED
     agent_1.comprar_entrada = HAPPENING
-    entradas_vendidas = 5
+    entradas1_vendidas = 5
   -> State: 1.10 <-
     agent_2.comprar_entrada = NOT_HAPPENING
     agent_1.comprar_entrada = JUST_HAPPENED
-    entradas_vendidas = 6
+    entradas1_vendidas = 6
   -> State: 1.11 <-
     agent_2.comprar_entrada = HAPPENING
     agent_1.comprar_entrada = NOT_HAPPENING
   -> State: 1.12 <-
     agent_2.comprar_entrada = JUST_HAPPENED
     agent_1.comprar_entrada = HAPPENING
-    entradas_vendidas = 7
+    entradas1_vendidas = 7
   -> State: 1.13 <-
     agent_2.comprar_entrada = NOT_HAPPENING
     agent_1.comprar_entrada = JUST_HAPPENED
-    entradas_vendidas = 8
+    entradas1_vendidas = 8
   -> State: 1.14 <-
     agent_2.comprar_entrada = HAPPENING
     agent_1.comprar_entrada = NOT_HAPPENING
   -> State: 1.15 <-
     agent_2.comprar_entrada = JUST_HAPPENED
     agent_1.comprar_entrada = HAPPENING
-    entradas_vendidas = 9
+    entradas1_vendidas = 9
   -> State: 1.16 <-
     agent_2.comprar_entrada = NOT_HAPPENING
     agent_1.comprar_entrada = JUST_HAPPENED
-    entradas_vendidas = 10
+    entradas1_vendidas = 10
   -- Loop starts here
   -> State: 1.17 <-
     agent_1.comprar_entrada = NOT_HAPPENING

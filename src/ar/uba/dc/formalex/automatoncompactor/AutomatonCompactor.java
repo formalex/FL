@@ -3,6 +3,8 @@ package ar.uba.dc.formalex.automatoncompactor;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -23,6 +25,14 @@ public class AutomatonCompactor {
 	private String dir;
 	private Map<String, String> inverseReplacements;
 
+	/**
+	 * Constructor que genera la instancia a partir de un mapa de reemplazos
+	 * 
+	 * @param dir
+	 * @param automatonName
+	 * @param automatonExtension
+	 * @param replacements
+	 */
 	public AutomatonCompactor(String dir, String automatonName, String automatonExtension, Map<String, String> replacements) {
 		this.automatonName = automatonName;
 		this.automatonExtension = automatonExtension;
@@ -31,20 +41,16 @@ public class AutomatonCompactor {
 		this.dir = dir;
 	}
 
+	/**
+	 * Constructor que genera la instancia a partir de un archivo de reemplazos
+	 * 
+	 * @param dir
+	 * @param automatonName
+	 * @param automatonExtension
+	 * @param replacementsFileName
+	 */
 	public AutomatonCompactor(String dir, String automatonName, String automatonExtension, String replacementsFileName) {
-		Map<String, String> replacements = new HashMap<String, String>();
-		try {
-			File replacementsFile = new File(dir + "/" + replacementsFileName);
-			BufferedReader bufferedReader = Files.newBufferedReader(replacementsFile.toPath());
-			String line = null;
-			while ((line = bufferedReader.readLine()) != null) {
-				String[] parts = line.split("=");
-				replacements.put(parts[0], parts[1]);
-			}			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		Map<String, String> replacements = generateReplacementsMapFromFile(dir, replacementsFileName);
 		this.automatonName = automatonName;
 		this.automatonExtension = automatonExtension;
 		this.replacements = replacements;
@@ -52,14 +58,14 @@ public class AutomatonCompactor {
 		this.dir = dir;
 	}
 
-	private Map<String, String> inverseReplacements(Map<String, String> replacements) {
-		Map<String, String> inverseReplacements = new HashMap<String, String>();
-		for (String replacement : replacements.keySet()) {
-			inverseReplacements.put(replacements.get(replacement), replacement);
-		}
-		return inverseReplacements;
-	}
-
+	/**
+	 * Compacta el archivo del automata mediante los reemplazos generando el archivo compactado 
+	 * Tiene la posibilidad de eliminar comentarios del archivo
+	 * 
+	 * @param removeComments
+	 * @param compactedFileName
+	 * @return
+	 */
 	public File compact(boolean removeComments, String compactedFileName) {
 		if (removeComments) {
 			this.removeCommentsAndEmptyLines();
@@ -67,11 +73,10 @@ public class AutomatonCompactor {
 		}
 		
 		return performFileReplacements(dir, automatonName + automatonExtension, compactedFileName + automatonExtension, replacements);
-
 	}
 
 	public File decompact(String decompactedFileName) {
-		
+
 		return performFileReplacements(dir, automatonName + automatonExtension, decompactedFileName, inverseReplacements);
 		
 	}
@@ -79,33 +84,21 @@ public class AutomatonCompactor {
 	public String reduceExpression(String ltlExpr, Map<String, String> replacements) {
 		
 		return performStringReplacements(ltlExpr, replacements);
+		
 	}
 
 	public void removeCommentsAndEmptyLines() {
 		try {
-			StringBuffer automatonWithoutCommentsStringBuffer = new StringBuffer();
-			
-			Pattern p = Pattern.compile("(^|\\s)--.*");
-			Matcher m = p.matcher(fromFile(dir + "/"+ automatonName + automatonExtension));
-			
-			while (m.find()) {
-				m.appendReplacement(automatonWithoutCommentsStringBuffer, "");
-			}
-			m.appendTail(automatonWithoutCommentsStringBuffer);
+			StringBuffer automatonWithoutComments = removeCommentLines(dir + "/"+ automatonName + automatonExtension, "--");
 
-			StringBuffer automatonWithoutCommentsAndEmptyLinesStringBuffer = new StringBuffer();
+			StringBuffer automatonWithoutCommentsAndEmptyLines = replacePattern(automatonWithoutComments, "(?m)^[ \\t]*\\r?\\n", "");
 			
-			Pattern pEmptyLines = Pattern.compile("(?m)^[ \\t]*\\r?\\n");
-			Matcher mEmptyLines = pEmptyLines.matcher(automatonWithoutCommentsStringBuffer);
-			
-			while (mEmptyLines.find()) {
-				mEmptyLines.appendReplacement(automatonWithoutCommentsAndEmptyLinesStringBuffer, "");
-			}
-			mEmptyLines.appendTail(automatonWithoutCommentsAndEmptyLinesStringBuffer);
-	
 			File automatonWithoutCommentsFile = new File(dir + "/"+automatonName + "WithoutCommentsAndEmptyLines" + automatonExtension);
+			
 			FileWriter compactedFileWriter = new FileWriter(automatonWithoutCommentsFile);
-			compactedFileWriter.write(automatonWithoutCommentsAndEmptyLinesStringBuffer.toString());
+			
+			compactedFileWriter.write(automatonWithoutCommentsAndEmptyLines.toString());
+			
 			compactedFileWriter.flush();
 			compactedFileWriter.close();
 		
@@ -114,8 +107,42 @@ public class AutomatonCompactor {
 		}
 		
 	}
+	
+	private StringBuffer removeCommentLines(String filename, String commentString) {
+		
+		StringBuffer sb = new StringBuffer("");
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (!line.contains(commentString)) {
+					sb.append(line + "\n");
+				}
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return sb;
+	}
 
-	public File performFileReplacements(String dir, String originalFileName, String fileWithReplacementsName, Map<String, String> replacementsMap) {
+	private StringBuffer replacePattern(StringBuffer stringBuffer, String pattern, String replacement) {
+		StringBuffer replacedStringBuffer = new StringBuffer();
+		
+		Pattern p = Pattern.compile(pattern);
+		Matcher m = p.matcher(stringBuffer);
+		
+		while (m.find()) {
+			m.appendReplacement(replacedStringBuffer, replacement);
+		}
+		m.appendTail(replacedStringBuffer);
+		
+		return replacedStringBuffer;
+	}
+
+	private File performFileReplacements(String dir, String originalFileName, String fileWithReplacementsName, Map<String, String> replacementsMap) {
 
 		File fileWithReplacement = null;
 		
@@ -135,13 +162,13 @@ public class AutomatonCompactor {
 		return fileWithReplacement;
 	}
 	
-	public String performStringReplacements(CharSequence originalString, Map<String, String> replacementMap) {
+	private String performStringReplacements(CharSequence originalString, Map<String, String> replacementMap) {
 
 			StringBuffer stringWithReplacementsBuffer = new StringBuffer();
 			StringBuffer pattern = new StringBuffer();
 			
 			for (String toBeReplaced : replacementMap.keySet()) {
-				pattern.append("|"+toBeReplaced);
+				pattern.append("|\\b"+toBeReplaced+"\\b");
 			}
 			
 			pattern.deleteCharAt(0);
@@ -158,7 +185,7 @@ public class AutomatonCompactor {
 			
 	}
 
-    public CharSequence fromFile(String filename) throws IOException {
+    private CharSequence fromFile(String filename) throws IOException {
         FileInputStream input = new FileInputStream(filename);
         FileChannel channel = input.getChannel();
      
@@ -168,5 +195,29 @@ public class AutomatonCompactor {
         input.close();
         return cbuf;
     }
+
+	private Map<String, String> generateReplacementsMapFromFile(String dir, String replacementsFileName) {
+		Map<String, String> replacements = new HashMap<String, String>();
+		try {
+			File replacementsFile = new File(dir + "/" + replacementsFileName);
+			BufferedReader bufferedReader = Files.newBufferedReader(replacementsFile.toPath());
+			String line = null;
+			while ((line = bufferedReader.readLine()) != null) {
+				String[] parts = line.split("=");
+				replacements.put(parts[0], parts[1]);
+			}			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return replacements;
+	}
+
+	private Map<String, String> inverseReplacements(Map<String, String> replacements) {
+		Map<String, String> inverseReplacements = new HashMap<String, String>();
+		for (String replacement : replacements.keySet()) {
+			inverseReplacements.put(replacements.get(replacement), replacement);
+		}
+		return inverseReplacements;
+	}
 
 }

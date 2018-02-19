@@ -1,56 +1,45 @@
---Comentario
-     -- Comentario con espacios
-				--Comentario con tabs     
-
 MODULE main
 VAR	
-	agent_1.censarse: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
-  	empieza_censo: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
-  	termina_censo: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
-  	en_censo: {ACTIVE, INACTIVE};
-  
+	i2: {H, NH, JH};
+  	i1: {H, NH, JH};
+  	i0: {H, NH, JH};
+  	i3: {A, I};
 INIT
-	agent_1.censarse = NOT_HAPPENING &
-	empieza_censo = NOT_HAPPENING &
-	termina_censo = NOT_HAPPENING &
-  	en_censo = INACTIVE &
+	i2 = NH &
+	i1 = NH &
+	i0 = NH &
+  	i3 = I &
         TRUE 
-
 TRANS
-	(agent_1.censarse = JUST_HAPPENED -> next(agent_1.censarse) = NOT_HAPPENING) &
-	(agent_1.censarse = HAPPENING -> next(agent_1.censarse) != NOT_HAPPENING ) &
-	(agent_1.censarse = NOT_HAPPENING -> next(agent_1.censarse) != JUST_HAPPENED) &
-  	(empieza_censo = JUST_HAPPENED -> next(empieza_censo) = NOT_HAPPENING) &
-	(empieza_censo = HAPPENING -> next(empieza_censo) != NOT_HAPPENING ) &
-	(empieza_censo = NOT_HAPPENING -> next(empieza_censo) != JUST_HAPPENED) &
-  	(termina_censo = JUST_HAPPENED -> next(termina_censo) = NOT_HAPPENING) &
-	(termina_censo = HAPPENING -> next(termina_censo) != NOT_HAPPENING ) &
-	(termina_censo = NOT_HAPPENING -> next(termina_censo) != JUST_HAPPENED) &
-    (( en_censo = INACTIVE & next(en_censo) = ACTIVE) -> (
-   		(empieza_censo = HAPPENING & next(empieza_censo) = JUST_HAPPENED) 
-   --Comentarios en el medio
+	(i2 = JH -> next(i2) = NH) &
+	(i2 = H -> next(i2) != NH ) &
+	(i2 = NH -> next(i2) != JH) &
+  	(i1 = JH -> next(i1) = NH) &
+	(i1 = H -> next(i1) != NH ) &
+	(i1 = NH -> next(i1) != JH) &
+  	(i0 = JH -> next(i0) = NH) &
+	(i0 = H -> next(i0) != NH ) &
+	(i0 = NH -> next(i0) != JH) &
+    (( i3 = I & next(i3) = A) -> (
+   		(i1 = H & next(i1) = JH) 
 		       		)) &
-	((en_censo = ACTIVE  & next(en_censo) = INACTIVE) -> (
-   		(termina_censo = HAPPENING & next(termina_censo) = JUST_HAPPENED) 
+	((i3 = A  & next(i3) = I) -> (
+   		(i0 = H & next(i0) = JH) 
 		   		)) &
-  	(en_censo = INACTIVE & (
-   			(empieza_censo = HAPPENING & next(empieza_censo) = JUST_HAPPENED) 
-			   		)-> (next(en_censo) = ACTIVE)) & 		
-    	(en_censo = ACTIVE & (
-   			(termina_censo = HAPPENING & next(termina_censo) = JUST_HAPPENED) 
-			   		)-> (next(en_censo) = INACTIVE)) & 	
+  	(i3 = I & (
+   			(i1 = H & next(i1) = JH) 
+			   		)-> (next(i3) = A)) & 		
+    	(i3 = A & (
+   			(i0 = H & next(i0) = JH) 
+			   		)-> (next(i3) = I)) & 	
 	((
-   			(empieza_censo = NOT_HAPPENING & next(empieza_censo) = HAPPENING) 
-			   		)-> (en_censo = INACTIVE)) & 
+   			(i1 = NH & next(i1) = H) 
+			   		)-> (i3 = I)) & 
 	((
-   			(termina_censo = NOT_HAPPENING & next(termina_censo) = HAPPENING) 
-			   		)-> (en_censo = ACTIVE)) & 
-  	(next(empieza_censo) = HAPPENING -> (TRUE 
+   			(i0 = NH & next(i0) = H) 
+			   		)-> (i3 = A)) & 
+  	(next(i1) = H -> (TRUE 
      	)) &
-  	(next(termina_censo) = HAPPENING -> (TRUE 
-     & next(termina_censo) !=  HAPPENING 	)) &
-     
-
+  	(next(i0) = H -> (TRUE 
+     & next(i0) !=  H 	)) &
  TRUE
-
- -- Comentario al final

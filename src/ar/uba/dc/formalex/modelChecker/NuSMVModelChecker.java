@@ -192,7 +192,9 @@ public class NuSMVModelChecker {
             	// Se hace la inversa de los reemplazos de la compactacion en la vuelta de nusmv
         		AutomatonCompactor nusmvOutDecompactor = 
         				new AutomatonCompactor(temp_dir, nusmvOutputName + "Compacted" , automataExtension, automataName + "Replacements"); 
-        		nusmvOutDecompactor.decompact(nusvmOutputFileName);
+        		// Se genera el archivo de salida de NuSMV decompactado
+        		File decompactedNusmvOutFile = nusmvOutDecompactor.decompact(nusvmOutputFileName);
+        		logger.info("Se genero el archivo de salida de NuSMV decompactado: " + decompactedNusmvOutFile.getName() );
             }
             long fin = System.currentTimeMillis();
             long seg = (fin - ini);
