@@ -15,7 +15,8 @@ public class UnsatVariablesMapper {
 	private Set<String> unsatVariables;	
 	private Map<String, Set<String>> cnfVariablesMap;
 	private Map<String, Set<String>> convertedVariablesMap;
-	private Map<String, Set<String>> unsatVariablesMap;
+	private Map<String, Set<String>> convertedToModelVariablesMap = new HashMap<>();
+	private Map<String, Set<String>> unsatVariablesMap = new HashMap<>();
 
 	public UnsatVariablesMapper(String unsatVariablesFilePath) {
 		unsatVariables = parseUnsatVariables(unsatVariablesFilePath);
@@ -23,9 +24,8 @@ public class UnsatVariablesMapper {
 
 	public UnsatVariablesMapper(String unsatVariablesFilePath, String modelFilePath) {
 		unsatVariables = parseUnsatVariables(unsatVariablesFilePath);
-		cnfVariablesMap = mapCnfVariables(modelFilePath);
-		convertedVariablesMap = mapConvertedVariables(modelFilePath);
-		unsatVariablesMap = mapUnsatVariables();
+		cnfVariablesMap = parseCnfVariables(modelFilePath);
+		convertedVariablesMap = parseConvertedVariables(modelFilePath);
 	}
 
 	/*
@@ -52,7 +52,7 @@ public class UnsatVariablesMapper {
 	/*
 	 * Parsea el archivo BMC generado por NuSMV y genera el mapa de variable CNF a variable del Model
 	 */
-	public Map<String, Set<String>> mapCnfVariables(String modelFilePath) {
+	public Map<String, Set<String>> parseCnfVariables(String modelFilePath) {
 		
 		Map<String, Set<String>> ret = new HashMap<>();
 		try {
@@ -78,7 +78,7 @@ public class UnsatVariablesMapper {
 	/*
 	 * Parsea el archivo BMC generado por NuSMV y genera el mapa de variable convertida a variables originales
 	 */
-	private Map<String, Set<String>> mapConvertedVariables(String modelFilePath) {
+	private Map<String, Set<String>> parseConvertedVariables(String modelFilePath) {
 		Map<String, Set<String>> ret = new HashMap<>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(modelFilePath));
@@ -110,37 +110,53 @@ public class UnsatVariablesMapper {
 		return ret;
 	}
 
+	/*
+	 * Por cada una de las variables unsat mapeo las variables del modelo correspondiente
+	 */
 	public Map<String, Set<String>> mapUnsatVariables() {
-		Map<String, Set<String>> ret = new HashMap<>();
-		
+		Set<String> convertedUnsatVariables = new HashSet<String>();
+		// Si la variable unsat esta entre las mapeadas por cnf las vuelco en el resultado final
+		// De lo contrario lo guardo en un set para tratarlo aparte
 		for (String unsatVariable : unsatVariables) {
-			
-			Set<String> listVariables = null;
-			
 			// Si la variable unsat esta entre las cnf uso el mismo mapeo
 			if(cnfVariablesMap.containsKey(unsatVariable)) {
-				listVariables = cnfVariablesMap.get(unsatVariable);
+				unsatVariablesMap.put(unsatVariable, cnfVariablesMap.get(unsatVariable));
 			} else {
-			// si no debo buscar en las conversiones
-				listVariables = obtenerListaDeVariables(unsatVariable);
-				
+			// de lo contrario lo agrego a un set para tratarlo aparte
+				convertedUnsatVariables.add(unsatVariable);
 			}
-			ret.put(unsatVariable, listVariables);
 		}
-		return ret;
+		
+		// Se recorren las variables unsat que no estan entre las cnf y obtengo el mapeo de cada una  
+		for (String convertedUnsatVariable : convertedUnsatVariables) {
+			unsatVariablesMap.put(convertedUnsatVariable, mapConvertedUnsatToModelVariable(convertedUnsatVariable));
+		}
+		
+		return unsatVariablesMap;
 	}
 
-	
-	private Set<String> obtenerListaDeVariables(String unsatVariable) {
+	// Toma una variable unsat que fue convertida y devuelve su mapeo con variables del modelo.
+	public Set<String> mapConvertedUnsatToModelVariable(String unsatVariable) {
 		Set<String> ret = new HashSet<>();
 		
+		// Obtengo las variables que componen la conversion de la variable unsat.
 		Set<String> listVariables = convertedVariablesMap.get(unsatVariable);
 		
+		// Recorro todas las variables que componen la conversion
 		for (String variable : listVariables) {
+			// Si la variable era una cnf entonces la agrego a la respuesta
 			if (cnfVariablesMap.containsKey(variable)) {
 				ret.addAll(cnfVariablesMap.get(variable));
+			} else if (convertedToModelVariablesMap.containsKey(variable)){
+				// Si la variable no era una cnf y ya la habia mapeado anteriormente la utilizo para agregar a la respuesta
+				ret.addAll(convertedToModelVariablesMap.get(variable));
 			} else {
-				ret.addAll(obtenerListaDeVariables(variable));
+				// Si no la encuentro se vuelve a llamar recursivamente.
+				Set<String> convertedToModelVariable = mapConvertedUnsatToModelVariable(variable);
+				// Lo guardo por si lo vuelvo a utilizar
+				convertedToModelVariablesMap.put(variable, convertedToModelVariable);
+				// Lo agrego al resultado
+				ret.addAll(convertedToModelVariable);
 			}
 		}
 		return ret;
