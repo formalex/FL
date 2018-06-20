@@ -7,15 +7,16 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
+import java.util.Queue;
 
 public class UnsatVariablesMapper {
 
 	private Set<String> unsatVariables;	
 	private Map<String, Set<String>> cnfVariablesMap;
 	private Map<String, Set<String>> convertedVariablesMap;
-	private Map<String, Set<String>> convertedToModelVariablesMap = new HashMap<>();
 	private Map<String, Set<String>> unsatVariablesMap = new HashMap<>();
 
 	public UnsatVariablesMapper(String unsatVariablesFilePath) {
@@ -96,7 +97,7 @@ public class UnsatVariablesMapper {
 					String variableSet = substringBetweenTwoDelimiters(line, "[", "]");
 					
 					// Elimino los duplicados de los nombres de variables
-					Set<String> variableSetWithoutDuplicates = new HashSet(Arrays.asList(variableSet.split(",")));
+					Set<String> variableSetWithoutDuplicates = new HashSet<String>(Arrays.asList(variableSet.split(",")));
 					
 					ret.put(convertedVariableName, variableSetWithoutDuplicates);
 				}
@@ -114,52 +115,83 @@ public class UnsatVariablesMapper {
 	 * Por cada una de las variables unsat mapeo las variables del modelo correspondiente
 	 */
 	public Map<String, Set<String>> mapUnsatVariables() {
-		Set<String> convertedUnsatVariables = new HashSet<String>();
-		// Si la variable unsat esta entre las mapeadas por cnf las vuelco en el resultado final
-		// De lo contrario lo guardo en un set para tratarlo aparte
+
+		Map<String, Set<String>> completedMap = new HashMap<>();
+		Map<String, Set<String>> partialMap = new HashMap<>();
+		Queue<Tuple> pendingQueue = new LinkedList<>();
+		
+		// Recorro el conjunto de unsat variables y las que ya se les puede hacer mapeo se las vuelca al map completados.
+		// A las que no se la vuelca a la cola de pendientes.
 		for (String unsatVariable : unsatVariables) {
-			// Si la variable unsat esta entre las cnf uso el mismo mapeo
-			if(cnfVariablesMap.containsKey(unsatVariable)) {
-				unsatVariablesMap.put(unsatVariable, cnfVariablesMap.get(unsatVariable));
+			if (cnfVariablesMap.containsKey(unsatVariable)) {
+				completedMap.put(unsatVariable, cnfVariablesMap.get(unsatVariable));
 			} else {
-			// de lo contrario lo agrego a un set para tratarlo aparte
-				convertedUnsatVariables.add(unsatVariable);
+				pendingQueue.add(new Tuple(unsatVariable, convertedVariablesMap.get(unsatVariable)));
+			}
+		}
+
+		// Proceso las variables mientras esten pendientes
+		while(!pendingQueue.isEmpty()) {
+			// Obtengo el primero de la cola de pendientes
+			Tuple pendingVariableTuple = pendingQueue.poll();
+			String variable = pendingVariableTuple.getVariable();
+			Set<String> pendings = pendingVariableTuple.getPendings();
+			
+			boolean hasToEnqueue = false;
+			Set<String> alreadyMappedVariables = new HashSet<String>();
+			Set<String> newPendingsVariables = new HashSet<String>();
+			
+			// Por cada una de las variables pendientes me fijo si se pueden mapear
+			for (String pendingVariable : pendings) {
+				// Primero me fijo si esta entre las variables cnf. En ese caso agrego el mapeo
+				if (cnfVariablesMap.containsKey(pendingVariable)) {
+					alreadyMappedVariables.addAll(cnfVariablesMap.get(pendingVariable));
+				} else if (completedMap.containsKey(pendingVariable)) {
+					// Luego me fijo entre las variables que ya se completaron de mapear. Si la encuentro ahi agrego el mapeo
+					alreadyMappedVariables.addAll(completedMap.get(pendingVariable));
+				} else {
+					// Si no es una variable que ya tiene el mapeo completo entonces la busco entre las que tiene el mapeo parcial.
+					if (partialMap.containsKey(pendingVariable)) {
+						alreadyMappedVariables.addAll(partialMap.get(pendingVariable));
+					} else {
+						pendingQueue.add(new Tuple(pendingVariable, convertedVariablesMap.get(pendingVariable)));
+					}
+					
+					// Debo reencolar la variable porque tiene mapeos pendientes.
+					hasToEnqueue = true;
+					newPendingsVariables.add(pendingVariable);
+				}
+			}
+			
+			if (hasToEnqueue) {
+				// Si tengo que reencolar la variable porque aun tiene pendientes entonces me fijo si ya estaba entre los parciales. Si la encuentro entonces agrego
+				// los mapeos que ya fui realizando anteriormente.
+				if (partialMap.containsKey(variable)) {
+					alreadyMappedVariables.addAll(partialMap.get(variable));
+				}
+				// Agrego la variable con el mapeo que ya fui realizando al mapa de parciales.
+				partialMap.put(variable, alreadyMappedVariables);		
+				// La variable se vuelve a encolar porque tiene penidentes
+				pendingQueue.add(new Tuple(variable, newPendingsVariables));
+			} else {
+				// Si ya complete todos los mapeos de las variabels entonces me fijo si se encontraba entre los pariciales. Si la encuentro ahi entonces agrego los mapeos
+				// que realice anteriormente
+				if (partialMap.containsKey(variable)) {
+					alreadyMappedVariables.addAll(partialMap.get(variable));
+				}
+				// Agrego la variable al map de completadas
+				completedMap.put(variable, alreadyMappedVariables);
+				// Elimino la variable del map de parciales
+				partialMap.remove(variable);
 			}
 		}
 		
-		// Se recorren las variables unsat que no estan entre las cnf y obtengo el mapeo de cada una  
-		for (String convertedUnsatVariable : convertedUnsatVariables) {
-			unsatVariablesMap.put(convertedUnsatVariable, mapConvertedUnsatToModelVariable(convertedUnsatVariable));
+		// Del mapa de variables completadas filtro las que estaban en el conjunto original de unsatVariables
+		for (String unsatVariable : unsatVariables) {
+			unsatVariablesMap.put(unsatVariable, completedMap.get(unsatVariable));
 		}
 		
 		return unsatVariablesMap;
-	}
-
-	// Toma una variable unsat que fue convertida y devuelve su mapeo con variables del modelo.
-	public Set<String> mapConvertedUnsatToModelVariable(String unsatVariable) {
-		Set<String> ret = new HashSet<>();
-		
-		// Obtengo las variables que componen la conversion de la variable unsat.
-		Set<String> listVariables = convertedVariablesMap.get(unsatVariable);
-		
-		// Recorro todas las variables que componen la conversion
-		for (String variable : listVariables) {
-			// Si la variable era una cnf entonces la agrego a la respuesta
-			if (cnfVariablesMap.containsKey(variable)) {
-				ret.addAll(cnfVariablesMap.get(variable));
-			} else if (convertedToModelVariablesMap.containsKey(variable)){
-				// Si la variable no era una cnf y ya la habia mapeado anteriormente la utilizo para agregar a la respuesta
-				ret.addAll(convertedToModelVariablesMap.get(variable));
-			} else {
-				// Si no la encuentro se vuelve a llamar recursivamente.
-				Set<String> convertedToModelVariable = mapConvertedUnsatToModelVariable(variable);
-				// Lo guardo por si lo vuelvo a utilizar
-				convertedToModelVariablesMap.put(variable, convertedToModelVariable);
-				// Lo agrego al resultado
-				ret.addAll(convertedToModelVariable);
-			}
-		}
-		return ret;
 	}
 
 	private String substringBetweenTwoDelimiters(String string, String startDelimiter, String endDelimiter) {
@@ -185,4 +217,36 @@ public class UnsatVariablesMapper {
 	}
 
 
+	class Tuple {
+
+		private String variable;
+		private Set<String> pendings;
+
+		public Tuple(String variable, Set<String> pendings) {
+			this.variable = variable;
+			this.pendings = pendings;
+		}
+
+		public String getVariable() {
+			return variable;
+		}
+
+		public void setVariable(String variable) {
+			this.variable = variable;
+		}
+
+		public Set<String> getPendings() {
+			return pendings;
+		}
+
+		public void setPendings(Set<String> pendings) {
+			this.pendings = pendings;
+		}
+
+		@Override
+		public String toString() {
+			return "Tuple [variable=" + variable + ", pendings=" + pendings + "]";
+		}
+		
+	}
 }

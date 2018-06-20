@@ -65,6 +65,35 @@ public class UnsatVariablesMapperTest {
 		assertTrue(compareMappingsByEquality(unsatVariablesMapping1, unsatVariablesMap));
 		
 	}
+
+	@Test
+	public void model3() {
+		
+		String unsatVariablesFileName = "unsat3.variables";
+		String modelFileName = "model3.dimacs";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		
+		unsatVariablesMapper.mapUnsatVariables();
+		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
+		
+		assertTrue(compareMappingsByEquality(unsatVariablesMapping3, unsatVariablesMap));
+		
+	}
+
+	@Test
+	public void model4() {
+		
+		String unsatVariablesFileName = "unsat4.variables";
+		String modelFileName = "model4.dimacs";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		
+		unsatVariablesMapper.mapUnsatVariables();
+		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
+		
+		assertTrue(compareMappingsByEquality(unsatVariablesMapping4, unsatVariablesMap));
+		
+	}
+
 	
 	private boolean compareMappingsByEquality(Map<String, Set<String>> unsatVariablesMappingExpected,
 			Map<String, Set<String>> unsatVariablesMappingObtained) {
@@ -77,6 +106,7 @@ public class UnsatVariablesMapperTest {
 				Set<String> variableMapObtained = unsatVariablesMappingObtained.get(variable);
 				if (variableMapExpected != null && variableMapObtained != null) {
 					ret &= variableMapObtained.containsAll(variableMapExpected);
+					ret &= variableMapExpected.containsAll(variableMapObtained);
 				} else {
 					return false;
 				}
@@ -147,6 +177,34 @@ public class UnsatVariablesMapperTest {
 			put("51", new HashSet<String> (Arrays.asList("y")));
 			put("52", new HashSet<String> (Arrays.asList("y")));
 			put("53", new HashSet<String> (Arrays.asList("y")));			
+		}
+	};
+
+	private Map<String,Set<String>> unsatVariablesMapping3 = new HashMap<String,Set<String>>() {
+		{
+			put("15", new HashSet<String> (Arrays.asList("y")));
+			put("16", new HashSet<String> (Arrays.asList("y")));
+			put("17", new HashSet<String> (Arrays.asList("z")));
+			put("18", new HashSet<String> (Arrays.asList("z")));
+			put("50", new HashSet<String> (Arrays.asList("y","z")));
+			put("51", new HashSet<String> (Arrays.asList("y","z")));
+			put("52", new HashSet<String> (Arrays.asList("y","z")));
+			put("53", new HashSet<String> (Arrays.asList("y","z")));			
+			put("54", new HashSet<String> (Arrays.asList("y")));
+		}
+	};
+
+	private Map<String,Set<String>> unsatVariablesMapping4 = new HashMap<String,Set<String>>() {
+		{
+			put("15", new HashSet<String> (Arrays.asList("y")));
+			put("16", new HashSet<String> (Arrays.asList("y")));
+			put("17", new HashSet<String> (Arrays.asList("z")));
+			put("18", new HashSet<String> (Arrays.asList("z")));
+			put("50", new HashSet<String> (Arrays.asList("y","z")));
+			put("51", new HashSet<String> (Arrays.asList("y","z")));
+			put("52", new HashSet<String> (Arrays.asList("y","z")));
+			put("53", new HashSet<String> (Arrays.asList("y","z")));			
+			put("54", new HashSet<String> (Arrays.asList("y","z")));
 		}
 	};
 
