@@ -177,6 +177,7 @@ public class UnsatVariablesMapper {
 				// La variable se vuelve a encolar porque tiene penidentes
 				pendingQueue.add(new Tuple(variable, newPendingsVariables));
 			} else {
+				// Agrego los mapeos que fui realizando anteriormente.
 				addMappingOfVariableIfExists(partialMap, variable, alreadyMappedVariables);
 				// Agrego la variable al map de completadas
 				completedMap.put(variable, alreadyMappedVariables);
