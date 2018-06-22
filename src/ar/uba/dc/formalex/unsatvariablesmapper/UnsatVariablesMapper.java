@@ -137,6 +137,9 @@ public class UnsatVariablesMapper {
 			String variable = pendingVariableTuple.getVariable();
 			Set<String> pendings = pendingVariableTuple.getPendings();
 			
+			if (completedMap.containsKey(variable)) {
+				continue;
+			}
 			boolean hasToEnqueue = false;
 			Set<String> alreadyMappedVariables = new HashSet<String>();
 			Set<String> newPendingsVariables = new HashSet<String>();

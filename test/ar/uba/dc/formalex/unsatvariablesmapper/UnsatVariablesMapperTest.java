@@ -94,6 +94,47 @@ public class UnsatVariablesMapperTest {
 		
 	}
 
+	@Test
+	public void modelA() {
+		
+		String unsatVariablesFileName = "unsatA.variables";
+		String modelFileName = "modelA.dimacs";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		
+		unsatVariablesMapper.mapUnsatVariables();
+		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
+		
+		assertTrue(compareMappingsByEquality(unsatVariablesMappingA, unsatVariablesMap));
+		
+	}
+
+	@Test
+	public void modelB() {
+		
+		String unsatVariablesFileName = "unsatB.variables";
+		String modelFileName = "modelB.dimacs";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		
+		unsatVariablesMapper.mapUnsatVariables();
+		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
+		
+		assertTrue(compareMappingsByEquality(unsatVariablesMappingB, unsatVariablesMap));
+		
+	}
+
+	@Test
+	public void modelC() {
+		
+		String unsatVariablesFileName = "unsatC.variables";
+		String modelFileName = "modelC.dimacs";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		
+		unsatVariablesMapper.mapUnsatVariables();
+		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
+		
+		assertTrue(compareMappingsByEquality(unsatVariablesMappingC, unsatVariablesMap));
+		
+	}
 	
 	private boolean compareMappingsByEquality(Map<String, Set<String>> unsatVariablesMappingExpected,
 			Map<String, Set<String>> unsatVariablesMappingObtained) {
@@ -207,5 +248,59 @@ public class UnsatVariablesMapperTest {
 			put("54", new HashSet<String> (Arrays.asList("y","z")));
 		}
 	};
+	
+	private Map<String,Set<String>> unsatVariablesMappingA = new HashMap<String,Set<String>>() {
+		{
+			put("1", new HashSet<String> (Arrays.asList("a")));
+			put("2", new HashSet<String> (Arrays.asList("b")));
+			put("3", new HashSet<String> (Arrays.asList("c")));
+			put("4", new HashSet<String> (Arrays.asList("d")));
+			put("5", new HashSet<String> (Arrays.asList("e")));
+			put("6", new HashSet<String> (Arrays.asList("f")));
+			put("7", new HashSet<String> (Arrays.asList("g")));
+			put("8", new HashSet<String> (Arrays.asList("h")));			
+			put("9", new HashSet<String> (Arrays.asList("i")));
+			put("10", new HashSet<String> (Arrays.asList("j")));
+		}
+	};
 
+	private Map<String,Set<String>> unsatVariablesMappingB = new HashMap<String,Set<String>>() {
+		{
+			put("21", new HashSet<String> (Arrays.asList("a")));
+			put("22", new HashSet<String> (Arrays.asList("b")));
+			put("23", new HashSet<String> (Arrays.asList("c")));
+			put("24", new HashSet<String> (Arrays.asList("d")));
+			put("25", new HashSet<String> (Arrays.asList("e")));
+			put("26", new HashSet<String> (Arrays.asList("f")));
+			put("27", new HashSet<String> (Arrays.asList("g")));
+			put("28", new HashSet<String> (Arrays.asList("h")));			
+			put("29", new HashSet<String> (Arrays.asList("i")));
+			put("30", new HashSet<String> (Arrays.asList("j")));
+		}
+	};
+	
+	private Map<String,Set<String>> unsatVariablesMappingC = new HashMap<String,Set<String>>() {
+		{
+			put("1", new HashSet<String> (Arrays.asList("a")));
+			put("2", new HashSet<String> (Arrays.asList("b")));
+			put("3", new HashSet<String> (Arrays.asList("c")));
+			put("4", new HashSet<String> (Arrays.asList("d")));
+			put("5", new HashSet<String> (Arrays.asList("e")));
+			put("6", new HashSet<String> (Arrays.asList("f")));
+			put("7", new HashSet<String> (Arrays.asList("g")));
+			put("8", new HashSet<String> (Arrays.asList("h")));			
+			put("9", new HashSet<String> (Arrays.asList("i")));
+			put("10", new HashSet<String> (Arrays.asList("j")));
+			put("21", new HashSet<String> (Arrays.asList("a","b")));
+			put("22", new HashSet<String> (Arrays.asList("b")));
+			put("23", new HashSet<String> (Arrays.asList("c","d","g","h","i","j")));
+			put("24", new HashSet<String> (Arrays.asList("d","g","h","i","j")));
+			put("25", new HashSet<String> (Arrays.asList("e","b")));
+			put("26", new HashSet<String> (Arrays.asList("f")));
+			put("27", new HashSet<String> (Arrays.asList("g","h","i","j")));
+			put("28", new HashSet<String> (Arrays.asList("h")));			
+			put("29", new HashSet<String> (Arrays.asList("i")));
+			put("30", new HashSet<String> (Arrays.asList("j")));
+		}
+	};
 }
