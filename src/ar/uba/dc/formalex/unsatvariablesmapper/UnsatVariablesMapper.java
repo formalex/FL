@@ -116,30 +116,31 @@ public class UnsatVariablesMapper {
 	 */
 	public Map<String, Set<String>> mapUnsatVariables() {
 
+		// Mapa en donde se almacenan las variables que ya tienen completo el mapeo
 		Map<String, Set<String>> completedMap = new HashMap<>();
+		// Mapa en donde se almacenan las variables aun no tienen completo el mapeo. Se almacenan los mapeos parciales
 		Map<String, Set<String>> partialMap = new HashMap<>();
+		// Cola que almacena las variables que no tienen completo el mapeo con las variables pendientes de mapear.
 		Queue<Tuple> pendingQueue = new LinkedList<>();
 		
-		// Recorro el conjunto de unsat variables y las que ya se les puede hacer mapeo se las vuelca al map completados.
-		// A las que no se la vuelca a la cola de pendientes.
+		// Recorro el conjunto de unsat variables y las que ya se les puede hacer mapeo completo se las vuelca al map completados.
+		// A las que no se la vuelca al map de parciales y a la cola de pendientes.
 		for (String unsatVariable : unsatVariables) {
 			if (cnfVariablesMap.containsKey(unsatVariable)) {
 				completedMap.put(unsatVariable, cnfVariablesMap.get(unsatVariable));
 			} else {
+				partialMap.put(unsatVariable, new HashSet<>());
 				pendingQueue.add(new Tuple(unsatVariable, convertedVariablesMap.get(unsatVariable)));
 			}
 		}
 
 		// Proceso las variables mientras esten pendientes
 		while(!pendingQueue.isEmpty()) {
-			// Obtengo el primero de la cola de pendientes
+			// Obtengo la primer tupla de la cola de pendientes
 			Tuple pendingVariableTuple = pendingQueue.poll();
 			String variable = pendingVariableTuple.getVariable();
 			Set<String> pendings = pendingVariableTuple.getPendings();
 			
-			if (completedMap.containsKey(variable)) {
-				continue;
-			}
 			boolean hasToEnqueue = false;
 			Set<String> alreadyMappedVariables = new HashSet<String>();
 			Set<String> newPendingsVariables = new HashSet<String>();
@@ -147,41 +148,36 @@ public class UnsatVariablesMapper {
 			// Por cada una de las variables pendientes me fijo si se pueden mapear
 			for (String pendingVariable : pendings) {
 				// Primero me fijo si esta entre las variables cnf. En ese caso agrego el mapeo
-				if (cnfVariablesMap.containsKey(pendingVariable)) {
-					alreadyMappedVariables.addAll(cnfVariablesMap.get(pendingVariable));
-				} else if (completedMap.containsKey(pendingVariable)) {
-					// Luego me fijo entre las variables que ya se completaron de mapear. Si la encuentro ahi agrego el mapeo
-					alreadyMappedVariables.addAll(completedMap.get(pendingVariable));
-				} else {
-					// Si no es una variable que ya tiene el mapeo completo entonces la busco entre las que tiene el mapeo parcial.
-					if (partialMap.containsKey(pendingVariable)) {
-						alreadyMappedVariables.addAll(partialMap.get(pendingVariable));
-					} else {
-						pendingQueue.add(new Tuple(pendingVariable, convertedVariablesMap.get(pendingVariable)));
+				boolean pendingVariableExistsInCnfMap = addMappingOfVariableIfExists(cnfVariablesMap, pendingVariable, alreadyMappedVariables);
+				if (!pendingVariableExistsInCnfMap) {
+					// Luego me fijo entre las variables que ya se completaron de mapear. Si la encuentro ahi agrego el mapeo.
+					boolean pendingVariableExistsInCompletedMap = addMappingOfVariableIfExists(completedMap, pendingVariable, alreadyMappedVariables);
+					if (!pendingVariableExistsInCompletedMap) {			
+						// Si no es una variable que ya tiene el mapeo completo entonces la tengo que reencolar
+						hasToEnqueue = true;
+						newPendingsVariables.add(pendingVariable);
+						// Busco entre las que tienen el mapeo parcial. Si la encuentro ahi agrego el mapeo.
+						boolean pendingVariableExistsInPartialMap = addMappingOfVariableIfExists(partialMap, pendingVariable, alreadyMappedVariables);
+						if (!pendingVariableExistsInPartialMap) {
+							// Si no la encuentro la agrego en el map de parciales y a la cola.
+							partialMap.put(pendingVariable, new HashSet<>());
+							pendingQueue.add(new Tuple(pendingVariable, convertedVariablesMap.get(pendingVariable)));
+						}
 					}
-					
-					// Debo reencolar la variable porque tiene mapeos pendientes.
-					hasToEnqueue = true;
-					newPendingsVariables.add(pendingVariable);
 				}
 			}
 			
 			if (hasToEnqueue) {
-				// Si tengo que reencolar la variable porque aun tiene pendientes entonces me fijo si ya estaba entre los parciales. Si la encuentro entonces agrego
-				// los mapeos que ya fui realizando anteriormente.
-				if (partialMap.containsKey(variable)) {
-					alreadyMappedVariables.addAll(partialMap.get(variable));
-				}
+				// Si tengo que reencolar la variable es porque aun tiene pendientes entonces me fijo si ya estaba entre los parciales. 
+				// Si la encuentro entonces agrego los mapeos que ya fui realizando anteriormente.
+				addMappingOfVariableIfExists(partialMap, variable, alreadyMappedVariables);
+				
 				// Agrego la variable con el mapeo que ya fui realizando al mapa de parciales.
 				partialMap.put(variable, alreadyMappedVariables);		
 				// La variable se vuelve a encolar porque tiene penidentes
 				pendingQueue.add(new Tuple(variable, newPendingsVariables));
 			} else {
-				// Si ya complete todos los mapeos de las variabels entonces me fijo si se encontraba entre los pariciales. Si la encuentro ahi entonces agrego los mapeos
-				// que realice anteriormente
-				if (partialMap.containsKey(variable)) {
-					alreadyMappedVariables.addAll(partialMap.get(variable));
-				}
+				addMappingOfVariableIfExists(partialMap, variable, alreadyMappedVariables);
 				// Agrego la variable al map de completadas
 				completedMap.put(variable, alreadyMappedVariables);
 				// Elimino la variable del map de parciales
@@ -195,6 +191,16 @@ public class UnsatVariablesMapper {
 		}
 		
 		return unsatVariablesMap;
+	}
+
+	// Agrega todos los mapeos que estan almacenados en un mapa a un conjunto. 
+	private boolean addMappingOfVariableIfExists(Map<String, Set<String>> partialMap, String variable, Set<String> alreadyMappedVariables) {
+		boolean exists = false;
+		if (partialMap.containsKey(variable)) {
+			exists = true;
+			alreadyMappedVariables.addAll(partialMap.get(variable));
+		}
+		return exists;
 	}
 
 	private String substringBetweenTwoDelimiters(String string, String startDelimiter, String endDelimiter) {
