@@ -136,6 +136,34 @@ public class UnsatVariablesMapperTest {
 		
 	}
 	
+	@Test
+	public void modelD() {
+		
+		String unsatVariablesFileName = "unsatD.variables";
+		String modelFileName = "modelD.dimacs";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		
+		unsatVariablesMapper.mapUnsatVariables();
+		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
+		
+		assertTrue(compareMappingsByEquality(unsatVariablesMappingD, unsatVariablesMap));
+		
+	}
+	
+	@Test
+	public void modelE() {
+		
+		String unsatVariablesFileName = "unsatE.variables";
+		String modelFileName = "modelE.dimacs";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		
+		unsatVariablesMapper.mapUnsatVariables();
+		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
+		
+		assertTrue(compareMappingsByEquality(unsatVariablesMappingE, unsatVariablesMap));
+		
+	}
+
 	private boolean compareMappingsByEquality(Map<String, Set<String>> unsatVariablesMappingExpected,
 			Map<String, Set<String>> unsatVariablesMappingObtained) {
 		boolean ret =  true;
@@ -303,4 +331,26 @@ public class UnsatVariablesMapperTest {
 			put("30", new HashSet<String> (Arrays.asList("j")));
 		}
 	};
+	
+	private Map<String,Set<String>> unsatVariablesMappingD = new HashMap<String,Set<String>>() {
+		{
+			put("27", new HashSet<String> (Arrays.asList("agent_1.comprar")));
+			put("28", new HashSet<String> (Arrays.asList("agent_1.comprar")));			
+			put("29", new HashSet<String> (Arrays.asList("agent_3.comprar")));
+			put("30", new HashSet<String> (Arrays.asList("agent_3.comprar")));
+			put("77", new HashSet<String> (Arrays.asList("agent_2.comprar")));
+			put("78", new HashSet<String> (Arrays.asList("agent_4.comprar")));
+			put("79", new HashSet<String> (Arrays.asList("agent_3.comprar")));
+			put("80", new HashSet<String> (Arrays.asList("agent_1.comprar")));
+		}
+	};
+	
+	private Map<String,Set<String>> unsatVariablesMappingE = new HashMap<String,Set<String>>() {
+		{
+			put("52", new HashSet<String> (Arrays.asList("y","z")));
+			put("53", new HashSet<String> (Arrays.asList("y")));
+			put("54", new HashSet<String> (Arrays.asList("y","z")));
+		}
+	};
+	
 }
