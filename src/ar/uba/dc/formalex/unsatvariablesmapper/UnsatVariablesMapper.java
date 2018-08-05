@@ -4,10 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Queue;
@@ -18,15 +20,18 @@ public class UnsatVariablesMapper {
 	private Map<String, Set<String>> cnfVariablesMap;
 	private Map<String, Set<String>> convertedVariablesMap;
 	private Map<String, Set<String>> unsatVariablesMap = new HashMap<>();
-
+	private Map<String, List<String>> agentsMap = new HashMap<>();
+	private Set<String> FLEntities = new HashSet<>();
+	
 	public UnsatVariablesMapper(String unsatVariablesFilePath) {
 		unsatVariables = parseUnsatVariables(unsatVariablesFilePath);
 	}
 
-	public UnsatVariablesMapper(String unsatVariablesFilePath, String modelFilePath) {
+	public UnsatVariablesMapper(String unsatVariablesFilePath, String modelFilePath, String agentsFilePath) {
 		unsatVariables = parseUnsatVariables(unsatVariablesFilePath);
 		cnfVariablesMap = parseCnfVariables(modelFilePath);
 		convertedVariablesMap = parseConvertedVariables(modelFilePath);
+		agentsMap = parseAgents(agentsFilePath);
 	}
 
 	/*
@@ -111,10 +116,34 @@ public class UnsatVariablesMapper {
 		return ret;
 	}
 
+	private Map<String, List<String>> parseAgents(String agentsFilePath) {
+		Map<String, List<String>> ret = new HashMap<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(agentsFilePath));
+			String line;
+			while((line = br.readLine())!=null){
+				String[] splittedAgent = line.split(":");
+				String agent = splittedAgent[0];
+				List<String> roles = new ArrayList<>();
+				String[] rolesSplitted = splittedAgent[1].split(",");
+				for (String rol : rolesSplitted) {
+					roles.add(rol.trim());	
+				}		
+				ret.put(agent, roles);
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+	
 	/*
 	 * Por cada una de las variables unsat mapeo las variables del modelo correspondiente
 	 */
-	public Map<String, Set<String>> mapUnsatVariables() {
+	public void mapUnsatVariables() {
 	// Ejemplo (se puede ver tambien en el test modelE):
 	// Conjunto de unsat variables: 
 	//	[52, 53, 54]
@@ -211,12 +240,25 @@ public class UnsatVariablesMapper {
 			}
 		}
 		
+		// Se guardan las variables del modelo FL
+		Set<String> modelVariablesSet = new HashSet<>();
+		
 		// Del mapa de variables completadas filtro las que estaban en el conjunto original de unsatVariables
 		for (String unsatVariable : unsatVariables) {
 			unsatVariablesMap.put(unsatVariable, completedMap.get(unsatVariable));
+			modelVariablesSet.addAll(completedMap.get(unsatVariable));
+		}
+
+		// Obtengo el conjunto de entidades FL correspondientes a las variables unsat mapeadas anteriormente. 
+		// En el caso de que sea un agente entonces lo guardo con el siguiente formato: agent1(roles: rol1, rol2), accion: accion1  
+		for (String entity : modelVariablesSet) {
+			if (isAgent(entity)) {
+				FLEntities.add(generateAgentEntity(entity));
+			} else {
+				FLEntities.add(entity);
+			}
 		}
 		
-		return unsatVariablesMap;
 	}
 
 	// Agrega todos los mapeos que estan almacenados en un mapa a un conjunto. 
@@ -284,4 +326,33 @@ public class UnsatVariablesMapper {
 		}
 		
 	}
+
+	public Set<String> getFLEntities() {
+		return FLEntities;
+	}
+
+	private boolean isAgent(String entity) {
+		return entity.startsWith("agent_");
+	}
+	
+	private String generateAgentEntity(String entity) {
+		String[] splittedAgentEntity = entity.split("\\.");
+		String agent = splittedAgentEntity[0];
+		String roles = getRolesOfAgent(agent);
+		
+		//"agent_6 (roles: minorista, vendedor, comprador), accion: vender"
+		return agent + " (roles: " + roles + "), accion: " + splittedAgentEntity[1]; 
+	}
+
+	private String getRolesOfAgent(String agent) {
+		List<String> roles = agentsMap.get(agent);
+		StringBuffer rolesString = new StringBuffer();
+		rolesString.append(roles.get(0));
+		for (int i = 1; i < roles.size(); i++) {
+			rolesString.append(", ");
+			rolesString.append(roles.get(i));
+		}		
+		return rolesString.toString();
+	}
+
 }

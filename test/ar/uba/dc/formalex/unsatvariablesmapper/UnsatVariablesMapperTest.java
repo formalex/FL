@@ -1,5 +1,6 @@
 package ar.uba.dc.formalex.unsatvariablesmapper;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -18,7 +19,8 @@ public class UnsatVariablesMapperTest {
 	public void unsatMapperShouldParseFileIntoAVariableNameSet() {
 		String unsatVariablesFileName = "unsat1.variables";
 		String modelFileName = "model1.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agents1";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		Set<String> unsatVariables = unsatVariablesMapper.getUnsatVariables();
 		
@@ -31,7 +33,8 @@ public class UnsatVariablesMapperTest {
 		
 		String unsatVariablesFileName = "unsat1.variables";
 		String modelFileName = "model1.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agents1";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		Map<String,Set<String>> cnfVariablesMappingObtained = unsatVariablesMapper.getCnfVariablesMap();
 		
@@ -44,7 +47,8 @@ public class UnsatVariablesMapperTest {
 		
 		String unsatVariablesFileName = "unsat1.variables";
 		String modelFileName = "model1.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agents1";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		Map<String,Set<String>> convertedVariablesMap = unsatVariablesMapper.getConvertedVariablesMap();
 		
@@ -57,7 +61,8 @@ public class UnsatVariablesMapperTest {
 		
 		String unsatVariablesFileName = "unsat1.variables";
 		String modelFileName = "model2.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agents2";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		unsatVariablesMapper.mapUnsatVariables();
 		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
@@ -71,7 +76,8 @@ public class UnsatVariablesMapperTest {
 		
 		String unsatVariablesFileName = "unsat3.variables";
 		String modelFileName = "model3.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agents3";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		unsatVariablesMapper.mapUnsatVariables();
 		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
@@ -85,7 +91,8 @@ public class UnsatVariablesMapperTest {
 		
 		String unsatVariablesFileName = "unsat4.variables";
 		String modelFileName = "model4.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agents4";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		unsatVariablesMapper.mapUnsatVariables();
 		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
@@ -99,7 +106,8 @@ public class UnsatVariablesMapperTest {
 		
 		String unsatVariablesFileName = "unsatA.variables";
 		String modelFileName = "modelA.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agentsA";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		unsatVariablesMapper.mapUnsatVariables();
 		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
@@ -113,7 +121,8 @@ public class UnsatVariablesMapperTest {
 		
 		String unsatVariablesFileName = "unsatB.variables";
 		String modelFileName = "modelB.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agentsB";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		unsatVariablesMapper.mapUnsatVariables();
 		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
@@ -127,7 +136,8 @@ public class UnsatVariablesMapperTest {
 		
 		String unsatVariablesFileName = "unsatC.variables";
 		String modelFileName = "modelC.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agentsC";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		unsatVariablesMapper.mapUnsatVariables();
 		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
@@ -141,7 +151,8 @@ public class UnsatVariablesMapperTest {
 		
 		String unsatVariablesFileName = "unsatD.variables";
 		String modelFileName = "modelD.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agentsD";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		unsatVariablesMapper.mapUnsatVariables();
 		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
@@ -155,7 +166,8 @@ public class UnsatVariablesMapperTest {
 		
 		String unsatVariablesFileName = "unsatE.variables";
 		String modelFileName = "modelE.dimacs";
-		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName );
+		String agentsFileName = "agentsE";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" + agentsFileName);
 		
 		unsatVariablesMapper.mapUnsatVariables();
 		Map<String,Set<String>> unsatVariablesMap = unsatVariablesMapper.getUnsatVariablesMap();
@@ -164,6 +176,20 @@ public class UnsatVariablesMapperTest {
 		
 	}
 
+	@Test
+	public void modelF() {
+		
+		String unsatVariablesFileName = "unsatF.variables";
+		String modelFileName = "modelF.dimacs";
+		String agentslFileName = "agentsF";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName, resourcesDir +"/" +agentslFileName);
+		
+		unsatVariablesMapper.mapUnsatVariables();
+		Set<String> entities = unsatVariablesMapper.getFLEntities();
+		
+		assertEquals(flEntities, entities);
+	}
+	
 	private boolean compareMappingsByEquality(Map<String, Set<String>> unsatVariablesMappingExpected,
 			Map<String, Set<String>> unsatVariablesMappingObtained) {
 		boolean ret =  true;
@@ -353,4 +379,55 @@ public class UnsatVariablesMapperTest {
 		}
 	};
 	
+	private Map<String,Set<String>> unsatVariablesMappingF = new HashMap<String,Set<String>>() {
+		{	
+			put("135", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("136", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("137", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("138", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("139", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("171", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("172", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("173", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("174", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("175", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("392", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("394", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("422", new HashSet<String> (Arrays.asList("ventas_realizadas")));
+			put("140", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("141", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("142", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("143", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("144", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("176", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("177", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("178", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("179", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("180", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("386", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("396", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("423", new HashSet<String> (Arrays.asList("compras_realizadas")));
+			put("398", new HashSet<String> (Arrays.asList("ventas_realizadas", "compras_realizadas")));
+			put("424", new HashSet<String> (Arrays.asList("agent_6.vender", "agent_4.vender", "agent_8.vender", "agent_7.vender", "agent_9.comprar", "agent_4.comprar", "agent_5.comprar", "ventas_realizadas", "agent_6.comprar", "agent_1.vender", "compras_realizadas", "agent_3.comprar", "agent_8.comprar", "agent_7.comprar", "agent_2.comprar")));
+			put("425", new HashSet<String> (Arrays.asList("agent_6.vender", "agent_4.vender", "agent_8.vender", "agent_7.vender", "agent_9.comprar", "agent_4.comprar", "agent_5.comprar", "ventas_realizadas", "agent_6.comprar", "agent_1.vender", "compras_realizadas", "agent_3.comprar", "agent_8.comprar", "agent_7.comprar", "agent_2.comprar")));
+		}
+	};
+	
+	private Set<String> flEntities = new HashSet<String> (Arrays.asList(
+			"agent_6 (roles: minorista, vendedor, comprador), accion: vender",
+			"agent_4 (roles: vendedor, comprador), accion: vender",
+			"agent_8 (roles: vendedor, mayorista, comprador), accion: vender",
+			"agent_7 (roles: minorista, vendedor, mayorista, comprador), accion: vender",
+			"agent_9 (roles: minorista, mayorista, comprador), accion: comprar",
+			"agent_4 (roles: vendedor, comprador), accion: comprar",
+			"agent_5 (roles: comprador), accion: comprar", 
+			"ventas_realizadas",
+			"agent_6 (roles: minorista, vendedor, comprador), accion: comprar",
+			"agent_1 (roles: vendedor), accion: vender",
+			"compras_realizadas",
+			"agent_3 (roles: mayorista, comprador), accion: comprar",
+			"agent_8 (roles: vendedor, mayorista, comprador), accion: comprar",
+			"agent_7 (roles: minorista, vendedor, mayorista, comprador), accion: comprar",
+			"agent_2 (roles: minorista, comprador), accion: comprar"
+			));
 }

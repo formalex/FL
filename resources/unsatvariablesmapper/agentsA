@@ -1,0 +1,9 @@
+agent_1: vendedor
+agent_4: vendedor, comprador
+agent_5: comprador
+agent_2: minorista, comprador
+agent_3: mayorista, comprador
+agent_8: vendedor, mayorista, comprador
+agent_9: minorista, mayorista, comprador
+agent_6: minorista, vendedor, comprador
+agent_7: minorista, vendedor, mayorista, comprador
