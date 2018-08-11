@@ -16,6 +16,7 @@ import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 import ar.uba.dc.formalex.automatoncompactor.AutomatonCompactor;
 import ar.uba.dc.formalex.automatoncompactor.AutomatonReplacementsGenerator;
+import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
@@ -113,7 +114,7 @@ public class NuSMVModelChecker {
         File nusmvInput = new File(temp_dir, nusmvAutomataFileName);
         File nusmvCommands = new File(temp_dir, nusmvCommandsFileName);
         File nusmvOutput = new File(temp_dir, nusvmOutputFileName);
-        
+
         int ind = 1;
         while (nusmvCommands.exists()) {
             nusmvCommandsFileName = "nusmvCommands_" + ts + "_" + ind++ + automataExtension;
@@ -125,6 +126,9 @@ public class NuSMVModelChecker {
             nusmvOutput = new File(temp_dir, nusvmOutputFileName );
         }
         try {
+        	// Se crea el archivo en donde se guarda la correspondencia entre los agentes y los roles. Se utiliza luego para determinar las entidades unsat
+        	createAgentsFile(backgroundTheory, ts, temp_dir);
+        	
             crearAutomata(backgroundTheory, nusmvInput, anLTLTranslationType);
 
             boolean compactAutomaton = false;
@@ -209,6 +213,23 @@ public class NuSMVModelChecker {
 
         return nusmvOutput;
     }
+
+	private static void createAgentsFile(BackgroundTheory backgroundTheory, String ts, String temp_dir) throws IOException {
+		// Se genera un archivo cuyo nombre comienza con el prefijo agents_ en donde se van a guardar los agentes y los roles correspondientes. 
+		// Ejemplo:
+		// agent_1: vendedor
+		// agent_2: minorista, comprador
+		// agent_3: mayorista, comprador
+		// agent_4: vendedor, comprador
+			
+		StringBuffer agentsBuffer = new StringBuffer();
+		
+		for (Agente agente : backgroundTheory.getAgentes()) {
+			agentsBuffer.append(agente + ": "+ agente.getRolesCSV() + "\n");
+		}
+		
+		UtilFile.guardar(new File(temp_dir, "agents_" + ts), agentsBuffer.toString(), true);
+	}
 
 	private static String compactNuSMVFiles(BackgroundTheory backgroundTheory, String temp_dir,
 			String automataFileName, String automataExtension, String commandsFileName, String nusvmOutputFileName,
