@@ -1,9 +1,5 @@
 package ar.uba.dc.formalex.fl;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -97,8 +93,6 @@ public class Formalex {
 				
 				validar(flInput, elgrafoDeDependenciasBgt, conModelChecker,
 						conReductor, anLtlTranslationType);
-
-				
 				
 				logger.debug("Listo");
 			} catch (TokenMgrError e) {
@@ -160,17 +154,10 @@ public class Formalex {
 		
         boolean encontroTrace = true;
         if(conModelChecker){
-        	File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, aValidar, anLtlTranslationType);
-
-        	if (!file.exists()){
-        		//Si no se generó el archivo es porque el output del proceso está vacío. Eso suele pasar cuando hubo un error con nusmv.
-        		logger.error("Error al correr nusmv. Intentar correr a mano el comando previamente logueado.");
-        		throw new RuntimeException("Se abortó la ejecución de nusmv. Revisar archivo generado.");
-        	}
-        	encontroTrace = encontroTrace(file);
+        	encontroTrace = NuSMVModelChecker.encontroTrace(bgtConRepresentacionDeAccionesReducidas, aValidar, anLtlTranslationType);
+        	
         	if (encontroTrace){
         		logger.info("Se ha encontrado un comportamiento legal para las normas.");
-        		logger.info("Se puede ver el trace en: " + file.getAbsolutePath());
         	}else
         		logger.info("No se ha encontrado un comportamiento legal.");
         }else
@@ -210,11 +197,9 @@ public class Formalex {
 					conReductor, conPermiso, unaBgtFiltrada, anLTLTranslationType);
             
             if(conModelChecker){
-	            File file = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, conPermiso, anLTLTranslationType);
-	            boolean encontroTrace = encontroTrace(file);
+	            boolean encontroTrace = NuSMVModelChecker.encontroTrace(bgtConRepresentacionDeAccionesReducidas, conPermiso, anLTLTranslationType);
 	            if (encontroTrace){
 	                logger.info("Se ha encontrado un comportamiento legal para el permiso.");
-	                logger.info("Se puede ver el trace en: " + file.getAbsolutePath());
 	            }else{
 	                logger.info("No se ha encontrado un comportamiento legal para el permiso.");
 	            }
@@ -270,32 +255,6 @@ public class Formalex {
 
     }
 
-	private static boolean encontroTrace(File file){
-        BufferedReader bf= null;
-
-        try {
-            // Open the file as buffered text
-            bf = new BufferedReader(new FileReader(file));
-            String line;
-
-            if (( line = bf.readLine()) != null)
-                return line.endsWith("is false");
-            else
-                return false;
-        }
-        catch (IOException e) {
-            logger.error(e.getMessage(), e);
-            return false;
-        }
-        finally {
-            if (bf != null)
-                try {
-                    bf.close();
-                } catch (IOException e) {
-                    logger.error(e.getMessage(), e);
-                }
-        }
-    }
     
 	private static void loguearBgt(BackgroundTheory unaBgtFiltrada) {
 		logger.info("# agentes: " + unaBgtFiltrada.getAgentes().size());
