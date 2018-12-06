@@ -220,4 +220,20 @@ public class AutomatonCompactor {
 		return inverseReplacements;
 	}
 
+	public Map<String, String> getReplacements() {
+		return replacements;
+	}
+
+	public void setReplacements(Map<String, String> replacements) {
+		this.replacements = replacements;
+	}
+
+	public Map<String, String> getInverseReplacements() {
+		return inverseReplacements;
+	}
+
+	public void setInverseReplacements(Map<String, String> inverseReplacements) {
+		this.inverseReplacements = inverseReplacements;
+	}
+
 }

@@ -1,5 +1,11 @@
 package ar.uba.dc.formalex.fl;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,6 +13,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -15,8 +23,10 @@ import ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion.ReductorDeRepresentac
 import ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion.ReductorDeRepresentacionDeAccionADosEstadosFake;
 import ar.uba.dc.formalex.ReductorDeRepresentacionDeAccion.ReductorDeRepresentacionDeAccionADosEstadosImpl;
 import ar.uba.dc.formalex.fl.bgtheory.Action;
+import ar.uba.dc.formalex.fl.bgtheory.Agente;
 import ar.uba.dc.formalex.fl.bgtheory.BackgroundTheory;
 import ar.uba.dc.formalex.fl.bgtheory.Interval;
+import ar.uba.dc.formalex.fl.bgtheory.Role;
 import ar.uba.dc.formalex.fl.regulation.formula.FLFormula;
 import ar.uba.dc.formalex.fl.regulation.formula.LTLTranslationType;
 import ar.uba.dc.formalex.fl.regulation.formula.connectors.FLAnd;
@@ -28,11 +38,13 @@ import ar.uba.dc.formalex.grafoDeDependencia.ConstructorDeGrafoImpl;
 import ar.uba.dc.formalex.grafoDeDependencia.Grafo;
 import ar.uba.dc.formalex.grafoDeDependencia.InfoComponenteBgt;
 import ar.uba.dc.formalex.grafoDeDependencia.Nodo;
+import ar.uba.dc.formalex.modelChecker.ModelCheckInfo;
 import ar.uba.dc.formalex.modelChecker.NuSMVModelChecker;
 import ar.uba.dc.formalex.parser.FLParser;
 import ar.uba.dc.formalex.parser.ParseException;
 import ar.uba.dc.formalex.parser.TokenMgrError;
 import ar.uba.dc.formalex.ui.Main;
+import ar.uba.dc.formalex.unsatvariablesmapper.UnsatVariablesMapper;
 import ar.uba.dc.formalex.util.LaAplanadora;
 import ar.uba.dc.formalex.util.Util;
 
@@ -149,19 +161,26 @@ public class Formalex {
         loguearBgt(unaBgtFiltrada);
         
       //Se crea e invoca al reductor
-        BackgroundTheory bgtConRepresentacionDeAccionesReducidas = invocarReductor(
-				conReductor, aValidar, unaBgtFiltrada, anLtlTranslationType);
+        BackgroundTheory bgtConRepresentacionDeAccionesReducidas = invocarReductor(conReductor, aValidar, unaBgtFiltrada, anLtlTranslationType);
 		
         boolean encontroTrace = true;
         if(conModelChecker){
-        	encontroTrace = NuSMVModelChecker.encontroTrace(bgtConRepresentacionDeAccionesReducidas, aValidar, anLtlTranslationType);
+
+        	ModelCheckInfo modelCheckInfo = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, aValidar, anLtlTranslationType);
         	
-        	if (encontroTrace){
-        		logger.info("Se ha encontrado un comportamiento legal para las normas.");
-        	}else
-        		logger.info("No se ha encontrado un comportamiento legal.");
-        }else
+        	encontroTrace = encontroTrace(modelCheckInfo);
+        	
+            if (encontroTrace){
+                logger.info("Se ha encontrado un comportamiento legal para las normas.");
+                logger.info("Se puede ver el trace en: " + modelCheckInfo.getOutputPicosatPath());	
+            } else {
+                logger.info("No se ha encontrado un comportamiento legal para las normas.");
+             // Si no encontro Trace muestro en pantalla las entidades involucradas en el unsat
+                showUnsatEntities(bgtConRepresentacionDeAccionesReducidas, modelCheckInfo);
+            }
+        } else {
         	logger.info(CORRIENDO_SIN_MODEL_CHECKER);
+        }
         
         logger.info("");
         
@@ -193,18 +212,25 @@ public class Formalex {
             loguearBgt(unaBgtFiltrada);
             
             //Se crea e invoca al reductor
-            BackgroundTheory bgtConRepresentacionDeAccionesReducidas = invocarReductor(
-					conReductor, conPermiso, unaBgtFiltrada, anLTLTranslationType);
+            BackgroundTheory bgtConRepresentacionDeAccionesReducidas = invocarReductor(conReductor, conPermiso, unaBgtFiltrada, anLTLTranslationType);
             
             if(conModelChecker){
-	            boolean encontroTrace = NuSMVModelChecker.encontroTrace(bgtConRepresentacionDeAccionesReducidas, conPermiso, anLTLTranslationType);
+            	
+            	ModelCheckInfo modelCheckInfo = NuSMVModelChecker.findTrace(bgtConRepresentacionDeAccionesReducidas, formula, anLTLTranslationType);
+            	
+            	boolean encontroTrace = encontroTrace(modelCheckInfo);
+            	
 	            if (encontroTrace){
 	                logger.info("Se ha encontrado un comportamiento legal para el permiso.");
-	            }else{
+	                logger.info("Se puede ver el trace en: " + modelCheckInfo.getOutputPicosatPath());
+	            } else {
 	                logger.info("No se ha encontrado un comportamiento legal para el permiso.");
+	             // Si no encontro Trace muestro en pantalla las entidades involucradas en el unsat
+	                showUnsatEntities(bgtConRepresentacionDeAccionesReducidas, modelCheckInfo);
 	            }
-            }else
+            } else {
             	logger.info(CORRIENDO_SIN_MODEL_CHECKER);
+            }
             
             logger.info("");
 
@@ -419,4 +445,91 @@ public class Formalex {
 		return actionWithResultsInReferencesGroupByActionName;
 	}
 
+	private static boolean encontroTrace(ModelCheckInfo modelCheckInfo){
+		
+		String fileName = modelCheckInfo.getOutputPicosatPath();
+		
+		boolean encontroTrace = false;
+		try {
+			Pattern p = Pattern.compile("(?m)^s.*$");
+			Matcher m;
+				m = p.matcher(fromFile(fileName));
+	        while (m.find()) {
+	            encontroTrace = m.group().contains(" SATISFIABLE");
+	        }    
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return encontroTrace;
+		
+	}
+	
+	 private static CharSequence fromFile(String filename) throws IOException {
+	        FileInputStream input = new FileInputStream(filename);
+	        FileChannel channel = input.getChannel();
+	     
+	        // Create a read-only CharBuffer on the file
+	        ByteBuffer bbuf = channel.map(FileChannel.MapMode.READ_ONLY, 0, (int)channel.size());
+	        CharBuffer cbuf = Charset.forName("UTF-8").newDecoder().decode(bbuf);
+	        input.close();
+	        return cbuf;
+	    }
+
+		private static void showUnsatEntities(BackgroundTheory backgroundTheory, ModelCheckInfo modelCheckInfo) {
+			
+			//Debo hacer el mapeo de las variables unsat. Para eso necesito el archivo de variables unsat y la salida de nusmv
+			UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(modelCheckInfo.getUnsatVariablesPath(), modelCheckInfo.getNusmvOutputPath() + ".dimacs");
+			unsatVariablesMapper.mapUnsatVariables();
+			
+			Set<String> unsatFLEntities = unsatVariablesMapper.getFLEntities();
+
+			Set<String> unsatEntitySet = new HashSet<>();	
+			
+			if(modelCheckInfo.isAutomatonCompacted()) {
+				// Vuelvo a obtener el nombre de las variables decompactadas.
+				Map<String, String> inverseReplacements = modelCheckInfo.getAutomatonCompactor().getInverseReplacements();
+				for (String flEntity : unsatFLEntities) {
+					unsatEntitySet.add(inverseReplacements.get(flEntity));
+				}
+			} else {
+				unsatEntitySet = unsatFLEntities;
+			}
+			
+			Map<String, Set<Role>> agentsRolesMap = new HashMap<>();
+			for (Agente agente : backgroundTheory.getAgentes()) {
+				agentsRolesMap.put(agente.getName(), agente.getRoles());
+			}
+			
+			StringBuffer output = new StringBuffer();	
+			
+			for (String entity : unsatEntitySet) {
+				if (isAgent(entity)) {
+					output.append(generateAgentEntity(entity, agentsRolesMap) + "\n");
+				} else {
+					output.append(entity + "\n");
+				}
+			}
+			
+			logger.info("Entidades involucradas en el unsat: \n" + output.toString());
+		}
+
+		private static boolean isAgent(String entity) {
+			return entity.startsWith("agent_");
+		}
+		
+		private static String generateAgentEntity(String entity, Map<String, Set<Role>> agentsRolesMap) {
+			String[] splittedAgentEntity = entity.split("\\.");
+			String agent = splittedAgentEntity[0];
+
+			Set<Role> roles = agentsRolesMap.get(agent);
+			StringBuffer rolesString = new StringBuffer();
+			for (Role role : roles) {
+				rolesString.append(role.getName());
+				rolesString.append(", ");
+			}		
+			//"agent_6 (roles: minorista, vendedor, comprador), accion: vender"
+			return agent + " (roles: " + roles + "), accion: " + splittedAgentEntity[1]; 
+		}
+	 
 }
