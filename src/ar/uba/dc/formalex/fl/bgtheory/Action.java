@@ -266,7 +266,7 @@ public class Action {
 		
 	}
 
-	public void logFL(){
+	public String logFL(){
         StringBuilder sb;
         if (isImpersonal())
             sb = new StringBuilder("impersonal action ");
@@ -301,5 +301,6 @@ public class Action {
 
         sb.append(" " + getRepresentation());
         logger.info(sb.toString());
+        return sb.toString();
     }
 }

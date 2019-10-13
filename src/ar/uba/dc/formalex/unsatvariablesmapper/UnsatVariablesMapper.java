@@ -17,7 +17,7 @@ public class UnsatVariablesMapper {
 	private Set<String> unsatVariables;	
 	private Map<String, Set<String>> cnfVariablesMap;
 	private Map<String, Set<String>> convertedVariablesMap;
-	private Map<String, Set<String>> unsatVariablesMap = new HashMap<>();
+	private Map<String, Set<String>> completedMap = new HashMap<>();
 	private Set<String> FLEntities = new HashSet<>();
 	
 	public UnsatVariablesMapper(String unsatVariablesFilePath) {
@@ -116,16 +116,16 @@ public class UnsatVariablesMapper {
 	 * Por cada una de las variables unsat mapeo las variables del modelo correspondiente
 	 */
 	public void mapUnsatVariables() {
-	// Ejemplo (se puede ver tambien en el test modelE):
-	// Conjunto de unsat variables: 
-	//	[52, 53, 54]
-	// Mapa de cnfVariables: 
-	// 	<"13", "y">, <"14", "y">, <"15", "y">, <"16", "y">, <"17", "z">, <"18", "z">
-	// Mapa de variables convertidas:
-	//	<"52", ["14","53","13","17"]>, <"53", ["13"]>, <"54", ["15","53"]>
+		// Ejemplo (se puede ver tambien en el test modelE):
+		// Conjunto de unsat variables: 
+		//	[52, 53, 54]
+		// Mapa de cnfVariables: 
+		// 	<"13", "y">, <"14", "y">, <"15", "y">, <"16", "y">, <"17", "z">, <"18", "z">
+		// Mapa de variables convertidas:
+		//	<"52", ["14","53","13","17"]>, <"53", ["13"]>, <"54", ["15","53"]>
 
 		// Mapa en donde se almacenan las variables que ya tienen completo el mapeo
-		Map<String, Set<String>> completedMap = new HashMap<>();
+//		Map<String, Set<String>> completedMap = new HashMap<>();
 		// Mapa en donde se almacenan las variables aun no tienen completo el mapeo. Se almacenan los mapeos parciales.
 		Map<String, Set<String>> partialMap = new HashMap<>();
 		// Cola que almacena las variables que no tienen completo el mapeo con las variables pendientes de mapear.
@@ -141,70 +141,65 @@ public class UnsatVariablesMapper {
 				pendingQueue.add(new Tuple(unsatVariable, convertedVariablesMap.get(unsatVariable)));
 			}
 		}
-
-	// En el ejemplo la cola de pendientes quedaria de la siguente forma:
-	// pendingQueue: 
-	//		variable=52, pendings=[13, 14, 17, 53] 
-	//		variable=53, pendings=[13]
-	//		variable=54, pendings=[15, 52]
 		
+		// En el ejemplo la cola de pendientes quedaria de la siguente forma:
+		// pendingQueue: 
+		//		variable=52, pendings=[13, 14, 17, 53] 
+		//		variable=53, pendings=[13]
+		//		variable=54, pendings=[15, 52]
+			
 		// Proceso las variables mientras esten en la cola de pendientes
 		while(!pendingQueue.isEmpty()) {
 			// Obtengo la primer tupla de la cola de pendientes
 			Tuple pendingVariableTuple = pendingQueue.poll();
 			String variable = pendingVariableTuple.getVariable();
 			Set<String> pendings = pendingVariableTuple.getPendings();
-	// En el ejemplo dado:
-	// En la primer iteracion obtiene lo siguiente:
-	//		variable= 52
-	// 		pendings= [13, 14, 17, 53]	
+			// En el ejemplo dado:
+			// En la primer iteracion obtiene lo siguiente:
+			//		variable= 52
+			// 		pendings= [13, 14, 17, 53]	
 			
 			boolean hasToEnqueue = false;
 			Set<String> alreadyMappedVariables = new HashSet<String>();
 			Set<String> newPendingsVariables = new HashSet<String>();
 			
 			// Por cada una de las variables pendientes me fijo si se pueden mapear
-	// En el ejemplo la lista que va a recorrer es [13, 14, 17, 53]
-	// Para 13, 14 y 17 el mapeo se encuentra en el map de cnf. 
-	// Para 53 aun no va a estar resuelto por lo que se debe volver a agregar a la cola.
+			// En el ejemplo la lista que va a recorrer es [13, 14, 17, 53]
+			// Para 13, 14 y 17 el mapeo se encuentra en el map de cnf. 
+			// Para 53 aun no va a estar resuelto por lo que se debe volver a agregar a la cola.
 			for (String pendingVariable : pendings) {
 				// Primero me fijo si esta entre las variables cnf. En ese caso agrego el mapeo.
-	// En el ejemplo las variables 13, 14 y 17 se encuentran en el mapa de cnf por lo que se puede agregar el mapeo al conjunto de mapeos (alreadyMappedVariables) 
-				boolean pendingVariableExistsInCnfMap = addMappingOfVariableIfExists(cnfVariablesMap, pendingVariable, alreadyMappedVariables);
-				if (!pendingVariableExistsInCnfMap) {
-					// Luego me fijo entre las variables que ya se completaron de mapear. Si la encuentro ahi agrego el mapeo.
-					boolean pendingVariableExistsInCompletedMap = addMappingOfVariableIfExists(completedMap, pendingVariable, alreadyMappedVariables);
-					if (!pendingVariableExistsInCompletedMap) {			
-						// Si no es una variable que ya tiene el mapeo completo entonces la tengo que reencolar
-	// En el ejemplo en la primer iteracion, la variable 53 no tiene el mapeo completo por lo que se agrega al conjunto de pendingVariables 
-	// y se indica que a la variable 52 se debe colocar nuevamente a la cola.		
-						hasToEnqueue = true;
-						newPendingsVariables.add(pendingVariable);
-						// Busco entre las que tienen el mapeo parcial. Si la encuentro ahi agrego el mapeo.
-						boolean pendingVariableExistsInPartialMap = addMappingOfVariableIfExists(partialMap, pendingVariable, alreadyMappedVariables);
-						if (!pendingVariableExistsInPartialMap) {
-							// Si no la encuentro la agrego en el map de parciales y a la cola.
-							partialMap.put(pendingVariable, new HashSet<>());
-							pendingQueue.add(new Tuple(pendingVariable, convertedVariablesMap.get(pendingVariable)));
-						}
+				// En el ejemplo las variables 13, 14 y 17 se encuentran en el mapa de cnf por lo que se puede agregar el mapeo al conjunto de mapeos (alreadyMappedVariables) 
+				if (!collectMappingsOfAVariableIntoASetIfExists(pendingVariable, cnfVariablesMap, alreadyMappedVariables) &&
+					!collectMappingsOfAVariableIntoASetIfExists(pendingVariable, completedMap, alreadyMappedVariables)) {
+					// Si no es una variable que ya tiene el mapeo completo entonces la tengo que reencolar
+					// En el ejemplo en la primer iteracion, la variable 53 no tiene el mapeo completo por lo que se agrega al conjunto de pendingVariables 
+					// y se indica que a la variable 52 se debe colocar nuevamente a la cola.		
+					hasToEnqueue = true;
+					newPendingsVariables.add(pendingVariable);
+					// Busco entre las que tienen el mapeo parcial. Si la encuentro ahi agrego el mapeo.
+					if (!collectMappingsOfAVariableIntoASetIfExists(pendingVariable, partialMap, alreadyMappedVariables)) {
+						// Si no la encuentro la agrego en el map de parciales y a la cola.
+						partialMap.put(pendingVariable, new HashSet<>());
+						pendingQueue.add(new Tuple(pendingVariable, convertedVariablesMap.get(pendingVariable)));
 					}
 				}
 			}
-	// En la primer iteracion la variable 52 tiene como pendiente resolver la variable 53 por lo que se vuelve a encolar lo siguiente:
-	// 	variable=52, pendings=[53] 	
+			collectMappingsOfAVariableIntoASetIfExists(variable, partialMap, alreadyMappedVariables);
+			
+			// En la primer iteracion la variable 52 tiene como pendiente resolver la variable 53 por lo que se vuelve a encolar lo siguiente:
+			// 	variable=52, pendings=[53] 	
 			if (hasToEnqueue) {
 				// Si tengo que reencolar la variable es porque aun tiene pendientes entonces me fijo si ya estaba entre los parciales. 
 				// Si la encuentro entonces agrego los mapeos que ya fui realizando anteriormente.
-				addMappingOfVariableIfExists(partialMap, variable, alreadyMappedVariables);
 				// Agrego la variable con el mapeo que ya fui realizando al mapa de parciales.
 				partialMap.put(variable, alreadyMappedVariables);		
 				// La variable se vuelve a encolar porque tiene penidentes
 				pendingQueue.add(new Tuple(variable, newPendingsVariables));
 			} else {
-	// Cuando se vuelva a tomar la variable 52 en una siguiente iteracion, la variable 53 ya va a estar resuelta por lo que se agregara
-	// a la variable 52 al map de completos.	
+				// Cuando se vuelva a tomar la variable 52 en una siguiente iteracion, la variable 53 ya va a estar resuelta por lo que se agregara
+				// a la variable 52 al map de completos.	
 				// Agrego los mapeos que fui realizando anteriormente.
-				addMappingOfVariableIfExists(partialMap, variable, alreadyMappedVariables);
 				// Agrego la variable al map de completadas
 				completedMap.put(variable, alreadyMappedVariables);
 				// Elimino la variable del map de parciales
@@ -214,17 +209,16 @@ public class UnsatVariablesMapper {
 		
 		// Del mapa de variables completadas filtro las que estaban en el conjunto original de unsatVariables
 		for (String unsatVariable : unsatVariables) {
-			unsatVariablesMap.put(unsatVariable, completedMap.get(unsatVariable));
 			FLEntities.addAll(completedMap.get(unsatVariable));
 		}
 	}
 
 	// Agrega todos los mapeos que estan almacenados en un mapa a un conjunto. 
-	private boolean addMappingOfVariableIfExists(Map<String, Set<String>> partialMap, String variable, Set<String> alreadyMappedVariables) {
+	private boolean collectMappingsOfAVariableIntoASetIfExists(String variable, Map<String, Set<String>> map, Set<String> set) {
 		boolean exists = false;
-		if (partialMap.containsKey(variable)) {
+		if (map.containsKey(variable)) {
 			exists = true;
-			alreadyMappedVariables.addAll(partialMap.get(variable));
+			set.addAll(map.get(variable));
 		}
 		return exists;
 	}
@@ -248,6 +242,10 @@ public class UnsatVariablesMapper {
 	}
 
 	public Map<String, Set<String>> getUnsatVariablesMap() {
+		Map<String, Set<String>> unsatVariablesMap = new HashMap<>();
+		for (String unsatVariable : unsatVariables) {
+			unsatVariablesMap.put(unsatVariable, completedMap.get(unsatVariable));
+		}
 		return unsatVariablesMap;
 	}
 
@@ -281,7 +279,6 @@ public class UnsatVariablesMapper {
 		public String toString() {
 			return "Tuple [variable=" + variable + ", pendings=" + pendings + "]";
 		}
-		
 	}
 
 	public Set<String> getFLEntities() {
