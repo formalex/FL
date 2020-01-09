@@ -66,7 +66,7 @@ public class AutomatonCompactorTest {
 		String automatonName = "automaton1";
 		String automatonExtension = ".nusmv";
 		
-		File compactedAutomatonFile = new File(dir + "/" + automatonName + "Compacted");
+		File compactedAutomatonFile = new File(dir + "/" + automatonName + "Compacted" + automatonExtension);
 		Files.deleteIfExists(compactedAutomatonFile.toPath());
 		
 		boolean removeComments = false;
@@ -117,10 +117,6 @@ public class AutomatonCompactorTest {
 	@Test
 	// Test que verifica que se eliminan comentarios y lineas vacias de un archivo de automata
 	public void anAutomatonCompactorShouldRemoveCommentsAsExpected() throws IOException {
-		String automatonName = "automatonWithComments1";
-		String automatonExtension = ".nusmv";
-		File obtainedAutomatonWithoutComments = new File(dir + "/" +"automatonWithComments1WithoutCommentsAndEmptyLines.nusmv");
-		Files.deleteIfExists(obtainedAutomatonWithoutComments.toPath());
 		
 		Map<String, String> replacements = new HashMap<String, String>() {{
 		    put("NOT_HAPPENING", "NH");
@@ -132,12 +128,24 @@ public class AutomatonCompactorTest {
 		    put("empieza_censo","i1");
 		    put("termina_censo","i0");
 		    put("en_censo","i3");
-		}};	
-		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
-		automatonCompactor.compact(true, automatonName);
+		}};		
 		
-		File expectedAutomatonWithoutComments = new File(dir + "/" +"expectedWithoutComments1.nusmv");
-		assertAllFilesLinesEquals(expectedAutomatonWithoutComments, obtainedAutomatonWithoutComments);
+		String automatonName = "automatonWithComments1";
+		String automatonExtension = ".nusmv";
+		
+		File compactedAutomatonFile = new File(dir + "/" + automatonName + "Compacted" + automatonExtension);
+		Files.deleteIfExists(compactedAutomatonFile.toPath());
+		
+		boolean removeComments = true;
+		
+		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
+		
+		compactedAutomatonFile = automatonCompactor.compact(removeComments, automatonName + "Compacted");
+		
+		File expectedAutomaton = new File(dir + "/" +"expectedWithoutComments1.nusmv");
+
+		assertAllFilesLinesEquals(expectedAutomaton, compactedAutomatonFile);
+		
 	}
 
 	@Test
@@ -148,7 +156,7 @@ public class AutomatonCompactorTest {
 		String automatonName = "automaton3";
 		String automatonExtension = ".nusmv";
 		
-		File compactedAutomatonFile = new File(dir + "/" + automatonName + "Compacted");
+		File compactedAutomatonFile = new File(dir + "/" + automatonName + "Compacted" + automatonExtension);
 		Files.deleteIfExists(compactedAutomatonFile.toPath());
 		
 		boolean removeComments = true;
@@ -280,7 +288,6 @@ public class AutomatonCompactorTest {
 		assertAllFilesLinesEquals(originalAutomatonFile, decompactedFile);
 	}
 	
-	
 	@Test
 	public void anAutomatonCompactorShouldDecompactNusmvOutAsExpected() throws IOException {
 		String replacementsFileName = "replacements";
@@ -294,6 +301,21 @@ public class AutomatonCompactorTest {
 		nusmvOut = automatonCompactor.decompact(nusmvOutFileName);
 		
 		assertAllFilesLinesEquals(nusmvOutExpected, nusmvOut);
+		
+	}
+	
+	@Test
+	public void test01() throws IOException {
+		String replacementsFileName = "replacements";
+		String nusmvOutReducedName = "nusmvOutExpected";
+		String nusmvOutReducedExtension = ".nusmv";
+		String nusmvOutFileName = "nusmvOutReducedDecompacted";
+		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, nusmvOutReducedName, nusmvOutReducedExtension, replacementsFileName);
+		File nusmvOut = null;
+		
+		nusmvOut = automatonCompactor.compact(true, nusmvOutFileName);
+		
+		File nusmvOutExpected = new File(dir + "/nusmvOutExpected.nusmv");
 		
 	}
 	
