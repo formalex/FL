@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import ar.uba.dc.formalex.fl.bgtheory.Action;
@@ -72,7 +73,13 @@ public class AutomatonReplacementsGenerator {
 			}
 			
 			for (Timer timer : backgroundTheory.getTimers()) {
-				for (String evento : timer.getEventos()) {
+				// Se agrega el caso de la variable que indica si ya ocurrió el primer evento del timer (termina con _FINALIZED)
+ 				List<String> eventos = timer.getEventos();
+				replacements.put(eventos.get(0)+ "_FINALIZED", "i"+variableCounter);
+				variableCounter++;
+				replacementStringBuffer.append(eventos.get(0) + "_FINALIZED="+replacements.get(eventos.get(0)+ "_FINALIZED")+"\n");
+				
+				for (String evento : eventos) {
 					replacements.put(evento, "i"+variableCounter);
 					variableCounter++;
 					replacementStringBuffer.append(evento + "="+replacements.get(evento)+"\n");
