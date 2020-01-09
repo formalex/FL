@@ -117,6 +117,11 @@ public class AutomatonCompactor {
 			while ((line = br.readLine()) != null) {
 				if (!line.contains(commentString)) {
 					sb.append(line + "\n");
+				} else {
+					String trimmedLine = line.trim();
+					if (trimmedLine.indexOf(commentString) > 0) {
+						sb.append(trimmedLine.substring(0, trimmedLine.indexOf(commentString)) + "\n");
+					}
 				}
 			}
 			br.close();
@@ -162,30 +167,30 @@ public class AutomatonCompactor {
 		return fileWithReplacement;
 	}
 	
-	private String performStringReplacements(CharSequence originalString, Map<String, String> replacementMap) {
+	private String performStringReplacements(String originalString, Map<String, String> replacementMap) {
 
-			StringBuffer stringWithReplacementsBuffer = new StringBuffer();
-			StringBuffer pattern = new StringBuffer();
-			
-			for (String toBeReplaced : replacementMap.keySet()) {
-				pattern.append("|\\b"+toBeReplaced+"\\b");
-			}
-			
-			pattern.deleteCharAt(0);
-			
-			Pattern p = Pattern.compile(pattern.toString());
-			Matcher m = p.matcher(originalString);
-			
-			while (m.find()) {
-				m.appendReplacement(stringWithReplacementsBuffer, replacementMap.get(m.group()));
-			}
-			m.appendTail(stringWithReplacementsBuffer);
-	
-			return stringWithReplacementsBuffer.toString();
-			
+		StringBuffer stringWithReplacementsBuffer = new StringBuffer();
+		StringBuffer pattern = new StringBuffer();
+		
+		for (String toBeReplaced : replacementMap.keySet()) {
+			pattern.append("|\\b"+toBeReplaced+"\\b");
+		}
+		
+		pattern.deleteCharAt(0);
+		
+		Pattern p = Pattern.compile(pattern.toString());
+		Matcher m = p.matcher(originalString);
+		
+		while (m.find()) {
+			m.appendReplacement(stringWithReplacementsBuffer, replacementMap.get(m.group()));
+		}
+		m.appendTail(stringWithReplacementsBuffer);
+
+		return stringWithReplacementsBuffer.toString();
+		
 	}
 
-    private CharSequence fromFile(String filename) throws IOException {
+    private String fromFile(String filename) throws IOException {
         FileInputStream input = new FileInputStream(filename);
         FileChannel channel = input.getChannel();
      
@@ -193,9 +198,9 @@ public class AutomatonCompactor {
         ByteBuffer bbuf = channel.map(FileChannel.MapMode.READ_ONLY, 0, (int)channel.size());
         CharBuffer cbuf = Charset.forName("UTF-8").newDecoder().decode(bbuf);
         input.close();
-        return cbuf;
+        return cbuf.toString();
     }
-
+    
 	private Map<String, String> generateReplacementsMapFromFile(String dir, String replacementsFileName) {
 		Map<String, String> replacements = new HashMap<String, String>();
 		try {

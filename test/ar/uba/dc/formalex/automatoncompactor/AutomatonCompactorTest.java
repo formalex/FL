@@ -149,6 +149,41 @@ public class AutomatonCompactorTest {
 	}
 
 	@Test
+	// Test que verifica que se eliminan comentarios en medio de una linea y lineas vacias de un archivo de automata
+	public void anAutomatonCompactorShouldRemoveCommentsInTheMiddleOfALineAsExpected() throws IOException {
+		
+		Map<String, String> replacements = new HashMap<String, String>() {{
+		    put("NOT_HAPPENING", "NH");
+		    put("HAPPENING", "H");
+		    put("JUST_HAPPENED", "JH");
+		    put("ACTIVE", "A");
+		    put("INACTIVE", "I");
+		    put("agent_1.censarse","i2");
+		    put("empieza_censo","i1");
+		    put("termina_censo","i0");
+		    put("en_censo","i3");
+		}};		
+		
+		String automatonName = "automatonWithComments2";
+		String automatonExtension = ".nusmv";
+		
+		File compactedAutomatonFile = new File(dir + "/" + automatonName + "Compacted" + automatonExtension);
+		Files.deleteIfExists(compactedAutomatonFile.toPath());
+		
+		boolean removeComments = true;
+		
+		AutomatonCompactor automatonCompactor = new AutomatonCompactor(dir, automatonName, automatonExtension, replacements);
+		
+		compactedAutomatonFile = automatonCompactor.compact(removeComments, automatonName + "Compacted");
+		
+		File expectedAutomaton = new File(dir + "/" +"expectedWithoutComments2.nusmv");
+
+		assertAllFilesLinesEquals(expectedAutomaton, compactedAutomatonFile);
+		
+	}
+
+	
+	@Test
 	// Test que verifica que a partir de una background theory con un acciones e intervalos y un archivo de automata
 	// se realiza correctamente la eliminacion de cometarios, la generacion de archivo de reemplazos y la compactacion del automata.
 	public void anAutomatonCompactorShouldRemoveCommentsReplaceVariablesAndStatesAsExpected() throws IOException {
