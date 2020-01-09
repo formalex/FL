@@ -226,6 +226,12 @@ public class UnsatVariablesMapper {
 	private String substringBetweenTwoDelimiters(String string, String startDelimiter, String endDelimiter) {
 		int startIndex = string.indexOf(startDelimiter) + startDelimiter.length();
 		int endIndex = string.lastIndexOf(endDelimiter);
+		
+		// Si no encuentra el endDelimiter debe ir hasta el final del string
+		if (endIndex < 0) {
+			endIndex = string.length();
+		}
+		
 		return string.substring(startIndex, endIndex);
 	}
 
