@@ -1,0 +1,57 @@
+MODULE main
+VAR 
+  agent_1.censarse: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+    empieza_1_censo: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+    termina_1_censo: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+    en_1_censo: {ACTIVE, INACTIVE};
+  agent_2.censarse: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+    empieza_2_censo: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+    termina_2_censo: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+    en_2_censo: {ACTIVE, INACTIVE};
+  agent_3.censarse: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+    empieza_3_censo: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+    termina_3_censo: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+    en_3_censo: {ACTIVE, INACTIVE};
+  
+INIT
+  agent_1.censarse = NOT_HAPPENING &
+  empieza_1_censo = NOT_HAPPENING &
+  termina_1_censo = NOT_HAPPENING &
+    en_1_censo = INACTIVE &
+        TRUE 
+
+TRANS
+  (agent_1.censarse = JUST_HAPPENED -> next(agent_1.censarse) = NOT_HAPPENING) &
+  (agent_1.censarse = HAPPENING -> next(agent_1.censarse) != NOT_HAPPENING ) &
+  (agent_1.censarse = NOT_HAPPENING -> next(agent_1.censarse) != JUST_HAPPENED) &
+    (empieza_1_censo = JUST_HAPPENED -> next(empieza_1_censo) = NOT_HAPPENING) &
+  (empieza_1_censo = HAPPENING -> next(empieza_1_censo) != NOT_HAPPENING ) &
+  (empieza_1_censo = NOT_HAPPENING -> next(empieza_1_censo) != JUST_HAPPENED) &
+    (termina_1_censo = JUST_HAPPENED -> next(termina_1_censo) = NOT_HAPPENING) &
+  (termina_1_censo = HAPPENING -> next(termina_1_censo) != NOT_HAPPENING ) &
+  (termina_1_censo = NOT_HAPPENING -> next(termina_1_censo) != JUST_HAPPENED) &
+    (( en_1_censo = INACTIVE & next(en_1_censo) = ACTIVE) -> (
+      (empieza_1_censo = HAPPENING & next(empieza_1_censo) = JUST_HAPPENED) 
+              )) &
+  ((en_1_censo = ACTIVE  & next(en_1_censo) = INACTIVE) -> (
+      (termina_1_censo = HAPPENING & next(termina_1_censo) = JUST_HAPPENED) 
+          )) &
+    (en_1_censo = INACTIVE & (
+        (empieza_1_censo = HAPPENING & next(empieza_1_censo) = JUST_HAPPENED) 
+            )-> (next(en_1_censo) = ACTIVE)) &    
+      (en_1_censo = ACTIVE & (
+        (termina_1_censo = HAPPENING & next(termina_1_censo) = JUST_HAPPENED) 
+            )-> (next(en_1_censo) = INACTIVE)) &  
+  ((
+        (empieza_1_censo = NOT_HAPPENING & next(empieza_1_censo) = HAPPENING) 
+            )-> (en_1_censo = INACTIVE)) & 
+  ((
+        (termina_1_censo = NOT_HAPPENING & next(termina_1_censo) = HAPPENING) 
+            )-> (en_1_censo = ACTIVE)) & 
+    (next(empieza_1_censo) = HAPPENING -> (TRUE 
+      )) &
+    (next(termina_1_censo) = HAPPENING -> (TRUE 
+     & next(termina_1_censo) !=  HAPPENING  )) &
+     
+
+ TRUE
