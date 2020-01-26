@@ -1,0 +1,3526 @@
+MODULE main
+VAR	
+	i0: {HA, NH};
+  	i1: {HA, NH};
+  	i2: {HA, NH};
+  	i3: {HA, NH};
+  	i4: {HA, NH};
+  	i5: {HA, NH};
+  	i6: {HA, NH};
+  	i7: {HA, NH, JH};
+ 	agent_7.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i8: {HA, NH};
+  	i9: {HA, NH};
+  	i10: {HA, NH, JH};
+  	i11: {HA, NH, JH};
+ 	agent_54.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i12: {HA, NH};
+  	i13: {HA, NH, JH};
+ 	agent_51.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i14: {HA, NH};
+  	i15: {HA, NH, JH};
+ 	agent_52.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i16: {HA, NH};
+  	i17: {HA, NH};
+  	i18: {HA, NH};
+  	i19: {HA, NH};
+  	i20: {HA, NH};
+  	i21: {HA, NH};
+  	i22: {HA, NH};
+  	i23: {HA, NH};
+  	i24: {HA, NH};
+  	i25: {HA, NH};
+  	i26: {HA, NH};
+  	i27: {HA, NH, JH};
+ 	agent_25.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i28: {HA, NH};
+  	i29: {HA, NH, JH};
+  	i30: {HA, NH};
+  	i31: {HA, NH};
+  	i32: {HA, NH};
+  	i33: {HA, NH};
+  	i34: {HA, NH, JH};
+ 	agent_50.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i35: {HA, NH};
+  	i36: {HA, NH};
+  	i37: {HA, NH};
+  	i38: {HA, NH, JH};
+ 	agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i39: {HA, NH};
+  	i40: {HA, NH};
+  	i41: {HA, NH, JH};
+ 	agent_60.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i42: {HA, NH, JH};
+  	i43: {HA, NH, JH};
+ 	agent_45.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i44: {HA, NH, JH};
+  	i45: {HA, NH};
+  	i46: {HA, NH, JH};
+ 	agent_59.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i47: {HA, NH, JH};
+ 	agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i48: {HA, NH};
+  	i49: {HA, NH};
+  	i50: {HA, NH};
+  	i51: {HA, NH};
+  	i52: {HA, NH};
+  	i53: {HA, NH};
+  	i54: {HA, NH};
+  	i55: {HA, NH};
+  	i56: {HA, NH};
+  	i57: {HA, NH};
+  	i58: {HA, NH};
+  	i59: {HA, NH};
+  	i60: {HA, NH};
+  	i61: {HA, NH};
+  	i62: {HA, NH};
+  	i63: {HA, NH, JH};
+  	i64: {HA, NH};
+  	i65: {HA, NH};
+  	i66: {HA, NH};
+  	i67: {HA, NH};
+  	i68: {HA, NH, JH};
+ 	agent_28.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i69: {HA, NH, JH};
+ 	agent_25.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i70: {HA, NH};
+  	i71: {HA, NH};
+  	i72: {HA, NH, JH};
+  	i73: {HA, NH, JH};
+  	i74: {HA, NH, JH};
+  	i75: {HA, NH, JH};
+  	i76: {HA, NH, JH};
+  	i77: {HA, NH, JH};
+ 	agent_64.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i78: {HA, NH};
+  	i79: {HA, NH, JH};
+  	i80: {HA, NH, JH};
+ 	agent_64.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i81: {HA, NH};
+  	i82: {HA, NH};
+  	i83: {HA, NH, JH};
+  	i84: {HA, NH, JH};
+ 	agent_34.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i85: {HA, NH};
+  	i86: {HA, NH};
+  	i87: {HA, NH};
+  	i88: {HA, NH};
+  	i89: {HA, NH};
+  	i90: {HA, NH};
+  	i91: {HA, NH};
+  	i92: {HA, NH};
+  	i93: {HA, NH, JH};
+ 	agent_44.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i94: {HA, NH};
+  	i95: {HA, NH};
+  	i96: {HA, NH};
+  	i97: {HA, NH};
+  	i98: {HA, NH};
+  	i99: {HA, NH};
+  	i100: {HA, NH, JH};
+  	i101: {HA, NH};
+  	i102: {HA, NH, JH};
+ 	agent_45.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i103: {HA, NH};
+  	i104: {HA, NH};
+  	i105: {HA, NH};
+  	i106: {HA, NH, JH};
+  	i107: {HA, NH};
+  	i108: {HA, NH};
+  	i109: {HA, NH};
+  	i110: {HA, NH};
+  	i111: {HA, NH, JH};
+  	i112: {HA, NH};
+  	i113: {HA, NH};
+  	i114: {HA, NH, JH};
+  	i115: {HA, NH};
+  	i116: {HA, NH};
+  	i117: {HA, NH};
+  	i118: {HA, NH};
+  	i119: {HA, NH};
+  	i120: {HA, NH, JH};
+  	i121: {HA, NH};
+  	i122: {HA, NH};
+  	i123: {HA, NH};
+  	i124: {HA, NH, JH};
+  	i125: {HA, NH};
+  	i126: {HA, NH};
+  	i127: {HA, NH};
+  	i128: {HA, NH};
+  	i129: {HA, NH};
+  	i130: {HA, NH};
+  	i131: {HA, NH};
+  	i132: {HA, NH};
+  	i133: {HA, NH};
+  	i134: {HA, NH};
+  	i135: {HA, NH};
+  	i136: {HA, NH};
+  	i137: {HA, NH};
+  	i138: {HA, NH};
+  	i139: {HA, NH};
+  	i140: {HA, NH, JH};
+  	i141: {HA, NH};
+  	i142: {HA, NH};
+  	i143: {HA, NH};
+  	i144: {HA, NH};
+  	i145: {HA, NH, JH};
+ 	agent_21.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i146: {HA, NH};
+  	i147: {HA, NH};
+  	i148: {HA, NH};
+  	i149: {HA, NH};
+  	i150: {HA, NH};
+  	i151: {HA, NH};
+  	i152: {HA, NH};
+  	i153: {HA, NH};
+  	i154: {HA, NH};
+  	i155: {HA, NH, JH};
+ 	agent_15.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i156: {HA, NH, JH};
+  	i157: {HA, NH};
+  	i158: {HA, NH};
+  	i159: {HA, NH};
+  	i160: {HA, NH};
+  	i161: {HA, NH};
+  	i162: {HA, NH, JH};
+  	i163: {HA, NH};
+  	i164: {HA, NH};
+  	i165: {HA, NH};
+  	i166: {HA, NH, JH};
+ 	agent_7.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i167: {HA, NH, JH};
+  	i168: {HA, NH};
+  	i169: {HA, NH};
+  	i170: {HA, NH};
+  	i171: {HA, NH};
+  	i172: {HA, NH};
+  	i173: {HA, NH};
+  	i174: {HA, NH, JH};
+ 	agent_39.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i175: {HA, NH, JH};
+  	i176: {HA, NH};
+  	i177: {HA, NH};
+  	i178: {HA, NH, JH};
+ 	agent_51.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i179: {HA, NH};
+  	i180: {HA, NH};
+  	i181: {HA, NH};
+  	i182: {HA, NH};
+  	i183: {HA, NH};
+  	i184: {HA, NH};
+  	i185: {HA, NH};
+  	i186: {HA, NH};
+  	i187: {HA, NH};
+  	i188: {HA, NH};
+  	i189: {HA, NH, JH};
+  	i190: {HA, NH};
+  	i191: {HA, NH};
+  	i192: {HA, NH, JH};
+  	i193: {HA, NH};
+  	i194: {HA, NH, JH};
+  	i195: {HA, NH};
+  	i196: {HA, NH};
+  	i197: {HA, NH};
+  	i198: {HA, NH};
+  	i199: {HA, NH};
+  	i200: {HA, NH};
+  	i201: {HA, NH};
+  	i202: {HA, NH};
+  	i203: {HA, NH};
+  	i204: {HA, NH};
+  	i205: {HA, NH};
+  	i206: {HA, NH};
+  	i207: {HA, NH, JH};
+ 	agent_7.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i208: {HA, NH};
+  	i209: {HA, NH};
+  	i210: {HA, NH};
+  	i211: {HA, NH};
+  	i212: {HA, NH};
+  	i213: {HA, NH};
+  	i214: {HA, NH, JH};
+  	i215: {HA, NH};
+  	i216: {HA, NH, JH};
+ 	agent_15.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i217: {HA, NH};
+  	i218: {HA, NH};
+  	i219: {HA, NH};
+  	i220: {HA, NH};
+  	i221: {HA, NH, JH};
+ 	agent_19.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i222: {HA, NH};
+  	i223: {HA, NH};
+  	i224: {HA, NH};
+  	i225: {HA, NH};
+  	i226: {HA, NH};
+  	i227: {HA, NH};
+  	i228: {HA, NH};
+  	i229: {HA, NH};
+  	i230: {HA, NH};
+  	i231: {HA, NH};
+  	i232: {HA, NH};
+  	i233: {HA, NH};
+  	i234: {HA, NH, JH};
+ 	agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i235: {HA, NH};
+  	i236: {HA, NH};
+  	i237: {HA, NH};
+  	i238: {HA, NH};
+  	i239: {HA, NH};
+  	i240: {HA, NH, JH};
+ 	agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i241: {HA, NH};
+  	i242: {HA, NH};
+  	i243: {HA, NH};
+  	i244: {HA, NH};
+  	i245: {HA, NH};
+  	i246: {HA, NH};
+  	i247: {HA, NH};
+  	i248: {HA, NH};
+  	i249: {HA, NH};
+  	i250: {HA, NH, JH};
+  	i251: {HA, NH};
+  	i252: {HA, NH};
+  	i253: {HA, NH};
+  	i254: {HA, NH, JH};
+  	i255: {HA, NH, JH};
+ 	agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i256: {HA, NH};
+  	i257: {HA, NH, JH};
+  	i258: {HA, NH};
+  	i259: {HA, NH};
+  	i260: {HA, NH, JH};
+  	i261: {HA, NH, JH};
+ 	agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i262: {HA, NH};
+  	i263: {HA, NH};
+  	i264: {HA, NH};
+  	i265: {HA, NH};
+  	i266: {HA, NH};
+  	i267: {HA, NH};
+  	i268: {HA, NH, JH};
+ 	agent_50.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i269: {HA, NH, JH};
+  	i270: {HA, NH};
+  	i271: {HA, NH};
+  	i272: {HA, NH, JH};
+  	i273: {HA, NH};
+  	i274: {HA, NH};
+  	i275: {HA, NH};
+  	i276: {HA, NH};
+  	i277: {HA, NH};
+  	i278: {HA, NH};
+  	i279: {HA, NH, JH};
+  	i280: {HA, NH};
+  	i281: {HA, NH};
+  	i282: {HA, NH, JH};
+  	i283: {HA, NH, JH};
+  	i284: {HA, NH};
+  	i285: {HA, NH};
+  	i286: {HA, NH};
+  	i287: {HA, NH};
+  	i288: {HA, NH};
+  	i289: {HA, NH};
+  	i290: {HA, NH};
+  	i291: {HA, NH};
+  	i292: {HA, NH};
+  	i293: {HA, NH};
+  	i294: {HA, NH, JH};
+ 	agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i295: {HA, NH, JH};
+  	i296: {HA, NH};
+  	i297: {HA, NH};
+  	i298: {HA, NH};
+  	i299: {HA, NH};
+  	i300: {HA, NH};
+  	i301: {HA, NH};
+  	i302: {HA, NH};
+  	i303: {HA, NH};
+  	i304: {HA, NH};
+  	i305: {HA, NH};
+  	i306: {HA, NH};
+  	i307: {HA, NH};
+  	i308: {HA, NH};
+  	i309: {HA, NH, JH};
+ 	agent_50.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i310: {HA, NH, JH};
+  	i311: {HA, NH, JH};
+ 	agent_47.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i312: {HA, NH};
+  	i313: {HA, NH};
+  	i314: {HA, NH};
+  	i315: {HA, NH};
+  	i316: {HA, NH};
+  	i317: {HA, NH};
+  	i318: {HA, NH};
+  	i319: {HA, NH, JH};
+  	i320: {HA, NH};
+  	i321: {HA, NH};
+  	i322: {HA, NH, JH};
+ 	agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i323: {HA, NH};
+  	i324: {HA, NH, JH};
+  	i325: {HA, NH};
+  	i326: {HA, NH, JH};
+ 	agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i327: {HA, NH, JH};
+ 	agent_9.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i328: {HA, NH};
+  	i329: {HA, NH};
+  	i330: {HA, NH};
+  	i331: {HA, NH};
+  	i332: {HA, NH};
+  	i333: {HA, NH, JH};
+  	i334: {HA, NH};
+  	i335: {HA, NH, JH};
+  	i336: {HA, NH};
+  	i337: {HA, NH};
+  	i338: {HA, NH};
+  	i339: {HA, NH};
+  	i340: {HA, NH};
+  	i341: {HA, NH, JH};
+ 	agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i342: {HA, NH};
+  	i343: {HA, NH};
+  	i344: {HA, NH};
+  	i345: {HA, NH, JH};
+  	i346: {HA, NH};
+  	i347: {HA, NH, JH};
+ 	agent_16.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i348: {HA, NH, JH};
+ 	agent_47.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i349: {HA, NH};
+  	i350: {HA, NH};
+  	i351: {HA, NH};
+  	i352: {HA, NH, JH};
+ 	agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i353: {HA, NH};
+  	i354: {HA, NH};
+  	i355: {HA, NH, JH};
+ 	agent_19.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i356: {HA, NH, JH};
+  	i357: {HA, NH};
+  	i358: {HA, NH};
+  	i359: {HA, NH};
+  	i360: {HA, NH};
+  	i361: {HA, NH};
+  	i362: {HA, NH, JH};
+  	i363: {HA, NH};
+  	i364: {HA, NH};
+  	i365: {HA, NH};
+  	i366: {HA, NH};
+  	i367: {HA, NH};
+  	i368: {HA, NH};
+  	i369: {HA, NH};
+  	i370: {HA, NH};
+  	i371: {HA, NH, JH};
+  	i372: {HA, NH};
+  	i373: {HA, NH};
+  	i374: {HA, NH};
+  	i375: {HA, NH};
+  	i376: {HA, NH, JH};
+ 	agent_19.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i377: {HA, NH};
+  	i378: {HA, NH, JH};
+ 	agent_64.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i379: {HA, NH};
+  	i380: {HA, NH};
+  	i381: {HA, NH, JH};
+  	i382: {HA, NH};
+  	i383: {HA, NH};
+  	i384: {HA, NH, JH};
+  	i385: {HA, NH};
+  	i386: {HA, NH};
+  	i387: {HA, NH};
+  	i388: {HA, NH, JH};
+ 	agent_39.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i389: {HA, NH};
+  	i390: {HA, NH};
+  	i391: {HA, NH, JH};
+ 	agent_28.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i392: {HA, NH};
+  	i393: {HA, NH};
+  	i394: {HA, NH};
+  	i395: {HA, NH};
+  	i396: {HA, NH};
+  	i397: {HA, NH};
+  	i398: {HA, NH};
+  	i399: {HA, NH};
+  	i400: {HA, NH};
+  	i401: {HA, NH};
+  	i402: {HA, NH};
+  	i403: {HA, NH};
+  	i404: {HA, NH};
+  	i405: {HA, NH};
+  	i406: {HA, NH};
+  	i407: {HA, NH};
+  	i408: {HA, NH, JH};
+  	i409: {HA, NH};
+  	i410: {HA, NH};
+  	i411: {HA, NH};
+  	i412: {HA, NH};
+  	i413: {HA, NH};
+  	i414: {HA, NH};
+  	i415: {HA, NH, JH};
+  	i416: {HA, NH, JH};
+ 	agent_54.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i417: {HA, NH, JH};
+  	i418: {HA, NH, JH};
+  	i419: {HA, NH};
+  	i420: {HA, NH};
+  	i421: {HA, NH};
+  	i422: {HA, NH};
+  	i423: {HA, NH};
+  	i424: {HA, NH, JH};
+ 	agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i425: {HA, NH};
+  	i426: {HA, NH, JH};
+  	i427: {HA, NH, JH};
+ 	agent_35.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i428: {HA, NH};
+  	i429: {HA, NH};
+  	i430: {HA, NH};
+  	i431: {HA, NH};
+  	i432: {HA, NH};
+  	i433: {HA, NH, JH};
+  	i434: {HA, NH, JH};
+ 	agent_9.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i435: {HA, NH};
+  	i436: {HA, NH};
+  	i437: {HA, NH};
+  	i438: {HA, NH, JH};
+  	i439: {HA, NH};
+  	i440: {HA, NH, JH};
+  	i441: {HA, NH, JH};
+  	i442: {HA, NH};
+  	i443: {HA, NH};
+  	i444: {HA, NH};
+  	i445: {HA, NH};
+  	i446: {HA, NH};
+  	i447: {HA, NH};
+  	i448: {HA, NH};
+  	i449: {HA, NH};
+  	i450: {HA, NH};
+  	i451: {HA, NH};
+  	i452: {HA, NH};
+  	i453: {HA, NH};
+  	i454: {HA, NH};
+  	i455: {HA, NH};
+  	i456: {HA, NH, JH};
+  	i457: {HA, NH};
+  	i458: {HA, NH};
+  	i459: {HA, NH, JH};
+  	i460: {HA, NH};
+  	i461: {HA, NH};
+  	i462: {HA, NH};
+  	i463: {HA, NH};
+  	i464: {HA, NH};
+  	i465: {HA, NH, JH};
+ 	agent_21.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i466: {HA, NH, JH};
+ 	agent_15.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i467: {HA, NH};
+  	i468: {HA, NH};
+  	i469: {HA, NH};
+  	i470: {HA, NH};
+  	i471: {HA, NH};
+  	i472: {HA, NH};
+  	i473: {HA, NH};
+  	i474: {HA, NH};
+  	i475: {HA, NH};
+  	i476: {HA, NH};
+  	i477: {HA, NH};
+  	i478: {HA, NH};
+  	i479: {HA, NH};
+  	i480: {HA, NH};
+  	i481: {HA, NH};
+  	i482: {HA, NH};
+  	i483: {HA, NH};
+  	i484: {HA, NH};
+  	i485: {HA, NH};
+  	i486: {HA, NH};
+  	i487: {HA, NH};
+  	i488: {HA, NH};
+  	i489: {HA, NH};
+  	i490: {HA, NH};
+  	i491: {HA, NH};
+  	i492: {HA, NH, JH};
+  	i493: {HA, NH};
+  	i494: {HA, NH};
+  	i495: {HA, NH};
+  	i496: {HA, NH};
+  	i497: {HA, NH};
+  	i498: {HA, NH};
+  	i499: {HA, NH};
+  	i500: {HA, NH};
+  	i501: {HA, NH, JH};
+ 	agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i502: {HA, NH, JH};
+ 	agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i503: {HA, NH};
+  	i504: {HA, NH};
+  	i505: {HA, NH};
+  	i506: {HA, NH};
+  	i507: {HA, NH};
+  	i508: {HA, NH};
+  	i509: {HA, NH, JH};
+ 	agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i510: {HA, NH, JH};
+  	i511: {HA, NH, JH};
+ 	agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i512: {HA, NH, JH};
+  	i513: {HA, NH};
+  	i514: {HA, NH};
+  	i515: {HA, NH};
+  	i516: {HA, NH};
+  	i517: {HA, NH, JH};
+ 	agent_60.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i518: {HA, NH};
+  	i519: {HA, NH};
+  	i520: {HA, NH};
+  	i521: {HA, NH};
+  	i522: {HA, NH};
+  	i523: {HA, NH};
+  	i524: {HA, NH};
+  	i525: {HA, NH};
+  	i526: {HA, NH};
+  	i527: {HA, NH};
+  	i528: {HA, NH};
+  	i529: {HA, NH, JH};
+  	i530: {HA, NH};
+  	i531: {HA, NH, JH};
+ 	agent_60.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i532: {HA, NH};
+  	i533: {HA, NH, JH};
+  	i534: {HA, NH};
+  	i535: {HA, NH};
+  	i536: {HA, NH};
+  	i537: {HA, NH};
+  	i538: {HA, NH};
+  	i539: {HA, NH};
+  	i540: {HA, NH};
+  	i541: {HA, NH};
+  	i542: {HA, NH};
+  	i543: {HA, NH, JH};
+  	i544: {HA, NH};
+  	i545: {HA, NH, JH};
+ 	agent_34.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i546: {HA, NH};
+  	i547: {HA, NH};
+  	i548: {HA, NH};
+  	i549: {HA, NH};
+  	i550: {HA, NH};
+  	i551: {HA, NH};
+  	i552: {HA, NH};
+  	i553: {HA, NH};
+  	i554: {HA, NH};
+  	i555: {HA, NH};
+  	i556: {HA, NH, JH};
+  	i557: {HA, NH};
+  	i558: {HA, NH};
+  	i559: {HA, NH};
+  	i560: {HA, NH, JH};
+  	i561: {HA, NH, JH};
+  	i562: {HA, NH};
+  	i563: {HA, NH};
+  	i564: {HA, NH};
+  	i565: {HA, NH};
+  	i566: {HA, NH};
+  	i567: {HA, NH};
+  	i568: {HA, NH, JH};
+  	i569: {HA, NH};
+  	i570: {HA, NH};
+  	i571: {HA, NH, JH};
+  	i572: {HA, NH};
+  	i573: {HA, NH, JH};
+  	i574: {HA, NH};
+  	i575: {HA, NH};
+  	i576: {HA, NH};
+  	i577: {HA, NH};
+  	i578: {HA, NH, JH};
+  	i579: {HA, NH, JH};
+  	i580: {HA, NH};
+  	i581: {HA, NH};
+  	i582: {HA, NH};
+  	i583: {HA, NH};
+  	i584: {HA, NH};
+  	i585: {HA, NH};
+  	i586: {HA, NH};
+  	i587: {HA, NH};
+  	i588: {HA, NH, JH};
+  	i589: {HA, NH, JH};
+  	i590: {HA, NH};
+  	i591: {HA, NH, JH};
+  	i592: {HA, NH};
+  	i593: {HA, NH, JH};
+  	i594: {HA, NH};
+  	i595: {HA, NH};
+  	i596: {HA, NH};
+  	i597: {HA, NH};
+  	i598: {HA, NH};
+  	i599: {HA, NH, JH};
+  	i600: {HA, NH, JH};
+  	i601: {HA, NH};
+  	i602: {HA, NH, JH};
+  	i603: {HA, NH};
+  	i604: {HA, NH};
+  	i605: {HA, NH};
+  	i606: {HA, NH};
+  	i607: {HA, NH, JH};
+  	i608: {HA, NH, JH};
+ 	agent_51.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i609: {HA, NH};
+  	i610: {HA, NH};
+  	i611: {HA, NH, JH};
+ 	agent_54.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i612: {HA, NH};
+  	i613: {HA, NH, JH};
+ 	agent_21.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i614: {HA, NH};
+  	i615: {HA, NH};
+  	i616: {HA, NH};
+  	i617: {HA, NH, JH};
+  	i618: {HA, NH, JH};
+  	i619: {HA, NH, JH};
+ 	agent_45.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i620: {HA, NH, JH};
+ 	agent_39.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i621: {HA, NH, JH};
+  	i622: {HA, NH};
+  	i623: {HA, NH};
+  	i624: {HA, NH, JH};
+  	i625: {HA, NH, JH};
+  	i626: {HA, NH};
+  	i627: {HA, NH};
+  	i628: {HA, NH};
+  	i629: {HA, NH, JH};
+  	i630: {HA, NH};
+  	i631: {HA, NH};
+  	i632: {HA, NH};
+  	i633: {HA, NH};
+  	i634: {HA, NH};
+  	i635: {HA, NH, JH};
+ 	agent_20.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i636: {HA, NH, JH};
+ 	agent_9.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i637: {HA, NH};
+  	i638: {HA, NH};
+  	i639: {HA, NH};
+  	i640: {HA, NH};
+  	i641: {HA, NH, JH};
+  	i642: {HA, NH};
+  	i643: {HA, NH, JH};
+  	i644: {HA, NH, JH};
+ 	agent_47.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i645: {HA, NH};
+  	i646: {HA, NH};
+  	i647: {HA, NH};
+  	i648: {HA, NH, JH};
+ 	agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i649: {HA, NH};
+  	i650: {HA, NH};
+  	i651: {HA, NH};
+  	i652: {HA, NH};
+  	i653: {HA, NH, JH};
+  	i654: {HA, NH};
+  	i655: {HA, NH};
+  	i656: {HA, NH};
+  	i657: {HA, NH, JH};
+  	i658: {HA, NH};
+  	i659: {HA, NH};
+  	i660: {HA, NH, JH};
+  	i661: {HA, NH, JH};
+  	i662: {HA, NH, JH};
+  	i663: {HA, NH};
+  	i664: {HA, NH};
+  	i665: {HA, NH, JH};
+ 	agent_59.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i666: {HA, NH};
+  	i667: {HA, NH};
+  	i668: {HA, NH};
+  	i669: {HA, NH};
+  	i670: {HA, NH};
+  	i671: {HA, NH};
+  	i672: {HA, NH};
+  	i673: {HA, NH, JH};
+  	i674: {HA, NH};
+  	i675: {HA, NH};
+  	i676: {HA, NH};
+  	i677: {HA, NH, JH};
+  	i678: {HA, NH};
+  	i679: {HA, NH};
+  	i680: {HA, NH, JH};
+  	i681: {HA, NH};
+  	i682: {HA, NH};
+  	i683: {HA, NH};
+  	i684: {HA, NH};
+  	i685: {HA, NH};
+  	i686: {HA, NH};
+  	i687: {HA, NH};
+  	i688: {HA, NH, JH};
+ 	agent_35.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i689: {HA, NH};
+  	i690: {HA, NH};
+  	i691: {HA, NH};
+  	i692: {HA, NH};
+  	i693: {HA, NH, JH};
+ 	agent_28.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i694: {HA, NH, JH};
+ 	agent_44.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i695: {HA, NH, JH};
+  	i696: {HA, NH, JH};
+  	i697: {HA, NH};
+  	i698: {HA, NH, JH};
+ 	agent_59.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i699: {HA, NH};
+  	i700: {HA, NH, JH};
+ 	agent_6.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i701: {HA, NH};
+  	i702: {HA, NH};
+  	i703: {HA, NH};
+  	i704: {HA, NH};
+  	i705: {HA, NH};
+  	i706: {HA, NH, JH};
+  	i707: {HA, NH};
+  	i708: {HA, NH};
+  	i709: {HA, NH, JH};
+ 	agent_35.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i710: {HA, NH};
+  	i711: {HA, NH, JH};
+ 	agent_34.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i712: {HA, NH};
+  	i713: {HA, NH, JH};
+  	i714: {HA, NH};
+  	i715: {HA, NH};
+  	i716: {HA, NH};
+  	i717: {HA, NH};
+  	i718: {HA, NH};
+  	i719: {HA, NH};
+  	i720: {HA, NH, JH};
+  	i721: {HA, NH};
+  	i722: {HA, NH, JH};
+ 	agent_44.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i723: {HA, NH};
+  	i724: {HA, NH};
+  	i725: {HA, NH};
+  	i726: {HA, NH};
+  	i727: {HA, NH, JH};
+ 	agent_16.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i728: {HA, NH, JH};
+  	i729: {HA, NH, JH};
+  	i730: {HA, NH, JH};
+ 	agent_52.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i731: {HA, NH};
+  	i732: {HA, NH};
+  	i733: {HA, NH};
+  	i734: {HA, NH};
+  	i735: {HA, NH};
+  	i736: {HA, NH};
+  	i737: {HA, NH};
+  	i738: {HA, NH, JH};
+  	i739: {HA, NH, JH};
+ 	agent_20.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i740: {HA, NH};
+  	i741: {HA, NH};
+  	i742: {HA, NH};
+  	i743: {HA, NH};
+  	i744: {HA, NH};
+  	i745: {HA, NH};
+  	i746: {HA, NH};
+  	i747: {HA, NH, JH};
+  	i748: {HA, NH, JH};
+ 	agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i749: {HA, NH, JH};
+  	i750: {HA, NH};
+  	i751: {HA, NH};
+  	i752: {HA, NH};
+  	i753: {HA, NH};
+  	i754: {HA, NH};
+  	i755: {HA, NH};
+  	i756: {HA, NH};
+  	i757: {HA, NH};
+  	i758: {HA, NH};
+  	i759: {HA, NH};
+  	i760: {HA, NH, JH};
+  	i761: {HA, NH};
+  	i762: {HA, NH, JH};
+ 	agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i763: {HA, NH, JH};
+ 	agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i764: {HA, NH};
+  	i765: {HA, NH};
+  	i766: {HA, NH, JH};
+  	i767: {HA, NH};
+  	i768: {HA, NH, JH};
+ 	agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i769: {HA, NH, JH};
+ 	agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i770: {HA, NH, JH};
+  	i771: {HA, NH};
+  	i772: {HA, NH, JH};
+  	i773: {HA, NH, JH};
+ 	agent_52.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i774: {HA, NH};
+  	i775: {HA, NH};
+  	i776: {HA, NH, JH};
+  	i777: {HA, NH};
+  	i778: {HA, NH};
+  	i779: {HA, NH};
+  	i780: {HA, NH};
+  	i781: {HA, NH, JH};
+  	i782: {HA, NH};
+  	i783: {HA, NH};
+  	i784: {HA, NH};
+  	i785: {HA, NH};
+  	i786: {HA, NH};
+  	i787: {HA, NH};
+  	i788: {HA, NH, JH};
+ 	agent_16.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i789: {HA, NH, JH};
+  	i790: {HA, NH};
+  	i791: {HA, NH};
+  	i792: {HA, NH, JH};
+ 	agent_25.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	i793: {HA, NH};
+  	i794: {HA, NH, JH};
+ 	agent_20.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i795: {HA, NH};
+  	i796: {HA, NH};
+  	i797: {HA, NH};
+  	i798: {HA, NH};
+  	i799: {HA, NH};
+  	i800: {HA, NH};
+  	i801: {HA, NH};
+  	i802: {HA, NH};
+  	i803: {HA, NH};
+  	i804: {HA, NH};
+  	i805: {HA, NH};
+  	i806: {HA, NH, JH};
+ 	agent_6.CumplirGarantia_OUTPUT: {Distribuidor, Productor, Vendedor, Importador};
+	  	i807: {HA, NH};
+  	i808: {HA, NH};
+  	i809: {HA, NH};
+  	i810: {HA, NH};
+  	i811: {HA, NH, JH};
+ 	agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i812: {HA, NH};
+  	i813: {HA, NH};
+  	i814: {HA, NH};
+  	i815: {HA, NH, JH};
+ 	agent_6.RepararBajoGarantia_OUTPUT: {Insatisfactorio, noneOfTheOthers};
+	  	i816: {HA, NH};
+  	i817: {AC, IA};
+  	i818: {AC, IA};
+  	i819: {AC, IA};
+  	i820: {AC, IA};
+  	i821: {AC, IA};
+  	i822: {AC, IA};
+  	i823: {AC, IA};
+  	i824: {AC, IA};
+  	i825: {AC, IA};
+  	i826: {AC, IA};
+  	i827: {AC, IA};
+  	i828: {AC, IA};
+  	i829: {AC, IA};
+  	i830: {AC, IA};
+  	i831: {AC, IA};
+  	i832: {AC, IA};
+  	i833: {AC, IA};
+  	i834: {AC, IA};
+  	i835: {AC, IA};
+  	i836: {AC, IA};
+  	i837: {AC, IA};
+  	i838: {AC, IA};
+  	i839: {AC, IA};
+INIT
+	i0 = NH &
+	i1 = NH &
+	i2 = NH &
+	i3 = NH &
+	i4 = NH &
+	i5 = NH &
+	i6 = NH &
+	i7 = NH &
+	i8 = NH &
+	i9 = NH &
+	i10 = NH &
+	i11 = NH &
+	i12 = NH &
+	i13 = NH &
+	i14 = NH &
+	i15 = NH &
+	i16 = NH &
+	i17 = NH &
+	i18 = NH &
+	i19 = NH &
+	i20 = NH &
+	i21 = NH &
+	i22 = NH &
+	i23 = NH &
+	i24 = NH &
+	i25 = NH &
+	i26 = NH &
+	i27 = NH &
+	i28 = NH &
+	i29 = NH &
+	i30 = NH &
+	i31 = NH &
+	i32 = NH &
+	i33 = NH &
+	i34 = NH &
+	i35 = NH &
+	i36 = NH &
+	i37 = NH &
+	i38 = NH &
+	i39 = NH &
+	i40 = NH &
+	i41 = NH &
+	i42 = NH &
+	i43 = NH &
+	i44 = NH &
+	i45 = NH &
+	i46 = NH &
+	i47 = NH &
+	i48 = NH &
+	i49 = NH &
+	i50 = NH &
+	i51 = NH &
+	i52 = NH &
+	i53 = NH &
+	i54 = NH &
+	i55 = NH &
+	i56 = NH &
+	i57 = NH &
+	i58 = NH &
+	i59 = NH &
+	i60 = NH &
+	i61 = NH &
+	i62 = NH &
+	i63 = NH &
+	i64 = NH &
+	i65 = NH &
+	i66 = NH &
+	i67 = NH &
+	i68 = NH &
+	i69 = NH &
+	i70 = NH &
+	i71 = NH &
+	i72 = NH &
+	i73 = NH &
+	i74 = NH &
+	i75 = NH &
+	i76 = NH &
+	i77 = NH &
+	i78 = NH &
+	i79 = NH &
+	i80 = NH &
+	i81 = NH &
+	i82 = NH &
+	i83 = NH &
+	i84 = NH &
+	i85 = NH &
+	i86 = NH &
+	i87 = NH &
+	i88 = NH &
+	i89 = NH &
+	i90 = NH &
+	i91 = NH &
+	i92 = NH &
+	i93 = NH &
+	i94 = NH &
+	i95 = NH &
+	i96 = NH &
+	i97 = NH &
+	i98 = NH &
+	i99 = NH &
+	i100 = NH &
+	i101 = NH &
+	i102 = NH &
+	i103 = NH &
+	i104 = NH &
+	i105 = NH &
+	i106 = NH &
+	i107 = NH &
+	i108 = NH &
+	i109 = NH &
+	i110 = NH &
+	i111 = NH &
+	i112 = NH &
+	i113 = NH &
+	i114 = NH &
+	i115 = NH &
+	i116 = NH &
+	i117 = NH &
+	i118 = NH &
+	i119 = NH &
+	i120 = NH &
+	i121 = NH &
+	i122 = NH &
+	i123 = NH &
+	i124 = NH &
+	i125 = NH &
+	i126 = NH &
+	i127 = NH &
+	i128 = NH &
+	i129 = NH &
+	i130 = NH &
+	i131 = NH &
+	i132 = NH &
+	i133 = NH &
+	i134 = NH &
+	i135 = NH &
+	i136 = NH &
+	i137 = NH &
+	i138 = NH &
+	i139 = NH &
+	i140 = NH &
+	i141 = NH &
+	i142 = NH &
+	i143 = NH &
+	i144 = NH &
+	i145 = NH &
+	i146 = NH &
+	i147 = NH &
+	i148 = NH &
+	i149 = NH &
+	i150 = NH &
+	i151 = NH &
+	i152 = NH &
+	i153 = NH &
+	i154 = NH &
+	i155 = NH &
+	i156 = NH &
+	i157 = NH &
+	i158 = NH &
+	i159 = NH &
+	i160 = NH &
+	i161 = NH &
+	i162 = NH &
+	i163 = NH &
+	i164 = NH &
+	i165 = NH &
+	i166 = NH &
+	i167 = NH &
+	i168 = NH &
+	i169 = NH &
+	i170 = NH &
+	i171 = NH &
+	i172 = NH &
+	i173 = NH &
+	i174 = NH &
+	i175 = NH &
+	i176 = NH &
+	i177 = NH &
+	i178 = NH &
+	i179 = NH &
+	i180 = NH &
+	i181 = NH &
+	i182 = NH &
+	i183 = NH &
+	i184 = NH &
+	i185 = NH &
+	i186 = NH &
+	i187 = NH &
+	i188 = NH &
+	i189 = NH &
+	i190 = NH &
+	i191 = NH &
+	i192 = NH &
+	i193 = NH &
+	i194 = NH &
+	i195 = NH &
+	i196 = NH &
+	i197 = NH &
+	i198 = NH &
+	i199 = NH &
+	i200 = NH &
+	i201 = NH &
+	i202 = NH &
+	i203 = NH &
+	i204 = NH &
+	i205 = NH &
+	i206 = NH &
+	i207 = NH &
+	i208 = NH &
+	i209 = NH &
+	i210 = NH &
+	i211 = NH &
+	i212 = NH &
+	i213 = NH &
+	i214 = NH &
+	i215 = NH &
+	i216 = NH &
+	i217 = NH &
+	i218 = NH &
+	i219 = NH &
+	i220 = NH &
+	i221 = NH &
+	i222 = NH &
+	i223 = NH &
+	i224 = NH &
+	i225 = NH &
+	i226 = NH &
+	i227 = NH &
+	i228 = NH &
+	i229 = NH &
+	i230 = NH &
+	i231 = NH &
+	i232 = NH &
+	i233 = NH &
+	i234 = NH &
+	i235 = NH &
+	i236 = NH &
+	i237 = NH &
+	i238 = NH &
+	i239 = NH &
+	i240 = NH &
+	i241 = NH &
+	i242 = NH &
+	i243 = NH &
+	i244 = NH &
+	i245 = NH &
+	i246 = NH &
+	i247 = NH &
+	i248 = NH &
+	i249 = NH &
+	i250 = NH &
+	i251 = NH &
+	i252 = NH &
+	i253 = NH &
+	i254 = NH &
+	i255 = NH &
+	i256 = NH &
+	i257 = NH &
+	i258 = NH &
+	i259 = NH &
+	i260 = NH &
+	i261 = NH &
+	i262 = NH &
+	i263 = NH &
+	i264 = NH &
+	i265 = NH &
+	i266 = NH &
+	i267 = NH &
+	i268 = NH &
+	i269 = NH &
+	i270 = NH &
+	i271 = NH &
+	i272 = NH &
+	i273 = NH &
+	i274 = NH &
+	i275 = NH &
+	i276 = NH &
+	i277 = NH &
+	i278 = NH &
+	i279 = NH &
+	i280 = NH &
+	i281 = NH &
+	i282 = NH &
+	i283 = NH &
+	i284 = NH &
+	i285 = NH &
+	i286 = NH &
+	i287 = NH &
+	i288 = NH &
+	i289 = NH &
+	i290 = NH &
+	i291 = NH &
+	i292 = NH &
+	i293 = NH &
+	i294 = NH &
+	i295 = NH &
+	i296 = NH &
+	i297 = NH &
+	i298 = NH &
+	i299 = NH &
+	i300 = NH &
+	i301 = NH &
+	i302 = NH &
+	i303 = NH &
+	i304 = NH &
+	i305 = NH &
+	i306 = NH &
+	i307 = NH &
+	i308 = NH &
+	i309 = NH &
+	i310 = NH &
+	i311 = NH &
+	i312 = NH &
+	i313 = NH &
+	i314 = NH &
+	i315 = NH &
+	i316 = NH &
+	i317 = NH &
+	i318 = NH &
+	i319 = NH &
+	i320 = NH &
+	i321 = NH &
+	i322 = NH &
+	i323 = NH &
+	i324 = NH &
+	i325 = NH &
+	i326 = NH &
+	i327 = NH &
+	i328 = NH &
+	i329 = NH &
+	i330 = NH &
+	i331 = NH &
+	i332 = NH &
+	i333 = NH &
+	i334 = NH &
+	i335 = NH &
+	i336 = NH &
+	i337 = NH &
+	i338 = NH &
+	i339 = NH &
+	i340 = NH &
+	i341 = NH &
+	i342 = NH &
+	i343 = NH &
+	i344 = NH &
+	i345 = NH &
+	i346 = NH &
+	i347 = NH &
+	i348 = NH &
+	i349 = NH &
+	i350 = NH &
+	i351 = NH &
+	i352 = NH &
+	i353 = NH &
+	i354 = NH &
+	i355 = NH &
+	i356 = NH &
+	i357 = NH &
+	i358 = NH &
+	i359 = NH &
+	i360 = NH &
+	i361 = NH &
+	i362 = NH &
+	i363 = NH &
+	i364 = NH &
+	i365 = NH &
+	i366 = NH &
+	i367 = NH &
+	i368 = NH &
+	i369 = NH &
+	i370 = NH &
+	i371 = NH &
+	i372 = NH &
+	i373 = NH &
+	i374 = NH &
+	i375 = NH &
+	i376 = NH &
+	i377 = NH &
+	i378 = NH &
+	i379 = NH &
+	i380 = NH &
+	i381 = NH &
+	i382 = NH &
+	i383 = NH &
+	i384 = NH &
+	i385 = NH &
+	i386 = NH &
+	i387 = NH &
+	i388 = NH &
+	i389 = NH &
+	i390 = NH &
+	i391 = NH &
+	i392 = NH &
+	i393 = NH &
+	i394 = NH &
+	i395 = NH &
+	i396 = NH &
+	i397 = NH &
+	i398 = NH &
+	i399 = NH &
+	i400 = NH &
+	i401 = NH &
+	i402 = NH &
+	i403 = NH &
+	i404 = NH &
+	i405 = NH &
+	i406 = NH &
+	i407 = NH &
+	i408 = NH &
+	i409 = NH &
+	i410 = NH &
+	i411 = NH &
+	i412 = NH &
+	i413 = NH &
+	i414 = NH &
+	i415 = NH &
+	i416 = NH &
+	i417 = NH &
+	i418 = NH &
+	i419 = NH &
+	i420 = NH &
+	i421 = NH &
+	i422 = NH &
+	i423 = NH &
+	i424 = NH &
+	i425 = NH &
+	i426 = NH &
+	i427 = NH &
+	i428 = NH &
+	i429 = NH &
+	i430 = NH &
+	i431 = NH &
+	i432 = NH &
+	i433 = NH &
+	i434 = NH &
+	i435 = NH &
+	i436 = NH &
+	i437 = NH &
+	i438 = NH &
+	i439 = NH &
+	i440 = NH &
+	i441 = NH &
+	i442 = NH &
+	i443 = NH &
+	i444 = NH &
+	i445 = NH &
+	i446 = NH &
+	i447 = NH &
+	i448 = NH &
+	i449 = NH &
+	i450 = NH &
+	i451 = NH &
+	i452 = NH &
+	i453 = NH &
+	i454 = NH &
+	i455 = NH &
+	i456 = NH &
+	i457 = NH &
+	i458 = NH &
+	i459 = NH &
+	i460 = NH &
+	i461 = NH &
+	i462 = NH &
+	i463 = NH &
+	i464 = NH &
+	i465 = NH &
+	i466 = NH &
+	i467 = NH &
+	i468 = NH &
+	i469 = NH &
+	i470 = NH &
+	i471 = NH &
+	i472 = NH &
+	i473 = NH &
+	i474 = NH &
+	i475 = NH &
+	i476 = NH &
+	i477 = NH &
+	i478 = NH &
+	i479 = NH &
+	i480 = NH &
+	i481 = NH &
+	i482 = NH &
+	i483 = NH &
+	i484 = NH &
+	i485 = NH &
+	i486 = NH &
+	i487 = NH &
+	i488 = NH &
+	i489 = NH &
+	i490 = NH &
+	i491 = NH &
+	i492 = NH &
+	i493 = NH &
+	i494 = NH &
+	i495 = NH &
+	i496 = NH &
+	i497 = NH &
+	i498 = NH &
+	i499 = NH &
+	i500 = NH &
+	i501 = NH &
+	i502 = NH &
+	i503 = NH &
+	i504 = NH &
+	i505 = NH &
+	i506 = NH &
+	i507 = NH &
+	i508 = NH &
+	i509 = NH &
+	i510 = NH &
+	i511 = NH &
+	i512 = NH &
+	i513 = NH &
+	i514 = NH &
+	i515 = NH &
+	i516 = NH &
+	i517 = NH &
+	i518 = NH &
+	i519 = NH &
+	i520 = NH &
+	i521 = NH &
+	i522 = NH &
+	i523 = NH &
+	i524 = NH &
+	i525 = NH &
+	i526 = NH &
+	i527 = NH &
+	i528 = NH &
+	i529 = NH &
+	i530 = NH &
+	i531 = NH &
+	i532 = NH &
+	i533 = NH &
+	i534 = NH &
+	i535 = NH &
+	i536 = NH &
+	i537 = NH &
+	i538 = NH &
+	i539 = NH &
+	i540 = NH &
+	i541 = NH &
+	i542 = NH &
+	i543 = NH &
+	i544 = NH &
+	i545 = NH &
+	i546 = NH &
+	i547 = NH &
+	i548 = NH &
+	i549 = NH &
+	i550 = NH &
+	i551 = NH &
+	i552 = NH &
+	i553 = NH &
+	i554 = NH &
+	i555 = NH &
+	i556 = NH &
+	i557 = NH &
+	i558 = NH &
+	i559 = NH &
+	i560 = NH &
+	i561 = NH &
+	i562 = NH &
+	i563 = NH &
+	i564 = NH &
+	i565 = NH &
+	i566 = NH &
+	i567 = NH &
+	i568 = NH &
+	i569 = NH &
+	i570 = NH &
+	i571 = NH &
+	i572 = NH &
+	i573 = NH &
+	i574 = NH &
+	i575 = NH &
+	i576 = NH &
+	i577 = NH &
+	i578 = NH &
+	i579 = NH &
+	i580 = NH &
+	i581 = NH &
+	i582 = NH &
+	i583 = NH &
+	i584 = NH &
+	i585 = NH &
+	i586 = NH &
+	i587 = NH &
+	i588 = NH &
+	i589 = NH &
+	i590 = NH &
+	i591 = NH &
+	i592 = NH &
+	i593 = NH &
+	i594 = NH &
+	i595 = NH &
+	i596 = NH &
+	i597 = NH &
+	i598 = NH &
+	i599 = NH &
+	i600 = NH &
+	i601 = NH &
+	i602 = NH &
+	i603 = NH &
+	i604 = NH &
+	i605 = NH &
+	i606 = NH &
+	i607 = NH &
+	i608 = NH &
+	i609 = NH &
+	i610 = NH &
+	i611 = NH &
+	i612 = NH &
+	i613 = NH &
+	i614 = NH &
+	i615 = NH &
+	i616 = NH &
+	i617 = NH &
+	i618 = NH &
+	i619 = NH &
+	i620 = NH &
+	i621 = NH &
+	i622 = NH &
+	i623 = NH &
+	i624 = NH &
+	i625 = NH &
+	i626 = NH &
+	i627 = NH &
+	i628 = NH &
+	i629 = NH &
+	i630 = NH &
+	i631 = NH &
+	i632 = NH &
+	i633 = NH &
+	i634 = NH &
+	i635 = NH &
+	i636 = NH &
+	i637 = NH &
+	i638 = NH &
+	i639 = NH &
+	i640 = NH &
+	i641 = NH &
+	i642 = NH &
+	i643 = NH &
+	i644 = NH &
+	i645 = NH &
+	i646 = NH &
+	i647 = NH &
+	i648 = NH &
+	i649 = NH &
+	i650 = NH &
+	i651 = NH &
+	i652 = NH &
+	i653 = NH &
+	i654 = NH &
+	i655 = NH &
+	i656 = NH &
+	i657 = NH &
+	i658 = NH &
+	i659 = NH &
+	i660 = NH &
+	i661 = NH &
+	i662 = NH &
+	i663 = NH &
+	i664 = NH &
+	i665 = NH &
+	i666 = NH &
+	i667 = NH &
+	i668 = NH &
+	i669 = NH &
+	i670 = NH &
+	i671 = NH &
+	i672 = NH &
+	i673 = NH &
+	i674 = NH &
+	i675 = NH &
+	i676 = NH &
+	i677 = NH &
+	i678 = NH &
+	i679 = NH &
+	i680 = NH &
+	i681 = NH &
+	i682 = NH &
+	i683 = NH &
+	i684 = NH &
+	i685 = NH &
+	i686 = NH &
+	i687 = NH &
+	i688 = NH &
+	i689 = NH &
+	i690 = NH &
+	i691 = NH &
+	i692 = NH &
+	i693 = NH &
+	i694 = NH &
+	i695 = NH &
+	i696 = NH &
+	i697 = NH &
+	i698 = NH &
+	i699 = NH &
+	i700 = NH &
+	i701 = NH &
+	i702 = NH &
+	i703 = NH &
+	i704 = NH &
+	i705 = NH &
+	i706 = NH &
+	i707 = NH &
+	i708 = NH &
+	i709 = NH &
+	i710 = NH &
+	i711 = NH &
+	i712 = NH &
+	i713 = NH &
+	i714 = NH &
+	i715 = NH &
+	i716 = NH &
+	i717 = NH &
+	i718 = NH &
+	i719 = NH &
+	i720 = NH &
+	i721 = NH &
+	i722 = NH &
+	i723 = NH &
+	i724 = NH &
+	i725 = NH &
+	i726 = NH &
+	i727 = NH &
+	i728 = NH &
+	i729 = NH &
+	i730 = NH &
+	i731 = NH &
+	i732 = NH &
+	i733 = NH &
+	i734 = NH &
+	i735 = NH &
+	i736 = NH &
+	i737 = NH &
+	i738 = NH &
+	i739 = NH &
+	i740 = NH &
+	i741 = NH &
+	i742 = NH &
+	i743 = NH &
+	i744 = NH &
+	i745 = NH &
+	i746 = NH &
+	i747 = NH &
+	i748 = NH &
+	i749 = NH &
+	i750 = NH &
+	i751 = NH &
+	i752 = NH &
+	i753 = NH &
+	i754 = NH &
+	i755 = NH &
+	i756 = NH &
+	i757 = NH &
+	i758 = NH &
+	i759 = NH &
+	i760 = NH &
+	i761 = NH &
+	i762 = NH &
+	i763 = NH &
+	i764 = NH &
+	i765 = NH &
+	i766 = NH &
+	i767 = NH &
+	i768 = NH &
+	i769 = NH &
+	i770 = NH &
+	i771 = NH &
+	i772 = NH &
+	i773 = NH &
+	i774 = NH &
+	i775 = NH &
+	i776 = NH &
+	i777 = NH &
+	i778 = NH &
+	i779 = NH &
+	i780 = NH &
+	i781 = NH &
+	i782 = NH &
+	i783 = NH &
+	i784 = NH &
+	i785 = NH &
+	i786 = NH &
+	i787 = NH &
+	i788 = NH &
+	i789 = NH &
+	i790 = NH &
+	i791 = NH &
+	i792 = NH &
+	i793 = NH &
+	i794 = NH &
+	i795 = NH &
+	i796 = NH &
+	i797 = NH &
+	i798 = NH &
+	i799 = NH &
+	i800 = NH &
+	i801 = NH &
+	i802 = NH &
+	i803 = NH &
+	i804 = NH &
+	i805 = NH &
+	i806 = NH &
+	i807 = NH &
+	i808 = NH &
+	i809 = NH &
+	i810 = NH &
+	i811 = NH &
+	i812 = NH &
+	i813 = NH &
+	i814 = NH &
+	i815 = NH &
+	i816 = NH &
+  	i817 = IA &
+      	i818 = IA &
+      	i819 = IA &
+      	i820 = IA &
+      	i821 = IA &
+      	i822 = IA &
+      	i823 = IA &
+      	i824 = IA &
+      	i825 = IA &
+      	i826 = IA &
+      	i827 = IA &
+      	i828 = IA &
+      	i829 = IA &
+      	i830 = IA &
+      	i831 = IA &
+      	i832 = IA &
+      	i833 = IA &
+      	i834 = IA &
+      	i835 = IA &
+      	i836 = IA &
+      	i837 = IA &
+      	i838 = IA &
+      	i839 = IA &
+        TRUE 
+TRANS
+				   				   				   				   				   				   				   		 	(i7 = JH -> next(i7) = NH) &
+		(i7 = HA -> next(i7) != NH ) &
+		(i7 = NH -> next(i7) != JH) &
+	  				   				   		 	(i10 = JH -> next(i10) = NH) &
+		(i10 = HA -> next(i10) != NH ) &
+		(i10 = NH -> next(i10) != JH) &
+	  		 	(i11 = JH -> next(i11) = NH) &
+		(i11 = HA -> next(i11) != NH ) &
+		(i11 = NH -> next(i11) != JH) &
+	  				   		 	(i13 = JH -> next(i13) = NH) &
+		(i13 = HA -> next(i13) != NH ) &
+		(i13 = NH -> next(i13) != JH) &
+	  				   		 	(i15 = JH -> next(i15) = NH) &
+		(i15 = HA -> next(i15) != NH ) &
+		(i15 = NH -> next(i15) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   				   		 	(i27 = JH -> next(i27) = NH) &
+		(i27 = HA -> next(i27) != NH ) &
+		(i27 = NH -> next(i27) != JH) &
+	  				   		 	(i29 = JH -> next(i29) = NH) &
+		(i29 = HA -> next(i29) != NH ) &
+		(i29 = NH -> next(i29) != JH) &
+	  				   				   				   				   		 	(i34 = JH -> next(i34) = NH) &
+		(i34 = HA -> next(i34) != NH ) &
+		(i34 = NH -> next(i34) != JH) &
+	  				   				   				   		 	(i38 = JH -> next(i38) = NH) &
+		(i38 = HA -> next(i38) != NH ) &
+		(i38 = NH -> next(i38) != JH) &
+	  				   				   		 	(i41 = JH -> next(i41) = NH) &
+		(i41 = HA -> next(i41) != NH ) &
+		(i41 = NH -> next(i41) != JH) &
+	  		 	(i42 = JH -> next(i42) = NH) &
+		(i42 = HA -> next(i42) != NH ) &
+		(i42 = NH -> next(i42) != JH) &
+	  		 	(i43 = JH -> next(i43) = NH) &
+		(i43 = HA -> next(i43) != NH ) &
+		(i43 = NH -> next(i43) != JH) &
+	  		 	(i44 = JH -> next(i44) = NH) &
+		(i44 = HA -> next(i44) != NH ) &
+		(i44 = NH -> next(i44) != JH) &
+	  				   		 	(i46 = JH -> next(i46) = NH) &
+		(i46 = HA -> next(i46) != NH ) &
+		(i46 = NH -> next(i46) != JH) &
+	  		 	(i47 = JH -> next(i47) = NH) &
+		(i47 = HA -> next(i47) != NH ) &
+		(i47 = NH -> next(i47) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   		 	(i63 = JH -> next(i63) = NH) &
+		(i63 = HA -> next(i63) != NH ) &
+		(i63 = NH -> next(i63) != JH) &
+	  				   				   				   				   		 	(i68 = JH -> next(i68) = NH) &
+		(i68 = HA -> next(i68) != NH ) &
+		(i68 = NH -> next(i68) != JH) &
+	  		 	(i69 = JH -> next(i69) = NH) &
+		(i69 = HA -> next(i69) != NH ) &
+		(i69 = NH -> next(i69) != JH) &
+	  				   				   		 	(i72 = JH -> next(i72) = NH) &
+		(i72 = HA -> next(i72) != NH ) &
+		(i72 = NH -> next(i72) != JH) &
+	  		 	(i73 = JH -> next(i73) = NH) &
+		(i73 = HA -> next(i73) != NH ) &
+		(i73 = NH -> next(i73) != JH) &
+	  		 	(i74 = JH -> next(i74) = NH) &
+		(i74 = HA -> next(i74) != NH ) &
+		(i74 = NH -> next(i74) != JH) &
+	  		 	(i75 = JH -> next(i75) = NH) &
+		(i75 = HA -> next(i75) != NH ) &
+		(i75 = NH -> next(i75) != JH) &
+	  		 	(i76 = JH -> next(i76) = NH) &
+		(i76 = HA -> next(i76) != NH ) &
+		(i76 = NH -> next(i76) != JH) &
+	  		 	(i77 = JH -> next(i77) = NH) &
+		(i77 = HA -> next(i77) != NH ) &
+		(i77 = NH -> next(i77) != JH) &
+	  				   		 	(i79 = JH -> next(i79) = NH) &
+		(i79 = HA -> next(i79) != NH ) &
+		(i79 = NH -> next(i79) != JH) &
+	  		 	(i80 = JH -> next(i80) = NH) &
+		(i80 = HA -> next(i80) != NH ) &
+		(i80 = NH -> next(i80) != JH) &
+	  				   				   		 	(i83 = JH -> next(i83) = NH) &
+		(i83 = HA -> next(i83) != NH ) &
+		(i83 = NH -> next(i83) != JH) &
+	  		 	(i84 = JH -> next(i84) = NH) &
+		(i84 = HA -> next(i84) != NH ) &
+		(i84 = NH -> next(i84) != JH) &
+	  				   				   				   				   				   				   				   				   		 	(i93 = JH -> next(i93) = NH) &
+		(i93 = HA -> next(i93) != NH ) &
+		(i93 = NH -> next(i93) != JH) &
+	  				   				   				   				   				   				   		 	(i100 = JH -> next(i100) = NH) &
+		(i100 = HA -> next(i100) != NH ) &
+		(i100 = NH -> next(i100) != JH) &
+	  				   		 	(i102 = JH -> next(i102) = NH) &
+		(i102 = HA -> next(i102) != NH ) &
+		(i102 = NH -> next(i102) != JH) &
+	  				   				   				   		 	(i106 = JH -> next(i106) = NH) &
+		(i106 = HA -> next(i106) != NH ) &
+		(i106 = NH -> next(i106) != JH) &
+	  				   				   				  	(next(i109) = HA -> next(i823) = AC) &
+  				   		 	(i111 = JH -> next(i111) = NH) &
+		(i111 = HA -> next(i111) != NH ) &
+		(i111 = NH -> next(i111) != JH) &
+	  				   				   		 	(i114 = JH -> next(i114) = NH) &
+		(i114 = HA -> next(i114) != NH ) &
+		(i114 = NH -> next(i114) != JH) &
+	  				   				   				   				   				   		 	(i120 = JH -> next(i120) = NH) &
+		(i120 = HA -> next(i120) != NH ) &
+		(i120 = NH -> next(i120) != JH) &
+	  				   				   				   		 	(i124 = JH -> next(i124) = NH) &
+		(i124 = HA -> next(i124) != NH ) &
+		(i124 = NH -> next(i124) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   		 	(i140 = JH -> next(i140) = NH) &
+		(i140 = HA -> next(i140) != NH ) &
+		(i140 = NH -> next(i140) != JH) &
+	  				   				   				   				   		 	(i145 = JH -> next(i145) = NH) &
+		(i145 = HA -> next(i145) != NH ) &
+		(i145 = NH -> next(i145) != JH) &
+	  				  	(next(i146) = HA -> next(i823) = AC) &
+  				   				   				   				   				   				   				   				   		 	(i155 = JH -> next(i155) = NH) &
+		(i155 = HA -> next(i155) != NH ) &
+		(i155 = NH -> next(i155) != JH) &
+	  		 	(i156 = JH -> next(i156) = NH) &
+		(i156 = HA -> next(i156) != NH ) &
+		(i156 = NH -> next(i156) != JH) &
+	  				   				   				   				   				   		 	(i162 = JH -> next(i162) = NH) &
+		(i162 = HA -> next(i162) != NH ) &
+		(i162 = NH -> next(i162) != JH) &
+	  				   				   				  	(next(i165) = HA -> next(i835) = AC) &
+  		 	(i166 = JH -> next(i166) = NH) &
+		(i166 = HA -> next(i166) != NH ) &
+		(i166 = NH -> next(i166) != JH) &
+	  		 	(i167 = JH -> next(i167) = NH) &
+		(i167 = HA -> next(i167) != NH ) &
+		(i167 = NH -> next(i167) != JH) &
+	  				   				   				   				   				   				   		 	(i174 = JH -> next(i174) = NH) &
+		(i174 = HA -> next(i174) != NH ) &
+		(i174 = NH -> next(i174) != JH) &
+	  		 	(i175 = JH -> next(i175) = NH) &
+		(i175 = HA -> next(i175) != NH ) &
+		(i175 = NH -> next(i175) != JH) &
+	  				   				   		 	(i178 = JH -> next(i178) = NH) &
+		(i178 = HA -> next(i178) != NH ) &
+		(i178 = NH -> next(i178) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   		 	(i189 = JH -> next(i189) = NH) &
+		(i189 = HA -> next(i189) != NH ) &
+		(i189 = NH -> next(i189) != JH) &
+	  				   				   		 	(i192 = JH -> next(i192) = NH) &
+		(i192 = HA -> next(i192) != NH ) &
+		(i192 = NH -> next(i192) != JH) &
+	  				   		 	(i194 = JH -> next(i194) = NH) &
+		(i194 = HA -> next(i194) != NH ) &
+		(i194 = NH -> next(i194) != JH) &
+	  				   				   				  	(next(i197) = HA -> next(i834) = AC) &
+  				   				   				   				   				   				   				   				   				   		 	(i207 = JH -> next(i207) = NH) &
+		(i207 = HA -> next(i207) != NH ) &
+		(i207 = NH -> next(i207) != JH) &
+	  				   				   				   				   				   				   		 	(i214 = JH -> next(i214) = NH) &
+		(i214 = HA -> next(i214) != NH ) &
+		(i214 = NH -> next(i214) != JH) &
+	  				   		 	(i216 = JH -> next(i216) = NH) &
+		(i216 = HA -> next(i216) != NH ) &
+		(i216 = NH -> next(i216) != JH) &
+	  				   				  	(next(i218) = HA -> next(i839) = AC) &
+  				   				   		 	(i221 = JH -> next(i221) = NH) &
+		(i221 = HA -> next(i221) != NH ) &
+		(i221 = NH -> next(i221) != JH) &
+	  				   				  	(next(i223) = HA -> next(i833) = AC) &
+  				   				   				   				   				   				  	(next(i229) = HA -> next(i823) = AC) &
+  				   				   				   				   		 	(i234 = JH -> next(i234) = NH) &
+		(i234 = HA -> next(i234) != NH ) &
+		(i234 = NH -> next(i234) != JH) &
+	  				   				   				   				   				   		 	(i240 = JH -> next(i240) = NH) &
+		(i240 = HA -> next(i240) != NH ) &
+		(i240 = NH -> next(i240) != JH) &
+	  				   				   				   				   				   				   				   				   				   		 	(i250 = JH -> next(i250) = NH) &
+		(i250 = HA -> next(i250) != NH ) &
+		(i250 = NH -> next(i250) != JH) &
+	  				   				  	(next(i252) = HA -> next(i817) = AC) &
+  				   		 	(i254 = JH -> next(i254) = NH) &
+		(i254 = HA -> next(i254) != NH ) &
+		(i254 = NH -> next(i254) != JH) &
+	  		 	(i255 = JH -> next(i255) = NH) &
+		(i255 = HA -> next(i255) != NH ) &
+		(i255 = NH -> next(i255) != JH) &
+	  				   		 	(i257 = JH -> next(i257) = NH) &
+		(i257 = HA -> next(i257) != NH ) &
+		(i257 = NH -> next(i257) != JH) &
+	  				   				   		 	(i260 = JH -> next(i260) = NH) &
+		(i260 = HA -> next(i260) != NH ) &
+		(i260 = NH -> next(i260) != JH) &
+	  		 	(i261 = JH -> next(i261) = NH) &
+		(i261 = HA -> next(i261) != NH ) &
+		(i261 = NH -> next(i261) != JH) &
+	  				   				   				   				   				   				   		 	(i268 = JH -> next(i268) = NH) &
+		(i268 = HA -> next(i268) != NH ) &
+		(i268 = NH -> next(i268) != JH) &
+	  		 	(i269 = JH -> next(i269) = NH) &
+		(i269 = HA -> next(i269) != NH ) &
+		(i269 = NH -> next(i269) != JH) &
+	  				   				   		 	(i272 = JH -> next(i272) = NH) &
+		(i272 = HA -> next(i272) != NH ) &
+		(i272 = NH -> next(i272) != JH) &
+	  				   				   				   				   				   				   		 	(i279 = JH -> next(i279) = NH) &
+		(i279 = HA -> next(i279) != NH ) &
+		(i279 = NH -> next(i279) != JH) &
+	  				   				   		 	(i282 = JH -> next(i282) = NH) &
+		(i282 = HA -> next(i282) != NH ) &
+		(i282 = NH -> next(i282) != JH) &
+	  		 	(i283 = JH -> next(i283) = NH) &
+		(i283 = HA -> next(i283) != NH ) &
+		(i283 = NH -> next(i283) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   		 	(i294 = JH -> next(i294) = NH) &
+		(i294 = HA -> next(i294) != NH ) &
+		(i294 = NH -> next(i294) != JH) &
+	  		 	(i295 = JH -> next(i295) = NH) &
+		(i295 = HA -> next(i295) != NH ) &
+		(i295 = NH -> next(i295) != JH) &
+	  				   				   				   				   				   				  	(next(i301) = HA -> next(i830) = AC) &
+  				   				   				   				   				   				   				   		 	(i309 = JH -> next(i309) = NH) &
+		(i309 = HA -> next(i309) != NH ) &
+		(i309 = NH -> next(i309) != JH) &
+	  		 	(i310 = JH -> next(i310) = NH) &
+		(i310 = HA -> next(i310) != NH ) &
+		(i310 = NH -> next(i310) != JH) &
+	  		 	(i311 = JH -> next(i311) = NH) &
+		(i311 = HA -> next(i311) != NH ) &
+		(i311 = NH -> next(i311) != JH) &
+	  				   				   				  	(next(i314) = HA -> next(i820) = AC) &
+  				   				   				   				   		 	(i319 = JH -> next(i319) = NH) &
+		(i319 = HA -> next(i319) != NH ) &
+		(i319 = NH -> next(i319) != JH) &
+	  				   				   		 	(i322 = JH -> next(i322) = NH) &
+		(i322 = HA -> next(i322) != NH ) &
+		(i322 = NH -> next(i322) != JH) &
+	  				   		 	(i324 = JH -> next(i324) = NH) &
+		(i324 = HA -> next(i324) != NH ) &
+		(i324 = NH -> next(i324) != JH) &
+	  				   		 	(i326 = JH -> next(i326) = NH) &
+		(i326 = HA -> next(i326) != NH ) &
+		(i326 = NH -> next(i326) != JH) &
+	  		 	(i327 = JH -> next(i327) = NH) &
+		(i327 = HA -> next(i327) != NH ) &
+		(i327 = NH -> next(i327) != JH) &
+	  				   				   				   				   				   		 	(i333 = JH -> next(i333) = NH) &
+		(i333 = HA -> next(i333) != NH ) &
+		(i333 = NH -> next(i333) != JH) &
+	  				   		 	(i335 = JH -> next(i335) = NH) &
+		(i335 = HA -> next(i335) != NH ) &
+		(i335 = NH -> next(i335) != JH) &
+	  				   				   				  	(next(i338) = HA -> next(i818) = AC) &
+  				   				   		 	(i341 = JH -> next(i341) = NH) &
+		(i341 = HA -> next(i341) != NH ) &
+		(i341 = NH -> next(i341) != JH) &
+	  				   				   				   		 	(i345 = JH -> next(i345) = NH) &
+		(i345 = HA -> next(i345) != NH ) &
+		(i345 = NH -> next(i345) != JH) &
+	  				   		 	(i347 = JH -> next(i347) = NH) &
+		(i347 = HA -> next(i347) != NH ) &
+		(i347 = NH -> next(i347) != JH) &
+	  		 	(i348 = JH -> next(i348) = NH) &
+		(i348 = HA -> next(i348) != NH ) &
+		(i348 = NH -> next(i348) != JH) &
+	  				   				   				   		 	(i352 = JH -> next(i352) = NH) &
+		(i352 = HA -> next(i352) != NH ) &
+		(i352 = NH -> next(i352) != JH) &
+	  				   				   		 	(i355 = JH -> next(i355) = NH) &
+		(i355 = HA -> next(i355) != NH ) &
+		(i355 = NH -> next(i355) != JH) &
+	  		 	(i356 = JH -> next(i356) = NH) &
+		(i356 = HA -> next(i356) != NH ) &
+		(i356 = NH -> next(i356) != JH) &
+	  				   				   				   				   				   		 	(i362 = JH -> next(i362) = NH) &
+		(i362 = HA -> next(i362) != NH ) &
+		(i362 = NH -> next(i362) != JH) &
+	  				   				  	(next(i364) = HA -> next(i829) = AC) &
+  				   				  	(next(i366) = HA -> next(i837) = AC) &
+  				   				   				   				   		 	(i371 = JH -> next(i371) = NH) &
+		(i371 = HA -> next(i371) != NH ) &
+		(i371 = NH -> next(i371) != JH) &
+	  				  	(next(i372) = HA -> next(i826) = AC) &
+  				   				   				   		 	(i376 = JH -> next(i376) = NH) &
+		(i376 = HA -> next(i376) != NH ) &
+		(i376 = NH -> next(i376) != JH) &
+	  				   		 	(i378 = JH -> next(i378) = NH) &
+		(i378 = HA -> next(i378) != NH ) &
+		(i378 = NH -> next(i378) != JH) &
+	  				   				   		 	(i381 = JH -> next(i381) = NH) &
+		(i381 = HA -> next(i381) != NH ) &
+		(i381 = NH -> next(i381) != JH) &
+	  				   				   		 	(i384 = JH -> next(i384) = NH) &
+		(i384 = HA -> next(i384) != NH ) &
+		(i384 = NH -> next(i384) != JH) &
+	  				   				  	(next(i386) = HA -> next(i823) = AC) &
+  				   		 	(i388 = JH -> next(i388) = NH) &
+		(i388 = HA -> next(i388) != NH ) &
+		(i388 = NH -> next(i388) != JH) &
+	  				   				   		 	(i391 = JH -> next(i391) = NH) &
+		(i391 = HA -> next(i391) != NH ) &
+		(i391 = NH -> next(i391) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   		 	(i408 = JH -> next(i408) = NH) &
+		(i408 = HA -> next(i408) != NH ) &
+		(i408 = NH -> next(i408) != JH) &
+	  				   				   				   				   				   				   		 	(i415 = JH -> next(i415) = NH) &
+		(i415 = HA -> next(i415) != NH ) &
+		(i415 = NH -> next(i415) != JH) &
+	  		 	(i416 = JH -> next(i416) = NH) &
+		(i416 = HA -> next(i416) != NH ) &
+		(i416 = NH -> next(i416) != JH) &
+	  		 	(i417 = JH -> next(i417) = NH) &
+		(i417 = HA -> next(i417) != NH ) &
+		(i417 = NH -> next(i417) != JH) &
+	  		 	(i418 = JH -> next(i418) = NH) &
+		(i418 = HA -> next(i418) != NH ) &
+		(i418 = NH -> next(i418) != JH) &
+	  				   				   				   				   				   		 	(i424 = JH -> next(i424) = NH) &
+		(i424 = HA -> next(i424) != NH ) &
+		(i424 = NH -> next(i424) != JH) &
+	  				   		 	(i426 = JH -> next(i426) = NH) &
+		(i426 = HA -> next(i426) != NH ) &
+		(i426 = NH -> next(i426) != JH) &
+	  		 	(i427 = JH -> next(i427) = NH) &
+		(i427 = HA -> next(i427) != NH ) &
+		(i427 = NH -> next(i427) != JH) &
+	  				   				   				   				   				   		 	(i433 = JH -> next(i433) = NH) &
+		(i433 = HA -> next(i433) != NH ) &
+		(i433 = NH -> next(i433) != JH) &
+	  		 	(i434 = JH -> next(i434) = NH) &
+		(i434 = HA -> next(i434) != NH ) &
+		(i434 = NH -> next(i434) != JH) &
+	  				   				   				   		 	(i438 = JH -> next(i438) = NH) &
+		(i438 = HA -> next(i438) != NH ) &
+		(i438 = NH -> next(i438) != JH) &
+	  				   		 	(i440 = JH -> next(i440) = NH) &
+		(i440 = HA -> next(i440) != NH ) &
+		(i440 = NH -> next(i440) != JH) &
+	  		 	(i441 = JH -> next(i441) = NH) &
+		(i441 = HA -> next(i441) != NH ) &
+		(i441 = NH -> next(i441) != JH) &
+	  				  	(next(i442) = HA -> next(i838) = AC) &
+  				   				   				   				   				   				   				   				   				   				   				   				   				   		 	(i456 = JH -> next(i456) = NH) &
+		(i456 = HA -> next(i456) != NH ) &
+		(i456 = NH -> next(i456) != JH) &
+	  				   				   		 	(i459 = JH -> next(i459) = NH) &
+		(i459 = HA -> next(i459) != NH ) &
+		(i459 = NH -> next(i459) != JH) &
+	  				   				   				   				   				   		 	(i465 = JH -> next(i465) = NH) &
+		(i465 = HA -> next(i465) != NH ) &
+		(i465 = NH -> next(i465) != JH) &
+	  		 	(i466 = JH -> next(i466) = NH) &
+		(i466 = HA -> next(i466) != NH ) &
+		(i466 = NH -> next(i466) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   		 	(i492 = JH -> next(i492) = NH) &
+		(i492 = HA -> next(i492) != NH ) &
+		(i492 = NH -> next(i492) != JH) &
+	  				   				   				   				   				   				   				   				   		 	(i501 = JH -> next(i501) = NH) &
+		(i501 = HA -> next(i501) != NH ) &
+		(i501 = NH -> next(i501) != JH) &
+	  		 	(i502 = JH -> next(i502) = NH) &
+		(i502 = HA -> next(i502) != NH ) &
+		(i502 = NH -> next(i502) != JH) &
+	  				  	(next(i503) = HA -> next(i819) = AC) &
+  				   				   				   				  	(next(i507) = HA -> next(i836) = AC) &
+  				   		 	(i509 = JH -> next(i509) = NH) &
+		(i509 = HA -> next(i509) != NH ) &
+		(i509 = NH -> next(i509) != JH) &
+	  		 	(i510 = JH -> next(i510) = NH) &
+		(i510 = HA -> next(i510) != NH ) &
+		(i510 = NH -> next(i510) != JH) &
+	  		 	(i511 = JH -> next(i511) = NH) &
+		(i511 = HA -> next(i511) != NH ) &
+		(i511 = NH -> next(i511) != JH) &
+	  		 	(i512 = JH -> next(i512) = NH) &
+		(i512 = HA -> next(i512) != NH ) &
+		(i512 = NH -> next(i512) != JH) &
+	  				   				   				   				   		 	(i517 = JH -> next(i517) = NH) &
+		(i517 = HA -> next(i517) != NH ) &
+		(i517 = NH -> next(i517) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   				   		 	(i529 = JH -> next(i529) = NH) &
+		(i529 = HA -> next(i529) != NH ) &
+		(i529 = NH -> next(i529) != JH) &
+	  				   		 	(i531 = JH -> next(i531) = NH) &
+		(i531 = HA -> next(i531) != NH ) &
+		(i531 = NH -> next(i531) != JH) &
+	  				   		 	(i533 = JH -> next(i533) = NH) &
+		(i533 = HA -> next(i533) != NH ) &
+		(i533 = NH -> next(i533) != JH) &
+	  				   				   				  	(next(i536) = HA -> next(i822) = AC) &
+  				   				   				   				  	(next(i540) = HA -> next(i828) = AC) &
+  				   				   		 	(i543 = JH -> next(i543) = NH) &
+		(i543 = HA -> next(i543) != NH ) &
+		(i543 = NH -> next(i543) != JH) &
+	  				   		 	(i545 = JH -> next(i545) = NH) &
+		(i545 = HA -> next(i545) != NH ) &
+		(i545 = NH -> next(i545) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   		 	(i556 = JH -> next(i556) = NH) &
+		(i556 = HA -> next(i556) != NH ) &
+		(i556 = NH -> next(i556) != JH) &
+	  				   				   				   		 	(i560 = JH -> next(i560) = NH) &
+		(i560 = HA -> next(i560) != NH ) &
+		(i560 = NH -> next(i560) != JH) &
+	  		 	(i561 = JH -> next(i561) = NH) &
+		(i561 = HA -> next(i561) != NH ) &
+		(i561 = NH -> next(i561) != JH) &
+	  				   				   				   				   				   				   		 	(i568 = JH -> next(i568) = NH) &
+		(i568 = HA -> next(i568) != NH ) &
+		(i568 = NH -> next(i568) != JH) &
+	  				   				   		 	(i571 = JH -> next(i571) = NH) &
+		(i571 = HA -> next(i571) != NH ) &
+		(i571 = NH -> next(i571) != JH) &
+	  				  	(next(i572) = HA -> next(i832) = AC) &
+  		 	(i573 = JH -> next(i573) = NH) &
+		(i573 = HA -> next(i573) != NH ) &
+		(i573 = NH -> next(i573) != JH) &
+	  				   				   				   				   		 	(i578 = JH -> next(i578) = NH) &
+		(i578 = HA -> next(i578) != NH ) &
+		(i578 = NH -> next(i578) != JH) &
+	  		 	(i579 = JH -> next(i579) = NH) &
+		(i579 = HA -> next(i579) != NH ) &
+		(i579 = NH -> next(i579) != JH) &
+	  				   				   				   				   				   				   				   				   		 	(i588 = JH -> next(i588) = NH) &
+		(i588 = HA -> next(i588) != NH ) &
+		(i588 = NH -> next(i588) != JH) &
+	  		 	(i589 = JH -> next(i589) = NH) &
+		(i589 = HA -> next(i589) != NH ) &
+		(i589 = NH -> next(i589) != JH) &
+	  				   		 	(i591 = JH -> next(i591) = NH) &
+		(i591 = HA -> next(i591) != NH ) &
+		(i591 = NH -> next(i591) != JH) &
+	  				   		 	(i593 = JH -> next(i593) = NH) &
+		(i593 = HA -> next(i593) != NH ) &
+		(i593 = NH -> next(i593) != JH) &
+	  				   				   				   				   				   		 	(i599 = JH -> next(i599) = NH) &
+		(i599 = HA -> next(i599) != NH ) &
+		(i599 = NH -> next(i599) != JH) &
+	  		 	(i600 = JH -> next(i600) = NH) &
+		(i600 = HA -> next(i600) != NH ) &
+		(i600 = NH -> next(i600) != JH) &
+	  				   		 	(i602 = JH -> next(i602) = NH) &
+		(i602 = HA -> next(i602) != NH ) &
+		(i602 = NH -> next(i602) != JH) &
+	  				   				   				   				   		 	(i607 = JH -> next(i607) = NH) &
+		(i607 = HA -> next(i607) != NH ) &
+		(i607 = NH -> next(i607) != JH) &
+	  		 	(i608 = JH -> next(i608) = NH) &
+		(i608 = HA -> next(i608) != NH ) &
+		(i608 = NH -> next(i608) != JH) &
+	  				   				   		 	(i611 = JH -> next(i611) = NH) &
+		(i611 = HA -> next(i611) != NH ) &
+		(i611 = NH -> next(i611) != JH) &
+	  				   		 	(i613 = JH -> next(i613) = NH) &
+		(i613 = HA -> next(i613) != NH ) &
+		(i613 = NH -> next(i613) != JH) &
+	  				   				   				   		 	(i617 = JH -> next(i617) = NH) &
+		(i617 = HA -> next(i617) != NH ) &
+		(i617 = NH -> next(i617) != JH) &
+	  		 	(i618 = JH -> next(i618) = NH) &
+		(i618 = HA -> next(i618) != NH ) &
+		(i618 = NH -> next(i618) != JH) &
+	  		 	(i619 = JH -> next(i619) = NH) &
+		(i619 = HA -> next(i619) != NH ) &
+		(i619 = NH -> next(i619) != JH) &
+	  		 	(i620 = JH -> next(i620) = NH) &
+		(i620 = HA -> next(i620) != NH ) &
+		(i620 = NH -> next(i620) != JH) &
+	  		 	(i621 = JH -> next(i621) = NH) &
+		(i621 = HA -> next(i621) != NH ) &
+		(i621 = NH -> next(i621) != JH) &
+	  				   				   		 	(i624 = JH -> next(i624) = NH) &
+		(i624 = HA -> next(i624) != NH ) &
+		(i624 = NH -> next(i624) != JH) &
+	  		 	(i625 = JH -> next(i625) = NH) &
+		(i625 = HA -> next(i625) != NH ) &
+		(i625 = NH -> next(i625) != JH) &
+	  				   				   				   		 	(i629 = JH -> next(i629) = NH) &
+		(i629 = HA -> next(i629) != NH ) &
+		(i629 = NH -> next(i629) != JH) &
+	  				   				   				   				   				   		 	(i635 = JH -> next(i635) = NH) &
+		(i635 = HA -> next(i635) != NH ) &
+		(i635 = NH -> next(i635) != JH) &
+	  		 	(i636 = JH -> next(i636) = NH) &
+		(i636 = HA -> next(i636) != NH ) &
+		(i636 = NH -> next(i636) != JH) &
+	  				   				   				   				   		 	(i641 = JH -> next(i641) = NH) &
+		(i641 = HA -> next(i641) != NH ) &
+		(i641 = NH -> next(i641) != JH) &
+	  				   		 	(i643 = JH -> next(i643) = NH) &
+		(i643 = HA -> next(i643) != NH ) &
+		(i643 = NH -> next(i643) != JH) &
+	  		 	(i644 = JH -> next(i644) = NH) &
+		(i644 = HA -> next(i644) != NH ) &
+		(i644 = NH -> next(i644) != JH) &
+	  				   				   				   		 	(i648 = JH -> next(i648) = NH) &
+		(i648 = HA -> next(i648) != NH ) &
+		(i648 = NH -> next(i648) != JH) &
+	  				   				   				   				   		 	(i653 = JH -> next(i653) = NH) &
+		(i653 = HA -> next(i653) != NH ) &
+		(i653 = NH -> next(i653) != JH) &
+	  				   				   				   		 	(i657 = JH -> next(i657) = NH) &
+		(i657 = HA -> next(i657) != NH ) &
+		(i657 = NH -> next(i657) != JH) &
+	  				   				   		 	(i660 = JH -> next(i660) = NH) &
+		(i660 = HA -> next(i660) != NH ) &
+		(i660 = NH -> next(i660) != JH) &
+	  		 	(i661 = JH -> next(i661) = NH) &
+		(i661 = HA -> next(i661) != NH ) &
+		(i661 = NH -> next(i661) != JH) &
+	  		 	(i662 = JH -> next(i662) = NH) &
+		(i662 = HA -> next(i662) != NH ) &
+		(i662 = NH -> next(i662) != JH) &
+	  				  	(next(i663) = HA -> next(i827) = AC) &
+  				  	(next(i664) = HA -> next(i831) = AC) &
+  		 	(i665 = JH -> next(i665) = NH) &
+		(i665 = HA -> next(i665) != NH ) &
+		(i665 = NH -> next(i665) != JH) &
+	  				   				   				   				   				   				   				   		 	(i673 = JH -> next(i673) = NH) &
+		(i673 = HA -> next(i673) != NH ) &
+		(i673 = NH -> next(i673) != JH) &
+	  				   				   				   		 	(i677 = JH -> next(i677) = NH) &
+		(i677 = HA -> next(i677) != NH ) &
+		(i677 = NH -> next(i677) != JH) &
+	  				   				   		 	(i680 = JH -> next(i680) = NH) &
+		(i680 = HA -> next(i680) != NH ) &
+		(i680 = NH -> next(i680) != JH) &
+	  				   				   				   				   				  	(next(i685) = HA -> next(i824) = AC) &
+  				   				   		 	(i688 = JH -> next(i688) = NH) &
+		(i688 = HA -> next(i688) != NH ) &
+		(i688 = NH -> next(i688) != JH) &
+	  				   				   				   				   		 	(i693 = JH -> next(i693) = NH) &
+		(i693 = HA -> next(i693) != NH ) &
+		(i693 = NH -> next(i693) != JH) &
+	  		 	(i694 = JH -> next(i694) = NH) &
+		(i694 = HA -> next(i694) != NH ) &
+		(i694 = NH -> next(i694) != JH) &
+	  		 	(i695 = JH -> next(i695) = NH) &
+		(i695 = HA -> next(i695) != NH ) &
+		(i695 = NH -> next(i695) != JH) &
+	  		 	(i696 = JH -> next(i696) = NH) &
+		(i696 = HA -> next(i696) != NH ) &
+		(i696 = NH -> next(i696) != JH) &
+	  				   		 	(i698 = JH -> next(i698) = NH) &
+		(i698 = HA -> next(i698) != NH ) &
+		(i698 = NH -> next(i698) != JH) &
+	  				   		 	(i700 = JH -> next(i700) = NH) &
+		(i700 = HA -> next(i700) != NH ) &
+		(i700 = NH -> next(i700) != JH) &
+	  				   				   				   				   				   		 	(i706 = JH -> next(i706) = NH) &
+		(i706 = HA -> next(i706) != NH ) &
+		(i706 = NH -> next(i706) != JH) &
+	  				   				   		 	(i709 = JH -> next(i709) = NH) &
+		(i709 = HA -> next(i709) != NH ) &
+		(i709 = NH -> next(i709) != JH) &
+	  				   		 	(i711 = JH -> next(i711) = NH) &
+		(i711 = HA -> next(i711) != NH ) &
+		(i711 = NH -> next(i711) != JH) &
+	  				   		 	(i713 = JH -> next(i713) = NH) &
+		(i713 = HA -> next(i713) != NH ) &
+		(i713 = NH -> next(i713) != JH) &
+	  				   				   				   				   				   				   		 	(i720 = JH -> next(i720) = NH) &
+		(i720 = HA -> next(i720) != NH ) &
+		(i720 = NH -> next(i720) != JH) &
+	  				   		 	(i722 = JH -> next(i722) = NH) &
+		(i722 = HA -> next(i722) != NH ) &
+		(i722 = NH -> next(i722) != JH) &
+	  				   				   				   				   		 	(i727 = JH -> next(i727) = NH) &
+		(i727 = HA -> next(i727) != NH ) &
+		(i727 = NH -> next(i727) != JH) &
+	  		 	(i728 = JH -> next(i728) = NH) &
+		(i728 = HA -> next(i728) != NH ) &
+		(i728 = NH -> next(i728) != JH) &
+	  		 	(i729 = JH -> next(i729) = NH) &
+		(i729 = HA -> next(i729) != NH ) &
+		(i729 = NH -> next(i729) != JH) &
+	  		 	(i730 = JH -> next(i730) = NH) &
+		(i730 = HA -> next(i730) != NH ) &
+		(i730 = NH -> next(i730) != JH) &
+	  				   				   				   				   				   				   				   		 	(i738 = JH -> next(i738) = NH) &
+		(i738 = HA -> next(i738) != NH ) &
+		(i738 = NH -> next(i738) != JH) &
+	  		 	(i739 = JH -> next(i739) = NH) &
+		(i739 = HA -> next(i739) != NH ) &
+		(i739 = NH -> next(i739) != JH) &
+	  				   				   				   				   				   				   				   		 	(i747 = JH -> next(i747) = NH) &
+		(i747 = HA -> next(i747) != NH ) &
+		(i747 = NH -> next(i747) != JH) &
+	  		 	(i748 = JH -> next(i748) = NH) &
+		(i748 = HA -> next(i748) != NH ) &
+		(i748 = NH -> next(i748) != JH) &
+	  		 	(i749 = JH -> next(i749) = NH) &
+		(i749 = HA -> next(i749) != NH ) &
+		(i749 = NH -> next(i749) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   		 	(i760 = JH -> next(i760) = NH) &
+		(i760 = HA -> next(i760) != NH ) &
+		(i760 = NH -> next(i760) != JH) &
+	  				   		 	(i762 = JH -> next(i762) = NH) &
+		(i762 = HA -> next(i762) != NH ) &
+		(i762 = NH -> next(i762) != JH) &
+	  		 	(i763 = JH -> next(i763) = NH) &
+		(i763 = HA -> next(i763) != NH ) &
+		(i763 = NH -> next(i763) != JH) &
+	  				   				  	(next(i765) = HA -> next(i825) = AC) &
+  		 	(i766 = JH -> next(i766) = NH) &
+		(i766 = HA -> next(i766) != NH ) &
+		(i766 = NH -> next(i766) != JH) &
+	  				   		 	(i768 = JH -> next(i768) = NH) &
+		(i768 = HA -> next(i768) != NH ) &
+		(i768 = NH -> next(i768) != JH) &
+	  		 	(i769 = JH -> next(i769) = NH) &
+		(i769 = HA -> next(i769) != NH ) &
+		(i769 = NH -> next(i769) != JH) &
+	  		 	(i770 = JH -> next(i770) = NH) &
+		(i770 = HA -> next(i770) != NH ) &
+		(i770 = NH -> next(i770) != JH) &
+	  				   		 	(i772 = JH -> next(i772) = NH) &
+		(i772 = HA -> next(i772) != NH ) &
+		(i772 = NH -> next(i772) != JH) &
+	  		 	(i773 = JH -> next(i773) = NH) &
+		(i773 = HA -> next(i773) != NH ) &
+		(i773 = NH -> next(i773) != JH) &
+	  				   				   		 	(i776 = JH -> next(i776) = NH) &
+		(i776 = HA -> next(i776) != NH ) &
+		(i776 = NH -> next(i776) != JH) &
+	  				   				   				   				   		 	(i781 = JH -> next(i781) = NH) &
+		(i781 = HA -> next(i781) != NH ) &
+		(i781 = NH -> next(i781) != JH) &
+	  				   				   				  	(next(i784) = HA -> next(i821) = AC) &
+  				   				   				   		 	(i788 = JH -> next(i788) = NH) &
+		(i788 = HA -> next(i788) != NH ) &
+		(i788 = NH -> next(i788) != JH) &
+	  		 	(i789 = JH -> next(i789) = NH) &
+		(i789 = HA -> next(i789) != NH ) &
+		(i789 = NH -> next(i789) != JH) &
+	  				   				   		 	(i792 = JH -> next(i792) = NH) &
+		(i792 = HA -> next(i792) != NH ) &
+		(i792 = NH -> next(i792) != JH) &
+	  				   		 	(i794 = JH -> next(i794) = NH) &
+		(i794 = HA -> next(i794) != NH ) &
+		(i794 = NH -> next(i794) != JH) &
+	  				   				   				   				   				   				   				   				   				   				   				   		 	(i806 = JH -> next(i806) = NH) &
+		(i806 = HA -> next(i806) != NH ) &
+		(i806 = NH -> next(i806) != JH) &
+	  				   				   				   				   		 	(i811 = JH -> next(i811) = NH) &
+		(i811 = HA -> next(i811) != NH ) &
+		(i811 = NH -> next(i811) != JH) &
+	  				   				   				   		 	(i815 = JH -> next(i815) = NH) &
+		(i815 = HA -> next(i815) != NH ) &
+		(i815 = NH -> next(i815) != JH) &
+          	(next(i7) = JH -> (
+  		next(agent_7.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_7.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i7) != JH ->
+		agent_7.RepararBajoGarantia_OUTPUT = next (agent_7.RepararBajoGarantia_OUTPUT)) &
+       	(next(i11) = JH -> (
+  		next(agent_54.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_54.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i11) != JH ->
+		agent_54.ServicioTecnico_OUTPUT = next (agent_54.ServicioTecnico_OUTPUT)) &
+     	(next(i13) = JH -> (
+  		next(agent_51.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_51.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i13) != JH ->
+		agent_51.ServicioTecnico_OUTPUT = next (agent_51.ServicioTecnico_OUTPUT)) &
+     	(next(i15) = JH -> (
+  		next(agent_52.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_52.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_52.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_52.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i15) != JH ->
+		agent_52.CumplirGarantia_OUTPUT = next (agent_52.CumplirGarantia_OUTPUT)) &
+               	(next(i27) = JH -> (
+  		next(agent_25.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_25.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i27) != JH ->
+		agent_25.RepararBajoGarantia_OUTPUT = next (agent_25.RepararBajoGarantia_OUTPUT)) &
+          	(next(i34) = JH -> (
+  		next(agent_50.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_50.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i34) != JH ->
+		agent_50.RepararBajoGarantia_OUTPUT = next (agent_50.RepararBajoGarantia_OUTPUT)) &
+       	(next(i38) = JH -> (
+  		next(agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i38) != JH ->
+		agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+      	(next(i41) = JH -> (
+  		next(agent_60.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_60.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i41) != JH ->
+		agent_60.ServicioTecnico_OUTPUT = next (agent_60.ServicioTecnico_OUTPUT)) &
+     	(next(i43) = JH -> (
+  		next(agent_45.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_45.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i43) != JH ->
+		agent_45.ServicioTecnico_OUTPUT = next (agent_45.ServicioTecnico_OUTPUT)) &
+      	(next(i46) = JH -> (
+  		next(agent_59.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_59.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i46) != JH ->
+		agent_59.RepararBajoGarantia_OUTPUT = next (agent_59.RepararBajoGarantia_OUTPUT)) &
+    	(next(i47) = JH -> (
+  		next(agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i47) != JH ->
+		agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+                        	(next(i68) = JH -> (
+  		next(agent_28.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_28.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_28.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_28.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i68) != JH ->
+		agent_28.CumplirGarantia_OUTPUT = next (agent_28.CumplirGarantia_OUTPUT)) &
+    	(next(i69) = JH -> (
+  		next(agent_25.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_25.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_25.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_25.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i69) != JH ->
+		agent_25.CumplirGarantia_OUTPUT = next (agent_25.CumplirGarantia_OUTPUT)) &
+           	(next(i77) = JH -> (
+  		next(agent_64.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_64.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_64.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_64.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i77) != JH ->
+		agent_64.CumplirGarantia_OUTPUT = next (agent_64.CumplirGarantia_OUTPUT)) &
+      	(next(i80) = JH -> (
+  		next(agent_64.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_64.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i80) != JH ->
+		agent_64.RepararBajoGarantia_OUTPUT = next (agent_64.RepararBajoGarantia_OUTPUT)) &
+       	(next(i84) = JH -> (
+  		next(agent_34.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_34.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_34.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_34.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i84) != JH ->
+		agent_34.CumplirGarantia_OUTPUT = next (agent_34.CumplirGarantia_OUTPUT)) &
+            	(next(i93) = JH -> (
+  		next(agent_44.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_44.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i93) != JH ->
+		agent_44.RepararBajoGarantia_OUTPUT = next (agent_44.RepararBajoGarantia_OUTPUT)) &
+            	(next(i102) = JH -> (
+  		next(agent_45.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_45.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i102) != JH ->
+		agent_45.RepararBajoGarantia_OUTPUT = next (agent_45.RepararBajoGarantia_OUTPUT)) &
+                                              	(next(i145) = JH -> (
+  		next(agent_21.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_21.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i145) != JH ->
+		agent_21.ServicioTecnico_OUTPUT = next (agent_21.ServicioTecnico_OUTPUT)) &
+             	(next(i155) = JH -> (
+  		next(agent_15.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_15.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i155) != JH ->
+		agent_15.ServicioTecnico_OUTPUT = next (agent_15.ServicioTecnico_OUTPUT)) &
+              	(next(i166) = JH -> (
+  		next(agent_7.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_7.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_7.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_7.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i166) != JH ->
+		agent_7.CumplirGarantia_OUTPUT = next (agent_7.CumplirGarantia_OUTPUT)) &
+           	(next(i174) = JH -> (
+  		next(agent_39.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_39.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i174) != JH ->
+		agent_39.ServicioTecnico_OUTPUT = next (agent_39.ServicioTecnico_OUTPUT)) &
+       	(next(i178) = JH -> (
+  		next(agent_51.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_51.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i178) != JH ->
+		agent_51.RepararBajoGarantia_OUTPUT = next (agent_51.RepararBajoGarantia_OUTPUT)) &
+                                	(next(i207) = JH -> (
+  		next(agent_7.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_7.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i207) != JH ->
+		agent_7.ServicioTecnico_OUTPUT = next (agent_7.ServicioTecnico_OUTPUT)) &
+            	(next(i216) = JH -> (
+  		next(agent_15.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_15.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_15.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_15.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i216) != JH ->
+		agent_15.CumplirGarantia_OUTPUT = next (agent_15.CumplirGarantia_OUTPUT)) &
+        	(next(i221) = JH -> (
+  		next(agent_19.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_19.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i221) != JH ->
+		agent_19.RepararBajoGarantia_OUTPUT = next (agent_19.RepararBajoGarantia_OUTPUT)) &
+                	(next(i234) = JH -> (
+  		next(agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i234) != JH ->
+		agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+         	(next(i240) = JH -> (
+  		next(agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i240) != JH ->
+		agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+                  	(next(i255) = JH -> (
+  		next(agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i255) != JH ->
+		agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+         	(next(i261) = JH -> (
+  		next(agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i261) != JH ->
+		agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+          	(next(i268) = JH -> (
+  		next(agent_50.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_50.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_50.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_50.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i268) != JH ->
+		agent_50.CumplirGarantia_OUTPUT = next (agent_50.CumplirGarantia_OUTPUT)) &
+                             	(next(i294) = JH -> (
+  		next(agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i294) != JH ->
+		agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+                  	(next(i309) = JH -> (
+  		next(agent_50.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_50.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i309) != JH ->
+		agent_50.ServicioTecnico_OUTPUT = next (agent_50.ServicioTecnico_OUTPUT)) &
+     	(next(i311) = JH -> (
+  		next(agent_47.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_47.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i311) != JH ->
+		agent_47.ServicioTecnico_OUTPUT = next (agent_47.ServicioTecnico_OUTPUT)) &
+              	(next(i322) = JH -> (
+  		next(agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i322) != JH ->
+		agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+       	(next(i326) = JH -> (
+  		next(agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i326) != JH ->
+		agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i327) = JH -> (
+  		next(agent_9.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_9.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i327) != JH ->
+		agent_9.ServicioTecnico_OUTPUT = next (agent_9.ServicioTecnico_OUTPUT)) &
+                 	(next(i341) = JH -> (
+  		next(agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i341) != JH ->
+		agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+         	(next(i347) = JH -> (
+  		next(agent_16.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_16.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i347) != JH ->
+		agent_16.RepararBajoGarantia_OUTPUT = next (agent_16.RepararBajoGarantia_OUTPUT)) &
+    	(next(i348) = JH -> (
+  		next(agent_47.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_47.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_47.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_47.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i348) != JH ->
+		agent_47.CumplirGarantia_OUTPUT = next (agent_47.CumplirGarantia_OUTPUT)) &
+       	(next(i352) = JH -> (
+  		next(agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i352) != JH ->
+		agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+      	(next(i355) = JH -> (
+  		next(agent_19.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_19.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_19.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_19.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i355) != JH ->
+		agent_19.CumplirGarantia_OUTPUT = next (agent_19.CumplirGarantia_OUTPUT)) &
+                        	(next(i376) = JH -> (
+  		next(agent_19.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_19.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i376) != JH ->
+		agent_19.ServicioTecnico_OUTPUT = next (agent_19.ServicioTecnico_OUTPUT)) &
+     	(next(i378) = JH -> (
+  		next(agent_64.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_64.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i378) != JH ->
+		agent_64.ServicioTecnico_OUTPUT = next (agent_64.ServicioTecnico_OUTPUT)) &
+             	(next(i388) = JH -> (
+  		next(agent_39.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_39.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i388) != JH ->
+		agent_39.RepararBajoGarantia_OUTPUT = next (agent_39.RepararBajoGarantia_OUTPUT)) &
+      	(next(i391) = JH -> (
+  		next(agent_28.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_28.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i391) != JH ->
+		agent_28.ServicioTecnico_OUTPUT = next (agent_28.ServicioTecnico_OUTPUT)) &
+                            	(next(i416) = JH -> (
+  		next(agent_54.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_54.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i416) != JH ->
+		agent_54.RepararBajoGarantia_OUTPUT = next (agent_54.RepararBajoGarantia_OUTPUT)) &
+           	(next(i424) = JH -> (
+  		next(agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i424) != JH ->
+		agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+      	(next(i427) = JH -> (
+  		next(agent_35.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_35.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i427) != JH ->
+		agent_35.RepararBajoGarantia_OUTPUT = next (agent_35.RepararBajoGarantia_OUTPUT)) &
+          	(next(i434) = JH -> (
+  		next(agent_9.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_9.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_9.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_9.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i434) != JH ->
+		agent_9.CumplirGarantia_OUTPUT = next (agent_9.CumplirGarantia_OUTPUT)) &
+                                  	(next(i465) = JH -> (
+  		next(agent_21.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_21.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i465) != JH ->
+		agent_21.RepararBajoGarantia_OUTPUT = next (agent_21.RepararBajoGarantia_OUTPUT)) &
+    	(next(i466) = JH -> (
+  		next(agent_15.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_15.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i466) != JH ->
+		agent_15.RepararBajoGarantia_OUTPUT = next (agent_15.RepararBajoGarantia_OUTPUT)) &
+                                      	(next(i501) = JH -> (
+  		next(agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i501) != JH ->
+		agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i502) = JH -> (
+  		next(agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i502) != JH ->
+		agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+          	(next(i509) = JH -> (
+  		next(agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i509) != JH ->
+		agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+     	(next(i511) = JH -> (
+  		next(agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i511) != JH ->
+		agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+         	(next(i517) = JH -> (
+  		next(agent_60.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_60.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i517) != JH ->
+		agent_60.RepararBajoGarantia_OUTPUT = next (agent_60.RepararBajoGarantia_OUTPUT)) &
+                 	(next(i531) = JH -> (
+  		next(agent_60.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_60.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_60.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_60.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i531) != JH ->
+		agent_60.CumplirGarantia_OUTPUT = next (agent_60.CumplirGarantia_OUTPUT)) &
+                 	(next(i545) = JH -> (
+  		next(agent_34.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_34.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i545) != JH ->
+		agent_34.RepararBajoGarantia_OUTPUT = next (agent_34.RepararBajoGarantia_OUTPUT)) &
+                                                                  	(next(i608) = JH -> (
+  		next(agent_51.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_51.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_51.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_51.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i608) != JH ->
+		agent_51.CumplirGarantia_OUTPUT = next (agent_51.CumplirGarantia_OUTPUT)) &
+      	(next(i611) = JH -> (
+  		next(agent_54.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_54.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_54.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_54.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i611) != JH ->
+		agent_54.CumplirGarantia_OUTPUT = next (agent_54.CumplirGarantia_OUTPUT)) &
+     	(next(i613) = JH -> (
+  		next(agent_21.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_21.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_21.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_21.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i613) != JH ->
+		agent_21.CumplirGarantia_OUTPUT = next (agent_21.CumplirGarantia_OUTPUT)) &
+         	(next(i619) = JH -> (
+  		next(agent_45.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_45.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_45.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_45.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i619) != JH ->
+		agent_45.CumplirGarantia_OUTPUT = next (agent_45.CumplirGarantia_OUTPUT)) &
+    	(next(i620) = JH -> (
+  		next(agent_39.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_39.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_39.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_39.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i620) != JH ->
+		agent_39.CumplirGarantia_OUTPUT = next (agent_39.CumplirGarantia_OUTPUT)) &
+                  	(next(i635) = JH -> (
+  		next(agent_20.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_20.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i635) != JH ->
+		agent_20.ServicioTecnico_OUTPUT = next (agent_20.ServicioTecnico_OUTPUT)) &
+    	(next(i636) = JH -> (
+  		next(agent_9.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_9.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i636) != JH ->
+		agent_9.RepararBajoGarantia_OUTPUT = next (agent_9.RepararBajoGarantia_OUTPUT)) &
+           	(next(i644) = JH -> (
+  		next(agent_47.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_47.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i644) != JH ->
+		agent_47.RepararBajoGarantia_OUTPUT = next (agent_47.RepararBajoGarantia_OUTPUT)) &
+       	(next(i648) = JH -> (
+  		next(agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i648) != JH ->
+		agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+                    	(next(i665) = JH -> (
+  		next(agent_59.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_59.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_59.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_59.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i665) != JH ->
+		agent_59.CumplirGarantia_OUTPUT = next (agent_59.CumplirGarantia_OUTPUT)) &
+                          	(next(i688) = JH -> (
+  		next(agent_35.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_35.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i688) != JH ->
+		agent_35.ServicioTecnico_OUTPUT = next (agent_35.ServicioTecnico_OUTPUT)) &
+        	(next(i693) = JH -> (
+  		next(agent_28.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_28.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i693) != JH ->
+		agent_28.RepararBajoGarantia_OUTPUT = next (agent_28.RepararBajoGarantia_OUTPUT)) &
+    	(next(i694) = JH -> (
+  		next(agent_44.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_44.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i694) != JH ->
+		agent_44.ServicioTecnico_OUTPUT = next (agent_44.ServicioTecnico_OUTPUT)) &
+       	(next(i698) = JH -> (
+  		next(agent_59.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_59.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i698) != JH ->
+		agent_59.ServicioTecnico_OUTPUT = next (agent_59.ServicioTecnico_OUTPUT)) &
+     	(next(i700) = JH -> (
+  		next(agent_6.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_6.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i700) != JH ->
+		agent_6.ServicioTecnico_OUTPUT = next (agent_6.ServicioTecnico_OUTPUT)) &
+            	(next(i709) = JH -> (
+  		next(agent_35.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_35.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_35.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_35.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i709) != JH ->
+		agent_35.CumplirGarantia_OUTPUT = next (agent_35.CumplirGarantia_OUTPUT)) &
+     	(next(i711) = JH -> (
+  		next(agent_34.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_34.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i711) != JH ->
+		agent_34.ServicioTecnico_OUTPUT = next (agent_34.ServicioTecnico_OUTPUT)) &
+              	(next(i722) = JH -> (
+  		next(agent_44.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_44.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_44.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_44.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i722) != JH ->
+		agent_44.CumplirGarantia_OUTPUT = next (agent_44.CumplirGarantia_OUTPUT)) &
+        	(next(i727) = JH -> (
+  		next(agent_16.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_16.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_16.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_16.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i727) != JH ->
+		agent_16.CumplirGarantia_OUTPUT = next (agent_16.CumplirGarantia_OUTPUT)) &
+      	(next(i730) = JH -> (
+  		next(agent_52.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_52.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i730) != JH ->
+		agent_52.ServicioTecnico_OUTPUT = next (agent_52.ServicioTecnico_OUTPUT)) &
+            	(next(i739) = JH -> (
+  		next(agent_20.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_20.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_20.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_20.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i739) != JH ->
+		agent_20.CumplirGarantia_OUTPUT = next (agent_20.CumplirGarantia_OUTPUT)) &
+            	(next(i748) = JH -> (
+  		next(agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i748) != JH ->
+		agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+                 	(next(i762) = JH -> (
+  		next(agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i762) != JH ->
+		agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i763) = JH -> (
+  		next(agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i763) != JH ->
+		agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+        	(next(i768) = JH -> (
+  		next(agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i768) != JH ->
+		agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i769) = JH -> (
+  		next(agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i769) != JH ->
+		agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+       	(next(i773) = JH -> (
+  		next(agent_52.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_52.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i773) != JH ->
+		agent_52.RepararBajoGarantia_OUTPUT = next (agent_52.RepararBajoGarantia_OUTPUT)) &
+                  	(next(i788) = JH -> (
+  		next(agent_16.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_16.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i788) != JH ->
+		agent_16.ServicioTecnico_OUTPUT = next (agent_16.ServicioTecnico_OUTPUT)) &
+       	(next(i792) = JH -> (
+  		next(agent_25.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_25.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(i792) != JH ->
+		agent_25.ServicioTecnico_OUTPUT = next (agent_25.ServicioTecnico_OUTPUT)) &
+     	(next(i794) = JH -> (
+  		next(agent_20.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_20.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i794) != JH ->
+		agent_20.RepararBajoGarantia_OUTPUT = next (agent_20.RepararBajoGarantia_OUTPUT)) &
+               	(next(i806) = JH -> (
+  		next(agent_6.CumplirGarantia_OUTPUT) = Distribuidor |
+  		next(agent_6.CumplirGarantia_OUTPUT) = Productor |
+  		next(agent_6.CumplirGarantia_OUTPUT) = Vendedor |
+  		next(agent_6.CumplirGarantia_OUTPUT) = Importador |
+  		FALSE)) &
+	(next(i806) != JH ->
+		agent_6.CumplirGarantia_OUTPUT = next (agent_6.CumplirGarantia_OUTPUT)) &
+        	(next(i811) = JH -> (
+  		next(agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i811) != JH ->
+		agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+       	(next(i815) = JH -> (
+  		next(agent_6.RepararBajoGarantia_OUTPUT) = Insatisfactorio |
+  		next(agent_6.RepararBajoGarantia_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i815) != JH ->
+		agent_6.RepararBajoGarantia_OUTPUT = next (agent_6.RepararBajoGarantia_OUTPUT)) &
+    (( i817 = IA & next(i817) = AC) -> (
+   		(i100 = HA & next(i100) = JH) 
+		     		)) & 
+	((i817 = AC  & next(i817) = IA) -> (
+   		(i417 = HA & next(i417) = JH) 
+		   		)) &
+  	(i817 = IA & (
+   			(i100 = HA & next(i100) = JH) 
+			   		)-> (next(i817) = AC)) & 		
+    	(i817 = AC & (
+   			(i417 = HA & next(i417) = JH) 
+			   		)-> (next(i817) = IA)) & 	
+	((
+   			(i100 = NH & next(i100) = HA) 
+			   		)-> (i817 = IA)) & 
+	((
+   			(i417 = NH & next(i417) = HA) 
+			   		)-> (i817 = AC)) & 
+  	(next(i100) = HA -> (TRUE 
+     	)) &
+  	(next(i417) = HA -> (TRUE 
+     & next(i417) !=  HA 	)) &
+    (( i818 = IA & next(i818) = AC) -> (
+   		(i295 = HA & next(i295) = JH) 
+		     		)) & 
+	((i818 = AC  & next(i818) = IA) -> (
+   		(i543 = HA & next(i543) = JH) 
+		   		)) &
+  	(i818 = IA & (
+   			(i295 = HA & next(i295) = JH) 
+			   		)-> (next(i818) = AC)) & 		
+    	(i818 = AC & (
+   			(i543 = HA & next(i543) = JH) 
+			   		)-> (next(i818) = IA)) & 	
+	((
+   			(i295 = NH & next(i295) = HA) 
+			   		)-> (i818 = IA)) & 
+	((
+   			(i543 = NH & next(i543) = HA) 
+			   		)-> (i818 = AC)) & 
+  	(next(i295) = HA -> (TRUE 
+     	)) &
+  	(next(i543) = HA -> (TRUE 
+     & next(i543) !=  HA 	)) &
+    (( i819 = IA & next(i819) = AC) -> (
+   		(i766 = HA & next(i766) = JH) 
+		     		)) & 
+	((i819 = AC  & next(i819) = IA) -> (
+   		(i781 = HA & next(i781) = JH) 
+		   		)) &
+  	(i819 = IA & (
+   			(i766 = HA & next(i766) = JH) 
+			   		)-> (next(i819) = AC)) & 		
+    	(i819 = AC & (
+   			(i781 = HA & next(i781) = JH) 
+			   		)-> (next(i819) = IA)) & 	
+	((
+   			(i766 = NH & next(i766) = HA) 
+			   		)-> (i819 = IA)) & 
+	((
+   			(i781 = NH & next(i781) = HA) 
+			   		)-> (i819 = AC)) & 
+  	(next(i766) = HA -> (TRUE 
+     	)) &
+  	(next(i781) = HA -> (TRUE 
+     & next(i781) !=  HA 	)) &
+    (( i820 = IA & next(i820) = AC) -> (
+   		(i624 = HA & next(i624) = JH) 
+		     		)) & 
+	((i820 = AC  & next(i820) = IA) -> (
+   		(i74 = HA & next(i74) = JH) 
+		   		)) &
+  	(i820 = IA & (
+   			(i624 = HA & next(i624) = JH) 
+			   		)-> (next(i820) = AC)) & 		
+    	(i820 = AC & (
+   			(i74 = HA & next(i74) = JH) 
+			   		)-> (next(i820) = IA)) & 	
+	((
+   			(i624 = NH & next(i624) = HA) 
+			   		)-> (i820 = IA)) & 
+	((
+   			(i74 = NH & next(i74) = HA) 
+			   		)-> (i820 = AC)) & 
+  	(next(i624) = HA -> (TRUE 
+     	)) &
+  	(next(i74) = HA -> (TRUE 
+     & next(i74) !=  HA 	)) &
+    (( i821 = IA & next(i821) = AC) -> (
+   		(i192 = HA & next(i192) = JH) 
+		     		)) & 
+	((i821 = AC  & next(i821) = IA) -> (
+   		(i720 = HA & next(i720) = JH) 
+		   		)) &
+  	(i821 = IA & (
+   			(i192 = HA & next(i192) = JH) 
+			   		)-> (next(i821) = AC)) & 		
+    	(i821 = AC & (
+   			(i720 = HA & next(i720) = JH) 
+			   		)-> (next(i821) = IA)) & 	
+	((
+   			(i192 = NH & next(i192) = HA) 
+			   		)-> (i821 = IA)) & 
+	((
+   			(i720 = NH & next(i720) = HA) 
+			   		)-> (i821 = AC)) & 
+  	(next(i192) = HA -> (TRUE 
+     	)) &
+  	(next(i720) = HA -> (TRUE 
+     & next(i720) !=  HA 	)) &
+    (( i822 = IA & next(i822) = AC) -> (
+   		(i167 = HA & next(i167) = JH) 
+		     		)) & 
+	((i822 = AC  & next(i822) = IA) -> (
+   		(i738 = HA & next(i738) = JH) 
+		   		)) &
+  	(i822 = IA & (
+   			(i167 = HA & next(i167) = JH) 
+			   		)-> (next(i822) = AC)) & 		
+    	(i822 = AC & (
+   			(i738 = HA & next(i738) = JH) 
+			   		)-> (next(i822) = IA)) & 	
+	((
+   			(i167 = NH & next(i167) = HA) 
+			   		)-> (i822 = IA)) & 
+	((
+   			(i738 = NH & next(i738) = HA) 
+			   		)-> (i822 = AC)) & 
+  	(next(i167) = HA -> (TRUE 
+     	)) &
+  	(next(i738) = HA -> (TRUE 
+     & next(i738) !=  HA 	)) &
+    (( i823 = IA & next(i823) = AC) -> (
+   		(i371 = HA & next(i371) = JH) 
+		     		)) & 
+	((i823 = AC  & next(i823) = IA) -> (
+   		(i600 = HA & next(i600) = JH) 
+		   		)) &
+  	(i823 = IA & (
+   			(i371 = HA & next(i371) = JH) 
+			   		)-> (next(i823) = AC)) & 		
+    	(i823 = AC & (
+   			(i600 = HA & next(i600) = JH) 
+			   		)-> (next(i823) = IA)) & 	
+	((
+   			(i371 = NH & next(i371) = HA) 
+			   		)-> (i823 = IA)) & 
+	((
+   			(i600 = NH & next(i600) = HA) 
+			   		)-> (i823 = AC)) & 
+  	(next(i371) = HA -> (TRUE 
+     	)) &
+  	(next(i600) = HA -> (TRUE 
+     & next(i600) !=  HA 	)) &
+    (( i824 = IA & next(i824) = AC) -> (
+   		(i459 = HA & next(i459) = JH) 
+		     		)) & 
+	((i824 = AC  & next(i824) = IA) -> (
+   		(i695 = HA & next(i695) = JH) 
+		   		)) &
+  	(i824 = IA & (
+   			(i459 = HA & next(i459) = JH) 
+			   		)-> (next(i824) = AC)) & 		
+    	(i824 = AC & (
+   			(i695 = HA & next(i695) = JH) 
+			   		)-> (next(i824) = IA)) & 	
+	((
+   			(i459 = NH & next(i459) = HA) 
+			   		)-> (i824 = IA)) & 
+	((
+   			(i695 = NH & next(i695) = HA) 
+			   		)-> (i824 = AC)) & 
+  	(next(i459) = HA -> (TRUE 
+     	)) &
+  	(next(i695) = HA -> (TRUE 
+     & next(i695) !=  HA 	)) &
+    (( i825 = IA & next(i825) = AC) -> (
+   		(i250 = HA & next(i250) = JH) 
+		     		)) & 
+	((i825 = AC  & next(i825) = IA) -> (
+   		(i63 = HA & next(i63) = JH) 
+		   		)) &
+  	(i825 = IA & (
+   			(i250 = HA & next(i250) = JH) 
+			   		)-> (next(i825) = AC)) & 		
+    	(i825 = AC & (
+   			(i63 = HA & next(i63) = JH) 
+			   		)-> (next(i825) = IA)) & 	
+	((
+   			(i250 = NH & next(i250) = HA) 
+			   		)-> (i825 = IA)) & 
+	((
+   			(i63 = NH & next(i63) = HA) 
+			   		)-> (i825 = AC)) & 
+  	(next(i250) = HA -> (TRUE 
+     	)) &
+  	(next(i63) = HA -> (TRUE 
+     & next(i63) !=  HA 	)) &
+    (( i826 = IA & next(i826) = AC) -> (
+   		(i73 = HA & next(i73) = JH) 
+		     		)) & 
+	((i826 = AC  & next(i826) = IA) -> (
+   		(i772 = HA & next(i772) = JH) 
+		   		)) &
+  	(i826 = IA & (
+   			(i73 = HA & next(i73) = JH) 
+			   		)-> (next(i826) = AC)) & 		
+    	(i826 = AC & (
+   			(i772 = HA & next(i772) = JH) 
+			   		)-> (next(i826) = IA)) & 	
+	((
+   			(i73 = NH & next(i73) = HA) 
+			   		)-> (i826 = IA)) & 
+	((
+   			(i772 = NH & next(i772) = HA) 
+			   		)-> (i826 = AC)) & 
+  	(next(i73) = HA -> (TRUE 
+     	)) &
+  	(next(i772) = HA -> (TRUE 
+     & next(i772) !=  HA 	)) &
+    (( i827 = IA & next(i827) = AC) -> (
+   		(i175 = HA & next(i175) = JH) 
+		     		)) & 
+	((i827 = AC  & next(i827) = IA) -> (
+   		(i591 = HA & next(i591) = JH) 
+		   		)) &
+  	(i827 = IA & (
+   			(i175 = HA & next(i175) = JH) 
+			   		)-> (next(i827) = AC)) & 		
+    	(i827 = AC & (
+   			(i591 = HA & next(i591) = JH) 
+			   		)-> (next(i827) = IA)) & 	
+	((
+   			(i175 = NH & next(i175) = HA) 
+			   		)-> (i827 = IA)) & 
+	((
+   			(i591 = NH & next(i591) = HA) 
+			   		)-> (i827 = AC)) & 
+  	(next(i175) = HA -> (TRUE 
+     	)) &
+  	(next(i591) = HA -> (TRUE 
+     & next(i591) !=  HA 	)) &
+    (( i828 = IA & next(i828) = AC) -> (
+   		(i747 = HA & next(i747) = JH) 
+		     		)) & 
+	((i828 = AC  & next(i828) = IA) -> (
+   		(i662 = HA & next(i662) = JH) 
+		   		)) &
+  	(i828 = IA & (
+   			(i747 = HA & next(i747) = JH) 
+			   		)-> (next(i828) = AC)) & 		
+    	(i828 = AC & (
+   			(i662 = HA & next(i662) = JH) 
+			   		)-> (next(i828) = IA)) & 	
+	((
+   			(i747 = NH & next(i747) = HA) 
+			   		)-> (i828 = IA)) & 
+	((
+   			(i662 = NH & next(i662) = HA) 
+			   		)-> (i828 = AC)) & 
+  	(next(i747) = HA -> (TRUE 
+     	)) &
+  	(next(i662) = HA -> (TRUE 
+     & next(i662) !=  HA 	)) &
+    (( i829 = IA & next(i829) = AC) -> (
+   		(i381 = HA & next(i381) = JH) 
+		     		)) & 
+	((i829 = AC  & next(i829) = IA) -> (
+   		(i29 = HA & next(i29) = JH) 
+		   		)) &
+  	(i829 = IA & (
+   			(i381 = HA & next(i381) = JH) 
+			   		)-> (next(i829) = AC)) & 		
+    	(i829 = AC & (
+   			(i29 = HA & next(i29) = JH) 
+			   		)-> (next(i829) = IA)) & 	
+	((
+   			(i381 = NH & next(i381) = HA) 
+			   		)-> (i829 = IA)) & 
+	((
+   			(i29 = NH & next(i29) = HA) 
+			   		)-> (i829 = AC)) & 
+  	(next(i381) = HA -> (TRUE 
+     	)) &
+  	(next(i29) = HA -> (TRUE 
+     & next(i29) !=  HA 	)) &
+    (( i830 = IA & next(i830) = AC) -> (
+   		(i283 = HA & next(i283) = JH) 
+		     		)) & 
+	((i830 = AC  & next(i830) = IA) -> (
+   		(i770 = HA & next(i770) = JH) 
+		   		)) &
+  	(i830 = IA & (
+   			(i283 = HA & next(i283) = JH) 
+			   		)-> (next(i830) = AC)) & 		
+    	(i830 = AC & (
+   			(i770 = HA & next(i770) = JH) 
+			   		)-> (next(i830) = IA)) & 	
+	((
+   			(i283 = NH & next(i283) = HA) 
+			   		)-> (i830 = IA)) & 
+	((
+   			(i770 = NH & next(i770) = HA) 
+			   		)-> (i830 = AC)) & 
+  	(next(i283) = HA -> (TRUE 
+     	)) &
+  	(next(i770) = HA -> (TRUE 
+     & next(i770) !=  HA 	)) &
+    (( i831 = IA & next(i831) = AC) -> (
+   		(i438 = HA & next(i438) = JH) 
+		     		)) & 
+	((i831 = AC  & next(i831) = IA) -> (
+   		(i789 = HA & next(i789) = JH) 
+		   		)) &
+  	(i831 = IA & (
+   			(i438 = HA & next(i438) = JH) 
+			   		)-> (next(i831) = AC)) & 		
+    	(i831 = AC & (
+   			(i789 = HA & next(i789) = JH) 
+			   		)-> (next(i831) = IA)) & 	
+	((
+   			(i438 = NH & next(i438) = HA) 
+			   		)-> (i831 = IA)) & 
+	((
+   			(i789 = NH & next(i789) = HA) 
+			   		)-> (i831 = AC)) & 
+  	(next(i438) = HA -> (TRUE 
+     	)) &
+  	(next(i789) = HA -> (TRUE 
+     & next(i789) !=  HA 	)) &
+    (( i832 = IA & next(i832) = AC) -> (
+   		(i75 = HA & next(i75) = JH) 
+		     		)) & 
+	((i832 = AC  & next(i832) = IA) -> (
+   		(i617 = HA & next(i617) = JH) 
+		   		)) &
+  	(i832 = IA & (
+   			(i75 = HA & next(i75) = JH) 
+			   		)-> (next(i832) = AC)) & 		
+    	(i832 = AC & (
+   			(i617 = HA & next(i617) = JH) 
+			   		)-> (next(i832) = IA)) & 	
+	((
+   			(i75 = NH & next(i75) = HA) 
+			   		)-> (i832 = IA)) & 
+	((
+   			(i617 = NH & next(i617) = HA) 
+			   		)-> (i832 = AC)) & 
+  	(next(i75) = HA -> (TRUE 
+     	)) &
+  	(next(i617) = HA -> (TRUE 
+     & next(i617) !=  HA 	)) &
+    (( i833 = IA & next(i833) = AC) -> (
+   		(i111 = HA & next(i111) = JH) 
+		     		)) & 
+	((i833 = AC  & next(i833) = IA) -> (
+   		(i120 = HA & next(i120) = JH) 
+		   		)) &
+  	(i833 = IA & (
+   			(i111 = HA & next(i111) = JH) 
+			   		)-> (next(i833) = AC)) & 		
+    	(i833 = AC & (
+   			(i120 = HA & next(i120) = JH) 
+			   		)-> (next(i833) = IA)) & 	
+	((
+   			(i111 = NH & next(i111) = HA) 
+			   		)-> (i833 = IA)) & 
+	((
+   			(i120 = NH & next(i120) = HA) 
+			   		)-> (i833 = AC)) & 
+  	(next(i111) = HA -> (TRUE 
+     	)) &
+  	(next(i120) = HA -> (TRUE 
+     & next(i120) !=  HA 	)) &
+    (( i834 = IA & next(i834) = AC) -> (
+   		(i459 = HA & next(i459) = JH) 
+		     		)) & 
+	((i834 = AC  & next(i834) = IA) -> (
+   		(i695 = HA & next(i695) = JH) 
+		   		)) &
+  	(i834 = IA & (
+   			(i459 = HA & next(i459) = JH) 
+			   		)-> (next(i834) = AC)) & 		
+    	(i834 = AC & (
+   			(i695 = HA & next(i695) = JH) 
+			   		)-> (next(i834) = IA)) & 	
+	((
+   			(i459 = NH & next(i459) = HA) 
+			   		)-> (i834 = IA)) & 
+	((
+   			(i695 = NH & next(i695) = HA) 
+			   		)-> (i834 = AC)) & 
+  	(next(i459) = HA -> (TRUE 
+     	)) &
+  	(next(i695) = HA -> (TRUE 
+     & next(i695) !=  HA 	)) &
+    (( i835 = IA & next(i835) = AC) -> (
+   		(i749 = HA & next(i749) = JH) 
+		     		)) & 
+	((i835 = AC  & next(i835) = IA) -> (
+   		(i456 = HA & next(i456) = JH) 
+		   		)) &
+  	(i835 = IA & (
+   			(i749 = HA & next(i749) = JH) 
+			   		)-> (next(i835) = AC)) & 		
+    	(i835 = AC & (
+   			(i456 = HA & next(i456) = JH) 
+			   		)-> (next(i835) = IA)) & 	
+	((
+   			(i749 = NH & next(i749) = HA) 
+			   		)-> (i835 = IA)) & 
+	((
+   			(i456 = NH & next(i456) = HA) 
+			   		)-> (i835 = AC)) & 
+  	(next(i749) = HA -> (TRUE 
+     	)) &
+  	(next(i456) = HA -> (TRUE 
+     & next(i456) !=  HA 	)) &
+    (( i836 = IA & next(i836) = AC) -> (
+   		(i621 = HA & next(i621) = JH) 
+		     		)) & 
+	((i836 = AC  & next(i836) = IA) -> (
+   		(i492 = HA & next(i492) = JH) 
+		   		)) &
+  	(i836 = IA & (
+   			(i621 = HA & next(i621) = JH) 
+			   		)-> (next(i836) = AC)) & 		
+    	(i836 = AC & (
+   			(i492 = HA & next(i492) = JH) 
+			   		)-> (next(i836) = IA)) & 	
+	((
+   			(i621 = NH & next(i621) = HA) 
+			   		)-> (i836 = IA)) & 
+	((
+   			(i492 = NH & next(i492) = HA) 
+			   		)-> (i836 = AC)) & 
+  	(next(i621) = HA -> (TRUE 
+     	)) &
+  	(next(i492) = HA -> (TRUE 
+     & next(i492) !=  HA 	)) &
+    (( i837 = IA & next(i837) = AC) -> (
+   		(i696 = HA & next(i696) = JH) 
+		     		)) & 
+	((i837 = AC  & next(i837) = IA) -> (
+   		(i641 = HA & next(i641) = JH) 
+		   		)) &
+  	(i837 = IA & (
+   			(i696 = HA & next(i696) = JH) 
+			   		)-> (next(i837) = AC)) & 		
+    	(i837 = AC & (
+   			(i641 = HA & next(i641) = JH) 
+			   		)-> (next(i837) = IA)) & 	
+	((
+   			(i696 = NH & next(i696) = HA) 
+			   		)-> (i837 = IA)) & 
+	((
+   			(i641 = NH & next(i641) = HA) 
+			   		)-> (i837 = AC)) & 
+  	(next(i696) = HA -> (TRUE 
+     	)) &
+  	(next(i641) = HA -> (TRUE 
+     & next(i641) !=  HA 	)) &
+    (( i838 = IA & next(i838) = AC) -> (
+   		(i653 = HA & next(i653) = JH) 
+		     		)) & 
+	((i838 = AC  & next(i838) = IA) -> (
+   		(i282 = HA & next(i282) = JH) 
+		   		)) &
+  	(i838 = IA & (
+   			(i653 = HA & next(i653) = JH) 
+			   		)-> (next(i838) = AC)) & 		
+    	(i838 = AC & (
+   			(i282 = HA & next(i282) = JH) 
+			   		)-> (next(i838) = IA)) & 	
+	((
+   			(i653 = NH & next(i653) = HA) 
+			   		)-> (i838 = IA)) & 
+	((
+   			(i282 = NH & next(i282) = HA) 
+			   		)-> (i838 = AC)) & 
+  	(next(i653) = HA -> (TRUE 
+     	)) &
+  	(next(i282) = HA -> (TRUE 
+     & next(i282) !=  HA 	)) &
+    (( i839 = IA & next(i839) = AC) -> (
+   		(i140 = HA & next(i140) = JH) 
+		     		)) & 
+	((i839 = AC  & next(i839) = IA) -> (
+   		(i426 = HA & next(i426) = JH) 
+		   		)) &
+  	(i839 = IA & (
+   			(i140 = HA & next(i140) = JH) 
+			   		)-> (next(i839) = AC)) & 		
+    	(i839 = AC & (
+   			(i426 = HA & next(i426) = JH) 
+			   		)-> (next(i839) = IA)) & 	
+	((
+   			(i140 = NH & next(i140) = HA) 
+			   		)-> (i839 = IA)) & 
+	((
+   			(i426 = NH & next(i426) = HA) 
+			   		)-> (i839 = AC)) & 
+  	(next(i140) = HA -> (TRUE 
+     	)) &
+  	(next(i426) = HA -> (TRUE 
+     & next(i426) !=  HA 	)) &
+ TRUE

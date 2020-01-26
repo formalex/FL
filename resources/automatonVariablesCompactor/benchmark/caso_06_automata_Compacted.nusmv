@@ -1,0 +1,1973 @@
+MODULE main
+VAR	
+	i0: {HA, NH, JH};
+  	i1: {HA, NH, JH};
+  	i2: {HA, NH, JH};
+  	i3: {HA, NH, JH};
+ 	agent_16.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i4: {HA, NH, JH};
+  	i5: {HA, NH, JH};
+  	i6: {HA, NH, JH};
+ 	agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i7: {HA, NH, JH};
+ 	agent_67.IncluirLeyenda_OUTPUT: {enOficinaAtencion, enFactura};
+	  	i8: {HA, NH, JH};
+  	i9: {HA, NH, JH};
+ 	agent_26.NotificarDeuda_OUTPUT: {en120Dias, noneOfTheOthers};
+	  	i10: {HA, NH, JH};
+  	i11: {HA, NH, JH};
+  	i12: {HA, NH, JH};
+ 	agent_31.RedactarContratoAdhesion_OUTPUT: {noneOfTheOthers, requiereAprobacionAutoridad};
+	  	i13: {HA, NH, JH};
+ 	agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i14: {HA, NH, JH};
+  	i15: {HA, NH, JH};
+ 	agent_35.IncluirLeyenda_OUTPUT: {enOficinaAtencion, enFactura};
+	  	i16: {HA, NH, JH};
+  	i17: {HA, NH, JH};
+  	i18: {HA, NH, JH};
+  	i19: {HA, NH, JH};
+  	i20: {HA, NH, JH};
+  	i21: {HA, NH, JH};
+  	i22: {HA, NH, JH};
+  	i23: {HA, NH, JH};
+  	i24: {HA, NH, JH};
+  	i25: {HA, NH, JH};
+ 	agent_35.NotificarDeuda_OUTPUT: {en120Dias, noneOfTheOthers};
+	  	i26: {HA, NH, JH};
+  	i27: {HA, NH, JH};
+  	i28: {HA, NH, JH};
+  	i29: {HA, NH, JH};
+ 	agent_47.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i30: {HA, NH, JH};
+  	i31: {HA, NH, JH};
+  	i32: {HA, NH, JH};
+  	i33: {HA, NH, JH};
+  	i34: {HA, NH, JH};
+ 	agent_28.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i35: {HA, NH, JH};
+  	i36: {HA, NH, JH};
+  	i37: {HA, NH, JH};
+  	i38: {HA, NH, JH};
+  	i39: {HA, NH, JH};
+ 	agent_24.TenerTerminosyCondiciones_OUTPUT: {entregarporescrito, mantenerenOficinaAtencionAlPublico};
+	  	i40: {HA, NH, JH};
+ 	agent_31.interpretar_contrato_OUTPUT: {noneOfTheOthers, pro_consumidor};
+	  	i41: {HA, NH, JH};
+  	i42: {HA, NH, JH};
+  	i43: {HA, NH, JH};
+  	i44: {HA, NH, JH};
+  	i45: {HA, NH, JH};
+  	i46: {HA, NH, JH};
+  	i47: {HA, NH, JH};
+  	i48: {HA, NH, JH};
+  	i49: {HA, NH, JH};
+  	i50: {HA, NH, JH};
+  	i51: {HA, NH, JH};
+  	i52: {HA, NH, JH};
+  	i53: {HA, NH, JH};
+  	i54: {HA, NH, JH};
+  	i55: {HA, NH, JH};
+ 	agent_35.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i56: {HA, NH, JH};
+  	i57: {HA, NH, JH};
+  	i58: {HA, NH, JH};
+  	i59: {HA, NH, JH};
+  	i60: {HA, NH, JH};
+  	i61: {HA, NH, JH};
+  	i62: {HA, NH, JH};
+  	i63: {HA, NH, JH};
+  	i64: {HA, NH, JH};
+  	i65: {HA, NH, JH};
+  	i66: {HA, NH, JH};
+  	i67: {HA, NH, JH};
+  	i68: {HA, NH, JH};
+  	i69: {HA, NH, JH};
+  	i70: {HA, NH, JH};
+  	i71: {HA, NH, JH};
+  	i72: {HA, NH, JH};
+  	i73: {HA, NH, JH};
+  	i74: {HA, NH, JH};
+  	i75: {HA, NH, JH};
+  	i76: {HA, NH, JH};
+  	i77: {HA, NH, JH};
+ 	agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i78: {HA, NH, JH};
+  	i79: {HA, NH, JH};
+  	i80: {HA, NH, JH};
+  	i81: {HA, NH, JH};
+ 	agent_44.interpretar_contrato_OUTPUT: {noneOfTheOthers, pro_consumidor};
+	  	i82: {HA, NH, JH};
+ 	agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i83: {HA, NH, JH};
+  	i84: {HA, NH, JH};
+  	i85: {HA, NH, JH};
+  	i86: {HA, NH, JH};
+  	i87: {HA, NH, JH};
+ 	agent_57.RedactarContratoAdhesion_OUTPUT: {noneOfTheOthers, requiereAprobacionAutoridad};
+	  	i88: {HA, NH, JH};
+ 	agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i89: {HA, NH, JH};
+ 	AplicarLegislacionmasFavorablealConsumidor_OUTPUT: {Propia, DefensaConsumidor};
+	  	i90: {HA, NH, JH};
+  	i91: {HA, NH, JH};
+ 	agent_6.TenerTerminosyCondiciones_OUTPUT: {entregarporescrito, mantenerenOficinaAtencionAlPublico};
+	  	i92: {HA, NH, JH};
+  	i93: {HA, NH, JH};
+  	i94: {HA, NH, JH};
+ 	agent_6.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i95: {HA, NH, JH};
+ 	agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i96: {HA, NH, JH};
+  	i97: {HA, NH, JH};
+  	i98: {HA, NH, JH};
+  	i99: {HA, NH, JH};
+  	i100: {HA, NH, JH};
+  	i101: {HA, NH, JH};
+ 	agent_64.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i102: {HA, NH, JH};
+  	i103: {HA, NH, JH};
+ 	agent_34.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i104: {HA, NH, JH};
+  	i105: {HA, NH, JH};
+  	i106: {HA, NH, JH};
+  	i107: {HA, NH, JH};
+  	i108: {HA, NH, JH};
+ 	agent_9.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i109: {HA, NH, JH};
+  	i110: {HA, NH, JH};
+  	i111: {HA, NH, JH};
+  	i112: {HA, NH, JH};
+  	i113: {HA, NH, JH};
+ 	agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i114: {HA, NH, JH};
+  	i115: {HA, NH, JH};
+  	i116: {HA, NH, JH};
+  	i117: {HA, NH, JH};
+  	i118: {HA, NH, JH};
+  	i119: {HA, NH, JH};
+  	i120: {HA, NH, JH};
+  	i121: {HA, NH, JH};
+  	i122: {HA, NH, JH};
+ 	agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i123: {HA, NH, JH};
+ 	agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i124: {HA, NH, JH};
+  	i125: {HA, NH, JH};
+  	i126: {HA, NH, JH};
+ 	agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i127: {HA, NH, JH};
+  	i128: {HA, NH, JH};
+ 	agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i129: {HA, NH, JH};
+  	i130: {HA, NH, JH};
+  	i131: {HA, NH, JH};
+  	i132: {HA, NH, JH};
+  	i133: {HA, NH, JH};
+  	i134: {HA, NH, JH};
+  	i135: {HA, NH, JH};
+ 	agent_7.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i136: {HA, NH, JH};
+ 	agent_57.interpretar_contrato_OUTPUT: {noneOfTheOthers, pro_consumidor};
+	  	i137: {HA, NH, JH};
+  	i138: {HA, NH, JH};
+  	i139: {HA, NH, JH};
+  	i140: {HA, NH, JH};
+  	i141: {HA, NH, JH};
+ 	agent_67.NotificarDeuda_OUTPUT: {en120Dias, noneOfTheOthers};
+	  	i142: {HA, NH, JH};
+  	i143: {HA, NH, JH};
+ 	agent_25.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i144: {HA, NH, JH};
+  	i145: {HA, NH, JH};
+  	i146: {HA, NH, JH};
+ 	agent_59.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i147: {HA, NH, JH};
+ 	agent_19.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i148: {HA, NH, JH};
+  	i149: {HA, NH, JH};
+  	i150: {HA, NH, JH};
+ 	agent_15.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i151: {HA, NH, JH};
+  	i152: {HA, NH, JH};
+  	i153: {HA, NH, JH};
+ 	agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i154: {HA, NH, JH};
+  	i155: {HA, NH, JH};
+  	i156: {HA, NH, JH};
+ 	agent_44.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor, en_contrato_adhesion};
+	  	i157: {HA, NH, JH};
+  	i158: {HA, NH, JH};
+  	i159: {HA, NH, JH};
+  	i160: {HA, NH, JH};
+  	i161: {HA, NH, JH};
+  	i162: {HA, NH, JH};
+  	i163: {HA, NH, JH};
+ 	AplicarLegislacion_OUTPUT: {Propia, DefensaConsumidor};
+	  	i164: {HA, NH, JH};
+  	i165: {HA, NH, JH};
+  	i166: {HA, NH, JH};
+  	i167: {HA, NH, JH};
+  	i168: {HA, NH, JH};
+  	i169: {HA, NH, JH};
+  	i170: {HA, NH, JH};
+  	i171: {HA, NH, JH};
+  	i172: {HA, NH, JH};
+  	i173: {HA, NH, JH};
+  	i174: {HA, NH, JH};
+  	i175: {HA, NH, JH};
+  	i176: {HA, NH, JH};
+ 	agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i177: {HA, NH, JH};
+ 	agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i178: {HA, NH, JH};
+  	i179: {HA, NH, JH};
+ 	agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i180: {HA, NH, JH};
+ 	agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i181: {HA, NH, JH};
+  	i182: {HA, NH, JH};
+  	i183: {HA, NH, JH};
+  	i184: {HA, NH, JH};
+  	i185: {HA, NH, JH};
+  	i186: {HA, NH, JH};
+  	i187: {HA, NH, JH};
+ 	agent_44.RedactarContratoAdhesion_OUTPUT: {noneOfTheOthers, requiereAprobacionAutoridad};
+	  	i188: {HA, NH, JH};
+  	i189: {HA, NH, JH};
+  	i190: {HA, NH, JH};
+  	i191: {HA, NH, JH};
+  	i192: {HA, NH, JH};
+ 	agent_54.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i193: {HA, NH, JH};
+  	i194: {HA, NH, JH};
+  	i195: {HA, NH, JH};
+  	i196: {HA, NH, JH};
+  	i197: {HA, NH, JH};
+  	i198: {HA, NH, JH};
+ 	agent_65.TenerTerminosyCondiciones_OUTPUT: {entregarporescrito, mantenerenOficinaAtencionAlPublico};
+	  	i199: {HA, NH, JH};
+ 	agent_35.EntregarFacturaServicio_OUTPUT: {noneOfTheOthers, diezdiasantesFVto};
+	  	i200: {HA, NH, JH};
+  	i201: {HA, NH, JH};
+  	i202: {HA, NH, JH};
+  	i203: {HA, NH, JH};
+  	i204: {HA, NH, JH};
+  	i205: {HA, NH, JH};
+ 	agent_26.EntregarFacturaServicio_OUTPUT: {noneOfTheOthers, diezdiasantesFVto};
+	  	i206: {HA, NH, JH};
+  	i207: {HA, NH, JH};
+  	i208: {HA, NH, JH};
+ 	agent_67.EntregarFacturaServicio_OUTPUT: {noneOfTheOthers, diezdiasantesFVto};
+	  	i209: {HA, NH, JH};
+  	i210: {HA, NH, JH};
+  	i211: {HA, NH, JH};
+  	i212: {HA, NH, JH};
+  	i213: {HA, NH, JH};
+  	i214: {HA, NH, JH};
+  	i215: {HA, NH, JH};
+ 	agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i216: {HA, NH, JH};
+  	i217: {HA, NH, JH};
+  	i218: {HA, NH, JH};
+ 	agent_21.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i219: {HA, NH, JH};
+  	i220: {HA, NH, JH};
+ 	agent_26.IncluirLeyenda_OUTPUT: {enOficinaAtencion, enFactura};
+	  	i221: {HA, NH, JH};
+ 	agent_50.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i222: {HA, NH, JH};
+  	i223: {HA, NH, JH};
+  	i224: {HA, NH, JH};
+  	i225: {HA, NH, JH};
+  	i226: {HA, NH, JH};
+  	i227: {HA, NH, JH};
+  	i228: {HA, NH, JH};
+  	i229: {HA, NH, JH};
+  	i230: {HA, NH, JH};
+  	i231: {HA, NH, JH};
+  	i232: {HA, NH, JH};
+  	i233: {HA, NH, JH};
+  	i234: {HA, NH, JH};
+  	i235: {HA, NH, JH};
+  	i236: {HA, NH, JH};
+  	i237: {HA, NH, JH};
+  	i238: {HA, NH, JH};
+ 	agent_20.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i239: {HA, NH, JH};
+  	i240: {HA, NH, JH};
+ 	agent_60.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i241: {HA, NH, JH};
+  	i242: {HA, NH, JH};
+  	i243: {HA, NH, JH};
+  	i244: {HA, NH, JH};
+  	i245: {HA, NH, JH};
+  	i246: {HA, NH, JH};
+  	i247: {HA, NH, JH};
+  	i248: {HA, NH, JH};
+  	i249: {HA, NH, JH};
+  	i250: {HA, NH, JH};
+  	i251: {HA, NH, JH};
+  	i252: {HA, NH, JH};
+ 	agent_51.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i253: {HA, NH, JH};
+ 	agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i254: {HA, NH, JH};
+  	i255: {HA, NH, JH};
+  	i256: {HA, NH, JH};
+  	i257: {HA, NH, JH};
+  	i258: {HA, NH, JH};
+  	i259: {HA, NH, JH};
+  	i260: {HA, NH, JH};
+ 	agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i261: {HA, NH, JH};
+ 	agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i262: {HA, NH, JH};
+  	i263: {HA, NH, JH};
+ 	agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i264: {HA, NH, JH};
+ 	agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i265: {HA, NH, JH};
+  	i266: {HA, NH, JH};
+  	i267: {HA, NH, JH};
+ 	agent_45.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i268: {HA, NH, JH};
+  	i269: {HA, NH, JH};
+  	i270: {HA, NH, JH};
+ 	agent_39.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i271: {HA, NH, JH};
+  	i272: {HA, NH, JH};
+  	i273: {HA, NH, JH};
+ 	agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	i274: {HA, NH, JH};
+  	i275: {HA, NH, JH};
+  	i276: {HA, NH, JH};
+ 	agent_52.RedactarClausulas_OUTPUT: {limita_responsabilidad, invierta_carga_de_prueba, noneOfTheOthers, desnaturaliza_obligaciones, amplia_derechos_proveedor, importa_renuncia, restringe_derecho_consumidor};
+	  	i277: {HA, NH, JH};
+INIT
+	i0 = NH &
+	i1 = NH &
+	i2 = NH &
+	i3 = NH &
+	i4 = NH &
+	i5 = NH &
+	i6 = NH &
+	i7 = NH &
+	i8 = NH &
+	i9 = NH &
+	i10 = NH &
+	i11 = NH &
+	i12 = NH &
+	i13 = NH &
+	i14 = NH &
+	i15 = NH &
+	i16 = NH &
+	i17 = NH &
+	i18 = NH &
+	i19 = NH &
+	i20 = NH &
+	i21 = NH &
+	i22 = NH &
+	i23 = NH &
+	i24 = NH &
+	i25 = NH &
+	i26 = NH &
+	i27 = NH &
+	i28 = NH &
+	i29 = NH &
+	i30 = NH &
+	i31 = NH &
+	i32 = NH &
+	i33 = NH &
+	i34 = NH &
+	i35 = NH &
+	i36 = NH &
+	i37 = NH &
+	i38 = NH &
+	i39 = NH &
+	i40 = NH &
+	i41 = NH &
+	i42 = NH &
+	i43 = NH &
+	i44 = NH &
+	i45 = NH &
+	i46 = NH &
+	i47 = NH &
+	i48 = NH &
+	i49 = NH &
+	i50 = NH &
+	i51 = NH &
+	i52 = NH &
+	i53 = NH &
+	i54 = NH &
+	i55 = NH &
+	i56 = NH &
+	i57 = NH &
+	i58 = NH &
+	i59 = NH &
+	i60 = NH &
+	i61 = NH &
+	i62 = NH &
+	i63 = NH &
+	i64 = NH &
+	i65 = NH &
+	i66 = NH &
+	i67 = NH &
+	i68 = NH &
+	i69 = NH &
+	i70 = NH &
+	i71 = NH &
+	i72 = NH &
+	i73 = NH &
+	i74 = NH &
+	i75 = NH &
+	i76 = NH &
+	i77 = NH &
+	i78 = NH &
+	i79 = NH &
+	i80 = NH &
+	i81 = NH &
+	i82 = NH &
+	i83 = NH &
+	i84 = NH &
+	i85 = NH &
+	i86 = NH &
+	i87 = NH &
+	i88 = NH &
+	i89 = NH &
+	i90 = NH &
+	i91 = NH &
+	i92 = NH &
+	i93 = NH &
+	i94 = NH &
+	i95 = NH &
+	i96 = NH &
+	i97 = NH &
+	i98 = NH &
+	i99 = NH &
+	i100 = NH &
+	i101 = NH &
+	i102 = NH &
+	i103 = NH &
+	i104 = NH &
+	i105 = NH &
+	i106 = NH &
+	i107 = NH &
+	i108 = NH &
+	i109 = NH &
+	i110 = NH &
+	i111 = NH &
+	i112 = NH &
+	i113 = NH &
+	i114 = NH &
+	i115 = NH &
+	i116 = NH &
+	i117 = NH &
+	i118 = NH &
+	i119 = NH &
+	i120 = NH &
+	i121 = NH &
+	i122 = NH &
+	i123 = NH &
+	i124 = NH &
+	i125 = NH &
+	i126 = NH &
+	i127 = NH &
+	i128 = NH &
+	i129 = NH &
+	i130 = NH &
+	i131 = NH &
+	i132 = NH &
+	i133 = NH &
+	i134 = NH &
+	i135 = NH &
+	i136 = NH &
+	i137 = NH &
+	i138 = NH &
+	i139 = NH &
+	i140 = NH &
+	i141 = NH &
+	i142 = NH &
+	i143 = NH &
+	i144 = NH &
+	i145 = NH &
+	i146 = NH &
+	i147 = NH &
+	i148 = NH &
+	i149 = NH &
+	i150 = NH &
+	i151 = NH &
+	i152 = NH &
+	i153 = NH &
+	i154 = NH &
+	i155 = NH &
+	i156 = NH &
+	i157 = NH &
+	i158 = NH &
+	i159 = NH &
+	i160 = NH &
+	i161 = NH &
+	i162 = NH &
+	i163 = NH &
+	i164 = NH &
+	i165 = NH &
+	i166 = NH &
+	i167 = NH &
+	i168 = NH &
+	i169 = NH &
+	i170 = NH &
+	i171 = NH &
+	i172 = NH &
+	i173 = NH &
+	i174 = NH &
+	i175 = NH &
+	i176 = NH &
+	i177 = NH &
+	i178 = NH &
+	i179 = NH &
+	i180 = NH &
+	i181 = NH &
+	i182 = NH &
+	i183 = NH &
+	i184 = NH &
+	i185 = NH &
+	i186 = NH &
+	i187 = NH &
+	i188 = NH &
+	i189 = NH &
+	i190 = NH &
+	i191 = NH &
+	i192 = NH &
+	i193 = NH &
+	i194 = NH &
+	i195 = NH &
+	i196 = NH &
+	i197 = NH &
+	i198 = NH &
+	i199 = NH &
+	i200 = NH &
+	i201 = NH &
+	i202 = NH &
+	i203 = NH &
+	i204 = NH &
+	i205 = NH &
+	i206 = NH &
+	i207 = NH &
+	i208 = NH &
+	i209 = NH &
+	i210 = NH &
+	i211 = NH &
+	i212 = NH &
+	i213 = NH &
+	i214 = NH &
+	i215 = NH &
+	i216 = NH &
+	i217 = NH &
+	i218 = NH &
+	i219 = NH &
+	i220 = NH &
+	i221 = NH &
+	i222 = NH &
+	i223 = NH &
+	i224 = NH &
+	i225 = NH &
+	i226 = NH &
+	i227 = NH &
+	i228 = NH &
+	i229 = NH &
+	i230 = NH &
+	i231 = NH &
+	i232 = NH &
+	i233 = NH &
+	i234 = NH &
+	i235 = NH &
+	i236 = NH &
+	i237 = NH &
+	i238 = NH &
+	i239 = NH &
+	i240 = NH &
+	i241 = NH &
+	i242 = NH &
+	i243 = NH &
+	i244 = NH &
+	i245 = NH &
+	i246 = NH &
+	i247 = NH &
+	i248 = NH &
+	i249 = NH &
+	i250 = NH &
+	i251 = NH &
+	i252 = NH &
+	i253 = NH &
+	i254 = NH &
+	i255 = NH &
+	i256 = NH &
+	i257 = NH &
+	i258 = NH &
+	i259 = NH &
+	i260 = NH &
+	i261 = NH &
+	i262 = NH &
+	i263 = NH &
+	i264 = NH &
+	i265 = NH &
+	i266 = NH &
+	i267 = NH &
+	i268 = NH &
+	i269 = NH &
+	i270 = NH &
+	i271 = NH &
+	i272 = NH &
+	i273 = NH &
+	i274 = NH &
+	i275 = NH &
+	i276 = NH &
+	i277 = NH &
+                                                                                                                                                                                                                                                                                          TRUE 
+TRANS
+		 	(i0 = JH -> next(i0) = NH) &
+		(i0 = HA -> next(i0) != NH ) &
+		(i0 = NH -> next(i0) != JH) &
+	  		 	(i1 = JH -> next(i1) = NH) &
+		(i1 = HA -> next(i1) != NH ) &
+		(i1 = NH -> next(i1) != JH) &
+	  		 	(i2 = JH -> next(i2) = NH) &
+		(i2 = HA -> next(i2) != NH ) &
+		(i2 = NH -> next(i2) != JH) &
+	  		 	(i3 = JH -> next(i3) = NH) &
+		(i3 = HA -> next(i3) != NH ) &
+		(i3 = NH -> next(i3) != JH) &
+	  		 	(i4 = JH -> next(i4) = NH) &
+		(i4 = HA -> next(i4) != NH ) &
+		(i4 = NH -> next(i4) != JH) &
+	  		 	(i5 = JH -> next(i5) = NH) &
+		(i5 = HA -> next(i5) != NH ) &
+		(i5 = NH -> next(i5) != JH) &
+	  		 	(i6 = JH -> next(i6) = NH) &
+		(i6 = HA -> next(i6) != NH ) &
+		(i6 = NH -> next(i6) != JH) &
+	  		 	(i7 = JH -> next(i7) = NH) &
+		(i7 = HA -> next(i7) != NH ) &
+		(i7 = NH -> next(i7) != JH) &
+	  		 	(i8 = JH -> next(i8) = NH) &
+		(i8 = HA -> next(i8) != NH ) &
+		(i8 = NH -> next(i8) != JH) &
+	  		 	(i9 = JH -> next(i9) = NH) &
+		(i9 = HA -> next(i9) != NH ) &
+		(i9 = NH -> next(i9) != JH) &
+	  		 	(i10 = JH -> next(i10) = NH) &
+		(i10 = HA -> next(i10) != NH ) &
+		(i10 = NH -> next(i10) != JH) &
+	  		 	(i11 = JH -> next(i11) = NH) &
+		(i11 = HA -> next(i11) != NH ) &
+		(i11 = NH -> next(i11) != JH) &
+	  		 	(i12 = JH -> next(i12) = NH) &
+		(i12 = HA -> next(i12) != NH ) &
+		(i12 = NH -> next(i12) != JH) &
+	  		 	(i13 = JH -> next(i13) = NH) &
+		(i13 = HA -> next(i13) != NH ) &
+		(i13 = NH -> next(i13) != JH) &
+	  		 	(i14 = JH -> next(i14) = NH) &
+		(i14 = HA -> next(i14) != NH ) &
+		(i14 = NH -> next(i14) != JH) &
+	  		 	(i15 = JH -> next(i15) = NH) &
+		(i15 = HA -> next(i15) != NH ) &
+		(i15 = NH -> next(i15) != JH) &
+	  		 	(i16 = JH -> next(i16) = NH) &
+		(i16 = HA -> next(i16) != NH ) &
+		(i16 = NH -> next(i16) != JH) &
+	  		 	(i17 = JH -> next(i17) = NH) &
+		(i17 = HA -> next(i17) != NH ) &
+		(i17 = NH -> next(i17) != JH) &
+	  		 	(i18 = JH -> next(i18) = NH) &
+		(i18 = HA -> next(i18) != NH ) &
+		(i18 = NH -> next(i18) != JH) &
+	  		 	(i19 = JH -> next(i19) = NH) &
+		(i19 = HA -> next(i19) != NH ) &
+		(i19 = NH -> next(i19) != JH) &
+	  		 	(i20 = JH -> next(i20) = NH) &
+		(i20 = HA -> next(i20) != NH ) &
+		(i20 = NH -> next(i20) != JH) &
+	  		 	(i21 = JH -> next(i21) = NH) &
+		(i21 = HA -> next(i21) != NH ) &
+		(i21 = NH -> next(i21) != JH) &
+	  		 	(i22 = JH -> next(i22) = NH) &
+		(i22 = HA -> next(i22) != NH ) &
+		(i22 = NH -> next(i22) != JH) &
+	  		 	(i23 = JH -> next(i23) = NH) &
+		(i23 = HA -> next(i23) != NH ) &
+		(i23 = NH -> next(i23) != JH) &
+	  		 	(i24 = JH -> next(i24) = NH) &
+		(i24 = HA -> next(i24) != NH ) &
+		(i24 = NH -> next(i24) != JH) &
+	  		 	(i25 = JH -> next(i25) = NH) &
+		(i25 = HA -> next(i25) != NH ) &
+		(i25 = NH -> next(i25) != JH) &
+	  		 	(i26 = JH -> next(i26) = NH) &
+		(i26 = HA -> next(i26) != NH ) &
+		(i26 = NH -> next(i26) != JH) &
+	  		 	(i27 = JH -> next(i27) = NH) &
+		(i27 = HA -> next(i27) != NH ) &
+		(i27 = NH -> next(i27) != JH) &
+	  		 	(i28 = JH -> next(i28) = NH) &
+		(i28 = HA -> next(i28) != NH ) &
+		(i28 = NH -> next(i28) != JH) &
+	  		 	(i29 = JH -> next(i29) = NH) &
+		(i29 = HA -> next(i29) != NH ) &
+		(i29 = NH -> next(i29) != JH) &
+	  		 	(i30 = JH -> next(i30) = NH) &
+		(i30 = HA -> next(i30) != NH ) &
+		(i30 = NH -> next(i30) != JH) &
+	  		 	(i31 = JH -> next(i31) = NH) &
+		(i31 = HA -> next(i31) != NH ) &
+		(i31 = NH -> next(i31) != JH) &
+	  		 	(i32 = JH -> next(i32) = NH) &
+		(i32 = HA -> next(i32) != NH ) &
+		(i32 = NH -> next(i32) != JH) &
+	  		 	(i33 = JH -> next(i33) = NH) &
+		(i33 = HA -> next(i33) != NH ) &
+		(i33 = NH -> next(i33) != JH) &
+	  		 	(i34 = JH -> next(i34) = NH) &
+		(i34 = HA -> next(i34) != NH ) &
+		(i34 = NH -> next(i34) != JH) &
+	  		 	(i35 = JH -> next(i35) = NH) &
+		(i35 = HA -> next(i35) != NH ) &
+		(i35 = NH -> next(i35) != JH) &
+	  		 	(i36 = JH -> next(i36) = NH) &
+		(i36 = HA -> next(i36) != NH ) &
+		(i36 = NH -> next(i36) != JH) &
+	  		 	(i37 = JH -> next(i37) = NH) &
+		(i37 = HA -> next(i37) != NH ) &
+		(i37 = NH -> next(i37) != JH) &
+	  		 	(i38 = JH -> next(i38) = NH) &
+		(i38 = HA -> next(i38) != NH ) &
+		(i38 = NH -> next(i38) != JH) &
+	  		 	(i39 = JH -> next(i39) = NH) &
+		(i39 = HA -> next(i39) != NH ) &
+		(i39 = NH -> next(i39) != JH) &
+	  		 	(i40 = JH -> next(i40) = NH) &
+		(i40 = HA -> next(i40) != NH ) &
+		(i40 = NH -> next(i40) != JH) &
+	  		 	(i41 = JH -> next(i41) = NH) &
+		(i41 = HA -> next(i41) != NH ) &
+		(i41 = NH -> next(i41) != JH) &
+	  		 	(i42 = JH -> next(i42) = NH) &
+		(i42 = HA -> next(i42) != NH ) &
+		(i42 = NH -> next(i42) != JH) &
+	  		 	(i43 = JH -> next(i43) = NH) &
+		(i43 = HA -> next(i43) != NH ) &
+		(i43 = NH -> next(i43) != JH) &
+	  		 	(i44 = JH -> next(i44) = NH) &
+		(i44 = HA -> next(i44) != NH ) &
+		(i44 = NH -> next(i44) != JH) &
+	  		 	(i45 = JH -> next(i45) = NH) &
+		(i45 = HA -> next(i45) != NH ) &
+		(i45 = NH -> next(i45) != JH) &
+	  		 	(i46 = JH -> next(i46) = NH) &
+		(i46 = HA -> next(i46) != NH ) &
+		(i46 = NH -> next(i46) != JH) &
+	  		 	(i47 = JH -> next(i47) = NH) &
+		(i47 = HA -> next(i47) != NH ) &
+		(i47 = NH -> next(i47) != JH) &
+	  		 	(i48 = JH -> next(i48) = NH) &
+		(i48 = HA -> next(i48) != NH ) &
+		(i48 = NH -> next(i48) != JH) &
+	  		 	(i49 = JH -> next(i49) = NH) &
+		(i49 = HA -> next(i49) != NH ) &
+		(i49 = NH -> next(i49) != JH) &
+	  		 	(i50 = JH -> next(i50) = NH) &
+		(i50 = HA -> next(i50) != NH ) &
+		(i50 = NH -> next(i50) != JH) &
+	  		 	(i51 = JH -> next(i51) = NH) &
+		(i51 = HA -> next(i51) != NH ) &
+		(i51 = NH -> next(i51) != JH) &
+	  		 	(i52 = JH -> next(i52) = NH) &
+		(i52 = HA -> next(i52) != NH ) &
+		(i52 = NH -> next(i52) != JH) &
+	  		 	(i53 = JH -> next(i53) = NH) &
+		(i53 = HA -> next(i53) != NH ) &
+		(i53 = NH -> next(i53) != JH) &
+	  		 	(i54 = JH -> next(i54) = NH) &
+		(i54 = HA -> next(i54) != NH ) &
+		(i54 = NH -> next(i54) != JH) &
+	  		 	(i55 = JH -> next(i55) = NH) &
+		(i55 = HA -> next(i55) != NH ) &
+		(i55 = NH -> next(i55) != JH) &
+	  		 	(i56 = JH -> next(i56) = NH) &
+		(i56 = HA -> next(i56) != NH ) &
+		(i56 = NH -> next(i56) != JH) &
+	  		 	(i57 = JH -> next(i57) = NH) &
+		(i57 = HA -> next(i57) != NH ) &
+		(i57 = NH -> next(i57) != JH) &
+	  		 	(i58 = JH -> next(i58) = NH) &
+		(i58 = HA -> next(i58) != NH ) &
+		(i58 = NH -> next(i58) != JH) &
+	  		 	(i59 = JH -> next(i59) = NH) &
+		(i59 = HA -> next(i59) != NH ) &
+		(i59 = NH -> next(i59) != JH) &
+	  		 	(i60 = JH -> next(i60) = NH) &
+		(i60 = HA -> next(i60) != NH ) &
+		(i60 = NH -> next(i60) != JH) &
+	  		 	(i61 = JH -> next(i61) = NH) &
+		(i61 = HA -> next(i61) != NH ) &
+		(i61 = NH -> next(i61) != JH) &
+	  		 	(i62 = JH -> next(i62) = NH) &
+		(i62 = HA -> next(i62) != NH ) &
+		(i62 = NH -> next(i62) != JH) &
+	  		 	(i63 = JH -> next(i63) = NH) &
+		(i63 = HA -> next(i63) != NH ) &
+		(i63 = NH -> next(i63) != JH) &
+	  		 	(i64 = JH -> next(i64) = NH) &
+		(i64 = HA -> next(i64) != NH ) &
+		(i64 = NH -> next(i64) != JH) &
+	  		 	(i65 = JH -> next(i65) = NH) &
+		(i65 = HA -> next(i65) != NH ) &
+		(i65 = NH -> next(i65) != JH) &
+	  		 	(i66 = JH -> next(i66) = NH) &
+		(i66 = HA -> next(i66) != NH ) &
+		(i66 = NH -> next(i66) != JH) &
+	  		 	(i67 = JH -> next(i67) = NH) &
+		(i67 = HA -> next(i67) != NH ) &
+		(i67 = NH -> next(i67) != JH) &
+	  		 	(i68 = JH -> next(i68) = NH) &
+		(i68 = HA -> next(i68) != NH ) &
+		(i68 = NH -> next(i68) != JH) &
+	  		 	(i69 = JH -> next(i69) = NH) &
+		(i69 = HA -> next(i69) != NH ) &
+		(i69 = NH -> next(i69) != JH) &
+	  		 	(i70 = JH -> next(i70) = NH) &
+		(i70 = HA -> next(i70) != NH ) &
+		(i70 = NH -> next(i70) != JH) &
+	  		 	(i71 = JH -> next(i71) = NH) &
+		(i71 = HA -> next(i71) != NH ) &
+		(i71 = NH -> next(i71) != JH) &
+	  		 	(i72 = JH -> next(i72) = NH) &
+		(i72 = HA -> next(i72) != NH ) &
+		(i72 = NH -> next(i72) != JH) &
+	  		 	(i73 = JH -> next(i73) = NH) &
+		(i73 = HA -> next(i73) != NH ) &
+		(i73 = NH -> next(i73) != JH) &
+	  		 	(i74 = JH -> next(i74) = NH) &
+		(i74 = HA -> next(i74) != NH ) &
+		(i74 = NH -> next(i74) != JH) &
+	  		 	(i75 = JH -> next(i75) = NH) &
+		(i75 = HA -> next(i75) != NH ) &
+		(i75 = NH -> next(i75) != JH) &
+	  		 	(i76 = JH -> next(i76) = NH) &
+		(i76 = HA -> next(i76) != NH ) &
+		(i76 = NH -> next(i76) != JH) &
+	  		 	(i77 = JH -> next(i77) = NH) &
+		(i77 = HA -> next(i77) != NH ) &
+		(i77 = NH -> next(i77) != JH) &
+	  		 	(i78 = JH -> next(i78) = NH) &
+		(i78 = HA -> next(i78) != NH ) &
+		(i78 = NH -> next(i78) != JH) &
+	  		 	(i79 = JH -> next(i79) = NH) &
+		(i79 = HA -> next(i79) != NH ) &
+		(i79 = NH -> next(i79) != JH) &
+	  		 	(i80 = JH -> next(i80) = NH) &
+		(i80 = HA -> next(i80) != NH ) &
+		(i80 = NH -> next(i80) != JH) &
+	  		 	(i81 = JH -> next(i81) = NH) &
+		(i81 = HA -> next(i81) != NH ) &
+		(i81 = NH -> next(i81) != JH) &
+	  		 	(i82 = JH -> next(i82) = NH) &
+		(i82 = HA -> next(i82) != NH ) &
+		(i82 = NH -> next(i82) != JH) &
+	  		 	(i83 = JH -> next(i83) = NH) &
+		(i83 = HA -> next(i83) != NH ) &
+		(i83 = NH -> next(i83) != JH) &
+	  		 	(i84 = JH -> next(i84) = NH) &
+		(i84 = HA -> next(i84) != NH ) &
+		(i84 = NH -> next(i84) != JH) &
+	  		 	(i85 = JH -> next(i85) = NH) &
+		(i85 = HA -> next(i85) != NH ) &
+		(i85 = NH -> next(i85) != JH) &
+	  		 	(i86 = JH -> next(i86) = NH) &
+		(i86 = HA -> next(i86) != NH ) &
+		(i86 = NH -> next(i86) != JH) &
+	  		 	(i87 = JH -> next(i87) = NH) &
+		(i87 = HA -> next(i87) != NH ) &
+		(i87 = NH -> next(i87) != JH) &
+	  		 	(i88 = JH -> next(i88) = NH) &
+		(i88 = HA -> next(i88) != NH ) &
+		(i88 = NH -> next(i88) != JH) &
+	  		 	(i89 = JH -> next(i89) = NH) &
+		(i89 = HA -> next(i89) != NH ) &
+		(i89 = NH -> next(i89) != JH) &
+	  		 	(i90 = JH -> next(i90) = NH) &
+		(i90 = HA -> next(i90) != NH ) &
+		(i90 = NH -> next(i90) != JH) &
+	  		 	(i91 = JH -> next(i91) = NH) &
+		(i91 = HA -> next(i91) != NH ) &
+		(i91 = NH -> next(i91) != JH) &
+	  		 	(i92 = JH -> next(i92) = NH) &
+		(i92 = HA -> next(i92) != NH ) &
+		(i92 = NH -> next(i92) != JH) &
+	  		 	(i93 = JH -> next(i93) = NH) &
+		(i93 = HA -> next(i93) != NH ) &
+		(i93 = NH -> next(i93) != JH) &
+	  		 	(i94 = JH -> next(i94) = NH) &
+		(i94 = HA -> next(i94) != NH ) &
+		(i94 = NH -> next(i94) != JH) &
+	  		 	(i95 = JH -> next(i95) = NH) &
+		(i95 = HA -> next(i95) != NH ) &
+		(i95 = NH -> next(i95) != JH) &
+	  		 	(i96 = JH -> next(i96) = NH) &
+		(i96 = HA -> next(i96) != NH ) &
+		(i96 = NH -> next(i96) != JH) &
+	  		 	(i97 = JH -> next(i97) = NH) &
+		(i97 = HA -> next(i97) != NH ) &
+		(i97 = NH -> next(i97) != JH) &
+	  		 	(i98 = JH -> next(i98) = NH) &
+		(i98 = HA -> next(i98) != NH ) &
+		(i98 = NH -> next(i98) != JH) &
+	  		 	(i99 = JH -> next(i99) = NH) &
+		(i99 = HA -> next(i99) != NH ) &
+		(i99 = NH -> next(i99) != JH) &
+	  		 	(i100 = JH -> next(i100) = NH) &
+		(i100 = HA -> next(i100) != NH ) &
+		(i100 = NH -> next(i100) != JH) &
+	  		 	(i101 = JH -> next(i101) = NH) &
+		(i101 = HA -> next(i101) != NH ) &
+		(i101 = NH -> next(i101) != JH) &
+	  		 	(i102 = JH -> next(i102) = NH) &
+		(i102 = HA -> next(i102) != NH ) &
+		(i102 = NH -> next(i102) != JH) &
+	  		 	(i103 = JH -> next(i103) = NH) &
+		(i103 = HA -> next(i103) != NH ) &
+		(i103 = NH -> next(i103) != JH) &
+	  		 	(i104 = JH -> next(i104) = NH) &
+		(i104 = HA -> next(i104) != NH ) &
+		(i104 = NH -> next(i104) != JH) &
+	  		 	(i105 = JH -> next(i105) = NH) &
+		(i105 = HA -> next(i105) != NH ) &
+		(i105 = NH -> next(i105) != JH) &
+	  		 	(i106 = JH -> next(i106) = NH) &
+		(i106 = HA -> next(i106) != NH ) &
+		(i106 = NH -> next(i106) != JH) &
+	  		 	(i107 = JH -> next(i107) = NH) &
+		(i107 = HA -> next(i107) != NH ) &
+		(i107 = NH -> next(i107) != JH) &
+	  		 	(i108 = JH -> next(i108) = NH) &
+		(i108 = HA -> next(i108) != NH ) &
+		(i108 = NH -> next(i108) != JH) &
+	  		 	(i109 = JH -> next(i109) = NH) &
+		(i109 = HA -> next(i109) != NH ) &
+		(i109 = NH -> next(i109) != JH) &
+	  		 	(i110 = JH -> next(i110) = NH) &
+		(i110 = HA -> next(i110) != NH ) &
+		(i110 = NH -> next(i110) != JH) &
+	  		 	(i111 = JH -> next(i111) = NH) &
+		(i111 = HA -> next(i111) != NH ) &
+		(i111 = NH -> next(i111) != JH) &
+	  		 	(i112 = JH -> next(i112) = NH) &
+		(i112 = HA -> next(i112) != NH ) &
+		(i112 = NH -> next(i112) != JH) &
+	  		 	(i113 = JH -> next(i113) = NH) &
+		(i113 = HA -> next(i113) != NH ) &
+		(i113 = NH -> next(i113) != JH) &
+	  		 	(i114 = JH -> next(i114) = NH) &
+		(i114 = HA -> next(i114) != NH ) &
+		(i114 = NH -> next(i114) != JH) &
+	  		 	(i115 = JH -> next(i115) = NH) &
+		(i115 = HA -> next(i115) != NH ) &
+		(i115 = NH -> next(i115) != JH) &
+	  		 	(i116 = JH -> next(i116) = NH) &
+		(i116 = HA -> next(i116) != NH ) &
+		(i116 = NH -> next(i116) != JH) &
+	  		 	(i117 = JH -> next(i117) = NH) &
+		(i117 = HA -> next(i117) != NH ) &
+		(i117 = NH -> next(i117) != JH) &
+	  		 	(i118 = JH -> next(i118) = NH) &
+		(i118 = HA -> next(i118) != NH ) &
+		(i118 = NH -> next(i118) != JH) &
+	  		 	(i119 = JH -> next(i119) = NH) &
+		(i119 = HA -> next(i119) != NH ) &
+		(i119 = NH -> next(i119) != JH) &
+	  		 	(i120 = JH -> next(i120) = NH) &
+		(i120 = HA -> next(i120) != NH ) &
+		(i120 = NH -> next(i120) != JH) &
+	  		 	(i121 = JH -> next(i121) = NH) &
+		(i121 = HA -> next(i121) != NH ) &
+		(i121 = NH -> next(i121) != JH) &
+	  		 	(i122 = JH -> next(i122) = NH) &
+		(i122 = HA -> next(i122) != NH ) &
+		(i122 = NH -> next(i122) != JH) &
+	  		 	(i123 = JH -> next(i123) = NH) &
+		(i123 = HA -> next(i123) != NH ) &
+		(i123 = NH -> next(i123) != JH) &
+	  		 	(i124 = JH -> next(i124) = NH) &
+		(i124 = HA -> next(i124) != NH ) &
+		(i124 = NH -> next(i124) != JH) &
+	  		 	(i125 = JH -> next(i125) = NH) &
+		(i125 = HA -> next(i125) != NH ) &
+		(i125 = NH -> next(i125) != JH) &
+	  		 	(i126 = JH -> next(i126) = NH) &
+		(i126 = HA -> next(i126) != NH ) &
+		(i126 = NH -> next(i126) != JH) &
+	  		 	(i127 = JH -> next(i127) = NH) &
+		(i127 = HA -> next(i127) != NH ) &
+		(i127 = NH -> next(i127) != JH) &
+	  		 	(i128 = JH -> next(i128) = NH) &
+		(i128 = HA -> next(i128) != NH ) &
+		(i128 = NH -> next(i128) != JH) &
+	  		 	(i129 = JH -> next(i129) = NH) &
+		(i129 = HA -> next(i129) != NH ) &
+		(i129 = NH -> next(i129) != JH) &
+	  		 	(i130 = JH -> next(i130) = NH) &
+		(i130 = HA -> next(i130) != NH ) &
+		(i130 = NH -> next(i130) != JH) &
+	  		 	(i131 = JH -> next(i131) = NH) &
+		(i131 = HA -> next(i131) != NH ) &
+		(i131 = NH -> next(i131) != JH) &
+	  		 	(i132 = JH -> next(i132) = NH) &
+		(i132 = HA -> next(i132) != NH ) &
+		(i132 = NH -> next(i132) != JH) &
+	  		 	(i133 = JH -> next(i133) = NH) &
+		(i133 = HA -> next(i133) != NH ) &
+		(i133 = NH -> next(i133) != JH) &
+	  		 	(i134 = JH -> next(i134) = NH) &
+		(i134 = HA -> next(i134) != NH ) &
+		(i134 = NH -> next(i134) != JH) &
+	  		 	(i135 = JH -> next(i135) = NH) &
+		(i135 = HA -> next(i135) != NH ) &
+		(i135 = NH -> next(i135) != JH) &
+	  		 	(i136 = JH -> next(i136) = NH) &
+		(i136 = HA -> next(i136) != NH ) &
+		(i136 = NH -> next(i136) != JH) &
+	  		 	(i137 = JH -> next(i137) = NH) &
+		(i137 = HA -> next(i137) != NH ) &
+		(i137 = NH -> next(i137) != JH) &
+	  		 	(i138 = JH -> next(i138) = NH) &
+		(i138 = HA -> next(i138) != NH ) &
+		(i138 = NH -> next(i138) != JH) &
+	  		 	(i139 = JH -> next(i139) = NH) &
+		(i139 = HA -> next(i139) != NH ) &
+		(i139 = NH -> next(i139) != JH) &
+	  		 	(i140 = JH -> next(i140) = NH) &
+		(i140 = HA -> next(i140) != NH ) &
+		(i140 = NH -> next(i140) != JH) &
+	  		 	(i141 = JH -> next(i141) = NH) &
+		(i141 = HA -> next(i141) != NH ) &
+		(i141 = NH -> next(i141) != JH) &
+	  		 	(i142 = JH -> next(i142) = NH) &
+		(i142 = HA -> next(i142) != NH ) &
+		(i142 = NH -> next(i142) != JH) &
+	  		 	(i143 = JH -> next(i143) = NH) &
+		(i143 = HA -> next(i143) != NH ) &
+		(i143 = NH -> next(i143) != JH) &
+	  		 	(i144 = JH -> next(i144) = NH) &
+		(i144 = HA -> next(i144) != NH ) &
+		(i144 = NH -> next(i144) != JH) &
+	  		 	(i145 = JH -> next(i145) = NH) &
+		(i145 = HA -> next(i145) != NH ) &
+		(i145 = NH -> next(i145) != JH) &
+	  		 	(i146 = JH -> next(i146) = NH) &
+		(i146 = HA -> next(i146) != NH ) &
+		(i146 = NH -> next(i146) != JH) &
+	  		 	(i147 = JH -> next(i147) = NH) &
+		(i147 = HA -> next(i147) != NH ) &
+		(i147 = NH -> next(i147) != JH) &
+	  		 	(i148 = JH -> next(i148) = NH) &
+		(i148 = HA -> next(i148) != NH ) &
+		(i148 = NH -> next(i148) != JH) &
+	  		 	(i149 = JH -> next(i149) = NH) &
+		(i149 = HA -> next(i149) != NH ) &
+		(i149 = NH -> next(i149) != JH) &
+	  		 	(i150 = JH -> next(i150) = NH) &
+		(i150 = HA -> next(i150) != NH ) &
+		(i150 = NH -> next(i150) != JH) &
+	  		 	(i151 = JH -> next(i151) = NH) &
+		(i151 = HA -> next(i151) != NH ) &
+		(i151 = NH -> next(i151) != JH) &
+	  		 	(i152 = JH -> next(i152) = NH) &
+		(i152 = HA -> next(i152) != NH ) &
+		(i152 = NH -> next(i152) != JH) &
+	  		 	(i153 = JH -> next(i153) = NH) &
+		(i153 = HA -> next(i153) != NH ) &
+		(i153 = NH -> next(i153) != JH) &
+	  		 	(i154 = JH -> next(i154) = NH) &
+		(i154 = HA -> next(i154) != NH ) &
+		(i154 = NH -> next(i154) != JH) &
+	  		 	(i155 = JH -> next(i155) = NH) &
+		(i155 = HA -> next(i155) != NH ) &
+		(i155 = NH -> next(i155) != JH) &
+	  		 	(i156 = JH -> next(i156) = NH) &
+		(i156 = HA -> next(i156) != NH ) &
+		(i156 = NH -> next(i156) != JH) &
+	  		 	(i157 = JH -> next(i157) = NH) &
+		(i157 = HA -> next(i157) != NH ) &
+		(i157 = NH -> next(i157) != JH) &
+	  		 	(i158 = JH -> next(i158) = NH) &
+		(i158 = HA -> next(i158) != NH ) &
+		(i158 = NH -> next(i158) != JH) &
+	  		 	(i159 = JH -> next(i159) = NH) &
+		(i159 = HA -> next(i159) != NH ) &
+		(i159 = NH -> next(i159) != JH) &
+	  		 	(i160 = JH -> next(i160) = NH) &
+		(i160 = HA -> next(i160) != NH ) &
+		(i160 = NH -> next(i160) != JH) &
+	  		 	(i161 = JH -> next(i161) = NH) &
+		(i161 = HA -> next(i161) != NH ) &
+		(i161 = NH -> next(i161) != JH) &
+	  		 	(i162 = JH -> next(i162) = NH) &
+		(i162 = HA -> next(i162) != NH ) &
+		(i162 = NH -> next(i162) != JH) &
+	  		 	(i163 = JH -> next(i163) = NH) &
+		(i163 = HA -> next(i163) != NH ) &
+		(i163 = NH -> next(i163) != JH) &
+	  		 	(i164 = JH -> next(i164) = NH) &
+		(i164 = HA -> next(i164) != NH ) &
+		(i164 = NH -> next(i164) != JH) &
+	  		 	(i165 = JH -> next(i165) = NH) &
+		(i165 = HA -> next(i165) != NH ) &
+		(i165 = NH -> next(i165) != JH) &
+	  		 	(i166 = JH -> next(i166) = NH) &
+		(i166 = HA -> next(i166) != NH ) &
+		(i166 = NH -> next(i166) != JH) &
+	  		 	(i167 = JH -> next(i167) = NH) &
+		(i167 = HA -> next(i167) != NH ) &
+		(i167 = NH -> next(i167) != JH) &
+	  		 	(i168 = JH -> next(i168) = NH) &
+		(i168 = HA -> next(i168) != NH ) &
+		(i168 = NH -> next(i168) != JH) &
+	  		 	(i169 = JH -> next(i169) = NH) &
+		(i169 = HA -> next(i169) != NH ) &
+		(i169 = NH -> next(i169) != JH) &
+	  		 	(i170 = JH -> next(i170) = NH) &
+		(i170 = HA -> next(i170) != NH ) &
+		(i170 = NH -> next(i170) != JH) &
+	  		 	(i171 = JH -> next(i171) = NH) &
+		(i171 = HA -> next(i171) != NH ) &
+		(i171 = NH -> next(i171) != JH) &
+	  		 	(i172 = JH -> next(i172) = NH) &
+		(i172 = HA -> next(i172) != NH ) &
+		(i172 = NH -> next(i172) != JH) &
+	  		 	(i173 = JH -> next(i173) = NH) &
+		(i173 = HA -> next(i173) != NH ) &
+		(i173 = NH -> next(i173) != JH) &
+	  		 	(i174 = JH -> next(i174) = NH) &
+		(i174 = HA -> next(i174) != NH ) &
+		(i174 = NH -> next(i174) != JH) &
+	  		 	(i175 = JH -> next(i175) = NH) &
+		(i175 = HA -> next(i175) != NH ) &
+		(i175 = NH -> next(i175) != JH) &
+	  		 	(i176 = JH -> next(i176) = NH) &
+		(i176 = HA -> next(i176) != NH ) &
+		(i176 = NH -> next(i176) != JH) &
+	  		 	(i177 = JH -> next(i177) = NH) &
+		(i177 = HA -> next(i177) != NH ) &
+		(i177 = NH -> next(i177) != JH) &
+	  		 	(i178 = JH -> next(i178) = NH) &
+		(i178 = HA -> next(i178) != NH ) &
+		(i178 = NH -> next(i178) != JH) &
+	  		 	(i179 = JH -> next(i179) = NH) &
+		(i179 = HA -> next(i179) != NH ) &
+		(i179 = NH -> next(i179) != JH) &
+	  		 	(i180 = JH -> next(i180) = NH) &
+		(i180 = HA -> next(i180) != NH ) &
+		(i180 = NH -> next(i180) != JH) &
+	  		 	(i181 = JH -> next(i181) = NH) &
+		(i181 = HA -> next(i181) != NH ) &
+		(i181 = NH -> next(i181) != JH) &
+	  		 	(i182 = JH -> next(i182) = NH) &
+		(i182 = HA -> next(i182) != NH ) &
+		(i182 = NH -> next(i182) != JH) &
+	  		 	(i183 = JH -> next(i183) = NH) &
+		(i183 = HA -> next(i183) != NH ) &
+		(i183 = NH -> next(i183) != JH) &
+	  		 	(i184 = JH -> next(i184) = NH) &
+		(i184 = HA -> next(i184) != NH ) &
+		(i184 = NH -> next(i184) != JH) &
+	  		 	(i185 = JH -> next(i185) = NH) &
+		(i185 = HA -> next(i185) != NH ) &
+		(i185 = NH -> next(i185) != JH) &
+	  		 	(i186 = JH -> next(i186) = NH) &
+		(i186 = HA -> next(i186) != NH ) &
+		(i186 = NH -> next(i186) != JH) &
+	  		 	(i187 = JH -> next(i187) = NH) &
+		(i187 = HA -> next(i187) != NH ) &
+		(i187 = NH -> next(i187) != JH) &
+	  		 	(i188 = JH -> next(i188) = NH) &
+		(i188 = HA -> next(i188) != NH ) &
+		(i188 = NH -> next(i188) != JH) &
+	  		 	(i189 = JH -> next(i189) = NH) &
+		(i189 = HA -> next(i189) != NH ) &
+		(i189 = NH -> next(i189) != JH) &
+	  		 	(i190 = JH -> next(i190) = NH) &
+		(i190 = HA -> next(i190) != NH ) &
+		(i190 = NH -> next(i190) != JH) &
+	  		 	(i191 = JH -> next(i191) = NH) &
+		(i191 = HA -> next(i191) != NH ) &
+		(i191 = NH -> next(i191) != JH) &
+	  		 	(i192 = JH -> next(i192) = NH) &
+		(i192 = HA -> next(i192) != NH ) &
+		(i192 = NH -> next(i192) != JH) &
+	  		 	(i193 = JH -> next(i193) = NH) &
+		(i193 = HA -> next(i193) != NH ) &
+		(i193 = NH -> next(i193) != JH) &
+	  		 	(i194 = JH -> next(i194) = NH) &
+		(i194 = HA -> next(i194) != NH ) &
+		(i194 = NH -> next(i194) != JH) &
+	  		 	(i195 = JH -> next(i195) = NH) &
+		(i195 = HA -> next(i195) != NH ) &
+		(i195 = NH -> next(i195) != JH) &
+	  		 	(i196 = JH -> next(i196) = NH) &
+		(i196 = HA -> next(i196) != NH ) &
+		(i196 = NH -> next(i196) != JH) &
+	  		 	(i197 = JH -> next(i197) = NH) &
+		(i197 = HA -> next(i197) != NH ) &
+		(i197 = NH -> next(i197) != JH) &
+	  		 	(i198 = JH -> next(i198) = NH) &
+		(i198 = HA -> next(i198) != NH ) &
+		(i198 = NH -> next(i198) != JH) &
+	  		 	(i199 = JH -> next(i199) = NH) &
+		(i199 = HA -> next(i199) != NH ) &
+		(i199 = NH -> next(i199) != JH) &
+	  		 	(i200 = JH -> next(i200) = NH) &
+		(i200 = HA -> next(i200) != NH ) &
+		(i200 = NH -> next(i200) != JH) &
+	  		 	(i201 = JH -> next(i201) = NH) &
+		(i201 = HA -> next(i201) != NH ) &
+		(i201 = NH -> next(i201) != JH) &
+	  		 	(i202 = JH -> next(i202) = NH) &
+		(i202 = HA -> next(i202) != NH ) &
+		(i202 = NH -> next(i202) != JH) &
+	  		 	(i203 = JH -> next(i203) = NH) &
+		(i203 = HA -> next(i203) != NH ) &
+		(i203 = NH -> next(i203) != JH) &
+	  		 	(i204 = JH -> next(i204) = NH) &
+		(i204 = HA -> next(i204) != NH ) &
+		(i204 = NH -> next(i204) != JH) &
+	  		 	(i205 = JH -> next(i205) = NH) &
+		(i205 = HA -> next(i205) != NH ) &
+		(i205 = NH -> next(i205) != JH) &
+	  		 	(i206 = JH -> next(i206) = NH) &
+		(i206 = HA -> next(i206) != NH ) &
+		(i206 = NH -> next(i206) != JH) &
+	  		 	(i207 = JH -> next(i207) = NH) &
+		(i207 = HA -> next(i207) != NH ) &
+		(i207 = NH -> next(i207) != JH) &
+	  		 	(i208 = JH -> next(i208) = NH) &
+		(i208 = HA -> next(i208) != NH ) &
+		(i208 = NH -> next(i208) != JH) &
+	  		 	(i209 = JH -> next(i209) = NH) &
+		(i209 = HA -> next(i209) != NH ) &
+		(i209 = NH -> next(i209) != JH) &
+	  		 	(i210 = JH -> next(i210) = NH) &
+		(i210 = HA -> next(i210) != NH ) &
+		(i210 = NH -> next(i210) != JH) &
+	  		 	(i211 = JH -> next(i211) = NH) &
+		(i211 = HA -> next(i211) != NH ) &
+		(i211 = NH -> next(i211) != JH) &
+	  		 	(i212 = JH -> next(i212) = NH) &
+		(i212 = HA -> next(i212) != NH ) &
+		(i212 = NH -> next(i212) != JH) &
+	  		 	(i213 = JH -> next(i213) = NH) &
+		(i213 = HA -> next(i213) != NH ) &
+		(i213 = NH -> next(i213) != JH) &
+	  		 	(i214 = JH -> next(i214) = NH) &
+		(i214 = HA -> next(i214) != NH ) &
+		(i214 = NH -> next(i214) != JH) &
+	  		 	(i215 = JH -> next(i215) = NH) &
+		(i215 = HA -> next(i215) != NH ) &
+		(i215 = NH -> next(i215) != JH) &
+	  		 	(i216 = JH -> next(i216) = NH) &
+		(i216 = HA -> next(i216) != NH ) &
+		(i216 = NH -> next(i216) != JH) &
+	  		 	(i217 = JH -> next(i217) = NH) &
+		(i217 = HA -> next(i217) != NH ) &
+		(i217 = NH -> next(i217) != JH) &
+	  		 	(i218 = JH -> next(i218) = NH) &
+		(i218 = HA -> next(i218) != NH ) &
+		(i218 = NH -> next(i218) != JH) &
+	  		 	(i219 = JH -> next(i219) = NH) &
+		(i219 = HA -> next(i219) != NH ) &
+		(i219 = NH -> next(i219) != JH) &
+	  		 	(i220 = JH -> next(i220) = NH) &
+		(i220 = HA -> next(i220) != NH ) &
+		(i220 = NH -> next(i220) != JH) &
+	  		 	(i221 = JH -> next(i221) = NH) &
+		(i221 = HA -> next(i221) != NH ) &
+		(i221 = NH -> next(i221) != JH) &
+	  		 	(i222 = JH -> next(i222) = NH) &
+		(i222 = HA -> next(i222) != NH ) &
+		(i222 = NH -> next(i222) != JH) &
+	  		 	(i223 = JH -> next(i223) = NH) &
+		(i223 = HA -> next(i223) != NH ) &
+		(i223 = NH -> next(i223) != JH) &
+	  		 	(i224 = JH -> next(i224) = NH) &
+		(i224 = HA -> next(i224) != NH ) &
+		(i224 = NH -> next(i224) != JH) &
+	  		 	(i225 = JH -> next(i225) = NH) &
+		(i225 = HA -> next(i225) != NH ) &
+		(i225 = NH -> next(i225) != JH) &
+	  		 	(i226 = JH -> next(i226) = NH) &
+		(i226 = HA -> next(i226) != NH ) &
+		(i226 = NH -> next(i226) != JH) &
+	  		 	(i227 = JH -> next(i227) = NH) &
+		(i227 = HA -> next(i227) != NH ) &
+		(i227 = NH -> next(i227) != JH) &
+	  		 	(i228 = JH -> next(i228) = NH) &
+		(i228 = HA -> next(i228) != NH ) &
+		(i228 = NH -> next(i228) != JH) &
+	  		 	(i229 = JH -> next(i229) = NH) &
+		(i229 = HA -> next(i229) != NH ) &
+		(i229 = NH -> next(i229) != JH) &
+	  		 	(i230 = JH -> next(i230) = NH) &
+		(i230 = HA -> next(i230) != NH ) &
+		(i230 = NH -> next(i230) != JH) &
+	  		 	(i231 = JH -> next(i231) = NH) &
+		(i231 = HA -> next(i231) != NH ) &
+		(i231 = NH -> next(i231) != JH) &
+	  		 	(i232 = JH -> next(i232) = NH) &
+		(i232 = HA -> next(i232) != NH ) &
+		(i232 = NH -> next(i232) != JH) &
+	  		 	(i233 = JH -> next(i233) = NH) &
+		(i233 = HA -> next(i233) != NH ) &
+		(i233 = NH -> next(i233) != JH) &
+	  		 	(i234 = JH -> next(i234) = NH) &
+		(i234 = HA -> next(i234) != NH ) &
+		(i234 = NH -> next(i234) != JH) &
+	  		 	(i235 = JH -> next(i235) = NH) &
+		(i235 = HA -> next(i235) != NH ) &
+		(i235 = NH -> next(i235) != JH) &
+	  		 	(i236 = JH -> next(i236) = NH) &
+		(i236 = HA -> next(i236) != NH ) &
+		(i236 = NH -> next(i236) != JH) &
+	  		 	(i237 = JH -> next(i237) = NH) &
+		(i237 = HA -> next(i237) != NH ) &
+		(i237 = NH -> next(i237) != JH) &
+	  		 	(i238 = JH -> next(i238) = NH) &
+		(i238 = HA -> next(i238) != NH ) &
+		(i238 = NH -> next(i238) != JH) &
+	  		 	(i239 = JH -> next(i239) = NH) &
+		(i239 = HA -> next(i239) != NH ) &
+		(i239 = NH -> next(i239) != JH) &
+	  		 	(i240 = JH -> next(i240) = NH) &
+		(i240 = HA -> next(i240) != NH ) &
+		(i240 = NH -> next(i240) != JH) &
+	  		 	(i241 = JH -> next(i241) = NH) &
+		(i241 = HA -> next(i241) != NH ) &
+		(i241 = NH -> next(i241) != JH) &
+	  		 	(i242 = JH -> next(i242) = NH) &
+		(i242 = HA -> next(i242) != NH ) &
+		(i242 = NH -> next(i242) != JH) &
+	  		 	(i243 = JH -> next(i243) = NH) &
+		(i243 = HA -> next(i243) != NH ) &
+		(i243 = NH -> next(i243) != JH) &
+	  		 	(i244 = JH -> next(i244) = NH) &
+		(i244 = HA -> next(i244) != NH ) &
+		(i244 = NH -> next(i244) != JH) &
+	  		 	(i245 = JH -> next(i245) = NH) &
+		(i245 = HA -> next(i245) != NH ) &
+		(i245 = NH -> next(i245) != JH) &
+	  		 	(i246 = JH -> next(i246) = NH) &
+		(i246 = HA -> next(i246) != NH ) &
+		(i246 = NH -> next(i246) != JH) &
+	  		 	(i247 = JH -> next(i247) = NH) &
+		(i247 = HA -> next(i247) != NH ) &
+		(i247 = NH -> next(i247) != JH) &
+	  		 	(i248 = JH -> next(i248) = NH) &
+		(i248 = HA -> next(i248) != NH ) &
+		(i248 = NH -> next(i248) != JH) &
+	  		 	(i249 = JH -> next(i249) = NH) &
+		(i249 = HA -> next(i249) != NH ) &
+		(i249 = NH -> next(i249) != JH) &
+	  		 	(i250 = JH -> next(i250) = NH) &
+		(i250 = HA -> next(i250) != NH ) &
+		(i250 = NH -> next(i250) != JH) &
+	  		 	(i251 = JH -> next(i251) = NH) &
+		(i251 = HA -> next(i251) != NH ) &
+		(i251 = NH -> next(i251) != JH) &
+	  		 	(i252 = JH -> next(i252) = NH) &
+		(i252 = HA -> next(i252) != NH ) &
+		(i252 = NH -> next(i252) != JH) &
+	  		 	(i253 = JH -> next(i253) = NH) &
+		(i253 = HA -> next(i253) != NH ) &
+		(i253 = NH -> next(i253) != JH) &
+	  		 	(i254 = JH -> next(i254) = NH) &
+		(i254 = HA -> next(i254) != NH ) &
+		(i254 = NH -> next(i254) != JH) &
+	  		 	(i255 = JH -> next(i255) = NH) &
+		(i255 = HA -> next(i255) != NH ) &
+		(i255 = NH -> next(i255) != JH) &
+	  		 	(i256 = JH -> next(i256) = NH) &
+		(i256 = HA -> next(i256) != NH ) &
+		(i256 = NH -> next(i256) != JH) &
+	  		 	(i257 = JH -> next(i257) = NH) &
+		(i257 = HA -> next(i257) != NH ) &
+		(i257 = NH -> next(i257) != JH) &
+	  		 	(i258 = JH -> next(i258) = NH) &
+		(i258 = HA -> next(i258) != NH ) &
+		(i258 = NH -> next(i258) != JH) &
+	  		 	(i259 = JH -> next(i259) = NH) &
+		(i259 = HA -> next(i259) != NH ) &
+		(i259 = NH -> next(i259) != JH) &
+	  		 	(i260 = JH -> next(i260) = NH) &
+		(i260 = HA -> next(i260) != NH ) &
+		(i260 = NH -> next(i260) != JH) &
+	  		 	(i261 = JH -> next(i261) = NH) &
+		(i261 = HA -> next(i261) != NH ) &
+		(i261 = NH -> next(i261) != JH) &
+	  		 	(i262 = JH -> next(i262) = NH) &
+		(i262 = HA -> next(i262) != NH ) &
+		(i262 = NH -> next(i262) != JH) &
+	  		 	(i263 = JH -> next(i263) = NH) &
+		(i263 = HA -> next(i263) != NH ) &
+		(i263 = NH -> next(i263) != JH) &
+	  		 	(i264 = JH -> next(i264) = NH) &
+		(i264 = HA -> next(i264) != NH ) &
+		(i264 = NH -> next(i264) != JH) &
+	  		 	(i265 = JH -> next(i265) = NH) &
+		(i265 = HA -> next(i265) != NH ) &
+		(i265 = NH -> next(i265) != JH) &
+	  		 	(i266 = JH -> next(i266) = NH) &
+		(i266 = HA -> next(i266) != NH ) &
+		(i266 = NH -> next(i266) != JH) &
+	  		 	(i267 = JH -> next(i267) = NH) &
+		(i267 = HA -> next(i267) != NH ) &
+		(i267 = NH -> next(i267) != JH) &
+	  		 	(i268 = JH -> next(i268) = NH) &
+		(i268 = HA -> next(i268) != NH ) &
+		(i268 = NH -> next(i268) != JH) &
+	  		 	(i269 = JH -> next(i269) = NH) &
+		(i269 = HA -> next(i269) != NH ) &
+		(i269 = NH -> next(i269) != JH) &
+	  		 	(i270 = JH -> next(i270) = NH) &
+		(i270 = HA -> next(i270) != NH ) &
+		(i270 = NH -> next(i270) != JH) &
+	  		 	(i271 = JH -> next(i271) = NH) &
+		(i271 = HA -> next(i271) != NH ) &
+		(i271 = NH -> next(i271) != JH) &
+	  		 	(i272 = JH -> next(i272) = NH) &
+		(i272 = HA -> next(i272) != NH ) &
+		(i272 = NH -> next(i272) != JH) &
+	  		 	(i273 = JH -> next(i273) = NH) &
+		(i273 = HA -> next(i273) != NH ) &
+		(i273 = NH -> next(i273) != JH) &
+	  		 	(i274 = JH -> next(i274) = NH) &
+		(i274 = HA -> next(i274) != NH ) &
+		(i274 = NH -> next(i274) != JH) &
+	  		 	(i275 = JH -> next(i275) = NH) &
+		(i275 = HA -> next(i275) != NH ) &
+		(i275 = NH -> next(i275) != JH) &
+	  		 	(i276 = JH -> next(i276) = NH) &
+		(i276 = HA -> next(i276) != NH ) &
+		(i276 = NH -> next(i276) != JH) &
+	  		 	(i277 = JH -> next(i277) = NH) &
+		(i277 = HA -> next(i277) != NH ) &
+		(i277 = NH -> next(i277) != JH) &
+      	(next(i3) = JH -> (
+  		next(agent_16.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_16.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_16.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_16.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_16.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_16.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_16.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i3) != JH ->
+		agent_16.RedactarClausulas_OUTPUT = next (agent_16.RedactarClausulas_OUTPUT)) &
+      	(next(i6) = JH -> (
+  		next(agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i6) != JH ->
+		agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i7) = JH -> (
+  		next(agent_67.IncluirLeyenda_OUTPUT) = enOficinaAtencion |
+  		next(agent_67.IncluirLeyenda_OUTPUT) = enFactura |
+  		FALSE)) &
+	(next(i7) != JH ->
+		agent_67.IncluirLeyenda_OUTPUT = next (agent_67.IncluirLeyenda_OUTPUT)) &
+     	(next(i9) = JH -> (
+  		next(agent_26.NotificarDeuda_OUTPUT) = en120Dias |
+  		next(agent_26.NotificarDeuda_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i9) != JH ->
+		agent_26.NotificarDeuda_OUTPUT = next (agent_26.NotificarDeuda_OUTPUT)) &
+      	(next(i12) = JH -> (
+  		next(agent_31.RedactarContratoAdhesion_OUTPUT) = noneOfTheOthers |
+  		next(agent_31.RedactarContratoAdhesion_OUTPUT) = requiereAprobacionAutoridad |
+  		FALSE)) &
+	(next(i12) != JH ->
+		agent_31.RedactarContratoAdhesion_OUTPUT = next (agent_31.RedactarContratoAdhesion_OUTPUT)) &
+    	(next(i13) = JH -> (
+  		next(agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i13) != JH ->
+		agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+     	(next(i15) = JH -> (
+  		next(agent_35.IncluirLeyenda_OUTPUT) = enOficinaAtencion |
+  		next(agent_35.IncluirLeyenda_OUTPUT) = enFactura |
+  		FALSE)) &
+	(next(i15) != JH ->
+		agent_35.IncluirLeyenda_OUTPUT = next (agent_35.IncluirLeyenda_OUTPUT)) &
+             	(next(i25) = JH -> (
+  		next(agent_35.NotificarDeuda_OUTPUT) = en120Dias |
+  		next(agent_35.NotificarDeuda_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i25) != JH ->
+		agent_35.NotificarDeuda_OUTPUT = next (agent_35.NotificarDeuda_OUTPUT)) &
+       	(next(i29) = JH -> (
+  		next(agent_47.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_47.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_47.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_47.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_47.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_47.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_47.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i29) != JH ->
+		agent_47.RedactarClausulas_OUTPUT = next (agent_47.RedactarClausulas_OUTPUT)) &
+        	(next(i34) = JH -> (
+  		next(agent_28.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_28.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_28.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_28.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_28.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_28.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_28.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i34) != JH ->
+		agent_28.RedactarClausulas_OUTPUT = next (agent_28.RedactarClausulas_OUTPUT)) &
+        	(next(i39) = JH -> (
+  		next(agent_24.TenerTerminosyCondiciones_OUTPUT) = entregarporescrito |
+  		next(agent_24.TenerTerminosyCondiciones_OUTPUT) = mantenerenOficinaAtencionAlPublico |
+  		FALSE)) &
+	(next(i39) != JH ->
+		agent_24.TenerTerminosyCondiciones_OUTPUT = next (agent_24.TenerTerminosyCondiciones_OUTPUT)) &
+    	(next(i40) = JH -> (
+  		next(agent_31.interpretar_contrato_OUTPUT) = noneOfTheOthers |
+  		next(agent_31.interpretar_contrato_OUTPUT) = pro_consumidor |
+  		FALSE)) &
+	(next(i40) != JH ->
+		agent_31.interpretar_contrato_OUTPUT = next (agent_31.interpretar_contrato_OUTPUT)) &
+                  	(next(i55) = JH -> (
+  		next(agent_35.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_35.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_35.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_35.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_35.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_35.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_35.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i55) != JH ->
+		agent_35.RedactarClausulas_OUTPUT = next (agent_35.RedactarClausulas_OUTPUT)) &
+                         	(next(i77) = JH -> (
+  		next(agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i77) != JH ->
+		agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+       	(next(i81) = JH -> (
+  		next(agent_44.interpretar_contrato_OUTPUT) = noneOfTheOthers |
+  		next(agent_44.interpretar_contrato_OUTPUT) = pro_consumidor |
+  		FALSE)) &
+	(next(i81) != JH ->
+		agent_44.interpretar_contrato_OUTPUT = next (agent_44.interpretar_contrato_OUTPUT)) &
+    	(next(i82) = JH -> (
+  		next(agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i82) != JH ->
+		agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+        	(next(i87) = JH -> (
+  		next(agent_57.RedactarContratoAdhesion_OUTPUT) = noneOfTheOthers |
+  		next(agent_57.RedactarContratoAdhesion_OUTPUT) = requiereAprobacionAutoridad |
+  		FALSE)) &
+	(next(i87) != JH ->
+		agent_57.RedactarContratoAdhesion_OUTPUT = next (agent_57.RedactarContratoAdhesion_OUTPUT)) &
+    	(next(i88) = JH -> (
+  		next(agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i88) != JH ->
+		agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i89) = JH -> (
+  		next(AplicarLegislacionmasFavorablealConsumidor_OUTPUT) = Propia |
+  		next(AplicarLegislacionmasFavorablealConsumidor_OUTPUT) = DefensaConsumidor |
+  		FALSE)) &
+	(next(i89) != JH ->
+		AplicarLegislacionmasFavorablealConsumidor_OUTPUT = next (AplicarLegislacionmasFavorablealConsumidor_OUTPUT)) &
+     	(next(i91) = JH -> (
+  		next(agent_6.TenerTerminosyCondiciones_OUTPUT) = entregarporescrito |
+  		next(agent_6.TenerTerminosyCondiciones_OUTPUT) = mantenerenOficinaAtencionAlPublico |
+  		FALSE)) &
+	(next(i91) != JH ->
+		agent_6.TenerTerminosyCondiciones_OUTPUT = next (agent_6.TenerTerminosyCondiciones_OUTPUT)) &
+      	(next(i94) = JH -> (
+  		next(agent_6.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_6.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_6.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_6.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_6.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_6.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_6.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i94) != JH ->
+		agent_6.RedactarClausulas_OUTPUT = next (agent_6.RedactarClausulas_OUTPUT)) &
+    	(next(i95) = JH -> (
+  		next(agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i95) != JH ->
+		agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+         	(next(i101) = JH -> (
+  		next(agent_64.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_64.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_64.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_64.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_64.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_64.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_64.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i101) != JH ->
+		agent_64.RedactarClausulas_OUTPUT = next (agent_64.RedactarClausulas_OUTPUT)) &
+     	(next(i103) = JH -> (
+  		next(agent_34.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_34.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_34.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_34.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_34.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_34.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_34.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i103) != JH ->
+		agent_34.RedactarClausulas_OUTPUT = next (agent_34.RedactarClausulas_OUTPUT)) &
+        	(next(i108) = JH -> (
+  		next(agent_9.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_9.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_9.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_9.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_9.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_9.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_9.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i108) != JH ->
+		agent_9.RedactarClausulas_OUTPUT = next (agent_9.RedactarClausulas_OUTPUT)) &
+        	(next(i113) = JH -> (
+  		next(agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i113) != JH ->
+		agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+            	(next(i122) = JH -> (
+  		next(agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i122) != JH ->
+		agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i123) = JH -> (
+  		next(agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i123) != JH ->
+		agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+      	(next(i126) = JH -> (
+  		next(agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i126) != JH ->
+		agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+     	(next(i128) = JH -> (
+  		next(agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i128) != JH ->
+		agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+          	(next(i135) = JH -> (
+  		next(agent_7.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_7.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_7.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_7.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_7.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_7.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_7.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i135) != JH ->
+		agent_7.RedactarClausulas_OUTPUT = next (agent_7.RedactarClausulas_OUTPUT)) &
+    	(next(i136) = JH -> (
+  		next(agent_57.interpretar_contrato_OUTPUT) = noneOfTheOthers |
+  		next(agent_57.interpretar_contrato_OUTPUT) = pro_consumidor |
+  		FALSE)) &
+	(next(i136) != JH ->
+		agent_57.interpretar_contrato_OUTPUT = next (agent_57.interpretar_contrato_OUTPUT)) &
+        	(next(i141) = JH -> (
+  		next(agent_67.NotificarDeuda_OUTPUT) = en120Dias |
+  		next(agent_67.NotificarDeuda_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i141) != JH ->
+		agent_67.NotificarDeuda_OUTPUT = next (agent_67.NotificarDeuda_OUTPUT)) &
+     	(next(i143) = JH -> (
+  		next(agent_25.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_25.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_25.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_25.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_25.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_25.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_25.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i143) != JH ->
+		agent_25.RedactarClausulas_OUTPUT = next (agent_25.RedactarClausulas_OUTPUT)) &
+      	(next(i146) = JH -> (
+  		next(agent_59.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_59.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_59.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_59.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_59.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_59.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_59.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i146) != JH ->
+		agent_59.RedactarClausulas_OUTPUT = next (agent_59.RedactarClausulas_OUTPUT)) &
+    	(next(i147) = JH -> (
+  		next(agent_19.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_19.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_19.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_19.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_19.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_19.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_19.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i147) != JH ->
+		agent_19.RedactarClausulas_OUTPUT = next (agent_19.RedactarClausulas_OUTPUT)) &
+      	(next(i150) = JH -> (
+  		next(agent_15.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_15.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_15.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_15.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_15.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_15.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_15.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i150) != JH ->
+		agent_15.RedactarClausulas_OUTPUT = next (agent_15.RedactarClausulas_OUTPUT)) &
+      	(next(i153) = JH -> (
+  		next(agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i153) != JH ->
+		agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+      	(next(i156) = JH -> (
+  		next(agent_44.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_44.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_44.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_44.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_44.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_44.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		next(agent_44.RedactarClausulas_OUTPUT) = en_contrato_adhesion |
+  		FALSE)) &
+	(next(i156) != JH ->
+		agent_44.RedactarClausulas_OUTPUT = next (agent_44.RedactarClausulas_OUTPUT)) &
+          	(next(i163) = JH -> (
+  		next(AplicarLegislacion_OUTPUT) = Propia |
+  		next(AplicarLegislacion_OUTPUT) = DefensaConsumidor |
+  		FALSE)) &
+	(next(i163) != JH ->
+		AplicarLegislacion_OUTPUT = next (AplicarLegislacion_OUTPUT)) &
+                	(next(i176) = JH -> (
+  		next(agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i176) != JH ->
+		agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i177) = JH -> (
+  		next(agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i177) != JH ->
+		agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+     	(next(i179) = JH -> (
+  		next(agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i179) != JH ->
+		agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i180) = JH -> (
+  		next(agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i180) != JH ->
+		agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+          	(next(i187) = JH -> (
+  		next(agent_44.RedactarContratoAdhesion_OUTPUT) = noneOfTheOthers |
+  		next(agent_44.RedactarContratoAdhesion_OUTPUT) = requiereAprobacionAutoridad |
+  		FALSE)) &
+	(next(i187) != JH ->
+		agent_44.RedactarContratoAdhesion_OUTPUT = next (agent_44.RedactarContratoAdhesion_OUTPUT)) &
+        	(next(i192) = JH -> (
+  		next(agent_54.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_54.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_54.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_54.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_54.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_54.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_54.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i192) != JH ->
+		agent_54.RedactarClausulas_OUTPUT = next (agent_54.RedactarClausulas_OUTPUT)) &
+         	(next(i198) = JH -> (
+  		next(agent_65.TenerTerminosyCondiciones_OUTPUT) = entregarporescrito |
+  		next(agent_65.TenerTerminosyCondiciones_OUTPUT) = mantenerenOficinaAtencionAlPublico |
+  		FALSE)) &
+	(next(i198) != JH ->
+		agent_65.TenerTerminosyCondiciones_OUTPUT = next (agent_65.TenerTerminosyCondiciones_OUTPUT)) &
+    	(next(i199) = JH -> (
+  		next(agent_35.EntregarFacturaServicio_OUTPUT) = noneOfTheOthers |
+  		next(agent_35.EntregarFacturaServicio_OUTPUT) = diezdiasantesFVto |
+  		FALSE)) &
+	(next(i199) != JH ->
+		agent_35.EntregarFacturaServicio_OUTPUT = next (agent_35.EntregarFacturaServicio_OUTPUT)) &
+         	(next(i205) = JH -> (
+  		next(agent_26.EntregarFacturaServicio_OUTPUT) = noneOfTheOthers |
+  		next(agent_26.EntregarFacturaServicio_OUTPUT) = diezdiasantesFVto |
+  		FALSE)) &
+	(next(i205) != JH ->
+		agent_26.EntregarFacturaServicio_OUTPUT = next (agent_26.EntregarFacturaServicio_OUTPUT)) &
+      	(next(i208) = JH -> (
+  		next(agent_67.EntregarFacturaServicio_OUTPUT) = noneOfTheOthers |
+  		next(agent_67.EntregarFacturaServicio_OUTPUT) = diezdiasantesFVto |
+  		FALSE)) &
+	(next(i208) != JH ->
+		agent_67.EntregarFacturaServicio_OUTPUT = next (agent_67.EntregarFacturaServicio_OUTPUT)) &
+          	(next(i215) = JH -> (
+  		next(agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i215) != JH ->
+		agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+      	(next(i218) = JH -> (
+  		next(agent_21.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_21.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_21.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_21.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_21.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_21.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_21.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i218) != JH ->
+		agent_21.RedactarClausulas_OUTPUT = next (agent_21.RedactarClausulas_OUTPUT)) &
+     	(next(i220) = JH -> (
+  		next(agent_26.IncluirLeyenda_OUTPUT) = enOficinaAtencion |
+  		next(agent_26.IncluirLeyenda_OUTPUT) = enFactura |
+  		FALSE)) &
+	(next(i220) != JH ->
+		agent_26.IncluirLeyenda_OUTPUT = next (agent_26.IncluirLeyenda_OUTPUT)) &
+    	(next(i221) = JH -> (
+  		next(agent_50.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_50.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_50.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_50.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_50.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_50.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_50.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i221) != JH ->
+		agent_50.RedactarClausulas_OUTPUT = next (agent_50.RedactarClausulas_OUTPUT)) &
+                    	(next(i238) = JH -> (
+  		next(agent_20.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_20.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_20.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_20.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_20.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_20.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_20.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i238) != JH ->
+		agent_20.RedactarClausulas_OUTPUT = next (agent_20.RedactarClausulas_OUTPUT)) &
+     	(next(i240) = JH -> (
+  		next(agent_60.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_60.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_60.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_60.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_60.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_60.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_60.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i240) != JH ->
+		agent_60.RedactarClausulas_OUTPUT = next (agent_60.RedactarClausulas_OUTPUT)) &
+               	(next(i252) = JH -> (
+  		next(agent_51.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_51.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_51.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_51.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_51.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_51.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_51.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i252) != JH ->
+		agent_51.RedactarClausulas_OUTPUT = next (agent_51.RedactarClausulas_OUTPUT)) &
+    	(next(i253) = JH -> (
+  		next(agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i253) != JH ->
+		agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+          	(next(i260) = JH -> (
+  		next(agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i260) != JH ->
+		agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i261) = JH -> (
+  		next(agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i261) != JH ->
+		agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+     	(next(i263) = JH -> (
+  		next(agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i263) != JH ->
+		agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(i264) = JH -> (
+  		next(agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i264) != JH ->
+		agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+      	(next(i267) = JH -> (
+  		next(agent_45.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_45.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_45.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_45.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_45.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_45.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_45.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i267) != JH ->
+		agent_45.RedactarClausulas_OUTPUT = next (agent_45.RedactarClausulas_OUTPUT)) &
+      	(next(i270) = JH -> (
+  		next(agent_39.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_39.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_39.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_39.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_39.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_39.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_39.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i270) != JH ->
+		agent_39.RedactarClausulas_OUTPUT = next (agent_39.RedactarClausulas_OUTPUT)) &
+      	(next(i273) = JH -> (
+  		next(agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(i273) != JH ->
+		agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+      	(next(i276) = JH -> (
+  		next(agent_52.RedactarClausulas_OUTPUT) = limita_responsabilidad |
+  		next(agent_52.RedactarClausulas_OUTPUT) = invierta_carga_de_prueba |
+  		next(agent_52.RedactarClausulas_OUTPUT) = noneOfTheOthers |
+  		next(agent_52.RedactarClausulas_OUTPUT) = desnaturaliza_obligaciones |
+  		next(agent_52.RedactarClausulas_OUTPUT) = amplia_derechos_proveedor |
+  		next(agent_52.RedactarClausulas_OUTPUT) = importa_renuncia |
+  		next(agent_52.RedactarClausulas_OUTPUT) = restringe_derecho_consumidor |
+  		FALSE)) &
+	(next(i276) != JH ->
+		agent_52.RedactarClausulas_OUTPUT = next (agent_52.RedactarClausulas_OUTPUT)) &
+ TRUE
