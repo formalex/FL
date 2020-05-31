@@ -1,0 +1,5 @@
+go;
+build_boolean_model
+bmc_setup
+gen_ltlspec_bmc -o /home/debianadmin/Facultad/Tesis/FL/out/nusmvOut_20200530_123723 -p "!( G ( !( G ( !( agent_6.ingresarASalaSorrento = HAPPENING ) ) ) ) )";
+quit;

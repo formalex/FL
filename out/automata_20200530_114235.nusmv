@@ -1,0 +1,1023 @@
+--Agente: roles asignados
+--agent_50: EntidadFinanciera, Proveedor
+--agent_52: Proveedor, Oferente
+--agent_51: Asociacion_Consumidores, Proveedor
+--agent_54: Proveedor, Consumidor_DanioDiferenciado
+--agent_16: Juez, Proveedor
+--agent_15: instrumento_medicion_autorizado, Proveedor
+--agent_59: Proveedor, Autoridad_Aplicacion_Nacional
+--agent_60: Proveedor, Autoridad_Aplicacion_Provincial
+--agent_21: consumidor_servicio_publicod, Proveedor
+--agent_20: Proveedor
+--agent_64: Gobierno_Local, Proveedor
+--agent_25: Autoridad_Aplicacion, Proveedor
+--agent_19: Proveedor, Infractor
+--agent_9: Defensor_del_Pueblo, Proveedor
+--agent_6: Proveedor, proveedor_servicios_publicosd
+--agent_7: Proveedor, consumidor_servicio_publico_legislacion_propia
+--agent_34: Transportista, Proveedor
+--agent_35: Proveedor, proveedor_servicio_publicod
+--agent_28: Vendedor, Proveedor
+--agent_45: Proveedor, ProfesionalMatriculado
+--agent_44: Proveedor, autoridad_competente
+--agent_47: Proveedor, BCRA
+--agent_39: Ministerio_Publico_Fiscal, Proveedor
+
+MODULE main
+VAR	
+	agent_64.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_34.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_59.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_44.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_9.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_52.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_35.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_28.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_39.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_39.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_59.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_9.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_19.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_50.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_52.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_51.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_35.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_34.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_28.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_9.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_19.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_64.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_9.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_39.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_45.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_52.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_19.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_64.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_44.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_34.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_39.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_35.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_51.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_51.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_16.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_50.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_59.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_35.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_20.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_45.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_47.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_25.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_50.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_39.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_54.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_20.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_45.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_25.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_28.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_16.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_39.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_25.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_64.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_28.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_64.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_19.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_21.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_21.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_21.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_19.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_16.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_50.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_20.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_20.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_45.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_51.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_44.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_35.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_44.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_59.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_25.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_28.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_20.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	PactoEscritoAceptarMaterialUsado: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_28.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_21.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_50.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_16.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_45.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_54.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_34.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_15.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_21.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_54.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_64.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_28.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_52.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_25.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_20.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_21.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_54.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_15.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_16.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_15.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_35.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_35.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_47.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_9.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_15.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_9.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_54.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_20.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_9.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_52.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_59.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_47.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_59.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_47.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_15.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_44.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_51.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_50.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_25.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_51.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_34.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_15.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_16.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_59.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_47.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_39.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_19.NoComunicarGastosAdicionalesAlPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_16.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_34.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_64.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_15.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_51.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_25.PrestarServicio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_34.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_19.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_47.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.ContratoPrestacionServicios: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_54.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_52.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_52.ExtenderPresupuesto: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_50.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_45.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  	agent_54.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_44.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_21.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_45.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_44.EntregarGarantiaPorEscrito: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_47.PrestarServicioDeReparacionyMantenimiento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT: {ConMaterialesNuevosoAdecuados, noneOfTheOthers};
+	  
+INIT
+	--Se inicializan todas las acciones en NOT_HAPPENING 
+	agent_64.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_34.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_59.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_44.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_9.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_52.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_35.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_28.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_6.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_39.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_39.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_59.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_9.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_19.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_6.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_50.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_7.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_52.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_6.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_51.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_35.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_34.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_28.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_9.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_19.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_64.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_9.PrestarServicio = NOT_HAPPENING &
+	agent_39.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_45.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_6.PrestarServicio = NOT_HAPPENING &
+	agent_52.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_19.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_64.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_44.PrestarServicio = NOT_HAPPENING &
+	agent_34.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_39.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_35.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_51.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_51.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_16.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_50.PrestarServicio = NOT_HAPPENING &
+	agent_59.PrestarServicio = NOT_HAPPENING &
+	agent_35.PrestarServicio = NOT_HAPPENING &
+	agent_20.PrestarServicio = NOT_HAPPENING &
+	agent_45.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_47.PrestarServicio = NOT_HAPPENING &
+	agent_25.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_50.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_39.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_54.PrestarServicio = NOT_HAPPENING &
+	agent_60.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_20.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_45.PrestarServicio = NOT_HAPPENING &
+	agent_25.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_7.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_28.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_16.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_39.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_25.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_64.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_28.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_64.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_19.PrestarServicio = NOT_HAPPENING &
+	agent_21.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_21.PrestarServicio = NOT_HAPPENING &
+	agent_21.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_60.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_19.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_16.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_50.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_20.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_20.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_45.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_51.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_44.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_35.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_44.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_59.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_25.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_7.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_28.PrestarServicio = NOT_HAPPENING &
+	agent_20.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	PactoEscritoAceptarMaterialUsado = NOT_HAPPENING &
+	agent_28.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_21.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_50.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_16.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_45.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_60.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_54.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_34.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_15.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_21.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_6.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_54.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_64.PrestarServicio = NOT_HAPPENING &
+	agent_28.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_7.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_7.PrestarServicio = NOT_HAPPENING &
+	agent_52.PrestarServicio = NOT_HAPPENING &
+	agent_60.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_25.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_20.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_6.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_21.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_54.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_15.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_16.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_15.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_35.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_35.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_47.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_60.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_9.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_15.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_9.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_54.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_20.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_9.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_52.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_59.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_47.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_59.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_47.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_15.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_44.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_60.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_51.PrestarServicio = NOT_HAPPENING &
+	agent_50.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_7.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_25.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_51.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_34.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_15.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_16.PrestarServicio = NOT_HAPPENING &
+	agent_59.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_60.PrestarServicio = NOT_HAPPENING &
+	agent_47.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_7.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_39.PrestarServicio = NOT_HAPPENING &
+	agent_19.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING &
+	agent_16.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_34.PrestarServicio = NOT_HAPPENING &
+	agent_64.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_15.PrestarServicio = NOT_HAPPENING &
+	agent_51.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_25.PrestarServicio = NOT_HAPPENING &
+	agent_34.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_19.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_47.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_6.ContratoPrestacionServicios = NOT_HAPPENING &
+	agent_54.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_52.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_52.ExtenderPresupuesto = NOT_HAPPENING &
+	agent_50.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_45.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	agent_54.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_44.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_21.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_45.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_44.EntregarGarantiaPorEscrito = NOT_HAPPENING &
+	agent_47.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING &
+	--Las variables que representan los output_values no se inicializan (toman un 
+	--valor aleatorio entre los posibles), la idea es que el valor de la variable solo 
+	--tiene sentido si la acción correspondiente está en JH
+                                                                                                                                                                      TRUE 
+
+TRANS
+	--En el caso de representar la accion con tres estados:
+		--Las acciones que están en JH pasan a NH
+		--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--En el caso de representar la accion con dos estados:
+		--Desde H se puede pasar a NH o quedarse en H (ya no pueden pasar a JH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--Si tienen hasOccursIn => si están en H => hasOccursIn = activo
+		 	(agent_64.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_64.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_64.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_64.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_64.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_64.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_34.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_34.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_34.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_34.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_34.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_34.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_59.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_59.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_59.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_59.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_59.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_59.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_44.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_44.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_44.ExtenderPresupuesto = HAPPENING -> next(agent_44.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_44.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_44.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_9.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_9.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_9.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_9.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_9.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_9.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_52.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_52.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_52.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_52.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_52.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_52.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_35.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_35.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_35.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_35.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_35.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_35.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_28.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_28.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_28.ContratoPrestacionServicios = HAPPENING -> next(agent_28.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_28.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_28.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_6.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_6.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_6.ExtenderPresupuesto = HAPPENING -> next(agent_6.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_6.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_6.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_39.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_39.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_39.ExtenderPresupuesto = HAPPENING -> next(agent_39.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_39.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_39.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_39.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_39.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_39.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_39.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_39.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_39.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_59.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_59.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_59.ExtenderPresupuesto = HAPPENING -> next(agent_59.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_59.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_59.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_9.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_9.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_9.ContratoPrestacionServicios = HAPPENING -> next(agent_9.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_9.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_9.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_19.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_19.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_19.ContratoPrestacionServicios = HAPPENING -> next(agent_19.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_19.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_19.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_6.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_6.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_6.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_6.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_6.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_6.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_50.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_50.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_50.ContratoPrestacionServicios = HAPPENING -> next(agent_50.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_50.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_50.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_7.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_7.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_7.ExtenderPresupuesto = HAPPENING -> next(agent_7.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_7.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_7.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_52.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_52.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_52.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_52.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_52.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_52.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_6.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_6.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_6.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_6.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_6.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_6.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_51.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_51.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_51.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_51.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_51.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_51.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_35.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_35.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_35.ContratoPrestacionServicios = HAPPENING -> next(agent_35.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_35.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_35.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_34.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_34.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_34.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_34.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_34.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_34.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_28.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_28.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_28.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_28.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_28.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_28.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_9.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_9.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_9.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_9.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_9.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_9.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_19.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_19.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_19.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_19.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_19.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_19.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_64.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_64.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_64.ContratoPrestacionServicios = HAPPENING -> next(agent_64.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_64.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_64.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_9.PrestarServicio = JUST_HAPPENED -> next(agent_9.PrestarServicio) = NOT_HAPPENING) &
+		(agent_9.PrestarServicio = HAPPENING -> next(agent_9.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_9.PrestarServicio = NOT_HAPPENING -> next(agent_9.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_39.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_39.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_39.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_39.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_39.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_39.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_45.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_45.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_45.ExtenderPresupuesto = HAPPENING -> next(agent_45.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_45.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_45.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_6.PrestarServicio = JUST_HAPPENED -> next(agent_6.PrestarServicio) = NOT_HAPPENING) &
+		(agent_6.PrestarServicio = HAPPENING -> next(agent_6.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_6.PrestarServicio = NOT_HAPPENING -> next(agent_6.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_52.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_52.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_52.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_52.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_52.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_52.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_19.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_19.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_19.ExtenderPresupuesto = HAPPENING -> next(agent_19.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_19.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_19.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_64.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_64.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_64.ExtenderPresupuesto = HAPPENING -> next(agent_64.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_64.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_64.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_44.PrestarServicio = JUST_HAPPENED -> next(agent_44.PrestarServicio) = NOT_HAPPENING) &
+		(agent_44.PrestarServicio = HAPPENING -> next(agent_44.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_44.PrestarServicio = NOT_HAPPENING -> next(agent_44.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_34.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_34.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_34.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_34.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_34.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_34.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_39.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_39.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_39.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_39.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_39.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_39.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_35.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_35.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_35.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_35.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_35.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_35.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_51.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_51.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_51.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_51.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_51.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_51.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_51.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_51.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_51.ExtenderPresupuesto = HAPPENING -> next(agent_51.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_51.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_51.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_16.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_16.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_16.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_16.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_16.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_16.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_50.PrestarServicio = JUST_HAPPENED -> next(agent_50.PrestarServicio) = NOT_HAPPENING) &
+		(agent_50.PrestarServicio = HAPPENING -> next(agent_50.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_50.PrestarServicio = NOT_HAPPENING -> next(agent_50.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_59.PrestarServicio = JUST_HAPPENED -> next(agent_59.PrestarServicio) = NOT_HAPPENING) &
+		(agent_59.PrestarServicio = HAPPENING -> next(agent_59.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_59.PrestarServicio = NOT_HAPPENING -> next(agent_59.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_35.PrestarServicio = JUST_HAPPENED -> next(agent_35.PrestarServicio) = NOT_HAPPENING) &
+		(agent_35.PrestarServicio = HAPPENING -> next(agent_35.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_35.PrestarServicio = NOT_HAPPENING -> next(agent_35.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_20.PrestarServicio = JUST_HAPPENED -> next(agent_20.PrestarServicio) = NOT_HAPPENING) &
+		(agent_20.PrestarServicio = HAPPENING -> next(agent_20.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_20.PrestarServicio = NOT_HAPPENING -> next(agent_20.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_45.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_45.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_45.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_45.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_45.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_45.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_47.PrestarServicio = JUST_HAPPENED -> next(agent_47.PrestarServicio) = NOT_HAPPENING) &
+		(agent_47.PrestarServicio = HAPPENING -> next(agent_47.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_47.PrestarServicio = NOT_HAPPENING -> next(agent_47.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_25.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_25.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_25.ContratoPrestacionServicios = HAPPENING -> next(agent_25.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_25.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_25.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_50.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_50.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_50.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_50.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_50.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_50.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_39.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_39.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_39.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_39.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_39.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_39.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_54.PrestarServicio = JUST_HAPPENED -> next(agent_54.PrestarServicio) = NOT_HAPPENING) &
+		(agent_54.PrestarServicio = HAPPENING -> next(agent_54.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_54.PrestarServicio = NOT_HAPPENING -> next(agent_54.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_60.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_60.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_60.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_60.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_60.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_60.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_20.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_20.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_20.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_20.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_20.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_20.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_45.PrestarServicio = JUST_HAPPENED -> next(agent_45.PrestarServicio) = NOT_HAPPENING) &
+		(agent_45.PrestarServicio = HAPPENING -> next(agent_45.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_45.PrestarServicio = NOT_HAPPENING -> next(agent_45.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_25.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_25.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_25.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_25.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_25.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_25.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_7.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_7.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_7.ContratoPrestacionServicios = HAPPENING -> next(agent_7.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_7.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_7.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_28.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_28.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_28.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_28.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_28.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_28.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_16.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_16.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_16.ContratoPrestacionServicios = HAPPENING -> next(agent_16.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_16.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_16.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_39.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_39.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_39.ContratoPrestacionServicios = HAPPENING -> next(agent_39.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_39.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_39.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_25.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_25.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_25.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_25.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_25.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_25.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_64.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_64.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_64.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_64.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_64.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_64.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_28.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_28.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_28.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_28.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_28.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_28.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_64.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_64.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_64.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_64.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_64.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_64.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_19.PrestarServicio = JUST_HAPPENED -> next(agent_19.PrestarServicio) = NOT_HAPPENING) &
+		(agent_19.PrestarServicio = HAPPENING -> next(agent_19.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_19.PrestarServicio = NOT_HAPPENING -> next(agent_19.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_21.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_21.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_21.ExtenderPresupuesto = HAPPENING -> next(agent_21.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_21.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_21.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_21.PrestarServicio = JUST_HAPPENED -> next(agent_21.PrestarServicio) = NOT_HAPPENING) &
+		(agent_21.PrestarServicio = HAPPENING -> next(agent_21.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_21.PrestarServicio = NOT_HAPPENING -> next(agent_21.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_21.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_21.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_21.ContratoPrestacionServicios = HAPPENING -> next(agent_21.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_21.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_21.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_60.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_60.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_60.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_60.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_60.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_60.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_19.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_19.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_19.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_19.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_19.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_19.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_16.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_16.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_16.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_16.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_16.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_16.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_50.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_50.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_50.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_50.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_50.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_50.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_20.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_20.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_20.ContratoPrestacionServicios = HAPPENING -> next(agent_20.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_20.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_20.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_20.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_20.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_20.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_20.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_20.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_20.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_45.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_45.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_45.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_45.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_45.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_45.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_51.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_51.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_51.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_51.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_51.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_51.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_44.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_44.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_44.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_44.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_44.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_44.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_35.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_35.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_35.ExtenderPresupuesto = HAPPENING -> next(agent_35.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_35.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_35.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_44.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_44.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_44.ContratoPrestacionServicios = HAPPENING -> next(agent_44.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_44.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_44.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_59.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_59.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_59.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_59.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_59.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_59.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_25.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_25.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_25.ExtenderPresupuesto = HAPPENING -> next(agent_25.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_25.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_25.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_7.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_7.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_7.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_7.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_7.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_7.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_28.PrestarServicio = JUST_HAPPENED -> next(agent_28.PrestarServicio) = NOT_HAPPENING) &
+		(agent_28.PrestarServicio = HAPPENING -> next(agent_28.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_28.PrestarServicio = NOT_HAPPENING -> next(agent_28.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_20.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_20.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_20.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_20.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_20.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_20.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(PactoEscritoAceptarMaterialUsado = JUST_HAPPENED -> next(PactoEscritoAceptarMaterialUsado) = NOT_HAPPENING) &
+		(PactoEscritoAceptarMaterialUsado = HAPPENING -> next(PactoEscritoAceptarMaterialUsado) != NOT_HAPPENING ) &
+		(PactoEscritoAceptarMaterialUsado = NOT_HAPPENING -> next(PactoEscritoAceptarMaterialUsado) != JUST_HAPPENED) &
+	  		 	(agent_28.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_28.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_28.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_28.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_28.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_28.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_21.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_21.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_21.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_21.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_21.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_21.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_50.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_50.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_50.ExtenderPresupuesto = HAPPENING -> next(agent_50.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_50.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_50.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_16.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_16.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_16.ExtenderPresupuesto = HAPPENING -> next(agent_16.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_16.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_16.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_45.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_45.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_45.ContratoPrestacionServicios = HAPPENING -> next(agent_45.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_45.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_45.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_60.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_60.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_60.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_60.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_60.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_60.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_54.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_54.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_54.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_54.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_54.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_54.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_34.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_34.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_34.ExtenderPresupuesto = HAPPENING -> next(agent_34.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_34.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_34.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_15.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_15.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_15.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_15.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_15.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_15.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_21.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_21.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_21.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_21.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_21.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_21.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_6.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_6.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_6.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_6.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_6.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_6.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_54.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_54.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_54.ExtenderPresupuesto = HAPPENING -> next(agent_54.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_54.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_54.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_64.PrestarServicio = JUST_HAPPENED -> next(agent_64.PrestarServicio) = NOT_HAPPENING) &
+		(agent_64.PrestarServicio = HAPPENING -> next(agent_64.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_64.PrestarServicio = NOT_HAPPENING -> next(agent_64.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_28.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_28.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_28.ExtenderPresupuesto = HAPPENING -> next(agent_28.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_28.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_28.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_7.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_7.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_7.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_7.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_7.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_7.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_7.PrestarServicio = JUST_HAPPENED -> next(agent_7.PrestarServicio) = NOT_HAPPENING) &
+		(agent_7.PrestarServicio = HAPPENING -> next(agent_7.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_7.PrestarServicio = NOT_HAPPENING -> next(agent_7.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_52.PrestarServicio = JUST_HAPPENED -> next(agent_52.PrestarServicio) = NOT_HAPPENING) &
+		(agent_52.PrestarServicio = HAPPENING -> next(agent_52.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_52.PrestarServicio = NOT_HAPPENING -> next(agent_52.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_60.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_60.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_60.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_60.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_60.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_60.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_25.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_25.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_25.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_25.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_25.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_25.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_20.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_20.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_20.ExtenderPresupuesto = HAPPENING -> next(agent_20.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_20.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_20.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_6.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_6.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_6.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_6.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_6.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_6.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_21.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_21.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_21.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_21.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_21.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_21.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_54.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_54.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_54.ContratoPrestacionServicios = HAPPENING -> next(agent_54.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_54.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_54.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_15.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_15.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_15.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_15.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_15.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_15.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_16.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_16.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_16.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_16.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_16.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_16.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_15.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_15.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_15.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_15.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_15.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_15.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_35.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_35.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_35.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_35.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_35.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_35.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_35.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_35.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_35.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_35.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_35.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_35.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_47.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_47.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_47.ExtenderPresupuesto = HAPPENING -> next(agent_47.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_47.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_47.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_60.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_60.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_60.ExtenderPresupuesto = HAPPENING -> next(agent_60.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_60.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_60.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_9.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_9.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_9.ExtenderPresupuesto = HAPPENING -> next(agent_9.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_9.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_9.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_15.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_15.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_15.ContratoPrestacionServicios = HAPPENING -> next(agent_15.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_15.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_15.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_9.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_9.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_9.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_9.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_9.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_9.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_54.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_54.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_54.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_54.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_54.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_54.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_20.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_20.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_20.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_20.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_20.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_20.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_9.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_9.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_9.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_9.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_9.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_9.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_52.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_52.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_52.ContratoPrestacionServicios = HAPPENING -> next(agent_52.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_52.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_52.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_59.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_59.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_59.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_59.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_59.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_59.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_47.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_47.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_47.ContratoPrestacionServicios = HAPPENING -> next(agent_47.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_47.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_47.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_59.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_59.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_59.ContratoPrestacionServicios = HAPPENING -> next(agent_59.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_59.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_59.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_47.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_47.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_47.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_47.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_47.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_47.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_15.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_15.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_15.ExtenderPresupuesto = HAPPENING -> next(agent_15.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_15.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_15.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_44.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_44.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_44.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_44.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_44.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_44.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_60.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_60.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_60.ContratoPrestacionServicios = HAPPENING -> next(agent_60.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_60.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_60.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_51.PrestarServicio = JUST_HAPPENED -> next(agent_51.PrestarServicio) = NOT_HAPPENING) &
+		(agent_51.PrestarServicio = HAPPENING -> next(agent_51.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_51.PrestarServicio = NOT_HAPPENING -> next(agent_51.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_50.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_50.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_50.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_50.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_50.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_50.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_7.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_7.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_7.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_7.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_7.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_7.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_25.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_25.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_25.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_25.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_25.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_25.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_51.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_51.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_51.ContratoPrestacionServicios = HAPPENING -> next(agent_51.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_51.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_51.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_34.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_34.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_34.ContratoPrestacionServicios = HAPPENING -> next(agent_34.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_34.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_34.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_15.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_15.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_15.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_15.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_15.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_15.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_16.PrestarServicio = JUST_HAPPENED -> next(agent_16.PrestarServicio) = NOT_HAPPENING) &
+		(agent_16.PrestarServicio = HAPPENING -> next(agent_16.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_16.PrestarServicio = NOT_HAPPENING -> next(agent_16.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_59.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_59.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_59.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_59.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_59.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_59.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_60.PrestarServicio = JUST_HAPPENED -> next(agent_60.PrestarServicio) = NOT_HAPPENING) &
+		(agent_60.PrestarServicio = HAPPENING -> next(agent_60.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_60.PrestarServicio = NOT_HAPPENING -> next(agent_60.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_47.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_47.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_47.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_47.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_47.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_47.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_7.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_7.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_7.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_7.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_7.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_7.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_39.PrestarServicio = JUST_HAPPENED -> next(agent_39.PrestarServicio) = NOT_HAPPENING) &
+		(agent_39.PrestarServicio = HAPPENING -> next(agent_39.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_39.PrestarServicio = NOT_HAPPENING -> next(agent_39.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_19.NoComunicarGastosAdicionalesAlPresupuesto = JUST_HAPPENED -> next(agent_19.NoComunicarGastosAdicionalesAlPresupuesto) = NOT_HAPPENING) &
+		(agent_19.NoComunicarGastosAdicionalesAlPresupuesto = HAPPENING -> next(agent_19.NoComunicarGastosAdicionalesAlPresupuesto) != NOT_HAPPENING ) &
+		(agent_19.NoComunicarGastosAdicionalesAlPresupuesto = NOT_HAPPENING -> next(agent_19.NoComunicarGastosAdicionalesAlPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_16.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_16.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_16.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_16.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_16.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_16.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_34.PrestarServicio = JUST_HAPPENED -> next(agent_34.PrestarServicio) = NOT_HAPPENING) &
+		(agent_34.PrestarServicio = HAPPENING -> next(agent_34.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_34.PrestarServicio = NOT_HAPPENING -> next(agent_34.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_64.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_64.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_64.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_64.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_64.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_64.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_15.PrestarServicio = JUST_HAPPENED -> next(agent_15.PrestarServicio) = NOT_HAPPENING) &
+		(agent_15.PrestarServicio = HAPPENING -> next(agent_15.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_15.PrestarServicio = NOT_HAPPENING -> next(agent_15.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_51.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_51.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_51.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_51.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_51.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_51.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_25.PrestarServicio = JUST_HAPPENED -> next(agent_25.PrestarServicio) = NOT_HAPPENING) &
+		(agent_25.PrestarServicio = HAPPENING -> next(agent_25.PrestarServicio) != NOT_HAPPENING ) &
+		(agent_25.PrestarServicio = NOT_HAPPENING -> next(agent_25.PrestarServicio) != JUST_HAPPENED) &
+	  		 	(agent_34.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_34.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_34.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_34.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_34.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_34.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_19.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_19.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_19.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_19.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_19.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_19.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_47.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_47.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_47.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_47.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_47.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_47.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_6.ContratoPrestacionServicios = JUST_HAPPENED -> next(agent_6.ContratoPrestacionServicios) = NOT_HAPPENING) &
+		(agent_6.ContratoPrestacionServicios = HAPPENING -> next(agent_6.ContratoPrestacionServicios) != NOT_HAPPENING ) &
+		(agent_6.ContratoPrestacionServicios = NOT_HAPPENING -> next(agent_6.ContratoPrestacionServicios) != JUST_HAPPENED) &
+	  		 	(agent_54.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_54.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_54.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_54.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_54.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_54.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_52.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_52.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_52.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_52.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_52.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_52.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_52.ExtenderPresupuesto = JUST_HAPPENED -> next(agent_52.ExtenderPresupuesto) = NOT_HAPPENING) &
+		(agent_52.ExtenderPresupuesto = HAPPENING -> next(agent_52.ExtenderPresupuesto) != NOT_HAPPENING ) &
+		(agent_52.ExtenderPresupuesto = NOT_HAPPENING -> next(agent_52.ExtenderPresupuesto) != JUST_HAPPENED) &
+	  		 	(agent_50.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_50.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_50.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_50.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_50.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_50.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_45.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_45.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_45.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_45.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_45.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_45.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  		 	(agent_54.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_54.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_54.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_54.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_54.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_54.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_44.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_44.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_44.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_44.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_44.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_44.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_21.CumplirConCondicionesDeOferta = JUST_HAPPENED -> next(agent_21.CumplirConCondicionesDeOferta) = NOT_HAPPENING) &
+		(agent_21.CumplirConCondicionesDeOferta = HAPPENING -> next(agent_21.CumplirConCondicionesDeOferta) != NOT_HAPPENING ) &
+		(agent_21.CumplirConCondicionesDeOferta = NOT_HAPPENING -> next(agent_21.CumplirConCondicionesDeOferta) != JUST_HAPPENED) &
+	  		 	(agent_45.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_45.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_45.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_45.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_45.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_45.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_44.EntregarGarantiaPorEscrito = JUST_HAPPENED -> next(agent_44.EntregarGarantiaPorEscrito) = NOT_HAPPENING) &
+		(agent_44.EntregarGarantiaPorEscrito = HAPPENING -> next(agent_44.EntregarGarantiaPorEscrito) != NOT_HAPPENING ) &
+		(agent_44.EntregarGarantiaPorEscrito = NOT_HAPPENING -> next(agent_44.EntregarGarantiaPorEscrito) != JUST_HAPPENED) &
+	  		 	(agent_47.PrestarServicioDeReparacionyMantenimiento = JUST_HAPPENED -> next(agent_47.PrestarServicioDeReparacionyMantenimiento) = NOT_HAPPENING) &
+		(agent_47.PrestarServicioDeReparacionyMantenimiento = HAPPENING -> next(agent_47.PrestarServicioDeReparacionyMantenimiento) != NOT_HAPPENING ) &
+		(agent_47.PrestarServicioDeReparacionyMantenimiento = NOT_HAPPENING -> next(agent_47.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED) &
+	  	--Si una acción tiene output values, al pasar de H a JH, la variable que  
+	--representa el output value toma alguno de sus valores posibles. Si la 
+	--acción no hace ese cambio de H a JH => el valor queda igual
+	--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+	--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+       	(next(agent_9.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_9.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_9.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+     	(next(agent_35.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_35.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_35.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+                                             	(next(agent_39.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_39.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_39.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+      	(next(agent_20.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_20.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_20.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+       	(next(agent_28.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_28.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_28.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+       	(next(agent_64.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_64.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_64.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+           	(next(agent_19.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_19.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_19.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+         	(next(agent_51.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_51.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_51.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(agent_44.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_44.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_44.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+      	(next(agent_59.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_59.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_59.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+     	(next(agent_7.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_7.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_7.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+            	(next(agent_60.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_60.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_60.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+                  	(next(agent_6.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_6.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_6.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(agent_21.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_21.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_21.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+     	(next(agent_15.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_15.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_15.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(agent_16.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_16.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_16.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+                          	(next(agent_25.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_25.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_25.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+                    	(next(agent_34.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_34.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_34.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+       	(next(agent_54.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_54.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_54.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(agent_52.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_52.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_52.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+     	(next(agent_50.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_50.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_50.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+    	(next(agent_45.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_45.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_45.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+         	(next(agent_47.PrestarServicioDeReparacionyMantenimiento) = JUST_HAPPENED -> (
+  		next(agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = ConMaterialesNuevosoAdecuados |
+  		next(agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT) = noneOfTheOthers |
+  		FALSE)) &
+	(next(agent_47.PrestarServicioDeReparacionyMantenimiento) != JUST_HAPPENED ->
+		agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT = next (agent_47.PrestarServicioDeReparacionyMantenimiento_OUTPUT)) &
+ 
+
+ TRUE

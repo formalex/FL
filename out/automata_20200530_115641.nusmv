@@ -1,0 +1,302 @@
+--Agente: roles asignados
+--agent_1: cliente, menor, relacionadoASocio, relacionadoASocioSelect, ciudadano
+--agent_4: relacionadoASocioPremium, cliente, menor, relacionadoASocio, ciudadano
+--agent_5: noCliente, ciudadano
+--agent_2: relacionadoASocioPremium, cliente, mayor, relacionadoASocio, ciudadano
+--agent_3: cliente, mayor, relacionadoASocio, relacionadoASocioSelect, ciudadano
+--agent_6: cliente, select, socioTitular, ciudadano
+--agent_7: cliente, premium, socioTitular, ciudadano
+
+MODULE main
+VAR	
+	agent_1.ingresarASala: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	nuevoSocioRecomendadoPremium: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_4.abonarTarifaCompleta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_1.abonarTarifaAl50: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	pasaUnAnio: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_1.ingresarASalaSorrento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_2.abonarTarifaCompleta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.ingresarASala: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_4.ingresarASalaSorrento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_4.ingresarASala: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_2.ingresarASalaSorrento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_3.ingresarASalaDallas: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_1.abonarTarifaAl75: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_5.ingresarASalaDallas: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_3.ingresarASalaSorrento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.ingresarASala: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_3.abonarTarifaAl75: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_4.ingresarASalaDallas: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	nuevoSocioRecomendadoSelect: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_2.ingresarASala: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.ingresarASalaSorrento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_4.abonarTarifaAl50: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_1.ingresarASalaDallas: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_5.ingresarASala: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.ingresarASalaDallas: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_2.ingresarASalaDallas: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.ingresarASalaDallas: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.ingresarASalaSorrento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_3.ingresarASala: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_5.ingresarASalaSorrento: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_6.pasesRestantes: 0..20;
+	agent_7.pasesRestantes: 0..20;
+	agent_7.puntosMembresia: 0..20;
+	agent_6.puntosMembresia: 0..20;
+
+INIT
+	--Se inicializan todas las acciones en NOT_HAPPENING 
+	agent_1.ingresarASala = NOT_HAPPENING &
+	nuevoSocioRecomendadoPremium = NOT_HAPPENING &
+	agent_4.abonarTarifaCompleta = NOT_HAPPENING &
+	agent_1.abonarTarifaAl50 = NOT_HAPPENING &
+	pasaUnAnio = NOT_HAPPENING &
+	agent_1.ingresarASalaSorrento = NOT_HAPPENING &
+	agent_2.abonarTarifaCompleta = NOT_HAPPENING &
+	agent_6.ingresarASala = NOT_HAPPENING &
+	agent_4.ingresarASalaSorrento = NOT_HAPPENING &
+	agent_4.ingresarASala = NOT_HAPPENING &
+	agent_2.ingresarASalaSorrento = NOT_HAPPENING &
+	agent_3.ingresarASalaDallas = NOT_HAPPENING &
+	agent_1.abonarTarifaAl75 = NOT_HAPPENING &
+	agent_5.ingresarASalaDallas = NOT_HAPPENING &
+	agent_3.ingresarASalaSorrento = NOT_HAPPENING &
+	agent_7.ingresarASala = NOT_HAPPENING &
+	agent_3.abonarTarifaAl75 = NOT_HAPPENING &
+	agent_4.ingresarASalaDallas = NOT_HAPPENING &
+	nuevoSocioRecomendadoSelect = NOT_HAPPENING &
+	agent_2.ingresarASala = NOT_HAPPENING &
+	agent_7.ingresarASalaSorrento = NOT_HAPPENING &
+	agent_4.abonarTarifaAl50 = NOT_HAPPENING &
+	agent_1.ingresarASalaDallas = NOT_HAPPENING &
+	agent_5.ingresarASala = NOT_HAPPENING &
+	agent_7.ingresarASalaDallas = NOT_HAPPENING &
+	agent_2.ingresarASalaDallas = NOT_HAPPENING &
+	agent_6.ingresarASalaDallas = NOT_HAPPENING &
+	agent_6.ingresarASalaSorrento = NOT_HAPPENING &
+	agent_3.ingresarASala = NOT_HAPPENING &
+	agent_5.ingresarASalaSorrento = NOT_HAPPENING &
+                              	agent_6.pasesRestantes =  5 &
+	agent_7.pasesRestantes =  5 &
+	agent_7.puntosMembresia =  0 &
+	agent_6.puntosMembresia =  0 &
+    TRUE 
+
+TRANS
+	--En el caso de representar la accion con tres estados:
+		--Las acciones que están en JH pasan a NH
+		--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--En el caso de representar la accion con dos estados:
+		--Desde H se puede pasar a NH o quedarse en H (ya no pueden pasar a JH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--Si tienen hasOccursIn => si están en H => hasOccursIn = activo
+		 	(agent_1.ingresarASala = JUST_HAPPENED -> next(agent_1.ingresarASala) = NOT_HAPPENING) &
+		(agent_1.ingresarASala = HAPPENING -> next(agent_1.ingresarASala) != NOT_HAPPENING ) &
+		(agent_1.ingresarASala = NOT_HAPPENING -> next(agent_1.ingresarASala) != JUST_HAPPENED) &
+	  		 	(nuevoSocioRecomendadoPremium = JUST_HAPPENED -> next(nuevoSocioRecomendadoPremium) = NOT_HAPPENING) &
+		(nuevoSocioRecomendadoPremium = HAPPENING -> next(nuevoSocioRecomendadoPremium) != NOT_HAPPENING ) &
+		(nuevoSocioRecomendadoPremium = NOT_HAPPENING -> next(nuevoSocioRecomendadoPremium) != JUST_HAPPENED) &
+	  		 	(agent_4.abonarTarifaCompleta = JUST_HAPPENED -> next(agent_4.abonarTarifaCompleta) = NOT_HAPPENING) &
+		(agent_4.abonarTarifaCompleta = HAPPENING -> next(agent_4.abonarTarifaCompleta) != NOT_HAPPENING ) &
+		(agent_4.abonarTarifaCompleta = NOT_HAPPENING -> next(agent_4.abonarTarifaCompleta) != JUST_HAPPENED) &
+	  		 	(agent_1.abonarTarifaAl50 = JUST_HAPPENED -> next(agent_1.abonarTarifaAl50) = NOT_HAPPENING) &
+		(agent_1.abonarTarifaAl50 = HAPPENING -> next(agent_1.abonarTarifaAl50) != NOT_HAPPENING ) &
+		(agent_1.abonarTarifaAl50 = NOT_HAPPENING -> next(agent_1.abonarTarifaAl50) != JUST_HAPPENED) &
+	  		 	(pasaUnAnio = JUST_HAPPENED -> next(pasaUnAnio) = NOT_HAPPENING) &
+		(pasaUnAnio = HAPPENING -> next(pasaUnAnio) != NOT_HAPPENING ) &
+		(pasaUnAnio = NOT_HAPPENING -> next(pasaUnAnio) != JUST_HAPPENED) &
+	  		 	(agent_1.ingresarASalaSorrento = JUST_HAPPENED -> next(agent_1.ingresarASalaSorrento) = NOT_HAPPENING) &
+		(agent_1.ingresarASalaSorrento = HAPPENING -> next(agent_1.ingresarASalaSorrento) != NOT_HAPPENING ) &
+		(agent_1.ingresarASalaSorrento = NOT_HAPPENING -> next(agent_1.ingresarASalaSorrento) != JUST_HAPPENED) &
+	  		 	(agent_2.abonarTarifaCompleta = JUST_HAPPENED -> next(agent_2.abonarTarifaCompleta) = NOT_HAPPENING) &
+		(agent_2.abonarTarifaCompleta = HAPPENING -> next(agent_2.abonarTarifaCompleta) != NOT_HAPPENING ) &
+		(agent_2.abonarTarifaCompleta = NOT_HAPPENING -> next(agent_2.abonarTarifaCompleta) != JUST_HAPPENED) &
+	  		 	(agent_6.ingresarASala = JUST_HAPPENED -> next(agent_6.ingresarASala) = NOT_HAPPENING) &
+		(agent_6.ingresarASala = HAPPENING -> next(agent_6.ingresarASala) != NOT_HAPPENING ) &
+		(agent_6.ingresarASala = NOT_HAPPENING -> next(agent_6.ingresarASala) != JUST_HAPPENED) &
+	  		 	(agent_4.ingresarASalaSorrento = JUST_HAPPENED -> next(agent_4.ingresarASalaSorrento) = NOT_HAPPENING) &
+		(agent_4.ingresarASalaSorrento = HAPPENING -> next(agent_4.ingresarASalaSorrento) != NOT_HAPPENING ) &
+		(agent_4.ingresarASalaSorrento = NOT_HAPPENING -> next(agent_4.ingresarASalaSorrento) != JUST_HAPPENED) &
+	  		 	(agent_4.ingresarASala = JUST_HAPPENED -> next(agent_4.ingresarASala) = NOT_HAPPENING) &
+		(agent_4.ingresarASala = HAPPENING -> next(agent_4.ingresarASala) != NOT_HAPPENING ) &
+		(agent_4.ingresarASala = NOT_HAPPENING -> next(agent_4.ingresarASala) != JUST_HAPPENED) &
+	  		 	(agent_2.ingresarASalaSorrento = JUST_HAPPENED -> next(agent_2.ingresarASalaSorrento) = NOT_HAPPENING) &
+		(agent_2.ingresarASalaSorrento = HAPPENING -> next(agent_2.ingresarASalaSorrento) != NOT_HAPPENING ) &
+		(agent_2.ingresarASalaSorrento = NOT_HAPPENING -> next(agent_2.ingresarASalaSorrento) != JUST_HAPPENED) &
+	  		 	(agent_3.ingresarASalaDallas = JUST_HAPPENED -> next(agent_3.ingresarASalaDallas) = NOT_HAPPENING) &
+		(agent_3.ingresarASalaDallas = HAPPENING -> next(agent_3.ingresarASalaDallas) != NOT_HAPPENING ) &
+		(agent_3.ingresarASalaDallas = NOT_HAPPENING -> next(agent_3.ingresarASalaDallas) != JUST_HAPPENED) &
+	  		 	(agent_1.abonarTarifaAl75 = JUST_HAPPENED -> next(agent_1.abonarTarifaAl75) = NOT_HAPPENING) &
+		(agent_1.abonarTarifaAl75 = HAPPENING -> next(agent_1.abonarTarifaAl75) != NOT_HAPPENING ) &
+		(agent_1.abonarTarifaAl75 = NOT_HAPPENING -> next(agent_1.abonarTarifaAl75) != JUST_HAPPENED) &
+	  		 	(agent_5.ingresarASalaDallas = JUST_HAPPENED -> next(agent_5.ingresarASalaDallas) = NOT_HAPPENING) &
+		(agent_5.ingresarASalaDallas = HAPPENING -> next(agent_5.ingresarASalaDallas) != NOT_HAPPENING ) &
+		(agent_5.ingresarASalaDallas = NOT_HAPPENING -> next(agent_5.ingresarASalaDallas) != JUST_HAPPENED) &
+	  		 	(agent_3.ingresarASalaSorrento = JUST_HAPPENED -> next(agent_3.ingresarASalaSorrento) = NOT_HAPPENING) &
+		(agent_3.ingresarASalaSorrento = HAPPENING -> next(agent_3.ingresarASalaSorrento) != NOT_HAPPENING ) &
+		(agent_3.ingresarASalaSorrento = NOT_HAPPENING -> next(agent_3.ingresarASalaSorrento) != JUST_HAPPENED) &
+	  		 	(agent_7.ingresarASala = JUST_HAPPENED -> next(agent_7.ingresarASala) = NOT_HAPPENING) &
+		(agent_7.ingresarASala = HAPPENING -> next(agent_7.ingresarASala) != NOT_HAPPENING ) &
+		(agent_7.ingresarASala = NOT_HAPPENING -> next(agent_7.ingresarASala) != JUST_HAPPENED) &
+	  		 	(agent_3.abonarTarifaAl75 = JUST_HAPPENED -> next(agent_3.abonarTarifaAl75) = NOT_HAPPENING) &
+		(agent_3.abonarTarifaAl75 = HAPPENING -> next(agent_3.abonarTarifaAl75) != NOT_HAPPENING ) &
+		(agent_3.abonarTarifaAl75 = NOT_HAPPENING -> next(agent_3.abonarTarifaAl75) != JUST_HAPPENED) &
+	  		 	(agent_4.ingresarASalaDallas = JUST_HAPPENED -> next(agent_4.ingresarASalaDallas) = NOT_HAPPENING) &
+		(agent_4.ingresarASalaDallas = HAPPENING -> next(agent_4.ingresarASalaDallas) != NOT_HAPPENING ) &
+		(agent_4.ingresarASalaDallas = NOT_HAPPENING -> next(agent_4.ingresarASalaDallas) != JUST_HAPPENED) &
+	  		 	(nuevoSocioRecomendadoSelect = JUST_HAPPENED -> next(nuevoSocioRecomendadoSelect) = NOT_HAPPENING) &
+		(nuevoSocioRecomendadoSelect = HAPPENING -> next(nuevoSocioRecomendadoSelect) != NOT_HAPPENING ) &
+		(nuevoSocioRecomendadoSelect = NOT_HAPPENING -> next(nuevoSocioRecomendadoSelect) != JUST_HAPPENED) &
+	  		 	(agent_2.ingresarASala = JUST_HAPPENED -> next(agent_2.ingresarASala) = NOT_HAPPENING) &
+		(agent_2.ingresarASala = HAPPENING -> next(agent_2.ingresarASala) != NOT_HAPPENING ) &
+		(agent_2.ingresarASala = NOT_HAPPENING -> next(agent_2.ingresarASala) != JUST_HAPPENED) &
+	  		 	(agent_7.ingresarASalaSorrento = JUST_HAPPENED -> next(agent_7.ingresarASalaSorrento) = NOT_HAPPENING) &
+		(agent_7.ingresarASalaSorrento = HAPPENING -> next(agent_7.ingresarASalaSorrento) != NOT_HAPPENING ) &
+		(agent_7.ingresarASalaSorrento = NOT_HAPPENING -> next(agent_7.ingresarASalaSorrento) != JUST_HAPPENED) &
+	  		 	(agent_4.abonarTarifaAl50 = JUST_HAPPENED -> next(agent_4.abonarTarifaAl50) = NOT_HAPPENING) &
+		(agent_4.abonarTarifaAl50 = HAPPENING -> next(agent_4.abonarTarifaAl50) != NOT_HAPPENING ) &
+		(agent_4.abonarTarifaAl50 = NOT_HAPPENING -> next(agent_4.abonarTarifaAl50) != JUST_HAPPENED) &
+	  		 	(agent_1.ingresarASalaDallas = JUST_HAPPENED -> next(agent_1.ingresarASalaDallas) = NOT_HAPPENING) &
+		(agent_1.ingresarASalaDallas = HAPPENING -> next(agent_1.ingresarASalaDallas) != NOT_HAPPENING ) &
+		(agent_1.ingresarASalaDallas = NOT_HAPPENING -> next(agent_1.ingresarASalaDallas) != JUST_HAPPENED) &
+	  		 	(agent_5.ingresarASala = JUST_HAPPENED -> next(agent_5.ingresarASala) = NOT_HAPPENING) &
+		(agent_5.ingresarASala = HAPPENING -> next(agent_5.ingresarASala) != NOT_HAPPENING ) &
+		(agent_5.ingresarASala = NOT_HAPPENING -> next(agent_5.ingresarASala) != JUST_HAPPENED) &
+	  		 	(agent_7.ingresarASalaDallas = JUST_HAPPENED -> next(agent_7.ingresarASalaDallas) = NOT_HAPPENING) &
+		(agent_7.ingresarASalaDallas = HAPPENING -> next(agent_7.ingresarASalaDallas) != NOT_HAPPENING ) &
+		(agent_7.ingresarASalaDallas = NOT_HAPPENING -> next(agent_7.ingresarASalaDallas) != JUST_HAPPENED) &
+	  		 	(agent_2.ingresarASalaDallas = JUST_HAPPENED -> next(agent_2.ingresarASalaDallas) = NOT_HAPPENING) &
+		(agent_2.ingresarASalaDallas = HAPPENING -> next(agent_2.ingresarASalaDallas) != NOT_HAPPENING ) &
+		(agent_2.ingresarASalaDallas = NOT_HAPPENING -> next(agent_2.ingresarASalaDallas) != JUST_HAPPENED) &
+	  		 	(agent_6.ingresarASalaDallas = JUST_HAPPENED -> next(agent_6.ingresarASalaDallas) = NOT_HAPPENING) &
+		(agent_6.ingresarASalaDallas = HAPPENING -> next(agent_6.ingresarASalaDallas) != NOT_HAPPENING ) &
+		(agent_6.ingresarASalaDallas = NOT_HAPPENING -> next(agent_6.ingresarASalaDallas) != JUST_HAPPENED) &
+	  		 	(agent_6.ingresarASalaSorrento = JUST_HAPPENED -> next(agent_6.ingresarASalaSorrento) = NOT_HAPPENING) &
+		(agent_6.ingresarASalaSorrento = HAPPENING -> next(agent_6.ingresarASalaSorrento) != NOT_HAPPENING ) &
+		(agent_6.ingresarASalaSorrento = NOT_HAPPENING -> next(agent_6.ingresarASalaSorrento) != JUST_HAPPENED) &
+	  		 	(agent_3.ingresarASala = JUST_HAPPENED -> next(agent_3.ingresarASala) = NOT_HAPPENING) &
+		(agent_3.ingresarASala = HAPPENING -> next(agent_3.ingresarASala) != NOT_HAPPENING ) &
+		(agent_3.ingresarASala = NOT_HAPPENING -> next(agent_3.ingresarASala) != JUST_HAPPENED) &
+	  		 	(agent_5.ingresarASalaSorrento = JUST_HAPPENED -> next(agent_5.ingresarASalaSorrento) = NOT_HAPPENING) &
+		(agent_5.ingresarASalaSorrento = HAPPENING -> next(agent_5.ingresarASalaSorrento) != NOT_HAPPENING ) &
+		(agent_5.ingresarASalaSorrento = NOT_HAPPENING -> next(agent_5.ingresarASalaSorrento) != JUST_HAPPENED) &
+	  	--Si una acción tiene output values, al pasar de H a JH, la variable que  
+	--representa el output value toma alguno de sus valores posibles. Si la 
+	--acción no hace ese cambio de H a JH => el valor queda igual
+	--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+	--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+                              	--Contadores:
+	--Si ocurre alguna de las acciones que incrementan/decrementan al contador y esto no provoca que se excedan los limites del mismo => se modifica al contador
+	--Si ocurre alguna de las acciones que incrementan/decrementan al contador pero se excede algún limite del mismo => se le asigna el valor del límite alcanzado
+	--Si no ocurre ninguna de las acciones que modifican al contador => este no se modifica.
+	--Si ocurre alguna de las acciones que asignan valor al contador ('resets with action' o 'sets with action')=> se modifica al contador.
+	--Si ocurre alguna de las acciones que modifican al contador => no puede ocurrir ninguna otra.
+	--Si está por ocurrir alguna de las acciones que incrementan/decrementan al contador pero se exceden los limites del mismo y el contador controla alguno de estos límites => no se permite la ejecución de la acción.
+ 	(next(agent_6.ingresarASalaDallas) = JUST_HAPPENED  & (agent_6.pasesRestantes + -1 <= 20) 
+	& (agent_6.pasesRestantes + -1 >= 0) -> next(agent_6.pasesRestantes) = agent_6.pasesRestantes + -1) &		
+ 	(next(agent_6.ingresarASala) = JUST_HAPPENED  & (agent_6.pasesRestantes + -1 <= 20) 
+	& (agent_6.pasesRestantes + -1 >= 0) -> next(agent_6.pasesRestantes) = agent_6.pasesRestantes + -1) &		
+  	(next(agent_7.ingresarASala) = JUST_HAPPENED  & (agent_7.pasesRestantes + -1 <= 20) 
+	& (agent_7.pasesRestantes + -1 >= 0) -> next(agent_7.pasesRestantes) = agent_7.pasesRestantes + -1) &		
+ 	(next(agent_7.ingresarASalaDallas) = JUST_HAPPENED  & (agent_7.pasesRestantes + -1 <= 20) 
+	& (agent_7.pasesRestantes + -1 >= 0) -> next(agent_7.pasesRestantes) = agent_7.pasesRestantes + -1) &		
+  	(next(agent_7.ingresarASala) = JUST_HAPPENED  & (agent_7.puntosMembresia + 1 <= 20) 
+	& (agent_7.puntosMembresia + 1 >= 0) -> next(agent_7.puntosMembresia) = agent_7.puntosMembresia + 1) &		
+ 	(next(nuevoSocioRecomendadoPremium) = JUST_HAPPENED  & (agent_7.puntosMembresia + 2 <= 20) 
+	& (agent_7.puntosMembresia + 2 >= 0) -> next(agent_7.puntosMembresia) = agent_7.puntosMembresia + 2) &		
+ 	(next(nuevoSocioRecomendadoSelect) = JUST_HAPPENED  & (agent_7.puntosMembresia + 5 <= 20) 
+	& (agent_7.puntosMembresia + 5 >= 0) -> next(agent_7.puntosMembresia) = agent_7.puntosMembresia + 5) &		
+  	(next(nuevoSocioRecomendadoPremium) = JUST_HAPPENED  & (agent_6.puntosMembresia + 2 <= 20) 
+	& (agent_6.puntosMembresia + 2 >= 0) -> next(agent_6.puntosMembresia) = agent_6.puntosMembresia + 2) &		
+ 	(next(nuevoSocioRecomendadoSelect) = JUST_HAPPENED  & (agent_6.puntosMembresia + 5 <= 20) 
+	& (agent_6.puntosMembresia + 5 >= 0) -> next(agent_6.puntosMembresia) = agent_6.puntosMembresia + 5) &		
+ 	(next(agent_6.ingresarASala) = JUST_HAPPENED  & (agent_6.puntosMembresia + 1 <= 20) 
+	& (agent_6.puntosMembresia + 1 >= 0) -> next(agent_6.puntosMembresia) = agent_6.puntosMembresia + 1) &		
+ 
+  		(next(agent_6.ingresarASalaDallas) = JUST_HAPPENED 	& (agent_6.pasesRestantes + -1 > 20)
+	-> next(agent_6.pasesRestantes) = 20 ) &	
+	 	  		(next(agent_6.ingresarASala) = JUST_HAPPENED 	& (agent_6.pasesRestantes + -1 > 20)
+	-> next(agent_6.pasesRestantes) = 20 ) &	
+	 	   		(next(agent_7.ingresarASala) = JUST_HAPPENED 	& (agent_7.pasesRestantes + -1 > 20)
+	-> next(agent_7.pasesRestantes) = 20 ) &	
+	 	  		(next(agent_7.ingresarASalaDallas) = JUST_HAPPENED 	& (agent_7.pasesRestantes + -1 > 20)
+	-> next(agent_7.pasesRestantes) = 20 ) &	
+	 	   		(next(agent_7.ingresarASala) = JUST_HAPPENED 	& (agent_7.puntosMembresia + 1 > 20)
+	-> next(agent_7.puntosMembresia) = 20 ) &	
+	 		(next(agent_7.ingresarASala) = JUST_HAPPENED 	& (agent_7.puntosMembresia + 1 < 0) 
+	-> next(agent_7.puntosMembresia) = 0 ) &	
+	  		(next(nuevoSocioRecomendadoPremium) = JUST_HAPPENED 	& (agent_7.puntosMembresia + 2 > 20)
+	-> next(agent_7.puntosMembresia) = 20 ) &	
+	 		(next(nuevoSocioRecomendadoPremium) = JUST_HAPPENED 	& (agent_7.puntosMembresia + 2 < 0) 
+	-> next(agent_7.puntosMembresia) = 0 ) &	
+	  		(next(nuevoSocioRecomendadoSelect) = JUST_HAPPENED 	& (agent_7.puntosMembresia + 5 > 20)
+	-> next(agent_7.puntosMembresia) = 20 ) &	
+	 		(next(nuevoSocioRecomendadoSelect) = JUST_HAPPENED 	& (agent_7.puntosMembresia + 5 < 0) 
+	-> next(agent_7.puntosMembresia) = 0 ) &	
+	   		(next(nuevoSocioRecomendadoPremium) = JUST_HAPPENED 	& (agent_6.puntosMembresia + 2 > 20)
+	-> next(agent_6.puntosMembresia) = 20 ) &	
+	 		(next(nuevoSocioRecomendadoPremium) = JUST_HAPPENED 	& (agent_6.puntosMembresia + 2 < 0) 
+	-> next(agent_6.puntosMembresia) = 0 ) &	
+	  		(next(nuevoSocioRecomendadoSelect) = JUST_HAPPENED 	& (agent_6.puntosMembresia + 5 > 20)
+	-> next(agent_6.puntosMembresia) = 20 ) &	
+	 		(next(nuevoSocioRecomendadoSelect) = JUST_HAPPENED 	& (agent_6.puntosMembresia + 5 < 0) 
+	-> next(agent_6.puntosMembresia) = 0 ) &	
+	  		(next(agent_6.ingresarASala) = JUST_HAPPENED 	& (agent_6.puntosMembresia + 1 > 20)
+	-> next(agent_6.puntosMembresia) = 20 ) &	
+	 		(next(agent_6.ingresarASala) = JUST_HAPPENED 	& (agent_6.puntosMembresia + 1 < 0) 
+	-> next(agent_6.puntosMembresia) = 0 ) &	
+	  		(
+  	(next(agent_6.ingresarASalaDallas) != JUST_HAPPENED  ) &  	(next(pasaUnAnio) != JUST_HAPPENED  ) &  	(next(agent_6.ingresarASala) != JUST_HAPPENED  )   	-> next(agent_6.pasesRestantes) = agent_6.pasesRestantes ) &
+  		(
+  	(next(agent_7.ingresarASala) != JUST_HAPPENED  ) &  	(next(pasaUnAnio) != JUST_HAPPENED  ) &  	(next(agent_7.ingresarASalaDallas) != JUST_HAPPENED  )   	-> next(agent_7.pasesRestantes) = agent_7.pasesRestantes ) &
+  		(
+  	(next(agent_7.ingresarASala) != JUST_HAPPENED  ) &  	(next(nuevoSocioRecomendadoPremium) != JUST_HAPPENED  ) &  	(next(nuevoSocioRecomendadoSelect) != JUST_HAPPENED  ) &  	(next(pasaUnAnio) != JUST_HAPPENED  )   	-> next(agent_7.puntosMembresia) = agent_7.puntosMembresia ) &
+  		(
+  	(next(nuevoSocioRecomendadoPremium) != JUST_HAPPENED  ) &  	(next(nuevoSocioRecomendadoSelect) != JUST_HAPPENED  ) &  	(next(pasaUnAnio) != JUST_HAPPENED  ) &  	(next(agent_6.ingresarASala) != JUST_HAPPENED  )   	-> next(agent_6.puntosMembresia) = agent_6.puntosMembresia ) &
+ 	 	(next(pasaUnAnio) = JUST_HAPPENED 	-> next(agent_6.pasesRestantes) = 5) &		
+ 	 	(next(pasaUnAnio) = JUST_HAPPENED 	-> next(agent_7.pasesRestantes) = 5) &		
+ 	 	(next(pasaUnAnio) = JUST_HAPPENED 	-> next(agent_7.puntosMembresia) = 0) &		
+ 	 	(next(pasaUnAnio) = JUST_HAPPENED 	-> next(agent_6.puntosMembresia) = 0) &		
+ 	 	(next(agent_6.ingresarASalaDallas) = JUST_HAPPENED -> TRUE 
+           & next(pasaUnAnio) !=  JUST_HAPPENED       & next(agent_6.ingresarASala) !=  JUST_HAPPENED        ) &
+ 	(next(pasaUnAnio) = JUST_HAPPENED -> TRUE 
+      & next(agent_6.ingresarASalaDallas) !=  JUST_HAPPENED            & next(agent_6.ingresarASala) !=  JUST_HAPPENED        ) &
+ 	(next(agent_6.ingresarASala) = JUST_HAPPENED -> TRUE 
+      & next(agent_6.ingresarASalaDallas) !=  JUST_HAPPENED       & next(pasaUnAnio) !=  JUST_HAPPENED             ) &
+ 	 	(next(agent_7.ingresarASala) = JUST_HAPPENED -> TRUE 
+           & next(pasaUnAnio) !=  JUST_HAPPENED       & next(agent_7.ingresarASalaDallas) !=  JUST_HAPPENED        ) &
+ 	(next(pasaUnAnio) = JUST_HAPPENED -> TRUE 
+      & next(agent_7.ingresarASala) !=  JUST_HAPPENED            & next(agent_7.ingresarASalaDallas) !=  JUST_HAPPENED        ) &
+ 	(next(agent_7.ingresarASalaDallas) = JUST_HAPPENED -> TRUE 
+      & next(agent_7.ingresarASala) !=  JUST_HAPPENED       & next(pasaUnAnio) !=  JUST_HAPPENED             ) &
+ 	 	(next(agent_7.ingresarASala) = JUST_HAPPENED -> TRUE 
+           & next(nuevoSocioRecomendadoPremium) !=  JUST_HAPPENED       & next(nuevoSocioRecomendadoSelect) !=  JUST_HAPPENED       & next(pasaUnAnio) !=  JUST_HAPPENED        ) &
+ 	(next(nuevoSocioRecomendadoPremium) = JUST_HAPPENED -> TRUE 
+      & next(agent_7.ingresarASala) !=  JUST_HAPPENED            & next(nuevoSocioRecomendadoSelect) !=  JUST_HAPPENED       & next(pasaUnAnio) !=  JUST_HAPPENED        ) &
+ 	(next(nuevoSocioRecomendadoSelect) = JUST_HAPPENED -> TRUE 
+      & next(agent_7.ingresarASala) !=  JUST_HAPPENED       & next(nuevoSocioRecomendadoPremium) !=  JUST_HAPPENED            & next(pasaUnAnio) !=  JUST_HAPPENED        ) &
+ 	(next(pasaUnAnio) = JUST_HAPPENED -> TRUE 
+      & next(agent_7.ingresarASala) !=  JUST_HAPPENED       & next(nuevoSocioRecomendadoPremium) !=  JUST_HAPPENED       & next(nuevoSocioRecomendadoSelect) !=  JUST_HAPPENED             ) &
+ 	 	(next(nuevoSocioRecomendadoPremium) = JUST_HAPPENED -> TRUE 
+           & next(nuevoSocioRecomendadoSelect) !=  JUST_HAPPENED       & next(pasaUnAnio) !=  JUST_HAPPENED       & next(agent_6.ingresarASala) !=  JUST_HAPPENED        ) &
+ 	(next(nuevoSocioRecomendadoSelect) = JUST_HAPPENED -> TRUE 
+      & next(nuevoSocioRecomendadoPremium) !=  JUST_HAPPENED            & next(pasaUnAnio) !=  JUST_HAPPENED       & next(agent_6.ingresarASala) !=  JUST_HAPPENED        ) &
+ 	(next(pasaUnAnio) = JUST_HAPPENED -> TRUE 
+      & next(nuevoSocioRecomendadoPremium) !=  JUST_HAPPENED       & next(nuevoSocioRecomendadoSelect) !=  JUST_HAPPENED            & next(agent_6.ingresarASala) !=  JUST_HAPPENED        ) &
+ 	(next(agent_6.ingresarASala) = JUST_HAPPENED -> TRUE 
+      & next(nuevoSocioRecomendadoPremium) !=  JUST_HAPPENED       & next(nuevoSocioRecomendadoSelect) !=  JUST_HAPPENED       & next(pasaUnAnio) !=  JUST_HAPPENED             ) &
+ 
+  	 	(agent_6.ingresarASalaDallas = NOT_HAPPENING & 
+		(-1 < 0)  & 
+	(agent_6.pasesRestantes + -1 < 0) -> next(agent_6.ingresarASalaDallas) = NOT_HAPPENING ) &		
+          	 	(agent_6.ingresarASala = NOT_HAPPENING & 
+		(-1 < 0)  & 
+	(agent_6.pasesRestantes + -1 < 0) -> next(agent_6.ingresarASala) = NOT_HAPPENING ) &		
+           	 	(agent_7.ingresarASala = NOT_HAPPENING & 
+		(-1 < 0)  & 
+	(agent_7.pasesRestantes + -1 < 0) -> next(agent_7.ingresarASala) = NOT_HAPPENING ) &		
+          	 	(agent_7.ingresarASalaDallas = NOT_HAPPENING & 
+		(-1 < 0)  & 
+	(agent_7.pasesRestantes + -1 < 0) -> next(agent_7.ingresarASalaDallas) = NOT_HAPPENING ) &		
+           	      	      	       	      	      	      TRUE

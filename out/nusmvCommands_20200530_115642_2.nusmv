@@ -1,0 +1,5 @@
+go;
+build_boolean_model
+bmc_setup
+gen_ltlspec_bmc -o /home/debianadmin/Facultad/Tesis/FL/out/nusmvOut_20200530_115642 -p "!( G ( agent_7.tarjetaVigente = ACTIVE  -> !( G ( !( agent_7.ingresarASala = JUST_HAPPENED ) ) ) ) & G ( agent_6.tarjetaVigente = ACTIVE  -> !( G ( !( agent_6.ingresarASala = JUST_HAPPENED ) ) ) ) )";
+quit;

@@ -1,0 +1,5 @@
+go;
+build_boolean_model
+bmc_setup
+gen_ltlspec_bmc -o /home/debianadmin/Facultad/Tesis/FL/out/nusmvOut_20200530_115601 -p "!( G ( !( G ( !( agent_7.ingresarASala = JUST_HAPPENED ) ) ) ) & G ( !( G ( !( agent_6.ingresarASala = JUST_HAPPENED ) ) ) ) & G ( !( G ( !( agent_3.ingresarASala = JUST_HAPPENED ) ) ) ) & G ( !( G ( !( agent_2.ingresarASala = JUST_HAPPENED ) ) ) ) & G ( !( G ( !( agent_4.ingresarASala = JUST_HAPPENED ) ) ) ) & G ( !( G ( !( agent_1.ingresarASala = JUST_HAPPENED ) ) ) ) )";
+quit;

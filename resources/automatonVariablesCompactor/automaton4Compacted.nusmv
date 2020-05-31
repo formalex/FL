@@ -1,0 +1,57 @@
+MODULE main
+VAR 
+  i0: {H, NH, JH};
+    i1: {H, NH, JH};
+    i2: {H, NH, JH};
+    i3: {AC, IA};
+  i4: {H, NH, JH};
+    i5: {H, NH, JH};
+    i6: {H, NH, JH};
+    i7: {AC, IA};
+  i8: {H, NH, JH};
+    i9: {H, NH, JH};
+    i10: {H, NH, JH};
+    i11: {AC, IA};
+  
+INIT
+  i0 = NH &
+  i1 = NH &
+  i2 = NH &
+    i3 = IA &
+        TRUE 
+
+TRANS
+  (i0 = JH -> next(i0) = NH) &
+  (i0 = H -> next(i0) != NH ) &
+  (i0 = NH -> next(i0) != JH) &
+    (i1 = JH -> next(i1) = NH) &
+  (i1 = H -> next(i1) != NH ) &
+  (i1 = NH -> next(i1) != JH) &
+    (i2 = JH -> next(i2) = NH) &
+  (i2 = H -> next(i2) != NH ) &
+  (i2 = NH -> next(i2) != JH) &
+    (( i3 = IA & next(i3) = AC) -> (
+      (i1 = H & next(i1) = JH) 
+              )) &
+  ((i3 = AC  & next(i3) = IA) -> (
+      (i2 = H & next(i2) = JH) 
+          )) &
+    (i3 = IA & (
+        (i1 = H & next(i1) = JH) 
+            )-> (next(i3) = AC)) &    
+      (i3 = AC & (
+        (i2 = H & next(i2) = JH) 
+            )-> (next(i3) = IA)) &  
+  ((
+        (i1 = NH & next(i1) = H) 
+            )-> (i3 = IA)) & 
+  ((
+        (i2 = NH & next(i2) = H) 
+            )-> (i3 = AC)) & 
+    (next(i1) = H -> (TRUE 
+      )) &
+    (next(i2) = H -> (TRUE 
+     & next(i2) !=  H  )) &
+     
+
+ TRUE

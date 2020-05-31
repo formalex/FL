@@ -1,0 +1,3155 @@
+c original 653 0 clause(2)
+c assign 653 at level 0 by 653 0 clause(2)
+c original -543 545 -653 0 clause(4)
+c learned -543 545 0 clause(1)
+c original -571 581 -653 0 clause(6)
+c learned -571 581 0 clause(3)
+c original -576 577 -653 0 clause(8)
+c learned -576 577 0 clause(5)
+c original -554 564 -653 0 clause(10)
+c learned -554 564 0 clause(7)
+c original -580 585 -653 0 clause(12)
+c learned -580 585 0 clause(9)
+c original 557 -572 -653 0 clause(14)
+c learned 557 -572 0 clause(11)
+c original -552 561 -653 0 clause(16)
+c learned -552 561 0 clause(13)
+c original 550 -588 -653 0 clause(18)
+c learned 550 -588 0 clause(15)
+c original -553 566 -653 0 clause(20)
+c learned -553 566 0 clause(17)
+c original -562 563 -653 0 clause(22)
+c learned -562 563 0 clause(19)
+c original 567 -578 -653 0 clause(24)
+c learned 567 -578 0 clause(21)
+c original 559 -573 -653 0 clause(26)
+c learned 559 -573 0 clause(23)
+c original 555 -584 -653 0 clause(28)
+c learned 555 -584 0 clause(25)
+c original -544 579 -653 0 clause(30)
+c learned -544 579 0 clause(27)
+c original -547 556 -653 0 clause(32)
+c learned -547 556 0 clause(29)
+c original -558 575 -653 0 clause(34)
+c learned -558 575 0 clause(31)
+c original 565 -586 -653 0 clause(36)
+c learned 565 -586 0 clause(33)
+c original -546 582 -653 0 clause(38)
+c learned -546 582 0 clause(35)
+c original 568 -570 -653 0 clause(40)
+c learned 568 -570 0 clause(37)
+c original -551 569 -653 0 clause(42)
+c learned -551 569 0 clause(39)
+c original 549 -587 -653 0 clause(44)
+c learned 549 -587 0 clause(41)
+c original 574 -583 -653 0 clause(46)
+c learned 574 -583 0 clause(43)
+c original -548 560 -653 0 clause(48)
+c learned -548 560 0 clause(45)
+c original -494 506 -653 0 clause(50)
+c learned -494 506 0 clause(47)
+c original 520 -529 -653 0 clause(52)
+c learned 520 -529 0 clause(49)
+c original 495 -533 -653 0 clause(54)
+c learned 495 -533 0 clause(51)
+c original -489 491 -653 0 clause(56)
+c learned -489 491 0 clause(53)
+c original -517 527 -653 0 clause(58)
+c learned -517 527 0 clause(55)
+c original -522 523 -653 0 clause(60)
+c learned -522 523 0 clause(57)
+c original -500 510 -653 0 clause(62)
+c learned -500 510 0 clause(59)
+c original -526 531 -653 0 clause(64)
+c learned -526 531 0 clause(61)
+c original 503 -518 -653 0 clause(66)
+c learned 503 -518 0 clause(63)
+c original -498 507 -653 0 clause(68)
+c learned -498 507 0 clause(65)
+c original 496 -534 -653 0 clause(70)
+c learned 496 -534 0 clause(67)
+c original -499 512 -653 0 clause(72)
+c learned -499 512 0 clause(69)
+c original -508 509 -653 0 clause(74)
+c learned -508 509 0 clause(71)
+c original 513 -524 -653 0 clause(76)
+c learned 513 -524 0 clause(73)
+c original 505 -519 -653 0 clause(78)
+c learned 505 -519 0 clause(75)
+c original 501 -530 -653 0 clause(80)
+c learned 501 -530 0 clause(77)
+c original -490 525 -653 0 clause(82)
+c learned -490 525 0 clause(79)
+c original -493 502 -653 0 clause(84)
+c learned -493 502 0 clause(81)
+c original -504 521 -653 0 clause(86)
+c learned -504 521 0 clause(83)
+c original 511 -532 -653 0 clause(88)
+c learned 511 -532 0 clause(85)
+c original -492 528 -653 0 clause(90)
+c learned -492 528 0 clause(87)
+c original 514 -516 -653 0 clause(92)
+c learned 514 -516 0 clause(89)
+c original -497 515 -653 0 clause(94)
+c learned -497 515 0 clause(91)
+c original -436 438 -653 0 clause(96)
+c learned -436 438 0 clause(93)
+c original -464 474 -653 0 clause(98)
+c learned -464 474 0 clause(95)
+c original -469 470 -653 0 clause(100)
+c learned -469 470 0 clause(97)
+c original -447 457 -653 0 clause(102)
+c learned -447 457 0 clause(99)
+c original -473 478 -653 0 clause(104)
+c learned -473 478 0 clause(101)
+c original 450 -465 -653 0 clause(106)
+c learned 450 -465 0 clause(103)
+c original -445 454 -653 0 clause(108)
+c learned -445 454 0 clause(105)
+c original 443 -481 -653 0 clause(110)
+c learned 443 -481 0 clause(107)
+c original -446 459 -653 0 clause(112)
+c learned -446 459 0 clause(109)
+c original -455 456 -653 0 clause(114)
+c learned -455 456 0 clause(111)
+c original 460 -471 -653 0 clause(116)
+c learned 460 -471 0 clause(113)
+c original 452 -466 -653 0 clause(118)
+c learned 452 -466 0 clause(115)
+c original 448 -477 -653 0 clause(120)
+c learned 448 -477 0 clause(117)
+c original -437 472 -653 0 clause(122)
+c learned -437 472 0 clause(119)
+c original -440 449 -653 0 clause(124)
+c learned -440 449 0 clause(121)
+c original -451 468 -653 0 clause(126)
+c learned -451 468 0 clause(123)
+c original 458 -479 -653 0 clause(128)
+c learned 458 -479 0 clause(125)
+c original -439 475 -653 0 clause(130)
+c learned -439 475 0 clause(127)
+c original 461 -463 -653 0 clause(132)
+c learned 461 -463 0 clause(129)
+c original -444 462 -653 0 clause(134)
+c learned -444 462 0 clause(131)
+c original 442 -480 -653 0 clause(136)
+c learned 442 -480 0 clause(133)
+c original 467 -476 -653 0 clause(138)
+c learned 467 -476 0 clause(135)
+c original -441 453 -653 0 clause(140)
+c learned -441 453 0 clause(137)
+c original 427 -428 -653 0 clause(142)
+c learned 427 -428 0 clause(139)
+c original 391 -401 -653 0 clause(144)
+c learned 391 -401 0 clause(141)
+c original 395 -396 -653 0 clause(146)
+c learned 395 -396 0 clause(143)
+c original 408 -418 -653 0 clause(148)
+c learned 408 -418 0 clause(145)
+c original 387 -392 -653 0 clause(150)
+c learned 387 -392 0 clause(147)
+c original -400 415 -653 0 clause(152)
+c learned -400 415 0 clause(149)
+c original 411 -420 -653 0 clause(154)
+c learned 411 -420 0 clause(151)
+c original -384 422 -653 0 clause(156)
+c learned -384 422 0 clause(153)
+c original 406 -419 -653 0 clause(158)
+c learned 406 -419 0 clause(155)
+c original 409 -410 -653 0 clause(160)
+c learned 409 -410 0 clause(157)
+c original -394 405 -653 0 clause(162)
+c learned -394 405 0 clause(159)
+c original -399 413 -653 0 clause(164)
+c learned -399 413 0 clause(161)
+c original -388 417 -653 0 clause(166)
+c learned -388 417 0 clause(163)
+c original 393 -429 -653 0 clause(168)
+c learned 393 -429 0 clause(165)
+c original 416 -425 -653 0 clause(170)
+c learned 416 -425 0 clause(167)
+c original 397 -414 -653 0 clause(172)
+c learned 397 -414 0 clause(169)
+c original -386 407 -653 0 clause(174)
+c learned -386 407 0 clause(171)
+c original 390 -426 -653 0 clause(176)
+c learned 390 -426 0 clause(173)
+c original -402 404 -653 0 clause(178)
+c learned -402 404 0 clause(175)
+c original 403 -421 -653 0 clause(180)
+c learned 403 -421 0 clause(177)
+c original -385 423 -653 0 clause(182)
+c learned -385 423 0 clause(179)
+c original -389 398 -653 0 clause(184)
+c learned -389 398 0 clause(181)
+c original 412 -424 -653 0 clause(186)
+c learned 412 -424 0 clause(183)
+c original -333 335 -653 0 clause(188)
+c learned -333 335 0 clause(185)
+c original -361 371 -653 0 clause(190)
+c learned -361 371 0 clause(187)
+c original -366 367 -653 0 clause(192)
+c learned -366 367 0 clause(189)
+c original -344 354 -653 0 clause(194)
+c learned -344 354 0 clause(191)
+c original -370 375 -653 0 clause(196)
+c learned -370 375 0 clause(193)
+c original 347 -362 -653 0 clause(198)
+c learned 347 -362 0 clause(195)
+c original -342 351 -653 0 clause(200)
+c learned -342 351 0 clause(197)
+c original 340 -378 -653 0 clause(202)
+c learned 340 -378 0 clause(199)
+c original -343 356 -653 0 clause(204)
+c learned -343 356 0 clause(201)
+c original -352 353 -653 0 clause(206)
+c learned -352 353 0 clause(203)
+c original 357 -368 -653 0 clause(208)
+c learned 357 -368 0 clause(205)
+c original 349 -363 -653 0 clause(210)
+c learned 349 -363 0 clause(207)
+c original 345 -374 -653 0 clause(212)
+c learned 345 -374 0 clause(209)
+c original -334 369 -653 0 clause(214)
+c learned -334 369 0 clause(211)
+c original -337 346 -653 0 clause(216)
+c learned -337 346 0 clause(213)
+c original -348 365 -653 0 clause(218)
+c learned -348 365 0 clause(215)
+c original 355 -376 -653 0 clause(220)
+c learned 355 -376 0 clause(217)
+c original -336 372 -653 0 clause(222)
+c learned -336 372 0 clause(219)
+c original 358 -360 -653 0 clause(224)
+c learned 358 -360 0 clause(221)
+c original -341 359 -653 0 clause(226)
+c learned -341 359 0 clause(223)
+c original 339 -377 -653 0 clause(228)
+c learned 339 -377 0 clause(225)
+c original 364 -373 -653 0 clause(230)
+c learned 364 -373 0 clause(227)
+c original -338 350 -653 0 clause(232)
+c learned -338 350 0 clause(229)
+c original -288 297 -653 0 clause(234)
+c learned -288 297 0 clause(231)
+c original -284 322 -653 0 clause(236)
+c learned -284 322 0 clause(233)
+c original 302 -320 -653 0 clause(238)
+c learned 302 -320 0 clause(235)
+c original -301 303 -653 0 clause(240)
+c learned -301 303 0 clause(237)
+c original 289 -325 -653 0 clause(242)
+c learned 289 -325 0 clause(239)
+c original -285 306 -653 0 clause(244)
+c learned -285 306 0 clause(241)
+c original 296 -313 -653 0 clause(246)
+c learned 296 -313 0 clause(243)
+c original 315 -324 -653 0 clause(248)
+c learned 315 -324 0 clause(245)
+c original 292 -328 -653 0 clause(250)
+c learned 292 -328 0 clause(247)
+c original -287 316 -653 0 clause(252)
+c learned -287 316 0 clause(249)
+c original -298 312 -653 0 clause(254)
+c learned -298 312 0 clause(251)
+c original -293 304 -653 0 clause(256)
+c learned -293 304 0 clause(253)
+c original 308 -309 -653 0 clause(258)
+c learned 308 -309 0 clause(255)
+c original 305 -318 -653 0 clause(260)
+c learned 305 -318 0 clause(257)
+c original -283 321 -653 0 clause(262)
+c learned -283 321 0 clause(259)
+c original 310 -319 -653 0 clause(264)
+c learned 310 -319 0 clause(261)
+c original 326 -327 -653 0 clause(266)
+c learned 326 -327 0 clause(263)
+c original 290 -300 -653 0 clause(268)
+c learned 290 -300 0 clause(265)
+c original 294 -295 -653 0 clause(270)
+c learned 294 -295 0 clause(267)
+c original 307 -317 -653 0 clause(272)
+c learned 307 -317 0 clause(269)
+c original 286 -291 -653 0 clause(274)
+c learned 286 -291 0 clause(271)
+c original -299 314 -653 0 clause(276)
+c learned -299 314 0 clause(273)
+c original 311 -323 -653 0 clause(278)
+c learned 311 -323 0 clause(275)
+c original -231 233 -653 0 clause(280)
+c learned -231 233 0 clause(277)
+c original -259 272 -653 0 clause(282)
+c learned -259 272 0 clause(279)
+c original -264 268 -653 0 clause(284)
+c learned -264 268 0 clause(281)
+c original -242 252 -653 0 clause(286)
+c learned -242 252 0 clause(283)
+c original -271 276 -653 0 clause(288)
+c learned -271 276 0 clause(285)
+c original 245 -260 -653 0 clause(290)
+c learned 245 -260 0 clause(287)
+c original -240 249 -653 0 clause(292)
+c learned -240 249 0 clause(289)
+c original 238 -279 -653 0 clause(294)
+c learned 238 -279 0 clause(291)
+c original -241 254 -653 0 clause(296)
+c learned -241 254 0 clause(293)
+c original -250 251 -653 0 clause(298)
+c learned -250 251 0 clause(295)
+c original 255 -269 -653 0 clause(300)
+c learned 255 -269 0 clause(297)
+c original 247 -261 -653 0 clause(302)
+c learned 247 -261 0 clause(299)
+c original 243 -275 -653 0 clause(304)
+c learned 243 -275 0 clause(301)
+c original -232 270 -653 0 clause(306)
+c learned -232 270 0 clause(303)
+c original -235 244 -653 0 clause(308)
+c learned -235 244 0 clause(305)
+c original -246 263 -653 0 clause(310)
+c learned -246 263 0 clause(307)
+c original 253 -277 -653 0 clause(312)
+c learned 253 -277 0 clause(309)
+c original -234 273 -653 0 clause(314)
+c learned -234 273 0 clause(311)
+c original 256 -258 -653 0 clause(316)
+c learned 256 -258 0 clause(313)
+c original -239 257 -653 0 clause(318)
+c learned -239 257 0 clause(315)
+c original 237 -278 -653 0 clause(320)
+c learned 237 -278 0 clause(317)
+c original 262 -274 -653 0 clause(322)
+c learned 262 -274 0 clause(319)
+c original -236 248 -653 0 clause(324)
+c learned -236 248 0 clause(321)
+c original -190 202 -653 0 clause(326)
+c learned -190 202 0 clause(323)
+c original 216 -225 -653 0 clause(328)
+c learned 216 -225 0 clause(325)
+c original 191 -229 -653 0 clause(330)
+c learned 191 -229 0 clause(327)
+c original -193 211 -653 0 clause(332)
+c learned -193 211 0 clause(329)
+c original 210 -212 -653 0 clause(334)
+c learned 210 -212 0 clause(331)
+c original -188 224 -653 0 clause(336)
+c learned -188 224 0 clause(333)
+c original 207 -228 -653 0 clause(338)
+c learned 207 -228 0 clause(335)
+c original -200 217 -653 0 clause(340)
+c learned -200 217 0 clause(337)
+c original -189 198 -653 0 clause(342)
+c learned -189 198 0 clause(339)
+c original -186 221 -653 0 clause(344)
+c learned -186 221 0 clause(341)
+c original 197 -226 -653 0 clause(346)
+c learned 197 -226 0 clause(343)
+c original 209 -220 -653 0 clause(348)
+c learned 209 -220 0 clause(345)
+c original -204 205 -653 0 clause(350)
+c learned -204 205 0 clause(347)
+c original -195 208 -653 0 clause(352)
+c learned -195 208 0 clause(349)
+c original 192 -230 -653 0 clause(354)
+c learned 192 -230 0 clause(351)
+c original -194 203 -653 0 clause(356)
+c learned -194 203 0 clause(353)
+c original 199 -214 -653 0 clause(358)
+c learned 199 -214 0 clause(355)
+c original -222 227 -653 0 clause(360)
+c learned -222 227 0 clause(357)
+c original -185 187 -653 0 clause(362)
+c learned -185 187 0 clause(359)
+c original -213 223 -653 0 clause(364)
+c learned -213 223 0 clause(361)
+c original -218 219 -653 0 clause(366)
+c learned -218 219 0 clause(363)
+c original -196 206 -653 0 clause(368)
+c learned -196 206 0 clause(365)
+c original 201 -215 -653 0 clause(370)
+c learned 201 -215 0 clause(367)
+c original -144 156 -653 0 clause(372)
+c learned -144 156 0 clause(369)
+c original 170 -179 -653 0 clause(374)
+c learned 170 -179 0 clause(371)
+c original 145 -183 -653 0 clause(376)
+c learned 145 -183 0 clause(373)
+c original -147 165 -653 0 clause(378)
+c learned -147 165 0 clause(375)
+c original 164 -166 -653 0 clause(380)
+c learned 164 -166 0 clause(377)
+c original -142 178 -653 0 clause(382)
+c learned -142 178 0 clause(379)
+c original 161 -182 -653 0 clause(384)
+c learned 161 -182 0 clause(381)
+c original -154 171 -653 0 clause(386)
+c learned -154 171 0 clause(383)
+c original -143 152 -653 0 clause(388)
+c learned -143 152 0 clause(385)
+c original -140 175 -653 0 clause(390)
+c learned -140 175 0 clause(387)
+c original 151 -180 -653 0 clause(392)
+c learned 151 -180 0 clause(389)
+c original 155 -169 -653 0 clause(394)
+c learned 155 -169 0 clause(391)
+c original 163 -174 -653 0 clause(396)
+c learned 163 -174 0 clause(393)
+c original -158 159 -653 0 clause(398)
+c learned -158 159 0 clause(395)
+c original -149 162 -653 0 clause(400)
+c learned -149 162 0 clause(397)
+c original 146 -184 -653 0 clause(402)
+c learned 146 -184 0 clause(399)
+c original -139 141 -653 0 clause(404)
+c learned -139 141 0 clause(401)
+c original -167 177 -653 0 clause(406)
+c learned -167 177 0 clause(403)
+c original -172 173 -653 0 clause(408)
+c learned -172 173 0 clause(405)
+c original -150 160 -653 0 clause(410)
+c learned -150 160 0 clause(407)
+c original -176 181 -653 0 clause(412)
+c learned -176 181 0 clause(409)
+c original 153 -168 -653 0 clause(414)
+c learned 153 -168 0 clause(411)
+c original -148 157 -653 0 clause(416)
+c learned -148 157 0 clause(413)
+c original 598 644 645 646 647 648 649 650 651 652 -653 0 clause(418)
+c learned 598 644 645 646 647 648 649 650 651 652 0 clause(415)
+c original 599 644 645 646 647 648 649 650 651 652 -653 0 clause(420)
+c learned 599 644 645 646 647 648 649 650 651 652 0 clause(417)
+c original 600 644 645 646 647 648 649 650 651 652 -653 0 clause(422)
+c learned 600 644 645 646 647 648 649 650 651 652 0 clause(419)
+c original 601 644 645 646 647 648 649 650 651 652 -653 0 clause(424)
+c learned 601 644 645 646 647 648 649 650 651 652 0 clause(421)
+c original 602 644 645 646 647 648 649 650 651 652 -653 0 clause(426)
+c learned 602 644 645 646 647 648 649 650 651 652 0 clause(423)
+c original 603 644 645 646 647 648 649 650 651 652 -653 0 clause(428)
+c learned 603 644 645 646 647 648 649 650 651 652 0 clause(425)
+c original 604 644 645 646 647 648 649 650 651 652 -653 0 clause(430)
+c learned 604 644 645 646 647 648 649 650 651 652 0 clause(427)
+c original 605 644 645 646 647 648 649 650 651 652 -653 0 clause(432)
+c learned 605 644 645 646 647 648 649 650 651 652 0 clause(429)
+c original 606 644 645 646 647 648 649 650 651 652 -653 0 clause(434)
+c learned 606 644 645 646 647 648 649 650 651 652 0 clause(431)
+c original 607 644 645 646 647 648 649 650 651 652 -653 0 clause(436)
+c learned 607 644 645 646 647 648 649 650 651 652 0 clause(433)
+c original 608 644 645 646 647 648 649 650 651 652 -653 0 clause(438)
+c learned 608 644 645 646 647 648 649 650 651 652 0 clause(435)
+c original 609 644 645 646 647 648 649 650 651 652 -653 0 clause(440)
+c learned 609 644 645 646 647 648 649 650 651 652 0 clause(437)
+c original 610 644 645 646 647 648 649 650 651 652 -653 0 clause(442)
+c learned 610 644 645 646 647 648 649 650 651 652 0 clause(439)
+c original 611 644 645 646 647 648 649 650 651 652 -653 0 clause(444)
+c learned 611 644 645 646 647 648 649 650 651 652 0 clause(441)
+c original 612 644 645 646 647 648 649 650 651 652 -653 0 clause(446)
+c learned 612 644 645 646 647 648 649 650 651 652 0 clause(443)
+c original 613 644 645 646 647 648 649 650 651 652 -653 0 clause(448)
+c learned 613 644 645 646 647 648 649 650 651 652 0 clause(445)
+c original 614 644 645 646 647 648 649 650 651 652 -653 0 clause(450)
+c learned 614 644 645 646 647 648 649 650 651 652 0 clause(447)
+c original 615 644 645 646 647 648 649 650 651 652 -653 0 clause(452)
+c learned 615 644 645 646 647 648 649 650 651 652 0 clause(449)
+c original 616 644 645 646 647 648 649 650 651 652 -653 0 clause(454)
+c learned 616 644 645 646 647 648 649 650 651 652 0 clause(451)
+c original 617 644 645 646 647 648 649 650 651 652 -653 0 clause(456)
+c learned 617 644 645 646 647 648 649 650 651 652 0 clause(453)
+c original 618 644 645 646 647 648 649 650 651 652 -653 0 clause(458)
+c learned 618 644 645 646 647 648 649 650 651 652 0 clause(455)
+c original 619 644 645 646 647 648 649 650 651 652 -653 0 clause(460)
+c learned 619 644 645 646 647 648 649 650 651 652 0 clause(457)
+c original 620 644 645 646 647 648 649 650 651 652 -653 0 clause(462)
+c learned 620 644 645 646 647 648 649 650 651 652 0 clause(459)
+c original 621 644 645 646 647 648 649 650 651 652 -653 0 clause(464)
+c learned 621 644 645 646 647 648 649 650 651 652 0 clause(461)
+c original 622 644 645 646 647 648 649 650 651 652 -653 0 clause(466)
+c learned 622 644 645 646 647 648 649 650 651 652 0 clause(463)
+c original 623 644 645 646 647 648 649 650 651 652 -653 0 clause(468)
+c learned 623 644 645 646 647 648 649 650 651 652 0 clause(465)
+c original 624 644 645 646 647 648 649 650 651 652 -653 0 clause(470)
+c learned 624 644 645 646 647 648 649 650 651 652 0 clause(467)
+c original 625 644 645 646 647 648 649 650 651 652 -653 0 clause(472)
+c learned 625 644 645 646 647 648 649 650 651 652 0 clause(469)
+c original 626 644 645 646 647 648 649 650 651 652 -653 0 clause(474)
+c learned 626 644 645 646 647 648 649 650 651 652 0 clause(471)
+c original 627 644 645 646 647 648 649 650 651 652 -653 0 clause(476)
+c learned 627 644 645 646 647 648 649 650 651 652 0 clause(473)
+c original 628 644 645 646 647 648 649 650 651 652 -653 0 clause(478)
+c learned 628 644 645 646 647 648 649 650 651 652 0 clause(475)
+c original 629 644 645 646 647 648 649 650 651 652 -653 0 clause(480)
+c learned 629 644 645 646 647 648 649 650 651 652 0 clause(477)
+c original 630 644 645 646 647 648 649 650 651 652 -653 0 clause(482)
+c learned 630 644 645 646 647 648 649 650 651 652 0 clause(479)
+c original 631 644 645 646 647 648 649 650 651 652 -653 0 clause(484)
+c learned 631 644 645 646 647 648 649 650 651 652 0 clause(481)
+c original 632 644 645 646 647 648 649 650 651 652 -653 0 clause(486)
+c learned 632 644 645 646 647 648 649 650 651 652 0 clause(483)
+c original 633 644 645 646 647 648 649 650 651 652 -653 0 clause(488)
+c learned 633 644 645 646 647 648 649 650 651 652 0 clause(485)
+c original 634 644 645 646 647 648 649 650 651 652 -653 0 clause(490)
+c learned 634 644 645 646 647 648 649 650 651 652 0 clause(487)
+c original 635 644 645 646 647 648 649 650 651 652 -653 0 clause(492)
+c learned 635 644 645 646 647 648 649 650 651 652 0 clause(489)
+c original 636 644 645 646 647 648 649 650 651 652 -653 0 clause(494)
+c learned 636 644 645 646 647 648 649 650 651 652 0 clause(491)
+c original 637 644 645 646 647 648 649 650 651 652 -653 0 clause(496)
+c learned 637 644 645 646 647 648 649 650 651 652 0 clause(493)
+c original 638 644 645 646 647 648 649 650 651 652 -653 0 clause(498)
+c learned 638 644 645 646 647 648 649 650 651 652 0 clause(495)
+c original 639 644 645 646 647 648 649 650 651 652 -653 0 clause(500)
+c learned 639 644 645 646 647 648 649 650 651 652 0 clause(497)
+c original 640 644 645 646 647 648 649 650 651 652 -653 0 clause(502)
+c learned 640 644 645 646 647 648 649 650 651 652 0 clause(499)
+c original 641 644 645 646 647 648 649 650 651 652 -653 0 clause(504)
+c learned 641 644 645 646 647 648 649 650 651 652 0 clause(501)
+c original 642 644 645 646 647 648 649 650 651 652 -653 0 clause(506)
+c learned 642 644 645 646 647 648 649 650 651 652 0 clause(503)
+c original 643 644 645 646 647 648 649 650 651 652 -653 0 clause(508)
+c learned 643 644 645 646 647 648 649 650 651 652 0 clause(505)
+c original 138 -653 0 clause(510)
+c learned 138 0 clause(507)
+c assign 138 at level 0 by 138 0 clause(507)
+c original 137 -653 0 clause(512)
+c learned 137 0 clause(509)
+c assign 137 at level 0 by 137 0 clause(509)
+c original 136 -653 0 clause(514)
+c learned 136 0 clause(511)
+c assign 136 at level 0 by 136 0 clause(511)
+c original 135 -653 0 clause(516)
+c learned 135 0 clause(513)
+c assign 135 at level 0 by 135 0 clause(513)
+c original 134 -653 0 clause(518)
+c learned 134 0 clause(515)
+c assign 134 at level 0 by 134 0 clause(515)
+c original 133 -653 0 clause(520)
+c learned 133 0 clause(517)
+c assign 133 at level 0 by 133 0 clause(517)
+c original 132 -653 0 clause(522)
+c learned 132 0 clause(519)
+c assign 132 at level 0 by 132 0 clause(519)
+c original 131 -653 0 clause(524)
+c learned 131 0 clause(521)
+c assign 131 at level 0 by 131 0 clause(521)
+c original 130 -653 0 clause(526)
+c learned 130 0 clause(523)
+c assign 130 at level 0 by 130 0 clause(523)
+c original 129 -653 0 clause(528)
+c learned 129 0 clause(525)
+c assign 129 at level 0 by 129 0 clause(525)
+c original 128 -653 0 clause(530)
+c learned 128 0 clause(527)
+c assign 128 at level 0 by 128 0 clause(527)
+c original 127 -653 0 clause(532)
+c learned 127 0 clause(529)
+c assign 127 at level 0 by 127 0 clause(529)
+c original 126 -653 0 clause(534)
+c learned 126 0 clause(531)
+c assign 126 at level 0 by 126 0 clause(531)
+c original 125 -653 0 clause(536)
+c learned 125 0 clause(533)
+c assign 125 at level 0 by 125 0 clause(533)
+c original 124 -653 0 clause(538)
+c learned 124 0 clause(535)
+c assign 124 at level 0 by 124 0 clause(535)
+c original 123 -653 0 clause(540)
+c learned 123 0 clause(537)
+c assign 123 at level 0 by 123 0 clause(537)
+c original 122 -653 0 clause(542)
+c learned 122 0 clause(539)
+c assign 122 at level 0 by 122 0 clause(539)
+c original 121 -653 0 clause(544)
+c learned 121 0 clause(541)
+c assign 121 at level 0 by 121 0 clause(541)
+c original 120 -653 0 clause(546)
+c learned 120 0 clause(543)
+c assign 120 at level 0 by 120 0 clause(543)
+c original 119 -653 0 clause(548)
+c learned 119 0 clause(545)
+c assign 119 at level 0 by 119 0 clause(545)
+c original 118 -653 0 clause(550)
+c learned 118 0 clause(547)
+c assign 118 at level 0 by 118 0 clause(547)
+c original 117 -653 0 clause(552)
+c learned 117 0 clause(549)
+c assign 117 at level 0 by 117 0 clause(549)
+c original 116 -653 0 clause(554)
+c learned 116 0 clause(551)
+c assign 116 at level 0 by 116 0 clause(551)
+c original 115 -653 0 clause(556)
+c learned 115 0 clause(553)
+c assign 115 at level 0 by 115 0 clause(553)
+c original 114 -653 0 clause(558)
+c learned 114 0 clause(555)
+c assign 114 at level 0 by 114 0 clause(555)
+c original 113 -653 0 clause(560)
+c learned 113 0 clause(557)
+c assign 113 at level 0 by 113 0 clause(557)
+c original 112 -653 0 clause(562)
+c learned 112 0 clause(559)
+c assign 112 at level 0 by 112 0 clause(559)
+c original 111 -653 0 clause(564)
+c learned 111 0 clause(561)
+c assign 111 at level 0 by 111 0 clause(561)
+c original 110 -653 0 clause(566)
+c learned 110 0 clause(563)
+c assign 110 at level 0 by 110 0 clause(563)
+c original 109 -653 0 clause(568)
+c learned 109 0 clause(565)
+c assign 109 at level 0 by 109 0 clause(565)
+c original 108 -653 0 clause(570)
+c learned 108 0 clause(567)
+c assign 108 at level 0 by 108 0 clause(567)
+c original 107 -653 0 clause(572)
+c learned 107 0 clause(569)
+c assign 107 at level 0 by 107 0 clause(569)
+c original 106 -653 0 clause(574)
+c learned 106 0 clause(571)
+c assign 106 at level 0 by 106 0 clause(571)
+c original 105 -653 0 clause(576)
+c learned 105 0 clause(573)
+c assign 105 at level 0 by 105 0 clause(573)
+c original 104 -653 0 clause(578)
+c learned 104 0 clause(575)
+c assign 104 at level 0 by 104 0 clause(575)
+c original 103 -653 0 clause(580)
+c learned 103 0 clause(577)
+c assign 103 at level 0 by 103 0 clause(577)
+c original 102 -653 0 clause(582)
+c learned 102 0 clause(579)
+c assign 102 at level 0 by 102 0 clause(579)
+c original 101 -653 0 clause(584)
+c learned 101 0 clause(581)
+c assign 101 at level 0 by 101 0 clause(581)
+c original 100 -653 0 clause(586)
+c learned 100 0 clause(583)
+c assign 100 at level 0 by 100 0 clause(583)
+c original 99 -653 0 clause(588)
+c learned 99 0 clause(585)
+c assign 99 at level 0 by 99 0 clause(585)
+c original 98 -653 0 clause(590)
+c learned 98 0 clause(587)
+c assign 98 at level 0 by 98 0 clause(587)
+c original 97 -653 0 clause(592)
+c learned 97 0 clause(589)
+c assign 97 at level 0 by 97 0 clause(589)
+c original 96 -653 0 clause(594)
+c learned 96 0 clause(591)
+c assign 96 at level 0 by 96 0 clause(591)
+c original 95 -653 0 clause(596)
+c learned 95 0 clause(593)
+c assign 95 at level 0 by 95 0 clause(593)
+c original 93 -653 0 clause(598)
+c learned 93 0 clause(595)
+c assign 93 at level 0 by 93 0 clause(595)
+c original 94 -653 0 clause(600)
+c learned 94 0 clause(597)
+c assign 94 at level 0 by 94 0 clause(597)
+c original -588 643 -652 0 clause(602)
+c original 588 -643 -652 0 clause(604)
+c original -587 642 -652 0 clause(606)
+c original 587 -642 -652 0 clause(608)
+c original -586 641 -652 0 clause(610)
+c original 586 -641 -652 0 clause(612)
+c original -585 640 -652 0 clause(614)
+c original 585 -640 -652 0 clause(616)
+c original -584 639 -652 0 clause(618)
+c original 584 -639 -652 0 clause(620)
+c original -583 638 -652 0 clause(622)
+c original 583 -638 -652 0 clause(624)
+c original -582 637 -652 0 clause(626)
+c original 582 -637 -652 0 clause(628)
+c original -581 636 -652 0 clause(630)
+c original 581 -636 -652 0 clause(632)
+c original -580 635 -652 0 clause(634)
+c original 580 -635 -652 0 clause(636)
+c original -579 634 -652 0 clause(638)
+c original 579 -634 -652 0 clause(640)
+c original -578 633 -652 0 clause(642)
+c original 578 -633 -652 0 clause(644)
+c original -577 632 -652 0 clause(646)
+c original 577 -632 -652 0 clause(648)
+c original -576 631 -652 0 clause(650)
+c original 576 -631 -652 0 clause(652)
+c original -575 630 -652 0 clause(654)
+c original 575 -630 -652 0 clause(656)
+c original -574 629 -652 0 clause(658)
+c original 574 -629 -652 0 clause(660)
+c original -573 628 -652 0 clause(662)
+c original 573 -628 -652 0 clause(664)
+c original -572 627 -652 0 clause(666)
+c original 572 -627 -652 0 clause(668)
+c original -571 626 -652 0 clause(670)
+c original 571 -626 -652 0 clause(672)
+c original -570 625 -652 0 clause(674)
+c original 570 -625 -652 0 clause(676)
+c original -569 624 -652 0 clause(678)
+c original 569 -624 -652 0 clause(680)
+c original -568 623 -652 0 clause(682)
+c original 568 -623 -652 0 clause(684)
+c original -567 622 -652 0 clause(686)
+c original 567 -622 -652 0 clause(688)
+c original -566 621 -652 0 clause(690)
+c original 566 -621 -652 0 clause(692)
+c original -565 620 -652 0 clause(694)
+c original 565 -620 -652 0 clause(696)
+c original -564 619 -652 0 clause(698)
+c original 564 -619 -652 0 clause(700)
+c original -563 618 -652 0 clause(702)
+c original 563 -618 -652 0 clause(704)
+c original -562 617 -652 0 clause(706)
+c original 562 -617 -652 0 clause(708)
+c original -561 616 -652 0 clause(710)
+c original 561 -616 -652 0 clause(712)
+c original -560 615 -652 0 clause(714)
+c original 560 -615 -652 0 clause(716)
+c original -559 614 -652 0 clause(718)
+c original 559 -614 -652 0 clause(720)
+c original -558 613 -652 0 clause(722)
+c original 558 -613 -652 0 clause(724)
+c original -557 612 -652 0 clause(726)
+c original 557 -612 -652 0 clause(728)
+c original -556 611 -652 0 clause(730)
+c original 556 -611 -652 0 clause(732)
+c original -555 610 -652 0 clause(734)
+c original 555 -610 -652 0 clause(736)
+c original -554 609 -652 0 clause(738)
+c original 554 -609 -652 0 clause(740)
+c original -553 608 -652 0 clause(742)
+c original 553 -608 -652 0 clause(744)
+c original -552 607 -652 0 clause(746)
+c original 552 -607 -652 0 clause(748)
+c original -551 606 -652 0 clause(750)
+c original 551 -606 -652 0 clause(752)
+c original -550 605 -652 0 clause(754)
+c original 550 -605 -652 0 clause(756)
+c original -549 604 -652 0 clause(758)
+c original 549 -604 -652 0 clause(760)
+c original -548 603 -652 0 clause(762)
+c original 548 -603 -652 0 clause(764)
+c original -547 602 -652 0 clause(766)
+c original 547 -602 -652 0 clause(768)
+c original -546 601 -652 0 clause(770)
+c original 546 -601 -652 0 clause(772)
+c original -545 600 -652 0 clause(774)
+c original 545 -600 -652 0 clause(776)
+c original -544 599 -652 0 clause(778)
+c original 544 -599 -652 0 clause(780)
+c original 543 -598 -652 0 clause(782)
+c original -543 598 -652 0 clause(784)
+c original 534 -643 -651 0 clause(786)
+c original -534 643 -651 0 clause(788)
+c original 533 -642 -651 0 clause(790)
+c original -533 642 -651 0 clause(792)
+c original 532 -641 -651 0 clause(794)
+c original -532 641 -651 0 clause(796)
+c original 531 -640 -651 0 clause(798)
+c original -531 640 -651 0 clause(800)
+c original 530 -639 -651 0 clause(802)
+c original -530 639 -651 0 clause(804)
+c original 529 -638 -651 0 clause(806)
+c original -529 638 -651 0 clause(808)
+c original 528 -637 -651 0 clause(810)
+c original -528 637 -651 0 clause(812)
+c original 527 -636 -651 0 clause(814)
+c original -527 636 -651 0 clause(816)
+c original 526 -635 -651 0 clause(818)
+c original -526 635 -651 0 clause(820)
+c original 525 -634 -651 0 clause(822)
+c original -525 634 -651 0 clause(824)
+c original 524 -633 -651 0 clause(826)
+c original -524 633 -651 0 clause(828)
+c original 523 -632 -651 0 clause(830)
+c original -523 632 -651 0 clause(832)
+c original 522 -631 -651 0 clause(834)
+c original -522 631 -651 0 clause(836)
+c original 521 -630 -651 0 clause(838)
+c original -521 630 -651 0 clause(840)
+c original 520 -629 -651 0 clause(842)
+c original -520 629 -651 0 clause(844)
+c original 519 -628 -651 0 clause(846)
+c original -519 628 -651 0 clause(848)
+c original 518 -627 -651 0 clause(850)
+c original -518 627 -651 0 clause(852)
+c original 517 -626 -651 0 clause(854)
+c original -517 626 -651 0 clause(856)
+c original 516 -625 -651 0 clause(858)
+c original -516 625 -651 0 clause(860)
+c original 515 -624 -651 0 clause(862)
+c original -515 624 -651 0 clause(864)
+c original 514 -623 -651 0 clause(866)
+c original -514 623 -651 0 clause(868)
+c original 513 -622 -651 0 clause(870)
+c original -513 622 -651 0 clause(872)
+c original 512 -621 -651 0 clause(874)
+c original -512 621 -651 0 clause(876)
+c original 511 -620 -651 0 clause(878)
+c original -511 620 -651 0 clause(880)
+c original 510 -619 -651 0 clause(882)
+c original -510 619 -651 0 clause(884)
+c original 509 -618 -651 0 clause(886)
+c original -509 618 -651 0 clause(888)
+c original 508 -617 -651 0 clause(890)
+c original -508 617 -651 0 clause(892)
+c original 507 -616 -651 0 clause(894)
+c original -507 616 -651 0 clause(896)
+c original 506 -615 -651 0 clause(898)
+c original -506 615 -651 0 clause(900)
+c original 505 -614 -651 0 clause(902)
+c original -505 614 -651 0 clause(904)
+c original 504 -613 -651 0 clause(906)
+c original -504 613 -651 0 clause(908)
+c original 503 -612 -651 0 clause(910)
+c original -503 612 -651 0 clause(912)
+c original 502 -611 -651 0 clause(914)
+c original -502 611 -651 0 clause(916)
+c original 501 -610 -651 0 clause(918)
+c original -501 610 -651 0 clause(920)
+c original 500 -609 -651 0 clause(922)
+c original -500 609 -651 0 clause(924)
+c original 499 -608 -651 0 clause(926)
+c original -499 608 -651 0 clause(928)
+c original 498 -607 -651 0 clause(930)
+c original -498 607 -651 0 clause(932)
+c original 497 -606 -651 0 clause(934)
+c original -497 606 -651 0 clause(936)
+c original 496 -605 -651 0 clause(938)
+c original -496 605 -651 0 clause(940)
+c original 495 -604 -651 0 clause(942)
+c original -495 604 -651 0 clause(944)
+c original 494 -603 -651 0 clause(946)
+c original -494 603 -651 0 clause(948)
+c original 493 -602 -651 0 clause(950)
+c original -493 602 -651 0 clause(952)
+c original 492 -601 -651 0 clause(954)
+c original -492 601 -651 0 clause(956)
+c original 491 -600 -651 0 clause(958)
+c original -491 600 -651 0 clause(960)
+c original 490 -599 -651 0 clause(962)
+c original -490 599 -651 0 clause(964)
+c original 489 -598 -651 0 clause(966)
+c original -489 598 -651 0 clause(968)
+c original 481 -643 -650 0 clause(970)
+c original -481 643 -650 0 clause(972)
+c original 480 -642 -650 0 clause(974)
+c original -480 642 -650 0 clause(976)
+c original 479 -641 -650 0 clause(978)
+c original -479 641 -650 0 clause(980)
+c original 478 -640 -650 0 clause(982)
+c original -478 640 -650 0 clause(984)
+c original 477 -639 -650 0 clause(986)
+c original -477 639 -650 0 clause(988)
+c original 476 -638 -650 0 clause(990)
+c original -476 638 -650 0 clause(992)
+c original 475 -637 -650 0 clause(994)
+c original -475 637 -650 0 clause(996)
+c original 474 -636 -650 0 clause(998)
+c original -474 636 -650 0 clause(1000)
+c original 473 -635 -650 0 clause(1002)
+c original -473 635 -650 0 clause(1004)
+c original 472 -634 -650 0 clause(1006)
+c original -472 634 -650 0 clause(1008)
+c original 471 -633 -650 0 clause(1010)
+c original -471 633 -650 0 clause(1012)
+c original 470 -632 -650 0 clause(1014)
+c original -470 632 -650 0 clause(1016)
+c original 469 -631 -650 0 clause(1018)
+c original -469 631 -650 0 clause(1020)
+c original 468 -630 -650 0 clause(1022)
+c original -468 630 -650 0 clause(1024)
+c original 467 -629 -650 0 clause(1026)
+c original -467 629 -650 0 clause(1028)
+c original 466 -628 -650 0 clause(1030)
+c original -466 628 -650 0 clause(1032)
+c original 465 -627 -650 0 clause(1034)
+c original -465 627 -650 0 clause(1036)
+c original 464 -626 -650 0 clause(1038)
+c original -464 626 -650 0 clause(1040)
+c original 463 -625 -650 0 clause(1042)
+c original -463 625 -650 0 clause(1044)
+c original 462 -624 -650 0 clause(1046)
+c original -462 624 -650 0 clause(1048)
+c original 461 -623 -650 0 clause(1050)
+c original -461 623 -650 0 clause(1052)
+c original 460 -622 -650 0 clause(1054)
+c original -460 622 -650 0 clause(1056)
+c original 458 -620 -650 0 clause(1058)
+c original -458 620 -650 0 clause(1060)
+c original 457 -619 -650 0 clause(1062)
+c original -457 619 -650 0 clause(1064)
+c original 456 -618 -650 0 clause(1066)
+c original -456 618 -650 0 clause(1068)
+c original 455 -617 -650 0 clause(1070)
+c original -455 617 -650 0 clause(1072)
+c original 454 -616 -650 0 clause(1074)
+c original -454 616 -650 0 clause(1076)
+c original 453 -615 -650 0 clause(1078)
+c original -453 615 -650 0 clause(1080)
+c original 452 -614 -650 0 clause(1082)
+c original -452 614 -650 0 clause(1084)
+c original 451 -613 -650 0 clause(1086)
+c original -451 613 -650 0 clause(1088)
+c original 450 -612 -650 0 clause(1090)
+c original -450 612 -650 0 clause(1092)
+c original 449 -611 -650 0 clause(1094)
+c original -449 611 -650 0 clause(1096)
+c original 448 -610 -650 0 clause(1098)
+c original -448 610 -650 0 clause(1100)
+c original 447 -609 -650 0 clause(1102)
+c original -447 609 -650 0 clause(1104)
+c original 446 -608 -650 0 clause(1106)
+c original -446 608 -650 0 clause(1108)
+c original 445 -607 -650 0 clause(1110)
+c original -445 607 -650 0 clause(1112)
+c original 444 -606 -650 0 clause(1114)
+c original -444 606 -650 0 clause(1116)
+c original 443 -605 -650 0 clause(1118)
+c original -443 605 -650 0 clause(1120)
+c original 442 -604 -650 0 clause(1122)
+c original -442 604 -650 0 clause(1124)
+c original 441 -603 -650 0 clause(1126)
+c original -441 603 -650 0 clause(1128)
+c original 440 -602 -650 0 clause(1130)
+c original -440 602 -650 0 clause(1132)
+c original 439 -601 -650 0 clause(1134)
+c original -439 601 -650 0 clause(1136)
+c original 438 -600 -650 0 clause(1138)
+c original -438 600 -650 0 clause(1140)
+c original 437 -599 -650 0 clause(1142)
+c original -437 599 -650 0 clause(1144)
+c original 436 -598 -650 0 clause(1146)
+c original -436 598 -650 0 clause(1148)
+c original 459 -621 -650 0 clause(1150)
+c original -459 621 -650 0 clause(1152)
+c original 384 -643 -649 0 clause(1154)
+c original -384 643 -649 0 clause(1156)
+c original 385 -642 -649 0 clause(1158)
+c original -385 642 -649 0 clause(1160)
+c original 386 -641 -649 0 clause(1162)
+c original -386 641 -649 0 clause(1164)
+c original 387 -640 -649 0 clause(1166)
+c original -387 640 -649 0 clause(1168)
+c original 388 -639 -649 0 clause(1170)
+c original -388 639 -649 0 clause(1172)
+c original 389 -638 -649 0 clause(1174)
+c original -389 638 -649 0 clause(1176)
+c original 390 -637 -649 0 clause(1178)
+c original -390 637 -649 0 clause(1180)
+c original 391 -636 -649 0 clause(1182)
+c original -391 636 -649 0 clause(1184)
+c original 392 -635 -649 0 clause(1186)
+c original -392 635 -649 0 clause(1188)
+c original 393 -634 -649 0 clause(1190)
+c original -393 634 -649 0 clause(1192)
+c original 394 -633 -649 0 clause(1194)
+c original -394 633 -649 0 clause(1196)
+c original 395 -632 -649 0 clause(1198)
+c original -395 632 -649 0 clause(1200)
+c original 396 -631 -649 0 clause(1202)
+c original -396 631 -649 0 clause(1204)
+c original 397 -630 -649 0 clause(1206)
+c original -397 630 -649 0 clause(1208)
+c original 398 -629 -649 0 clause(1210)
+c original -398 629 -649 0 clause(1212)
+c original 399 -628 -649 0 clause(1214)
+c original -399 628 -649 0 clause(1216)
+c original 400 -627 -649 0 clause(1218)
+c original -400 627 -649 0 clause(1220)
+c original 401 -626 -649 0 clause(1222)
+c original -401 626 -649 0 clause(1224)
+c original 402 -625 -649 0 clause(1226)
+c original -402 625 -649 0 clause(1228)
+c original 403 -624 -649 0 clause(1230)
+c original -403 624 -649 0 clause(1232)
+c original 404 -623 -649 0 clause(1234)
+c original -404 623 -649 0 clause(1236)
+c original 405 -622 -649 0 clause(1238)
+c original -405 622 -649 0 clause(1240)
+c original 406 -621 -649 0 clause(1242)
+c original -406 621 -649 0 clause(1244)
+c original 407 -620 -649 0 clause(1246)
+c original -407 620 -649 0 clause(1248)
+c original 408 -619 -649 0 clause(1250)
+c original -408 619 -649 0 clause(1252)
+c original 409 -618 -649 0 clause(1254)
+c original -409 618 -649 0 clause(1256)
+c original 410 -617 -649 0 clause(1258)
+c original -410 617 -649 0 clause(1260)
+c original 411 -616 -649 0 clause(1262)
+c original -411 616 -649 0 clause(1264)
+c original 412 -615 -649 0 clause(1266)
+c original -412 615 -649 0 clause(1268)
+c original 413 -614 -649 0 clause(1270)
+c original -413 614 -649 0 clause(1272)
+c original 414 -613 -649 0 clause(1274)
+c original -414 613 -649 0 clause(1276)
+c original 415 -612 -649 0 clause(1278)
+c original -415 612 -649 0 clause(1280)
+c original 416 -611 -649 0 clause(1282)
+c original -416 611 -649 0 clause(1284)
+c original 417 -610 -649 0 clause(1286)
+c original -417 610 -649 0 clause(1288)
+c original 418 -609 -649 0 clause(1290)
+c original -418 609 -649 0 clause(1292)
+c original 419 -608 -649 0 clause(1294)
+c original -419 608 -649 0 clause(1296)
+c original 420 -607 -649 0 clause(1298)
+c original -420 607 -649 0 clause(1300)
+c original 421 -606 -649 0 clause(1302)
+c original -421 606 -649 0 clause(1304)
+c original 422 -605 -649 0 clause(1306)
+c original -422 605 -649 0 clause(1308)
+c original 424 -603 -649 0 clause(1310)
+c original -424 603 -649 0 clause(1312)
+c original 425 -602 -649 0 clause(1314)
+c original -425 602 -649 0 clause(1316)
+c original 426 -601 -649 0 clause(1318)
+c original -426 601 -649 0 clause(1320)
+c original 427 -600 -649 0 clause(1322)
+c original -427 600 -649 0 clause(1324)
+c original 429 -599 -649 0 clause(1326)
+c original -429 599 -649 0 clause(1328)
+c original 428 -598 -649 0 clause(1330)
+c original -428 598 -649 0 clause(1332)
+c original 423 -604 -649 0 clause(1334)
+c original -423 604 -649 0 clause(1336)
+c original 375 -640 -648 0 clause(1338)
+c original -375 640 -648 0 clause(1340)
+c original 374 -639 -648 0 clause(1342)
+c original -374 639 -648 0 clause(1344)
+c original 373 -638 -648 0 clause(1346)
+c original -373 638 -648 0 clause(1348)
+c original 372 -637 -648 0 clause(1350)
+c original -372 637 -648 0 clause(1352)
+c original 371 -636 -648 0 clause(1354)
+c original -371 636 -648 0 clause(1356)
+c original 370 -635 -648 0 clause(1358)
+c original -370 635 -648 0 clause(1360)
+c original 369 -634 -648 0 clause(1362)
+c original -369 634 -648 0 clause(1364)
+c original 368 -633 -648 0 clause(1366)
+c original -368 633 -648 0 clause(1368)
+c original 367 -632 -648 0 clause(1370)
+c original -367 632 -648 0 clause(1372)
+c original 366 -631 -648 0 clause(1374)
+c original -366 631 -648 0 clause(1376)
+c original 365 -630 -648 0 clause(1378)
+c original -365 630 -648 0 clause(1380)
+c original 364 -629 -648 0 clause(1382)
+c original -364 629 -648 0 clause(1384)
+c original 363 -628 -648 0 clause(1386)
+c original -363 628 -648 0 clause(1388)
+c original 362 -627 -648 0 clause(1390)
+c original -362 627 -648 0 clause(1392)
+c original 361 -626 -648 0 clause(1394)
+c original -361 626 -648 0 clause(1396)
+c original 360 -625 -648 0 clause(1398)
+c original -360 625 -648 0 clause(1400)
+c original 359 -624 -648 0 clause(1402)
+c original -359 624 -648 0 clause(1404)
+c original 357 -622 -648 0 clause(1406)
+c original -357 622 -648 0 clause(1408)
+c original 356 -621 -648 0 clause(1410)
+c original -356 621 -648 0 clause(1412)
+c original 355 -620 -648 0 clause(1414)
+c original -355 620 -648 0 clause(1416)
+c original 354 -619 -648 0 clause(1418)
+c original -354 619 -648 0 clause(1420)
+c original 353 -618 -648 0 clause(1422)
+c original -353 618 -648 0 clause(1424)
+c original 352 -617 -648 0 clause(1426)
+c original -352 617 -648 0 clause(1428)
+c original 351 -616 -648 0 clause(1430)
+c original -351 616 -648 0 clause(1432)
+c original 350 -615 -648 0 clause(1434)
+c original -350 615 -648 0 clause(1436)
+c original 349 -614 -648 0 clause(1438)
+c original -349 614 -648 0 clause(1440)
+c original 348 -613 -648 0 clause(1442)
+c original -348 613 -648 0 clause(1444)
+c original 347 -612 -648 0 clause(1446)
+c original -347 612 -648 0 clause(1448)
+c original 346 -611 -648 0 clause(1450)
+c original -346 611 -648 0 clause(1452)
+c original 345 -610 -648 0 clause(1454)
+c original -345 610 -648 0 clause(1456)
+c original 344 -609 -648 0 clause(1458)
+c original -344 609 -648 0 clause(1460)
+c original 343 -608 -648 0 clause(1462)
+c original -343 608 -648 0 clause(1464)
+c original 342 -607 -648 0 clause(1466)
+c original -342 607 -648 0 clause(1468)
+c original 341 -606 -648 0 clause(1470)
+c original -341 606 -648 0 clause(1472)
+c original 340 -605 -648 0 clause(1474)
+c original -340 605 -648 0 clause(1476)
+c original 339 -604 -648 0 clause(1478)
+c original -339 604 -648 0 clause(1480)
+c original 338 -603 -648 0 clause(1482)
+c original -338 603 -648 0 clause(1484)
+c original 337 -602 -648 0 clause(1486)
+c original -337 602 -648 0 clause(1488)
+c original 336 -601 -648 0 clause(1490)
+c original -336 601 -648 0 clause(1492)
+c original 335 -600 -648 0 clause(1494)
+c original -335 600 -648 0 clause(1496)
+c original 334 -599 -648 0 clause(1498)
+c original -334 599 -648 0 clause(1500)
+c original 333 -598 -648 0 clause(1502)
+c original -333 598 -648 0 clause(1504)
+c original 358 -623 -648 0 clause(1506)
+c original -358 623 -648 0 clause(1508)
+c original 376 -641 -648 0 clause(1510)
+c original -376 641 -648 0 clause(1512)
+c original 377 -642 -648 0 clause(1514)
+c original -377 642 -648 0 clause(1516)
+c original 378 -643 -648 0 clause(1518)
+c original -378 643 -648 0 clause(1520)
+c original 283 -643 -647 0 clause(1522)
+c original -283 643 -647 0 clause(1524)
+c original 284 -642 -647 0 clause(1526)
+c original -284 642 -647 0 clause(1528)
+c original 285 -641 -647 0 clause(1530)
+c original -285 641 -647 0 clause(1532)
+c original 286 -640 -647 0 clause(1534)
+c original -286 640 -647 0 clause(1536)
+c original 287 -639 -647 0 clause(1538)
+c original -287 639 -647 0 clause(1540)
+c original 288 -638 -647 0 clause(1542)
+c original -288 638 -647 0 clause(1544)
+c original 289 -637 -647 0 clause(1546)
+c original -289 637 -647 0 clause(1548)
+c original 290 -636 -647 0 clause(1550)
+c original -290 636 -647 0 clause(1552)
+c original 291 -635 -647 0 clause(1554)
+c original -291 635 -647 0 clause(1556)
+c original 292 -634 -647 0 clause(1558)
+c original -292 634 -647 0 clause(1560)
+c original 293 -633 -647 0 clause(1562)
+c original -293 633 -647 0 clause(1564)
+c original 294 -632 -647 0 clause(1566)
+c original -294 632 -647 0 clause(1568)
+c original 295 -631 -647 0 clause(1570)
+c original -295 631 -647 0 clause(1572)
+c original 296 -630 -647 0 clause(1574)
+c original -296 630 -647 0 clause(1576)
+c original 297 -629 -647 0 clause(1578)
+c original -297 629 -647 0 clause(1580)
+c original 298 -628 -647 0 clause(1582)
+c original -298 628 -647 0 clause(1584)
+c original 299 -627 -647 0 clause(1586)
+c original -299 627 -647 0 clause(1588)
+c original 300 -626 -647 0 clause(1590)
+c original -300 626 -647 0 clause(1592)
+c original 301 -625 -647 0 clause(1594)
+c original -301 625 -647 0 clause(1596)
+c original 302 -624 -647 0 clause(1598)
+c original -302 624 -647 0 clause(1600)
+c original 303 -623 -647 0 clause(1602)
+c original -303 623 -647 0 clause(1604)
+c original 304 -622 -647 0 clause(1606)
+c original -304 622 -647 0 clause(1608)
+c original 305 -621 -647 0 clause(1610)
+c original -305 621 -647 0 clause(1612)
+c original 306 -620 -647 0 clause(1614)
+c original -306 620 -647 0 clause(1616)
+c original 307 -619 -647 0 clause(1618)
+c original -307 619 -647 0 clause(1620)
+c original 308 -618 -647 0 clause(1622)
+c original -308 618 -647 0 clause(1624)
+c original 309 -617 -647 0 clause(1626)
+c original -309 617 -647 0 clause(1628)
+c original 310 -616 -647 0 clause(1630)
+c original -310 616 -647 0 clause(1632)
+c original 311 -615 -647 0 clause(1634)
+c original -311 615 -647 0 clause(1636)
+c original 312 -614 -647 0 clause(1638)
+c original -312 614 -647 0 clause(1640)
+c original 313 -613 -647 0 clause(1642)
+c original -313 613 -647 0 clause(1644)
+c original 314 -612 -647 0 clause(1646)
+c original -314 612 -647 0 clause(1648)
+c original 315 -611 -647 0 clause(1650)
+c original -315 611 -647 0 clause(1652)
+c original 316 -610 -647 0 clause(1654)
+c original -316 610 -647 0 clause(1656)
+c original 317 -609 -647 0 clause(1658)
+c original -317 609 -647 0 clause(1660)
+c original 318 -608 -647 0 clause(1662)
+c original -318 608 -647 0 clause(1664)
+c original 319 -607 -647 0 clause(1666)
+c original -319 607 -647 0 clause(1668)
+c original 320 -606 -647 0 clause(1670)
+c original -320 606 -647 0 clause(1672)
+c original 321 -605 -647 0 clause(1674)
+c original -321 605 -647 0 clause(1676)
+c original 322 -604 -647 0 clause(1678)
+c original -322 604 -647 0 clause(1680)
+c original 323 -603 -647 0 clause(1682)
+c original -323 603 -647 0 clause(1684)
+c original 324 -602 -647 0 clause(1686)
+c original -324 602 -647 0 clause(1688)
+c original 325 -601 -647 0 clause(1690)
+c original -325 601 -647 0 clause(1692)
+c original 326 -600 -647 0 clause(1694)
+c original -326 600 -647 0 clause(1696)
+c original 328 -599 -647 0 clause(1698)
+c original -328 599 -647 0 clause(1700)
+c original 327 -598 -647 0 clause(1702)
+c original -327 598 -647 0 clause(1704)
+c original 279 -643 -646 0 clause(1706)
+c original -279 643 -646 0 clause(1708)
+c original 278 -642 -646 0 clause(1710)
+c original -278 642 -646 0 clause(1712)
+c original 277 -641 -646 0 clause(1714)
+c original -277 641 -646 0 clause(1716)
+c original 276 -640 -646 0 clause(1718)
+c original -276 640 -646 0 clause(1720)
+c original 275 -639 -646 0 clause(1722)
+c original -275 639 -646 0 clause(1724)
+c original 274 -638 -646 0 clause(1726)
+c original -274 638 -646 0 clause(1728)
+c original 273 -637 -646 0 clause(1730)
+c original -273 637 -646 0 clause(1732)
+c original 272 -636 -646 0 clause(1734)
+c original -272 636 -646 0 clause(1736)
+c original 271 -635 -646 0 clause(1738)
+c original -271 635 -646 0 clause(1740)
+c original 270 -634 -646 0 clause(1742)
+c original -270 634 -646 0 clause(1744)
+c original 269 -633 -646 0 clause(1746)
+c original -269 633 -646 0 clause(1748)
+c original 268 -632 -646 0 clause(1750)
+c original -268 632 -646 0 clause(1752)
+c original 264 -631 -646 0 clause(1754)
+c original -264 631 -646 0 clause(1756)
+c original 263 -630 -646 0 clause(1758)
+c original -263 630 -646 0 clause(1760)
+c original 262 -629 -646 0 clause(1762)
+c original -262 629 -646 0 clause(1764)
+c original 261 -628 -646 0 clause(1766)
+c original -261 628 -646 0 clause(1768)
+c original 260 -627 -646 0 clause(1770)
+c original -260 627 -646 0 clause(1772)
+c original 259 -626 -646 0 clause(1774)
+c original -259 626 -646 0 clause(1776)
+c original 258 -625 -646 0 clause(1778)
+c original -258 625 -646 0 clause(1780)
+c original 257 -624 -646 0 clause(1782)
+c original -257 624 -646 0 clause(1784)
+c original 256 -623 -646 0 clause(1786)
+c original -256 623 -646 0 clause(1788)
+c original 255 -622 -646 0 clause(1790)
+c original -255 622 -646 0 clause(1792)
+c original 254 -621 -646 0 clause(1794)
+c original -254 621 -646 0 clause(1796)
+c original 253 -620 -646 0 clause(1798)
+c original -253 620 -646 0 clause(1800)
+c original 252 -619 -646 0 clause(1802)
+c original -252 619 -646 0 clause(1804)
+c original 251 -618 -646 0 clause(1806)
+c original -251 618 -646 0 clause(1808)
+c original 250 -617 -646 0 clause(1810)
+c original -250 617 -646 0 clause(1812)
+c original 249 -616 -646 0 clause(1814)
+c original -249 616 -646 0 clause(1816)
+c original 248 -615 -646 0 clause(1818)
+c original -248 615 -646 0 clause(1820)
+c original 247 -614 -646 0 clause(1822)
+c original -247 614 -646 0 clause(1824)
+c original 246 -613 -646 0 clause(1826)
+c original -246 613 -646 0 clause(1828)
+c original 245 -612 -646 0 clause(1830)
+c original -245 612 -646 0 clause(1832)
+c original 244 -611 -646 0 clause(1834)
+c original -244 611 -646 0 clause(1836)
+c original 243 -610 -646 0 clause(1838)
+c original -243 610 -646 0 clause(1840)
+c original 242 -609 -646 0 clause(1842)
+c original -242 609 -646 0 clause(1844)
+c original 241 -608 -646 0 clause(1846)
+c original -241 608 -646 0 clause(1848)
+c original 240 -607 -646 0 clause(1850)
+c original -240 607 -646 0 clause(1852)
+c original 239 -606 -646 0 clause(1854)
+c original -239 606 -646 0 clause(1856)
+c original 238 -605 -646 0 clause(1858)
+c original -238 605 -646 0 clause(1860)
+c original 237 -604 -646 0 clause(1862)
+c original -237 604 -646 0 clause(1864)
+c original 236 -603 -646 0 clause(1866)
+c original -236 603 -646 0 clause(1868)
+c original 235 -602 -646 0 clause(1870)
+c original -235 602 -646 0 clause(1872)
+c original 234 -601 -646 0 clause(1874)
+c original -234 601 -646 0 clause(1876)
+c original 233 -600 -646 0 clause(1878)
+c original -233 600 -646 0 clause(1880)
+c original 232 -599 -646 0 clause(1882)
+c original -232 599 -646 0 clause(1884)
+c original 231 -598 -646 0 clause(1886)
+c original -231 598 -646 0 clause(1888)
+c original 230 -643 -645 0 clause(1890)
+c original -230 643 -645 0 clause(1892)
+c original 229 -642 -645 0 clause(1894)
+c original -229 642 -645 0 clause(1896)
+c original 228 -641 -645 0 clause(1898)
+c original -228 641 -645 0 clause(1900)
+c original 227 -640 -645 0 clause(1902)
+c original -227 640 -645 0 clause(1904)
+c original 226 -639 -645 0 clause(1906)
+c original -226 639 -645 0 clause(1908)
+c original 225 -638 -645 0 clause(1910)
+c original -225 638 -645 0 clause(1912)
+c original 224 -637 -645 0 clause(1914)
+c original -224 637 -645 0 clause(1916)
+c original 223 -636 -645 0 clause(1918)
+c original -223 636 -645 0 clause(1920)
+c original 221 -634 -645 0 clause(1922)
+c original -221 634 -645 0 clause(1924)
+c original 220 -633 -645 0 clause(1926)
+c original -220 633 -645 0 clause(1928)
+c original 219 -632 -645 0 clause(1930)
+c original -219 632 -645 0 clause(1932)
+c original 218 -631 -645 0 clause(1934)
+c original -218 631 -645 0 clause(1936)
+c original 217 -630 -645 0 clause(1938)
+c original -217 630 -645 0 clause(1940)
+c original 216 -629 -645 0 clause(1942)
+c original -216 629 -645 0 clause(1944)
+c original 215 -628 -645 0 clause(1946)
+c original -215 628 -645 0 clause(1948)
+c original 214 -627 -645 0 clause(1950)
+c original -214 627 -645 0 clause(1952)
+c original 213 -626 -645 0 clause(1954)
+c original -213 626 -645 0 clause(1956)
+c original 212 -625 -645 0 clause(1958)
+c original -212 625 -645 0 clause(1960)
+c original 211 -624 -645 0 clause(1962)
+c original -211 624 -645 0 clause(1964)
+c original 210 -623 -645 0 clause(1966)
+c original -210 623 -645 0 clause(1968)
+c original 209 -622 -645 0 clause(1970)
+c original -209 622 -645 0 clause(1972)
+c original 208 -621 -645 0 clause(1974)
+c original -208 621 -645 0 clause(1976)
+c original 207 -620 -645 0 clause(1978)
+c original -207 620 -645 0 clause(1980)
+c original 206 -619 -645 0 clause(1982)
+c original -206 619 -645 0 clause(1984)
+c original 205 -618 -645 0 clause(1986)
+c original -205 618 -645 0 clause(1988)
+c original 204 -617 -645 0 clause(1990)
+c original -204 617 -645 0 clause(1992)
+c original 203 -616 -645 0 clause(1994)
+c original -203 616 -645 0 clause(1996)
+c original 202 -615 -645 0 clause(1998)
+c original -202 615 -645 0 clause(2000)
+c original 201 -614 -645 0 clause(2002)
+c original -201 614 -645 0 clause(2004)
+c original 200 -613 -645 0 clause(2006)
+c original -200 613 -645 0 clause(2008)
+c original 199 -612 -645 0 clause(2010)
+c original -199 612 -645 0 clause(2012)
+c original 198 -611 -645 0 clause(2014)
+c original -198 611 -645 0 clause(2016)
+c original 197 -610 -645 0 clause(2018)
+c original -197 610 -645 0 clause(2020)
+c original 196 -609 -645 0 clause(2022)
+c original -196 609 -645 0 clause(2024)
+c original 195 -608 -645 0 clause(2026)
+c original -195 608 -645 0 clause(2028)
+c original 194 -607 -645 0 clause(2030)
+c original -194 607 -645 0 clause(2032)
+c original 193 -606 -645 0 clause(2034)
+c original -193 606 -645 0 clause(2036)
+c original 192 -605 -645 0 clause(2038)
+c original -192 605 -645 0 clause(2040)
+c original 191 -604 -645 0 clause(2042)
+c original -191 604 -645 0 clause(2044)
+c original 190 -603 -645 0 clause(2046)
+c original -190 603 -645 0 clause(2048)
+c original 189 -602 -645 0 clause(2050)
+c original -189 602 -645 0 clause(2052)
+c original 188 -601 -645 0 clause(2054)
+c original -188 601 -645 0 clause(2056)
+c original 187 -600 -645 0 clause(2058)
+c original -187 600 -645 0 clause(2060)
+c original 186 -599 -645 0 clause(2062)
+c original -186 599 -645 0 clause(2064)
+c original 185 -598 -645 0 clause(2066)
+c original -185 598 -645 0 clause(2068)
+c original 222 -635 -645 0 clause(2070)
+c original -222 635 -645 0 clause(2072)
+c original 184 -643 -644 0 clause(2074)
+c original -184 643 -644 0 clause(2076)
+c original 183 -642 -644 0 clause(2078)
+c original -183 642 -644 0 clause(2080)
+c original 182 -641 -644 0 clause(2082)
+c original -182 641 -644 0 clause(2084)
+c original 181 -640 -644 0 clause(2086)
+c original -181 640 -644 0 clause(2088)
+c original 180 -639 -644 0 clause(2090)
+c original -180 639 -644 0 clause(2092)
+c original 179 -638 -644 0 clause(2094)
+c original -179 638 -644 0 clause(2096)
+c original 178 -637 -644 0 clause(2098)
+c original -178 637 -644 0 clause(2100)
+c original 177 -636 -644 0 clause(2102)
+c original -177 636 -644 0 clause(2104)
+c original 176 -635 -644 0 clause(2106)
+c original -176 635 -644 0 clause(2108)
+c original 175 -634 -644 0 clause(2110)
+c original -175 634 -644 0 clause(2112)
+c original 174 -633 -644 0 clause(2114)
+c original -174 633 -644 0 clause(2116)
+c original 173 -632 -644 0 clause(2118)
+c original -173 632 -644 0 clause(2120)
+c original 172 -631 -644 0 clause(2122)
+c original -172 631 -644 0 clause(2124)
+c original 171 -630 -644 0 clause(2126)
+c original -171 630 -644 0 clause(2128)
+c original 170 -629 -644 0 clause(2130)
+c original -170 629 -644 0 clause(2132)
+c original 169 -628 -644 0 clause(2134)
+c original -169 628 -644 0 clause(2136)
+c original 168 -627 -644 0 clause(2138)
+c original -168 627 -644 0 clause(2140)
+c original 167 -626 -644 0 clause(2142)
+c original -167 626 -644 0 clause(2144)
+c original 166 -625 -644 0 clause(2146)
+c original -166 625 -644 0 clause(2148)
+c original 165 -624 -644 0 clause(2150)
+c original -165 624 -644 0 clause(2152)
+c original 164 -623 -644 0 clause(2154)
+c original -164 623 -644 0 clause(2156)
+c original 163 -622 -644 0 clause(2158)
+c original -163 622 -644 0 clause(2160)
+c original 162 -621 -644 0 clause(2162)
+c original -162 621 -644 0 clause(2164)
+c original 161 -620 -644 0 clause(2166)
+c original -161 620 -644 0 clause(2168)
+c original 160 -619 -644 0 clause(2170)
+c original -160 619 -644 0 clause(2172)
+c original 159 -618 -644 0 clause(2174)
+c original -159 618 -644 0 clause(2176)
+c original 158 -617 -644 0 clause(2178)
+c original -158 617 -644 0 clause(2180)
+c original 157 -616 -644 0 clause(2182)
+c original -157 616 -644 0 clause(2184)
+c original 156 -615 -644 0 clause(2186)
+c original -156 615 -644 0 clause(2188)
+c original 155 -614 -644 0 clause(2190)
+c original -155 614 -644 0 clause(2192)
+c original 154 -613 -644 0 clause(2194)
+c original -154 613 -644 0 clause(2196)
+c original 153 -612 -644 0 clause(2198)
+c original -153 612 -644 0 clause(2200)
+c original 152 -611 -644 0 clause(2202)
+c original -152 611 -644 0 clause(2204)
+c original 151 -610 -644 0 clause(2206)
+c original -151 610 -644 0 clause(2208)
+c original 150 -609 -644 0 clause(2210)
+c original -150 609 -644 0 clause(2212)
+c original 149 -608 -644 0 clause(2214)
+c original -149 608 -644 0 clause(2216)
+c original 148 -607 -644 0 clause(2218)
+c original -148 607 -644 0 clause(2220)
+c original 147 -606 -644 0 clause(2222)
+c original -147 606 -644 0 clause(2224)
+c original 146 -605 -644 0 clause(2226)
+c original -146 605 -644 0 clause(2228)
+c original 145 -604 -644 0 clause(2230)
+c original -145 604 -644 0 clause(2232)
+c original 144 -603 -644 0 clause(2234)
+c original -144 603 -644 0 clause(2236)
+c original 143 -602 -644 0 clause(2238)
+c original -143 602 -644 0 clause(2240)
+c original 142 -601 -644 0 clause(2242)
+c original -142 601 -644 0 clause(2244)
+c original 141 -600 -644 0 clause(2246)
+c original -141 600 -644 0 clause(2248)
+c original 140 -599 -644 0 clause(2250)
+c original -140 599 -644 0 clause(2252)
+c original 139 -598 -644 0 clause(2254)
+c original -139 598 -644 0 clause(2256)
+c START call 1
+c collecting 46 clauses
+c collected 0 bytes
+c sdecide -1
+c new level 1
+c assign -1 at level 1 <= DECISION
+c sdecide -2
+c new level 2
+c assign -2 at level 2 <= DECISION
+c sdecide -3
+c new level 3
+c assign -3 at level 3 <= DECISION
+c sdecide -4
+c new level 4
+c assign -4 at level 4 <= DECISION
+c sdecide -5
+c new level 5
+c assign -5 at level 5 <= DECISION
+c sdecide -6
+c new level 6
+c assign -6 at level 6 <= DECISION
+c sdecide -7
+c new level 7
+c assign -7 at level 7 <= DECISION
+c sdecide -8
+c new level 8
+c assign -8 at level 8 <= DECISION
+c sdecide -9
+c new level 9
+c assign -9 at level 9 <= DECISION
+c sdecide -10
+c new level 10
+c assign -10 at level 10 <= DECISION
+c sdecide -11
+c new level 11
+c assign -11 at level 11 <= DECISION
+c sdecide -12
+c new level 12
+c assign -12 at level 12 <= DECISION
+c sdecide -13
+c new level 13
+c assign -13 at level 13 <= DECISION
+c sdecide -14
+c new level 14
+c assign -14 at level 14 <= DECISION
+c sdecide -15
+c new level 15
+c assign -15 at level 15 <= DECISION
+c sdecide -16
+c new level 16
+c assign -16 at level 16 <= DECISION
+c sdecide -17
+c new level 17
+c assign -17 at level 17 <= DECISION
+c sdecide -18
+c new level 18
+c assign -18 at level 18 <= DECISION
+c sdecide -19
+c new level 19
+c assign -19 at level 19 <= DECISION
+c sdecide -20
+c new level 20
+c assign -20 at level 20 <= DECISION
+c sdecide -21
+c new level 21
+c assign -21 at level 21 <= DECISION
+c sdecide -22
+c new level 22
+c assign -22 at level 22 <= DECISION
+c sdecide -23
+c new level 23
+c assign -23 at level 23 <= DECISION
+c sdecide -24
+c new level 24
+c assign -24 at level 24 <= DECISION
+c sdecide -25
+c new level 25
+c assign -25 at level 25 <= DECISION
+c sdecide -26
+c new level 26
+c assign -26 at level 26 <= DECISION
+c sdecide -27
+c new level 27
+c assign -27 at level 27 <= DECISION
+c sdecide -28
+c new level 28
+c assign -28 at level 28 <= DECISION
+c sdecide -29
+c new level 29
+c assign -29 at level 29 <= DECISION
+c sdecide -30
+c new level 30
+c assign -30 at level 30 <= DECISION
+c sdecide -31
+c new level 31
+c assign -31 at level 31 <= DECISION
+c sdecide -32
+c new level 32
+c assign -32 at level 32 <= DECISION
+c sdecide -33
+c new level 33
+c assign -33 at level 33 <= DECISION
+c sdecide -34
+c new level 34
+c assign -34 at level 34 <= DECISION
+c sdecide -35
+c new level 35
+c assign -35 at level 35 <= DECISION
+c sdecide -36
+c new level 36
+c assign -36 at level 36 <= DECISION
+c sdecide -37
+c new level 37
+c assign -37 at level 37 <= DECISION
+c sdecide -38
+c new level 38
+c assign -38 at level 38 <= DECISION
+c sdecide -39
+c new level 39
+c assign -39 at level 39 <= DECISION
+c sdecide -40
+c new level 40
+c assign -40 at level 40 <= DECISION
+c sdecide -41
+c new level 41
+c assign -41 at level 41 <= DECISION
+c sdecide -42
+c new level 42
+c assign -42 at level 42 <= DECISION
+c sdecide -43
+c new level 43
+c assign -43 at level 43 <= DECISION
+c sdecide -44
+c new level 44
+c assign -44 at level 44 <= DECISION
+c sdecide -45
+c new level 45
+c assign -45 at level 45 <= DECISION
+c sdecide -46
+c new level 46
+c assign -46 at level 46 <= DECISION
+c sdecide -47
+c new level 47
+c assign -47 at level 47 <= DECISION
+c sdecide -48
+c new level 48
+c assign -48 at level 48 <= DECISION
+c sdecide -49
+c new level 49
+c assign -49 at level 49 <= DECISION
+c sdecide -50
+c new level 50
+c assign -50 at level 50 <= DECISION
+c sdecide -51
+c new level 51
+c assign -51 at level 51 <= DECISION
+c sdecide -52
+c new level 52
+c assign -52 at level 52 <= DECISION
+c sdecide -53
+c new level 53
+c assign -53 at level 53 <= DECISION
+c sdecide -54
+c new level 54
+c assign -54 at level 54 <= DECISION
+c sdecide -55
+c new level 55
+c assign -55 at level 55 <= DECISION
+c sdecide -56
+c new level 56
+c assign -56 at level 56 <= DECISION
+c sdecide -57
+c new level 57
+c assign -57 at level 57 <= DECISION
+c sdecide -58
+c new level 58
+c assign -58 at level 58 <= DECISION
+c sdecide -59
+c new level 59
+c assign -59 at level 59 <= DECISION
+c sdecide -60
+c new level 60
+c assign -60 at level 60 <= DECISION
+c sdecide -61
+c new level 61
+c assign -61 at level 61 <= DECISION
+c sdecide -62
+c new level 62
+c assign -62 at level 62 <= DECISION
+c sdecide -63
+c new level 63
+c assign -63 at level 63 <= DECISION
+c sdecide -64
+c new level 64
+c assign -64 at level 64 <= DECISION
+c sdecide -65
+c new level 65
+c assign -65 at level 65 <= DECISION
+c sdecide -66
+c new level 66
+c assign -66 at level 66 <= DECISION
+c sdecide -67
+c new level 67
+c assign -67 at level 67 <= DECISION
+c sdecide -68
+c new level 68
+c assign -68 at level 68 <= DECISION
+c sdecide -69
+c new level 69
+c assign -69 at level 69 <= DECISION
+c sdecide -70
+c new level 70
+c assign -70 at level 70 <= DECISION
+c sdecide -71
+c new level 71
+c assign -71 at level 71 <= DECISION
+c sdecide -72
+c new level 72
+c assign -72 at level 72 <= DECISION
+c sdecide -73
+c new level 73
+c assign -73 at level 73 <= DECISION
+c sdecide -74
+c new level 74
+c assign -74 at level 74 <= DECISION
+c sdecide -75
+c new level 75
+c assign -75 at level 75 <= DECISION
+c sdecide -76
+c new level 76
+c assign -76 at level 76 <= DECISION
+c sdecide -77
+c new level 77
+c assign -77 at level 77 <= DECISION
+c sdecide -78
+c new level 78
+c assign -78 at level 78 <= DECISION
+c sdecide -79
+c new level 79
+c assign -79 at level 79 <= DECISION
+c sdecide -80
+c new level 80
+c assign -80 at level 80 <= DECISION
+c sdecide -81
+c new level 81
+c assign -81 at level 81 <= DECISION
+c sdecide -82
+c new level 82
+c assign -82 at level 82 <= DECISION
+c sdecide -83
+c new level 83
+c assign -83 at level 83 <= DECISION
+c sdecide -84
+c new level 84
+c assign -84 at level 84 <= DECISION
+c sdecide -85
+c new level 85
+c assign -85 at level 85 <= DECISION
+c sdecide -86
+c new level 86
+c assign -86 at level 86 <= DECISION
+c sdecide -87
+c new level 87
+c assign -87 at level 87 <= DECISION
+c sdecide -88
+c new level 88
+c assign -88 at level 88 <= DECISION
+c sdecide -89
+c new level 89
+c assign -89 at level 89 <= DECISION
+c sdecide -90
+c new level 90
+c assign -90 at level 90 <= DECISION
+c sdecide -91
+c new level 91
+c assign -91 at level 91 <= DECISION
+c sdecide -92
+c new level 92
+c assign -92 at level 92 <= DECISION
+c sdecide -139
+c new level 93
+c assign -139 at level 93 <= DECISION
+c sdecide -140
+c new level 94
+c assign -140 at level 94 <= DECISION
+c sdecide -141
+c new level 95
+c assign -141 at level 95 <= DECISION
+c sdecide -142
+c new level 96
+c assign -142 at level 96 <= DECISION
+c sdecide -143
+c new level 97
+c assign -143 at level 97 <= DECISION
+c sdecide -144
+c new level 98
+c assign -144 at level 98 <= DECISION
+c sdecide -145
+c new level 99
+c assign -145 at level 99 <= DECISION
+c assign -183 at level 99 by 145 -183 -653 0 clause(376)
+c sdecide -146
+c new level 100
+c assign -146 at level 100 <= DECISION
+c assign -184 at level 100 by 146 -184 -653 0 clause(402)
+c sdecide -147
+c new level 101
+c assign -147 at level 101 <= DECISION
+c sdecide -148
+c new level 102
+c assign -148 at level 102 <= DECISION
+c sdecide -149
+c new level 103
+c assign -149 at level 103 <= DECISION
+c sdecide -150
+c new level 104
+c assign -150 at level 104 <= DECISION
+c sdecide -151
+c new level 105
+c assign -151 at level 105 <= DECISION
+c assign -180 at level 105 by 151 -180 -653 0 clause(392)
+c sdecide -152
+c new level 106
+c assign -152 at level 106 <= DECISION
+c sdecide -153
+c new level 107
+c assign -153 at level 107 <= DECISION
+c assign -168 at level 107 by 153 -168 -653 0 clause(414)
+c sdecide -154
+c new level 108
+c assign -154 at level 108 <= DECISION
+c sdecide -155
+c new level 109
+c assign -155 at level 109 <= DECISION
+c assign -169 at level 109 by 155 -169 -653 0 clause(394)
+c sdecide -156
+c new level 110
+c assign -156 at level 110 <= DECISION
+c sdecide -157
+c new level 111
+c assign -157 at level 111 <= DECISION
+c sdecide -158
+c new level 112
+c assign -158 at level 112 <= DECISION
+c sdecide -159
+c new level 113
+c assign -159 at level 113 <= DECISION
+c sdecide -160
+c new level 114
+c assign -160 at level 114 <= DECISION
+c sdecide -161
+c new level 115
+c assign -161 at level 115 <= DECISION
+c assign -182 at level 115 by 161 -182 -653 0 clause(384)
+c sdecide -162
+c new level 116
+c assign -162 at level 116 <= DECISION
+c sdecide -163
+c new level 117
+c assign -163 at level 117 <= DECISION
+c assign -174 at level 117 by 163 -174 -653 0 clause(396)
+c sdecide -164
+c new level 118
+c assign -164 at level 118 <= DECISION
+c assign -166 at level 118 by 164 -166 -653 0 clause(380)
+c sdecide -165
+c new level 119
+c assign -165 at level 119 <= DECISION
+c sdecide -167
+c new level 120
+c assign -167 at level 120 <= DECISION
+c sdecide -170
+c new level 121
+c assign -170 at level 121 <= DECISION
+c assign -179 at level 121 by 170 -179 -653 0 clause(374)
+c sdecide -171
+c new level 122
+c assign -171 at level 122 <= DECISION
+c sdecide -172
+c new level 123
+c assign -172 at level 123 <= DECISION
+c sdecide -173
+c new level 124
+c assign -173 at level 124 <= DECISION
+c sdecide -175
+c new level 125
+c assign -175 at level 125 <= DECISION
+c sdecide -176
+c new level 126
+c assign -176 at level 126 <= DECISION
+c sdecide -177
+c new level 127
+c assign -177 at level 127 <= DECISION
+c sdecide -178
+c new level 128
+c assign -178 at level 128 <= DECISION
+c sdecide -181
+c new level 129
+c assign -181 at level 129 <= DECISION
+c sdecide -185
+c new level 130
+c assign -185 at level 130 <= DECISION
+c sdecide -186
+c new level 131
+c assign -186 at level 131 <= DECISION
+c sdecide -187
+c new level 132
+c assign -187 at level 132 <= DECISION
+c sdecide -188
+c new level 133
+c assign -188 at level 133 <= DECISION
+c sdecide -189
+c new level 134
+c assign -189 at level 134 <= DECISION
+c sdecide -190
+c new level 135
+c assign -190 at level 135 <= DECISION
+c sdecide -191
+c new level 136
+c assign -191 at level 136 <= DECISION
+c assign -229 at level 136 by 191 -229 -653 0 clause(330)
+c sdecide -192
+c new level 137
+c assign -192 at level 137 <= DECISION
+c assign -230 at level 137 by 192 -230 -653 0 clause(354)
+c sdecide -193
+c new level 138
+c assign -193 at level 138 <= DECISION
+c sdecide -194
+c new level 139
+c assign -194 at level 139 <= DECISION
+c sdecide -195
+c new level 140
+c assign -195 at level 140 <= DECISION
+c sdecide -196
+c new level 141
+c assign -196 at level 141 <= DECISION
+c sdecide -197
+c new level 142
+c assign -197 at level 142 <= DECISION
+c assign -226 at level 142 by 197 -226 -653 0 clause(346)
+c sdecide -198
+c new level 143
+c assign -198 at level 143 <= DECISION
+c sdecide -199
+c new level 144
+c assign -199 at level 144 <= DECISION
+c assign -214 at level 144 by 199 -214 -653 0 clause(358)
+c sdecide -200
+c new level 145
+c assign -200 at level 145 <= DECISION
+c sdecide -201
+c new level 146
+c assign -201 at level 146 <= DECISION
+c assign -215 at level 146 by 201 -215 -653 0 clause(370)
+c sdecide -202
+c new level 147
+c assign -202 at level 147 <= DECISION
+c sdecide -203
+c new level 148
+c assign -203 at level 148 <= DECISION
+c sdecide -204
+c new level 149
+c assign -204 at level 149 <= DECISION
+c sdecide -205
+c new level 150
+c assign -205 at level 150 <= DECISION
+c sdecide -206
+c new level 151
+c assign -206 at level 151 <= DECISION
+c sdecide -207
+c new level 152
+c assign -207 at level 152 <= DECISION
+c assign -228 at level 152 by 207 -228 -653 0 clause(338)
+c sdecide -208
+c new level 153
+c assign -208 at level 153 <= DECISION
+c sdecide -209
+c new level 154
+c assign -209 at level 154 <= DECISION
+c assign -220 at level 154 by 209 -220 -653 0 clause(348)
+c sdecide -210
+c new level 155
+c assign -210 at level 155 <= DECISION
+c assign -212 at level 155 by 210 -212 -653 0 clause(334)
+c sdecide -211
+c new level 156
+c assign -211 at level 156 <= DECISION
+c sdecide -213
+c new level 157
+c assign -213 at level 157 <= DECISION
+c sdecide -216
+c new level 158
+c assign -216 at level 158 <= DECISION
+c assign -225 at level 158 by 216 -225 -653 0 clause(328)
+c sdecide -217
+c new level 159
+c assign -217 at level 159 <= DECISION
+c sdecide -218
+c new level 160
+c assign -218 at level 160 <= DECISION
+c sdecide -219
+c new level 161
+c assign -219 at level 161 <= DECISION
+c sdecide -221
+c new level 162
+c assign -221 at level 162 <= DECISION
+c sdecide -222
+c new level 163
+c assign -222 at level 163 <= DECISION
+c sdecide -223
+c new level 164
+c assign -223 at level 164 <= DECISION
+c sdecide -224
+c new level 165
+c assign -224 at level 165 <= DECISION
+c sdecide -227
+c new level 166
+c assign -227 at level 166 <= DECISION
+c sdecide -231
+c new level 167
+c assign -231 at level 167 <= DECISION
+c sdecide -232
+c new level 168
+c assign -232 at level 168 <= DECISION
+c sdecide -233
+c new level 169
+c assign -233 at level 169 <= DECISION
+c sdecide -234
+c new level 170
+c assign -234 at level 170 <= DECISION
+c sdecide -235
+c new level 171
+c assign -235 at level 171 <= DECISION
+c sdecide -236
+c new level 172
+c assign -236 at level 172 <= DECISION
+c sdecide -237
+c new level 173
+c assign -237 at level 173 <= DECISION
+c assign -278 at level 173 by 237 -278 -653 0 clause(320)
+c sdecide -238
+c new level 174
+c assign -238 at level 174 <= DECISION
+c assign -279 at level 174 by 238 -279 -653 0 clause(294)
+c sdecide -239
+c new level 175
+c assign -239 at level 175 <= DECISION
+c sdecide -240
+c new level 176
+c assign -240 at level 176 <= DECISION
+c sdecide -241
+c new level 177
+c assign -241 at level 177 <= DECISION
+c sdecide -242
+c new level 178
+c assign -242 at level 178 <= DECISION
+c sdecide -243
+c new level 179
+c assign -243 at level 179 <= DECISION
+c assign -275 at level 179 by 243 -275 -653 0 clause(304)
+c sdecide -244
+c new level 180
+c assign -244 at level 180 <= DECISION
+c sdecide -245
+c new level 181
+c assign -245 at level 181 <= DECISION
+c assign -260 at level 181 by 245 -260 -653 0 clause(290)
+c sdecide -246
+c new level 182
+c assign -246 at level 182 <= DECISION
+c sdecide -247
+c new level 183
+c assign -247 at level 183 <= DECISION
+c assign -261 at level 183 by 247 -261 -653 0 clause(302)
+c sdecide -248
+c new level 184
+c assign -248 at level 184 <= DECISION
+c sdecide -249
+c new level 185
+c assign -249 at level 185 <= DECISION
+c sdecide -250
+c new level 186
+c assign -250 at level 186 <= DECISION
+c sdecide -251
+c new level 187
+c assign -251 at level 187 <= DECISION
+c sdecide -252
+c new level 188
+c assign -252 at level 188 <= DECISION
+c sdecide -253
+c new level 189
+c assign -253 at level 189 <= DECISION
+c assign -277 at level 189 by 253 -277 -653 0 clause(312)
+c sdecide -254
+c new level 190
+c assign -254 at level 190 <= DECISION
+c sdecide -255
+c new level 191
+c assign -255 at level 191 <= DECISION
+c assign -269 at level 191 by 255 -269 -653 0 clause(300)
+c sdecide -256
+c new level 192
+c assign -256 at level 192 <= DECISION
+c assign -258 at level 192 by 256 -258 -653 0 clause(316)
+c sdecide -257
+c new level 193
+c assign -257 at level 193 <= DECISION
+c sdecide -259
+c new level 194
+c assign -259 at level 194 <= DECISION
+c sdecide -262
+c new level 195
+c assign -262 at level 195 <= DECISION
+c assign -274 at level 195 by 262 -274 -653 0 clause(322)
+c sdecide -263
+c new level 196
+c assign -263 at level 196 <= DECISION
+c sdecide -264
+c new level 197
+c assign -264 at level 197 <= DECISION
+c sdecide -265
+c new level 198
+c assign -265 at level 198 <= DECISION
+c sdecide -266
+c new level 199
+c assign -266 at level 199 <= DECISION
+c sdecide -267
+c new level 200
+c assign -267 at level 200 <= DECISION
+c sdecide -268
+c new level 201
+c assign -268 at level 201 <= DECISION
+c sdecide -270
+c new level 202
+c assign -270 at level 202 <= DECISION
+c sdecide -271
+c new level 203
+c assign -271 at level 203 <= DECISION
+c sdecide -272
+c new level 204
+c assign -272 at level 204 <= DECISION
+c sdecide -273
+c new level 205
+c assign -273 at level 205 <= DECISION
+c sdecide -276
+c new level 206
+c assign -276 at level 206 <= DECISION
+c sdecide -280
+c new level 207
+c assign -280 at level 207 <= DECISION
+c sdecide -281
+c new level 208
+c assign -281 at level 208 <= DECISION
+c sdecide -282
+c new level 209
+c assign -282 at level 209 <= DECISION
+c sdecide -283
+c new level 210
+c assign -283 at level 210 <= DECISION
+c sdecide -284
+c new level 211
+c assign -284 at level 211 <= DECISION
+c sdecide -285
+c new level 212
+c assign -285 at level 212 <= DECISION
+c sdecide -286
+c new level 213
+c assign -286 at level 213 <= DECISION
+c assign -291 at level 213 by 286 -291 -653 0 clause(274)
+c sdecide -287
+c new level 214
+c assign -287 at level 214 <= DECISION
+c sdecide -288
+c new level 215
+c assign -288 at level 215 <= DECISION
+c sdecide -289
+c new level 216
+c assign -289 at level 216 <= DECISION
+c assign -325 at level 216 by 289 -325 -653 0 clause(242)
+c sdecide -290
+c new level 217
+c assign -290 at level 217 <= DECISION
+c assign -300 at level 217 by 290 -300 -653 0 clause(268)
+c sdecide -292
+c new level 218
+c assign -292 at level 218 <= DECISION
+c assign -328 at level 218 by 292 -328 -653 0 clause(250)
+c sdecide -293
+c new level 219
+c assign -293 at level 219 <= DECISION
+c sdecide -294
+c new level 220
+c assign -294 at level 220 <= DECISION
+c assign -295 at level 220 by 294 -295 -653 0 clause(270)
+c sdecide -296
+c new level 221
+c assign -296 at level 221 <= DECISION
+c assign -313 at level 221 by 296 -313 -653 0 clause(246)
+c sdecide -297
+c new level 222
+c assign -297 at level 222 <= DECISION
+c sdecide -298
+c new level 223
+c assign -298 at level 223 <= DECISION
+c sdecide -299
+c new level 224
+c assign -299 at level 224 <= DECISION
+c sdecide -301
+c new level 225
+c assign -301 at level 225 <= DECISION
+c sdecide -302
+c new level 226
+c assign -302 at level 226 <= DECISION
+c assign -320 at level 226 by 302 -320 -653 0 clause(238)
+c sdecide -303
+c new level 227
+c assign -303 at level 227 <= DECISION
+c sdecide -304
+c new level 228
+c assign -304 at level 228 <= DECISION
+c sdecide -305
+c new level 229
+c assign -305 at level 229 <= DECISION
+c assign -318 at level 229 by 305 -318 -653 0 clause(260)
+c sdecide -306
+c new level 230
+c assign -306 at level 230 <= DECISION
+c sdecide -307
+c new level 231
+c assign -307 at level 231 <= DECISION
+c assign -317 at level 231 by 307 -317 -653 0 clause(272)
+c sdecide -308
+c new level 232
+c assign -308 at level 232 <= DECISION
+c assign -309 at level 232 by 308 -309 -653 0 clause(258)
+c sdecide -310
+c new level 233
+c assign -310 at level 233 <= DECISION
+c assign -319 at level 233 by 310 -319 -653 0 clause(264)
+c sdecide -311
+c new level 234
+c assign -311 at level 234 <= DECISION
+c assign -323 at level 234 by 311 -323 -653 0 clause(278)
+c sdecide -312
+c new level 235
+c assign -312 at level 235 <= DECISION
+c sdecide -314
+c new level 236
+c assign -314 at level 236 <= DECISION
+c sdecide -315
+c new level 237
+c assign -315 at level 237 <= DECISION
+c assign -324 at level 237 by 315 -324 -653 0 clause(248)
+c sdecide -316
+c new level 238
+c assign -316 at level 238 <= DECISION
+c sdecide -321
+c new level 239
+c assign -321 at level 239 <= DECISION
+c sdecide -322
+c new level 240
+c assign -322 at level 240 <= DECISION
+c sdecide -326
+c new level 241
+c assign -326 at level 241 <= DECISION
+c assign -327 at level 241 by 326 -327 -653 0 clause(266)
+c sdecide -329
+c new level 242
+c assign -329 at level 242 <= DECISION
+c sdecide -330
+c new level 243
+c assign -330 at level 243 <= DECISION
+c sdecide -331
+c new level 244
+c assign -331 at level 244 <= DECISION
+c sdecide -332
+c new level 245
+c assign -332 at level 245 <= DECISION
+c sdecide -333
+c new level 246
+c assign -333 at level 246 <= DECISION
+c sdecide -334
+c new level 247
+c assign -334 at level 247 <= DECISION
+c sdecide -335
+c new level 248
+c assign -335 at level 248 <= DECISION
+c sdecide -336
+c new level 249
+c assign -336 at level 249 <= DECISION
+c sdecide -337
+c new level 250
+c assign -337 at level 250 <= DECISION
+c sdecide -338
+c new level 251
+c assign -338 at level 251 <= DECISION
+c sdecide -339
+c new level 252
+c assign -339 at level 252 <= DECISION
+c assign -377 at level 252 by 339 -377 -653 0 clause(228)
+c sdecide -340
+c new level 253
+c assign -340 at level 253 <= DECISION
+c assign -378 at level 253 by 340 -378 -653 0 clause(202)
+c sdecide -341
+c new level 254
+c assign -341 at level 254 <= DECISION
+c sdecide -342
+c new level 255
+c assign -342 at level 255 <= DECISION
+c sdecide -343
+c new level 256
+c assign -343 at level 256 <= DECISION
+c sdecide -344
+c new level 257
+c assign -344 at level 257 <= DECISION
+c sdecide -345
+c new level 258
+c assign -345 at level 258 <= DECISION
+c assign -374 at level 258 by 345 -374 -653 0 clause(212)
+c sdecide -346
+c new level 259
+c assign -346 at level 259 <= DECISION
+c sdecide -347
+c new level 260
+c assign -347 at level 260 <= DECISION
+c assign -362 at level 260 by 347 -362 -653 0 clause(198)
+c sdecide -348
+c new level 261
+c assign -348 at level 261 <= DECISION
+c sdecide -349
+c new level 262
+c assign -349 at level 262 <= DECISION
+c assign -363 at level 262 by 349 -363 -653 0 clause(210)
+c sdecide -350
+c new level 263
+c assign -350 at level 263 <= DECISION
+c sdecide -351
+c new level 264
+c assign -351 at level 264 <= DECISION
+c sdecide -352
+c new level 265
+c assign -352 at level 265 <= DECISION
+c sdecide -353
+c new level 266
+c assign -353 at level 266 <= DECISION
+c sdecide -354
+c new level 267
+c assign -354 at level 267 <= DECISION
+c sdecide -355
+c new level 268
+c assign -355 at level 268 <= DECISION
+c assign -376 at level 268 by 355 -376 -653 0 clause(220)
+c sdecide -356
+c new level 269
+c assign -356 at level 269 <= DECISION
+c sdecide -357
+c new level 270
+c assign -357 at level 270 <= DECISION
+c assign -368 at level 270 by 357 -368 -653 0 clause(208)
+c sdecide -358
+c new level 271
+c assign -358 at level 271 <= DECISION
+c assign -360 at level 271 by 358 -360 -653 0 clause(224)
+c sdecide -359
+c new level 272
+c assign -359 at level 272 <= DECISION
+c sdecide -361
+c new level 273
+c assign -361 at level 273 <= DECISION
+c sdecide -364
+c new level 274
+c assign -364 at level 274 <= DECISION
+c assign -373 at level 274 by 364 -373 -653 0 clause(230)
+c sdecide -365
+c new level 275
+c assign -365 at level 275 <= DECISION
+c sdecide -366
+c new level 276
+c assign -366 at level 276 <= DECISION
+c sdecide -367
+c new level 277
+c assign -367 at level 277 <= DECISION
+c sdecide -369
+c new level 278
+c assign -369 at level 278 <= DECISION
+c sdecide -370
+c new level 279
+c assign -370 at level 279 <= DECISION
+c sdecide -371
+c new level 280
+c assign -371 at level 280 <= DECISION
+c sdecide -372
+c new level 281
+c assign -372 at level 281 <= DECISION
+c sdecide -375
+c new level 282
+c assign -375 at level 282 <= DECISION
+c sdecide -379
+c new level 283
+c assign -379 at level 283 <= DECISION
+c sdecide -380
+c new level 284
+c assign -380 at level 284 <= DECISION
+c sdecide -381
+c new level 285
+c assign -381 at level 285 <= DECISION
+c sdecide -382
+c new level 286
+c assign -382 at level 286 <= DECISION
+c sdecide -383
+c new level 287
+c assign -383 at level 287 <= DECISION
+c sdecide -384
+c new level 288
+c assign -384 at level 288 <= DECISION
+c sdecide -385
+c new level 289
+c assign -385 at level 289 <= DECISION
+c sdecide -386
+c new level 290
+c assign -386 at level 290 <= DECISION
+c sdecide -387
+c new level 291
+c assign -387 at level 291 <= DECISION
+c assign -392 at level 291 by 387 -392 -653 0 clause(150)
+c sdecide -388
+c new level 292
+c assign -388 at level 292 <= DECISION
+c sdecide -389
+c new level 293
+c assign -389 at level 293 <= DECISION
+c sdecide -390
+c new level 294
+c assign -390 at level 294 <= DECISION
+c assign -426 at level 294 by 390 -426 -653 0 clause(176)
+c sdecide -391
+c new level 295
+c assign -391 at level 295 <= DECISION
+c assign -401 at level 295 by 391 -401 -653 0 clause(144)
+c sdecide -393
+c new level 296
+c assign -393 at level 296 <= DECISION
+c assign -429 at level 296 by 393 -429 -653 0 clause(168)
+c sdecide -394
+c new level 297
+c assign -394 at level 297 <= DECISION
+c sdecide -395
+c new level 298
+c assign -395 at level 298 <= DECISION
+c assign -396 at level 298 by 395 -396 -653 0 clause(146)
+c sdecide -397
+c new level 299
+c assign -397 at level 299 <= DECISION
+c assign -414 at level 299 by 397 -414 -653 0 clause(172)
+c sdecide -398
+c new level 300
+c assign -398 at level 300 <= DECISION
+c sdecide -399
+c new level 301
+c assign -399 at level 301 <= DECISION
+c sdecide -400
+c new level 302
+c assign -400 at level 302 <= DECISION
+c sdecide -402
+c new level 303
+c assign -402 at level 303 <= DECISION
+c sdecide -403
+c new level 304
+c assign -403 at level 304 <= DECISION
+c assign -421 at level 304 by 403 -421 -653 0 clause(180)
+c sdecide -404
+c new level 305
+c assign -404 at level 305 <= DECISION
+c sdecide -405
+c new level 306
+c assign -405 at level 306 <= DECISION
+c sdecide -406
+c new level 307
+c assign -406 at level 307 <= DECISION
+c assign -419 at level 307 by 406 -419 -653 0 clause(158)
+c sdecide -407
+c new level 308
+c assign -407 at level 308 <= DECISION
+c sdecide -408
+c new level 309
+c assign -408 at level 309 <= DECISION
+c assign -418 at level 309 by 408 -418 -653 0 clause(148)
+c sdecide -409
+c new level 310
+c assign -409 at level 310 <= DECISION
+c assign -410 at level 310 by 409 -410 -653 0 clause(160)
+c sdecide -411
+c new level 311
+c assign -411 at level 311 <= DECISION
+c assign -420 at level 311 by 411 -420 -653 0 clause(154)
+c sdecide -412
+c new level 312
+c assign -412 at level 312 <= DECISION
+c assign -424 at level 312 by 412 -424 -653 0 clause(186)
+c sdecide -413
+c new level 313
+c assign -413 at level 313 <= DECISION
+c sdecide -415
+c new level 314
+c assign -415 at level 314 <= DECISION
+c sdecide -416
+c new level 315
+c assign -416 at level 315 <= DECISION
+c assign -425 at level 315 by 416 -425 -653 0 clause(170)
+c sdecide -417
+c new level 316
+c assign -417 at level 316 <= DECISION
+c sdecide -422
+c new level 317
+c assign -422 at level 317 <= DECISION
+c sdecide -423
+c new level 318
+c assign -423 at level 318 <= DECISION
+c sdecide -427
+c new level 319
+c assign -427 at level 319 <= DECISION
+c assign -428 at level 319 by 427 -428 -653 0 clause(142)
+c sdecide -430
+c new level 320
+c assign -430 at level 320 <= DECISION
+c sdecide -431
+c new level 321
+c assign -431 at level 321 <= DECISION
+c sdecide -432
+c new level 322
+c assign -432 at level 322 <= DECISION
+c sdecide -433
+c new level 323
+c assign -433 at level 323 <= DECISION
+c sdecide -434
+c new level 324
+c assign -434 at level 324 <= DECISION
+c sdecide -435
+c new level 325
+c assign -435 at level 325 <= DECISION
+c sdecide -436
+c new level 326
+c assign -436 at level 326 <= DECISION
+c sdecide -437
+c new level 327
+c assign -437 at level 327 <= DECISION
+c sdecide -438
+c new level 328
+c assign -438 at level 328 <= DECISION
+c sdecide -439
+c new level 329
+c assign -439 at level 329 <= DECISION
+c sdecide -440
+c new level 330
+c assign -440 at level 330 <= DECISION
+c sdecide -441
+c new level 331
+c assign -441 at level 331 <= DECISION
+c sdecide -442
+c new level 332
+c assign -442 at level 332 <= DECISION
+c assign -480 at level 332 by 442 -480 -653 0 clause(136)
+c sdecide -443
+c new level 333
+c assign -443 at level 333 <= DECISION
+c assign -481 at level 333 by 443 -481 -653 0 clause(110)
+c sdecide -444
+c new level 334
+c assign -444 at level 334 <= DECISION
+c sdecide -445
+c new level 335
+c assign -445 at level 335 <= DECISION
+c sdecide -446
+c new level 336
+c assign -446 at level 336 <= DECISION
+c sdecide -447
+c new level 337
+c assign -447 at level 337 <= DECISION
+c sdecide -448
+c new level 338
+c assign -448 at level 338 <= DECISION
+c assign -477 at level 338 by 448 -477 -653 0 clause(120)
+c sdecide -449
+c new level 339
+c assign -449 at level 339 <= DECISION
+c sdecide -450
+c new level 340
+c assign -450 at level 340 <= DECISION
+c assign -465 at level 340 by 450 -465 -653 0 clause(106)
+c sdecide -451
+c new level 341
+c assign -451 at level 341 <= DECISION
+c sdecide -452
+c new level 342
+c assign -452 at level 342 <= DECISION
+c assign -466 at level 342 by 452 -466 -653 0 clause(118)
+c sdecide -453
+c new level 343
+c assign -453 at level 343 <= DECISION
+c sdecide -454
+c new level 344
+c assign -454 at level 344 <= DECISION
+c sdecide -455
+c new level 345
+c assign -455 at level 345 <= DECISION
+c sdecide -456
+c new level 346
+c assign -456 at level 346 <= DECISION
+c sdecide -457
+c new level 347
+c assign -457 at level 347 <= DECISION
+c sdecide -458
+c new level 348
+c assign -458 at level 348 <= DECISION
+c assign -479 at level 348 by 458 -479 -653 0 clause(128)
+c sdecide -459
+c new level 349
+c assign -459 at level 349 <= DECISION
+c sdecide -460
+c new level 350
+c assign -460 at level 350 <= DECISION
+c assign -471 at level 350 by 460 -471 -653 0 clause(116)
+c sdecide -461
+c new level 351
+c assign -461 at level 351 <= DECISION
+c assign -463 at level 351 by 461 -463 -653 0 clause(132)
+c sdecide -462
+c new level 352
+c assign -462 at level 352 <= DECISION
+c sdecide -464
+c new level 353
+c assign -464 at level 353 <= DECISION
+c sdecide -467
+c new level 354
+c assign -467 at level 354 <= DECISION
+c assign -476 at level 354 by 467 -476 -653 0 clause(138)
+c sdecide -468
+c new level 355
+c assign -468 at level 355 <= DECISION
+c sdecide -469
+c new level 356
+c assign -469 at level 356 <= DECISION
+c sdecide -470
+c new level 357
+c assign -470 at level 357 <= DECISION
+c sdecide -472
+c new level 358
+c assign -472 at level 358 <= DECISION
+c sdecide -473
+c new level 359
+c assign -473 at level 359 <= DECISION
+c sdecide -474
+c new level 360
+c assign -474 at level 360 <= DECISION
+c sdecide -475
+c new level 361
+c assign -475 at level 361 <= DECISION
+c sdecide -478
+c new level 362
+c assign -478 at level 362 <= DECISION
+c sdecide -482
+c new level 363
+c assign -482 at level 363 <= DECISION
+c sdecide -483
+c new level 364
+c assign -483 at level 364 <= DECISION
+c sdecide -484
+c new level 365
+c assign -484 at level 365 <= DECISION
+c sdecide -485
+c new level 366
+c assign -485 at level 366 <= DECISION
+c sdecide -486
+c new level 367
+c assign -486 at level 367 <= DECISION
+c sdecide -487
+c new level 368
+c assign -487 at level 368 <= DECISION
+c sdecide -488
+c new level 369
+c assign -488 at level 369 <= DECISION
+c sdecide -489
+c new level 370
+c assign -489 at level 370 <= DECISION
+c sdecide -490
+c new level 371
+c assign -490 at level 371 <= DECISION
+c sdecide -491
+c new level 372
+c assign -491 at level 372 <= DECISION
+c sdecide -492
+c new level 373
+c assign -492 at level 373 <= DECISION
+c sdecide -493
+c new level 374
+c assign -493 at level 374 <= DECISION
+c sdecide -494
+c new level 375
+c assign -494 at level 375 <= DECISION
+c sdecide -495
+c new level 376
+c assign -495 at level 376 <= DECISION
+c assign -533 at level 376 by 495 -533 -653 0 clause(54)
+c sdecide -496
+c new level 377
+c assign -496 at level 377 <= DECISION
+c assign -534 at level 377 by 496 -534 -653 0 clause(70)
+c sdecide -497
+c new level 378
+c assign -497 at level 378 <= DECISION
+c sdecide -498
+c new level 379
+c assign -498 at level 379 <= DECISION
+c sdecide -499
+c new level 380
+c assign -499 at level 380 <= DECISION
+c sdecide -500
+c new level 381
+c assign -500 at level 381 <= DECISION
+c sdecide -501
+c new level 382
+c assign -501 at level 382 <= DECISION
+c assign -530 at level 382 by 501 -530 -653 0 clause(80)
+c sdecide -502
+c new level 383
+c assign -502 at level 383 <= DECISION
+c sdecide -503
+c new level 384
+c assign -503 at level 384 <= DECISION
+c assign -518 at level 384 by 503 -518 -653 0 clause(66)
+c sdecide -504
+c new level 385
+c assign -504 at level 385 <= DECISION
+c sdecide -505
+c new level 386
+c assign -505 at level 386 <= DECISION
+c assign -519 at level 386 by 505 -519 -653 0 clause(78)
+c sdecide -506
+c new level 387
+c assign -506 at level 387 <= DECISION
+c sdecide -507
+c new level 388
+c assign -507 at level 388 <= DECISION
+c sdecide -508
+c new level 389
+c assign -508 at level 389 <= DECISION
+c sdecide -509
+c new level 390
+c assign -509 at level 390 <= DECISION
+c sdecide -510
+c new level 391
+c assign -510 at level 391 <= DECISION
+c sdecide -511
+c new level 392
+c assign -511 at level 392 <= DECISION
+c assign -532 at level 392 by 511 -532 -653 0 clause(88)
+c sdecide -512
+c new level 393
+c assign -512 at level 393 <= DECISION
+c sdecide -513
+c new level 394
+c assign -513 at level 394 <= DECISION
+c assign -524 at level 394 by 513 -524 -653 0 clause(76)
+c sdecide -514
+c new level 395
+c assign -514 at level 395 <= DECISION
+c assign -516 at level 395 by 514 -516 -653 0 clause(92)
+c sdecide -515
+c new level 396
+c assign -515 at level 396 <= DECISION
+c sdecide -517
+c new level 397
+c assign -517 at level 397 <= DECISION
+c sdecide -520
+c new level 398
+c assign -520 at level 398 <= DECISION
+c assign -529 at level 398 by 520 -529 -653 0 clause(52)
+c sdecide -521
+c new level 399
+c assign -521 at level 399 <= DECISION
+c sdecide -522
+c new level 400
+c assign -522 at level 400 <= DECISION
+c sdecide -523
+c new level 401
+c assign -523 at level 401 <= DECISION
+c sdecide -525
+c new level 402
+c assign -525 at level 402 <= DECISION
+c sdecide -526
+c new level 403
+c assign -526 at level 403 <= DECISION
+c sdecide -527
+c new level 404
+c assign -527 at level 404 <= DECISION
+c sdecide -528
+c new level 405
+c assign -528 at level 405 <= DECISION
+c sdecide -531
+c new level 406
+c assign -531 at level 406 <= DECISION
+c sdecide -535
+c new level 407
+c assign -535 at level 407 <= DECISION
+c sdecide -536
+c new level 408
+c assign -536 at level 408 <= DECISION
+c sdecide -537
+c new level 409
+c assign -537 at level 409 <= DECISION
+c sdecide -538
+c new level 410
+c assign -538 at level 410 <= DECISION
+c sdecide -539
+c new level 411
+c assign -539 at level 411 <= DECISION
+c sdecide -540
+c new level 412
+c assign -540 at level 412 <= DECISION
+c sdecide -541
+c new level 413
+c assign -541 at level 413 <= DECISION
+c sdecide -542
+c new level 414
+c assign -542 at level 414 <= DECISION
+c sdecide -543
+c new level 415
+c assign -543 at level 415 <= DECISION
+c sdecide -544
+c new level 416
+c assign -544 at level 416 <= DECISION
+c sdecide -545
+c new level 417
+c assign -545 at level 417 <= DECISION
+c sdecide -546
+c new level 418
+c assign -546 at level 418 <= DECISION
+c sdecide -547
+c new level 419
+c assign -547 at level 419 <= DECISION
+c sdecide -548
+c new level 420
+c assign -548 at level 420 <= DECISION
+c sdecide -549
+c new level 421
+c assign -549 at level 421 <= DECISION
+c assign -587 at level 421 by 549 -587 -653 0 clause(44)
+c sdecide -550
+c new level 422
+c assign -550 at level 422 <= DECISION
+c assign -588 at level 422 by 550 -588 -653 0 clause(18)
+c sdecide -551
+c new level 423
+c assign -551 at level 423 <= DECISION
+c sdecide -552
+c new level 424
+c assign -552 at level 424 <= DECISION
+c sdecide -553
+c new level 425
+c assign -553 at level 425 <= DECISION
+c sdecide -554
+c new level 426
+c assign -554 at level 426 <= DECISION
+c sdecide -555
+c new level 427
+c assign -555 at level 427 <= DECISION
+c assign -584 at level 427 by 555 -584 -653 0 clause(28)
+c sdecide -556
+c new level 428
+c assign -556 at level 428 <= DECISION
+c sdecide -557
+c new level 429
+c assign -557 at level 429 <= DECISION
+c assign -572 at level 429 by 557 -572 -653 0 clause(14)
+c sdecide -558
+c new level 430
+c assign -558 at level 430 <= DECISION
+c sdecide -559
+c new level 431
+c assign -559 at level 431 <= DECISION
+c assign -573 at level 431 by 559 -573 -653 0 clause(26)
+c sdecide -560
+c new level 432
+c assign -560 at level 432 <= DECISION
+c sdecide -561
+c new level 433
+c assign -561 at level 433 <= DECISION
+c sdecide -562
+c new level 434
+c assign -562 at level 434 <= DECISION
+c sdecide -563
+c new level 435
+c assign -563 at level 435 <= DECISION
+c sdecide -564
+c new level 436
+c assign -564 at level 436 <= DECISION
+c sdecide -565
+c new level 437
+c assign -565 at level 437 <= DECISION
+c assign -586 at level 437 by 565 -586 -653 0 clause(36)
+c sdecide -566
+c new level 438
+c assign -566 at level 438 <= DECISION
+c sdecide -567
+c new level 439
+c assign -567 at level 439 <= DECISION
+c assign -578 at level 439 by 567 -578 -653 0 clause(24)
+c sdecide -568
+c new level 440
+c assign -568 at level 440 <= DECISION
+c assign -570 at level 440 by 568 -570 -653 0 clause(40)
+c sdecide -569
+c new level 441
+c assign -569 at level 441 <= DECISION
+c sdecide -571
+c new level 442
+c assign -571 at level 442 <= DECISION
+c sdecide -574
+c new level 443
+c assign -574 at level 443 <= DECISION
+c assign -583 at level 443 by 574 -583 -653 0 clause(46)
+c sdecide -575
+c new level 444
+c assign -575 at level 444 <= DECISION
+c sdecide -576
+c new level 445
+c assign -576 at level 445 <= DECISION
+c sdecide -577
+c new level 446
+c assign -577 at level 446 <= DECISION
+c sdecide -579
+c new level 447
+c assign -579 at level 447 <= DECISION
+c sdecide -580
+c new level 448
+c assign -580 at level 448 <= DECISION
+c sdecide -581
+c new level 449
+c assign -581 at level 449 <= DECISION
+c sdecide -582
+c new level 450
+c assign -582 at level 450 <= DECISION
+c sdecide -585
+c new level 451
+c assign -585 at level 451 <= DECISION
+c sdecide -589
+c new level 452
+c assign -589 at level 452 <= DECISION
+c sdecide -590
+c new level 453
+c assign -590 at level 453 <= DECISION
+c sdecide -591
+c new level 454
+c assign -591 at level 454 <= DECISION
+c sdecide -592
+c new level 455
+c assign -592 at level 455 <= DECISION
+c sdecide -593
+c new level 456
+c assign -593 at level 456 <= DECISION
+c sdecide -594
+c new level 457
+c assign -594 at level 457 <= DECISION
+c sdecide -595
+c new level 458
+c assign -595 at level 458 <= DECISION
+c sdecide -596
+c new level 459
+c assign -596 at level 459 <= DECISION
+c sdecide -597
+c new level 460
+c assign -597 at level 460 <= DECISION
+c sdecide -598
+c new level 461
+c assign -598 at level 461 <= DECISION
+c sdecide -599
+c new level 462
+c assign -599 at level 462 <= DECISION
+c sdecide -600
+c new level 463
+c assign -600 at level 463 <= DECISION
+c sdecide -601
+c new level 464
+c assign -601 at level 464 <= DECISION
+c sdecide -602
+c new level 465
+c assign -602 at level 465 <= DECISION
+c sdecide -603
+c new level 466
+c assign -603 at level 466 <= DECISION
+c sdecide -604
+c new level 467
+c assign -604 at level 467 <= DECISION
+c sdecide -605
+c new level 468
+c assign -605 at level 468 <= DECISION
+c sdecide -606
+c new level 469
+c assign -606 at level 469 <= DECISION
+c sdecide -607
+c new level 470
+c assign -607 at level 470 <= DECISION
+c sdecide -608
+c new level 471
+c assign -608 at level 471 <= DECISION
+c sdecide -609
+c new level 472
+c assign -609 at level 472 <= DECISION
+c sdecide -610
+c new level 473
+c assign -610 at level 473 <= DECISION
+c sdecide -611
+c new level 474
+c assign -611 at level 474 <= DECISION
+c sdecide -612
+c new level 475
+c assign -612 at level 475 <= DECISION
+c sdecide -613
+c new level 476
+c assign -613 at level 476 <= DECISION
+c sdecide -614
+c new level 477
+c assign -614 at level 477 <= DECISION
+c sdecide -615
+c new level 478
+c assign -615 at level 478 <= DECISION
+c sdecide -616
+c new level 479
+c assign -616 at level 479 <= DECISION
+c sdecide -617
+c new level 480
+c assign -617 at level 480 <= DECISION
+c sdecide -618
+c new level 481
+c assign -618 at level 481 <= DECISION
+c sdecide -619
+c new level 482
+c assign -619 at level 482 <= DECISION
+c sdecide -620
+c new level 483
+c assign -620 at level 483 <= DECISION
+c sdecide -621
+c new level 484
+c assign -621 at level 484 <= DECISION
+c sdecide -622
+c new level 485
+c assign -622 at level 485 <= DECISION
+c sdecide -623
+c new level 486
+c assign -623 at level 486 <= DECISION
+c sdecide -624
+c new level 487
+c assign -624 at level 487 <= DECISION
+c sdecide -625
+c new level 488
+c assign -625 at level 488 <= DECISION
+c sdecide -626
+c new level 489
+c assign -626 at level 489 <= DECISION
+c sdecide -627
+c new level 490
+c assign -627 at level 490 <= DECISION
+c sdecide -628
+c new level 491
+c assign -628 at level 491 <= DECISION
+c sdecide -629
+c new level 492
+c assign -629 at level 492 <= DECISION
+c sdecide -630
+c new level 493
+c assign -630 at level 493 <= DECISION
+c sdecide -631
+c new level 494
+c assign -631 at level 494 <= DECISION
+c sdecide -632
+c new level 495
+c assign -632 at level 495 <= DECISION
+c sdecide -633
+c new level 496
+c assign -633 at level 496 <= DECISION
+c sdecide -634
+c new level 497
+c assign -634 at level 497 <= DECISION
+c sdecide -635
+c new level 498
+c assign -635 at level 498 <= DECISION
+c sdecide -636
+c new level 499
+c assign -636 at level 499 <= DECISION
+c sdecide -637
+c new level 500
+c assign -637 at level 500 <= DECISION
+c sdecide -638
+c new level 501
+c assign -638 at level 501 <= DECISION
+c sdecide -639
+c new level 502
+c assign -639 at level 502 <= DECISION
+c sdecide -640
+c new level 503
+c assign -640 at level 503 <= DECISION
+c sdecide -641
+c new level 504
+c assign -641 at level 504 <= DECISION
+c sdecide -642
+c new level 505
+c assign -642 at level 505 <= DECISION
+c sdecide -643
+c new level 506
+c assign -643 at level 506 <= DECISION
+c sdecide -644
+c new level 507
+c assign -644 at level 507 <= DECISION
+c sdecide -645
+c new level 508
+c assign -645 at level 508 <= DECISION
+c sdecide -646
+c new level 509
+c assign -646 at level 509 <= DECISION
+c sdecide -647
+c new level 510
+c assign -647 at level 510 <= DECISION
+c sdecide -648
+c new level 511
+c assign -648 at level 511 <= DECISION
+c sdecide -649
+c new level 512
+c assign -649 at level 512 <= DECISION
+c sdecide -650
+c new level 513
+c assign -650 at level 513 <= DECISION
+c sdecide -651
+c new level 514
+c assign -651 at level 514 <= DECISION
+c assign 652 at level 514 by 651 652 650 649 648 647 646 645 644 598 -653 0 clause(418)
+c END call 1 result 10
+s SATISFIABLE
+v -1 -2 -3 -4 -5 -6 -7 -8 -9 -10 -11 -12 -13 -14 -15 -16 -17 -18 -19 -20 -21
+v -22 -23 -24 -25 -26 -27 -28 -29 -30 -31 -32 -33 -34 -35 -36 -37 -38 -39 -40
+v -41 -42 -43 -44 -45 -46 -47 -48 -49 -50 -51 -52 -53 -54 -55 -56 -57 -58 -59
+v -60 -61 -62 -63 -64 -65 -66 -67 -68 -69 -70 -71 -72 -73 -74 -75 -76 -77 -78
+v -79 -80 -81 -82 -83 -84 -85 -86 -87 -88 -89 -90 -91 -92 93 94 95 96 97 98 99
+v 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118
+v 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137
+v 138 -139 -140 -141 -142 -143 -144 -145 -146 -147 -148 -149 -150 -151 -152
+v -153 -154 -155 -156 -157 -158 -159 -160 -161 -162 -163 -164 -165 -166 -167
+v -168 -169 -170 -171 -172 -173 -174 -175 -176 -177 -178 -179 -180 -181 -182
+v -183 -184 -185 -186 -187 -188 -189 -190 -191 -192 -193 -194 -195 -196 -197
+v -198 -199 -200 -201 -202 -203 -204 -205 -206 -207 -208 -209 -210 -211 -212
+v -213 -214 -215 -216 -217 -218 -219 -220 -221 -222 -223 -224 -225 -226 -227
+v -228 -229 -230 -231 -232 -233 -234 -235 -236 -237 -238 -239 -240 -241 -242
+v -243 -244 -245 -246 -247 -248 -249 -250 -251 -252 -253 -254 -255 -256 -257
+v -258 -259 -260 -261 -262 -263 -264 -265 -266 -267 -268 -269 -270 -271 -272
+v -273 -274 -275 -276 -277 -278 -279 -280 -281 -282 -283 -284 -285 -286 -287
+v -288 -289 -290 -291 -292 -293 -294 -295 -296 -297 -298 -299 -300 -301 -302
+v -303 -304 -305 -306 -307 -308 -309 -310 -311 -312 -313 -314 -315 -316 -317
+v -318 -319 -320 -321 -322 -323 -324 -325 -326 -327 -328 -329 -330 -331 -332
+v -333 -334 -335 -336 -337 -338 -339 -340 -341 -342 -343 -344 -345 -346 -347
+v -348 -349 -350 -351 -352 -353 -354 -355 -356 -357 -358 -359 -360 -361 -362
+v -363 -364 -365 -366 -367 -368 -369 -370 -371 -372 -373 -374 -375 -376 -377
+v -378 -379 -380 -381 -382 -383 -384 -385 -386 -387 -388 -389 -390 -391 -392
+v -393 -394 -395 -396 -397 -398 -399 -400 -401 -402 -403 -404 -405 -406 -407
+v -408 -409 -410 -411 -412 -413 -414 -415 -416 -417 -418 -419 -420 -421 -422
+v -423 -424 -425 -426 -427 -428 -429 -430 -431 -432 -433 -434 -435 -436 -437
+v -438 -439 -440 -441 -442 -443 -444 -445 -446 -447 -448 -449 -450 -451 -452
+v -453 -454 -455 -456 -457 -458 -459 -460 -461 -462 -463 -464 -465 -466 -467
+v -468 -469 -470 -471 -472 -473 -474 -475 -476 -477 -478 -479 -480 -481 -482
+v -483 -484 -485 -486 -487 -488 -489 -490 -491 -492 -493 -494 -495 -496 -497
+v -498 -499 -500 -501 -502 -503 -504 -505 -506 -507 -508 -509 -510 -511 -512
+v -513 -514 -515 -516 -517 -518 -519 -520 -521 -522 -523 -524 -525 -526 -527
+v -528 -529 -530 -531 -532 -533 -534 -535 -536 -537 -538 -539 -540 -541 -542
+v -543 -544 -545 -546 -547 -548 -549 -550 -551 -552 -553 -554 -555 -556 -557
+v -558 -559 -560 -561 -562 -563 -564 -565 -566 -567 -568 -569 -570 -571 -572
+v -573 -574 -575 -576 -577 -578 -579 -580 -581 -582 -583 -584 -585 -586 -587
+v -588 -589 -590 -591 -592 -593 -594 -595 -596 -597 -598 -599 -600 -601 -602
+v -603 -604 -605 -606 -607 -608 -609 -610 -611 -612 -613 -614 -615 -616 -617
+v -618 -619 -620 -621 -622 -623 -624 -625 -626 -627 -628 -629 -630 -631 -632
+v -633 -634 -635 -636 -637 -638 -639 -640 -641 -642 -643 -644 -645 -646 -647
+v -648 -649 -650 -651 652 653 0

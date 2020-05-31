@@ -1,0 +1,141 @@
+--Agente: roles asignados
+--agent_50: EntidadFinanciera, Proveedor
+--agent_60: Proveedor, Autoridad_Aplicacion_Provincial
+--agent_52: Proveedor, Oferente
+--agent_51: Asociacion_Consumidores, Proveedor
+--agent_54: Proveedor, Consumidor_DanioDiferenciado
+--agent_21: consumidor_servicio_publicod, Proveedor
+--agent_20: Proveedor
+--agent_64: Gobierno_Local, Proveedor
+--agent_34: Transportista, Proveedor
+--agent_45: Proveedor, ProfesionalMatriculado
+--agent_44: Proveedor, autoridad_competente
+--agent_25: Autoridad_Aplicacion, Proveedor
+--agent_47: Proveedor, BCRA
+--agent_35: Proveedor, proveedor_servicio_publicod
+--agent_16: Juez, Proveedor
+--agent_15: instrumento_medicion_autorizado, Proveedor
+--agent_59: Proveedor, Autoridad_Aplicacion_Nacional
+--agent_28: Vendedor, Proveedor
+--agent_39: Ministerio_Publico_Fiscal, Proveedor
+--agent_19: Proveedor, Infractor
+--agent_9: Defensor_del_Pueblo, Proveedor
+--agent_6: Proveedor, proveedor_servicios_publicosd
+--agent_7: Proveedor, consumidor_servicio_publico_legislacion_propia
+
+MODULE main
+VAR	
+	agent_7.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_45.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_7.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_21.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_34.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_50.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_52.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_15.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_51.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_59.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_16.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_19.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_44.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_34.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_28.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_64.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_25.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_50.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_59.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_35.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_35.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_19.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_20.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_16.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_47.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_54.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_51.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_54.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_6.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_28.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_25.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_60.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_64.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_9.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_9.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_47.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_45.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_39.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_6.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_21.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_60.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_44.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_39.PrestarServicio: {HAPPENING, NOT_HAPPENING};
+  	agent_20.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_52.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_15.CumplirConCondicionesDeOferta: {HAPPENING, NOT_HAPPENING};
+  
+INIT
+	--Se inicializan todas las acciones en NOT_HAPPENING 
+	agent_7.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_45.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_7.PrestarServicio = NOT_HAPPENING &
+	agent_21.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_34.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_50.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_52.PrestarServicio = NOT_HAPPENING &
+	agent_15.PrestarServicio = NOT_HAPPENING &
+	agent_51.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_59.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_16.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_19.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_44.PrestarServicio = NOT_HAPPENING &
+	agent_34.PrestarServicio = NOT_HAPPENING &
+	agent_28.PrestarServicio = NOT_HAPPENING &
+	agent_64.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_25.PrestarServicio = NOT_HAPPENING &
+	agent_50.PrestarServicio = NOT_HAPPENING &
+	agent_59.PrestarServicio = NOT_HAPPENING &
+	agent_35.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_35.PrestarServicio = NOT_HAPPENING &
+	agent_19.PrestarServicio = NOT_HAPPENING &
+	agent_20.PrestarServicio = NOT_HAPPENING &
+	agent_16.PrestarServicio = NOT_HAPPENING &
+	agent_47.PrestarServicio = NOT_HAPPENING &
+	agent_54.PrestarServicio = NOT_HAPPENING &
+	agent_51.PrestarServicio = NOT_HAPPENING &
+	agent_54.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_6.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_28.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_25.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_60.PrestarServicio = NOT_HAPPENING &
+	agent_64.PrestarServicio = NOT_HAPPENING &
+	agent_9.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_9.PrestarServicio = NOT_HAPPENING &
+	agent_47.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_45.PrestarServicio = NOT_HAPPENING &
+	agent_39.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_6.PrestarServicio = NOT_HAPPENING &
+	agent_21.PrestarServicio = NOT_HAPPENING &
+	agent_60.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_44.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_39.PrestarServicio = NOT_HAPPENING &
+	agent_20.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_52.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+	agent_15.CumplirConCondicionesDeOferta = NOT_HAPPENING &
+                                                  TRUE 
+
+TRANS
+	--En el caso de representar la accion con tres estados:
+		--Las acciones que están en JH pasan a NH
+		--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--En el caso de representar la accion con dos estados:
+		--Desde H se puede pasar a NH o quedarse en H (ya no pueden pasar a JH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--Si tienen hasOccursIn => si están en H => hasOccursIn = activo
+				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   	--Si una acción tiene output values, al pasar de H a JH, la variable que  
+	--representa el output value toma alguno de sus valores posibles. Si la 
+	--acción no hace ese cambio de H a JH => el valor queda igual
+	--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+	--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+                                              
+
+ TRUE

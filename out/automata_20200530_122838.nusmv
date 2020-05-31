@@ -1,0 +1,2189 @@
+--Agente: roles asignados
+--agent_50: EntidadFinanciera, Proveedor
+--agent_52: Proveedor, Oferente
+--agent_51: Asociacion_Consumidores, Proveedor
+--agent_54: Proveedor, Consumidor_DanioDiferenciado
+--agent_53: Gobierno_Local, Consumidor
+--agent_12: consumidor_servicio_publico_legislacion_propia, Consumidor
+--agent_34: Transportista, Proveedor
+--agent_11: Consumidor, BCRA
+--agent_58: Transportista, Consumidor
+--agent_36: Juez, Consumidor
+--agent_57: Consumidor, autoridad_competente
+--agent_35: Proveedor, proveedor_servicio_publicod
+--agent_16: Juez, Proveedor
+--agent_38: Consumidor, Consumidor_DanioDiferenciado
+--agent_15: instrumento_medicion_autorizado, Proveedor
+--agent_59: Proveedor, Autoridad_Aplicacion_Nacional
+--agent_28: Vendedor, Proveedor
+--agent_61: Consumidor, Autoridad_Aplicacion_Nacional
+--agent_60: Proveedor, Autoridad_Aplicacion_Provincial
+--agent_41: EntidadFinanciera, Consumidor
+--agent_40: consumidor_servicio_publicod, Consumidor
+--agent_21: consumidor_servicio_publicod, Proveedor
+--agent_43: Infractor, Consumidor
+--agent_20: Proveedor
+--agent_64: Gobierno_Local, Proveedor
+--agent_23: Ministerio_Publico_Fiscal, Consumidor
+--agent_67: Consumidor, proveedor_servicio_publicod
+--agent_45: Proveedor, ProfesionalMatriculado
+--agent_22: ProfesionalMatriculado
+--agent_66: Asociacion_Consumidores, Consumidor
+--agent_44: Proveedor, autoridad_competente
+--agent_25: Autoridad_Aplicacion, Proveedor
+--agent_47: Proveedor, BCRA
+--agent_24: proveedor_servicios_publicosd, Consumidor
+--agent_46: Oferente, Consumidor
+--agent_48: Defensor_del_Pueblo, Consumidor
+--agent_18: Vendedor, Consumidor
+--agent_17: ProfesionalMatriculado, Consumidor
+--agent_39: Ministerio_Publico_Fiscal, Proveedor
+--agent_19: Proveedor, Infractor
+--agent_4: Autoridad_Aplicacion_Provincial, Consumidor
+--agent_5: Autoridad_Aplicacion, Consumidor
+--agent_3: Consumidor
+--agent_8: instrumento_medicion_autorizado, Consumidor
+--agent_9: Defensor_del_Pueblo, Proveedor
+--agent_6: Proveedor, proveedor_servicios_publicosd
+--agent_7: Proveedor, consumidor_servicio_publico_legislacion_propia
+
+MODULE main
+VAR	
+	agent_12.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_64.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_50.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_64.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_35.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_35.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_5.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_35.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_51.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_50.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_54.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_54.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_21.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_11.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_51.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_51.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_60.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_36.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_3.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_4.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_9.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_50.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_7.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_25.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_47.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_23.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_25.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_5.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_24.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_20.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_52.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_22.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_3.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_36.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_8.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_28.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_45.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_15.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_45.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_18.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_50.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_9.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_16.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_66.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_25.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_39.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_20.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_17.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_60.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_22.PublicitarServicioProfesional: {HAPPENING, NOT_HAPPENING};
+  	agent_61.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_16.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_19.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_60.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_60.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_45.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_45.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_35.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_9.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_57.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_53.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_60.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_4.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_66.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_8.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_28.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_16.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_3.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_52.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	SancionesVarias: {HAPPENING, NOT_HAPPENING};
+  	agent_11.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_34.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_12.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_43.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_12.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_4.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_48.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_21.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_67.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_5.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_43.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_44.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_25.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_48.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_7.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_15.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_40.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_45.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_34.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_28.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_25.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_7.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_64.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_21.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_54.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_5.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_16.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_8.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_21.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_35.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_60.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_54.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_15.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_11.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_43.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_53.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_34.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_41.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_16.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_57.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_54.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_7.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_28.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_17.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_17.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_16.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_50.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_20.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_57.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_15.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_36.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_38.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_67.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_24.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_7.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_28.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_17.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_39.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_23.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_52.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_21.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_40.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_23.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_35.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_7.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_23.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_9.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_52.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_50.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_47.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_40.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_46.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_60.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_20.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_57.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_39.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_9.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_40.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_48.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_44.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_39.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_59.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_36.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_50.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_47.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_59.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_51.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_60.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_11.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_51.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_34.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_38.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_59.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_6.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_61.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_25.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_39.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_6.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_20.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_67.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_47.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_46.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_66.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_35.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_4.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_40.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_61.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_52.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_47.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_35.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_59.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_53.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_54.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_38.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_21.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_21.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_52.RevocarOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_3.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_39.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_19.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_21.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_45.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_18.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_41.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_47.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_61.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_18.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_15.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_15.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_15.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_3.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_35.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_6.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_67.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_21.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_17.PublicitarServicioProfesional: {HAPPENING, NOT_HAPPENING};
+  	agent_15.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_20.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_16.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_9.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_28.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_50.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_58.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_59.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_12.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_11.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_64.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_39.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_39.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_50.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_44.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_44.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_44.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_52.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_25.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_21.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_58.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_46.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_23.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_21.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_6.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_6.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_19.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_57.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_59.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_17.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_6.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_60.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_18.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_36.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_15.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_54.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_20.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_7.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_7.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_51.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_52.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	ComenzarOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_41.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_45.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_6.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_34.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_38.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_39.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_64.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_35.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_61.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_53.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_6.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_47.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_43.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_66.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_24.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_64.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_36.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_45.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_52.DifundirRevocacion: {HAPPENING, NOT_HAPPENING};
+  	agent_6.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_20.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_59.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_9.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_16.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_47.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_20.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_20.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_34.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_52.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_28.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_12.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_60.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_21.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_43.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_17.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_48.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_7.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_40.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_53.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_51.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_7.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_47.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_44.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_39.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_52.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_28.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_44.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_64.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_15.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_54.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_46.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_20.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_51.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_44.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_23.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_4.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_8.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_3.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_44.Vender: {HAPPENING, NOT_HAPPENING};
+  	aparienciaDeReclamoJudicial: {HAPPENING, NOT_HAPPENING};
+  	agent_47.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_59.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_59.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_50.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_19.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_25.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_57.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_28.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_38.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_66.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_9.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_54.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_8.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_41.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_61.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_19.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_51.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_64.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_46.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_9.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_41.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_9.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_21.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_52.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_15.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_20.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_39.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_59.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_45.PublicitarServicioProfesional: {HAPPENING, NOT_HAPPENING};
+  	agent_19.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_48.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_6.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_5.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_12.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_18.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_51.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_4.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_35.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_35.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_51.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_9.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_53.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_34.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_39.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_64.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_17.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_34.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_45.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_38.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_43.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_50.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_50.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_44.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_44.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_60.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_21.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_47.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_47.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_54.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_59.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_59.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_48.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_64.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_15.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_67.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_19.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_6.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_6.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_5.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_16.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_16.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_8.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_16.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_9.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_9.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_19.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_50.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_34.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_34.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_61.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_41.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_54.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_45.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_34.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_45.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	reclamoExtrajudicial: {HAPPENING, NOT_HAPPENING};
+  	agent_58.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_15.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_39.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_51.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_19.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_44.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_24.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_50.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_11.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_45.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_38.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_7.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_58.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_34.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_9.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_35.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_52.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_52.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_28.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_34.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_46.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_9.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_60.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_8.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_25.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_51.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_20.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_64.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_25.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_59.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_16.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_52.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_45.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_34.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_18.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_34.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_21.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_7.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_53.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_19.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_19.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_54.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_54.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_36.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_57.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_52.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_7.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_59.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_47.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_35.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_19.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_19.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_20.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_64.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_64.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_59.ofrecerPublicamenteCosasDeficientes: {HAPPENING, NOT_HAPPENING};
+  	agent_44.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_45.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_15.ComienzaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_48.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_39.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_47.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_7.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_24.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_66.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_6.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_66.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_50.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_40.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_52.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_52.EspecificarCondicionesOferta: {HAPPENING, NOT_HAPPENING};
+  	agent_47.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_15.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_12.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_28.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_54.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_19.Ofertar: {HAPPENING, NOT_HAPPENING};
+  	agent_58.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_67.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_28.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_28.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_24.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_16.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_16.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_11.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_44.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_25.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_45.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_25.ServicioTecnico: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+ 	agent_25.ServicioTecnico_OUTPUT: {noneOfTheOthers, adecuado};
+	  	agent_17.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_3.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_64.SuministrarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_58.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_25.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_46.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_24.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_41.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_54.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_20.OfrecerRescindir: {HAPPENING, NOT_HAPPENING};
+  	agent_23.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_58.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_25.OfrecerServicios: {HAPPENING, NOT_HAPPENING};
+  	agent_67.TrasladarCosaTallerFabrica: {HAPPENING, NOT_HAPPENING};
+  	agent_4.EjecutarGarantia: {HAPPENING, NOT_HAPPENING};
+  	agent_51.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_5.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_51.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_44.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_35.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_16.SuministrarRepuestos: {HAPPENING, NOT_HAPPENING};
+  	agent_18.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_28.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_28.TerminaOferta: {HAPPENING, NOT_HAPPENING, JUST_HAPPENED};
+  	agent_39.Vender: {HAPPENING, NOT_HAPPENING};
+  	agent_43.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_19.RedactarDocVenta: {HAPPENING, NOT_HAPPENING};
+  	agent_64.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_28.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_51.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_15.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_64.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_19.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_9.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_52.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_6.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_44.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_7.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_50.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_59.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_45.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_39.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_25.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_54.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_47.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_60.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_16.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_34.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_21.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_20.PeriodoOferta: {ACTIVE, INACTIVE};
+  	agent_35.PeriodoOferta: {ACTIVE, INACTIVE};
+  
+INIT
+	--Se inicializan todas las acciones en NOT_HAPPENING 
+	agent_12.EjecutarGarantia = NOT_HAPPENING &
+	agent_64.SuministrarRepuestos = NOT_HAPPENING &
+	agent_50.OfrecerRescindir = NOT_HAPPENING &
+	agent_64.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_35.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_35.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_5.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_35.TerminaOferta = NOT_HAPPENING &
+	agent_51.EntregarManual = NOT_HAPPENING &
+	agent_50.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_54.ServicioTecnico = NOT_HAPPENING &
+	agent_21.EntregarManual = NOT_HAPPENING &
+	agent_11.SolicitarInformacion = NOT_HAPPENING &
+	agent_51.ServicioTecnico = NOT_HAPPENING &
+	agent_60.OfrecerRescindir = NOT_HAPPENING &
+	agent_36.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_3.UtilizarByS = NOT_HAPPENING &
+	agent_4.UtilizarByS = NOT_HAPPENING &
+	agent_9.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_50.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_7.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_25.SuministrarRepuestos = NOT_HAPPENING &
+	agent_47.RedactarDocVenta = NOT_HAPPENING &
+	agent_23.AdquirirByS = NOT_HAPPENING &
+	agent_25.ComienzaOferta = NOT_HAPPENING &
+	agent_5.UtilizarByS = NOT_HAPPENING &
+	agent_24.AdquirirByS = NOT_HAPPENING &
+	agent_20.Ofertar = NOT_HAPPENING &
+	agent_52.RedactarDocVenta = NOT_HAPPENING &
+	agent_22.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_3.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_36.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_8.UtilizarByS = NOT_HAPPENING &
+	agent_28.SuministrarRepuestos = NOT_HAPPENING &
+	agent_45.EntregarManual = NOT_HAPPENING &
+	agent_15.EntregarManual = NOT_HAPPENING &
+	agent_45.TerminaOferta = NOT_HAPPENING &
+	agent_18.UtilizarByS = NOT_HAPPENING &
+	agent_50.EntregarManual = NOT_HAPPENING &
+	agent_9.SuministrarRepuestos = NOT_HAPPENING &
+	agent_16.TerminaOferta = NOT_HAPPENING &
+	agent_60.ComienzaOferta = NOT_HAPPENING &
+	agent_66.SolicitarInformacion = NOT_HAPPENING &
+	agent_25.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_39.EntregarManual = NOT_HAPPENING &
+	agent_20.EntregarManual = NOT_HAPPENING &
+	agent_17.UtilizarByS = NOT_HAPPENING &
+	agent_60.SuministrarInformacion = NOT_HAPPENING &
+	agent_22.PublicitarServicioProfesional = NOT_HAPPENING &
+	agent_61.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_16.EntregarManual = NOT_HAPPENING &
+	agent_19.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_60.ServicioTecnico = NOT_HAPPENING &
+	agent_45.ServicioTecnico = NOT_HAPPENING &
+	agent_35.SuministrarInformacion = NOT_HAPPENING &
+	agent_9.RedactarDocVenta = NOT_HAPPENING &
+	agent_57.EjecutarGarantia = NOT_HAPPENING &
+	agent_53.SolicitarInformacion = NOT_HAPPENING &
+	agent_60.SuministrarRepuestos = NOT_HAPPENING &
+	agent_4.AdquirirByS = NOT_HAPPENING &
+	agent_66.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_8.AdquirirByS = NOT_HAPPENING &
+	agent_28.OfrecerRescindir = NOT_HAPPENING &
+	agent_16.OfrecerServicios = NOT_HAPPENING &
+	agent_3.AdquirirByS = NOT_HAPPENING &
+	agent_52.EntregarManual = NOT_HAPPENING &
+	SancionesVarias = NOT_HAPPENING &
+	agent_11.UtilizarByS = NOT_HAPPENING &
+	agent_34.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_12.UtilizarByS = NOT_HAPPENING &
+	agent_43.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_12.SolicitarInformacion = NOT_HAPPENING &
+	agent_4.Consumir = NOT_HAPPENING &
+	agent_48.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_21.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_67.SolicitarInformacion = NOT_HAPPENING &
+	agent_5.AdquirirByS = NOT_HAPPENING &
+	agent_43.Consumir = NOT_HAPPENING &
+	agent_44.TerminaOferta = NOT_HAPPENING &
+	agent_25.OfrecerRescindir = NOT_HAPPENING &
+	agent_48.Consumir = NOT_HAPPENING &
+	agent_7.SuministrarRepuestos = NOT_HAPPENING &
+	agent_15.RedactarDocVenta = NOT_HAPPENING &
+	agent_40.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_45.SuministrarInformacion = NOT_HAPPENING &
+	agent_34.TerminaOferta = NOT_HAPPENING &
+	agent_28.SuministrarInformacion = NOT_HAPPENING &
+	agent_25.RedactarDocVenta = NOT_HAPPENING &
+	agent_7.ComienzaOferta = NOT_HAPPENING &
+	agent_64.TerminaOferta = NOT_HAPPENING &
+	agent_21.OfrecerServicios = NOT_HAPPENING &
+	agent_54.ComienzaOferta = NOT_HAPPENING &
+	agent_5.Consumir = NOT_HAPPENING &
+	agent_16.Vender = NOT_HAPPENING &
+	agent_8.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_21.SuministrarInformacion = NOT_HAPPENING &
+	agent_35.OfrecerRescindir = NOT_HAPPENING &
+	agent_60.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_54.Vender = NOT_HAPPENING &
+	agent_15.Ofertar = NOT_HAPPENING &
+	agent_11.AdquirirByS = NOT_HAPPENING &
+	agent_43.AdquirirByS = NOT_HAPPENING &
+	agent_53.AdquirirByS = NOT_HAPPENING &
+	agent_34.Ofertar = NOT_HAPPENING &
+	agent_41.AdquirirByS = NOT_HAPPENING &
+	agent_16.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_57.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_54.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_7.Vender = NOT_HAPPENING &
+	agent_28.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_17.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_17.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_16.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_50.OfrecerServicios = NOT_HAPPENING &
+	agent_20.RedactarDocVenta = NOT_HAPPENING &
+	agent_57.AdquirirByS = NOT_HAPPENING &
+	agent_15.SuministrarRepuestos = NOT_HAPPENING &
+	agent_36.AdquirirByS = NOT_HAPPENING &
+	agent_38.AdquirirByS = NOT_HAPPENING &
+	agent_67.EjecutarGarantia = NOT_HAPPENING &
+	agent_24.EjecutarGarantia = NOT_HAPPENING &
+	agent_7.SuministrarInformacion = NOT_HAPPENING &
+	agent_28.ComienzaOferta = NOT_HAPPENING &
+	agent_17.AdquirirByS = NOT_HAPPENING &
+	agent_39.SuministrarInformacion = NOT_HAPPENING &
+	agent_23.SolicitarInformacion = NOT_HAPPENING &
+	agent_52.SuministrarInformacion = NOT_HAPPENING &
+	agent_21.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_40.UtilizarByS = NOT_HAPPENING &
+	agent_23.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_35.Vender = NOT_HAPPENING &
+	agent_7.RedactarDocVenta = NOT_HAPPENING &
+	agent_23.UtilizarByS = NOT_HAPPENING &
+	agent_9.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_52.Ofertar = NOT_HAPPENING &
+	agent_50.SuministrarRepuestos = NOT_HAPPENING &
+	agent_47.ComienzaOferta = NOT_HAPPENING &
+	agent_40.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_46.UtilizarByS = NOT_HAPPENING &
+	agent_60.Vender = NOT_HAPPENING &
+	agent_20.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_57.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_39.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_9.Ofertar = NOT_HAPPENING &
+	agent_40.SolicitarInformacion = NOT_HAPPENING &
+	agent_48.UtilizarByS = NOT_HAPPENING &
+	agent_44.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_39.OfrecerServicios = NOT_HAPPENING &
+	agent_59.Ofertar = NOT_HAPPENING &
+	agent_36.Consumir = NOT_HAPPENING &
+	agent_50.RedactarDocVenta = NOT_HAPPENING &
+	agent_47.TerminaOferta = NOT_HAPPENING &
+	agent_59.RedactarDocVenta = NOT_HAPPENING &
+	agent_51.TerminaOferta = NOT_HAPPENING &
+	agent_60.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_60.EntregarManual = NOT_HAPPENING &
+	agent_11.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_51.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_34.RedactarDocVenta = NOT_HAPPENING &
+	agent_38.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_59.OfrecerServicios = NOT_HAPPENING &
+	agent_6.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_61.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_25.SuministrarInformacion = NOT_HAPPENING &
+	agent_39.RedactarDocVenta = NOT_HAPPENING &
+	agent_6.RedactarDocVenta = NOT_HAPPENING &
+	agent_20.OfrecerServicios = NOT_HAPPENING &
+	agent_67.AdquirirByS = NOT_HAPPENING &
+	agent_47.Vender = NOT_HAPPENING &
+	agent_46.Consumir = NOT_HAPPENING &
+	agent_66.AdquirirByS = NOT_HAPPENING &
+	agent_35.SuministrarRepuestos = NOT_HAPPENING &
+	agent_4.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_40.EjecutarGarantia = NOT_HAPPENING &
+	agent_61.EjecutarGarantia = NOT_HAPPENING &
+	agent_52.SuministrarRepuestos = NOT_HAPPENING &
+	agent_47.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_35.ComienzaOferta = NOT_HAPPENING &
+	agent_59.SuministrarInformacion = NOT_HAPPENING &
+	agent_53.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_54.Ofertar = NOT_HAPPENING &
+	agent_38.UtilizarByS = NOT_HAPPENING &
+	agent_21.ServicioTecnico = NOT_HAPPENING &
+	agent_52.RevocarOferta = NOT_HAPPENING &
+	agent_3.SolicitarInformacion = NOT_HAPPENING &
+	agent_39.SuministrarRepuestos = NOT_HAPPENING &
+	agent_19.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_21.OfrecerRescindir = NOT_HAPPENING &
+	agent_45.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_18.SolicitarInformacion = NOT_HAPPENING &
+	agent_41.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_47.OfrecerRescindir = NOT_HAPPENING &
+	agent_61.SolicitarInformacion = NOT_HAPPENING &
+	agent_18.Consumir = NOT_HAPPENING &
+	agent_15.Vender = NOT_HAPPENING &
+	agent_15.ServicioTecnico = NOT_HAPPENING &
+	agent_3.EjecutarGarantia = NOT_HAPPENING &
+	agent_35.EntregarManual = NOT_HAPPENING &
+	agent_6.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_67.Consumir = NOT_HAPPENING &
+	agent_21.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_17.PublicitarServicioProfesional = NOT_HAPPENING &
+	agent_15.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_20.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_16.Ofertar = NOT_HAPPENING &
+	agent_9.ComienzaOferta = NOT_HAPPENING &
+	agent_28.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_50.TerminaOferta = NOT_HAPPENING &
+	agent_58.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_59.EntregarManual = NOT_HAPPENING &
+	agent_12.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_11.EjecutarGarantia = NOT_HAPPENING &
+	agent_64.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_39.ServicioTecnico = NOT_HAPPENING &
+	agent_50.ComienzaOferta = NOT_HAPPENING &
+	agent_44.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_44.SuministrarInformacion = NOT_HAPPENING &
+	agent_44.EntregarManual = NOT_HAPPENING &
+	agent_52.TerminaOferta = NOT_HAPPENING &
+	agent_7.OfrecerRescindir = NOT_HAPPENING &
+	agent_25.Vender = NOT_HAPPENING &
+	agent_21.RedactarDocVenta = NOT_HAPPENING &
+	agent_58.EjecutarGarantia = NOT_HAPPENING &
+	agent_46.AdquirirByS = NOT_HAPPENING &
+	agent_23.Consumir = NOT_HAPPENING &
+	agent_21.SuministrarRepuestos = NOT_HAPPENING &
+	agent_6.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_6.OfrecerServicios = NOT_HAPPENING &
+	agent_19.ComienzaOferta = NOT_HAPPENING &
+	agent_57.SolicitarInformacion = NOT_HAPPENING &
+	agent_59.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_17.EjecutarGarantia = NOT_HAPPENING &
+	agent_6.Vender = NOT_HAPPENING &
+	agent_60.Ofertar = NOT_HAPPENING &
+	agent_18.AdquirirByS = NOT_HAPPENING &
+	agent_36.EjecutarGarantia = NOT_HAPPENING &
+	agent_15.OfrecerRescindir = NOT_HAPPENING &
+	agent_54.TerminaOferta = NOT_HAPPENING &
+	agent_20.Vender = NOT_HAPPENING &
+	agent_7.ServicioTecnico = NOT_HAPPENING &
+	agent_51.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_52.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	ComenzarOferta = NOT_HAPPENING &
+	agent_41.UtilizarByS = NOT_HAPPENING &
+	agent_45.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_6.SuministrarRepuestos = NOT_HAPPENING &
+	agent_34.ComienzaOferta = NOT_HAPPENING &
+	agent_38.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_39.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_64.ComienzaOferta = NOT_HAPPENING &
+	agent_35.Ofertar = NOT_HAPPENING &
+	agent_61.Consumir = NOT_HAPPENING &
+	agent_53.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_6.SuministrarInformacion = NOT_HAPPENING &
+	agent_47.Ofertar = NOT_HAPPENING &
+	agent_43.SolicitarInformacion = NOT_HAPPENING &
+	agent_66.UtilizarByS = NOT_HAPPENING &
+	agent_24.UtilizarByS = NOT_HAPPENING &
+	agent_64.Vender = NOT_HAPPENING &
+	agent_36.SolicitarInformacion = NOT_HAPPENING &
+	agent_45.SuministrarRepuestos = NOT_HAPPENING &
+	agent_52.DifundirRevocacion = NOT_HAPPENING &
+	agent_6.OfrecerRescindir = NOT_HAPPENING &
+	agent_20.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_59.OfrecerRescindir = NOT_HAPPENING &
+	agent_9.OfrecerServicios = NOT_HAPPENING &
+	agent_16.RedactarDocVenta = NOT_HAPPENING &
+	agent_47.OfrecerServicios = NOT_HAPPENING &
+	agent_20.ServicioTecnico = NOT_HAPPENING &
+	agent_34.OfrecerRescindir = NOT_HAPPENING &
+	agent_52.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_28.EntregarManual = NOT_HAPPENING &
+	agent_12.Consumir = NOT_HAPPENING &
+	agent_60.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_21.TerminaOferta = NOT_HAPPENING &
+	agent_43.EjecutarGarantia = NOT_HAPPENING &
+	agent_17.Consumir = NOT_HAPPENING &
+	agent_48.SolicitarInformacion = NOT_HAPPENING &
+	agent_7.EntregarManual = NOT_HAPPENING &
+	agent_40.Consumir = NOT_HAPPENING &
+	agent_53.EjecutarGarantia = NOT_HAPPENING &
+	agent_51.SuministrarInformacion = NOT_HAPPENING &
+	agent_7.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_47.SuministrarInformacion = NOT_HAPPENING &
+	agent_44.ComienzaOferta = NOT_HAPPENING &
+	agent_39.OfrecerRescindir = NOT_HAPPENING &
+	agent_52.OfrecerServicios = NOT_HAPPENING &
+	agent_28.Ofertar = NOT_HAPPENING &
+	agent_44.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_64.OfrecerRescindir = NOT_HAPPENING &
+	agent_15.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_54.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_46.SolicitarInformacion = NOT_HAPPENING &
+	agent_20.ComienzaOferta = NOT_HAPPENING &
+	agent_51.Vender = NOT_HAPPENING &
+	agent_44.OfrecerRescindir = NOT_HAPPENING &
+	agent_23.EjecutarGarantia = NOT_HAPPENING &
+	agent_4.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_8.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_3.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_44.Vender = NOT_HAPPENING &
+	aparienciaDeReclamoJudicial = NOT_HAPPENING &
+	agent_47.SuministrarRepuestos = NOT_HAPPENING &
+	agent_59.Vender = NOT_HAPPENING &
+	agent_59.TerminaOferta = NOT_HAPPENING &
+	agent_50.Ofertar = NOT_HAPPENING &
+	agent_19.SuministrarInformacion = NOT_HAPPENING &
+	agent_25.Ofertar = NOT_HAPPENING &
+	agent_57.Consumir = NOT_HAPPENING &
+	agent_28.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_38.EjecutarGarantia = NOT_HAPPENING &
+	agent_66.Consumir = NOT_HAPPENING &
+	agent_9.EntregarManual = NOT_HAPPENING &
+	agent_54.SuministrarInformacion = NOT_HAPPENING &
+	agent_8.EjecutarGarantia = NOT_HAPPENING &
+	agent_41.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_61.UtilizarByS = NOT_HAPPENING &
+	agent_19.Vender = NOT_HAPPENING &
+	agent_51.OfrecerRescindir = NOT_HAPPENING &
+	agent_64.OfrecerServicios = NOT_HAPPENING &
+	agent_46.EjecutarGarantia = NOT_HAPPENING &
+	agent_9.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_41.Consumir = NOT_HAPPENING &
+	agent_9.SuministrarInformacion = NOT_HAPPENING &
+	agent_21.Vender = NOT_HAPPENING &
+	agent_52.Vender = NOT_HAPPENING &
+	agent_15.OfrecerServicios = NOT_HAPPENING &
+	agent_20.TerminaOferta = NOT_HAPPENING &
+	agent_39.ComienzaOferta = NOT_HAPPENING &
+	agent_59.SuministrarRepuestos = NOT_HAPPENING &
+	agent_45.PublicitarServicioProfesional = NOT_HAPPENING &
+	agent_19.OfrecerRescindir = NOT_HAPPENING &
+	agent_48.EjecutarGarantia = NOT_HAPPENING &
+	agent_6.Ofertar = NOT_HAPPENING &
+	agent_5.EjecutarGarantia = NOT_HAPPENING &
+	agent_12.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_18.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_51.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_4.SolicitarInformacion = NOT_HAPPENING &
+	agent_35.ServicioTecnico = NOT_HAPPENING &
+	agent_51.ComienzaOferta = NOT_HAPPENING &
+	agent_60.RedactarDocVenta = NOT_HAPPENING &
+	agent_9.OfrecerRescindir = NOT_HAPPENING &
+	agent_53.Consumir = NOT_HAPPENING &
+	agent_34.OfrecerServicios = NOT_HAPPENING &
+	agent_39.Ofertar = NOT_HAPPENING &
+	agent_64.EntregarManual = NOT_HAPPENING &
+	agent_17.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_34.EntregarManual = NOT_HAPPENING &
+	agent_45.OfrecerServicios = NOT_HAPPENING &
+	agent_38.Consumir = NOT_HAPPENING &
+	agent_43.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_50.ServicioTecnico = NOT_HAPPENING &
+	agent_44.ServicioTecnico = NOT_HAPPENING &
+	agent_60.TerminaOferta = NOT_HAPPENING &
+	agent_21.ComienzaOferta = NOT_HAPPENING &
+	agent_47.ServicioTecnico = NOT_HAPPENING &
+	agent_54.OfrecerRescindir = NOT_HAPPENING &
+	agent_59.ServicioTecnico = NOT_HAPPENING &
+	agent_48.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_64.Ofertar = NOT_HAPPENING &
+	agent_15.SuministrarInformacion = NOT_HAPPENING &
+	agent_67.UtilizarByS = NOT_HAPPENING &
+	agent_19.EntregarManual = NOT_HAPPENING &
+	agent_6.ServicioTecnico = NOT_HAPPENING &
+	agent_5.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_16.OfrecerRescindir = NOT_HAPPENING &
+	agent_16.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_8.Consumir = NOT_HAPPENING &
+	agent_16.SuministrarInformacion = NOT_HAPPENING &
+	agent_9.ServicioTecnico = NOT_HAPPENING &
+	agent_19.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_50.SuministrarInformacion = NOT_HAPPENING &
+	agent_34.ServicioTecnico = NOT_HAPPENING &
+	agent_61.AdquirirByS = NOT_HAPPENING &
+	agent_41.SolicitarInformacion = NOT_HAPPENING &
+	agent_54.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_45.Vender = NOT_HAPPENING &
+	agent_34.Vender = NOT_HAPPENING &
+	agent_45.ProveerBySRiesgoso = NOT_HAPPENING &
+	reclamoExtrajudicial = NOT_HAPPENING &
+	agent_58.SolicitarInformacion = NOT_HAPPENING &
+	agent_15.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_39.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_51.Ofertar = NOT_HAPPENING &
+	agent_19.TerminaOferta = NOT_HAPPENING &
+	agent_44.RedactarDocVenta = NOT_HAPPENING &
+	agent_24.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_50.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_11.Consumir = NOT_HAPPENING &
+	agent_45.RedactarDocVenta = NOT_HAPPENING &
+	agent_38.SolicitarInformacion = NOT_HAPPENING &
+	agent_7.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_58.UtilizarByS = NOT_HAPPENING &
+	agent_34.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_9.Vender = NOT_HAPPENING &
+	agent_35.OfrecerServicios = NOT_HAPPENING &
+	agent_52.ServicioTecnico = NOT_HAPPENING &
+	agent_28.RedactarDocVenta = NOT_HAPPENING &
+	agent_34.SuministrarRepuestos = NOT_HAPPENING &
+	agent_46.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_9.TerminaOferta = NOT_HAPPENING &
+	agent_60.OfrecerServicios = NOT_HAPPENING &
+	agent_8.SolicitarInformacion = NOT_HAPPENING &
+	agent_25.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_51.OfrecerServicios = NOT_HAPPENING &
+	agent_20.SuministrarRepuestos = NOT_HAPPENING &
+	agent_64.RedactarDocVenta = NOT_HAPPENING &
+	agent_25.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_59.ComienzaOferta = NOT_HAPPENING &
+	agent_16.ComienzaOferta = NOT_HAPPENING &
+	agent_52.OfrecerRescindir = NOT_HAPPENING &
+	agent_45.Ofertar = NOT_HAPPENING &
+	agent_34.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_18.EjecutarGarantia = NOT_HAPPENING &
+	agent_34.SuministrarInformacion = NOT_HAPPENING &
+	agent_21.Ofertar = NOT_HAPPENING &
+	agent_7.OfrecerServicios = NOT_HAPPENING &
+	agent_53.UtilizarByS = NOT_HAPPENING &
+	agent_19.OfrecerServicios = NOT_HAPPENING &
+	agent_19.SuministrarRepuestos = NOT_HAPPENING &
+	agent_54.EntregarManual = NOT_HAPPENING &
+	agent_54.SuministrarRepuestos = NOT_HAPPENING &
+	agent_36.UtilizarByS = NOT_HAPPENING &
+	agent_57.UtilizarByS = NOT_HAPPENING &
+	agent_52.ComienzaOferta = NOT_HAPPENING &
+	agent_7.Ofertar = NOT_HAPPENING &
+	agent_59.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_47.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_35.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_19.ServicioTecnico = NOT_HAPPENING &
+	agent_20.SuministrarInformacion = NOT_HAPPENING &
+	agent_64.ServicioTecnico = NOT_HAPPENING &
+	agent_59.ofrecerPublicamenteCosasDeficientes = NOT_HAPPENING &
+	agent_44.Ofertar = NOT_HAPPENING &
+	agent_45.ComienzaOferta = NOT_HAPPENING &
+	agent_15.ComienzaOferta = NOT_HAPPENING &
+	agent_48.AdquirirByS = NOT_HAPPENING &
+	agent_39.TerminaOferta = NOT_HAPPENING &
+	agent_47.EntregarManual = NOT_HAPPENING &
+	agent_7.TerminaOferta = NOT_HAPPENING &
+	agent_24.Consumir = NOT_HAPPENING &
+	agent_66.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_6.EntregarManual = NOT_HAPPENING &
+	agent_66.EjecutarGarantia = NOT_HAPPENING &
+	agent_50.Vender = NOT_HAPPENING &
+	agent_40.AdquirirByS = NOT_HAPPENING &
+	agent_52.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_52.EspecificarCondicionesOferta = NOT_HAPPENING &
+	agent_47.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_15.TerminaOferta = NOT_HAPPENING &
+	agent_12.AdquirirByS = NOT_HAPPENING &
+	agent_28.OfrecerServicios = NOT_HAPPENING &
+	agent_54.OfrecerServicios = NOT_HAPPENING &
+	agent_19.Ofertar = NOT_HAPPENING &
+	agent_58.Consumir = NOT_HAPPENING &
+	agent_67.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_28.ServicioTecnico = NOT_HAPPENING &
+	agent_24.SolicitarInformacion = NOT_HAPPENING &
+	agent_16.ServicioTecnico = NOT_HAPPENING &
+	agent_11.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_44.OfrecerServicios = NOT_HAPPENING &
+	agent_25.TerminaOferta = NOT_HAPPENING &
+	agent_45.OfrecerRescindir = NOT_HAPPENING &
+	agent_25.ServicioTecnico = NOT_HAPPENING &
+	agent_17.SolicitarInformacion = NOT_HAPPENING &
+	agent_3.Consumir = NOT_HAPPENING &
+	agent_64.SuministrarInformacion = NOT_HAPPENING &
+	agent_58.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_25.EntregarManual = NOT_HAPPENING &
+	agent_46.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_24.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_41.EjecutarGarantia = NOT_HAPPENING &
+	agent_54.RedactarDocVenta = NOT_HAPPENING &
+	agent_20.OfrecerRescindir = NOT_HAPPENING &
+	agent_23.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_58.AdquirirByS = NOT_HAPPENING &
+	agent_25.OfrecerServicios = NOT_HAPPENING &
+	agent_67.TrasladarCosaTallerFabrica = NOT_HAPPENING &
+	agent_4.EjecutarGarantia = NOT_HAPPENING &
+	agent_51.SuministrarRepuestos = NOT_HAPPENING &
+	agent_5.SolicitarInformacion = NOT_HAPPENING &
+	agent_51.RedactarDocVenta = NOT_HAPPENING &
+	agent_44.SuministrarRepuestos = NOT_HAPPENING &
+	agent_35.RedactarDocVenta = NOT_HAPPENING &
+	agent_16.SuministrarRepuestos = NOT_HAPPENING &
+	agent_18.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_28.Vender = NOT_HAPPENING &
+	agent_28.TerminaOferta = NOT_HAPPENING &
+	agent_39.Vender = NOT_HAPPENING &
+	agent_43.UtilizarByS = NOT_HAPPENING &
+	agent_19.RedactarDocVenta = NOT_HAPPENING &
+	agent_64.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	--Las variables que representan los output_values no se inicializan (toman un 
+	--valor aleatorio entre los posibles), la idea es que el valor de la variable solo 
+	--tiene sentido si la acción correspondiente está en JH
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             	--Se inicializan todos los intervalos en INACTIVE, salvo que sean isStartActive
+  	agent_28.PeriodoOferta = INACTIVE &
+      	agent_51.PeriodoOferta = INACTIVE &
+      	agent_15.PeriodoOferta = INACTIVE &
+      	agent_64.PeriodoOferta = INACTIVE &
+      	agent_19.PeriodoOferta = INACTIVE &
+      	agent_9.PeriodoOferta = INACTIVE &
+      	agent_52.PeriodoOferta = INACTIVE &
+      	agent_6.PeriodoOferta = INACTIVE &
+      	agent_44.PeriodoOferta = INACTIVE &
+      	agent_7.PeriodoOferta = INACTIVE &
+      	agent_50.PeriodoOferta = INACTIVE &
+      	agent_59.PeriodoOferta = INACTIVE &
+      	agent_45.PeriodoOferta = INACTIVE &
+      	agent_39.PeriodoOferta = INACTIVE &
+      	agent_25.PeriodoOferta = INACTIVE &
+      	agent_54.PeriodoOferta = INACTIVE &
+      	agent_47.PeriodoOferta = INACTIVE &
+      	agent_60.PeriodoOferta = INACTIVE &
+      	agent_16.PeriodoOferta = INACTIVE &
+      	agent_34.PeriodoOferta = INACTIVE &
+      	agent_21.PeriodoOferta = INACTIVE &
+      	agent_20.PeriodoOferta = INACTIVE &
+      	agent_35.PeriodoOferta = INACTIVE &
+        TRUE 
+
+TRANS
+	--En el caso de representar la accion con tres estados:
+		--Las acciones que están en JH pasan a NH
+		--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--En el caso de representar la accion con dos estados:
+		--Desde H se puede pasar a NH o quedarse en H (ya no pueden pasar a JH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--Si tienen hasOccursIn => si están en H => hasOccursIn = activo
+				   				   				   				   				   				   				   		 	(agent_35.TerminaOferta = JUST_HAPPENED -> next(agent_35.TerminaOferta) = NOT_HAPPENING) &
+		(agent_35.TerminaOferta = HAPPENING -> next(agent_35.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_35.TerminaOferta = NOT_HAPPENING -> next(agent_35.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   		 	(agent_54.ServicioTecnico = JUST_HAPPENED -> next(agent_54.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_54.ServicioTecnico = HAPPENING -> next(agent_54.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_54.ServicioTecnico = NOT_HAPPENING -> next(agent_54.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   		 	(agent_51.ServicioTecnico = JUST_HAPPENED -> next(agent_51.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_51.ServicioTecnico = HAPPENING -> next(agent_51.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_51.ServicioTecnico = NOT_HAPPENING -> next(agent_51.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   				   		 	(agent_25.ComienzaOferta = JUST_HAPPENED -> next(agent_25.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_25.ComienzaOferta = HAPPENING -> next(agent_25.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_25.ComienzaOferta = NOT_HAPPENING -> next(agent_25.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				  	(next(agent_20.Ofertar) = HAPPENING -> next(agent_20.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				   				   				   				   		 	(agent_45.TerminaOferta = JUST_HAPPENED -> next(agent_45.TerminaOferta) = NOT_HAPPENING) &
+		(agent_45.TerminaOferta = HAPPENING -> next(agent_45.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_45.TerminaOferta = NOT_HAPPENING -> next(agent_45.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   		 	(agent_16.TerminaOferta = JUST_HAPPENED -> next(agent_16.TerminaOferta) = NOT_HAPPENING) &
+		(agent_16.TerminaOferta = HAPPENING -> next(agent_16.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_16.TerminaOferta = NOT_HAPPENING -> next(agent_16.TerminaOferta) != JUST_HAPPENED) &
+	  		 	(agent_60.ComienzaOferta = JUST_HAPPENED -> next(agent_60.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_60.ComienzaOferta = HAPPENING -> next(agent_60.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_60.ComienzaOferta = NOT_HAPPENING -> next(agent_60.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   				   		 	(agent_60.ServicioTecnico = JUST_HAPPENED -> next(agent_60.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_60.ServicioTecnico = HAPPENING -> next(agent_60.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_60.ServicioTecnico = NOT_HAPPENING -> next(agent_60.ServicioTecnico) != JUST_HAPPENED) &
+	  		 	(agent_45.ServicioTecnico = JUST_HAPPENED -> next(agent_45.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_45.ServicioTecnico = HAPPENING -> next(agent_45.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_45.ServicioTecnico = NOT_HAPPENING -> next(agent_45.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   		 	(agent_44.TerminaOferta = JUST_HAPPENED -> next(agent_44.TerminaOferta) = NOT_HAPPENING) &
+		(agent_44.TerminaOferta = HAPPENING -> next(agent_44.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_44.TerminaOferta = NOT_HAPPENING -> next(agent_44.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   		 	(agent_34.TerminaOferta = JUST_HAPPENED -> next(agent_34.TerminaOferta) = NOT_HAPPENING) &
+		(agent_34.TerminaOferta = HAPPENING -> next(agent_34.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_34.TerminaOferta = NOT_HAPPENING -> next(agent_34.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   		 	(agent_7.ComienzaOferta = JUST_HAPPENED -> next(agent_7.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_7.ComienzaOferta = HAPPENING -> next(agent_7.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_7.ComienzaOferta = NOT_HAPPENING -> next(agent_7.ComienzaOferta) != JUST_HAPPENED) &
+	  		 	(agent_64.TerminaOferta = JUST_HAPPENED -> next(agent_64.TerminaOferta) = NOT_HAPPENING) &
+		(agent_64.TerminaOferta = HAPPENING -> next(agent_64.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_64.TerminaOferta = NOT_HAPPENING -> next(agent_64.TerminaOferta) != JUST_HAPPENED) &
+	  				   		 	(agent_54.ComienzaOferta = JUST_HAPPENED -> next(agent_54.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_54.ComienzaOferta = HAPPENING -> next(agent_54.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_54.ComienzaOferta = NOT_HAPPENING -> next(agent_54.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				  	(next(agent_15.Ofertar) = HAPPENING -> next(agent_15.PeriodoOferta) = ACTIVE) &
+  				   				   				   				  	(next(agent_34.Ofertar) = HAPPENING -> next(agent_34.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   		 	(agent_28.ComienzaOferta = JUST_HAPPENED -> next(agent_28.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_28.ComienzaOferta = HAPPENING -> next(agent_28.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_28.ComienzaOferta = NOT_HAPPENING -> next(agent_28.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   				   				   				  	(next(agent_52.Ofertar) = HAPPENING -> next(agent_52.PeriodoOferta) = ACTIVE) &
+  				   		 	(agent_47.ComienzaOferta = JUST_HAPPENED -> next(agent_47.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_47.ComienzaOferta = HAPPENING -> next(agent_47.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_47.ComienzaOferta = NOT_HAPPENING -> next(agent_47.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				  	(next(agent_9.Ofertar) = HAPPENING -> next(agent_9.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				  	(next(agent_59.Ofertar) = HAPPENING -> next(agent_59.PeriodoOferta) = ACTIVE) &
+  				   				   		 	(agent_47.TerminaOferta = JUST_HAPPENED -> next(agent_47.TerminaOferta) = NOT_HAPPENING) &
+		(agent_47.TerminaOferta = HAPPENING -> next(agent_47.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_47.TerminaOferta = NOT_HAPPENING -> next(agent_47.TerminaOferta) != JUST_HAPPENED) &
+	  				   		 	(agent_51.TerminaOferta = JUST_HAPPENED -> next(agent_51.TerminaOferta) = NOT_HAPPENING) &
+		(agent_51.TerminaOferta = HAPPENING -> next(agent_51.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_51.TerminaOferta = NOT_HAPPENING -> next(agent_51.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   		 	(agent_35.ComienzaOferta = JUST_HAPPENED -> next(agent_35.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_35.ComienzaOferta = HAPPENING -> next(agent_35.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_35.ComienzaOferta = NOT_HAPPENING -> next(agent_35.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				  	(next(agent_54.Ofertar) = HAPPENING -> next(agent_54.PeriodoOferta) = ACTIVE) &
+  				   		 	(agent_21.ServicioTecnico = JUST_HAPPENED -> next(agent_21.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_21.ServicioTecnico = HAPPENING -> next(agent_21.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_21.ServicioTecnico = NOT_HAPPENING -> next(agent_21.ServicioTecnico) != JUST_HAPPENED) &
+	  				  	(next(agent_52.RevocarOferta) = HAPPENING -> next(agent_52.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				   				   				   				   				   				   				   		 	(agent_15.ServicioTecnico = JUST_HAPPENED -> next(agent_15.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_15.ServicioTecnico = HAPPENING -> next(agent_15.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_15.ServicioTecnico = NOT_HAPPENING -> next(agent_15.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				  	(next(agent_16.Ofertar) = HAPPENING -> next(agent_16.PeriodoOferta) = ACTIVE) &
+  		 	(agent_9.ComienzaOferta = JUST_HAPPENED -> next(agent_9.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_9.ComienzaOferta = HAPPENING -> next(agent_9.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_9.ComienzaOferta = NOT_HAPPENING -> next(agent_9.ComienzaOferta) != JUST_HAPPENED) &
+	  				   		 	(agent_50.TerminaOferta = JUST_HAPPENED -> next(agent_50.TerminaOferta) = NOT_HAPPENING) &
+		(agent_50.TerminaOferta = HAPPENING -> next(agent_50.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_50.TerminaOferta = NOT_HAPPENING -> next(agent_50.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   		 	(agent_39.ServicioTecnico = JUST_HAPPENED -> next(agent_39.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_39.ServicioTecnico = HAPPENING -> next(agent_39.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_39.ServicioTecnico = NOT_HAPPENING -> next(agent_39.ServicioTecnico) != JUST_HAPPENED) &
+	  		 	(agent_50.ComienzaOferta = JUST_HAPPENED -> next(agent_50.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_50.ComienzaOferta = HAPPENING -> next(agent_50.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_50.ComienzaOferta = NOT_HAPPENING -> next(agent_50.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				   		 	(agent_52.TerminaOferta = JUST_HAPPENED -> next(agent_52.TerminaOferta) = NOT_HAPPENING) &
+		(agent_52.TerminaOferta = HAPPENING -> next(agent_52.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_52.TerminaOferta = NOT_HAPPENING -> next(agent_52.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   		 	(agent_19.ComienzaOferta = JUST_HAPPENED -> next(agent_19.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_19.ComienzaOferta = HAPPENING -> next(agent_19.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_19.ComienzaOferta = NOT_HAPPENING -> next(agent_19.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				  	(next(agent_60.Ofertar) = HAPPENING -> next(agent_60.PeriodoOferta) = ACTIVE) &
+  				   				   				   		 	(agent_54.TerminaOferta = JUST_HAPPENED -> next(agent_54.TerminaOferta) = NOT_HAPPENING) &
+		(agent_54.TerminaOferta = HAPPENING -> next(agent_54.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_54.TerminaOferta = NOT_HAPPENING -> next(agent_54.TerminaOferta) != JUST_HAPPENED) &
+	  				   		 	(agent_7.ServicioTecnico = JUST_HAPPENED -> next(agent_7.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_7.ServicioTecnico = HAPPENING -> next(agent_7.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_7.ServicioTecnico = NOT_HAPPENING -> next(agent_7.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   		 	(agent_34.ComienzaOferta = JUST_HAPPENED -> next(agent_34.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_34.ComienzaOferta = HAPPENING -> next(agent_34.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_34.ComienzaOferta = NOT_HAPPENING -> next(agent_34.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   		 	(agent_64.ComienzaOferta = JUST_HAPPENED -> next(agent_64.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_64.ComienzaOferta = HAPPENING -> next(agent_64.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_64.ComienzaOferta = NOT_HAPPENING -> next(agent_64.ComienzaOferta) != JUST_HAPPENED) &
+	  				  	(next(agent_35.Ofertar) = HAPPENING -> next(agent_35.PeriodoOferta) = ACTIVE) &
+  				   				   				   				  	(next(agent_47.Ofertar) = HAPPENING -> next(agent_47.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				   				   				  	(next(agent_52.DifundirRevocacion) = HAPPENING -> next(agent_52.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				   				   		 	(agent_20.ServicioTecnico = JUST_HAPPENED -> next(agent_20.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_20.ServicioTecnico = HAPPENING -> next(agent_20.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_20.ServicioTecnico = NOT_HAPPENING -> next(agent_20.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   				   				   				   		 	(agent_21.TerminaOferta = JUST_HAPPENED -> next(agent_21.TerminaOferta) = NOT_HAPPENING) &
+		(agent_21.TerminaOferta = HAPPENING -> next(agent_21.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_21.TerminaOferta = NOT_HAPPENING -> next(agent_21.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   		 	(agent_44.ComienzaOferta = JUST_HAPPENED -> next(agent_44.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_44.ComienzaOferta = HAPPENING -> next(agent_44.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_44.ComienzaOferta = NOT_HAPPENING -> next(agent_44.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				  	(next(agent_28.Ofertar) = HAPPENING -> next(agent_28.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				   		 	(agent_20.ComienzaOferta = JUST_HAPPENED -> next(agent_20.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_20.ComienzaOferta = HAPPENING -> next(agent_20.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_20.ComienzaOferta = NOT_HAPPENING -> next(agent_20.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   				   		 	(agent_59.TerminaOferta = JUST_HAPPENED -> next(agent_59.TerminaOferta) = NOT_HAPPENING) &
+		(agent_59.TerminaOferta = HAPPENING -> next(agent_59.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_59.TerminaOferta = NOT_HAPPENING -> next(agent_59.TerminaOferta) != JUST_HAPPENED) &
+	  				  	(next(agent_50.Ofertar) = HAPPENING -> next(agent_50.PeriodoOferta) = ACTIVE) &
+  				   				  	(next(agent_25.Ofertar) = HAPPENING -> next(agent_25.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   		 	(agent_20.TerminaOferta = JUST_HAPPENED -> next(agent_20.TerminaOferta) = NOT_HAPPENING) &
+		(agent_20.TerminaOferta = HAPPENING -> next(agent_20.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_20.TerminaOferta = NOT_HAPPENING -> next(agent_20.TerminaOferta) != JUST_HAPPENED) &
+	  		 	(agent_39.ComienzaOferta = JUST_HAPPENED -> next(agent_39.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_39.ComienzaOferta = HAPPENING -> next(agent_39.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_39.ComienzaOferta = NOT_HAPPENING -> next(agent_39.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				  	(next(agent_6.Ofertar) = HAPPENING -> next(agent_6.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				   		 	(agent_35.ServicioTecnico = JUST_HAPPENED -> next(agent_35.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_35.ServicioTecnico = HAPPENING -> next(agent_35.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_35.ServicioTecnico = NOT_HAPPENING -> next(agent_35.ServicioTecnico) != JUST_HAPPENED) &
+	  		 	(agent_51.ComienzaOferta = JUST_HAPPENED -> next(agent_51.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_51.ComienzaOferta = HAPPENING -> next(agent_51.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_51.ComienzaOferta = NOT_HAPPENING -> next(agent_51.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				  	(next(agent_39.Ofertar) = HAPPENING -> next(agent_39.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				   				   		 	(agent_50.ServicioTecnico = JUST_HAPPENED -> next(agent_50.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_50.ServicioTecnico = HAPPENING -> next(agent_50.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_50.ServicioTecnico = NOT_HAPPENING -> next(agent_50.ServicioTecnico) != JUST_HAPPENED) &
+	  		 	(agent_44.ServicioTecnico = JUST_HAPPENED -> next(agent_44.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_44.ServicioTecnico = HAPPENING -> next(agent_44.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_44.ServicioTecnico = NOT_HAPPENING -> next(agent_44.ServicioTecnico) != JUST_HAPPENED) &
+	  		 	(agent_60.TerminaOferta = JUST_HAPPENED -> next(agent_60.TerminaOferta) = NOT_HAPPENING) &
+		(agent_60.TerminaOferta = HAPPENING -> next(agent_60.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_60.TerminaOferta = NOT_HAPPENING -> next(agent_60.TerminaOferta) != JUST_HAPPENED) &
+	  		 	(agent_21.ComienzaOferta = JUST_HAPPENED -> next(agent_21.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_21.ComienzaOferta = HAPPENING -> next(agent_21.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_21.ComienzaOferta = NOT_HAPPENING -> next(agent_21.ComienzaOferta) != JUST_HAPPENED) &
+	  		 	(agent_47.ServicioTecnico = JUST_HAPPENED -> next(agent_47.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_47.ServicioTecnico = HAPPENING -> next(agent_47.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_47.ServicioTecnico = NOT_HAPPENING -> next(agent_47.ServicioTecnico) != JUST_HAPPENED) &
+	  				   		 	(agent_59.ServicioTecnico = JUST_HAPPENED -> next(agent_59.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_59.ServicioTecnico = HAPPENING -> next(agent_59.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_59.ServicioTecnico = NOT_HAPPENING -> next(agent_59.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				  	(next(agent_64.Ofertar) = HAPPENING -> next(agent_64.PeriodoOferta) = ACTIVE) &
+  				   				   				   		 	(agent_6.ServicioTecnico = JUST_HAPPENED -> next(agent_6.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_6.ServicioTecnico = HAPPENING -> next(agent_6.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_6.ServicioTecnico = NOT_HAPPENING -> next(agent_6.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   				   				   				   		 	(agent_9.ServicioTecnico = JUST_HAPPENED -> next(agent_9.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_9.ServicioTecnico = HAPPENING -> next(agent_9.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_9.ServicioTecnico = NOT_HAPPENING -> next(agent_9.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   		 	(agent_34.ServicioTecnico = JUST_HAPPENED -> next(agent_34.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_34.ServicioTecnico = HAPPENING -> next(agent_34.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_34.ServicioTecnico = NOT_HAPPENING -> next(agent_34.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   				   				  	(next(agent_51.Ofertar) = HAPPENING -> next(agent_51.PeriodoOferta) = ACTIVE) &
+  		 	(agent_19.TerminaOferta = JUST_HAPPENED -> next(agent_19.TerminaOferta) = NOT_HAPPENING) &
+		(agent_19.TerminaOferta = HAPPENING -> next(agent_19.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_19.TerminaOferta = NOT_HAPPENING -> next(agent_19.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   				   				   		 	(agent_52.ServicioTecnico = JUST_HAPPENED -> next(agent_52.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_52.ServicioTecnico = HAPPENING -> next(agent_52.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_52.ServicioTecnico = NOT_HAPPENING -> next(agent_52.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   				   		 	(agent_9.TerminaOferta = JUST_HAPPENED -> next(agent_9.TerminaOferta) = NOT_HAPPENING) &
+		(agent_9.TerminaOferta = HAPPENING -> next(agent_9.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_9.TerminaOferta = NOT_HAPPENING -> next(agent_9.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   		 	(agent_59.ComienzaOferta = JUST_HAPPENED -> next(agent_59.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_59.ComienzaOferta = HAPPENING -> next(agent_59.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_59.ComienzaOferta = NOT_HAPPENING -> next(agent_59.ComienzaOferta) != JUST_HAPPENED) &
+	  		 	(agent_16.ComienzaOferta = JUST_HAPPENED -> next(agent_16.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_16.ComienzaOferta = HAPPENING -> next(agent_16.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_16.ComienzaOferta = NOT_HAPPENING -> next(agent_16.ComienzaOferta) != JUST_HAPPENED) &
+	  				   				  	(next(agent_45.Ofertar) = HAPPENING -> next(agent_45.PeriodoOferta) = ACTIVE) &
+  				   				   				   				  	(next(agent_21.Ofertar) = HAPPENING -> next(agent_21.PeriodoOferta) = ACTIVE) &
+  				   				   				   				   				   				   				   				   		 	(agent_52.ComienzaOferta = JUST_HAPPENED -> next(agent_52.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_52.ComienzaOferta = HAPPENING -> next(agent_52.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_52.ComienzaOferta = NOT_HAPPENING -> next(agent_52.ComienzaOferta) != JUST_HAPPENED) &
+	  				  	(next(agent_7.Ofertar) = HAPPENING -> next(agent_7.PeriodoOferta) = ACTIVE) &
+  				   				   				   		 	(agent_19.ServicioTecnico = JUST_HAPPENED -> next(agent_19.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_19.ServicioTecnico = HAPPENING -> next(agent_19.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_19.ServicioTecnico = NOT_HAPPENING -> next(agent_19.ServicioTecnico) != JUST_HAPPENED) &
+	  				   		 	(agent_64.ServicioTecnico = JUST_HAPPENED -> next(agent_64.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_64.ServicioTecnico = HAPPENING -> next(agent_64.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_64.ServicioTecnico = NOT_HAPPENING -> next(agent_64.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				  	(next(agent_44.Ofertar) = HAPPENING -> next(agent_44.PeriodoOferta) = ACTIVE) &
+  		 	(agent_45.ComienzaOferta = JUST_HAPPENED -> next(agent_45.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_45.ComienzaOferta = HAPPENING -> next(agent_45.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_45.ComienzaOferta = NOT_HAPPENING -> next(agent_45.ComienzaOferta) != JUST_HAPPENED) &
+	  		 	(agent_15.ComienzaOferta = JUST_HAPPENED -> next(agent_15.ComienzaOferta) = NOT_HAPPENING) &
+		(agent_15.ComienzaOferta = HAPPENING -> next(agent_15.ComienzaOferta) != NOT_HAPPENING ) &
+		(agent_15.ComienzaOferta = NOT_HAPPENING -> next(agent_15.ComienzaOferta) != JUST_HAPPENED) &
+	  				   		 	(agent_39.TerminaOferta = JUST_HAPPENED -> next(agent_39.TerminaOferta) = NOT_HAPPENING) &
+		(agent_39.TerminaOferta = HAPPENING -> next(agent_39.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_39.TerminaOferta = NOT_HAPPENING -> next(agent_39.TerminaOferta) != JUST_HAPPENED) &
+	  				   		 	(agent_7.TerminaOferta = JUST_HAPPENED -> next(agent_7.TerminaOferta) = NOT_HAPPENING) &
+		(agent_7.TerminaOferta = HAPPENING -> next(agent_7.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_7.TerminaOferta = NOT_HAPPENING -> next(agent_7.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				  	(next(agent_52.EspecificarCondicionesOferta) = HAPPENING -> next(agent_52.PeriodoOferta) = ACTIVE) &
+  				   		 	(agent_15.TerminaOferta = JUST_HAPPENED -> next(agent_15.TerminaOferta) = NOT_HAPPENING) &
+		(agent_15.TerminaOferta = HAPPENING -> next(agent_15.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_15.TerminaOferta = NOT_HAPPENING -> next(agent_15.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   				  	(next(agent_19.Ofertar) = HAPPENING -> next(agent_19.PeriodoOferta) = ACTIVE) &
+  				   				   		 	(agent_28.ServicioTecnico = JUST_HAPPENED -> next(agent_28.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_28.ServicioTecnico = HAPPENING -> next(agent_28.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_28.ServicioTecnico = NOT_HAPPENING -> next(agent_28.ServicioTecnico) != JUST_HAPPENED) &
+	  				   		 	(agent_16.ServicioTecnico = JUST_HAPPENED -> next(agent_16.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_16.ServicioTecnico = HAPPENING -> next(agent_16.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_16.ServicioTecnico = NOT_HAPPENING -> next(agent_16.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   		 	(agent_25.TerminaOferta = JUST_HAPPENED -> next(agent_25.TerminaOferta) = NOT_HAPPENING) &
+		(agent_25.TerminaOferta = HAPPENING -> next(agent_25.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_25.TerminaOferta = NOT_HAPPENING -> next(agent_25.TerminaOferta) != JUST_HAPPENED) &
+	  				   		 	(agent_25.ServicioTecnico = JUST_HAPPENED -> next(agent_25.ServicioTecnico) = NOT_HAPPENING) &
+		(agent_25.ServicioTecnico = HAPPENING -> next(agent_25.ServicioTecnico) != NOT_HAPPENING ) &
+		(agent_25.ServicioTecnico = NOT_HAPPENING -> next(agent_25.ServicioTecnico) != JUST_HAPPENED) &
+	  				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   		 	(agent_28.TerminaOferta = JUST_HAPPENED -> next(agent_28.TerminaOferta) = NOT_HAPPENING) &
+		(agent_28.TerminaOferta = HAPPENING -> next(agent_28.TerminaOferta) != NOT_HAPPENING ) &
+		(agent_28.TerminaOferta = NOT_HAPPENING -> next(agent_28.TerminaOferta) != JUST_HAPPENED) &
+	  				   				   				   				   	--Si una acción tiene output values, al pasar de H a JH, la variable que  
+	--representa el output value toma alguno de sus valores posibles. Si la 
+	--acción no hace ese cambio de H a JH => el valor queda igual
+	--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+	--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+             	(next(agent_54.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_54.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_54.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_54.ServicioTecnico) != JUST_HAPPENED ->
+		agent_54.ServicioTecnico_OUTPUT = next (agent_54.ServicioTecnico_OUTPUT)) &
+      	(next(agent_51.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_51.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_51.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_51.ServicioTecnico) != JUST_HAPPENED ->
+		agent_51.ServicioTecnico_OUTPUT = next (agent_51.ServicioTecnico_OUTPUT)) &
+                                          	(next(agent_60.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_60.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_60.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_60.ServicioTecnico) != JUST_HAPPENED ->
+		agent_60.ServicioTecnico_OUTPUT = next (agent_60.ServicioTecnico_OUTPUT)) &
+    	(next(agent_45.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_45.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_45.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_45.ServicioTecnico) != JUST_HAPPENED ->
+		agent_45.ServicioTecnico_OUTPUT = next (agent_45.ServicioTecnico_OUTPUT)) &
+                                                                                                                                    	(next(agent_21.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_21.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_21.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_21.ServicioTecnico) != JUST_HAPPENED ->
+		agent_21.ServicioTecnico_OUTPUT = next (agent_21.ServicioTecnico_OUTPUT)) &
+                	(next(agent_15.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_15.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_15.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_15.ServicioTecnico) != JUST_HAPPENED ->
+		agent_15.ServicioTecnico_OUTPUT = next (agent_15.ServicioTecnico_OUTPUT)) &
+                     	(next(agent_39.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_39.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_39.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_39.ServicioTecnico) != JUST_HAPPENED ->
+		agent_39.ServicioTecnico_OUTPUT = next (agent_39.ServicioTecnico_OUTPUT)) &
+                             	(next(agent_7.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_7.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_7.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_7.ServicioTecnico) != JUST_HAPPENED ->
+		agent_7.ServicioTecnico_OUTPUT = next (agent_7.ServicioTecnico_OUTPUT)) &
+                                	(next(agent_20.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_20.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_20.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_20.ServicioTecnico) != JUST_HAPPENED ->
+		agent_20.ServicioTecnico_OUTPUT = next (agent_20.ServicioTecnico_OUTPUT)) &
+                                                                          	(next(agent_35.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_35.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_35.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_35.ServicioTecnico) != JUST_HAPPENED ->
+		agent_35.ServicioTecnico_OUTPUT = next (agent_35.ServicioTecnico_OUTPUT)) &
+                	(next(agent_50.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_50.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_50.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_50.ServicioTecnico) != JUST_HAPPENED ->
+		agent_50.ServicioTecnico_OUTPUT = next (agent_50.ServicioTecnico_OUTPUT)) &
+    	(next(agent_44.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_44.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_44.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_44.ServicioTecnico) != JUST_HAPPENED ->
+		agent_44.ServicioTecnico_OUTPUT = next (agent_44.ServicioTecnico_OUTPUT)) &
+      	(next(agent_47.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_47.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_47.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_47.ServicioTecnico) != JUST_HAPPENED ->
+		agent_47.ServicioTecnico_OUTPUT = next (agent_47.ServicioTecnico_OUTPUT)) &
+     	(next(agent_59.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_59.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_59.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_59.ServicioTecnico) != JUST_HAPPENED ->
+		agent_59.ServicioTecnico_OUTPUT = next (agent_59.ServicioTecnico_OUTPUT)) &
+         	(next(agent_6.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_6.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_6.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_6.ServicioTecnico) != JUST_HAPPENED ->
+		agent_6.ServicioTecnico_OUTPUT = next (agent_6.ServicioTecnico_OUTPUT)) &
+         	(next(agent_9.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_9.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_9.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_9.ServicioTecnico) != JUST_HAPPENED ->
+		agent_9.ServicioTecnico_OUTPUT = next (agent_9.ServicioTecnico_OUTPUT)) &
+      	(next(agent_34.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_34.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_34.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_34.ServicioTecnico) != JUST_HAPPENED ->
+		agent_34.ServicioTecnico_OUTPUT = next (agent_34.ServicioTecnico_OUTPUT)) &
+                           	(next(agent_52.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_52.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_52.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_52.ServicioTecnico) != JUST_HAPPENED ->
+		agent_52.ServicioTecnico_OUTPUT = next (agent_52.ServicioTecnico_OUTPUT)) &
+                                    	(next(agent_19.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_19.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_19.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_19.ServicioTecnico) != JUST_HAPPENED ->
+		agent_19.ServicioTecnico_OUTPUT = next (agent_19.ServicioTecnico_OUTPUT)) &
+     	(next(agent_64.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_64.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_64.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_64.ServicioTecnico) != JUST_HAPPENED ->
+		agent_64.ServicioTecnico_OUTPUT = next (agent_64.ServicioTecnico_OUTPUT)) &
+                            	(next(agent_28.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_28.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_28.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_28.ServicioTecnico) != JUST_HAPPENED ->
+		agent_28.ServicioTecnico_OUTPUT = next (agent_28.ServicioTecnico_OUTPUT)) &
+     	(next(agent_16.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_16.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_16.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_16.ServicioTecnico) != JUST_HAPPENED ->
+		agent_16.ServicioTecnico_OUTPUT = next (agent_16.ServicioTecnico_OUTPUT)) &
+        	(next(agent_25.ServicioTecnico) = JUST_HAPPENED -> (
+  		next(agent_25.ServicioTecnico_OUTPUT) = noneOfTheOthers |
+  		next(agent_25.ServicioTecnico_OUTPUT) = adecuado |
+  		FALSE)) &
+	(next(agent_25.ServicioTecnico) != JUST_HAPPENED ->
+		agent_25.ServicioTecnico_OUTPUT = next (agent_25.ServicioTecnico_OUTPUT)) &
+                             	--Modificaciones de intervalos
+	--El intervalo se modifica solo ante algunas transiciones de las acciones que lo delimitan
+      --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_28.PeriodoOferta = INACTIVE & next(agent_28.PeriodoOferta) = ACTIVE) -> (
+   		(agent_28.ComienzaOferta = HAPPENING & next(agent_28.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_28.PeriodoOferta = ACTIVE  & next(agent_28.PeriodoOferta) = INACTIVE) -> (
+   		(agent_28.TerminaOferta = HAPPENING & next(agent_28.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_28.PeriodoOferta = INACTIVE & (
+   			(agent_28.ComienzaOferta = HAPPENING & next(agent_28.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_28.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_28.PeriodoOferta = ACTIVE & (
+   			(agent_28.TerminaOferta = HAPPENING & next(agent_28.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_28.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_28.ComienzaOferta = NOT_HAPPENING & next(agent_28.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_28.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_28.TerminaOferta = NOT_HAPPENING & next(agent_28.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_28.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_28.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_28.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_28.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_51.PeriodoOferta = INACTIVE & next(agent_51.PeriodoOferta) = ACTIVE) -> (
+   		(agent_51.ComienzaOferta = HAPPENING & next(agent_51.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_51.PeriodoOferta = ACTIVE  & next(agent_51.PeriodoOferta) = INACTIVE) -> (
+   		(agent_51.TerminaOferta = HAPPENING & next(agent_51.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_51.PeriodoOferta = INACTIVE & (
+   			(agent_51.ComienzaOferta = HAPPENING & next(agent_51.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_51.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_51.PeriodoOferta = ACTIVE & (
+   			(agent_51.TerminaOferta = HAPPENING & next(agent_51.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_51.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_51.ComienzaOferta = NOT_HAPPENING & next(agent_51.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_51.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_51.TerminaOferta = NOT_HAPPENING & next(agent_51.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_51.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_51.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_51.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_51.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_15.PeriodoOferta = INACTIVE & next(agent_15.PeriodoOferta) = ACTIVE) -> (
+   		(agent_15.ComienzaOferta = HAPPENING & next(agent_15.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_15.PeriodoOferta = ACTIVE  & next(agent_15.PeriodoOferta) = INACTIVE) -> (
+   		(agent_15.TerminaOferta = HAPPENING & next(agent_15.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_15.PeriodoOferta = INACTIVE & (
+   			(agent_15.ComienzaOferta = HAPPENING & next(agent_15.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_15.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_15.PeriodoOferta = ACTIVE & (
+   			(agent_15.TerminaOferta = HAPPENING & next(agent_15.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_15.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_15.ComienzaOferta = NOT_HAPPENING & next(agent_15.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_15.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_15.TerminaOferta = NOT_HAPPENING & next(agent_15.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_15.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_15.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_15.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_15.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_64.PeriodoOferta = INACTIVE & next(agent_64.PeriodoOferta) = ACTIVE) -> (
+   		(agent_64.ComienzaOferta = HAPPENING & next(agent_64.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_64.PeriodoOferta = ACTIVE  & next(agent_64.PeriodoOferta) = INACTIVE) -> (
+   		(agent_64.TerminaOferta = HAPPENING & next(agent_64.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_64.PeriodoOferta = INACTIVE & (
+   			(agent_64.ComienzaOferta = HAPPENING & next(agent_64.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_64.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_64.PeriodoOferta = ACTIVE & (
+   			(agent_64.TerminaOferta = HAPPENING & next(agent_64.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_64.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_64.ComienzaOferta = NOT_HAPPENING & next(agent_64.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_64.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_64.TerminaOferta = NOT_HAPPENING & next(agent_64.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_64.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_64.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_64.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_64.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_19.PeriodoOferta = INACTIVE & next(agent_19.PeriodoOferta) = ACTIVE) -> (
+   		(agent_19.ComienzaOferta = HAPPENING & next(agent_19.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_19.PeriodoOferta = ACTIVE  & next(agent_19.PeriodoOferta) = INACTIVE) -> (
+   		(agent_19.TerminaOferta = HAPPENING & next(agent_19.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_19.PeriodoOferta = INACTIVE & (
+   			(agent_19.ComienzaOferta = HAPPENING & next(agent_19.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_19.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_19.PeriodoOferta = ACTIVE & (
+   			(agent_19.TerminaOferta = HAPPENING & next(agent_19.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_19.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_19.ComienzaOferta = NOT_HAPPENING & next(agent_19.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_19.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_19.TerminaOferta = NOT_HAPPENING & next(agent_19.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_19.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_19.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_19.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_19.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_9.PeriodoOferta = INACTIVE & next(agent_9.PeriodoOferta) = ACTIVE) -> (
+   		(agent_9.ComienzaOferta = HAPPENING & next(agent_9.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_9.PeriodoOferta = ACTIVE  & next(agent_9.PeriodoOferta) = INACTIVE) -> (
+   		(agent_9.TerminaOferta = HAPPENING & next(agent_9.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_9.PeriodoOferta = INACTIVE & (
+   			(agent_9.ComienzaOferta = HAPPENING & next(agent_9.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_9.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_9.PeriodoOferta = ACTIVE & (
+   			(agent_9.TerminaOferta = HAPPENING & next(agent_9.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_9.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_9.ComienzaOferta = NOT_HAPPENING & next(agent_9.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_9.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_9.TerminaOferta = NOT_HAPPENING & next(agent_9.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_9.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_9.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_9.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_9.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_52.PeriodoOferta = INACTIVE & next(agent_52.PeriodoOferta) = ACTIVE) -> (
+   		(agent_52.ComienzaOferta = HAPPENING & next(agent_52.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_52.PeriodoOferta = ACTIVE  & next(agent_52.PeriodoOferta) = INACTIVE) -> (
+   		(agent_52.TerminaOferta = HAPPENING & next(agent_52.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_52.PeriodoOferta = INACTIVE & (
+   			(agent_52.ComienzaOferta = HAPPENING & next(agent_52.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_52.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_52.PeriodoOferta = ACTIVE & (
+   			(agent_52.TerminaOferta = HAPPENING & next(agent_52.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_52.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_52.ComienzaOferta = NOT_HAPPENING & next(agent_52.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_52.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_52.TerminaOferta = NOT_HAPPENING & next(agent_52.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_52.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_52.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_52.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_52.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_6.PeriodoOferta = INACTIVE & next(agent_6.PeriodoOferta) = ACTIVE) -> (
+   		(agent_60.ComienzaOferta = HAPPENING & next(agent_60.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_6.PeriodoOferta = ACTIVE  & next(agent_6.PeriodoOferta) = INACTIVE) -> (
+   		(agent_60.TerminaOferta = HAPPENING & next(agent_60.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_6.PeriodoOferta = INACTIVE & (
+   			(agent_60.ComienzaOferta = HAPPENING & next(agent_60.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_6.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_6.PeriodoOferta = ACTIVE & (
+   			(agent_60.TerminaOferta = HAPPENING & next(agent_60.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_6.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_60.ComienzaOferta = NOT_HAPPENING & next(agent_60.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_6.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_60.TerminaOferta = NOT_HAPPENING & next(agent_60.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_6.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_60.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_60.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_60.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_44.PeriodoOferta = INACTIVE & next(agent_44.PeriodoOferta) = ACTIVE) -> (
+   		(agent_44.ComienzaOferta = HAPPENING & next(agent_44.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_44.PeriodoOferta = ACTIVE  & next(agent_44.PeriodoOferta) = INACTIVE) -> (
+   		(agent_44.TerminaOferta = HAPPENING & next(agent_44.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_44.PeriodoOferta = INACTIVE & (
+   			(agent_44.ComienzaOferta = HAPPENING & next(agent_44.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_44.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_44.PeriodoOferta = ACTIVE & (
+   			(agent_44.TerminaOferta = HAPPENING & next(agent_44.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_44.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_44.ComienzaOferta = NOT_HAPPENING & next(agent_44.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_44.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_44.TerminaOferta = NOT_HAPPENING & next(agent_44.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_44.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_44.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_44.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_44.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_7.PeriodoOferta = INACTIVE & next(agent_7.PeriodoOferta) = ACTIVE) -> (
+   		(agent_7.ComienzaOferta = HAPPENING & next(agent_7.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_7.PeriodoOferta = ACTIVE  & next(agent_7.PeriodoOferta) = INACTIVE) -> (
+   		(agent_7.TerminaOferta = HAPPENING & next(agent_7.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_7.PeriodoOferta = INACTIVE & (
+   			(agent_7.ComienzaOferta = HAPPENING & next(agent_7.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_7.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_7.PeriodoOferta = ACTIVE & (
+   			(agent_7.TerminaOferta = HAPPENING & next(agent_7.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_7.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_7.ComienzaOferta = NOT_HAPPENING & next(agent_7.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_7.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_7.TerminaOferta = NOT_HAPPENING & next(agent_7.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_7.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_7.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_7.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_7.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_50.PeriodoOferta = INACTIVE & next(agent_50.PeriodoOferta) = ACTIVE) -> (
+   		(agent_50.ComienzaOferta = HAPPENING & next(agent_50.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_50.PeriodoOferta = ACTIVE  & next(agent_50.PeriodoOferta) = INACTIVE) -> (
+   		(agent_50.TerminaOferta = HAPPENING & next(agent_50.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_50.PeriodoOferta = INACTIVE & (
+   			(agent_50.ComienzaOferta = HAPPENING & next(agent_50.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_50.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_50.PeriodoOferta = ACTIVE & (
+   			(agent_50.TerminaOferta = HAPPENING & next(agent_50.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_50.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_50.ComienzaOferta = NOT_HAPPENING & next(agent_50.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_50.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_50.TerminaOferta = NOT_HAPPENING & next(agent_50.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_50.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_50.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_50.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_50.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_59.PeriodoOferta = INACTIVE & next(agent_59.PeriodoOferta) = ACTIVE) -> (
+   		(agent_59.ComienzaOferta = HAPPENING & next(agent_59.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_59.PeriodoOferta = ACTIVE  & next(agent_59.PeriodoOferta) = INACTIVE) -> (
+   		(agent_59.TerminaOferta = HAPPENING & next(agent_59.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_59.PeriodoOferta = INACTIVE & (
+   			(agent_59.ComienzaOferta = HAPPENING & next(agent_59.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_59.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_59.PeriodoOferta = ACTIVE & (
+   			(agent_59.TerminaOferta = HAPPENING & next(agent_59.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_59.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_59.ComienzaOferta = NOT_HAPPENING & next(agent_59.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_59.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_59.TerminaOferta = NOT_HAPPENING & next(agent_59.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_59.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_59.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_59.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_59.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_45.PeriodoOferta = INACTIVE & next(agent_45.PeriodoOferta) = ACTIVE) -> (
+   		(agent_45.ComienzaOferta = HAPPENING & next(agent_45.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_45.PeriodoOferta = ACTIVE  & next(agent_45.PeriodoOferta) = INACTIVE) -> (
+   		(agent_45.TerminaOferta = HAPPENING & next(agent_45.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_45.PeriodoOferta = INACTIVE & (
+   			(agent_45.ComienzaOferta = HAPPENING & next(agent_45.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_45.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_45.PeriodoOferta = ACTIVE & (
+   			(agent_45.TerminaOferta = HAPPENING & next(agent_45.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_45.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_45.ComienzaOferta = NOT_HAPPENING & next(agent_45.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_45.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_45.TerminaOferta = NOT_HAPPENING & next(agent_45.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_45.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_45.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_45.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_45.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_39.PeriodoOferta = INACTIVE & next(agent_39.PeriodoOferta) = ACTIVE) -> (
+   		(agent_39.ComienzaOferta = HAPPENING & next(agent_39.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_39.PeriodoOferta = ACTIVE  & next(agent_39.PeriodoOferta) = INACTIVE) -> (
+   		(agent_39.TerminaOferta = HAPPENING & next(agent_39.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_39.PeriodoOferta = INACTIVE & (
+   			(agent_39.ComienzaOferta = HAPPENING & next(agent_39.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_39.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_39.PeriodoOferta = ACTIVE & (
+   			(agent_39.TerminaOferta = HAPPENING & next(agent_39.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_39.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_39.ComienzaOferta = NOT_HAPPENING & next(agent_39.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_39.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_39.TerminaOferta = NOT_HAPPENING & next(agent_39.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_39.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_39.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_39.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_39.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_25.PeriodoOferta = INACTIVE & next(agent_25.PeriodoOferta) = ACTIVE) -> (
+   		(agent_25.ComienzaOferta = HAPPENING & next(agent_25.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_25.PeriodoOferta = ACTIVE  & next(agent_25.PeriodoOferta) = INACTIVE) -> (
+   		(agent_25.TerminaOferta = HAPPENING & next(agent_25.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_25.PeriodoOferta = INACTIVE & (
+   			(agent_25.ComienzaOferta = HAPPENING & next(agent_25.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_25.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_25.PeriodoOferta = ACTIVE & (
+   			(agent_25.TerminaOferta = HAPPENING & next(agent_25.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_25.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_25.ComienzaOferta = NOT_HAPPENING & next(agent_25.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_25.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_25.TerminaOferta = NOT_HAPPENING & next(agent_25.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_25.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_25.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_25.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_25.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_54.PeriodoOferta = INACTIVE & next(agent_54.PeriodoOferta) = ACTIVE) -> (
+   		(agent_54.ComienzaOferta = HAPPENING & next(agent_54.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_54.PeriodoOferta = ACTIVE  & next(agent_54.PeriodoOferta) = INACTIVE) -> (
+   		(agent_54.TerminaOferta = HAPPENING & next(agent_54.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_54.PeriodoOferta = INACTIVE & (
+   			(agent_54.ComienzaOferta = HAPPENING & next(agent_54.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_54.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_54.PeriodoOferta = ACTIVE & (
+   			(agent_54.TerminaOferta = HAPPENING & next(agent_54.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_54.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_54.ComienzaOferta = NOT_HAPPENING & next(agent_54.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_54.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_54.TerminaOferta = NOT_HAPPENING & next(agent_54.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_54.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_54.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_54.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_54.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_47.PeriodoOferta = INACTIVE & next(agent_47.PeriodoOferta) = ACTIVE) -> (
+   		(agent_47.ComienzaOferta = HAPPENING & next(agent_47.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_47.PeriodoOferta = ACTIVE  & next(agent_47.PeriodoOferta) = INACTIVE) -> (
+   		(agent_47.TerminaOferta = HAPPENING & next(agent_47.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_47.PeriodoOferta = INACTIVE & (
+   			(agent_47.ComienzaOferta = HAPPENING & next(agent_47.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_47.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_47.PeriodoOferta = ACTIVE & (
+   			(agent_47.TerminaOferta = HAPPENING & next(agent_47.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_47.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_47.ComienzaOferta = NOT_HAPPENING & next(agent_47.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_47.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_47.TerminaOferta = NOT_HAPPENING & next(agent_47.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_47.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_47.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_47.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_47.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_60.PeriodoOferta = INACTIVE & next(agent_60.PeriodoOferta) = ACTIVE) -> (
+   		(agent_60.ComienzaOferta = HAPPENING & next(agent_60.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_60.PeriodoOferta = ACTIVE  & next(agent_60.PeriodoOferta) = INACTIVE) -> (
+   		(agent_60.TerminaOferta = HAPPENING & next(agent_60.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_60.PeriodoOferta = INACTIVE & (
+   			(agent_60.ComienzaOferta = HAPPENING & next(agent_60.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_60.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_60.PeriodoOferta = ACTIVE & (
+   			(agent_60.TerminaOferta = HAPPENING & next(agent_60.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_60.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_60.ComienzaOferta = NOT_HAPPENING & next(agent_60.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_60.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_60.TerminaOferta = NOT_HAPPENING & next(agent_60.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_60.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_60.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_60.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_60.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_16.PeriodoOferta = INACTIVE & next(agent_16.PeriodoOferta) = ACTIVE) -> (
+   		(agent_16.ComienzaOferta = HAPPENING & next(agent_16.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_16.PeriodoOferta = ACTIVE  & next(agent_16.PeriodoOferta) = INACTIVE) -> (
+   		(agent_16.TerminaOferta = HAPPENING & next(agent_16.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_16.PeriodoOferta = INACTIVE & (
+   			(agent_16.ComienzaOferta = HAPPENING & next(agent_16.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_16.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_16.PeriodoOferta = ACTIVE & (
+   			(agent_16.TerminaOferta = HAPPENING & next(agent_16.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_16.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_16.ComienzaOferta = NOT_HAPPENING & next(agent_16.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_16.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_16.TerminaOferta = NOT_HAPPENING & next(agent_16.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_16.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_16.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_16.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_16.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_34.PeriodoOferta = INACTIVE & next(agent_34.PeriodoOferta) = ACTIVE) -> (
+   		(agent_34.ComienzaOferta = HAPPENING & next(agent_34.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_34.PeriodoOferta = ACTIVE  & next(agent_34.PeriodoOferta) = INACTIVE) -> (
+   		(agent_34.TerminaOferta = HAPPENING & next(agent_34.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_34.PeriodoOferta = INACTIVE & (
+   			(agent_34.ComienzaOferta = HAPPENING & next(agent_34.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_34.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_34.PeriodoOferta = ACTIVE & (
+   			(agent_34.TerminaOferta = HAPPENING & next(agent_34.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_34.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_34.ComienzaOferta = NOT_HAPPENING & next(agent_34.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_34.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_34.TerminaOferta = NOT_HAPPENING & next(agent_34.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_34.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_34.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_34.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_34.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_21.PeriodoOferta = INACTIVE & next(agent_21.PeriodoOferta) = ACTIVE) -> (
+   		(agent_21.ComienzaOferta = HAPPENING & next(agent_21.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_21.PeriodoOferta = ACTIVE  & next(agent_21.PeriodoOferta) = INACTIVE) -> (
+   		(agent_21.TerminaOferta = HAPPENING & next(agent_21.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_21.PeriodoOferta = INACTIVE & (
+   			(agent_21.ComienzaOferta = HAPPENING & next(agent_21.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_21.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_21.PeriodoOferta = ACTIVE & (
+   			(agent_21.TerminaOferta = HAPPENING & next(agent_21.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_21.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_21.ComienzaOferta = NOT_HAPPENING & next(agent_21.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_21.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_21.TerminaOferta = NOT_HAPPENING & next(agent_21.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_21.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_21.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_21.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_21.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_20.PeriodoOferta = INACTIVE & next(agent_20.PeriodoOferta) = ACTIVE) -> (
+   		(agent_20.ComienzaOferta = HAPPENING & next(agent_20.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_20.PeriodoOferta = ACTIVE  & next(agent_20.PeriodoOferta) = INACTIVE) -> (
+   		(agent_20.TerminaOferta = HAPPENING & next(agent_20.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_20.PeriodoOferta = INACTIVE & (
+   			(agent_20.ComienzaOferta = HAPPENING & next(agent_20.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_20.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_20.PeriodoOferta = ACTIVE & (
+   			(agent_20.TerminaOferta = HAPPENING & next(agent_20.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_20.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_20.ComienzaOferta = NOT_HAPPENING & next(agent_20.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_20.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_20.TerminaOferta = NOT_HAPPENING & next(agent_20.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_20.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_20.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_20.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_20.TerminaOferta) !=  HAPPENING 	)) &
+           --si el intervalo pasa de I a A es porque una AI pasa de H a JH
+    (( agent_35.PeriodoOferta = INACTIVE & next(agent_35.PeriodoOferta) = ACTIVE) -> (
+   		(agent_35.ComienzaOferta = HAPPENING & next(agent_35.ComienzaOferta) = JUST_HAPPENED) 
+		     		)) & 
+     --si el intervalo pasa de A a I es porque una AF pasa de H a JH
+	((agent_35.PeriodoOferta = ACTIVE  & next(agent_35.PeriodoOferta) = INACTIVE) -> (
+   		(agent_35.TerminaOferta = HAPPENING & next(agent_35.TerminaOferta) = JUST_HAPPENED) 
+		   		)) &
+  	--si cambia alguna acción inicial o final, estando el INT en determinado 
+	--estado => el INT cambia de valor
+  	(agent_35.PeriodoOferta = INACTIVE & (
+   			(agent_35.ComienzaOferta = HAPPENING & next(agent_35.ComienzaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_35.PeriodoOferta) = ACTIVE)) & 		
+    	(agent_35.PeriodoOferta = ACTIVE & (
+   			(agent_35.TerminaOferta = HAPPENING & next(agent_35.TerminaOferta) = JUST_HAPPENED) 
+			   		)-> (next(agent_35.PeriodoOferta) = INACTIVE)) & 	
+      --si una AI pasa de NH a H -> el intervalo no está activo
+	((
+   			(agent_35.ComienzaOferta = NOT_HAPPENING & next(agent_35.ComienzaOferta) = HAPPENING) 
+			   		)-> (agent_35.PeriodoOferta = INACTIVE)) & 
+      --si una AF pasa de NH a H -> el intervalo está activo
+	((
+   			(agent_35.TerminaOferta = NOT_HAPPENING & next(agent_35.TerminaOferta) = HAPPENING) 
+			   		)-> (agent_35.PeriodoOferta = ACTIVE)) & 
+  --si una AI está en H => ninguna otra puede estarlo
+  	(next(agent_35.ComienzaOferta) = HAPPENING -> (TRUE 
+     	)) &
+--si una AF está en H => ninguna otra puede estarlo
+  	(next(agent_35.TerminaOferta) = HAPPENING -> (TRUE 
+     & next(agent_35.TerminaOferta) !=  HAPPENING 	)) &
+     
+
+ TRUE

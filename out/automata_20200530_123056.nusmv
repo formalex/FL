@@ -1,0 +1,451 @@
+--Agente: roles asignados
+--agent_50: EntidadFinanciera, Proveedor
+--agent_52: Proveedor, Oferente
+--agent_51: Asociacion_Consumidores, Proveedor
+--agent_54: Proveedor, Consumidor_DanioDiferenciado
+--agent_53: Gobierno_Local, Consumidor
+--agent_12: consumidor_servicio_publico_legislacion_propia, Consumidor
+--agent_34: Transportista, Proveedor
+--agent_11: Consumidor, BCRA
+--agent_58: Transportista, Consumidor
+--agent_36: Juez, Consumidor
+--agent_57: Consumidor, autoridad_competente
+--agent_35: Proveedor, proveedor_servicio_publicod
+--agent_16: Juez, Proveedor
+--agent_38: Consumidor, Consumidor_DanioDiferenciado
+--agent_15: instrumento_medicion_autorizado, Proveedor
+--agent_59: Proveedor, Autoridad_Aplicacion_Nacional
+--agent_28: Vendedor, Proveedor
+--agent_61: Consumidor, Autoridad_Aplicacion_Nacional
+--agent_60: Proveedor, Autoridad_Aplicacion_Provincial
+--agent_41: EntidadFinanciera, Consumidor
+--agent_40: consumidor_servicio_publicod, Consumidor
+--agent_21: consumidor_servicio_publicod, Proveedor
+--agent_43: Infractor, Consumidor
+--agent_20: Proveedor
+--agent_64: Gobierno_Local, Proveedor
+--agent_23: Ministerio_Publico_Fiscal, Consumidor
+--agent_67: Consumidor, proveedor_servicio_publicod
+--agent_45: Proveedor, ProfesionalMatriculado
+--agent_22: ProfesionalMatriculado
+--agent_66: Asociacion_Consumidores, Consumidor
+--agent_44: Proveedor, autoridad_competente
+--agent_25: Autoridad_Aplicacion, Proveedor
+--agent_47: Proveedor, BCRA
+--agent_24: proveedor_servicios_publicosd, Consumidor
+--agent_46: Oferente, Consumidor
+--agent_48: Defensor_del_Pueblo, Consumidor
+--agent_18: Vendedor, Consumidor
+--agent_17: ProfesionalMatriculado, Consumidor
+--agent_39: Ministerio_Publico_Fiscal, Proveedor
+--agent_19: Proveedor, Infractor
+--agent_4: Autoridad_Aplicacion_Provincial, Consumidor
+--agent_5: Autoridad_Aplicacion, Consumidor
+--agent_3: Consumidor
+--agent_8: instrumento_medicion_autorizado, Consumidor
+--agent_9: Defensor_del_Pueblo, Proveedor
+--agent_6: Proveedor, proveedor_servicios_publicosd
+--agent_7: Proveedor, consumidor_servicio_publico_legislacion_propia
+
+MODULE main
+VAR	
+	agent_64.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_39.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_35.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_35.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_5.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_40.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_48.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_36.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_20.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_16.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_51.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_8.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_50.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_21.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_19.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_11.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_60.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_60.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_36.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_3.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_61.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_4.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_41.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_9.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_50.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_52.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_28.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_7.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_51.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_12.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_6.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_54.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_23.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_5.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_24.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_45.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_67.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_58.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_17.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_22.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_48.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_46.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_7.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_40.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_66.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_8.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_24.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_4.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_45.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_15.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_11.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_47.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_7.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_18.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_50.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_38.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_58.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_66.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_39.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_34.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_20.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_17.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_38.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_22.PublicitarServicioProfesional: {HAPPENING, NOT_HAPPENING};
+  	agent_44.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_3.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_61.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_16.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_19.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_46.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_15.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_18.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_8.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_41.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_25.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_61.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_46.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_25.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_18.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_53.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_4.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_66.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_8.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_3.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_8.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_3.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_52.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_35.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_67.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_21.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_17.PublicitarServicioProfesional: {HAPPENING, NOT_HAPPENING};
+  	agent_11.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_34.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_12.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_15.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_53.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_20.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_54.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_12.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_4.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_36.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_21.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_67.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_57.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_5.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_43.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_28.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_57.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_28.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_59.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_66.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_48.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_9.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_59.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_40.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_48.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_61.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_44.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_47.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_24.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_5.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_9.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_41.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_6.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_44.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_40.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_52.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_47.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_12.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_58.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_46.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_67.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_60.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_24.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_23.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_45.PublicitarServicioProfesional: {HAPPENING, NOT_HAPPENING};
+  	agent_11.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_11.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_43.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_53.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_41.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_16.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_17.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_57.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_6.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_54.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_3.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_58.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_25.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_12.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_4.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_57.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_17.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_59.ProveerBySRiesgoso: {HAPPENING, NOT_HAPPENING};
+  	agent_58.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_57.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_36.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_38.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_53.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_18.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_17.AdquirirByS: {HAPPENING, NOT_HAPPENING};
+  	agent_64.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_17.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_34.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_23.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_5.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_38.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_43.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_51.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_18.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_40.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_23.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_41.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_45.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_43.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_23.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_38.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_39.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_48.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_64.RespetarLeyDefensaConsumidor: {HAPPENING, NOT_HAPPENING};
+  	agent_46.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_61.Consumir: {HAPPENING, NOT_HAPPENING};
+  	agent_53.MantenerRelacionConsumo: {HAPPENING, NOT_HAPPENING};
+  	agent_43.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  	agent_66.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_24.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_67.UtilizarByS: {HAPPENING, NOT_HAPPENING};
+  	agent_19.EntregarManual: {HAPPENING, NOT_HAPPENING};
+  	agent_36.SolicitarInformacion: {HAPPENING, NOT_HAPPENING};
+  
+INIT
+	--Se inicializan todas las acciones en NOT_HAPPENING 
+	agent_64.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_39.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_35.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_35.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_5.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_40.SolicitarInformacion = NOT_HAPPENING &
+	agent_48.UtilizarByS = NOT_HAPPENING &
+	agent_36.Consumir = NOT_HAPPENING &
+	agent_20.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_16.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_51.EntregarManual = NOT_HAPPENING &
+	agent_8.Consumir = NOT_HAPPENING &
+	agent_50.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_21.EntregarManual = NOT_HAPPENING &
+	agent_19.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_11.SolicitarInformacion = NOT_HAPPENING &
+	agent_60.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_60.EntregarManual = NOT_HAPPENING &
+	agent_36.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_3.UtilizarByS = NOT_HAPPENING &
+	agent_61.AdquirirByS = NOT_HAPPENING &
+	agent_4.UtilizarByS = NOT_HAPPENING &
+	agent_41.SolicitarInformacion = NOT_HAPPENING &
+	agent_9.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_50.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_52.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_28.EntregarManual = NOT_HAPPENING &
+	agent_7.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_51.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_12.Consumir = NOT_HAPPENING &
+	agent_6.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_54.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_23.AdquirirByS = NOT_HAPPENING &
+	agent_5.UtilizarByS = NOT_HAPPENING &
+	agent_24.AdquirirByS = NOT_HAPPENING &
+	agent_45.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_67.AdquirirByS = NOT_HAPPENING &
+	agent_58.SolicitarInformacion = NOT_HAPPENING &
+	agent_17.Consumir = NOT_HAPPENING &
+	agent_22.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_48.SolicitarInformacion = NOT_HAPPENING &
+	agent_46.Consumir = NOT_HAPPENING &
+	agent_7.EntregarManual = NOT_HAPPENING &
+	agent_40.Consumir = NOT_HAPPENING &
+	agent_66.AdquirirByS = NOT_HAPPENING &
+	agent_8.UtilizarByS = NOT_HAPPENING &
+	agent_24.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_4.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_45.EntregarManual = NOT_HAPPENING &
+	agent_15.EntregarManual = NOT_HAPPENING &
+	agent_11.Consumir = NOT_HAPPENING &
+	agent_47.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_7.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_18.UtilizarByS = NOT_HAPPENING &
+	agent_50.EntregarManual = NOT_HAPPENING &
+	agent_38.SolicitarInformacion = NOT_HAPPENING &
+	agent_58.UtilizarByS = NOT_HAPPENING &
+	agent_66.SolicitarInformacion = NOT_HAPPENING &
+	agent_39.EntregarManual = NOT_HAPPENING &
+	agent_34.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_20.EntregarManual = NOT_HAPPENING &
+	agent_17.UtilizarByS = NOT_HAPPENING &
+	agent_38.UtilizarByS = NOT_HAPPENING &
+	agent_22.PublicitarServicioProfesional = NOT_HAPPENING &
+	agent_44.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_3.SolicitarInformacion = NOT_HAPPENING &
+	agent_61.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_16.EntregarManual = NOT_HAPPENING &
+	agent_19.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_46.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_15.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_18.SolicitarInformacion = NOT_HAPPENING &
+	agent_8.SolicitarInformacion = NOT_HAPPENING &
+	agent_41.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_25.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_61.SolicitarInformacion = NOT_HAPPENING &
+	agent_46.SolicitarInformacion = NOT_HAPPENING &
+	agent_25.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_18.Consumir = NOT_HAPPENING &
+	agent_53.SolicitarInformacion = NOT_HAPPENING &
+	agent_4.AdquirirByS = NOT_HAPPENING &
+	agent_66.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_8.AdquirirByS = NOT_HAPPENING &
+	agent_3.AdquirirByS = NOT_HAPPENING &
+	agent_8.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_3.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_52.EntregarManual = NOT_HAPPENING &
+	agent_35.EntregarManual = NOT_HAPPENING &
+	agent_67.Consumir = NOT_HAPPENING &
+	agent_21.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_17.PublicitarServicioProfesional = NOT_HAPPENING &
+	agent_11.UtilizarByS = NOT_HAPPENING &
+	agent_34.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_12.UtilizarByS = NOT_HAPPENING &
+	agent_15.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_53.UtilizarByS = NOT_HAPPENING &
+	agent_20.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_54.EntregarManual = NOT_HAPPENING &
+	agent_12.SolicitarInformacion = NOT_HAPPENING &
+	agent_4.Consumir = NOT_HAPPENING &
+	agent_36.UtilizarByS = NOT_HAPPENING &
+	agent_21.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_67.SolicitarInformacion = NOT_HAPPENING &
+	agent_57.UtilizarByS = NOT_HAPPENING &
+	agent_5.AdquirirByS = NOT_HAPPENING &
+	agent_43.Consumir = NOT_HAPPENING &
+	agent_28.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_57.Consumir = NOT_HAPPENING &
+	agent_28.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_59.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_66.Consumir = NOT_HAPPENING &
+	agent_48.Consumir = NOT_HAPPENING &
+	agent_9.EntregarManual = NOT_HAPPENING &
+	agent_59.EntregarManual = NOT_HAPPENING &
+	agent_40.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_48.AdquirirByS = NOT_HAPPENING &
+	agent_61.UtilizarByS = NOT_HAPPENING &
+	agent_44.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_47.EntregarManual = NOT_HAPPENING &
+	agent_24.Consumir = NOT_HAPPENING &
+	agent_5.Consumir = NOT_HAPPENING &
+	agent_9.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_41.Consumir = NOT_HAPPENING &
+	agent_6.EntregarManual = NOT_HAPPENING &
+	agent_44.EntregarManual = NOT_HAPPENING &
+	agent_40.AdquirirByS = NOT_HAPPENING &
+	agent_52.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_47.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_12.AdquirirByS = NOT_HAPPENING &
+	agent_58.Consumir = NOT_HAPPENING &
+	agent_46.AdquirirByS = NOT_HAPPENING &
+	agent_67.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_60.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_24.SolicitarInformacion = NOT_HAPPENING &
+	agent_23.Consumir = NOT_HAPPENING &
+	agent_45.PublicitarServicioProfesional = NOT_HAPPENING &
+	agent_11.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_11.AdquirirByS = NOT_HAPPENING &
+	agent_43.AdquirirByS = NOT_HAPPENING &
+	agent_53.AdquirirByS = NOT_HAPPENING &
+	agent_41.AdquirirByS = NOT_HAPPENING &
+	agent_16.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_17.SolicitarInformacion = NOT_HAPPENING &
+	agent_57.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_6.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_54.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_3.Consumir = NOT_HAPPENING &
+	agent_58.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_25.EntregarManual = NOT_HAPPENING &
+	agent_12.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_4.SolicitarInformacion = NOT_HAPPENING &
+	agent_57.SolicitarInformacion = NOT_HAPPENING &
+	agent_17.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_59.ProveerBySRiesgoso = NOT_HAPPENING &
+	agent_58.AdquirirByS = NOT_HAPPENING &
+	agent_57.AdquirirByS = NOT_HAPPENING &
+	agent_36.AdquirirByS = NOT_HAPPENING &
+	agent_38.AdquirirByS = NOT_HAPPENING &
+	agent_53.Consumir = NOT_HAPPENING &
+	agent_18.AdquirirByS = NOT_HAPPENING &
+	agent_17.AdquirirByS = NOT_HAPPENING &
+	agent_64.EntregarManual = NOT_HAPPENING &
+	agent_17.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_34.EntregarManual = NOT_HAPPENING &
+	agent_23.SolicitarInformacion = NOT_HAPPENING &
+	agent_5.SolicitarInformacion = NOT_HAPPENING &
+	agent_38.Consumir = NOT_HAPPENING &
+	agent_43.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_51.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_18.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_40.UtilizarByS = NOT_HAPPENING &
+	agent_23.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_41.UtilizarByS = NOT_HAPPENING &
+	agent_45.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_43.UtilizarByS = NOT_HAPPENING &
+	agent_23.UtilizarByS = NOT_HAPPENING &
+	agent_38.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_39.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_48.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_64.RespetarLeyDefensaConsumidor = NOT_HAPPENING &
+	agent_46.UtilizarByS = NOT_HAPPENING &
+	agent_61.Consumir = NOT_HAPPENING &
+	agent_53.MantenerRelacionConsumo = NOT_HAPPENING &
+	agent_43.SolicitarInformacion = NOT_HAPPENING &
+	agent_66.UtilizarByS = NOT_HAPPENING &
+	agent_24.UtilizarByS = NOT_HAPPENING &
+	agent_67.UtilizarByS = NOT_HAPPENING &
+	agent_19.EntregarManual = NOT_HAPPENING &
+	agent_36.SolicitarInformacion = NOT_HAPPENING &
+                                                                                                                                                                                                 TRUE 
+
+TRANS
+	--En el caso de representar la accion con tres estados:
+		--Las acciones que están en JH pasan a NH
+		--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--En el caso de representar la accion con dos estados:
+		--Desde H se puede pasar a NH o quedarse en H (ya no pueden pasar a JH)
+		--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+	--Si tienen hasOccursIn => si están en H => hasOccursIn = activo
+				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   				   	--Si una acción tiene output values, al pasar de H a JH, la variable que  
+	--representa el output value toma alguno de sus valores posibles. Si la 
+	--acción no hace ese cambio de H a JH => el valor queda igual
+	--Desde H se puede pasar a JH o quedarse en H (= no pueden pasar a NH)
+	--Desde NH se puede pasar a H o quedarse en NH (= no pueden pasar a JH)
+                                                                                                                                                                                             
+
+ TRUE

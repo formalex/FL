@@ -1,0 +1,951 @@
+MODULE main
+VAR	
+	i0: {HA, NH, JH};
+  	i1: {HA, NH, JH};
+  	i2: {HA, NH, JH};
+  	i3: {HA, NH, JH};
+  	i4: {HA, NH, JH};
+  	i5: {HA, NH, JH};
+  	i6: {HA, NH, JH};
+  	i7: {HA, NH, JH};
+  	i8: {HA, NH, JH};
+  	i9: {HA, NH, JH};
+  	i10: {HA, NH, JH};
+  	i11: {HA, NH, JH};
+  	i12: {HA, NH, JH};
+  	i13: {HA, NH, JH};
+  	i14: {HA, NH, JH};
+  	i15: {HA, NH, JH};
+  	i16: {HA, NH, JH};
+  	i17: {HA, NH, JH};
+  	i18: {HA, NH, JH};
+  	i19: {HA, NH, JH};
+  	i20: {HA, NH, JH};
+  	i21: {HA, NH, JH};
+  	i22: {HA, NH, JH};
+  	i23: {HA, NH, JH};
+  	i24: {HA, NH, JH};
+  	i25: {HA, NH, JH};
+  	i26: {HA, NH, JH};
+  	i27: {HA, NH, JH};
+  	i28: {HA, NH, JH};
+  	i29: {HA, NH, JH};
+  	i30: {HA, NH, JH};
+  	i31: {HA, NH, JH};
+  	i32: {HA, NH, JH};
+  	i33: {HA, NH, JH};
+  	i34: {HA, NH, JH};
+  	i35: {HA, NH, JH};
+  	i36: {HA, NH, JH};
+  	i37: {HA, NH, JH};
+  	i38: {HA, NH, JH};
+  	i39: {HA, NH, JH};
+  	i40: {HA, NH, JH};
+  	i41: {HA, NH, JH};
+  	i42: {HA, NH, JH};
+  	i43: {HA, NH, JH};
+  	i44: {HA, NH, JH};
+  	i45: {HA, NH, JH};
+  	i46: {HA, NH, JH};
+  	i47: {HA, NH, JH};
+  	i48: {HA, NH, JH};
+  	i49: {HA, NH, JH};
+  	i50: {HA, NH, JH};
+  	i51: {HA, NH, JH};
+  	i52: {HA, NH, JH};
+  	i53: {HA, NH, JH};
+  	i54: {HA, NH, JH};
+  	i55: {HA, NH, JH};
+  	i56: {HA, NH, JH};
+  	i57: {HA, NH, JH};
+  	i58: {HA, NH, JH};
+  	i59: {HA, NH, JH};
+  	i60: {HA, NH, JH};
+  	i61: {HA, NH, JH};
+  	i62: {HA, NH, JH};
+  	i63: {HA, NH, JH};
+  	i64: {HA, NH, JH};
+  	i65: {HA, NH, JH};
+  	i66: {HA, NH, JH};
+  	i67: {HA, NH, JH};
+  	i68: {HA, NH, JH};
+  	i69: {HA, NH, JH};
+  	i70: {HA, NH, JH};
+  	i71: {HA, NH, JH};
+  	i72: {HA, NH, JH};
+  	i73: {HA, NH, JH};
+  	i74: {HA, NH, JH};
+  	i75: {HA, NH, JH};
+  	i76: {HA, NH, JH};
+  	i77: {HA, NH, JH};
+  	i78: {HA, NH, JH};
+  	i79: {HA, NH, JH};
+  	i80: {HA, NH, JH};
+  	i81: {HA, NH, JH};
+  	i82: {HA, NH, JH};
+  	i83: {HA, NH, JH};
+  	i84: {HA, NH, JH};
+  	i85: {HA, NH, JH};
+  	i86: {HA, NH, JH};
+  	i87: {HA, NH, JH};
+  	i88: {HA, NH, JH};
+  	i89: {HA, NH, JH};
+  	i90: {HA, NH, JH};
+  	i91: {HA, NH, JH};
+  	i92: {HA, NH, JH};
+  	i93: {HA, NH, JH};
+  	i94: {HA, NH, JH};
+  	i95: {HA, NH, JH};
+  	i96: {HA, NH, JH};
+  	i97: {HA, NH, JH};
+  	i98: {HA, NH, JH};
+  	i99: {HA, NH, JH};
+  	i100: {HA, NH, JH};
+  	i101: {HA, NH, JH};
+  	i102: {HA, NH, JH};
+  	i103: {HA, NH, JH};
+  	i104: {HA, NH, JH};
+  	i105: {HA, NH, JH};
+  	i106: {HA, NH, JH};
+  	i107: {HA, NH, JH};
+  	i108: {HA, NH, JH};
+  	i109: {HA, NH, JH};
+  	i110: {HA, NH, JH};
+  	i111: {HA, NH, JH};
+  	i112: {HA, NH, JH};
+  	i113: {HA, NH, JH};
+  	i114: {HA, NH, JH};
+  	i115: {HA, NH, JH};
+  	i116: {HA, NH, JH};
+  	i117: {HA, NH, JH};
+  	i118: {HA, NH, JH};
+  	i119: {HA, NH, JH};
+  	i120: {HA, NH, JH};
+  	i121: {HA, NH, JH};
+  	i122: {HA, NH, JH};
+  	i123: {HA, NH, JH};
+  	i124: {HA, NH, JH};
+  	i125: {HA, NH, JH};
+  	i126: {HA, NH, JH};
+  	i127: {HA, NH, JH};
+  	i128: {HA, NH, JH};
+  	i129: {HA, NH, JH};
+  	i130: {HA, NH, JH};
+  	i131: {HA, NH, JH};
+  	i132: {HA, NH, JH};
+  	i133: {HA, NH, JH};
+  	i134: {HA, NH, JH};
+  	i135: {HA, NH, JH};
+  	i136: {HA, NH, JH};
+  	i137: {HA, NH, JH};
+  	i138: {HA, NH, JH};
+  	i139: {HA, NH, JH};
+  	i140: {HA, NH, JH};
+  	i141: {HA, NH, JH};
+  	i142: {HA, NH, JH};
+  	i143: {HA, NH, JH};
+  	i144: {HA, NH, JH};
+  	i145: {HA, NH, JH};
+  	i146: {HA, NH, JH};
+  	i147: {HA, NH, JH};
+  	i148: {HA, NH, JH};
+  	i149: {HA, NH, JH};
+  	i150: {HA, NH, JH};
+  	i151: {HA, NH, JH};
+  	i152: {HA, NH, JH};
+  	i153: {HA, NH, JH};
+  	i154: {HA, NH, JH};
+  	i155: {HA, NH, JH};
+  	i156: {HA, NH, JH};
+  	i157: {HA, NH, JH};
+  	i158: {HA, NH, JH};
+  	i159: {HA, NH, JH};
+  	i160: {HA, NH, JH};
+  	i161: {HA, NH, JH};
+  	i162: {HA, NH, JH};
+  	i163: {HA, NH, JH};
+  	i164: {HA, NH, JH};
+  	i165: {HA, NH, JH};
+  	i166: {HA, NH, JH};
+  	i167: {HA, NH, JH};
+  	i168: {HA, NH, JH};
+  	i169: {HA, NH, JH};
+  	i170: {HA, NH, JH};
+  	i171: {HA, NH, JH};
+  	i172: {HA, NH, JH};
+  	i173: {HA, NH, JH};
+  	i174: {HA, NH, JH};
+  	i175: {HA, NH, JH};
+  	i176: {HA, NH, JH};
+  	i177: {HA, NH, JH};
+  	i178: {HA, NH, JH};
+  	i179: {HA, NH, JH};
+  	i180: {HA, NH, JH};
+  	i181: {HA, NH, JH};
+  	i182: {HA, NH, JH};
+  	i183: {HA, NH, JH};
+  	i184: {HA, NH, JH};
+  	i185: {HA, NH, JH};
+  	i186: {HA, NH, JH};
+  	i187: {HA, NH, JH};
+  	i188: {HA, NH, JH};
+INIT
+	i0 = NH &
+	i1 = NH &
+	i2 = NH &
+	i3 = NH &
+	i4 = NH &
+	i5 = NH &
+	i6 = NH &
+	i7 = NH &
+	i8 = NH &
+	i9 = NH &
+	i10 = NH &
+	i11 = NH &
+	i12 = NH &
+	i13 = NH &
+	i14 = NH &
+	i15 = NH &
+	i16 = NH &
+	i17 = NH &
+	i18 = NH &
+	i19 = NH &
+	i20 = NH &
+	i21 = NH &
+	i22 = NH &
+	i23 = NH &
+	i24 = NH &
+	i25 = NH &
+	i26 = NH &
+	i27 = NH &
+	i28 = NH &
+	i29 = NH &
+	i30 = NH &
+	i31 = NH &
+	i32 = NH &
+	i33 = NH &
+	i34 = NH &
+	i35 = NH &
+	i36 = NH &
+	i37 = NH &
+	i38 = NH &
+	i39 = NH &
+	i40 = NH &
+	i41 = NH &
+	i42 = NH &
+	i43 = NH &
+	i44 = NH &
+	i45 = NH &
+	i46 = NH &
+	i47 = NH &
+	i48 = NH &
+	i49 = NH &
+	i50 = NH &
+	i51 = NH &
+	i52 = NH &
+	i53 = NH &
+	i54 = NH &
+	i55 = NH &
+	i56 = NH &
+	i57 = NH &
+	i58 = NH &
+	i59 = NH &
+	i60 = NH &
+	i61 = NH &
+	i62 = NH &
+	i63 = NH &
+	i64 = NH &
+	i65 = NH &
+	i66 = NH &
+	i67 = NH &
+	i68 = NH &
+	i69 = NH &
+	i70 = NH &
+	i71 = NH &
+	i72 = NH &
+	i73 = NH &
+	i74 = NH &
+	i75 = NH &
+	i76 = NH &
+	i77 = NH &
+	i78 = NH &
+	i79 = NH &
+	i80 = NH &
+	i81 = NH &
+	i82 = NH &
+	i83 = NH &
+	i84 = NH &
+	i85 = NH &
+	i86 = NH &
+	i87 = NH &
+	i88 = NH &
+	i89 = NH &
+	i90 = NH &
+	i91 = NH &
+	i92 = NH &
+	i93 = NH &
+	i94 = NH &
+	i95 = NH &
+	i96 = NH &
+	i97 = NH &
+	i98 = NH &
+	i99 = NH &
+	i100 = NH &
+	i101 = NH &
+	i102 = NH &
+	i103 = NH &
+	i104 = NH &
+	i105 = NH &
+	i106 = NH &
+	i107 = NH &
+	i108 = NH &
+	i109 = NH &
+	i110 = NH &
+	i111 = NH &
+	i112 = NH &
+	i113 = NH &
+	i114 = NH &
+	i115 = NH &
+	i116 = NH &
+	i117 = NH &
+	i118 = NH &
+	i119 = NH &
+	i120 = NH &
+	i121 = NH &
+	i122 = NH &
+	i123 = NH &
+	i124 = NH &
+	i125 = NH &
+	i126 = NH &
+	i127 = NH &
+	i128 = NH &
+	i129 = NH &
+	i130 = NH &
+	i131 = NH &
+	i132 = NH &
+	i133 = NH &
+	i134 = NH &
+	i135 = NH &
+	i136 = NH &
+	i137 = NH &
+	i138 = NH &
+	i139 = NH &
+	i140 = NH &
+	i141 = NH &
+	i142 = NH &
+	i143 = NH &
+	i144 = NH &
+	i145 = NH &
+	i146 = NH &
+	i147 = NH &
+	i148 = NH &
+	i149 = NH &
+	i150 = NH &
+	i151 = NH &
+	i152 = NH &
+	i153 = NH &
+	i154 = NH &
+	i155 = NH &
+	i156 = NH &
+	i157 = NH &
+	i158 = NH &
+	i159 = NH &
+	i160 = NH &
+	i161 = NH &
+	i162 = NH &
+	i163 = NH &
+	i164 = NH &
+	i165 = NH &
+	i166 = NH &
+	i167 = NH &
+	i168 = NH &
+	i169 = NH &
+	i170 = NH &
+	i171 = NH &
+	i172 = NH &
+	i173 = NH &
+	i174 = NH &
+	i175 = NH &
+	i176 = NH &
+	i177 = NH &
+	i178 = NH &
+	i179 = NH &
+	i180 = NH &
+	i181 = NH &
+	i182 = NH &
+	i183 = NH &
+	i184 = NH &
+	i185 = NH &
+	i186 = NH &
+	i187 = NH &
+	i188 = NH &
+                                                                                                                                                                                                 TRUE 
+TRANS
+		 	(i0 = JH -> next(i0) = NH) &
+		(i0 = HA -> next(i0) != NH ) &
+		(i0 = NH -> next(i0) != JH) &
+	  		 	(i1 = JH -> next(i1) = NH) &
+		(i1 = HA -> next(i1) != NH ) &
+		(i1 = NH -> next(i1) != JH) &
+	  		 	(i2 = JH -> next(i2) = NH) &
+		(i2 = HA -> next(i2) != NH ) &
+		(i2 = NH -> next(i2) != JH) &
+	  		 	(i3 = JH -> next(i3) = NH) &
+		(i3 = HA -> next(i3) != NH ) &
+		(i3 = NH -> next(i3) != JH) &
+	  		 	(i4 = JH -> next(i4) = NH) &
+		(i4 = HA -> next(i4) != NH ) &
+		(i4 = NH -> next(i4) != JH) &
+	  		 	(i5 = JH -> next(i5) = NH) &
+		(i5 = HA -> next(i5) != NH ) &
+		(i5 = NH -> next(i5) != JH) &
+	  		 	(i6 = JH -> next(i6) = NH) &
+		(i6 = HA -> next(i6) != NH ) &
+		(i6 = NH -> next(i6) != JH) &
+	  		 	(i7 = JH -> next(i7) = NH) &
+		(i7 = HA -> next(i7) != NH ) &
+		(i7 = NH -> next(i7) != JH) &
+	  		 	(i8 = JH -> next(i8) = NH) &
+		(i8 = HA -> next(i8) != NH ) &
+		(i8 = NH -> next(i8) != JH) &
+	  		 	(i9 = JH -> next(i9) = NH) &
+		(i9 = HA -> next(i9) != NH ) &
+		(i9 = NH -> next(i9) != JH) &
+	  		 	(i10 = JH -> next(i10) = NH) &
+		(i10 = HA -> next(i10) != NH ) &
+		(i10 = NH -> next(i10) != JH) &
+	  		 	(i11 = JH -> next(i11) = NH) &
+		(i11 = HA -> next(i11) != NH ) &
+		(i11 = NH -> next(i11) != JH) &
+	  		 	(i12 = JH -> next(i12) = NH) &
+		(i12 = HA -> next(i12) != NH ) &
+		(i12 = NH -> next(i12) != JH) &
+	  		 	(i13 = JH -> next(i13) = NH) &
+		(i13 = HA -> next(i13) != NH ) &
+		(i13 = NH -> next(i13) != JH) &
+	  		 	(i14 = JH -> next(i14) = NH) &
+		(i14 = HA -> next(i14) != NH ) &
+		(i14 = NH -> next(i14) != JH) &
+	  		 	(i15 = JH -> next(i15) = NH) &
+		(i15 = HA -> next(i15) != NH ) &
+		(i15 = NH -> next(i15) != JH) &
+	  		 	(i16 = JH -> next(i16) = NH) &
+		(i16 = HA -> next(i16) != NH ) &
+		(i16 = NH -> next(i16) != JH) &
+	  		 	(i17 = JH -> next(i17) = NH) &
+		(i17 = HA -> next(i17) != NH ) &
+		(i17 = NH -> next(i17) != JH) &
+	  		 	(i18 = JH -> next(i18) = NH) &
+		(i18 = HA -> next(i18) != NH ) &
+		(i18 = NH -> next(i18) != JH) &
+	  		 	(i19 = JH -> next(i19) = NH) &
+		(i19 = HA -> next(i19) != NH ) &
+		(i19 = NH -> next(i19) != JH) &
+	  		 	(i20 = JH -> next(i20) = NH) &
+		(i20 = HA -> next(i20) != NH ) &
+		(i20 = NH -> next(i20) != JH) &
+	  		 	(i21 = JH -> next(i21) = NH) &
+		(i21 = HA -> next(i21) != NH ) &
+		(i21 = NH -> next(i21) != JH) &
+	  		 	(i22 = JH -> next(i22) = NH) &
+		(i22 = HA -> next(i22) != NH ) &
+		(i22 = NH -> next(i22) != JH) &
+	  		 	(i23 = JH -> next(i23) = NH) &
+		(i23 = HA -> next(i23) != NH ) &
+		(i23 = NH -> next(i23) != JH) &
+	  		 	(i24 = JH -> next(i24) = NH) &
+		(i24 = HA -> next(i24) != NH ) &
+		(i24 = NH -> next(i24) != JH) &
+	  		 	(i25 = JH -> next(i25) = NH) &
+		(i25 = HA -> next(i25) != NH ) &
+		(i25 = NH -> next(i25) != JH) &
+	  		 	(i26 = JH -> next(i26) = NH) &
+		(i26 = HA -> next(i26) != NH ) &
+		(i26 = NH -> next(i26) != JH) &
+	  		 	(i27 = JH -> next(i27) = NH) &
+		(i27 = HA -> next(i27) != NH ) &
+		(i27 = NH -> next(i27) != JH) &
+	  		 	(i28 = JH -> next(i28) = NH) &
+		(i28 = HA -> next(i28) != NH ) &
+		(i28 = NH -> next(i28) != JH) &
+	  		 	(i29 = JH -> next(i29) = NH) &
+		(i29 = HA -> next(i29) != NH ) &
+		(i29 = NH -> next(i29) != JH) &
+	  		 	(i30 = JH -> next(i30) = NH) &
+		(i30 = HA -> next(i30) != NH ) &
+		(i30 = NH -> next(i30) != JH) &
+	  		 	(i31 = JH -> next(i31) = NH) &
+		(i31 = HA -> next(i31) != NH ) &
+		(i31 = NH -> next(i31) != JH) &
+	  		 	(i32 = JH -> next(i32) = NH) &
+		(i32 = HA -> next(i32) != NH ) &
+		(i32 = NH -> next(i32) != JH) &
+	  		 	(i33 = JH -> next(i33) = NH) &
+		(i33 = HA -> next(i33) != NH ) &
+		(i33 = NH -> next(i33) != JH) &
+	  		 	(i34 = JH -> next(i34) = NH) &
+		(i34 = HA -> next(i34) != NH ) &
+		(i34 = NH -> next(i34) != JH) &
+	  		 	(i35 = JH -> next(i35) = NH) &
+		(i35 = HA -> next(i35) != NH ) &
+		(i35 = NH -> next(i35) != JH) &
+	  		 	(i36 = JH -> next(i36) = NH) &
+		(i36 = HA -> next(i36) != NH ) &
+		(i36 = NH -> next(i36) != JH) &
+	  		 	(i37 = JH -> next(i37) = NH) &
+		(i37 = HA -> next(i37) != NH ) &
+		(i37 = NH -> next(i37) != JH) &
+	  		 	(i38 = JH -> next(i38) = NH) &
+		(i38 = HA -> next(i38) != NH ) &
+		(i38 = NH -> next(i38) != JH) &
+	  		 	(i39 = JH -> next(i39) = NH) &
+		(i39 = HA -> next(i39) != NH ) &
+		(i39 = NH -> next(i39) != JH) &
+	  		 	(i40 = JH -> next(i40) = NH) &
+		(i40 = HA -> next(i40) != NH ) &
+		(i40 = NH -> next(i40) != JH) &
+	  		 	(i41 = JH -> next(i41) = NH) &
+		(i41 = HA -> next(i41) != NH ) &
+		(i41 = NH -> next(i41) != JH) &
+	  		 	(i42 = JH -> next(i42) = NH) &
+		(i42 = HA -> next(i42) != NH ) &
+		(i42 = NH -> next(i42) != JH) &
+	  		 	(i43 = JH -> next(i43) = NH) &
+		(i43 = HA -> next(i43) != NH ) &
+		(i43 = NH -> next(i43) != JH) &
+	  		 	(i44 = JH -> next(i44) = NH) &
+		(i44 = HA -> next(i44) != NH ) &
+		(i44 = NH -> next(i44) != JH) &
+	  		 	(i45 = JH -> next(i45) = NH) &
+		(i45 = HA -> next(i45) != NH ) &
+		(i45 = NH -> next(i45) != JH) &
+	  		 	(i46 = JH -> next(i46) = NH) &
+		(i46 = HA -> next(i46) != NH ) &
+		(i46 = NH -> next(i46) != JH) &
+	  		 	(i47 = JH -> next(i47) = NH) &
+		(i47 = HA -> next(i47) != NH ) &
+		(i47 = NH -> next(i47) != JH) &
+	  		 	(i48 = JH -> next(i48) = NH) &
+		(i48 = HA -> next(i48) != NH ) &
+		(i48 = NH -> next(i48) != JH) &
+	  		 	(i49 = JH -> next(i49) = NH) &
+		(i49 = HA -> next(i49) != NH ) &
+		(i49 = NH -> next(i49) != JH) &
+	  		 	(i50 = JH -> next(i50) = NH) &
+		(i50 = HA -> next(i50) != NH ) &
+		(i50 = NH -> next(i50) != JH) &
+	  		 	(i51 = JH -> next(i51) = NH) &
+		(i51 = HA -> next(i51) != NH ) &
+		(i51 = NH -> next(i51) != JH) &
+	  		 	(i52 = JH -> next(i52) = NH) &
+		(i52 = HA -> next(i52) != NH ) &
+		(i52 = NH -> next(i52) != JH) &
+	  		 	(i53 = JH -> next(i53) = NH) &
+		(i53 = HA -> next(i53) != NH ) &
+		(i53 = NH -> next(i53) != JH) &
+	  		 	(i54 = JH -> next(i54) = NH) &
+		(i54 = HA -> next(i54) != NH ) &
+		(i54 = NH -> next(i54) != JH) &
+	  		 	(i55 = JH -> next(i55) = NH) &
+		(i55 = HA -> next(i55) != NH ) &
+		(i55 = NH -> next(i55) != JH) &
+	  		 	(i56 = JH -> next(i56) = NH) &
+		(i56 = HA -> next(i56) != NH ) &
+		(i56 = NH -> next(i56) != JH) &
+	  		 	(i57 = JH -> next(i57) = NH) &
+		(i57 = HA -> next(i57) != NH ) &
+		(i57 = NH -> next(i57) != JH) &
+	  		 	(i58 = JH -> next(i58) = NH) &
+		(i58 = HA -> next(i58) != NH ) &
+		(i58 = NH -> next(i58) != JH) &
+	  		 	(i59 = JH -> next(i59) = NH) &
+		(i59 = HA -> next(i59) != NH ) &
+		(i59 = NH -> next(i59) != JH) &
+	  		 	(i60 = JH -> next(i60) = NH) &
+		(i60 = HA -> next(i60) != NH ) &
+		(i60 = NH -> next(i60) != JH) &
+	  		 	(i61 = JH -> next(i61) = NH) &
+		(i61 = HA -> next(i61) != NH ) &
+		(i61 = NH -> next(i61) != JH) &
+	  		 	(i62 = JH -> next(i62) = NH) &
+		(i62 = HA -> next(i62) != NH ) &
+		(i62 = NH -> next(i62) != JH) &
+	  		 	(i63 = JH -> next(i63) = NH) &
+		(i63 = HA -> next(i63) != NH ) &
+		(i63 = NH -> next(i63) != JH) &
+	  		 	(i64 = JH -> next(i64) = NH) &
+		(i64 = HA -> next(i64) != NH ) &
+		(i64 = NH -> next(i64) != JH) &
+	  		 	(i65 = JH -> next(i65) = NH) &
+		(i65 = HA -> next(i65) != NH ) &
+		(i65 = NH -> next(i65) != JH) &
+	  		 	(i66 = JH -> next(i66) = NH) &
+		(i66 = HA -> next(i66) != NH ) &
+		(i66 = NH -> next(i66) != JH) &
+	  		 	(i67 = JH -> next(i67) = NH) &
+		(i67 = HA -> next(i67) != NH ) &
+		(i67 = NH -> next(i67) != JH) &
+	  		 	(i68 = JH -> next(i68) = NH) &
+		(i68 = HA -> next(i68) != NH ) &
+		(i68 = NH -> next(i68) != JH) &
+	  		 	(i69 = JH -> next(i69) = NH) &
+		(i69 = HA -> next(i69) != NH ) &
+		(i69 = NH -> next(i69) != JH) &
+	  		 	(i70 = JH -> next(i70) = NH) &
+		(i70 = HA -> next(i70) != NH ) &
+		(i70 = NH -> next(i70) != JH) &
+	  		 	(i71 = JH -> next(i71) = NH) &
+		(i71 = HA -> next(i71) != NH ) &
+		(i71 = NH -> next(i71) != JH) &
+	  		 	(i72 = JH -> next(i72) = NH) &
+		(i72 = HA -> next(i72) != NH ) &
+		(i72 = NH -> next(i72) != JH) &
+	  		 	(i73 = JH -> next(i73) = NH) &
+		(i73 = HA -> next(i73) != NH ) &
+		(i73 = NH -> next(i73) != JH) &
+	  		 	(i74 = JH -> next(i74) = NH) &
+		(i74 = HA -> next(i74) != NH ) &
+		(i74 = NH -> next(i74) != JH) &
+	  		 	(i75 = JH -> next(i75) = NH) &
+		(i75 = HA -> next(i75) != NH ) &
+		(i75 = NH -> next(i75) != JH) &
+	  		 	(i76 = JH -> next(i76) = NH) &
+		(i76 = HA -> next(i76) != NH ) &
+		(i76 = NH -> next(i76) != JH) &
+	  		 	(i77 = JH -> next(i77) = NH) &
+		(i77 = HA -> next(i77) != NH ) &
+		(i77 = NH -> next(i77) != JH) &
+	  		 	(i78 = JH -> next(i78) = NH) &
+		(i78 = HA -> next(i78) != NH ) &
+		(i78 = NH -> next(i78) != JH) &
+	  		 	(i79 = JH -> next(i79) = NH) &
+		(i79 = HA -> next(i79) != NH ) &
+		(i79 = NH -> next(i79) != JH) &
+	  		 	(i80 = JH -> next(i80) = NH) &
+		(i80 = HA -> next(i80) != NH ) &
+		(i80 = NH -> next(i80) != JH) &
+	  		 	(i81 = JH -> next(i81) = NH) &
+		(i81 = HA -> next(i81) != NH ) &
+		(i81 = NH -> next(i81) != JH) &
+	  		 	(i82 = JH -> next(i82) = NH) &
+		(i82 = HA -> next(i82) != NH ) &
+		(i82 = NH -> next(i82) != JH) &
+	  		 	(i83 = JH -> next(i83) = NH) &
+		(i83 = HA -> next(i83) != NH ) &
+		(i83 = NH -> next(i83) != JH) &
+	  		 	(i84 = JH -> next(i84) = NH) &
+		(i84 = HA -> next(i84) != NH ) &
+		(i84 = NH -> next(i84) != JH) &
+	  		 	(i85 = JH -> next(i85) = NH) &
+		(i85 = HA -> next(i85) != NH ) &
+		(i85 = NH -> next(i85) != JH) &
+	  		 	(i86 = JH -> next(i86) = NH) &
+		(i86 = HA -> next(i86) != NH ) &
+		(i86 = NH -> next(i86) != JH) &
+	  		 	(i87 = JH -> next(i87) = NH) &
+		(i87 = HA -> next(i87) != NH ) &
+		(i87 = NH -> next(i87) != JH) &
+	  		 	(i88 = JH -> next(i88) = NH) &
+		(i88 = HA -> next(i88) != NH ) &
+		(i88 = NH -> next(i88) != JH) &
+	  		 	(i89 = JH -> next(i89) = NH) &
+		(i89 = HA -> next(i89) != NH ) &
+		(i89 = NH -> next(i89) != JH) &
+	  		 	(i90 = JH -> next(i90) = NH) &
+		(i90 = HA -> next(i90) != NH ) &
+		(i90 = NH -> next(i90) != JH) &
+	  		 	(i91 = JH -> next(i91) = NH) &
+		(i91 = HA -> next(i91) != NH ) &
+		(i91 = NH -> next(i91) != JH) &
+	  		 	(i92 = JH -> next(i92) = NH) &
+		(i92 = HA -> next(i92) != NH ) &
+		(i92 = NH -> next(i92) != JH) &
+	  		 	(i93 = JH -> next(i93) = NH) &
+		(i93 = HA -> next(i93) != NH ) &
+		(i93 = NH -> next(i93) != JH) &
+	  		 	(i94 = JH -> next(i94) = NH) &
+		(i94 = HA -> next(i94) != NH ) &
+		(i94 = NH -> next(i94) != JH) &
+	  		 	(i95 = JH -> next(i95) = NH) &
+		(i95 = HA -> next(i95) != NH ) &
+		(i95 = NH -> next(i95) != JH) &
+	  		 	(i96 = JH -> next(i96) = NH) &
+		(i96 = HA -> next(i96) != NH ) &
+		(i96 = NH -> next(i96) != JH) &
+	  		 	(i97 = JH -> next(i97) = NH) &
+		(i97 = HA -> next(i97) != NH ) &
+		(i97 = NH -> next(i97) != JH) &
+	  		 	(i98 = JH -> next(i98) = NH) &
+		(i98 = HA -> next(i98) != NH ) &
+		(i98 = NH -> next(i98) != JH) &
+	  		 	(i99 = JH -> next(i99) = NH) &
+		(i99 = HA -> next(i99) != NH ) &
+		(i99 = NH -> next(i99) != JH) &
+	  		 	(i100 = JH -> next(i100) = NH) &
+		(i100 = HA -> next(i100) != NH ) &
+		(i100 = NH -> next(i100) != JH) &
+	  		 	(i101 = JH -> next(i101) = NH) &
+		(i101 = HA -> next(i101) != NH ) &
+		(i101 = NH -> next(i101) != JH) &
+	  		 	(i102 = JH -> next(i102) = NH) &
+		(i102 = HA -> next(i102) != NH ) &
+		(i102 = NH -> next(i102) != JH) &
+	  		 	(i103 = JH -> next(i103) = NH) &
+		(i103 = HA -> next(i103) != NH ) &
+		(i103 = NH -> next(i103) != JH) &
+	  		 	(i104 = JH -> next(i104) = NH) &
+		(i104 = HA -> next(i104) != NH ) &
+		(i104 = NH -> next(i104) != JH) &
+	  		 	(i105 = JH -> next(i105) = NH) &
+		(i105 = HA -> next(i105) != NH ) &
+		(i105 = NH -> next(i105) != JH) &
+	  		 	(i106 = JH -> next(i106) = NH) &
+		(i106 = HA -> next(i106) != NH ) &
+		(i106 = NH -> next(i106) != JH) &
+	  		 	(i107 = JH -> next(i107) = NH) &
+		(i107 = HA -> next(i107) != NH ) &
+		(i107 = NH -> next(i107) != JH) &
+	  		 	(i108 = JH -> next(i108) = NH) &
+		(i108 = HA -> next(i108) != NH ) &
+		(i108 = NH -> next(i108) != JH) &
+	  		 	(i109 = JH -> next(i109) = NH) &
+		(i109 = HA -> next(i109) != NH ) &
+		(i109 = NH -> next(i109) != JH) &
+	  		 	(i110 = JH -> next(i110) = NH) &
+		(i110 = HA -> next(i110) != NH ) &
+		(i110 = NH -> next(i110) != JH) &
+	  		 	(i111 = JH -> next(i111) = NH) &
+		(i111 = HA -> next(i111) != NH ) &
+		(i111 = NH -> next(i111) != JH) &
+	  		 	(i112 = JH -> next(i112) = NH) &
+		(i112 = HA -> next(i112) != NH ) &
+		(i112 = NH -> next(i112) != JH) &
+	  		 	(i113 = JH -> next(i113) = NH) &
+		(i113 = HA -> next(i113) != NH ) &
+		(i113 = NH -> next(i113) != JH) &
+	  		 	(i114 = JH -> next(i114) = NH) &
+		(i114 = HA -> next(i114) != NH ) &
+		(i114 = NH -> next(i114) != JH) &
+	  		 	(i115 = JH -> next(i115) = NH) &
+		(i115 = HA -> next(i115) != NH ) &
+		(i115 = NH -> next(i115) != JH) &
+	  		 	(i116 = JH -> next(i116) = NH) &
+		(i116 = HA -> next(i116) != NH ) &
+		(i116 = NH -> next(i116) != JH) &
+	  		 	(i117 = JH -> next(i117) = NH) &
+		(i117 = HA -> next(i117) != NH ) &
+		(i117 = NH -> next(i117) != JH) &
+	  		 	(i118 = JH -> next(i118) = NH) &
+		(i118 = HA -> next(i118) != NH ) &
+		(i118 = NH -> next(i118) != JH) &
+	  		 	(i119 = JH -> next(i119) = NH) &
+		(i119 = HA -> next(i119) != NH ) &
+		(i119 = NH -> next(i119) != JH) &
+	  		 	(i120 = JH -> next(i120) = NH) &
+		(i120 = HA -> next(i120) != NH ) &
+		(i120 = NH -> next(i120) != JH) &
+	  		 	(i121 = JH -> next(i121) = NH) &
+		(i121 = HA -> next(i121) != NH ) &
+		(i121 = NH -> next(i121) != JH) &
+	  		 	(i122 = JH -> next(i122) = NH) &
+		(i122 = HA -> next(i122) != NH ) &
+		(i122 = NH -> next(i122) != JH) &
+	  		 	(i123 = JH -> next(i123) = NH) &
+		(i123 = HA -> next(i123) != NH ) &
+		(i123 = NH -> next(i123) != JH) &
+	  		 	(i124 = JH -> next(i124) = NH) &
+		(i124 = HA -> next(i124) != NH ) &
+		(i124 = NH -> next(i124) != JH) &
+	  		 	(i125 = JH -> next(i125) = NH) &
+		(i125 = HA -> next(i125) != NH ) &
+		(i125 = NH -> next(i125) != JH) &
+	  		 	(i126 = JH -> next(i126) = NH) &
+		(i126 = HA -> next(i126) != NH ) &
+		(i126 = NH -> next(i126) != JH) &
+	  		 	(i127 = JH -> next(i127) = NH) &
+		(i127 = HA -> next(i127) != NH ) &
+		(i127 = NH -> next(i127) != JH) &
+	  		 	(i128 = JH -> next(i128) = NH) &
+		(i128 = HA -> next(i128) != NH ) &
+		(i128 = NH -> next(i128) != JH) &
+	  		 	(i129 = JH -> next(i129) = NH) &
+		(i129 = HA -> next(i129) != NH ) &
+		(i129 = NH -> next(i129) != JH) &
+	  		 	(i130 = JH -> next(i130) = NH) &
+		(i130 = HA -> next(i130) != NH ) &
+		(i130 = NH -> next(i130) != JH) &
+	  		 	(i131 = JH -> next(i131) = NH) &
+		(i131 = HA -> next(i131) != NH ) &
+		(i131 = NH -> next(i131) != JH) &
+	  		 	(i132 = JH -> next(i132) = NH) &
+		(i132 = HA -> next(i132) != NH ) &
+		(i132 = NH -> next(i132) != JH) &
+	  		 	(i133 = JH -> next(i133) = NH) &
+		(i133 = HA -> next(i133) != NH ) &
+		(i133 = NH -> next(i133) != JH) &
+	  		 	(i134 = JH -> next(i134) = NH) &
+		(i134 = HA -> next(i134) != NH ) &
+		(i134 = NH -> next(i134) != JH) &
+	  		 	(i135 = JH -> next(i135) = NH) &
+		(i135 = HA -> next(i135) != NH ) &
+		(i135 = NH -> next(i135) != JH) &
+	  		 	(i136 = JH -> next(i136) = NH) &
+		(i136 = HA -> next(i136) != NH ) &
+		(i136 = NH -> next(i136) != JH) &
+	  		 	(i137 = JH -> next(i137) = NH) &
+		(i137 = HA -> next(i137) != NH ) &
+		(i137 = NH -> next(i137) != JH) &
+	  		 	(i138 = JH -> next(i138) = NH) &
+		(i138 = HA -> next(i138) != NH ) &
+		(i138 = NH -> next(i138) != JH) &
+	  		 	(i139 = JH -> next(i139) = NH) &
+		(i139 = HA -> next(i139) != NH ) &
+		(i139 = NH -> next(i139) != JH) &
+	  		 	(i140 = JH -> next(i140) = NH) &
+		(i140 = HA -> next(i140) != NH ) &
+		(i140 = NH -> next(i140) != JH) &
+	  		 	(i141 = JH -> next(i141) = NH) &
+		(i141 = HA -> next(i141) != NH ) &
+		(i141 = NH -> next(i141) != JH) &
+	  		 	(i142 = JH -> next(i142) = NH) &
+		(i142 = HA -> next(i142) != NH ) &
+		(i142 = NH -> next(i142) != JH) &
+	  		 	(i143 = JH -> next(i143) = NH) &
+		(i143 = HA -> next(i143) != NH ) &
+		(i143 = NH -> next(i143) != JH) &
+	  		 	(i144 = JH -> next(i144) = NH) &
+		(i144 = HA -> next(i144) != NH ) &
+		(i144 = NH -> next(i144) != JH) &
+	  		 	(i145 = JH -> next(i145) = NH) &
+		(i145 = HA -> next(i145) != NH ) &
+		(i145 = NH -> next(i145) != JH) &
+	  		 	(i146 = JH -> next(i146) = NH) &
+		(i146 = HA -> next(i146) != NH ) &
+		(i146 = NH -> next(i146) != JH) &
+	  		 	(i147 = JH -> next(i147) = NH) &
+		(i147 = HA -> next(i147) != NH ) &
+		(i147 = NH -> next(i147) != JH) &
+	  		 	(i148 = JH -> next(i148) = NH) &
+		(i148 = HA -> next(i148) != NH ) &
+		(i148 = NH -> next(i148) != JH) &
+	  		 	(i149 = JH -> next(i149) = NH) &
+		(i149 = HA -> next(i149) != NH ) &
+		(i149 = NH -> next(i149) != JH) &
+	  		 	(i150 = JH -> next(i150) = NH) &
+		(i150 = HA -> next(i150) != NH ) &
+		(i150 = NH -> next(i150) != JH) &
+	  		 	(i151 = JH -> next(i151) = NH) &
+		(i151 = HA -> next(i151) != NH ) &
+		(i151 = NH -> next(i151) != JH) &
+	  		 	(i152 = JH -> next(i152) = NH) &
+		(i152 = HA -> next(i152) != NH ) &
+		(i152 = NH -> next(i152) != JH) &
+	  		 	(i153 = JH -> next(i153) = NH) &
+		(i153 = HA -> next(i153) != NH ) &
+		(i153 = NH -> next(i153) != JH) &
+	  		 	(i154 = JH -> next(i154) = NH) &
+		(i154 = HA -> next(i154) != NH ) &
+		(i154 = NH -> next(i154) != JH) &
+	  		 	(i155 = JH -> next(i155) = NH) &
+		(i155 = HA -> next(i155) != NH ) &
+		(i155 = NH -> next(i155) != JH) &
+	  		 	(i156 = JH -> next(i156) = NH) &
+		(i156 = HA -> next(i156) != NH ) &
+		(i156 = NH -> next(i156) != JH) &
+	  		 	(i157 = JH -> next(i157) = NH) &
+		(i157 = HA -> next(i157) != NH ) &
+		(i157 = NH -> next(i157) != JH) &
+	  		 	(i158 = JH -> next(i158) = NH) &
+		(i158 = HA -> next(i158) != NH ) &
+		(i158 = NH -> next(i158) != JH) &
+	  		 	(i159 = JH -> next(i159) = NH) &
+		(i159 = HA -> next(i159) != NH ) &
+		(i159 = NH -> next(i159) != JH) &
+	  		 	(i160 = JH -> next(i160) = NH) &
+		(i160 = HA -> next(i160) != NH ) &
+		(i160 = NH -> next(i160) != JH) &
+	  		 	(i161 = JH -> next(i161) = NH) &
+		(i161 = HA -> next(i161) != NH ) &
+		(i161 = NH -> next(i161) != JH) &
+	  		 	(i162 = JH -> next(i162) = NH) &
+		(i162 = HA -> next(i162) != NH ) &
+		(i162 = NH -> next(i162) != JH) &
+	  		 	(i163 = JH -> next(i163) = NH) &
+		(i163 = HA -> next(i163) != NH ) &
+		(i163 = NH -> next(i163) != JH) &
+	  		 	(i164 = JH -> next(i164) = NH) &
+		(i164 = HA -> next(i164) != NH ) &
+		(i164 = NH -> next(i164) != JH) &
+	  		 	(i165 = JH -> next(i165) = NH) &
+		(i165 = HA -> next(i165) != NH ) &
+		(i165 = NH -> next(i165) != JH) &
+	  		 	(i166 = JH -> next(i166) = NH) &
+		(i166 = HA -> next(i166) != NH ) &
+		(i166 = NH -> next(i166) != JH) &
+	  		 	(i167 = JH -> next(i167) = NH) &
+		(i167 = HA -> next(i167) != NH ) &
+		(i167 = NH -> next(i167) != JH) &
+	  		 	(i168 = JH -> next(i168) = NH) &
+		(i168 = HA -> next(i168) != NH ) &
+		(i168 = NH -> next(i168) != JH) &
+	  		 	(i169 = JH -> next(i169) = NH) &
+		(i169 = HA -> next(i169) != NH ) &
+		(i169 = NH -> next(i169) != JH) &
+	  		 	(i170 = JH -> next(i170) = NH) &
+		(i170 = HA -> next(i170) != NH ) &
+		(i170 = NH -> next(i170) != JH) &
+	  		 	(i171 = JH -> next(i171) = NH) &
+		(i171 = HA -> next(i171) != NH ) &
+		(i171 = NH -> next(i171) != JH) &
+	  		 	(i172 = JH -> next(i172) = NH) &
+		(i172 = HA -> next(i172) != NH ) &
+		(i172 = NH -> next(i172) != JH) &
+	  		 	(i173 = JH -> next(i173) = NH) &
+		(i173 = HA -> next(i173) != NH ) &
+		(i173 = NH -> next(i173) != JH) &
+	  		 	(i174 = JH -> next(i174) = NH) &
+		(i174 = HA -> next(i174) != NH ) &
+		(i174 = NH -> next(i174) != JH) &
+	  		 	(i175 = JH -> next(i175) = NH) &
+		(i175 = HA -> next(i175) != NH ) &
+		(i175 = NH -> next(i175) != JH) &
+	  		 	(i176 = JH -> next(i176) = NH) &
+		(i176 = HA -> next(i176) != NH ) &
+		(i176 = NH -> next(i176) != JH) &
+	  		 	(i177 = JH -> next(i177) = NH) &
+		(i177 = HA -> next(i177) != NH ) &
+		(i177 = NH -> next(i177) != JH) &
+	  		 	(i178 = JH -> next(i178) = NH) &
+		(i178 = HA -> next(i178) != NH ) &
+		(i178 = NH -> next(i178) != JH) &
+	  		 	(i179 = JH -> next(i179) = NH) &
+		(i179 = HA -> next(i179) != NH ) &
+		(i179 = NH -> next(i179) != JH) &
+	  		 	(i180 = JH -> next(i180) = NH) &
+		(i180 = HA -> next(i180) != NH ) &
+		(i180 = NH -> next(i180) != JH) &
+	  		 	(i181 = JH -> next(i181) = NH) &
+		(i181 = HA -> next(i181) != NH ) &
+		(i181 = NH -> next(i181) != JH) &
+	  		 	(i182 = JH -> next(i182) = NH) &
+		(i182 = HA -> next(i182) != NH ) &
+		(i182 = NH -> next(i182) != JH) &
+	  		 	(i183 = JH -> next(i183) = NH) &
+		(i183 = HA -> next(i183) != NH ) &
+		(i183 = NH -> next(i183) != JH) &
+	  		 	(i184 = JH -> next(i184) = NH) &
+		(i184 = HA -> next(i184) != NH ) &
+		(i184 = NH -> next(i184) != JH) &
+	  		 	(i185 = JH -> next(i185) = NH) &
+		(i185 = HA -> next(i185) != NH ) &
+		(i185 = NH -> next(i185) != JH) &
+	  		 	(i186 = JH -> next(i186) = NH) &
+		(i186 = HA -> next(i186) != NH ) &
+		(i186 = NH -> next(i186) != JH) &
+	  		 	(i187 = JH -> next(i187) = NH) &
+		(i187 = HA -> next(i187) != NH ) &
+		(i187 = NH -> next(i187) != JH) &
+	  		 	(i188 = JH -> next(i188) = NH) &
+		(i188 = HA -> next(i188) != NH ) &
+		(i188 = NH -> next(i188) != JH) &
+ TRUE

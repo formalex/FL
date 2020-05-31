@@ -1,0 +1,45 @@
+MODULE main
+VAR	
+	i2: {H, NH, JH};
+  	i1: {H, NH, JH};
+  	i0: {H, NH, JH};
+  	i3: {A, I};
+INIT
+	i2 = NH &
+	i1 = NH &
+	i0 = NH &
+  	i3 = I &
+        TRUE 
+TRANS
+	(i2 = JH -> next(i2) = NH) &
+	(i2 = H -> next(i2) != NH ) &
+	(i2 = NH -> next(i2) != JH) &
+  	(i1 = JH -> next(i1) = NH) &
+	(i1 = H -> next(i1) != NH ) &
+	(i1 = NH -> next(i1) != JH) &
+  	(i0 = JH -> next(i0) = NH) &
+	(i0 = H -> next(i0) != NH ) &
+	(i0 = NH -> next(i0) != JH) &
+    (( i3 = I & next(i3) = A) -> (
+   		(i1 = H & next(i1) = JH) 
+)) & 
+	((i3 = A  & next(i3) = I) -> (
+   		(i0 = H & next(i0) = JH) 
+		   		)) & 
+  	(i3 = I & (
+   			(i1 = H & next(i1) = JH) 
+			   		)-> (next(i3) = A)) & 		
+    	(i3 = A & (
+   			(i0 = H & next(i0) = JH) 
+			   		)-> (next(i3) = I)) & 	
+	((
+   			(i1 = NH & next(i1) = H) 
+			   		)-> (i3 = I)) & 
+	((
+   			(i0 = NH & next(i0) = H) 
+			   		)-> (i3 = A)) & 
+  	(next(i1) = H -> (TRUE 
+     	)) &
+  	(next(i0) = H -> (TRUE 
+& next(i0) !=  H 	)) & 
+ TRUE

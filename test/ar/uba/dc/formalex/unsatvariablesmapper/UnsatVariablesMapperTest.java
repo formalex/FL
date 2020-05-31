@@ -178,6 +178,19 @@ public class UnsatVariablesMapperTest {
 		assertEquals(flEntities, entities);
 	}
 	
+	@Test
+	public void modelEjemploTesis() {
+		
+		String unsatVariablesFileName = "unsatEjemplo.variables";
+		String modelFileName = "modelEjemplo.dimacs";
+		UnsatVariablesMapper unsatVariablesMapper = new UnsatVariablesMapper(resourcesDir +"/" + unsatVariablesFileName, resourcesDir +"/" + modelFileName);
+		
+		unsatVariablesMapper.mapUnsatVariables();
+		Set<String> entities = unsatVariablesMapper.getFLEntities();
+		
+		assertEquals(flEntities, entities);
+	}
+	
 	private boolean compareMappingsByEquality(Map<String, Set<String>> unsatVariablesMappingExpected,
 			Map<String, Set<String>> unsatVariablesMappingObtained) {
 		boolean ret =  true;

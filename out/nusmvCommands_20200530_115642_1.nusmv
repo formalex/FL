@@ -1,0 +1,5 @@
+go;
+build_boolean_model
+bmc_setup
+gen_ltlspec_bmc -o /home/debianadmin/Facultad/Tesis/FL/out/nusmvOut_20200530_115642 -p "!( ( agent_4.abonarTarifaAl50 = JUST_HAPPENED -> !( G ( !( agent_4.ingresarASala = JUST_HAPPENED ) ) ) ) & ( agent_1.abonarTarifaAl50 = JUST_HAPPENED -> !( G ( !( agent_1.ingresarASala = JUST_HAPPENED ) ) ) ) )";
+quit;
